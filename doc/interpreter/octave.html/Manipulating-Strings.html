@@ -357,8 +357,14 @@ with the default being <var>false</var>.
 <li><var>delimitertype</var> may take the value of <code>legacy</code>,
 <code>simple</code> or <code>regularexpression</code>. 
 If <var>delimitertype</var> is equal to <code>legacy</code>, each individual
-character of <var>del</var> is used to split the input. 
-If the specified delimiters are single characters, the default is
+character of <var>del</var> is used to split the input.  For both <code>simple</code>
+and <code>regularexpression</code>, the string is split at the boundaries of the
+delimiter string.  If <var>delimiter</var> is a cell-string, then the string
+is split at the boundaries of each of the cells' strings.  <var>simple</var>
+delimiters may contain escaped characters, but are otherwise treated as
+literal strings.
+
+          <p>If the specified delimiters are single characters, the default is
 <var>delimitertype</var> is <code>legacy</code>.  Otherwise the default
 <var>delimitertype</var> is <code>simple</code>. 
 </ul>

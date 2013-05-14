@@ -1192,7 +1192,13 @@ with the default being @var{false}.
 @item @var{delimitertype} may take the value of @code{legacy},
 @code{simple} or @code{regularexpression}.
 If @var{delimitertype} is equal to @code{legacy}, each individual
-character of @var{del} is used to split the input.
+character of @var{del} is used to split the input.  For both @code{simple}
+and @code{regularexpression}, the string is split at the boundaries of the
+delimiter string.  If @var{delimiter} is a cell-string, then the string
+is split at the boundaries of each of the cells' strings.  @var{simple}
+delimiters may contain escaped characters, but are otherwise treated as
+literal strings.
+
 If the specified delimiters are single characters, the default is
 @var{delimitertype} is @code{legacy}.  Otherwise the default
 @var{delimitertype} is @code{simple}.

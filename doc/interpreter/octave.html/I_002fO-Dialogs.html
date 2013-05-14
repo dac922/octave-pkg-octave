@@ -41,9 +41,9 @@ a file name.
    <p><a name="doc_002duigetdir"></a>
 
 <div class="defun">
-&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> ()<var><a name="index-uigetdir-3204"></a></var><br>
-&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path</var>)<var><a name="index-uigetdir-3205"></a></var><br>
-&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path, dialog_name</var>)<var><a name="index-uigetdir-3206"></a></var><br>
+&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> ()<var><a name="index-uigetdir-3332"></a></var><br>
+&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path</var>)<var><a name="index-uigetdir-3333"></a></var><br>
+&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path, dialog_name</var>)<var><a name="index-uigetdir-3334"></a></var><br>
 <blockquote><p>Open a GUI dialog for selecting a directory.  If <var>init_path</var> is not
 given the current working directory is used.  <var>dialog_name</var> may be
 used to customize the dialog title.
@@ -55,14 +55,14 @@ used to customize the dialog title.
    <p><a name="doc_002duigetfile"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uigetfile</b> ()<var><a name="index-uigetfile-3207"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt</var>)<var><a name="index-uigetfile-3208"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uigetfile-3209"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uigetfile-3210"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "Position", </var>[<var>px py</var>])<var><a name="index-uigetfile-3211"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "MultiSelect", mode</var>)<var><a name="index-uigetfile-3212"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uigetfile</b> ()<var><a name="index-uigetfile-3335"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt</var>)<var><a name="index-uigetfile-3336"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uigetfile-3337"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uigetfile-3338"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "Position", </var>[<var>px py</var>])<var><a name="index-uigetfile-3339"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "MultiSelect", mode</var>)<var><a name="index-uigetfile-3340"></a></var><br>
 <blockquote>
-        <p>Open a GUI dialog for selecting a file.  It returns the filename <var>fname</var>,
+        <p>Open a GUI dialog for selecting a file and return the filename <var>fname</var>,
 the path to this file <var>fpath</var>, and the filter index <var>fltidx</var>. 
 <var>flt</var> contains a (list of) file filter string(s) in one of the following
 formats:
@@ -101,10 +101,10 @@ In that case <var>fname</var> is a cell array containing the files.
    <p><a name="doc_002duiputfile"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> ()<var><a name="index-uiputfile-3213"></a></var><br>
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt</var>)<var><a name="index-uiputfile-3214"></a></var><br>
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uiputfile-3215"></a></var><br>
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uiputfile-3216"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> ()<var><a name="index-uiputfile-3341"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt</var>)<var><a name="index-uiputfile-3342"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uiputfile-3343"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uiputfile-3344"></a></var><br>
 <blockquote><p>Open a GUI dialog for selecting a file.  <var>flt</var> contains a (list of) file
 filter string(s) in one of the following formats:
 

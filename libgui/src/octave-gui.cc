@@ -29,6 +29,13 @@ along with Octave; see the file COPYING.  If not, see
 
 #include <iostream>
 
+#include <unistd.h>
+#include <fcntl.h>
+
+#if defined (HAVE_SYS_IOCTL_H)
+#include <sys/ioctl.h>
+#endif
+
 #include "lo-utils.h"
 #include "oct-env.h"
 #include "syswait.h"
@@ -43,8 +50,8 @@ along with Octave; see the file COPYING.  If not, see
 static void
 dissociate_terminal (void)
 {
-#if ! defined (Q_OS_WIN32) || defined (Q_OS_CYGWIN)
-
+#if ! (defined (__WIN32__) || defined (__APPLE__)) || defined (__CYGWIN__)
+ 
   pid_t pid = fork ();
 
   if (pid < 0)
@@ -65,6 +72,9 @@ dissociate_terminal (void)
   else
     {
       // Parent
+
+      // FIXME -- we should catch signals and pass them on to the child
+      // process in some way, possibly translating SIGINT to SIGTERM.
 
       int status;
 
@@ -102,6 +112,17 @@ octave_start_gui (int argc, char *argv[])
 
           // update network-settings
           resource_manager::update_network_settings ();
+
+#if ! defined (__WIN32__) || defined (__CYGWIN__)
+          // If we were started from a launcher, TERM might not be
+          // defined, but we provide a terminal with xterm
+          // capabilities.
+
+          std::string term = octave_env::getenv ("TERM");
+
+          if (term.empty ())
+            octave_env::putenv ("TERM", "xterm");
+#endif
 
           // create main window, read settings, and show window
           main_window w;

@@ -41,9 +41,11 @@ public:
 
   ~workspace_view (void);
 
-public:
+public slots:
 
-  void setModel (workspace_model *model) { view->setModel (model); }
+  void notice_settings (const QSettings *);
+
+  void setModel (workspace_model *model);
 
 signals:
 
@@ -65,11 +67,15 @@ protected slots:
   void handle_contextmenu_plot (void);
   void handle_contextmenu_stem (void);
 
+  void handle_model_changed (void);
+
 private:
 
   void relay_contextmenu_command (const QString& cmdname);
 
   QTableView *view;
+  int view_previous_row_count;
+  workspace_model *_model;
 };
 
 #endif

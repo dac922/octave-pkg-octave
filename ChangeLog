@@ -1,3 +1,1488 @@
+2013-05-14  John W. Eaton  <jwe@octave.org>
+
+	always handle CTRL-C as interrupt on windows systems
+
+	* QTerminal.h (QTerminal::QTerminal): Don't set shortcuts for copy and
+	paste.
+	* octave-qt-link.cc (octave_qt_link::do_pre_input_event,
+	octave_qt_link::do_post_input_event): Don't enable/disable processed
+	input on Windows systems.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.h libgui/src/octave-qt-
+	link.cc
+
+	go back to fork and setsid, but not on OS X systems
+
+	* octave-gui.cc (dissociate_terminal): Use fork and setsid.
+
+	Files: libgui/src/octave-gui.cc
+
+2013-05-13  John W. Eaton  <jwe@octave.org>
+
+	require dynamic field names to be character strings
+
+	* pt-idx.cc (tree_index_expression::get_struct_index):
+	Require field names to be character strings.
+	* orderfields.m: Index fieldnames with {} instead of ().
+
+	Files: libinterp/parse-tree/pt-idx.cc scripts/miscellaneous/orderfields.m
+
+	* uigetdir.m: Eliminate unnecessary cell array for function args.
+
+	Files: scripts/plot/uigetdir.m
+
+2013-05-13  John Donoghue  <john.donoghue@ieee.org>
+
+	Added uigetdir to octave_link
+
+	* libgui/src/dialog.cc (FileDialog::FileDialog): added mode "dir" setup of file dialog for getting dir path.
+
+	* scripts/plot/uigetdir.m (uigetdir): Added detection of octave link and call to function __octave_link_file_dialog__ when available.
+
+	Files: libgui/src/dialog.cc scripts/plot/uigetdir.m
+
+2013-05-05  Erik Kjellson  <erikiiofph7@users.sourceforge.net>
+
+	importdata.m: Added Carriage Return as possible line break character.
+
+	Files: scripts/io/importdata.m
+
+2013-05-13  John W. Eaton  <jwe@octave.org>
+
+	Added tag ss-3-7-4 for changeset 4e50bd2946d8
+
+	Files: .hgtags
+
+	snapshot 3.7.4
+
+	* configure.ac (OCTAVE_VERSION): Bump to 3.7.4.
+
+	Files: configure.ac
+
+	disable \C-v keybinding
+
+	* inputrc: Disable \C-v.
+
+	Files: scripts/startup/inputrc
+
+	more copy/paste tweaks
+
+	* QTerminal.h (QTerminal::QTerminal): Put copy and paste slots in the
+	addAction calls.
+	* main-window.cc (main_window::construct_edit_menu): Put copy and
+	paste slots in the addAction calls.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.h libgui/src/main-window.cc
+
+	improve handling of interrupts, copy and paste shortcuts
+
+	* QTerminal.h (QTerminal::report_status_message): New signal.
+	(QTerminal::QTerminal): Set shortcuts for copy and paste actions.
+	Add copy and paste actions to QTerminal widget.
+	Connect settings_changed, report_status_message, copyClipboard_signal,
+	and pasteClipboard_signal.
+
+	* QWinTerminalImpl.cpp (QWinTerminalImpl::copyClipboard): If selection
+	is set, copy it and report status message.  Otherwise, interrupt.
+	* TerminalView.cpp (TerminalView::copyClipboard): Likewise.
+
+	* main-window.cc (main_menu::construct_file_menu): Don't set shortcut
+	for open action.
+	(main_window::construct_edit_menu): Delete unimplemented cut, select
+	all, and delete actions.
+	Connect copy and paste actions to signals.
+	(main_window::copyClipboard_signal,
+	main_window::pasteClipboard_signal): New signals.
+	(main_window::copyClipboard, main_window::pasteClipboard): New slots.
+	(main_window::_cut_action): Delete member variable.
+
+	* octave-qt-link.cc (octave_qt_link::do_pre_input_event):
+	Disable input processing by the windows console.
+	(octave_qt_link::do_post_input_event):
+	Enable input processing by the windows console.
+
+	* terminal-dock-widget.h, terminal-dock-widget.cc:
+	Delete notice_settings, copyClipboard, and pasteClipboard signals,
+	slots, and connections.
+	(terminal_dock_widget::terminal_dock_widget):
+	Don't connect visibilityChanged signal.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.h
+	libgui/qterminal/libqterminal/unix/TerminalView.cpp
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp libgui/src
+	/main-window.cc libgui/src/main-window.h libgui/src/octave-qt-
+	link.cc libgui/src/terminal-dock-widget.cc libgui/src/terminal-dock-
+	widget.h
+
+	disallow setting selection with right mouse button in windows terminal
+
+	* QWinTerminalImpl.cpp (QConsolePrivate::m_settingSelection):
+	New member variable.
+	(QConsolePrivate::QConsolePrivate): Initialize it.
+	(QWinTerminalImpl::mousePressEvent,
+	QWinTerminalImpl::mouseReleaseEvent): Set d->m_settingSelection.
+	(QWinTerminalImpl::mouseMoveEvent): Don't do anything unless
+	d->m_settingSelection is true.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+
+2013-05-12  John W. Eaton  <jwe@octave.org>
+
+	use QScintilla's lexer for highlighting Octave programs
+
+	* file-editor-tab.cc: Include Qsci/qscilexeroctave.h instead of
+	lexer-octave-gui.h.
+	(file_editor_tab::update_lexer):  Use QsciLexerOctave instead of
+	lexer_octave_gui.
+
+	* settings-dialog.h: Use forward declaration for QsciLexer.
+	* settings-dialog.cc: Include Qsci/qscilexeroctave.h instead of
+	lexer-octave-gui.h.
+	(settings_dialog::settings_dialog): Use QsciLexerOctave instead of
+	lexer_octave_gui.
+
+	* lexer-octave-gui.h, lexer-octave-gui.cc: Delete.
+	* libgui/src/module.mk: Update file lists.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/lexer-
+	octave-gui.cc libgui/src/m-editor/lexer-octave-gui.h
+	libgui/src/module.mk libgui/src/settings-dialog.cc libgui/src
+	/settings-dialog.h
+
+	don't push operator tokens twice
+
+	* lex.ll (octave_base_lexer::handle_op_internal):
+	Use count_token_internal, not count_token.
+
+	Files: libinterp/parse-tree/lex.ll
+
+	eliminate unimplemented New -> Variable menu item
+
+	* main-window.h, main-window.cc (main_window::construct_new_menu):
+	Remove new variable menu item.
+	(main_window::handle_new_variable_request): Delete.
+
+	Files: libgui/src/main-window.cc libgui/src/main-window.h
+
+	don't store default values in resource manager class
+
+	* QTerminal.h, QTerminal.cc (QTerminal::default_colors,
+	QTerminal::color_names): New functions.
+	(QTerminal::notice_settings): Call default_colors.
+	* workspace-model.h, workspace-model.cc
+	(workspace_model::storage_class_default_colors,
+	workspace_model::storage_class_names): New functions.
+	* resource-manager.cc (resource_manager::storage_class_names,
+	resource_manager::storage_class_default_colors): Get values from
+	workspace_model.
+	(resource_manager::terminal_color_names,
+	resource_manager::terminal_default_colors): Get values from QTerminal.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.cc
+	libgui/qterminal/libqterminal/QTerminal.h libgui/src/resource-
+	manager.cc libgui/src/workspace-model.cc libgui/src/workspace-
+	model.h
+
+	* QTerminal.cc: Style fixes.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.cc
+
+	simplify QTerminal inheritance scheme
+
+	* Qterminal.h, Qterminal.cc: Merge QTerminalInterface class into
+	QTerminal.
+	(QTerminal::create): New function.
+	(QTerminal::Qterminal): Now protected.
+	* QUnixTerminal.h, QUnixTerminal.cpp, QWinTerminal.h,
+	QWinTerminal.cpp: Derive from QTerminal, not QTerminalInterface.
+	* QTerminalInterface.h: Delete.
+	* libgui/qterminal-module.mk: Update file lists.
+	* terminal-dock-widget.cc
+	(terminal_dock_widget::terminal_dock_widget): Use QTerminal::create to
+	create terminal object.
+
+	Files: libgui/qterminal-module.mk
+	libgui/qterminal/libqterminal/QTerminal.cc
+	libgui/qterminal/libqterminal/QTerminal.h
+	libgui/qterminal/libqterminal/QTerminalInterface.h
+	libgui/qterminal/libqterminal/unix/QUnixTerminalImpl.cpp
+	libgui/qterminal/libqterminal/unix/QUnixTerminalImpl.h
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.h libgui/src
+	/terminal-dock-widget.cc
+
+2013-05-11  Torsten  <ttl@justmail.de>
+
+	ask for saving modified editor files if octave is closed (bug #38689)
+
+	* files-editor-tab.cc(constrctor): init new flag indicating if app is closing,
+	  (check_file_modified): message box is modal if app is closing, no cancel,
+	  parent of box is the editor's tab widget for a correct palcement of the box,
+	  (conditional_close): new second arg: flag for closing app (default false),
+	  it is stored in the tab's class wide flag
+	* file-editor-tab.h: second arg for conditional_close and new class wide flag
+
+	* file-editor.cc(destructor): sending close requests to all editor tabs with
+	  flag indicating the application is closing
+	  (add_file_editor_tab): new arg for fetab_close_request and conditional_close
+	* file-editor.h: new 2nd arg for fetab_close_request (closing app, def. false)
+
+	* main-window.cc(destructor): delete editor window first for showing the message
+	  boxes for modified editor files in front of a complete gui
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor-tab.h libgui/src/m-editor/file-editor.cc libgui/src/m-editor
+	/file-editor.h libgui/src/main-window.cc
+
+	fix endless loop when closing all files in the editor and files are modified
+
+	* file_editor.cc(request_close_all_files,request_close_other_files):
+	  delete the tabs starting with the last otherwise deleting changes the indexes
+
+	Files: libgui/src/m-editor/file-editor.cc
+
+2013-05-10  Mike Miller  <mtmiller@ieee.org>
+
+	Fix GUI includes when built without Qscintilla
+
+	* settings-dialog.cc: Unconditionally include color-picker.h. Do not
+	include QSettings here.
+	* settings-dialog.h: Include QSettings here.
+
+	Files: libgui/src/settings-dialog.cc libgui/src/settings-dialog.h
+
+2013-05-10  Torsten  <ttl@justmail.de>
+
+	fix running files from file browser's context menu
+
+	* main-window.cc(run_file_in_terminal): new slot for run_file_signal
+	  (run_file_callback): callback for running files after checking the path
+	* main-window.h: new functions run_file_in_terminal und run_file_callback)
+
+	* files-dock-widget.cc(constructor): connect signal to slot for running files
+	  (contextmenu_run): emit run_file_signal with QFileInfo as parameter
+	* files-dock-widget.h: run_file_signal has QFileInfo as parameter
+
+	* file-editor-tab.cc: removed function run_file_callback
+	  (run_file): get file info of current file and emit run_file_signal
+	  (file_in_path): moved to octave_qt_link allowiung access from other widgets,
+	  updated calls to this functions
+	* file-editor-tab.h: new run_file_signal with QFileInfo, removed functions
+	  run_file_callback and file_in_path
+
+	* file-editor.cc(add_file_editor_tab): connect signal to slot for running files
+
+	* octave-qt-link.cc/h(file_in_path): moved from file-editor-tab and made static
+
+	Files: libgui/src/files-dock-widget.cc libgui/src/files-dock-widget.h
+	libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor-tab.h libgui/src/m-editor/file-editor.cc libgui/src/main-
+	window.cc libgui/src/main-window.h libgui/src/octave-qt-link.cc
+	libgui/src/octave-qt-link.h
+
+2013-05-10  Carnë Draug  <carandraug@octave.org>
+
+	gallery: new function
+
+	Files: NEWS doc/interpreter/matrix.txi scripts/help/__unimplemented__.m
+	scripts/special-matrix/gallery.m scripts/special-matrix/module.mk
+
+2013-05-08  Adam H Aitkenhead  <adamhaitkenhead@gmail.com>
+
+	rgb2ind.m: Fix handling ND images.
+
+	* rgb2ind.m: Fix handling of ND images.
+
+	Files: scripts/image/rgb2ind.m
+
+2013-05-08  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Merge in Adam's changes
+
+	Files: 
+
+	rgb2ind.m: Style fixes
+
+	Files: scripts/image/rgb2ind.m
+
+2013-05-04  Adam H Aitkenhead  <adamhaitkenhead@gmail.com>
+
+	rgb2ind.m: Enable handling of ND images, and enable n,tol,map,dither as inputs.
+
+	* rgb2ind.m: Enable handling of ND images, and enable n,tol,map,dither as inputs.
+
+	Files: scripts/image/rgb2ind.m
+
+2013-05-07  John W. Eaton  <jwe@octave.org>
+
+	in Windows terminal, don't clear selection when copying to clipboard
+
+	* QWinTerminalImpl.cpp (QWinTerminalImpl::copyClipboard):
+	Don't clear selection.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+
+	use swapped points when getting selection text in Windows terminal
+
+	* QWinTerminalImpl.cpp (QConsolePrivagte::getSelection): Extract text
+	using swapped points, not original points.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+
+	adjust location of eof marker for files with subfunctions but no explicit end statements
+
+	* ov-fcn.h (octave_function::maybe_relocate_end,
+	octave_function::has_subfunctions,
+	octave_function::stash_subfunction_names,
+	octave_function::subfunction_names): New virtual functions.
+	* ov-usr-fcn.h, ov-usr-fcn.cc (octave_user_function::end_location_line,
+	octave_user_function::end_location_column,
+	octave_user_function::subfcn_names): New member variables.
+	(octave_user_function::beginning_line,
+	octave_user_function::beginning_column,
+	octave_user_function::stash_fcn_end_location,
+	octave_user_function::ending_line,
+	octave_user_function::ending_column,
+	octave_user_function::has_subfunctions,
+	octave_user_function::subfunction_names,
+	octave_user_function::stash_subfunction_names,
+	octave_user_function::maybe_relocate_end_internal,
+	octave_user_function::maybe_relocate_end): New functions.
+
+	* oct-parse.in.yy (FCN): Declare as token with tok_val type.
+	(function_beg): Declare as tok_val type.  Return FCN value.
+	(function): Move stash_comment here from function_beg.  Pass line and
+	column info to parser.finish_function.
+	(octave_base_parser::subfunction_names): New data member.
+	(octave_base_parser::reset): Clear subfuntction_names.
+	(octave_base_parser::start_function): Call stash_fcn_end_location.
+	(octave_base_parser::frob_function): Don't call stash_fcn_location.
+	(octave_base_parser_::finish_function): Call stash_fcn_location.
+	Append name to subfunction_names.
+	Call maybe_relocate_end on constructed function.
+	(parse_fcn_file): Attach subfunction names to primary function.
+
+	* pt-stmt.h, pt-stmt.cc (tree_statement::set_location): New function.
+	* pt.h (tree::set_location): New function.
+
+	* pt-cmd.h, pt-cmd.cc (tree_no_op_command::tree_no_op_command): Use
+	EOF member variable to track auto-generated end statements that appear
+	at the end of file.  Change all callers.
+	(tree_command::is_end_of_file): New function.
+	* pt-stmt.h, pt-stmt.cc (tree_statement::set_location,
+	tree_statement::is_end_of_file): New functions.
+
+	* base-list.h (octave_base_list::reverse_iterator,
+	octave_base_list::const_reverse_iterator): New typedefs.
+	(octave_base_list::rbegin, octave_base_list::rend): New functions.
+
+	* debug.h, debug.cc (bp_table::do_add_breakpoint):
+	Handle subfunctions.
+	(bp_table::do_remove_breakpoint_1): New function.
+	(bp_table::do_remove_breakpoint): Use it.  Handle subfunctions.
+	(bp_table::do_remove_all_breakpoints_in_file_1): New function.
+	(bp_table::do_remove_all_breakpoints_in_file): Use it.  Handle
+	subfunctions.
+
+	Files: libinterp/interpfcn/debug.cc libinterp/interpfcn/debug.h libinterp
+	/octave-value/ov-fcn.h libinterp/octave-value/ov-usr-fcn.cc
+	libinterp/octave-value/ov-usr-fcn.h libinterp/parse-tree/oct-
+	parse.in.yy libinterp/parse-tree/parse.h libinterp/parse-tree/pt-
+	cmd.cc libinterp/parse-tree/pt-cmd.h libinterp/parse-tree/pt-stmt.cc
+	libinterp/parse-tree/pt-stmt.h libinterp/parse-tree/pt.h
+	liboctave/util/base-list.h
+
+2013-05-06  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	GUI compilation fixes for MSVC.
+
+	* libgui/src/dialog.cc (ACTIVE_ESCAPE, RICH_TEXT): Define to 1 instead of
+	"true".
+	(LINE_EDIT_FOLLOWS_PROMPT): Define to 0 instead of "false".
+	*libgui/src/settings-dialog.cc (settings_dialog::read_lexer_settings,
+	settings_dialog::read_workspace_colors,
+	settings_dialog::read_terminal_colors): Use QVector instead of C99
+	non-constant arrays.
+
+	Files: libgui/src/dialog.cc libgui/src/settings-dialog.cc
+
+	Decorate symbols with OCTINTERP_API.
+
+	* libinterp/interfcn/load-save.h (is_octave_data_file): Add OCTINTERP_API.
+	* libinterp/interfcn/octave-link.h (class octave_link): Likewise.
+
+	Files: libinterp/interpfcn/load-save.h libinterp/interpfcn/octave-link.h
+
+	Support "true" or "yes" for %NO_OCT_FILE_STRIP% in mkoctfile.in.cc.
+
+	* src/mkoctfile.in.cc (is_true): New function.
+	(main): Use it on %NO_OCT_FILE_STRIP% replacement.
+
+	Files: src/mkoctfile.in.cc
+
+2013-05-06  Torsten  <ttl@justmail.de>
+
+	save and restore last used tabs of the settings dialog
+
+	* settings-dialog.cc(constructor): restore last used tab from settings
+	  (read_lexer_settings): restore last used lexer tab from settings
+	  (write_changed_settings): save last used tab
+	  (write_lexer_settings): save last used lexer tab
+
+	Files: libgui/src/settings-dialog.cc
+
+2013-05-06  John W. Eaton  <jwe@octave.org>
+
+	handle copying names file browser to clipboard; allow multiple selections
+
+	* files-dock-widget.cc (class FileTreeViewer): New class.
+	(files_dock_widget::files_dock_widget): Use it for _file_tree_view.
+	New context menu action to copy selection to clipboard.
+	Set extended selection mode for _file_tree_view.
+	(files_dock_widget::contextmenu_copy_selection): New function.
+
+	Files: libgui/src/files-dock-widget.cc libgui/src/files-dock-widget.h
+
+	draw border around color picker swatches
+
+	* color-picker.cc (color_picker::update_button): Add 1px solid border
+	with text color to the css for the button.
+
+	Files: libgui/src/color-picker.cc
+
+	allow terminal colors to be set from preferences dialog
+
+	* QTerminalInterface.h (QTerminalInterface::setBackgroundColor,
+	QTerminalInterface::setForeroundColor,
+	QTerminalInterface::setSelectionColor,
+	QTerminalInterface::setCursorColor): New functions.
+
+	* QUnixTerminalImpl.h, QUnixTerminalImpl.cpp
+	QUnixTerminalImpl::setBackgroundColor,
+	QUnixTerminalImpl::setForeroundColor,
+	QUnixTerminalImpl::setSelectionColor,
+	QUnixTerminalImpl::setCursorColor): New functions.
+
+	* QWinTerminalImpl.h, QWinTerminalImpl.cpp
+	(QConsolePrivate::setCursorColor): New argument, useForegroundColor.
+	(QConsolePrivate::m_selectionColor, QConsolePrivate::m_cursorColor):
+	New member variablebs.
+	(QConsolePrivate::selectionColor, QConsolePrivate::cursorColor,
+	QConsolePrivate::setSelectionColor, QConsolePrivate::setCursorColor):
+	Use member variables instead of Windows console color map.
+	(QConsolePrivate::cursorColor): Return foreground color if stored
+	color is invalid.
+	(QConsolePrivate::setCursorColor): Store invalid color if
+	useForegroundcolor.
+	(QConsolePrivate::QConsolePrivate): Set default selection and cursor
+	colors.
+
+	* QTerminal.cc (QTerminal::notice_settings): Handle terminal color
+	settings.
+
+	* resource-manager.h, resource-manager.cc
+	(resource_manager::terminal_color_names,
+	resource_manager::terminal_default_colors,
+	resource_manager::terminal_color_chars): New functions.
+
+	* settings-dialog.h, settings-dialog.cc
+	(settings_dialog::read_terminal_colors): New function.
+	(settings_dialog::settings_dialog): Call read_terminal_colors.  Read
+	valud for using foreground color for cursor color.
+	(settings_dialog::write_terminal_colors): New function.
+	(settings_dialog::write_changed_settings): Call
+	write_terminal_colors.  Handle setting for using foreground color for
+	cursor color.
+
+	* settings-dialog.ui: Add color selection to terminal settings
+	dialog.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.cc
+	libgui/qterminal/libqterminal/QTerminalInterface.h
+	libgui/qterminal/libqterminal/unix/QUnixTerminalImpl.cpp
+	libgui/qterminal/libqterminal/unix/QUnixTerminalImpl.h
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.h libgui/src
+	/resource-manager.cc libgui/src/resource-manager.h libgui/src
+	/settings-dialog.cc libgui/src/settings-dialog.h libgui/src
+	/settings-dialog.ui
+
+	split drawing apart to avoid XOR operation
+
+	* QWinTerminal.cpp (QConsolePrivate::drawTextBackground,
+	QConsolePrivate::drawSelection, QConsolePrivate::drawCursor,
+	QConsolePrivate::drawText): New functions.
+	(QWinTerminalImpl::QviewPaintEvent): Use them.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+
+	use functions to handle colors in Windows GUI terminal
+
+	* QWinTerminalImpl.cpp (QConsolePrivate::backgroundColor,
+	QConsolePrivate::foregroundColor, QConsolePrivate::selectionColor,
+	QConsolePrivate::cursorColor, QConsolePrivate::setBackgroundColor,
+	QConsolePrivate::setForegroundColor,
+	QConsolePrivate::setSelectionColor, QConsolePrivate::setCursorColor):
+	New functions.
+	(QConsolePrivate::m_backgroundColor,
+	QConsolePrivate::m_foregroundColor): Delete member variables.
+	(QConsolePrivate::QConsolePrivate): Call setBackgroundColor and
+	setForegroundColor to set default colors.
+	(QWinTerminalImpl::viewPaintEvent): Use functions to access colors.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+
+	use average width for character size in GUI terminal for Windows
+
+	* QWinTErminalImpl.cpp (QConsolePrivate::updateConsoleSize):
+	Use QFontMetrics::averageCharWidth instead of maxWidth.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+
+2013-05-05  Torsten  <ttl@justmail.de>
+
+	* fileclose.png: new icon for close actions (missing in cset 16615)
+
+	Files: libgui/src/icons/fileclose.png
+
+	add close actions to the file menu of the editor
+
+	* file-editor.cc(consruct): new actions for close, close all and clos other
+	* file-editor.cc/.h
+	  (request_close_file.request_close_all_files,request_close_other_files):
+	  new slots for the new actions
+
+	Files: libgui/src/m-editor/file-editor.cc libgui/src/m-editor/file-editor.h
+	libgui/src/module.mk libgui/src/resource.qrc
+
+2013-05-04  Daniel J Sebald  <daniel.sebald@ieee.org>
+
+	Use menu triggered signal instead of action triggered signal to rid cast.
+
+	* file-editor.cc (file_editor::request_mru_open_file): Add QAction pointer as
+	function argument.  Remove sender() cast.
+	(file_editor::construct): Connect request_mru_open_file slot to menu trigger
+	signal instead of action trigger signals.
+
+	* file-editor.h (file_editor : public file_editor_interface): Add QAction
+	pointer as input to request_mru_open_file slot.
+
+	Files: libgui/src/m-editor/file-editor.cc libgui/src/m-editor/file-editor.h
+
+2013-05-05  Torsten  <ttl@justmail.de>
+
+	add menu for searching the next directory shown by the file browser
+
+	* file-dock_widget.cc(constructor): new action in popdown-menu for searching
+	  the directory shown in the file browser
+	* file-dock_widget.cc/.h(popdownmenu_search_dir): slot for the added menu action
+
+	Files: libgui/src/files-dock-widget.cc libgui/src/files-dock-widget.h
+
+2013-05-05  John W. Eaton  <jwe@octave.org>
+
+	handle text selection in GUI terminal for Windows
+
+	* QWinTerminalImpl.h, QWinTerminalImpl.cpp
+	(QConsolePrivate::posToCell, QConsolePrivate::getSelection,
+	QConsolePrivate::updateSelection): QWinTerminalImpl::mouseMoveEvent,
+	QWinTerminalImpl::mousePressEvent, QWinTerminalImpl::updateSelection
+	QWinTerminalImpl::mouseReleaseEvent): New functions.
+	(QConsolePrivate::m_beginSelection, QConsolePrivate::m_endSelection,
+	QConsolePrivate::m_selection): New variables.
+	(maybeSwapPoints): New static function.
+	(QConsolePrivate::QConsolePrivate): Initialize m_beginSelection and
+	m_endSelection.
+	(QWinTerminalImpl::viewPaintEvent): Draw an overlay for the
+	selection.
+	(QWinTerminalImpl::copyClipboard): Save selection to clipboard.
+	(QWinTerminalImpl::pasteClipboard): Send clipboard text to terminal.
+
+	Thanks to Michael Goffioul for help with this patch, especially the
+	QConsolePrivate::getSelection function.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.h
+
+2013-05-04  Torsten  <ttl@justmail.de>
+
+	move more common code from dock widgets into octave-dock-widget.h
+
+	* terminal-dock-widget.cc, file-editor.cc, files-dock-widget.cc,
+	  workspace-view.cc (constructor): remove connectiong changed_settings signal
+	* files-dock-widget.cc/.h, file-editor.h: do not include QSettings here
+	* octave-dock-widget.h(constructor): connect changed_settings signal
+	* octave-dock-widget.h: include QSettings, empty virtual slot notice-settings
+
+	Files: libgui/src/files-dock-widget.cc libgui/src/files-dock-widget.h
+	libgui/src/m-editor/file-editor.cc libgui/src/m-editor/file-editor.h
+	libgui/src/octave-dock-widget.h libgui/src/terminal-dock-widget.cc
+	libgui/src/workspace-view.cc
+
+	workspace view colors based upon variable scope (derived from Dan's patch #8013)
+
+	* resource-manager.cc/.h(storage_class_names): function returning scope names
+	  (storage_class_colors): function returning default colors for scopes
+	  (storage_class_chars): function returning the ident. characters of the scopes
+
+	* color-picker.cc(constructor): prevent focus for the colored pushbutton
+
+	* settings-dialog.cc/.h(read_workspace_colors): function reading the colors from
+	  the setitngs and creating a table with color-pickers in the settings dialog
+	  (write_wirkspace_colors): function getting the states of the color-pickers
+	  and writing them into the settings files
+	* settings-dialog.cc(constructor): call read_workspace_colors
+	  (write_changed_settings): call write_workspace_colors
+
+	* settings-dialog.ui: new tab for workspace settings with a box for the colors
+
+	* workspace_model.cc/.h(notice_settings): reading colors from the settings
+	* workspace-model.cc(constructor): initialize list of colors
+	  (data): reorganize determining the appropriate data and take background
+	  color role into consideration
+	* workspace-model.h(storage_class_color): returns the color for a specific scope
+
+	* workspace-view.cc/.h(notice_settings): create tool tip with color key
+	  (setModel): not inline anymore, actual model is stored in _model
+
+	Files: libgui/src/color-picker.cc libgui/src/resource-manager.cc libgui/src
+	/resource-manager.h libgui/src/settings-dialog.cc libgui/src
+	/settings-dialog.h libgui/src/settings-dialog.ui libgui/src
+	/workspace-model.cc libgui/src/workspace-model.h libgui/src
+	/workspace-view.cc libgui/src/workspace-view.h
+
+2013-05-04  John W. Eaton  <jwe@octave.org>
+
+	improve handling of cursor blinking for unix GUI terminal window
+
+	* QUnixTerminalImpl.h, QUnixTerminalImpl.cpp
+	(QUnixTerminalImpl::focusInEvent): Delete.
+	* TerminalView.h, TerminalView.cpp (TerminalView::drawCursor):
+	Don't check focus.
+	(TerminalView::setBlinkingCursorState): New function.
+	(TerminalView::setBlinkingCursor): Use it.
+	(TerminalView::focusInEvent, TerminalView::focusOutEvent):
+	New functions.
+	(TerminalView::blinkCursorEvent): Only toggle state if
+	_hasBlinkingCursor is true.
+
+	Files: libgui/qterminal/libqterminal/unix/QUnixTerminalImpl.cpp
+	libgui/qterminal/libqterminal/unix/QUnixTerminalImpl.h
+	libgui/qterminal/libqterminal/unix/TerminalView.cpp
+	libgui/qterminal/libqterminal/unix/TerminalView.h
+
+	make blinking cursor and different cursor styles for Windows GUI terminal
+
+	* QWinTerminalImpl.h, QWinTerminalImpl.cpp
+	(QConsolePrivate::KeyboardCursorType): New enum.
+	(QConsolePrivate::cursorRect): New function.
+	(QConsolePrivate::BLINK_DELAY, QConsolePrivate::m_cursorBlinking,
+	QConsolePrivate::m_blinkCursorTimer, QConsolePrivate::m_cursorType,
+	QConsolePrivate::m_hasBlinkingCursor): New data members.
+	(QConsolePrivate::QConsolePrivate): Initialize m_hasBlinkingCursor and
+	m_cursorType.  Create m_blinkCursorTimer.  Connect
+	m_blinkCursorTimer::timeout to parent::blinkCursorEvent.
+	(QWinTerminalImpl::viewPaintEvent): Draw new cursor types.  Handle
+	blinking cursor.
+	(QWinTerminalImpl::blinkCursorEvent,
+	QWinTerminalImpl::setBlinkingCursor,
+	QWinTerminalImpl::setBlinkingCursorState,
+	QWinTerminalImpl::focusInEvent, QWinTerminalImpl::keyPressEvent,
+	QWinTerminalImpl::setCursorType): New functions.
+	(QWinTerminalImpl::focusInEvent): Call setBlinkingCursorState.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+	libgui/qterminal/libqterminal/win32/QWinTerminalImpl.h
+
+2013-05-03  Torsten  <ttl@justmail.de>
+
+	fix style of matching braces in octave lexer
+
+	* lexer-octave-gui.cc/.h (brace::Style): new function returning brace style
+	* lexer-octave-gui.cc(defaultFont): fix shadow warnings during compilation
+
+	Files: libgui/src/m-editor/lexer-octave-gui.cc libgui/src/m-editor/lexer-
+	octave-gui.h
+
+2013-05-03  John W. Eaton  <jwe@octave.org>
+
+	unix terminal: don't blink cursor if command window does not have focus
+
+	* TerminalView.cpp (TerminalView::drawCursor): Always draw cursor if
+	window does not have focus.
+
+	Files: libgui/qterminal/libqterminal/unix/TerminalView.cpp
+
+	erase subfunctions when primary function scope is deleted (bug #38691)
+
+	* symtab.h (symbol_table::fcn_info::fcn_info_rep::clear_map):
+	Rename from clear_unlocked.  New arg, force.
+	(symbol_table::fcn_info::fcn_info_rep::clear_autoload_function,
+	(symbol_table::fcn_info::fcn_info::clear_autoload_function,
+	symbol_table::fcn_info::fcn_info_rep::clear_user_function,
+	symbol_table::fcn_info::fcn_info::clear_user_function,
+	symbol_table::fcn_info::fcn_info_rep::clear,
+	symbol_table::fcn_info::clear, symbol_table::clear_all,
+	symbol_table::clear_functions.): New arg, force.
+	(symbol_table::erase_scope): Call erase_subfunctions_in_scope.
+	(symbol_table::do_pop_context, symbol_table::do_clear_global_pattern):
+	Style fixes.
+	* symtab.cc (symbol_table::cleanup): Simplify.
+
+	* test/bug-38691/module.mk, test/bug-38691/bug-38691.tst,
+	test/bug-38691/dir1/func1.m, test/bug-38691/dir2/func1.m,
+	test/bug-38691/dir2/func2.m, test/bug-38691/dir2/func3.m: New files.
+	* test/Makefile.am: Include bug-38691/module.mk.
+
+	Files: libinterp/interpfcn/symtab.cc libinterp/interpfcn/symtab.h libinterp
+	/octave-value/ov-usr-fcn.cc test/Makefile.am
+	test/bug-38691/bug-38691.tst test/bug-38691/dir1/func1.m
+	test/bug-38691/dir2/func1.m test/bug-38691/dir2/func2.m
+	test/bug-38691/dir2/func3.m test/bug-38691/module.mk
+
+	allow options to be passed to run-octave script used in check target
+
+	* test/Makefile.am (check): Insert $(RUN_OCTAVE_OPTIONS) as first
+	argument to run-octave script.
+
+	Files: test/Makefile.am
+
+	install .gdbinit in test directory
+
+	* build-aux/common.mk (gdbinit_install_rule): New macro.
+	* Makefile.am (.gdbinit): Use it.
+	* test/Makefile.am (all-local, .gdbinit): New targets.
+
+	Files: Makefile.am build-aux/common.mk test/Makefile.am
+
+	turn off gdb thread messages by default
+
+	* gdbinit: Disable thread begin/end messages.
+
+	Files: etc/gdbinit
+
+2013-05-01  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	maint: periodic merge of stable to default
+
+	Files: doc/interpreter/contrib.txi doc/interpreter/sparse.txi
+
+2013-05-01  John W. Eaton  <jwe@octave.org>
+
+	ensure TERM environment variable is set when GUI starts
+
+	* octave-gui.cc (octave_start_gui): If TERM environment variable is
+	not set, set it to "xterm".
+
+	Files: libgui/src/octave-gui.cc
+
+2013-05-01  Ben Abbott  <bpabbott@mac.com>
+
+	if available, use ioctl to give up controlling terminal
+
+	* octave-gui.cc (dissociate_terminal): If sys/ioctl.h is available and
+	TIOCNOTTY is defined, use ioctl to give up controlling terminal on
+	Unixy systems.
+
+	Files: libgui/src/octave-gui.cc
+
+2013-04-30  John W. Eaton  <jwe@octave.org>
+
+	handle setting breakpoints in subfunctions in GUI editor
+
+	* symtab.h (symbol_table::subfunctions_defined_in_scope): Now public.
+	* debug.h, debug.cc (bp_table::do_add_breakpoint_1): New function.
+	(bp_table::do_add_breakpoint): Handle subfunctions.
+	* ov-usr-fcn.h, ov-usr-fcn.cc (octave_user_code::subfunctions,
+	octave_user_function::subfunctions): New functions.
+	* pt-bp.h (tree_breakpoint::get_line): Return 0 if line wasn't found.
+
+	Files: libinterp/interpfcn/debug.cc libinterp/interpfcn/debug.h
+	libinterp/interpfcn/symtab.h libinterp/octave-value/ov-usr-fcn.cc
+	libinterp/octave-value/ov-usr-fcn.h libinterp/parse-tree/pt-bp.h
+
+2013-04-29  John W. Eaton  <jwe@octave.org>
+
+	contextmenu for opening files in default applications
+
+	* files-dock-widget.h, files-dock-widget.cc
+	(files_dock_widget::contextmenu_open_in_app,
+	files_dock_widget::open_item_in_app): New functions.
+	(files_dock_widget::contextmenu_requested): New action for opening
+	file in default external application.
+
+	Files: libgui/src/files-dock-widget.cc libgui/src/files-dock-widget.h
+
+	allow GUI window layout to be restored
+
+	* main-window.h, main-window.cc (main_window::set_window_layout):
+	New function.
+	(main_window::read_settings): Call set_window_layout for current
+	settings.
+	(main_window::reset_windows): Call set_window_layout for default
+	settings.
+	(main_window::construct_window_menu): Enable reset_windows_action.
+	* resource-manager.h, resource-manager.cc (default_qt_settings_file):
+	Return QString instead of std::string.  Change all callers.
+	(resource_manager::default_settings): New member variable.
+	(resource_manager::resource_manager): Initialize default_settings.
+	(resource_manager::~resource_manager): Delete default_settings.
+	(resource_manager::get_default_settings,
+	resource_manager::do_get_default_settings): New functions.
+	(resource_manager::do_is_first_run, resource_manager::do_get_settings,
+	resource_manager::do_get_home_path): Now const.
+
+	Files: libgui/src/main-window.cc libgui/src/main-window.h libgui/src
+	/resource-manager.cc libgui/src/resource-manager.h
+
+	update default Qt settings
+
+	* default-qt-settings.in: Update default geometry.
+
+	Files: libgui/default-qt-settings.in
+
+2013-04-29  Torsten  <ttl@justmail.de>
+
+	* file-editor-tab.cc: replace setFirstVisibleLine for older Qscintilla-versions
+
+	Files: libgui/src/m-editor/file-editor-tab.cc
+
+2013-04-29  John W. Eaton  <jwe@octave.org>
+
+	handle A, R, and W fopen modes correctly (bug #38851)
+
+	* file-io.cc (normalize_fopen_mode): New function.  Handle 'A'.  Also
+	handle 'b' and 't' suffixes here.  Use Octave:fopen-mode warning id.
+	(fopen_mode_to_ios_mode): Only convert from mode string to ios mode.
+	(do_stream_open): Call normalize_fopen_mode before calling
+	fopen_mode_to_ios_mode.  Don't process mode string directly.
+
+	* io.tst: Update test for fopen modes.
+
+	Files: libinterp/interpfcn/file-io.cc test/io.tst
+
+2013-04-29  Mike Miller  <mtmiller@ieee.org>
+
+	Remove resample from list of missing functions
+
+	* __unimplemented__.m: Remove resample from list, it is not a core
+	function.
+
+	Files: scripts/help/__unimplemented__.m
+
+2013-04-28  Mike Miller  <mtmiller@ieee.org>
+
+	Add argument to ellipj for Matlab compatibility
+
+	* ellipj.cc: Allow third argument for compatibility, ignored for now.
+
+	Files: libinterp/corefcn/ellipj.cc
+
+	Fix ellipj, ellipke, and expint docstrings
+
+	* ellipj.cc, ellipke.m, expint.m: Fix docstring signatures and wording.
+
+	Files: libinterp/corefcn/ellipj.cc scripts/specfun/ellipke.m
+	scripts/specfun/expint.m
+
+	Style fixes for ellipj.cc, ellipke.m, and expint.m
+
+	* ellipj.cc, ellipke.m, expint.m: Style fixes.
+
+	Files: libinterp/corefcn/ellipj.cc scripts/specfun/ellipke.m
+	scripts/specfun/expint.m
+
+	Add and fix tests for ellipj, ellipke, and expint
+
+	* ellipj.cc: Fix demo, add validation tests.
+	* ellipke.m: Fix assert arguments, add tests.
+	* expint.m: Add tests.
+
+	Files: libinterp/corefcn/ellipj.cc scripts/specfun/ellipke.m
+	scripts/specfun/expint.m
+
+2013-04-24  Mike Miller  <mtmiller@ieee.org>
+
+	Add ellipj, ellipke, and expint functions from Octave Forge
+
+	* ellipj.cc, ellipke.m, expint.m: New files.
+	* libinterp/corefcn/module.mk (COREFCN_SRC): Add ellipj.cc to the list.
+	* scripts/specfun/module.mk (specfun_FCN_FILES): Add ellipke.m and
+	expint.m to the list.
+	* __unimplemented__.m (missing_functions): Remove ellipj, ellipke, and
+	expint from the list.
+	* arith.txi: Include ellipj, ellipke, and expint docstrings.
+	* NEWS: Mention ellipj, ellipke, and expint.
+
+	Files: NEWS doc/interpreter/arith.txi libinterp/corefcn/ellipj.cc
+	libinterp/corefcn/module.mk scripts/help/__unimplemented__.m
+	scripts/specfun/ellipke.m scripts/specfun/expint.m
+	scripts/specfun/module.mk
+
+2013-04-28  John W. Eaton  <jwe@octave.org>
+
+	use octave_idx_type instead of int
+
+	* ls-mat-ascii.cc (looks_like_mat_ascii_file): USe octave_idx_type
+	instead of int for temporary variables.
+
+	Files: libinterp/interp-core/ls-mat-ascii.cc
+
+	style fixes
+
+	* dialog.cc, octave-link.cc: Style fixes.
+
+	Files: libgui/src/dialog.cc libinterp/interpfcn/octave-link.cc
+
+2013-04-28  John Donoghue  <john.donoghue@ieee.org>
+
+	Add octave_link uiputfile implementation
+
+	* libgui/src/dialog.cc, libgui/src/dialog.h
+	  (FileDialog::FileDialog): Change bool multiselect to QString multimode, add mode option of 'create' and set options accordingly.
+	  (QUIWidgetCreator::signal_filedialog): Change bool multiselect to QString multimode.
+	  (QUIWidgetCreator::create_filedialog): Change bool multiselect to QString multimode.
+
+	* libgui/src/main-window.cc, libgui/src/main-window.h
+	  (main_window::connect_uiwidget_links): update bool multiselect to QString multimode.
+	  (main_window::handle_create_filedialog): update bool multiselect to QString multimode.
+
+	* libgui/src/octave-qt-link.h
+	  (octave_qt_link::do_file_dialog): update bool multiselect to std::string multimode.
+
+	* libinterp/interpfcn/octave-link.h
+	  (octave_link::do_file_dialog): update bool multiselect to std::string multimode.
+	  (octave_link::file_dialog): update bool multiselect to std::string multimode.
+
+	* scripts/plot/uiputfile.m
+	  (uiputfile): update to call __octave_link_file_dialog__ if octave_link is present.
+
+	Files: libgui/src/dialog.cc libgui/src/dialog.h libgui/src/main-window.cc
+	libgui/src/main-window.h libgui/src/octave-qt-link.cc libgui/src
+	/octave-qt-link.h libinterp/interpfcn/octave-link.cc
+	libinterp/interpfcn/octave-link.h scripts/plot/uiputfile.m
+
+2013-04-28  John W. Eaton  <jwe@octave.org>
+
+	style fixes for uigetfile changes
+
+	* dialog.cc, dialog.h, main-window.cc, octave-qt-link.cc,
+	octave-qt-link.h, octave-link.cc, octave-link.h, uigetfile.m:
+	Style fixes.
+
+	Files: libgui/src/dialog.cc libgui/src/dialog.h libgui/src/main-window.cc
+	libgui/src/octave-qt-link.cc libgui/src/octave-qt-link.h
+	libinterp/interpfcn/octave-link.cc libinterp/interpfcn/octave-link.h
+	scripts/plot/uigetfile.m
+
+2013-04-28  John Donoghue  <john.donoghue@ieee.org>
+
+	Add Qt link uigetfile dialog implementation.
+
+	* libgui/src/octave-qt-link.cc, libgui/src/octave-qt-link.h,
+	  (octave_qt_link::do_file_dialog): New function.
+	  (make_filter_list): New function.
+
+	* libinterp/interpfcn/octave-link.cc
+	  (__octave_link_file_dialog__): New function.
+
+	* libinterp/interpfcn/octave-link.h:
+	  (octave_link::file_dialog): New function.
+	  (octave_link::do_file_dialog): New virtual function.
+
+
+	* scripts/plot/uigetfile.m: update to call octave_link file dialog if octave link is present.
+
+	* libgui/src/dialog.cc, libgui/src/dialog.h
+	  (class FileDialog): New class.
+	  (QUIWidgetCreator::QUIWidgetCreator): added initialization of new var path_name.
+	  (QUIWidgetCreator::signal_filedialog): New function.
+	  (QUIWidgetCreator::create_filedialog): New function.
+	  (QUIWidgetCreator::filedialog_finished): New function.
+	  (QUIWidgetCreator::get_dialog_path): New function.
+
+	* libgui/src/main-window.cc, libgui/src/main-window.h
+	  (main_window::connect_uiwidget_links): Added connect for handle_file_dialog.
+	  (main_window::handle_create_filedialog): New function.
+
+	Files: libgui/src/dialog.cc libgui/src/dialog.h libgui/src/main-window.cc
+	libgui/src/main-window.h libgui/src/octave-qt-link.cc libgui/src
+	/octave-qt-link.h libinterp/interpfcn/octave-link.cc
+	libinterp/interpfcn/octave-link.h scripts/plot/uigetfile.m
+
+2013-04-28  John W. Eaton  <jwe@octave.org>
+
+	force focus to command window after browsing for directory
+
+	* main-window.cc (main_window::browse_for_directory): Call
+	set_current_working_directory for consistency with other directory
+	changing functions.  Force focus to command window to avoid problem on
+	Windows systems.
+
+	Files: libgui/src/main-window.cc
+
+	include config.h in MOC files
+
+	* libgui/Makefile.am (moc-command): New macro.
+	(moc-%.cc: %.h): Use it.
+
+	Files: libgui/Makefile.am
+
+	keep focus in the command window after dbstop, dbstep, etc.
+
+	* main-window.h, main-window.cc
+	(main_window::command_window_has_focus,
+	main_window::handle_insert_debugger_pointer_request,
+	main_window::handle_delete_debugger_pointer_request,
+	main_window::handle_update_breakpoint_marker_request): New functions.
+	(main_window::insert_debugger_pointer_signal
+	main_window::delete_debugger_pointer_signal,
+	main_window::update_breakpoint_marker_signal): New signals.
+	(main_window::construct): Connect
+	main_window::insert_debugger_pointer_signal to
+	editor_window::handle_insert_debugger_pointer_request.
+	Connect main_window::delete_debugger_pointer_signal to
+	editor_window::handle_delete_debugger_pointer_request.
+	Connect main_window::update_breakpoint_marker_signal to
+	editor_window::handle_update_breakpoint_marker_request.
+	(main_window::construct_octave_qt_link): Connect
+	_octave_qt_link::insert_debugger_pointer_signal to
+	main_window::handle_insert_debugger_pointer_request instead of
+	editor_window::handle_insert_debugger_pointer_request.
+	Connect _octave_qt_link::delete_debugger_pointer_signal to
+	main_window::handle_delete_debugger_pointer_request instead of
+	editor_window::handle_delete_debugger_pointer_request.
+	Connect _octave_qt_link::update_breakpoint_marker_signal to
+	main_window::handle_update_breakpoint_marker_request instead of
+	editor_window::handle_update_breakpoint_marker_request.
+
+	* terminal-dock-widget.h, terminal-dock-widget.cc
+	(terminal_dock_widget::has_focus): New function.
+
+	Files: libgui/src/main-window.cc libgui/src/main-window.h libgui/src
+	/terminal-dock-widget.cc libgui/src/terminal-dock-widget.h
+
+2013-04-27  John W. Eaton  <jwe@octave.org>
+
+	generate single-line commands from workspace view context menu
+
+	* workspace-view.cc (workspace_view::handle_contextmenu_plot,
+	workspace_view::handle_contextmenu_stem): Don't insert newline after
+	figure command.
+	(workspace_view::handle_contextmenu_command): Don't append newline to
+	command string.
+
+	Files: libgui/src/workspace-view.cc
+
+	reset parser state on parse error (bug #38840)
+
+	* oct-parse.in.yy (octave_base_parser::reset): Reset all parser
+	state variables to initial values.
+
+	Files: libinterp/parse-tree/oct-parse.in.yy
+
+2013-04-27  Michael Godfrey  <michaeldgodfrey@gmail.com>
+
+	Improve layout of help text for stemleaf
+
+	Files: scripts/plot/stemleaf.m
+
+2013-04-12  Daniel J Sebald  <daniel.sebald@ieee.org>
+
+	Change workspace row height to font height.
+
+	* main-window.cc (main_window::construct): Connect workspace_model signal to
+	workspace_view slot.
+
+	* workspace-view.cc, workspace-view.h (workspace_view::workspace_view): New
+	variable view_previous_row_count initialized to zero.
+	(workspace_view::contextmenu_requested): Rename pos from shadow to qpos.
+	(workspace_view::handle_model_changed): New slot to adjust appearance.
+
+	Files: libgui/src/main-window.cc libgui/src/workspace-view.cc libgui/src
+	/workspace-view.h
+
+2013-04-26  Philip Nienhuis  <prnienhuis@users.sf.net>
+
+	strread.m: catch unknown format specifiers (bug #38834)
+
+	Files: scripts/io/strread.m
+
+2013-04-25  John W. Eaton  <jwe@octave.org>
+
+	preserve pending command line input when running commands from GUI actions
+
+	* QTerminal.h, QTerminal.cc (QTerminal::relay_command): Delete.
+
+	* file-editor-tab.cc (file_editor_tab::run_file_callback): New
+	argument, bp_info.  Save pending command line input and execute
+	command.
+	(file_editor_tab::run_file): Use octave_link to execute file.
+
+	* main-window.h, main-window.cc
+	(main_window::execute_command_in_terminal): Rename from
+	main_window::handle_command_double_clicked.  Post event through
+	octave_link to execute command.
+	(main_window::construct_octave_qt_link): Connect
+	_octave_qt_link::execute_command_in_terminal_signal to
+	main_window::execute_command_in_terminal.
+	(main_window::execute_command_callback): New function.
+	(main_window::relay_command_signal): Delete signal. Remove all uses.
+
+	* octave-qt-link.h, octave-qt-link.cc
+	(octave_qt_link::do_execute_command_in_terminal): New function.
+	(octave_qt_link::execute_command_in_terminal_signal): New signal.
+
+	* terminal-dock-widget.h, terminal-dock-widget.cc
+	(terminal_dock_widget::relay_command_signal): Delete signal.  Remove
+	all uses.
+
+	* octave-link.h (octave_link::execute_command_in_terminal,
+	octave_link::do_execute_command_in_terminal): New functions.
+
+	* cmd-edit.h, cmd-edit.cc
+	(command_editor::pre_input_hook_set): New variable.
+	(gnu_readline::previous_pre_input_hook,
+	command_editor::intial_input): New member variables.
+	(command_editor::restore_pre_input_hook,
+	command_editor::do_get_current_line,
+	command_editor::do_replace_line, command_editor::set_pre_input_hook,
+	gnu_readline::do_get_current_line, gnu_readline::do_replace_line,
+	gnu_readline::set_pre_input_hook, command_editor::set_initial_input,
+	gnu_readline::restore_pre_input_hook,
+	default_command_editor::do_get_current_line,
+	default_command_editor::do_replace_line,
+	command_editor::insert_initial_input,
+	command_editor::pre_input_handler, command_editor::get_current_line,
+	command_editor::replace_line, command_editor::add_pre_input_hook,
+	command_editor::do_insert_initial_input,
+	command_editor::set_pre_input_hook,
+	command_editor::restore_pre_input_hook): New functions.
+	(command_editor::readline): Handle initial input.
+	(command_editor::interrupt): Give argument a default value.
+
+	* oct-rl-edit.h, oct-rl-edit.c (octave_rl_copy_line,
+	octave_rl_replace_line, octave_rl_set_pre_input_hook,
+	octave_rl_get_pre_input_hook): New functions.
+	(rl_pre_input_hook_fcn_ptr): New typedef.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.cc
+	libgui/qterminal/libqterminal/QTerminal.h libgui/src/files-dock-
+	widget.cc libgui/src/history-dock-widget.cc libgui/src/m-editor
+	/file-editor-tab.cc libgui/src/m-editor/file-editor-tab.h
+	libgui/src/m-editor/file-editor.cc libgui/src/main-window.cc
+	libgui/src/main-window.h libgui/src/octave-qt-link.cc libgui/src
+	/octave-qt-link.h libgui/src/terminal-dock-widget.cc libgui/src
+	/terminal-dock-widget.h libgui/src/workspace-view.cc
+	libinterp/interpfcn/octave-link.h liboctave/util/cmd-edit.cc
+	liboctave/util/cmd-edit.h liboctave/util/oct-rl-edit.c
+	liboctave/util/oct-rl-edit.h
+
+	avoid using bp_info struct in file_editor_tab::file_in_path
+
+	* file-editor-tab.h, file-editor-tab.cc
+	(file_editor_tab::file_in_path): Arguments are not file and directory,
+	not bp_info struct.  Change all uses.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor-tab.h
+
+	use dir, not path, to refer to directory name
+
+	* file-editor-tab.h, file-editor-tab.cc
+	(file_editor_tab::bp_info::dir): Rename from path.  Change all uses.
+	(file_editor_tab::run_file): Rename local variable from path to dir.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor-tab.h
+
+	* load-path.cc (Faddpath): Doc fix.
+
+	Files: libinterp/interpfcn/load-path.cc
+
+	partial menu bar cleanup
+
+	* file-editor-interface.h (file_editor_interface::request_new_script,
+	file_editor_interface::request_new_function): New functions.
+
+	* file-editor.h, file-editor.cc (file_editor::request_new_script,
+	file_editor::request_new_function): New functions.
+
+	* main-window.h, main-window.cc (main_window::construct_desktop_menu):
+	Delete function and all uses.
+	(main_window::handle_new_figure_request,
+	main_window::handle_new_variable_request,
+	main_window::new_figure_callback): New functions.
+	(main_window::construct_file_menu, main_window::construct_edit_menu):
+	Delete close_command_window_action, import_data_action,
+	page_setup_action, print_action, print_selection_action,
+	new_class_action, new_enumeration_action, new_gui_action,
+	paste_to_workspace_action, find_action.  Move load_workspace_action to
+	file_menu.
+
+	Files: libgui/src/m-editor/file-editor-interface.h libgui/src/m-editor
+	/file-editor.cc libgui/src/m-editor/file-editor.h libgui/src/main-
+	window.cc libgui/src/main-window.h
+
+	use generic dialog for cd or addpath question
+
+	* dialog.h, dialog.cc (cd_or_addpath_dialog): Delete class.
+	(QUIWidgetCreator::get_dialog_button): Return QString, not QString*.
+	Change all uses.
+	(QUIWidgetCreator::signal_debug_cd_or_addpath): Delete.
+	(QUIWidgetCreator::create_debug_cd_or_addpath_dialog): Delete.
+	* file-editor-tab.cc (file_editor_tab::file_in_path): Also use
+	same_file to compare curr_dir and info.path.
+	* main-window.h, main-window.cc
+	(main_window::handle_create_debug_cd_or_addpath_dialog): Delete.
+	(main_window::connect_uiwidget_links): Delete connection from
+	uiwidget_creator::create_debug_cd_or_addpath_dialog to
+	main_window::handle_create_debug_cd_or_addpath_dialog.
+	* octave-qt-link.cc (octave_qt_link::do_debug_cd_or_addpath_error):
+	Use generic dialog for cd or addpath question.
+
+	Files: libgui/src/dialog.cc libgui/src/dialog.h libgui/src/m-editor/file-
+	editor-tab.cc libgui/src/main-window.cc libgui/src/main-window.h
+	libgui/src/octave-qt-link.cc
+
+	* sysdep.cc (same_file_internal): Handle directories on Windows systems.
+
+	Files: libinterp/interpfcn/sysdep.cc
+
+2013-04-24  Mike Miller  <mtmiller@ieee.org>
+
+	New function waterfall
+
+	* waterfall.m: New file.
+	* scripts/plot/module.mk (plot_FCN_FILES): Add it to the list.
+	* __unimplemented__.m (missing_functions): Remove waterfall from the list.
+	* plot.txi: Include waterfall docstring.
+	* NEWS: Mention waterfall.
+
+	Files: NEWS doc/interpreter/plot.txi scripts/help/__unimplemented__.m
+	scripts/plot/module.mk scripts/plot/waterfall.m
+
+2013-04-24  John W. Eaton  <jwe@octave.org>
+
+	* files-doc-widget.cc: Undo unintended changes from changeset 5fc1ce2947bd.
+
+	Files: libgui/src/files-dock-widget.cc
+
+2013-04-24  Torsten  <ttl@justmail.de>
+
+	* run-octave.in: get language files from $builddir not from $top_srcdir
+
+	Files: run-octave.in
+
+2013-04-23  Mike Miller  <mtmiller@ieee.org>
+
+	gui: fix editor file name filters to allow all files
+
+	* file-editor-tab.cc (file_editor_tab::save_file_as),
+	file-editor.cc (file_editor::request_open_file): Set "All Files" filter
+	to *, not *.*.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor.cc
+
+	gui: handle octaverc files with the octave lexer
+
+	* file-editor-tab.cc (file_editor_tab::update_lexer): Add octaverc to
+	the list of file types using lexer_octave_gui.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc
+
+2013-04-23  John W. Eaton  <jwe@octave.org>
+
+	style fixes
+
+	* file-editor.h, file-editor.cc, file-editor-tab.h,
+	file-editor-tab.cc: Style fixes.
+	(file_editor_tab::editor_markers): Declare enum inside file_editor
+	class instead of in global scope.
+
+	Files: libgui/src/files-dock-widget.cc libgui/src/m-editor/file-editor-
+	tab.cc libgui/src/m-editor/file-editor-tab.h libgui/src/m-editor
+	/file-editor.cc libgui/src/m-editor/file-editor.h
+
+2013-04-23  Ben Abbott  <bpabbott@mac.com>
+
+	Support escaped characters in sq_strings for strsplit.m.
+
+	* scripts/strings/strsplit.m: Remove private function regexp2simple() and
+	replace with regexprep(). Apply do_string_escapes() to sq_strings. Improve
+	doc-string. Add tests.
+
+	Files: scripts/strings/strsplit.m
+
+2013-04-23  Torsten  <ttl@justmail.de>
+
+	added default colors and fonts to the octave lexer
+
+	* lexer-octave-gui.cc: some code formatting
+	  (defaultColor): new function returning the default colors
+	  (defaultFont): new function returning the default fonts
+
+	* lexer-octave-gui.h: new functions defaultColor and defaultFont
+
+	Files: libgui/src/m-editor/lexer-octave-gui.cc libgui/src/m-editor/lexer-
+	octave-gui.h
+
+2013-04-23  John W. Eaton  <jwe@octave.org>
+
+	allow double-click in file browser to load data files
+
+	* files-dock-widget.cc (files_dock_widget::display_directory): If file
+	looks like Octave data file, load it instead of opening with editor.
+	* ls-mat-ascii.h, ls-mat-ascii.cc (get_lines_and_columns): New option
+	to supress error messages.  New option to check for numeric values.
+	(looks_like_mat_ascii_file): New function.
+	* load-save.h load-save.cc (is_octave_data_file): New function.
+	(get_file_format): Don't return LS_MAT_ASCII unless the file really
+	looks like it is a numeric data file.
+
+	Files: libgui/src/files-dock-widget.cc libinterp/interp-core/ls-mat-
+	ascii.cc libinterp/interp-core/ls-mat-ascii.h libinterp/interpfcn
+	/load-save.cc libinterp/interpfcn/load-save.h
+
+2013-04-23  Ben Abbott  <bpabbott@mac.com>
+
+	Collect collapsed delimiters in strsplit().
+
+	* scripts/strings/strsplit.m: Use regular expression to collect collapsed
+	delimiters for DELIMITERTYPE = "regularexpression" and "simple".  Use loop
+	to collect collapsed delimiters for "legacy".
+
+	Files: scripts/strings/strsplit.m
+
+2013-04-22  John W. Eaton  <jwe@octave.org>
+
+	new function, __octave_link_enabled__
+
+	* octave-link.h (octave_link::enabled): Now public.
+	(F__octave_link_enabled__): New function.
+
+	Files: libinterp/interpfcn/octave-link.cc libinterp/interpfcn/octave-link.h
+
+2013-04-22  Daniel J Sebald  <daniel.sebald@ieee.org>
+
+	Add questdlg dialog function and fix variety of dialog bugs.
+
+	* octave-qt-link.cc (octave_qt_link::do_message_dialog):
+	Change initializer from QString to QString::fromStdString(dlg).
+	(octave_qt_link::do_question_dialog): New function.  Make all buttons
+	AcceptRole.  Signal dialog creation.  Go to wait state.  Get dialog
+	button result when awakened.
+	(octave_qt_link::do_list_dialog): Change std string 'prompt_string' to
+	std list of std string 'prompt'.  Use make_qstring_list(prompt).
+	(octave_qt_link::do_input_dialog): Change 'nr' and 'nc' to std list of
+	float.  Use QFloatList::fromStdList(nc).
+
+	* octave-qt-link.h (octave_qt_link : QObject, public octave_link): Add
+	member do_question_dialog.
+	(octave_qt_link::do_list_dialog): Use std list of std string for
+	prompt.
+	(octave_qt_link::do_input_dialog): Change 'nr' and 'nc' to std list of
+	float.
+
+	* octave-link.cc (__octave_link_question_dialog__): New
+	builtin.  Translate args to inputs of octave_link::question_dialog
+	function.
+	(__octave_link_list_dialog__): Retain prompt string cell list as a std
+	list of std string.
+	(__octave_link_input_dialog__): Make 'nr' and 'nc' std list of float.
+
+	* octave-link.h (octave_link::question_dialog,
+	octave_link::do_question_dialog): Add.
+	(octave_link::list_dialog, octave_link::do_list_dialog): Change prompt
+	to std list of std string.
+	(octave_link::input_dialog, octave_link::do_input_dialog): Change 'nr'
+	and 'nc' to std list of float.
+
+	* errordlg.m (errordlg): Make retval return variable. Add "error" icon
+	as message_dialog input.
+
+	* helpdlg.m (helpdlg): Make retval return variable. Add "help" icon as
+	message_dialog input.
+
+	* warndlg.m (warndlg): Add "warn" icon as message_dialog input.
+
+	* message_dialog.m (message_dialog): Define default icon "none".  Use
+	dlg variable with icon variable as input to
+	__octave_link_message_dialog__.  Use __octave_link_enabled__ rather
+	than return value.
+
+	* inputdlg.m (inputdlg): Round up rowscols to integer.  Replace
+	iscell(cstr) with __octave_link_enabled__.
+
+	* listdlg.m (listdlg): Correct indentation.  Change default selmode
+	from "multiple" to "Multiple".  Make default prompt {}.  Check valid
+	selmode entry.  Use __octave_link_enabled__ rather than ok return
+	value. Remove FIXME note.  Use Rich Text in prompt of demo.  Add demo
+	using ListSize.
+
+	* questdlg.m (questdlg): Add case 0 to switch.  Add error message for
+	default button not matching options.  In all cases, check that default
+	button matches an button option.  Add __octave_link_question_dialog__
+	call conditioned under __octave_link_enabled__.  Add three demos.
+
+	* dialog.cc (QUIWidgetCreator::dialog_finished): Remove.
+	(QUIWidgetCreator::dialog_button_clicked): Test that button pointer is
+	nonzero.  Move dialog_result assignment and waitcondition.wakeAll here.
+	(MessageDialog::MessageDialog): If title "", change to " ".  Reverse
+	order that buttons are installed.  Remove signal 'finished' connection.
+	(ListDialog::ListDialog): Change prompt from QString to QStringList.
+	Make list items noneditable.  Add Rich Text support to prompt, place
+	RT <br> between prompt list lines.  Use label for prompt.  Disable
+	select_all button if not "Multiple".  Remove horizontal group box.  If
+	title "", change to " ".
+	(InputDialog::InputDialog): Change 'nr' and 'nc' to QFloatList.
+	Define pre-processor variables, then undefine.  If title "", change to
+	" ".
+
+	* dialog.h (QUIWidgetCreator::signal_listviewQUI,
+	WidgetCreator::create_listview): Change QString 'prompt_string'
+	to QStringList 'prompt'.
+	(QUIWidgetCreator::signal_inputlayout,
+	QUIWidgetCreator::create_inputlayout): Use QFloatList for 'nr' and
+	'nc'.
+	(QUIWidgetCreator::dialog_finished): Remove.
+	(MessageDialog::closeEvent): New override, emitting buttonClicked(0).
+	(ListDialog::ListDialog): Change QString 'prompt_string' to
+	QStringList 'prompt'.
+	(InputDialog::InputDialog): Use QFloatList for 'nr' and 'nc'.
+
+	* main_window.cc, main_window.h: Make function call changes that match
+	dialog.h changes.
+	(main_window::find_files_finished): Remove unused 'button' variable.
+
+	Files: libgui/src/dialog.cc libgui/src/dialog.h libgui/src/main-window.cc
+	libgui/src/main-window.h libgui/src/octave-qt-link.cc libgui/src
+	/octave-qt-link.h libinterp/interpfcn/octave-link.cc
+	libinterp/interpfcn/octave-link.h scripts/ui/errordlg.m
+	scripts/ui/helpdlg.m scripts/ui/inputdlg.m scripts/ui/listdlg.m
+	scripts/ui/private/message_dialog.m scripts/ui/questdlg.m
+	scripts/ui/warndlg.m
+
+2013-04-22  John W. Eaton  <jwe@octave.org>
+
+	avoid invalid signal connection
+
+	* dialog.cc (cd_or_addpath_dialog::cd_or_addpath_dialog): Only connect
+	buttonAddpath::clicked signal if addpath_option is true.
+
+	Files: libgui/src/dialog.cc
+
+	bump version to 3.7.3+
+
+	Files: configure.ac
+
+	snapshot 3.7.3
+
+	* configure.ac (OCTAVE_VERSION): Bump to 3.7.3.
+
+	Files: configure.ac
+
 2013-04-19  John W. Eaton  <jwe@octave.org>
 
 	improve debugging with the GUI

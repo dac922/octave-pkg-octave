@@ -112,9 +112,9 @@
      SUPERCLASSREF = 330,
      GET = 331,
      SET = 332,
-     END_OF_INPUT = 333,
-     LEXICAL_ERROR = 334,
-     FCN = 335,
+     FCN = 333,
+     END_OF_INPUT = 334,
+     LEXICAL_ERROR = 335,
      INPUT_FILE = 336,
      CLASSDEF = 337,
      UNARY = 338
@@ -196,9 +196,9 @@
 #define SUPERCLASSREF 330
 #define GET 331
 #define SET 332
-#define END_OF_INPUT 333
-#define LEXICAL_ERROR 334
-#define FCN 335
+#define FCN 333
+#define END_OF_INPUT 334
+#define LEXICAL_ERROR 335
 #define INPUT_FILE 336
 #define CLASSDEF 337
 #define UNARY 338

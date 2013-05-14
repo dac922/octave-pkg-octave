@@ -426,8 +426,36 @@ using a single color channel from @code{ind2rgb}.
 @c rgb2ind scripts/image/rgb2ind.m
 @anchor{doc-rgb2ind}
 @deftypefn  {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{map})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{n})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{tol})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{map}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{n}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{tol}, @var{dither_option})
 @deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{map})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{n})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{tol})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{map}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{n}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{tol}, @var{dither_option})
 Convert an image in red-green-blue (RGB) color space to an indexed image.
+
+The input image @var{rgb} must be an N-dimensional RGB image
+(MxNxO...x3 array) where M,N,O... are the image dimensions, and the
+final dimension contains the values in the red, green and blue
+channels. Alternatively, the red, green and blue color channels can
+be input as separate arrays @var{R}, @var{G} and  @var{B}.
+
+The input @var{map} defines the colormap to be used.  Alternatively,
+@var{n} or @var{tol} may be used to define the maximum number of
+colors to use in an automatically generated colormap.  @var{n} is
+related to @var{tol} by:  @var{n} = (floor (1/@var{tol}) + 1)^3;
+@var{tol} must be >0 and <=1.
+
+@var{dither_option} is a string which enables or disables dithering:
+'dither' (default) or 'nodither'.
+
 @seealso{@ref{doc-ind2rgb,,ind2rgb}, @ref{doc-rgb2hsv,,rgb2hsv}, @ref{doc-rgb2ntsc,,rgb2ntsc}}
 @end deftypefn
 

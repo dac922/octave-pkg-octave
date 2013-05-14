@@ -5225,7 +5225,7 @@ No checks are made for duplicate elements.
 -*- texinfo -*-
 @deftypefn  {Built-in Function} {} addpath (@var{dir1}, @dots{})
 @deftypefnx {Built-in Function} {} addpath (@var{dir1}, @dots{}, @var{option})
-Add @var{dir1}, @dots{} to the current function search path.  If
+Add named directories to the function search path.  If
 @var{option} is "-begin" or 0 (the default), prepend the
 directory name to the current path.  If @var{option} is "-end"
 or 1, append the directory name to the current path.
@@ -5596,6 +5596,12 @@ When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
 @end deftypefn
+__octave_link_enabled__
+@c __octave_link_enabled__ libinterp/interpfcn/octave-link.cc
+-*- texinfo -*-
+@deftypefn {Built-in Function} {} __octave_link_enabled__ ()
+Undocumented internal function.
+@end deftypefn
 __octave_link_edit_file__
 @c __octave_link_edit_file__ libinterp/interpfcn/octave-link.cc
 -*- texinfo -*-
@@ -5606,6 +5612,18 @@ Undocumented internal function.
 @c __octave_link_message_dialog__ libinterp/interpfcn/octave-link.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} __octave_link_message_dialog__ (@var{dlg}, @var{msg}, @var{title})
+Undocumented internal function.
+@end deftypefn
+__octave_link_question_dialog__
+@c __octave_link_question_dialog__ libinterp/interpfcn/octave-link.cc
+-*- texinfo -*-
+@deftypefn {Built-in Function} {} __octave_link_question_dialog__ (@var{msg}, @var{title}, @var{btn1}, @var{btn2}, @var{btn3}, @var{default})
+Undocumented internal function.
+@end deftypefn
+__octave_link_file_dialog__
+@c __octave_link_file_dialog__ libinterp/interpfcn/octave-link.cc
+-*- texinfo -*-
+@deftypefn {Built-in Function} {} __octave_link_file_dialog__ (@var{filterlist}, @var{title}, @var{filename}, @var{size} @var{multiselect}, @var{pathname})
 Undocumented internal function.
 @end deftypefn
 __octave_link_list_dialog__
@@ -8682,6 +8700,42 @@ matrices, if they are real or complex and if they are symmetric
 
 The eigenvalues returned by @code{eig} are not ordered.
 @seealso{eigs, svd}
+@end deftypefn
+ellipj
+@c ellipj libinterp/corefcn/ellipj.cc
+-*- texinfo -*-
+@deftypefn  {Built-in Function} {[@var{sn}, @var{cn}, @var{dn}, @var{err}] =} ellipj (@var{u}, @var{m})
+@deftypefnx {Built-in Function} {[@var{sn}, @var{cn}, @var{dn}, @var{err}] =} ellipj (@var{u}, @var{m}, @var{tol})
+Compute the Jacobi elliptic functions @var{sn}, @var{cn}, and @var{dn}
+of complex argument @var{u} and real parameter @var{m}.
+
+If @var{m} is a scalar, the results are the same size as @var{u}.
+If @var{u} is a scalar, the results are the same size as @var{m}.
+If @var{u} is a column vector and @var{m} is a row vector, the
+results are matrices with @code{length (@var{u})} rows and
+@code{length (@var{m})} columns.  Otherwise, @var{u} and
+@var{m} must conform and the results will be the same size.
+
+The value of @var{u} may be complex.
+The value of @var{m} must be 0 <= m <= 1.
+
+@var{tol} is currently ignored (@sc{Matlab} uses this to allow faster,
+less accurate approximation).
+
+If requested, @var{err} contains the following status information
+and is the same size as the result.
+
+@enumerate 0
+@item
+Normal return.
+@item
+Error---no computation, algorithm termination condition not met,
+return @code{NaN}.
+@end enumerate
+ Ref: Abramowitz, Milton and Stegun, Irene A
+      Handbook of Mathematical Functions, Dover, 1965
+      Chapter 16 (Sections 16.4, 16.13 and 16.15)
+@seealso{ellipke}
 @end deftypefn
 fft
 @c fft libinterp/corefcn/fft.cc

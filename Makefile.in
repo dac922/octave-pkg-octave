@@ -2725,6 +2725,15 @@ define test-file-commands
 mv $@-t $@
 endef
 
+define gdbinit_install_rule
+if [ -f .gdbinit ]; then \
+  echo "refusing to overwrite .gdbinit with newer version from $<" 1>&2; \
+else \
+  echo "Installing .gdbinit from version at $<" ; \
+  cp $< $@; \
+fi
+endef
+
 %.cc-tst : %.cc
 	$(test-file-commands)
 
@@ -2756,12 +2765,7 @@ run-octave: run-octave.in Makefile
 	chmod a+rx "$@"
 
 .gdbinit: etc/gdbinit
-	@if [ -f .gdbinit ]; then \
-	  echo "refusing to overwrite .gdbinit with newer version from $<" 1>&2; \
-	else \
-	  echo "Installing .gdbinit from version at $<" ; \
-	  cp $< $@; \
-	fi
+	@$(gdbinit_install_rule)
 
 @AMCOND_BUILD_DOCS_TRUE@AUTHORS BUGS INSTALL.OCTAVE:
 @AMCOND_BUILD_DOCS_TRUE@	$(MAKE) -C doc/interpreter ../../$@

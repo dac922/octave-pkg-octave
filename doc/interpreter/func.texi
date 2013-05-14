@@ -1209,7 +1209,7 @@ After this the directory @samp{~/Octave} will be searched for functions.
 @anchor{doc-addpath}
 @deftypefn  {Built-in Function} {} addpath (@var{dir1}, @dots{})
 @deftypefnx {Built-in Function} {} addpath (@var{dir1}, @dots{}, @var{option})
-Add @var{dir1}, @dots{} to the current function search path.  If
+Add named directories to the function search path.  If
 @var{option} is "-begin" or 0 (the default), prepend the
 directory name to the current path.  If @var{option} is "-end"
 or 1, append the directory name to the current path.

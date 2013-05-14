@@ -54,14 +54,20 @@ FCN_FILES = \
 include bug-35448/module.mk
 include bug-36025/module.mk
 include bug-38236/module.mk
+include bug-38691/module.mk
 include classes/module.mk
 include class-concat/module.mk
 include ctor-vs-method/module.mk
 include fcn-handle-derived-resolution/module.mk
 include nest/module.mk
 
+all-local: .gdbinit
+
+.gdbinit: ../etc/gdbinit
+	@$(gdbinit_install_rule)
+
 check: sparse.tst bc-overload-tests.stamp
-	$(top_builddir)/run-octave --norc --silent --no-history $(srcdir)/fntests.m $(srcdir)
+	$(top_builddir)/run-octave $(RUN_OCTAVE_OPTIONS) --norc --silent --no-history $(srcdir)/fntests.m $(srcdir)
 
 sparse.tst: build-sparse-tests.sh
 	$(srcdir)/build-sparse-tests.sh

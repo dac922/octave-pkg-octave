@@ -254,6 +254,7 @@ am__objects_1 = corefcn/corefcn_libcorefcn_la-__contourc__.lo \
 	corefcn/corefcn_libcorefcn_la-dlmread.lo \
 	corefcn/corefcn_libcorefcn_la-dot.lo \
 	corefcn/corefcn_libcorefcn_la-eig.lo \
+	corefcn/corefcn_libcorefcn_la-ellipj.lo \
 	corefcn/corefcn_libcorefcn_la-fft.lo \
 	corefcn/corefcn_libcorefcn_la-fft2.lo \
 	corefcn/corefcn_libcorefcn_la-fftn.lo \
@@ -3172,6 +3173,7 @@ COREFCN_SRC = \
   corefcn/dlmread.cc \
   corefcn/dot.cc \
   corefcn/eig.cc \
+  corefcn/ellipj.cc \
   corefcn/fft.cc \
   corefcn/fft2.cc \
   corefcn/fftn.cc \
@@ -3591,6 +3593,8 @@ corefcn/corefcn_libcorefcn_la-dlmread.lo: corefcn/$(am__dirstamp) \
 corefcn/corefcn_libcorefcn_la-dot.lo: corefcn/$(am__dirstamp) \
 	corefcn/$(DEPDIR)/$(am__dirstamp)
 corefcn/corefcn_libcorefcn_la-eig.lo: corefcn/$(am__dirstamp) \
+	corefcn/$(DEPDIR)/$(am__dirstamp)
+corefcn/corefcn_libcorefcn_la-ellipj.lo: corefcn/$(am__dirstamp) \
 	corefcn/$(DEPDIR)/$(am__dirstamp)
 corefcn/corefcn_libcorefcn_la-fft.lo: corefcn/$(am__dirstamp) \
 	corefcn/$(DEPDIR)/$(am__dirstamp)
@@ -4546,6 +4550,8 @@ mostlyclean-compile:
 	-rm -f corefcn/corefcn_libcorefcn_la-dot.lo
 	-rm -f corefcn/corefcn_libcorefcn_la-eig.$(OBJEXT)
 	-rm -f corefcn/corefcn_libcorefcn_la-eig.lo
+	-rm -f corefcn/corefcn_libcorefcn_la-ellipj.$(OBJEXT)
+	-rm -f corefcn/corefcn_libcorefcn_la-ellipj.lo
 	-rm -f corefcn/corefcn_libcorefcn_la-fft.$(OBJEXT)
 	-rm -f corefcn/corefcn_libcorefcn_la-fft.lo
 	-rm -f corefcn/corefcn_libcorefcn_la-fft2.$(OBJEXT)
@@ -5262,6 +5268,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-dlmread.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-dot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-eig.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-ellipj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-fft.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-fft2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@corefcn/$(DEPDIR)/corefcn_libcorefcn_la-fftn.Plo@am__quote@
@@ -5823,6 +5830,13 @@ corefcn/corefcn_libcorefcn_la-eig.lo: corefcn/eig.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='corefcn/eig.cc' object='corefcn/corefcn_libcorefcn_la-eig.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(corefcn_libcorefcn_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o corefcn/corefcn_libcorefcn_la-eig.lo `test -f 'corefcn/eig.cc' || echo '$(srcdir)/'`corefcn/eig.cc
+
+corefcn/corefcn_libcorefcn_la-ellipj.lo: corefcn/ellipj.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(corefcn_libcorefcn_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT corefcn/corefcn_libcorefcn_la-ellipj.lo -MD -MP -MF corefcn/$(DEPDIR)/corefcn_libcorefcn_la-ellipj.Tpo -c -o corefcn/corefcn_libcorefcn_la-ellipj.lo `test -f 'corefcn/ellipj.cc' || echo '$(srcdir)/'`corefcn/ellipj.cc
+@am__fastdepCXX_TRUE@	$(am__mv) corefcn/$(DEPDIR)/corefcn_libcorefcn_la-ellipj.Tpo corefcn/$(DEPDIR)/corefcn_libcorefcn_la-ellipj.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='corefcn/ellipj.cc' object='corefcn/corefcn_libcorefcn_la-ellipj.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(corefcn_libcorefcn_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o corefcn/corefcn_libcorefcn_la-ellipj.lo `test -f 'corefcn/ellipj.cc' || echo '$(srcdir)/'`corefcn/ellipj.cc
 
 corefcn/corefcn_libcorefcn_la-fft.lo: corefcn/fft.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(corefcn_libcorefcn_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT corefcn/corefcn_libcorefcn_la-fft.lo -MD -MP -MF corefcn/$(DEPDIR)/corefcn_libcorefcn_la-fft.Tpo -c -o corefcn/corefcn_libcorefcn_la-fft.lo `test -f 'corefcn/fft.cc' || echo '$(srcdir)/'`corefcn/fft.cc
@@ -8791,6 +8805,15 @@ endef
 define test-file-commands
 ( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; $(GREP) '^%!' $< ) > $@-t
 mv $@-t $@
+endef
+
+define gdbinit_install_rule
+if [ -f .gdbinit ]; then \
+  echo "refusing to overwrite .gdbinit with newer version from $<" 1>&2; \
+else \
+  echo "Installing .gdbinit from version at $<" ; \
+  cp $< $@; \
+fi
 endef
 
 %.cc-tst : %.cc

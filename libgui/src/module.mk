@@ -23,6 +23,7 @@ octave_gui_ICONS = \
   src/icons/editcut.png \
   src/icons/editdelete.png \
   src/icons/editpaste.png \
+  src/icons/fileclose.png \
   src/icons/filenew.png \
   src/icons/fileopen.png \
   src/icons/fileprint.png \
@@ -68,8 +69,7 @@ octave_gui_MOC += \
   src/m-editor/moc-file-editor-interface.cc \
   src/m-editor/moc-file-editor-tab.cc \
   src/m-editor/moc-file-editor.cc \
-  src/m-editor/moc-find-dialog.cc \
-  src/m-editor/moc-lexer-octave-gui.cc
+  src/m-editor/moc-find-dialog.cc
 endif
 
 octave_gui_MOC += \
@@ -110,7 +110,6 @@ noinst_HEADERS += \
   src/m-editor/file-editor-tab.h \
   src/m-editor/file-editor.h \
   src/m-editor/find-dialog.h \
-  src/m-editor/lexer-octave-gui.h \
   src/main-window.h \
   src/octave-gui.h \
   src/octave-main-thread.h \
@@ -135,7 +134,6 @@ src_libgui_src_la_SOURCES = \
   src/m-editor/file-editor-tab.cc \
   src/m-editor/file-editor.cc \
   src/m-editor/find-dialog.cc \
-  src/m-editor/lexer-octave-gui.cc \
   src/main-window.cc \
   src/octave-gui.cc \
   src/octave-main-thread.cc \

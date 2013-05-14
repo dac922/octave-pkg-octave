@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Advanced-Plotting.html#Advanced-Plottin
 
 <h4 class="subsection">15.4.6 Object Groups</h4>
 
-<p><a name="index-object-groups-1626"></a>
+<p><a name="index-object-groups-1629"></a>
 A number of Octave high level plot functions return groups of other
 graphics objects or they return graphics objects that have their
 properties linked in such a way that changes to one of the properties
@@ -45,9 +45,9 @@ objects is an <code>hggroup</code>
    <p><a name="doc_002dhggroup"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hggroup</b> ()<var><a name="index-hggroup-1627"></a></var><br>
-&mdash; Function File:  <b>hggroup</b> (<var>h</var>)<var><a name="index-hggroup-1628"></a></var><br>
-&mdash; Function File:  <b>hggroup</b> (<var><small class="dots">...</small>, property, value, <small class="dots">...</small></var>)<var><a name="index-hggroup-1629"></a></var><br>
+&mdash; Function File:  <b>hggroup</b> ()<var><a name="index-hggroup-1630"></a></var><br>
+&mdash; Function File:  <b>hggroup</b> (<var>h</var>)<var><a name="index-hggroup-1631"></a></var><br>
+&mdash; Function File:  <b>hggroup</b> (<var><small class="dots">...</small>, property, value, <small class="dots">...</small></var>)<var><a name="index-hggroup-1632"></a></var><br>
 <blockquote><p>Create group object with parent <var>h</var>.  If no parent is specified,
 the group is created in the current axes.  Return the handle of the
 group object created.
@@ -75,8 +75,8 @@ function.
    <p><a name="doc_002daddproperty"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type</var>)<var><a name="index-addproperty-1630"></a></var><br>
-&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type, arg, <small class="dots">...</small></var>)<var><a name="index-addproperty-1631"></a></var><br>
+&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type</var>)<var><a name="index-addproperty-1633"></a></var><br>
+&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type, arg, <small class="dots">...</small></var>)<var><a name="index-addproperty-1634"></a></var><br>
 <blockquote><p>Create a new property named <var>name</var> in graphics object <var>h</var>. 
 <var>type</var> determines the type of the property to create.  <var>args</var>
 usually contains the default value of the property, but additional
@@ -141,7 +141,7 @@ callback function that is executed when the property is altered.
    <p><a name="doc_002daddlistener"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>addlistener</b> (<var>h, prop, fcn</var>)<var><a name="index-addlistener-1632"></a></var><br>
+&mdash; Built-in Function:  <b>addlistener</b> (<var>h, prop, fcn</var>)<var><a name="index-addlistener-1635"></a></var><br>
 <blockquote><p>Register <var>fcn</var> as listener for the property <var>prop</var> of the graphics
 object <var>h</var>.  Property listeners are executed (in order of registration)
 when the property is set.  The new value is already available when the
@@ -172,7 +172,7 @@ as additional arguments to the function.
    <p><a name="doc_002ddellistener"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dellistener</b> (<var>h, prop, fcn</var>)<var><a name="index-dellistener-1633"></a></var><br>
+&mdash; Built-in Function:  <b>dellistener</b> (<var>h, prop, fcn</var>)<var><a name="index-dellistener-1636"></a></var><br>
 <blockquote><p>Remove the registration of <var>fcn</var> as a listener for the property
 <var>prop</var> of the graphics object <var>h</var>.  The function <var>fcn</var> must
 be the same variable (not just the same value), as was passed to the
@@ -223,7 +223,7 @@ propagating any changes its value to the children of the group.  The
    <p><a name="doc_002dlinkprop"></a>
 
 <div class="defun">
-&mdash; Function File: <var>hlink</var> = <b>linkprop</b> (<var>h, prop</var>)<var><a name="index-linkprop-1634"></a></var><br>
+&mdash; Function File: <var>hlink</var> = <b>linkprop</b> (<var>h, prop</var>)<var><a name="index-linkprop-1637"></a></var><br>
 <blockquote><p>Link graphics object properties, such that a change in one is
 propagated to the others.  The properties to link are given as a
 string of cell string array by <var>prop</var> and the objects containing

@@ -33,24 +33,42 @@ along with Octave; see the file COPYING.  If not, see
 
 #include "error.h"
 #include "file-ops.h"
+#include "help.h"
 #include "oct-env.h"
 #include "singleton-cleanup.h"
 
 #include "defaults.h"
 
+#include "QTerminal.h"
+#include "workspace-model.h"
 #include "resource-manager.h"
 
 resource_manager *resource_manager::instance = 0;
+
+static QString
+default_qt_settings_file (void)
+{
+  std::string dsf = octave_env::getenv ("OCTAVE_DEFAULT_QT_SETTINGS");
+
+  if (dsf.empty ())
+    dsf = Voct_etc_dir + file_ops::dir_sep_str () + "default-qt-settings";
+
+  return QString::fromStdString (dsf);
+}
 
 resource_manager::resource_manager (void)
   : settings (0), home_path (), first_run (false)
 {
   do_reload_settings ();
+
+  default_settings = new QSettings (default_qt_settings_file (),
+                                    QSettings::IniFormat);
 }
 
 resource_manager::~resource_manager (void)
 {
   delete settings;
+  delete default_settings;
 }
 
 
@@ -104,26 +122,21 @@ resource_manager::instance_ok (void)
 }
 
 QSettings *
-resource_manager::do_get_settings (void)
+resource_manager::do_get_settings (void) const
 {
   return settings;
 }
 
-QString
-resource_manager::do_get_home_path (void)
+QSettings *
+resource_manager::do_get_default_settings (void) const
 {
-  return home_path;
+  return default_settings;
 }
 
-static std::string
-default_qt_settings_file (void)
+QString
+resource_manager::do_get_home_path (void) const
 {
-  std::string dsf = octave_env::getenv ("OCTAVE_DEFAULT_QT_SETTINGS");
-
-  if (dsf.empty ())
-    dsf = Voct_etc_dir + file_ops::dir_sep_str () + "default-qt-settings";
-
-  return dsf;
+  return home_path;
 }
 
 void
@@ -137,8 +150,7 @@ resource_manager::do_reload_settings (void)
   if (!QFile::exists (settings_file))
     {
       QDir("/").mkpath (settings_path);
-      QFile::copy (QString::fromStdString (default_qt_settings_file ()),
-                   settings_file);
+      QFile::copy (default_qt_settings_file (), settings_file);
       first_run = true;
     }
   else
@@ -155,7 +167,7 @@ resource_manager::do_set_settings (const QString& file)
 }
 
 bool
-resource_manager::do_is_first_run (void)
+resource_manager::do_is_first_run (void) const
 {
   return first_run;
 }
@@ -184,6 +196,30 @@ resource_manager::do_update_network_settings (void)
   proxy.setPassword (settings->value ("proxyPassword").toString ());
 
   QNetworkProxy::setApplicationProxy (proxy);
+}
+
+QStringList 
+resource_manager::storage_class_names (void)
+{
+  return workspace_model::storage_class_names ();
+}
+
+QList<QColor>
+resource_manager::storage_class_default_colors (void)
+{
+  return workspace_model::storage_class_default_colors ();
+}
+
+QStringList 
+resource_manager::terminal_color_names (void)
+{
+  return QTerminal::color_names ();
+}
+
+QList<QColor>
+resource_manager::terminal_default_colors (void)
+{
+  return QTerminal::default_colors ();
 }
 
 const char*

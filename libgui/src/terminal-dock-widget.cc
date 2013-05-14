@@ -28,7 +28,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "terminal-dock-widget.h"
 
 terminal_dock_widget::terminal_dock_widget (QWidget *p)
-  : octave_dock_widget (p), terminal (new QTerminal (p))
+  : octave_dock_widget (p), terminal (QTerminal::create (p))
 {
   terminal->setObjectName ("OctaveTerminal");
   terminal->setFocusPolicy (Qt::StrongFocus);
@@ -36,54 +36,16 @@ terminal_dock_widget::terminal_dock_widget (QWidget *p)
   setObjectName ("TerminalDockWidget");
   setWindowIcon (QIcon(":/actions/icons/logo.png"));
   setWindowTitle (tr ("Command Window"));
+
   setWidget (terminal);
-
-  connect (parent (), SIGNAL (settings_changed (const QSettings *)),
-           this, SLOT (notice_settings (const QSettings *)));
-
-  connect (this, SIGNAL (visibilityChanged (bool)),
-           this, SLOT (handle_visibility (bool)));
-
-  connect (parent (), SIGNAL (relay_command_signal (const QString&)),
-           this, SLOT (relay_command (const QString&)));
-
-  // Forward signals to QTerminal widget.
-
-  connect (this, SIGNAL (notice_settings_signal (const QSettings *)),
-           terminal, SLOT (notice_settings (const QSettings *)));
-
-  connect (this, SIGNAL (relay_command_signal (const QString&)),
-           terminal, SLOT (relay_command (const QString&)));
-
-  connect (this, SIGNAL (copyClipboard_signal (void)),
-           terminal, SLOT (copyClipboard (void)));
-
-  connect (this, SIGNAL (pasteClipboard_signal (void)),
-           terminal, SLOT (pasteClipboard (void)));
 }
 
-void
-terminal_dock_widget::notice_settings (const QSettings *settings)
+bool
+terminal_dock_widget::has_focus (void) const
 {
-  emit notice_settings_signal (settings);
-}
+  QWidget *w = widget ();
 
-void
-terminal_dock_widget::relay_command (const QString& command)
-{
-  emit relay_command_signal (command);
-}
-
-void
-terminal_dock_widget::copyClipboard (void)
-{
-  emit copyClipboard_signal ();
-}
-
-void
-terminal_dock_widget::pasteClipboard (void)
-{
-  emit pasteClipboard_signal ();
+  return w->hasFocus ();
 }
 
 void

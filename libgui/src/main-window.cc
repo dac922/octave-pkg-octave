@@ -25,6 +25,7 @@ along with Octave; see the file COPYING.  If not, see
 #include <config.h>
 #endif
 
+#include <QKeySequence>
 #include <QApplication>
 #include <QLabel>
 #include <QMenuBar>
@@ -87,9 +88,9 @@ main_window::~main_window (void)
   // Destroy the terminal first so that STDERR stream is redirected back
   // to its original pipe to capture error messages at exit.
 
+  delete editor_window;     // first one for dialogs of modified editor-tabs
   delete command_window;
   delete workspace_window;
-  delete editor_window;
   delete doc_browser_window;
   delete file_browser_window;
   delete history_window;
@@ -102,6 +103,12 @@ main_window::~main_window (void)
     }
   delete _octave_main_thread;
   delete _octave_qt_link;
+}
+
+bool
+main_window::command_window_has_focus (void) const
+{
+  return command_window->has_focus ();
 }
 
 void
@@ -188,11 +195,24 @@ main_window::handle_clear_history_request (void)
 }
 
 void
-main_window::handle_command_double_clicked (const QString& command)
+main_window::execute_command_in_terminal (const QString& command)
 {
-  emit relay_command_signal (command);
+  octave_link::post_event (this, &main_window::execute_command_callback,
+                           command.toStdString ());
 
-  command_window->focus ();
+  focus_command_window ();
+}
+
+void
+main_window::run_file_in_terminal (const QFileInfo& info)
+{
+  octave_link::post_event (this, &main_window::run_file_callback, info);
+}
+
+void
+main_window::handle_new_figure_request (void)
+{
+  octave_link::post_event (this, &main_window::new_figure_callback);
 }
 
 void
@@ -306,9 +326,11 @@ main_window::exit (int status)
 }
 
 void
-main_window::reset_windows ()
+main_window::reset_windows (void)
 {
-  // TODO: Implement.
+  QSettings *settings = resource_manager::get_default_settings ();
+
+  set_window_layout (settings);
 }
 
 void
@@ -332,13 +354,15 @@ main_window::change_directory (const QString& dir)
 void
 main_window::browse_for_directory (void)
 {
-  QString dir =
-    QFileDialog::getExistingDirectory (this, tr ("Set working directory"));
+  QString dir
+    = QFileDialog::getExistingDirectory (this, tr ("Set working directory"));
 
-  if (! dir.isEmpty ())
-    octave_link::post_event (this,
-                             &main_window::change_directory_callback,
-                             dir.toStdString ());
+  set_current_working_directory (dir);
+
+  // FIXME -- on Windows systems, the command window freezes after the
+  // previous actions.  Forcing the focus appears to unstick it.
+
+  focus_command_window ();
 }
 
 void
@@ -443,6 +467,43 @@ main_window::debug_quit (void)
 }
 
 void
+main_window::handle_insert_debugger_pointer_request (const QString& file,
+                                                     int line)
+{
+  bool cmd_focus = command_window_has_focus ();
+
+  emit insert_debugger_pointer_signal (file, line);
+
+  if (cmd_focus)
+    focus_command_window ();
+}
+
+void
+main_window::handle_delete_debugger_pointer_request (const QString& file,
+                                                     int line)
+{
+  bool cmd_focus = command_window_has_focus ();
+
+  emit delete_debugger_pointer_signal (file, line);
+
+  if (cmd_focus)
+    focus_command_window ();
+}
+
+void
+main_window::handle_update_breakpoint_marker_request (bool insert,
+                                                      const QString& file,
+                                                      int line)
+{
+  bool cmd_focus = command_window_has_focus ();
+
+  emit update_breakpoint_marker_signal (insert, file, line);
+
+  if (cmd_focus)
+    focus_command_window ();
+}
+
+void
 main_window::show_about_octave (void)
 {
   QString message = OCTAVE_STARTUP_MESSAGE;
@@ -461,32 +522,15 @@ void
 main_window::read_settings (void)
 {
   QSettings *settings = resource_manager::get_settings ();
+
   if (!settings)
     {
       qDebug("Error: QSettings pointer from resource manager is NULL.");
       return;
     }
 
-  restoreState (settings->value ("MainWindow/windowState").toByteArray ());
-  settings->beginGroup ("DockWidgets");
-  // restoring the geometry of all dock-widgets
-  foreach (QObject *obj, children ())
-    {
-      QString name = obj->objectName ();
-      if (obj->inherits ("QDockWidget") && ! name.isEmpty ())
-        {
-          QDockWidget *widget = qobject_cast<QDockWidget *> (obj);
-          QVariant val = settings->value (name);
-          widget->restoreGeometry (val.toByteArray ());
-          bool floating = settings->value (name+"Floating", false).toBool ();
-          bool visible = settings->value (name+"Visible", true).toBool ();
-          if (floating)
-            widget->setWindowFlags (Qt::Window); // if floating, make window from widget
-          widget->setVisible (visible);          // make widget visible if desired (setWindowFlags hides widget)
-        }
-    }
-  settings->endGroup();
-  restoreGeometry (settings->value ("MainWindow/geometry").toByteArray ());
+  set_window_layout (settings);
+
   // restore the list of the last directories
   QStringList curr_dirs = settings->value ("MainWindow/current_directory_list").toStringList ();
   for (int i=0; i < curr_dirs.size (); i++)
@@ -494,6 +538,41 @@ main_window::read_settings (void)
       _current_directory_combo_box->addItem (curr_dirs.at (i));
     }
   emit settings_changed (settings);
+}
+
+void
+main_window::set_window_layout (QSettings *settings)
+{
+  restoreState (settings->value ("MainWindow/windowState").toByteArray ());
+
+  settings->beginGroup ("DockWidgets");
+
+  // Restore the geometry of all dock-widgets
+  foreach (QObject *obj, children ())
+    {
+      QString name = obj->objectName ();
+
+      if (obj->inherits ("QDockWidget") && ! name.isEmpty ())
+        {
+          QDockWidget *widget = qobject_cast<QDockWidget *> (obj);
+          QVariant val = settings->value (name);
+
+          widget->restoreGeometry (val.toByteArray ());
+
+          // If floating, make window from widget.
+          bool floating = settings->value (name+"Floating", false).toBool ();
+          if (floating)
+            widget->setWindowFlags (Qt::Window);
+
+          // make widget visible if desired (setWindowFlags hides widget).
+          bool visible = settings->value (name+"Visible", true).toBool ();
+          widget->setVisible (visible);
+        }
+    }
+
+  settings->endGroup ();
+
+  restoreGeometry (settings->value ("MainWindow/geometry").toByteArray ());
 }
 
 void
@@ -552,6 +631,18 @@ main_window::connect_visibility_changed (void)
   workspace_window->connect_visibility_changed ();
 }
 
+void
+main_window::copyClipboard (void)
+{
+  emit copyClipboard_signal ();
+}
+
+void
+main_window::pasteClipboard (void)
+{
+  emit pasteClipboard_signal ();
+}
+
 // Connect the signals emitted when the Octave thread wants to create
 // a dialog box of some sort.  Perhaps a better place for this would be
 // as part of the QUIWidgetCreator class.  However, mainWindow currently
@@ -574,32 +665,32 @@ main_window::connect_uiwidget_links ()
   connect (&uiwidget_creator,
            SIGNAL (create_listview (const QStringList&, const QString&,
                                     int, int, const QIntList&,
-                                    const QString&, const QString&,
+                                    const QString&, const QStringList&,
                                     const QString&, const QString&)),
            this,
            SLOT (handle_create_listview (const QStringList&, const QString&,
                                          int, int, const QIntList&,
-                                         const QString&, const QString&,
+                                         const QString&, const QStringList&,
                                          const QString&, const QString&)));
 
-  // Register QFloatList so that list of ints may be part of a signal.
+  // Register QFloatList so that list of floats may be part of a signal.
   qRegisterMetaType<QFloatList> ("QFloatList");
   connect (&uiwidget_creator,
            SIGNAL (create_inputlayout (const QStringList&, const QString&,
-                                       const QIntList&, const QIntList&,
+                                       const QFloatList&, const QFloatList&,
                                        const QStringList&)),
            this,
            SLOT (handle_create_inputlayout (const QStringList&, const QString&,
-                                            const QIntList&, const QIntList&,
+                                            const QFloatList&, const QFloatList&,
                                             const QStringList&)));
 
   connect (&uiwidget_creator,
-           SIGNAL (create_debug_cd_or_addpath_dialog (const QString&,
-                                                      const QString&, bool)),
+           SIGNAL (create_filedialog (const QStringList &,const QString&,
+                                      const QString&, const QString&, const QString&)),
            this,
-           SLOT (handle_create_debug_cd_or_addpath_dialog (const QString&,
-                                                           const QString&,
-                                                           bool)));
+           SLOT (handle_create_filedialog (const QStringList &, const QString&,
+                                           const QString&, const QString&,
+                                           const QString&)));
 }
 
 // Create a message dialog with specified string, buttons and decorative
@@ -628,12 +719,12 @@ main_window::handle_create_listview (const QStringList& list,
                                      int wd, int ht,
                                      const QIntList& initial,
                                      const QString& name,
-                                     const QString& prompt_string,
+                                     const QStringList& prompt,
                                      const QString& ok_string,
                                      const QString& cancel_string)
 {
   ListDialog *list_dialog = new ListDialog (list, mode, wd, ht,
-                                            initial, name, prompt_string,
+                                            initial, name, prompt,
                                             ok_string, cancel_string);
 
   list_dialog->setAttribute (Qt::WA_DeleteOnClose);
@@ -645,8 +736,8 @@ main_window::handle_create_listview (const QStringList& list,
 void
 main_window::handle_create_inputlayout (const QStringList& prompt,
                                         const QString& title,
-                                        const QIntList& nr,
-                                        const QIntList& nc,
+                                        const QFloatList& nr,
+                                        const QFloatList& nc,
                                         const QStringList& defaults)
 {
   InputDialog *input_dialog = new InputDialog (prompt, title, nr, nc,
@@ -657,16 +748,17 @@ main_window::handle_create_inputlayout (const QStringList& prompt,
 }
 
 void
-main_window::handle_create_debug_cd_or_addpath_dialog (const QString& file,
-                                                       const QString& dir,
-                                                       bool addpath_option)
-
+main_window::handle_create_filedialog (const QStringList& filters,
+                                       const QString& title, 
+                                       const QString& filename, 
+                                       const QString& dirname,
+                                       const QString& multimode)
 {
-  cd_or_addpath_dialog *dialog
-    = new cd_or_addpath_dialog (file, dir, addpath_option);
+  FileDialog *file_dialog = new FileDialog (filters, title, filename,
+                                            dirname, multimode);
 
-  dialog->setAttribute (Qt::WA_DeleteOnClose);
-  dialog->show ();
+  file_dialog->setAttribute (Qt::WA_DeleteOnClose);
+  file_dialog->show ();
 }
 
 // Main subroutine of the constructor
@@ -677,6 +769,8 @@ main_window::construct (void)
   setWindowIcon (QIcon (":/actions/icons/logo.png"));
 
   workspace_window->setModel (_workspace_model);
+  connect (_workspace_model, SIGNAL (model_changed (void)),
+           workspace_window, SLOT (handle_model_changed (void)));
 
   // Create and set the central widget.  QMainWindow takes ownership of
   // the widget (pointer) so there is no need to delete the object upon
@@ -738,6 +832,21 @@ main_window::construct (void)
 
   construct_octave_qt_link ();
 
+  connect (this,
+           SIGNAL (insert_debugger_pointer_signal (const QString&, int)),
+           editor_window,
+           SLOT (handle_insert_debugger_pointer_request (const QString&, int)));
+
+  connect (this,
+           SIGNAL (delete_debugger_pointer_signal (const QString&, int)),
+           editor_window,
+           SLOT (handle_delete_debugger_pointer_request (const QString&, int)));
+
+  connect (this,
+           SIGNAL (update_breakpoint_marker_signal (bool, const QString&, int)),
+           editor_window,
+           SLOT (handle_update_breakpoint_marker_request (bool, const QString&, int)));
+
   QDir curr_dir;
   set_current_working_directory (curr_dir.absolutePath ());
 
@@ -772,6 +881,10 @@ main_window::construct_octave_qt_link (void)
            this, SLOT (change_directory (QString)));
 
   connect (_octave_qt_link,
+           SIGNAL (execute_command_in_terminal_signal (QString)),
+           this, SLOT (execute_command_in_terminal (QString)));
+
+  connect (_octave_qt_link,
            SIGNAL (set_history_signal (const QStringList&)),
            history_window, SLOT (set_history (const QStringList&)));
 
@@ -790,24 +903,24 @@ main_window::construct_octave_qt_link (void)
            this, SLOT (handle_exit_debugger ()));
 
   connect (_octave_qt_link,
-           SIGNAL (update_breakpoint_marker_signal (bool, const QString&, int)),
-           editor_window,
-           SLOT (handle_update_breakpoint_marker_request (bool, const QString&, int)));
-
-  connect (_octave_qt_link,
            SIGNAL (edit_file_signal (const QString&)),
            editor_window,
            SLOT (handle_edit_file_request (const QString&)));
 
   connect (_octave_qt_link,
            SIGNAL (insert_debugger_pointer_signal (const QString&, int)),
-           editor_window,
+           this,
            SLOT (handle_insert_debugger_pointer_request (const QString&, int)));
 
   connect (_octave_qt_link,
            SIGNAL (delete_debugger_pointer_signal (const QString&, int)),
-           editor_window,
+           this,
            SLOT (handle_delete_debugger_pointer_request (const QString&, int)));
+
+  connect (_octave_qt_link,
+           SIGNAL (update_breakpoint_marker_signal (bool, const QString&, int)),
+           this,
+           SLOT (handle_update_breakpoint_marker_request (bool, const QString&, int)));
 
   connect (_workspace_model,
            SIGNAL (rename_variable (const QString&, const QString&)),
@@ -831,8 +944,6 @@ main_window::construct_menu_bar (void)
 
   construct_debug_menu (menu_bar);
 
-  construct_desktop_menu (menu_bar);
-
   construct_window_menu (menu_bar);
 
   construct_help_menu (menu_bar);
@@ -848,23 +959,15 @@ main_window::construct_file_menu (QMenuBar *p)
   _open_action
     = file_menu->addAction (QIcon (":/actions/icons/fileopen.png"),
                             tr ("Open..."));
-  _open_action->setShortcut (QKeySequence::Open);
-  _open_action->setShortcutContext (Qt::ApplicationShortcut);
 
 #ifdef HAVE_QSCINTILLA
   file_menu->addMenu (editor_window->get_mru_menu ());
 #endif
 
-  QAction *close_command_window_action
-    = file_menu->addAction (tr ("Close Command Window"));
-  close_command_window_action->setShortcut (QKeySequence::Close);
-  close_command_window_action->setEnabled (false); // TODO: Make this work.
-
   file_menu->addSeparator ();
 
-  QAction *import_data_action
-    = file_menu->addAction (tr ("Import Data"));
-  import_data_action->setEnabled (false); // TODO: Make this work.
+  QAction *load_workspace_action
+    = file_menu->addAction (tr ("Load workspace"));
 
   QAction *save_workspace_action
     = file_menu->addAction (tr ("Save Workspace As"));
@@ -877,21 +980,6 @@ main_window::construct_file_menu (QMenuBar *p)
 
   file_menu->addSeparator ();
 
-  QAction *page_setup_action
-    = file_menu->addAction (tr ("Page Setup..."));
-  page_setup_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *print_action
-    = file_menu->addAction (tr ("Print"));
-  print_action->setShortcut (QKeySequence::Print);
-  print_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *print_selection_action
-    = file_menu->addAction (tr ("Print Selection..."));
-  print_selection_action->setEnabled (false); // TODO: Make this work.
-
-  file_menu->addSeparator ();
-
   QAction *exit_action = file_menu->addAction (tr ("Exit"));
   exit_action->setShortcut (QKeySequence::Quit);
 
@@ -900,6 +988,9 @@ main_window::construct_file_menu (QMenuBar *p)
 
   connect (_open_action, SIGNAL (triggered ()),
            editor_window, SLOT (request_open_file ()));
+
+  connect (load_workspace_action, SIGNAL (triggered ()),
+           this, SLOT (handle_load_workspace_request ()));
 
   connect (save_workspace_action, SIGNAL (triggered ()),
            this, SLOT (handle_save_workspace_request ()));
@@ -914,33 +1005,23 @@ main_window::construct_new_menu (QMenu *p)
   QMenu *new_menu = p->addMenu (tr ("New"));
 
   _new_script_action
-    = new_menu->addAction (QIcon (":/actions/icons/filenew.png"), tr ("Script"));
-  _new_script_action->setShortcut (QKeySequence::New);
-  _new_script_action->setShortcutContext (Qt::ApplicationShortcut);
+    = new_menu->addAction (QIcon (":/actions/icons/filenew.png"),
+                           tr ("Script"));
 
   QAction *new_function_action = new_menu->addAction (tr ("Function"));
-  new_function_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *new_class_action = new_menu->addAction (tr ("Class"));
-  new_class_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *new_enumeration_action = new_menu->addAction (tr ("Enumeration"));
-  new_enumeration_action->setEnabled (false); // TODO: Make this work.
+  new_function_action->setEnabled (true);
 
   QAction *new_figure_action = new_menu->addAction (tr ("Figure"));
-  new_figure_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *new_variable_action = new_menu->addAction (tr ("Variable"));
-  new_variable_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *new_model_action = new_menu->addAction (tr ("Model"));
-  new_model_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *new_gui_action = new_menu->addAction (tr ("GUI"));
-  new_gui_action->setEnabled (false); // TODO: Make this work.
+  new_figure_action->setEnabled (true);
 
   connect (_new_script_action, SIGNAL (triggered ()),
-           editor_window, SLOT (request_new_file ()));
+           editor_window, SLOT (request_new_script ()));
+
+  connect (new_function_action, SIGNAL (triggered ()),
+           editor_window, SLOT (request_new_function ()));
+
+  connect (new_figure_action, SIGNAL (triggered ()),
+           this, SLOT (handle_new_figure_request ()));
 }
 
 void
@@ -956,38 +1037,17 @@ main_window::construct_edit_menu (QMenuBar *p)
 
   edit_menu->addSeparator ();
 
-  _cut_action
-    = edit_menu->addAction (QIcon (":/actions/icons/editcut.png"), tr ("Cut"));
-  _cut_action->setShortcut (ctrl_shift + Qt::Key_X);
-
   _copy_action
-    = edit_menu->addAction (QIcon (":/actions/icons/editcopy.png"), tr ("Copy"));
+    = edit_menu->addAction (QIcon (":/actions/icons/editcopy.png"),
+                            tr ("Copy"), this, SLOT (copyClipboard ()));
   _copy_action->setShortcut (ctrl_shift + Qt::Key_C);
 
   _paste_action
-    = edit_menu->addAction (QIcon (":/actions/icons/editpaste.png"), tr ("Paste"));
+    = edit_menu->addAction (QIcon (":/actions/icons/editpaste.png"),
+                            tr ("Paste"), this, SLOT (pasteClipboard ()));
   _paste_action->setShortcut (ctrl_shift + Qt::Key_V);
 
-  QAction *paste_to_workspace_action
-    = edit_menu->addAction (tr ("Paste To Workspace..."));
-  paste_to_workspace_action->setEnabled (false); // TODO: Make this work.
-
   edit_menu->addSeparator ();
-
-  QAction *select_all_action
-    = edit_menu->addAction (tr ("Select All"));
-  select_all_action->setEnabled (false); // TODO: Make this work.
-
-  QAction *delete_action
-    = edit_menu->addAction (tr ("Delete"));
-  delete_action->setShortcut (Qt::Key_Delete);
-  delete_action->setEnabled (false); // TODO: Make this work.
-
-  edit_menu->addSeparator ();
-
-  QAction *find_action
-    = edit_menu->addAction (tr ("Find..."));
-  find_action->setEnabled (false); // TODO: Make this work.
 
   QAction *find_files_action
     = edit_menu->addAction (tr ("Find Files..."));
@@ -1003,12 +1063,6 @@ main_window::construct_edit_menu (QMenuBar *p)
 
   QAction *clear_workspace_action
     = edit_menu->addAction (tr ("Clear Workspace"));
-
-  connect (_copy_action, SIGNAL (triggered()),
-           command_window, SLOT (copyClipboard ()));
-
-  connect (_paste_action, SIGNAL (triggered()),
-           command_window, SLOT (pasteClipboard ()));
 
   connect (find_files_action, SIGNAL (triggered()),
            this, SLOT (find_files ()));
@@ -1084,17 +1138,6 @@ main_window::construct_debug_menu (QMenuBar *p)
            this, SLOT (debug_quit ()));
 }
 
-void
-main_window::construct_desktop_menu (QMenuBar *p)
-{
-  QMenu *desktop_menu = p->addMenu (tr ("&Desktop"));
-
-  QAction *load_workspace_action = desktop_menu->addAction (tr ("Load workspace"));
-
-  connect (load_workspace_action, SIGNAL (triggered ()),
-           this, SLOT (handle_load_workspace_request ()));
-}
-
 QAction *
 main_window::construct_window_menu_item (QMenu *p, const QString& item,
                                          bool checkable,
@@ -1158,9 +1201,7 @@ main_window::construct_window_menu (QMenuBar *p)
   window_menu->addSeparator ();
 
   QAction *reset_windows_action
-    = window_menu->addAction (tr ("Reset Windows"));
-
-  reset_windows_action->setEnabled (false); // TODO: Make this work.
+    = window_menu->addAction (tr ("Reset Default Window Layout"));
 
   connect (show_command_window_action, SIGNAL (toggled (bool)),
            command_window, SLOT (setVisible (bool)));
@@ -1287,7 +1328,6 @@ main_window::construct_tool_bar (void)
 
   _main_tool_bar->addSeparator ();
 
-  _main_tool_bar->addAction (_cut_action);
   _main_tool_bar->addAction (_copy_action);
   _main_tool_bar->addAction (_paste_action);
   _main_tool_bar->addAction (_undo_action);
@@ -1390,6 +1430,39 @@ main_window::clear_history_callback (void)
 }
 
 void
+main_window::execute_command_callback (const std::string& command)
+{
+  std::string pending_input = command_editor::get_current_line ();
+
+  command_editor::set_initial_input (pending_input);
+
+  command_editor::replace_line (command);
+  command_editor::redisplay ();
+
+  // We are executing inside the command editor event loop.  Force
+  // the current line to be returned for processing.
+  command_editor::interrupt ();
+}
+
+void
+main_window::run_file_callback (const QFileInfo& info)
+{
+  QString dir = info.absolutePath ();
+  QString function_name = info.fileName ();
+  function_name.chop (info.suffix ().length () + 1);
+  if (octave_qt_link::file_in_path (info.absoluteFilePath ().toStdString (),
+                                    dir.toStdString ()))
+    execute_command_callback (function_name.toStdString ());
+}
+
+void
+main_window::new_figure_callback (void)
+{
+  Fbuiltin (ovl ("figure"));
+  Fdrawnow ();
+}
+
+void
 main_window::change_directory_callback (const std::string& directory)
 {
   Fcd (ovl (directory));
@@ -1480,8 +1553,9 @@ main_window::find_files(const QString &start_dir)
 }
 
 void 
-main_window::find_files_finished(int button)
+main_window::find_files_finished(int)
 {
 
 }
+
 

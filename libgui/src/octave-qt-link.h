@@ -62,22 +62,32 @@ public:
   int do_message_dialog (const std::string& dlg, const std::string& msg,
                          const std::string& title);
 
+  std::string
+  do_question_dialog (const std::string& msg, const std::string& title,
+                      const std::string& btn1, const std::string& btn2,
+                      const std::string& btn3, const std::string& btndef);
+
   std::pair<std::list<int>, int>
   do_list_dialog (const std::list<std::string>& list,
                   const std::string& mode,
                   int width, int height,
                   const std::list<int>& initial_value,
                   const std::string& name,
-                  const std::string& prompt_string,
+                  const std::list<std::string>& prompt,
                   const std::string& ok_string,
                   const std::string& cancel_string);
 
   std::list<std::string>
   do_input_dialog (const std::list<std::string>& prompt,
                    const std::string& title,
-                   const std::list<int>& nr,
-                   const std::list<int>& nc,
+                   const std::list<float>& nr,
+                   const std::list<float>& nc,
                    const std::list<std::string>& defaults);
+
+  std::list<std::string>
+  do_file_dialog (const filter_list& filter, const std::string& title, 
+                  const std::string &filename, const std::string &pathname,
+                  const std::string& multimode);
 
   int
   do_debug_cd_or_addpath_error (const std::string& file,
@@ -85,6 +95,8 @@ public:
                                 bool addpath_option);
 
   void do_change_directory (const std::string& dir);
+
+  void do_execute_command_in_terminal (const std::string& command);
 
   void do_set_workspace (bool top_level,
                          const std::list<workspace_element>& ws);
@@ -107,6 +119,8 @@ public:
   void do_set_default_prompts (std::string& ps1, std::string& ps2,
                                std::string& ps4);
 
+  static bool file_in_path (const std::string& file, const std::string& dir);
+
 private:
 
   // No copying!
@@ -128,6 +142,8 @@ signals:
   void edit_file_signal (const QString& file);
 
   void change_directory_signal (const QString& dir);
+
+  void execute_command_in_terminal_signal (const QString& command);
 
   void set_workspace_signal (bool top_level,
                              const QString& scopes,

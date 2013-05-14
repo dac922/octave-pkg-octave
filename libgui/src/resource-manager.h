@@ -44,6 +44,11 @@ public:
     return instance_ok () ? instance->do_get_settings () : 0;
   }
 
+  static QSettings *get_default_settings (void)
+  {
+    return instance_ok () ? instance->do_get_default_settings () : 0;
+  }
+
   static QString get_home_path (void)
   {
     return instance_ok () ? instance->do_get_home_path () : QString ();
@@ -77,6 +82,14 @@ public:
   }
 
   static const char *octave_keywords (void);
+  
+  static QString storage_class_chars (void) { return "afghip"; }
+  static QStringList storage_class_names (void);
+  static QList<QColor> storage_class_default_colors (void);
+
+  static QString terminal_color_chars (void) { return "fbsc"; }
+  static QStringList terminal_color_names (void);
+  static QList<QColor> terminal_default_colors (void);
 
 private:
 
@@ -94,13 +107,17 @@ private:
 
   QSettings *settings;
 
+  QSettings *default_settings;
+
   QString home_path;
 
   bool first_run;
 
-  QSettings *do_get_settings (void);
+  QSettings *do_get_settings (void) const;
 
-  QString do_get_home_path (void);
+  QSettings *do_get_default_settings (void) const;
+
+  QString do_get_home_path (void) const;
 
   void do_reload_settings (void);
 
@@ -108,7 +125,7 @@ private:
 
   void do_update_network_settings (void);
 
-  bool do_is_first_run (void);
+  bool do_is_first_run (void) const;
 
 };
 

@@ -41,7 +41,9 @@ class workspace_element;
 // buffering access operations to octave and executing them in the
 // readline event hook, which lives in the octave thread.
 
-class octave_link
+class
+OCTINTERP_API
+octave_link
 {
 protected:
 
@@ -141,19 +143,28 @@ public:
     return enabled () ? instance->do_message_dialog (dlg, msg, title) : 0;
   }
 
+  static std::string
+  question_dialog (const std::string& msg, const std::string& title,
+                   const std::string& btn1, const std::string& btn2,
+                   const std::string& btn3, const std::string& btndef)
+  {
+    return enabled () ? instance->do_question_dialog (msg, title, btn1,
+                                                      btn2, btn3, btndef) : 0;
+  }
+
   static std::pair<std::list<int>, int>
   list_dialog (const std::list<std::string>& list,
                const std::string& mode,
                int width, int height,
                const std::list<int>& initial_value,
                const std::string& name,
-               const std::string& prompt_string,
+               const std::list<std::string>& prompt,
                const std::string& ok_string,
                const std::string& cancel_string)
   {
     return enabled ()
       ? instance->do_list_dialog (list, mode, width, height,
-                                  initial_value, name, prompt_string,
+                                  initial_value, name, prompt,
                                   ok_string, cancel_string)
       : std::pair<std::list<int>, int> ();
   }
@@ -161,14 +172,27 @@ public:
   static std::list<std::string>
   input_dialog (const std::list<std::string>& prompt,
                 const std::string& title,
-                const std::list<int>& nr,
-                const std::list<int>& nc,
+                const std::list<float>& nr,
+                const std::list<float>& nc,
                 const std::list<std::string>& defaults)
   {
     return enabled ()
       ? instance->do_input_dialog (prompt, title, nr, nc, defaults)
       : std::list<std::string> ();
   }
+
+  typedef std::list<std::pair<std::string, std::string> > filter_list;
+
+  static std::list<std::string>
+  file_dialog (const filter_list& filter, const std::string& title,
+               const std::string& filename, const std::string& dirname,
+               const std::string& multimode)
+  {
+    return enabled ()
+      ? instance->do_file_dialog (filter, title, filename, dirname, multimode)
+      : std::list<std::string> ();
+  }
+
 
   static int debug_cd_or_addpath_error (const std::string& file,
                                         const std::string& dir,
@@ -182,6 +206,13 @@ public:
   {
     if (enabled ())
       instance->do_change_directory (dir);
+  }
+
+  // Preserves pending input.
+  static void execute_command_in_terminal (const std::string& command)
+  {
+    if (enabled ())
+      instance->do_execute_command_in_terminal (command);
   }
 
   static void set_workspace (void);
@@ -271,6 +302,11 @@ public:
       instance->do_set_default_prompts (ps1, ps2, ps4);
   }
 
+  static bool enabled (void)
+  {
+    return instance_ok () ? instance->link_enabled : false;
+  }
+
 private:
 
   static octave_link *instance;
@@ -282,11 +318,6 @@ private:
   octave_link& operator = (const octave_link&);
 
   static bool instance_ok (void) { return instance != 0; }
-
-  static bool enabled (void)
-  {
-    return instance_ok () ? instance->link_enabled : false;
-  }
 
 protected:
 
@@ -332,22 +363,32 @@ protected:
   do_message_dialog (const std::string& dlg, const std::string& msg,
                      const std::string& title) = 0;
 
+  virtual std::string
+  do_question_dialog (const std::string& msg, const std::string& title,
+                      const std::string& btn1, const std::string& btn2,
+                      const std::string& btn3, const std::string& btndef) = 0;
+
   virtual std::pair<std::list<int>, int>
   do_list_dialog (const std::list<std::string>& list,
                   const std::string& mode,
                   int width, int height,
                   const std::list<int>& initial_value,
                   const std::string& name,
-                  const std::string& prompt_string,
+                  const std::list<std::string>& prompt,
                   const std::string& ok_string,
                   const std::string& cancel_string) = 0;
 
   virtual std::list<std::string>
   do_input_dialog (const std::list<std::string>& prompt,
                    const std::string& title,
-                   const std::list<int>& nr,
-                   const std::list<int>& nc,
+                   const std::list<float>& nr,
+                   const std::list<float>& nc,
                    const std::list<std::string>& defaults) = 0;
+
+  virtual std::list<std::string>
+  do_file_dialog (const filter_list& filter, const std::string& title,
+                  const std::string& filename, const std::string& dirname,
+                  const std::string& multimode) = 0;
 
   virtual int
   do_debug_cd_or_addpath_error (const std::string& file,
@@ -355,6 +396,8 @@ protected:
                                 bool addpath_option) = 0;
 
   virtual void do_change_directory (const std::string& dir) = 0;
+
+  virtual void do_execute_command_in_terminal (const std::string& command) = 0;
 
   virtual void
   do_set_workspace (bool top_level,

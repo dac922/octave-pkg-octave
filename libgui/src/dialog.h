@@ -32,6 +32,7 @@ along with Octave; see the file COPYING.  If not, see
 #include <QDialog>
 #include <QMessageBox>
 #include <QLineEdit>
+#include <QFileDialog>
 
 // Defined for purposes of sending QList<int> as part of signal.
 typedef QList<int> QIntList;
@@ -58,7 +59,7 @@ public:
   {
 
     // Use the last button in the list as the reject result, i.e., when no
-    // button is pressed such as in the case of <esc> and close button.
+    // button is pressed such as in the case of the upper right close tab.
     if (!button.isEmpty ())
       dialog_button = button.last ();
 
@@ -71,18 +72,18 @@ public:
 
   int get_dialog_result (void) { return dialog_result; }
 
-  const QString *get_dialog_button (void) { return &dialog_button; }
+  QString get_dialog_button (void) { return dialog_button; }
 
   bool signal_listview (const QStringList& list, const QString& mode,
                         int wd, int ht, const QList<int>& initial,
-                        const QString& name, const QString& prompt_string,
+                        const QString& name, const QStringList& prompt,
                         const QString& ok_string, const QString& cancel_string)
   {
     if (list.isEmpty ())
       return false;
 
     emit create_listview (list, mode, wd, ht, initial, name,
-                          prompt_string, ok_string, cancel_string);
+                          prompt, ok_string, cancel_string);
 
     return true;
   };
@@ -90,7 +91,7 @@ public:
   const QIntList *get_list_index (void) { return list_index; }
 
   bool signal_inputlayout (const QStringList& prompt, const QString& title,
-                           const QIntList& nr, const QIntList& nc,
+                           const QFloatList& nr, const QFloatList& nc,
                            const QStringList& defaults)
   {
     if (prompt.isEmpty ())
@@ -101,19 +102,18 @@ public:
     return true;
   };
 
-  // The debug dialog functionality may not really belong here, but it
-  // seems like the easiest thing to do at the moment.
+  const QStringList *get_string_list (void) { return string_list; }
 
-  bool signal_debug_cd_or_addpath (const QString& file, const QString& dir,
-                                   bool addpath_option)
+  bool signal_filedialog (const QStringList& filters, const QString& title, 
+                          const QString& filename, const QString& dirname, 
+                          const QString &multimode)
   {
-    emit create_debug_cd_or_addpath_dialog (file, dir, addpath_option);
-
+    emit create_filedialog (filters, title, filename, dirname, multimode);
     return true;
   }
 
-  const QStringList *get_string_list (void) { return string_list; }
-  
+  const QString *get_dialog_path (void) { return path_name; }
+
   void wait (void)
   {
     // Wait while the user is responding to message box.
@@ -126,25 +126,26 @@ signals:
                       const QStringList&, const QString&, const QStringList&);
 
   void create_listview (const QStringList&, const QString&, int, int,
-                        const QIntList&, const QString&, const QString&,
+                        const QIntList&, const QString&, const QStringList&,
                         const QString&, const QString&);
 
   void create_inputlayout (const QStringList&, const QString&,
-                           const QIntList&, const QIntList&,
+                           const QFloatList&, const QFloatList&,
                            const QStringList&);
 
-  void create_debug_cd_or_addpath_dialog (const QString&, const QString&, bool);
-
+  void create_filedialog (const QStringList& filters, const QString& title,
+                          const QString& filename, const QString& dirname,
+                          const QString& multimode);
 public slots:
-
-  void dialog_finished (int result);
 
   void dialog_button_clicked (QAbstractButton *button);
 
-  void list_select_finished (const QIntList& selected,
-                             const int button_pressed);
+  void list_select_finished (const QIntList& selected, int button_pressed);
 
-  void input_finished (const QStringList& input, const int button_pressed);
+  void input_finished (const QStringList& input, int button_pressed);
+
+  void filedialog_finished (const QStringList& files, const QString& path,
+                            int filterindex);
 
 private:
 
@@ -155,6 +156,8 @@ private:
   // stored internally, so keep off of the stack.
   QStringList *string_list;
   QIntList *list_index;
+
+  QString *path_name;
 
   // GUI objects cannot be accessed in the non-GUI thread.  However,
   // signals can be sent to slots across threads with proper
@@ -167,6 +170,7 @@ private:
 
 extern QUIWidgetCreator uiwidget_creator;
 
+
 class MessageDialog : public QMessageBox
 {
   Q_OBJECT
@@ -177,6 +181,15 @@ public:
                           const QString& icon, const QStringList& button,
                           const QString& defbutton,
                           const QStringList& role);
+
+private:
+
+  void closeEvent (QCloseEvent *)
+  {
+    // Reroute the close tab to a button click so there is only a single
+    // route to waking the wait condition.
+    emit buttonClicked (0);
+  }
 };
 
 
@@ -190,12 +203,12 @@ public:
 
   explicit ListDialog (const QStringList& list, const QString& mode,
                        int width, int height, const QList<int>& initial,
-                       const QString& name, const QString& prompt_string,
+                       const QString& name, const QStringList& prompt,
                        const QString& ok_string, const QString& cancel_string);
 
 signals:
 
-  void finish_selection (const QIntList&, const int);
+  void finish_selection (const QIntList&, int);
 
 public slots:
 
@@ -216,12 +229,12 @@ class InputDialog : public QDialog
 public:
 
   explicit InputDialog (const QStringList& prompt, const QString& title,
-                        const QIntList& nr, const QIntList& nc,
+                        const QFloatList& nr, const QFloatList& nc,
                         const QStringList& defaults);
 
 signals:
 
-  void finish_input (const QStringList&, const int);
+  void finish_input (const QStringList&, int);
 
 public slots:
 
@@ -232,24 +245,25 @@ public slots:
   void reject (void);
 };
 
-class cd_or_addpath_dialog : public QDialog
+class FileDialog : public QFileDialog
 {
   Q_OBJECT
 
 public:
 
-  cd_or_addpath_dialog (const QString& file, const QString& dir,
-                        bool addpath_option);
+  explicit FileDialog (const QStringList& filters,
+                       const QString& title, const QString& filename, 
+                       const QString& dirname, const QString& multimode);
 
-public slots:
+signals:
 
-  void buttonCd_clicked (void);
+  void finish_input (const QStringList&, const QString&, int);
 
-  void buttonAddpath_clicked (void);
-
-  void buttonCancel_clicked (void);
+private slots:
 
   void reject (void);
+
+  void accept (void);
 };
 
 #endif

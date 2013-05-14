@@ -22,6 +22,648 @@ manual into another language, under the above conditions for modified
 versions.
 
 
+File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  Prev: Basic Matrix Functions,  Up: Linear Algebra
+
+18.3 Matrix Factorizations
+==========================
+
+ -- Loadable Function: R = chol (A)
+ -- Loadable Function: [R, P] = chol (A)
+ -- Loadable Function: [R, P, Q] = chol (S)
+ -- Loadable Function: [R, P, Q] = chol (S, "vector")
+ -- Loadable Function: [L, ...] = chol (..., "lower")
+ -- Loadable Function: [L, ...] = chol (..., "upper")
+     Compute the Cholesky factor, R, of the symmetric positive definite
+     matrix A, where
+
+          R' * R = A.
+
+     Called with one output argument `chol' fails if A or S is not
+     positive definite.  With two or more output arguments P flags
+     whether the matrix was positive definite and `chol' does not fail.
+     A zero value indicated that the matrix was positive definite and
+     the R gives the factorization, and P will have a positive value
+     otherwise.
+
+     If called with 3 outputs then a sparsity preserving row/column
+     permutation is applied to A prior to the factorization.  That is R
+     is the factorization of `A(Q,Q)' such that
+
+          R' * R = Q' * A * Q.
+
+     The sparsity preserving permutation is generally returned as a
+     matrix.  However, given the flag "vector", Q will be returned as a
+     vector such that
+
+          R' * R = A(Q, Q).
+
+     Called with either a sparse or full matrix and using the "lower"
+     flag, `chol' returns the lower triangular factorization such that
+
+          L * L' = A.
+
+     For full matrices, if the "lower" flag is set only the lower
+     triangular part of the matrix is used for the factorization,
+     otherwise the upper triangular part is used.
+
+     In general the lower triangular factorization is significantly
+     faster for sparse matrices.
+
+     *See also:* *note cholinv: doc-cholinv, *note chol2inv:
+     doc-chol2inv.
+
+ -- Loadable Function:  cholinv (A)
+     Use the Cholesky factorization to compute the inverse of the
+     symmetric positive definite matrix A.
+
+     *See also:* *note chol: doc-chol, *note chol2inv: doc-chol2inv,
+     *note inv: doc-inv.
+
+ -- Loadable Function:  chol2inv (U)
+     Invert a symmetric, positive definite square matrix from its
+     Cholesky decomposition, U.  Note that U should be an
+     upper-triangular matrix with positive diagonal elements.
+     `chol2inv (U)' provides `inv (U'*U)' but it is much faster than
+     using `inv'.
+
+     *See also:* *note chol: doc-chol, *note cholinv: doc-cholinv,
+     *note inv: doc-inv.
+
+ -- Loadable Function: [R1, INFO] = cholupdate (R, U, OP)
+     Update or downdate a Cholesky factorization.  Given an upper
+     triangular matrix R and a column vector U, attempt to determine
+     another upper triangular matrix R1 such that
+
+        * R1'*R1 = R'*R + U*U' if OP is "+"
+
+        * R1'*R1 = R'*R - U*U' if OP is "-"
+
+     If OP is "-", INFO is set to
+
+        * 0 if the downdate was successful,
+
+        * 1 if R'*R - U*U' is not positive definite,
+
+        * 2 if R is singular.
+
+     If INFO is not present, an error message is printed in cases 1 and
+     2.
+
+     *See also:* *note chol: doc-chol, *note qrupdate: doc-qrupdate.
+
+ -- Loadable Function: R1 = cholinsert (R, J, U)
+ -- Loadable Function: [R1, INFO] = cholinsert (R, J, U)
+     Given a Cholesky factorization of a real symmetric or complex
+     Hermitian positive definite matrix A = R'*R, R upper triangular,
+     return the Cholesky factorization of A1, where A1(p,p) = A,
+     A1(:,j) = A1(j,:)' = u and p = [1:j-1,j+1:n+1].  u(j) should be
+     positive.  On return, INFO is set to
+
+        * 0 if the insertion was successful,
+
+        * 1 if A1 is not positive definite,
+
+        * 2 if R is singular.
+
+     If INFO is not present, an error message is printed in cases 1 and
+     2.
+
+     *See also:* *note chol: doc-chol, *note cholupdate:
+     doc-cholupdate, *note choldelete: doc-choldelete.
+
+ -- Loadable Function: R1 = choldelete (R, J)
+     Given a Cholesky factorization of a real symmetric or complex
+     Hermitian positive definite matrix A = R'*R, R upper triangular,
+     return the Cholesky factorization of A(p,p), where
+     p = [1:j-1,j+1:n+1].
+
+     *See also:* *note chol: doc-chol, *note cholupdate:
+     doc-cholupdate, *note cholinsert: doc-cholinsert.
+
+ -- Loadable Function: R1 = cholshift (R, I, J)
+     Given a Cholesky factorization of a real symmetric or complex
+     Hermitian positive definite matrix A = R'*R, R upper triangular,
+     return the Cholesky factorization of A(p,p), where p is the
+     permutation
+     `p = [1:i-1, shift(i:j, 1), j+1:n]' if I < J
+     or
+     `p = [1:j-1, shift(j:i,-1), i+1:n]' if J < I.
+     *See also:* *note chol: doc-chol, *note cholinsert:
+     doc-cholinsert, *note choldelete: doc-choldelete.
+
+ -- Built-in Function: H = hess (A)
+ -- Built-in Function: [P, H] = hess (A)
+     Compute the Hessenberg decomposition of the matrix A.
+
+     The Hessenberg decomposition is `P * H * P' = A' where P is a
+     square unitary matrix (`P' * P = I', using complex-conjugate
+     transposition) and H is upper Hessenberg (`H(i, j) = 0 forall i >=
+     j+1)'.
+
+     The Hessenberg decomposition is usually used as the first step in
+     an eigenvalue computation, but has other applications as well (see
+     Golub, Nash, and Van Loan, IEEE Transactions on Automatic Control,
+     1979).
+
+ -- Built-in Function: [L, U] = lu (A)
+ -- Built-in Function: [L, U, P] = lu (A)
+ -- Built-in Function: [L, U, P, Q] = lu (S)
+ -- Built-in Function: [L, U, P, Q, R] = lu (S)
+ -- Built-in Function: [...] = lu (S, THRES)
+ -- Built-in Function: Y = lu (...)
+ -- Built-in Function: [...] = lu (..., "vector")
+     Compute the LU decomposition of A.  If A is full subroutines from
+     LAPACK are used and if A is sparse then UMFPACK is used.  The
+     result is returned in a permuted form, according to the optional
+     return value P.  For example, given the matrix `a = [1, 2; 3, 4]',
+
+          [l, u, p] = lu (A)
+
+     returns
+
+          l =
+
+            1.00000  0.00000
+            0.33333  1.00000
+
+          u =
+
+            3.00000  4.00000
+            0.00000  0.66667
+
+          p =
+
+            0  1
+            1  0
+
+     The matrix is not required to be square.
+
+     When called with two or three output arguments and a spare input
+     matrix, `lu' does not attempt to perform sparsity preserving column
+     permutations.  Called with a fourth output argument, the sparsity
+     preserving column transformation Q is returned, such that `P * A *
+     Q = L * U'.
+
+     Called with a fifth output argument and a sparse input matrix,
+     `lu' attempts to use a scaling factor R on the input matrix such
+     that `P * (R \ A) * Q = L * U'.  This typically leads to a sparser
+     and more stable factorization.
+
+     An additional input argument THRES, that defines the pivoting
+     threshold can be given.  THRES can be a scalar, in which case it
+     defines the UMFPACK pivoting tolerance for both symmetric and
+     unsymmetric cases.  If THRES is a 2-element vector, then the first
+     element defines the pivoting tolerance for the unsymmetric UMFPACK
+     pivoting strategy and the second for the symmetric strategy.  By
+     default, the values defined by `spparms' are used ([0.1, 0.001]).
+
+     Given the string argument "vector", `lu' returns the values of P
+     and Q as vector values, such that for full matrix, `A (P,:) = L *
+     U', and `R(P,:) * A (:, Q) = L * U'.
+
+     With two output arguments, returns the permuted forms of the upper
+     and lower triangular matrices, such that `A = L * U'.  With one
+     output argument Y, then the matrix returned by the LAPACK routines
+     is returned.  If the input matrix is sparse then the matrix L is
+     embedded into U to give a return value similar to the full case.
+     For both full and sparse matrices, `lu' loses the permutation
+     information.
+
+ -- Built-in Function: [L, U] = luupdate (L, U, X, Y)
+ -- Built-in Function: [L, U, P] = luupdate (L, U, P, X, Y)
+     Given an LU factorization of a real or complex matrix A = L*U,
+     L lower unit trapezoidal and U upper trapezoidal, return the
+     LU factorization of A + X*Y.', where X and Y are column vectors
+     (rank-1 update) or matrices with equal number of columns (rank-k
+     update).  Optionally, row-pivoted updating can be used by supplying
+     a row permutation (pivoting) matrix P; in that case, an updated
+     permutation matrix is returned.  Note that if L, U, P is a pivoted
+     LU factorization as obtained by `lu':
+
+          [L, U, P] = lu (A);
+
+     then a factorization of A+X*Y.' can be obtained either as
+
+          [L1, U1] = lu (L, U, P*X, Y)
+
+     or
+
+          [L1, U1, P1] = lu (L, U, P, X, Y)
+
+     The first form uses the unpivoted algorithm, which is faster, but
+     less stable.  The second form uses a slower pivoted algorithm,
+     which is more stable.
+
+     The matrix case is done as a sequence of rank-1 updates; thus, for
+     large enough k, it will be both faster and more accurate to
+     recompute the factorization from scratch.
+
+     *See also:* *note lu: doc-lu, *note qrupdate: doc-qrupdate, *note
+     cholupdate: doc-cholupdate.
+
+ -- Loadable Function: [Q, R, P] = qr (A)
+ -- Loadable Function: [Q, R, P] = qr (A, '0')
+ -- Loadable Function: [C, R] = qr (A, B)
+ -- Loadable Function: [C, R] = qr (A, B, '0')
+     Compute the QR factorization of A, using standard LAPACK
+     subroutines.  For example, given the matrix `A = [1, 2; 3, 4]',
+
+          [Q, R] = qr (A)
+
+     returns
+
+          Q =
+
+            -0.31623  -0.94868
+            -0.94868   0.31623
+
+          R =
+
+            -3.16228  -4.42719
+             0.00000  -0.63246
+
+     The `qr' factorization has applications in the solution of least
+     squares problems
+
+          min norm(A x - b)
+
+     for overdetermined systems of equations (i.e., A  is a tall, thin
+     matrix).  The QR factorization is `Q * Q = A' where Q is an
+     orthogonal matrix and R is upper triangular.
+
+     If given a second argument of '0', `qr' returns an economy-sized
+     QR factorization, omitting zero rows of R and the corresponding
+     columns of Q.
+
+     If the matrix A is full, the permuted QR factorization `[Q, R, P]
+     = qr (A)' forms the QR factorization such that the diagonal
+     entries of R are decreasing in magnitude order.  For example,
+     given the matrix `a = [1, 2; 3, 4]',
+
+          [Q, R, P] = qr (A)
+
+     returns
+
+          Q =
+
+            -0.44721  -0.89443
+            -0.89443   0.44721
+
+          R =
+
+            -4.47214  -3.13050
+             0.00000   0.44721
+
+          P =
+
+             0  1
+             1  0
+
+     The permuted `qr' factorization `[Q, R, P] = qr (A)' factorization
+     allows the construction of an orthogonal basis of `span (A)'.
+
+     If the matrix A is sparse, then compute the sparse
+     QR factorization of A, using CSPARSE.  As the matrix Q is in
+     general a full matrix, this function returns the Q-less
+     factorization R of A, such that `R = chol (A' * A)'.
+
+     If the final argument is the scalar `0' and the number of rows is
+     larger than the number of columns, then an economy factorization is
+     returned.  That is R will have only `size (A,1)' rows.
+
+     If an additional matrix B is supplied, then `qr' returns C, where
+     `C = Q' * B'.  This allows the least squares approximation of `A \
+     B' to be calculated as
+
+          [C, R] = qr (A, B)
+          x = R \ C
+
+ -- Loadable Function: [Q1, R1] = qrupdate (Q, R, U, V)
+     Given a QR factorization of a real or complex matrix A = Q*R,
+     Q unitary and R upper trapezoidal, return the QR factorization of
+     A + U*V', where U and V are column vectors (rank-1 update) or
+     matrices with equal number of columns (rank-k update).  Notice
+     that the latter case is done as a sequence of rank-1 updates;
+     thus, for k large enough, it will be both faster and more accurate
+     to recompute the factorization from scratch.
+
+     The QR factorization supplied may be either full (Q is square) or
+     economized (R is square).
+
+     *See also:* *note qr: doc-qr, *note qrinsert: doc-qrinsert, *note
+     qrdelete: doc-qrdelete.
+
+ -- Loadable Function: [Q1, R1] = qrinsert (Q, R, J, X, ORIENT)
+     Given a QR factorization of a real or complex matrix A = Q*R,
+     Q unitary and R upper trapezoidal, return the QR factorization of
+     [A(:,1:j-1) x A(:,j:n)], where U is a column vector to be inserted
+     into A (if ORIENT is `"col"'), or the QR factorization of
+     [A(1:j-1,:);x;A(:,j:n)], where X is a row vector to be inserted
+     into A (if ORIENT is `"row"').
+
+     The default value of ORIENT is `"col"'.  If ORIENT is `"col"', U
+     may be a matrix and J an index vector resulting in the
+     QR factorization of a matrix B such that B(:,J) gives U and
+     B(:,J) = [] gives A.  Notice that the latter case is done as a
+     sequence of k insertions; thus, for k large enough, it will be
+     both faster and more accurate to recompute the factorization from
+     scratch.
+
+     If ORIENT is `"col"', the QR factorization supplied may be either
+     full (Q is square) or economized (R is square).
+
+     If ORIENT is `"row"', full factorization is needed.
+
+     *See also:* *note qr: doc-qr, *note qrupdate: doc-qrupdate, *note
+     qrdelete: doc-qrdelete.
+
+ -- Loadable Function: [Q1, R1] = qrdelete (Q, R, J, ORIENT)
+     Given a QR factorization of a real or complex matrix A = Q*R,
+     Q unitary and R upper trapezoidal, return the QR factorization of
+     [A(:,1:j-1) A(:,j+1:n)], i.e., A with one column deleted (if
+     ORIENT is "col"), or the QR factorization of
+     [A(1:j-1,:);A(j+1:n,:)], i.e., A with one row deleted (if ORIENT
+     is "row").
+
+     The default value of ORIENT is "col".
+
+     If ORIENT is `"col"', J may be an index vector resulting in the
+     QR factorization of a matrix B such that A(:,J) = [] gives B.
+     Notice that the latter case is done as a sequence of k deletions;
+     thus, for k large enough, it will be both faster and more accurate
+     to recompute the factorization from scratch.
+
+     If ORIENT is `"col"', the QR factorization supplied may be either
+     full (Q is square) or economized (R is square).
+
+     If ORIENT is `"row"', full factorization is needed.
+
+     *See also:* *note qr: doc-qr, *note qrinsert: doc-qrinsert, *note
+     qrupdate: doc-qrupdate.
+
+ -- Loadable Function: [Q1, R1] = qrshift (Q, R, I, J)
+     Given a QR factorization of a real or complex matrix A = Q*R,
+     Q unitary and R upper trapezoidal, return the QR factorization of
+     A(:,p), where p is the permutation
+     `p = [1:i-1, shift(i:j, 1), j+1:n]' if I < J
+     or
+     `p = [1:j-1, shift(j:i,-1), i+1:n]' if J < I.
+     *See also:* *note qr: doc-qr, *note qrinsert: doc-qrinsert, *note
+     qrdelete: doc-qrdelete.
+
+ -- Built-in Function: LAMBDA = qz (A, B)
+ -- Built-in Function: LAMBDA = qz (A, B, OPT)
+     QZ decomposition of the generalized eigenvalue problem (A x = s B
+     x).  There are three ways to call this function:
+       1. `LAMBDA = qz (A, B)'
+
+          Computes the generalized eigenvalues LAMBDA of (A - s B).
+
+       2. `[AA, BB, Q, Z, V, W, LAMBDA] = qz (A, B)'
+
+          Computes QZ decomposition, generalized eigenvectors, and
+          generalized eigenvalues of (A - s B)
+
+
+               A * V = B * V * diag (LAMBDA)
+               W' * A = diag (LAMBDA) * W' * B
+               AA = Q * A * Z, BB = Q * B * Z
+
+          with Q and Z orthogonal (unitary)= I
+
+       3. `[AA,BB,Z{, LAMBDA}] = qz (A, B, OPT)'
+
+          As in form [2], but allows ordering of generalized eigenpairs
+          for (e.g.) solution of discrete time algebraic Riccati
+          equations.  Form 3 is not available for complex matrices, and
+          does not compute the generalized eigenvectors V, W, nor the
+          orthogonal matrix Q.
+
+         OPT
+               for ordering eigenvalues of the GEP pencil.  The leading
+               block of the revised pencil contains all eigenvalues
+               that satisfy:
+
+              "N"
+                    = unordered (default)
+
+              "S"
+                    = small: leading block has all |lambda| <= 1
+
+              "B"
+                    = big: leading block has all |lambda| >= 1
+
+              "-"
+                    = negative real part: leading block has all
+                    eigenvalues in the open left half-plane
+
+              "+"
+                    = non-negative real part: leading block has all
+                    eigenvalues in the closed right half-plane
+
+     Note: `qz' performs permutation balancing, but not scaling (*note
+     doc-balance::).  The order of output arguments was selected for
+     compatibility with MATLAB.
+
+     *See also:* *note balance: doc-balance, *note eig: doc-eig, *note
+     schur: doc-schur.
+
+ -- Function File: [AA, BB, Q, Z] = qzhess (A, B)
+     Compute the Hessenberg-triangular decomposition of the matrix
+     pencil `(A, B)', returning `AA = Q * A * Z', `BB = Q * B * Z',
+     with Q and Z orthogonal.  For example:
+
+          [aa, bb, q, z] = qzhess ([1, 2; 3, 4], [5, 6; 7, 8])
+               => aa = [ -3.02244, -4.41741;  0.92998,  0.69749 ]
+               => bb = [ -8.60233, -9.99730;  0.00000, -0.23250 ]
+               =>  q = [ -0.58124, -0.81373; -0.81373,  0.58124 ]
+               =>  z = [ 1, 0; 0, 1 ]
+
+     The Hessenberg-triangular decomposition is the first step in Moler
+     and Stewart's QZ decomposition algorithm.
+
+     Algorithm taken from Golub and Van Loan, `Matrix Computations, 2nd
+     edition'.
+
+ -- Built-in Function: S = schur (A)
+ -- Built-in Function: S = schur (A, "real")
+ -- Built-in Function: S = schur (A, "complex")
+ -- Built-in Function: S = schur (A, OPT)
+ -- Built-in Function: [U, S] = schur (A, ...)
+     Compute the Schur decomposition of A
+
+          `S = U' * A * U'
+
+     where U is a unitary matrix (`U'* U' is identity) and S is upper
+     triangular.  The eigenvalues of A (and S) are the diagonal
+     elements of S.  If the matrix A is real, then the real
+     Schur decomposition is computed, in which the matrix U is
+     orthogonal and S is block upper triangular with blocks of size at
+     most `2 x 2' along the diagonal.  The diagonal elements of S (or
+     the eigenvalues of the `2 x 2' blocks, when appropriate) are the
+     eigenvalues of A and S.
+
+     The default for real matrices is a real Schur decomposition.  A
+     complex decomposition may be forced by passing the flag "complex".
+
+     The eigenvalues are optionally ordered along the diagonal
+     according to the value of OPT.  `OPT = "a"' indicates that all
+     eigenvalues with negative real parts should be moved to the leading
+     block of S (used in `are'), `OPT = "d"' indicates that all
+     eigenvalues with magnitude less than one should be moved to the
+     leading block of S (used in `dare'), and `OPT = "u"', the default,
+     indicates that no ordering of eigenvalues should occur.  The
+     leading K columns of U always span the A-invariant subspace
+     corresponding to the K leading eigenvalues of S.
+
+     The Schur decomposition is used to compute eigenvalues of a square
+     matrix, and has applications in the solution of algebraic Riccati
+     equations in control (see `are' and `dare').
+
+     *See also:* *note rsf2csf: doc-rsf2csf.
+
+ -- Function File: [U, T] = rsf2csf (UR, TR)
+     Convert a real, upper quasi-triangular Schur form TR to a complex,
+     upper triangular Schur form T.
+
+     Note that the following relations hold:
+
+     UR * TR * UR' = U * T * U' and `U' * U' is the identity matrix I.
+
+     Note also that U and T are not unique.
+
+     *See also:* *note schur: doc-schur.
+
+ -- Function File: ANGLE = subspace (A, B)
+     Determine the largest principal angle between two subspaces
+     spanned by the columns of matrices A and B.
+
+ -- Built-in Function: S = svd (A)
+ -- Built-in Function: [U, S, V] = svd (A)
+ -- Built-in Function: [U, S, V] = svd (A, ECON)
+     Compute the singular value decomposition of A
+
+          A = U*S*V'
+
+     The function `svd' normally returns only the vector of singular
+     values.  When called with three return values, it computes U, S,
+     and V.  For example,
+
+          svd (hilb (3))
+
+     returns
+
+          ans =
+
+            1.4083189
+            0.1223271
+            0.0026873
+
+     and
+
+          [u, s, v] = svd (hilb (3))
+
+     returns
+
+          u =
+
+            -0.82704   0.54745   0.12766
+            -0.45986  -0.52829  -0.71375
+            -0.32330  -0.64901   0.68867
+
+          s =
+
+            1.40832  0.00000  0.00000
+            0.00000  0.12233  0.00000
+            0.00000  0.00000  0.00269
+
+          v =
+
+            -0.82704   0.54745   0.12766
+            -0.45986  -0.52829  -0.71375
+            -0.32330  -0.64901   0.68867
+
+     If given a second argument, `svd' returns an economy-sized
+     decomposition, eliminating the unnecessary rows or columns of U or
+     V.
+
+     *See also:* *note svd_driver: doc-svd_driver, *note svds:
+     doc-svds, *note eig: doc-eig.
+
+ -- Built-in Function: VAL = svd_driver ()
+ -- Built-in Function: OLD_VAL = svd_driver (NEW_VAL)
+ -- Built-in Function:  svd_driver (NEW_VAL, "local")
+     Query or set the underlying LAPACK driver used by `svd'.
+     Currently recognized values are "gesvd" and "gesdd".  The default
+     is "gesvd".
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+     *See also:* *note svd: doc-svd.
+
+ -- Function File: [HOUSV, BETA, ZER] = housh (X, J, Z)
+     Compute Householder reflection vector HOUSV to reflect X to be the
+     j-th column of identity, i.e.,
+
+          (I - beta*housv*housv')x =  norm (x)*e(j) if x(j) < 0,
+          (I - beta*housv*housv')x = -norm (x)*e(j) if x(j) >= 0
+
+     Inputs
+
+    X
+          vector
+
+    J
+          index into vector
+
+    Z
+          threshold for zero  (usually should be the number 0)
+
+     Outputs (see Golub and Van Loan):
+
+    BETA
+          If beta = 0, then no reflection need be applied (zer set to 0)
+
+    HOUSV
+          householder vector
+
+ -- Function File: [U, H, NU] = krylov (A, V, K, EPS1, PFLG)
+     Construct an orthogonal basis U of block Krylov subspace
+
+          [v a*v a^2*v ... a^(k+1)*v]
+
+     Using Householder reflections to guard against loss of
+     orthogonality.
+
+     If V is a vector, then H contains the Hessenberg matrix such that
+     a*u == u*h+rk*ek', in which `rk = a*u(:,k)-u*h(:,k)', and ek' is
+     the vector `[0, 0, ..., 1]' of length `k'.  Otherwise, H is
+     meaningless.
+
+     If V is a vector and K is greater than `length (A) - 1', then H
+     contains the Hessenberg matrix such that `a*u == u*h'.
+
+     The value of NU is the dimension of the span of the Krylov
+     subspace (based on EPS1).
+
+     If B is a vector and K is greater than M-1, then H contains the
+     Hessenberg decomposition of A.
+
+     The optional parameter EPS1 is the threshold for zero.  The
+     default value is 1e-12.
+
+     If the optional parameter PFLG is nonzero, row pivoting is used to
+     improve numerical behavior.  The default value is 0.
+
+     Reference: A. Hodel, P. Misra, `Partial Pivoting in the
+     Computation of Krylov Subspaces of Large Sparse Systems',
+     Proceedings of the 42nd IEEE Conference on Decision and Control,
+     December 2003.
+
+
 File: octave.info,  Node: Functions of a Matrix,  Next: Specialized Solvers,  Prev: Matrix Factorizations,  Up: Linear Algebra
 
 18.4 Functions of a Matrix
@@ -2184,13 +2826,14 @@ column) and the third being the data itself.  This is conceptually easy
 to grasp, but requires more storage than is strictly needed.
 
    The storage technique used within Octave is the compressed column
-format.  In this format the position of each element in a row and the
-data are stored as previously.  However, if we assume that all elements
-in the same column are stored adjacent in the computers memory, then we
-only need to store information on the number of non-zero elements in
-each column, rather than their positions.  Thus assuming that the
-matrix has more non-zero elements than there are columns in the matrix,
-we win in terms of the amount of memory used.
+format. It is similar to the Yale format.  (2) In this format the
+position of each element in a row and the data are stored as
+previously. However, if we assume that all elements in the same column
+are stored adjacent in the computers memory, then we only need to store
+information on the number of non-zero elements in each column, rather
+than their positions. Thus assuming that the matrix has more non-zero
+elements than there are columns in the matrix, we win in terms of the
+amount of memory used.
 
    In fact, the column index contains one more element than the number
 of columns, with the first element always being zero.  The advantage of
@@ -2251,6 +2894,8 @@ and faster, however it adds complexity and speed problems elsewhere.
    (1) Y. Saad "SPARSKIT: A basic toolkit for sparse matrix
 computation", 1994,
 `http://www-users.cs.umn.edu/~saad/software/SPARSKIT/paper.ps'
+
+   (2) `http://en.wikipedia.org/wiki/Sparse_matrix#Yale_format'
 
 
 File: octave.info,  Node: Creating Sparse Matrices,  Next: Information,  Prev: Storage of Sparse Matrices,  Up: Basics
@@ -3431,17 +4076,18 @@ linear equation.
      using CXSPARSE(1).
 
    The band density is defined as the number of non-zero values in the
-matrix divided by the number of non-zero values in the matrix.  The
-banded matrix solvers can be entirely disabled by using "spparms" to
-set `bandden' to 1 (i.e., `spparms ("bandden", 1)').
+band divided by the total number of values in the full band. The banded
+matrix solvers can be entirely disabled by using "spparms" to set
+`bandden' to 1 (i.e., `spparms ("bandden", 1)').
 
-   The QR solver factorizes the problem with a Dulmage-Mendelsohn, to
-separate the problem into blocks that can be treated as over-determined,
-multiple well determined blocks, and a final over-determined block.  For
-matrices with blocks of strongly connected nodes this is a big win as
-LU decomposition can be used for many blocks.  It also significantly
-improves the chance of finding a solution to over-determined problems
-rather than just returning a vector of "NaN"'s.
+   The QR solver factorizes the problem with a Dulmage-Mendelsohn
+decomposition, to separate the problem into blocks that can be treated
+as over-determined, multiple well determined blocks, and a final
+over-determined block. For matrices with blocks of strongly connected
+nodes this is a big win as LU decomposition can be used for many
+blocks. It also significantly improves the chance of finding a solution
+to over-determined problems rather than just returning a vector of
+"NaN"'s.
 
    All of the solvers above, can calculate an estimate of the condition
 number.  This can be used to detect numerical stability problems in the
@@ -7229,667 +7875,4 @@ statistics.
      vectors are the corresponding levels.
 
      Currently, only 1- and 2-dimensional tables are supported.
-
-
-File: octave.info,  Node: Statistical Plots,  Next: Correlation and Regression Analysis,  Prev: Basic Statistical Functions,  Up: Statistics
-
-26.3 Statistical Plots
-======================
-
-Octave can create Quantile Plots (QQ-Plots), and Probability Plots
-(PP-Plots).  These are simple graphical tests for determining if a data
-set comes from a certain distribution.
-
-   Note that Octave can also show histograms of data using the `hist'
-function as described in *note Two-Dimensional Plots::.
-
- -- Function File: [Q, S] = qqplot (X)
- -- Function File: [Q, S] = qqplot (X, DIST)
- -- Function File: [Q, S] = qqplot (X, DIST, PARAMS)
- -- Function File:  qqplot (...)
-     Perform a QQ-plot (quantile plot).
-
-     If F is the CDF of the distribution DIST with parameters PARAMS
-     and G its inverse, and X a sample vector of length N, the QQ-plot
-     graphs ordinate S(I) = I-th largest element of x versus abscissa
-     Q(If) = G((I - 0.5)/N).
-
-     If the sample comes from F, except for a transformation of location
-     and scale, the pairs will approximately follow a straight line.
-
-     The default for DIST is the standard normal distribution.  The
-     optional argument PARAMS contains a list of parameters of DIST.
-     For example, for a quantile plot of the uniform distribution on
-     [2,4] and X, use
-
-          qqplot (x, "unif", 2, 4)
-
-     DIST can be any string for which a function DISTINV or DIST_INV
-     exists that calculates the inverse CDF of distribution DIST.
-
-     If no output arguments are given, the data are plotted directly.
-
- -- Function File: [P, Y] = ppplot (X, DIST, PARAMS)
-     Perform a PP-plot (probability plot).
-
-     If F is the CDF of the distribution DIST with parameters PARAMS
-     and X a sample vector of length N, the PP-plot graphs ordinate
-     Y(I) = F (I-th largest element of X) versus abscissa P(I) = (I -
-     0.5)/N.  If the sample comes from F, the pairs will approximately
-     follow a straight line.
-
-     The default for DIST is the standard normal distribution.  The
-     optional argument PARAMS contains a list of parameters of DIST.
-     For example, for a probability plot of the uniform distribution on
-     [2,4] and X, use
-
-          ppplot (x, "uniform", 2, 4)
-
-     DIST can be any string for which a function DIST_CDF that
-     calculates the CDF of distribution DIST exists.
-
-     If no output arguments are given, the data are plotted directly.
-
-
-File: octave.info,  Node: Correlation and Regression Analysis,  Next: Distributions,  Prev: Statistical Plots,  Up: Statistics
-
-26.4 Correlation and Regression Analysis
-========================================
-
- -- Function File:  cov (X)
- -- Function File:  cov (X, OPT)
- -- Function File:  cov (X, Y)
- -- Function File:  cov (X, Y, OPT)
-     Compute the covariance matrix.
-
-     If each row of X and Y is an observation, and each column is a
-     variable, then the (I, J)-th entry of `cov (X, Y)' is the
-     covariance between the I-th variable in X and the J-th variable in
-     Y.
-
-          cov (x) = 1/N-1 * SUM_i (x(i) - mean(x)) * (y(i) - mean(y))
-
-     If called with one argument, compute `cov (X, X)', the covariance
-     between the columns of X.
-
-     The argument OPT determines the type of normalization to use.
-     Valid values are
-
-    0:
-          normalize with N-1, provides the best unbiased estimator of
-          the covariance [default]
-
-    1:
-          normalize with N, this provides the second moment around the
-          mean
-
-     *See also:* *note corr: doc-corr.
-
- -- Function File:  corr (X)
- -- Function File:  corr (X, Y)
-     Compute matrix of correlation coefficients.
-
-     If each row of X and Y is an observation and each column is a
-     variable, then the (I, J)-th entry of `corr (X, Y)' is the
-     correlation between the I-th variable in X and the J-th variable
-     in Y.
-
-          corr (x,y) = cov (x,y) / (std (x) * std (y))
-
-     If called with one argument, compute `corr (X, X)', the
-     correlation between the columns of X.
-
-     *See also:* *note cov: doc-cov.
-
- -- Function File:  spearman (X)
- -- Function File:  spearman (X, Y)
-     Compute Spearman's rank correlation coefficient RHO.
-
-     For two data vectors X and Y, Spearman's RHO is the correlation
-     coefficient of the ranks of X and Y.
-
-     If X and Y are drawn from independent distributions, RHO has zero
-     mean and variance `1 / (n - 1)', and is asymptotically normally
-     distributed.
-
-     `spearman (X)' is equivalent to `spearman (X, X)'.
-
-     *See also:* *note ranks: doc-ranks, *note kendall: doc-kendall.
-
- -- Function File:  kendall (X)
- -- Function File:  kendall (X, Y)
-     Compute Kendall's TAU.
-
-     For two data vectors X, Y of common length N, Kendall's TAU is the
-     correlation of the signs of all rank differences of X and Y; i.e.,
-     if both X and Y have distinct entries, then
-
-                   1
-          tau = -------   SUM sign (q(i) - q(j)) * sign (r(i) - r(j))
-                n (n-1)   i,j
-
-     in which the Q(I) and R(I) are the ranks of X and Y, respectively.
-
-     If X and Y are drawn from independent distributions, Kendall's TAU
-     is asymptotically normal with mean 0 and variance `(2 * (2N+5)) /
-     (9 * N * (N-1))'.
-
-     `kendall (X)' is equivalent to `kendall (X, X)'.
-
-     *See also:* *note ranks: doc-ranks, *note spearman: doc-spearman.
-
- -- Function File: [THETA, BETA, DEV, DL, D2L, P] = logistic_regression
-          (Y, X, PRINT, THETA, BETA)
-     Perform ordinal logistic regression.
-
-     Suppose Y takes values in K ordered categories, and let `gamma_i
-     (X)' be the cumulative probability that Y falls in one of the
-     first I categories given the covariate X.  Then
-
-          [theta, beta] = logistic_regression (y, x)
-
-     fits the model
-
-          logit (gamma_i (x)) = theta_i - beta' * x,   i = 1 ... k-1
-
-     The number of ordinal categories, K, is taken to be the number of
-     distinct values of `round (Y)'.  If K equals 2, Y is binary and
-     the model is ordinary logistic regression.  The matrix X is
-     assumed to have full column rank.
-
-     Given Y only, `theta = logistic_regression (y)' fits the model
-     with baseline logit odds only.
-
-     The full form is
-
-          [theta, beta, dev, dl, d2l, gamma]
-             = logistic_regression (y, x, print, theta, beta)
-
-     in which all output arguments and all input arguments except Y are
-     optional.
-
-     Setting PRINT to 1 requests summary information about the fitted
-     model to be displayed.  Setting PRINT to 2 requests information
-     about convergence at each iteration.  Other values request no
-     information to be displayed.  The input arguments THETA and BETA
-     give initial estimates for THETA and BETA.
-
-     The returned value DEV holds minus twice the log-likelihood.
-
-     The returned values DL and D2L are the vector of first and the
-     matrix of second derivatives of the log-likelihood with respect to
-     THETA and BETA.
-
-     P holds estimates for the conditional distribution of Y given X.
-
-
-File: octave.info,  Node: Distributions,  Next: Tests,  Prev: Correlation and Regression Analysis,  Up: Statistics
-
-26.5 Distributions
-==================
-
-Octave has functions for computing the Probability Density Function
-(PDF), the Cumulative Distribution function (CDF), and the quantile
-(the inverse of the CDF) for a large number of distributions.
-
-   The following table summarizes the supported distributions (in
-alphabetical order).
-
-Distribution           PDF               CDF               Quantile
------------------------------------------------------------------------------ 
-Beta Distribution      `betapdf'         `betacdf'         `betainv'
-Binomial Distribution  `binopdf'         `binocdf'         `binoinv'
-Cauchy Distribution    `cauchy_pdf'      `cauchy_cdf'      `cauchy_inv'
-Chi-Square             `chi2pdf'         `chi2cdf'         `chi2inv'
-Distribution                                               
-Univariate Discrete    `discrete_pdf'    `discrete_cdf'    `discrete_inv'
-Distribution                                               
-Empirical Distribution `empirical_pdf'   `empirical_cdf'   `empirical_inv'
-Exponential            `exppdf'          `expcdf'          `expinv'
-Distribution                                               
-F Distribution         `fpdf'            `fcdf'            `finv'
-Gamma Distribution     `gampdf'          `gamcdf'          `gaminv'
-Geometric Distribution `geopdf'          `geocdf'          `geoinv'
-Hypergeometric         `hygepdf'         `hygecdf'         `hygeinv'
-Distribution                                               
-Kolmogorov Smirnov     _Not Available_   `kolmogorov_smirnov_cdf'_Not Available_
-Distribution                                               
-Laplace Distribution   `laplace_pdf'     `laplace_cdf'     `laplace_inv'
-Logistic Distribution  `logistic_pdf'    `logistic_cdf'    `logistic_inv'
-Log-Normal             `lognpdf'         `logncdf'         `logninv'
-Distribution                                               
-Univariate Normal      `normpdf'         `normcdf'         `norminv'
-Distribution                                               
-Pascal Distribution    `nbinpdf'         `nbincdf'         `nbininv'
-Poisson Distribution   `poisspdf'        `poisscdf'        `poissinv'
-Standard Normal        `stdnormal_pdf'   `stdnormal_cdf'   `stdnormal_inv'
-Distribution                                               
-t (Student)            `tpdf'            `tcdf'            `tinv'
-Distribution                                               
-Univariate Discrete    `unidpdf'         `unidcdf'         `unidinv'
-Distribution                                               
-Uniform Distribution   `unifpdf'         `unifcdf'         `unifinv'
-Weibull Distribution   `wblpdf'          `wblcdf'          `wblinv'
-
- -- Function File:  betapdf (X, A, B)
-     For each element of X, compute the probability density function
-     (PDF) at X of the Beta distribution with parameters A and B.
-
- -- Function File:  betacdf (X, A, B)
-     For each element of X, compute the cumulative distribution function
-     (CDF) at X of the Beta distribution with parameters A and B.
-
- -- Function File:  betainv (X, A, B)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the Beta distribution with parameters A and B.
-
- -- Function File:  binopdf (X, N, P)
-     For each element of X, compute the probability density function
-     (PDF) at X of the binomial distribution with parameters N and P,
-     where N is the number of trials and P is the probability of
-     success.
-
- -- Function File:  binocdf (X, N, P)
-     For each element of X, compute the cumulative distribution function
-     (CDF) at X of the binomial distribution with parameters N and P,
-     where N is the number of trials and P is the probability of
-     success.
-
- -- Function File:  binoinv (X, N, P)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the binomial distribution with parameters N and P,
-     where N is the number of trials and P is the probability of
-     success.
-
- -- Function File:  cauchy_pdf (X)
- -- Function File:  cauchy_pdf (X, LOCATION, SCALE)
-     For each element of X, compute the probability density function
-     (PDF) at X of the Cauchy distribution with location parameter
-     LOCATION and scale parameter SCALE > 0.  Default values are
-     LOCATION = 0, SCALE = 1.
-
- -- Function File:  cauchy_cdf (X)
- -- Function File:  cauchy_cdf (X, LOCATION, SCALE)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the Cauchy distribution with location
-     parameter LOCATION and scale parameter SCALE.  Default values are
-     LOCATION = 0, SCALE = 1.
-
- -- Function File:  cauchy_inv (X)
- -- Function File:  cauchy_inv (X, LOCATION, SCALE)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the Cauchy distribution with location parameter
-     LOCATION and scale parameter SCALE.  Default values are LOCATION =
-     0, SCALE = 1.
-
- -- Function File:  chi2pdf (X, N)
-     For each element of X, compute the probability density function
-     (PDF) at X of the chi-square distribution with N degrees of
-     freedom.
-
- -- Function File:  chi2cdf (X, N)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the chi-square distribution with N degrees
-     of freedom.
-
- -- Function File:  chi2inv (X, N)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the chi-square distribution with N degrees of freedom.
-
- -- Function File:  discrete_pdf (X, V, P)
-     For each element of X, compute the probability density function
-     (PDF) at X of a univariate discrete distribution which assumes the
-     values in V with probabilities P.
-
- -- Function File:  discrete_cdf (X, V, P)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of a univariate discrete distribution which
-     assumes the values in V with probabilities P.
-
- -- Function File:  discrete_inv (X, V, P)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the univariate distribution which assumes the values
-     in V with probabilities P.
-
- -- Function File:  empirical_pdf (X, DATA)
-     For each element of X, compute the probability density function
-     (PDF) at X of the empirical distribution obtained from the
-     univariate sample DATA.
-
- -- Function File:  empirical_cdf (X, DATA)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the empirical distribution obtained from
-     the univariate sample DATA.
-
- -- Function File:  empirical_inv (X, DATA)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the empirical distribution obtained from the
-     univariate sample DATA.
-
- -- Function File:  exppdf (X, LAMBDA)
-     For each element of X, compute the probability density function
-     (PDF) at X of the exponential distribution with mean LAMBDA.
-
- -- Function File:  expcdf (X, LAMBDA)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the exponential distribution with mean
-     LAMBDA.
-
-     The arguments can be of common size or scalars.
-
- -- Function File:  expinv (X, LAMBDA)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the exponential distribution with mean LAMBDA.
-
- -- Function File:  fpdf (X, M, N)
-     For each element of X, compute the probability density function
-     (PDF) at X of the F distribution with M and N degrees of freedom.
-
- -- Function File:  fcdf (X, M, N)
-     For each element of X, compute the cumulative distribution function
-     (CDF) at X of the F distribution with M and N degrees of freedom.
-
- -- Function File:  finv (X, M, N)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the F distribution with M and N degrees of freedom.
-
- -- Function File:  gampdf (X, A, B)
-     For each element of X, return the probability density function
-     (PDF) at X of the Gamma distribution with shape parameter A and
-     scale B.
-
- -- Function File:  gamcdf (X, A, B)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the Gamma distribution with shape parameter
-     A and scale B.
-
- -- Function File:  gaminv (X, A, B)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the Gamma distribution with shape parameter A and
-     scale B.
-
- -- Function File:  geopdf (X, P)
-     For each element of X, compute the probability density function
-     (PDF) at X of the geometric distribution with parameter P.
-
- -- Function File:  geocdf (X, P)
-     For each element of X, compute the cumulative distribution function
-     (CDF) at X of the geometric distribution with parameter P.
-
- -- Function File:  geoinv (X, P)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the geometric distribution with parameter P.
-
- -- Function File:  hygepdf (X, T, M, N)
-     Compute the probability density function (PDF) at X of the
-     hypergeometric distribution with parameters T, M, and N.  This is
-     the probability of obtaining X marked items when randomly drawing
-     a sample of size N without replacement from a population of total
-     size T containing M marked items.
-
-     The parameters T, M, and N must be positive integers with M and N
-     not greater than T.
-
- -- Function File:  hygecdf (X, T, M, N)
-     Compute the cumulative distribution function (CDF) at X of the
-     hypergeometric distribution with parameters T, M, and N.  This is
-     the probability of obtaining not more than X marked items when
-     randomly drawing a sample of size N without replacement from a
-     population of total size T containing M marked items.
-
-     The parameters T, M, and N must be positive integers with M and N
-     not greater than T.
-
- -- Function File:  hygeinv (X, T, M, N)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the hypergeometric distribution with parameters T, M,
-     and N.  This is the probability of obtaining X marked items when
-     randomly drawing a sample of size N without replacement from a
-     population of total size T containing M marked items.
-
-     The parameters T, M, and N must be positive integers with M and N
-     not greater than T.
-
- -- Function File:  kolmogorov_smirnov_cdf (X, TOL)
-     Return the cumulative distribution function (CDF) at X of the
-     Kolmogorov-Smirnov distribution,
-
-                   Inf
-          Q(x) =   SUM    (-1)^k exp (-2 k^2 x^2)
-                 k = -Inf
-
-     for X > 0.
-
-     The optional parameter TOL specifies the precision up to which the
-     series should be evaluated; the default is TOL = `eps'.
-
- -- Function File:  laplace_pdf (X)
-     For each element of X, compute the probability density function
-     (PDF) at X of the Laplace distribution.
-
- -- Function File:  laplace_cdf (X)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the Laplace distribution.
-
- -- Function File:  laplace_inv (X)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the Laplace distribution.
-
- -- Function File:  logistic_pdf (X)
-     For each element of X, compute the PDF at X of the logistic
-     distribution.
-
- -- Function File:  logistic_cdf (X)
-     For each element of X, compute the cumulative distribution function
-     (CDF) at X of the logistic distribution.
-
- -- Function File:  logistic_inv (X)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the logistic distribution.
-
- -- Function File:  lognpdf (X)
- -- Function File:  lognpdf (X, MU, SIGMA)
-     For each element of X, compute the probability density function
-     (PDF) at X of the lognormal distribution with parameters MU and
-     SIGMA.  If a random variable follows this distribution, its
-     logarithm is normally distributed with mean MU and standard
-     deviation SIGMA.
-
-     Default values are MU = 1, SIGMA = 1.
-
- -- Function File:  logncdf (X)
- -- Function File:  logncdf (X, MU, SIGMA)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the lognormal distribution with parameters
-     MU and SIGMA.  If a random variable follows this distribution, its
-     logarithm is normally distributed with mean MU and standard
-     deviation SIGMA.
-
-     Default values are MU = 1, SIGMA = 1.
-
- -- Function File:  logninv (X)
- -- Function File:  logninv (X, MU, SIGMA)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the lognormal distribution with parameters MU and
-     SIGMA.  If a random variable follows this distribution, its
-     logarithm is normally distributed with mean `log (MU)' and
-     variance SIGMA.
-
-     Default values are MU = 1, SIGMA = 1.
-
- -- Function File:  nbinpdf (X, N, P)
-     For each element of X, compute the probability density function
-     (PDF) at X of the negative binomial distribution with parameters N
-     and P.
-
-     When N is integer this is the Pascal distribution.  When N is
-     extended to real numbers this is the Polya distribution.
-
-     The number of failures in a Bernoulli experiment with success
-     probability P before the N-th success follows this distribution.
-
- -- Function File:  nbincdf (X, N, P)
-     For each element of X, compute the cumulative distribution function
-     (CDF) at X of the negative binomial distribution with parameters N
-     and P.
-
-     When N is integer this is the Pascal distribution.  When N is
-     extended to real numbers this is the Polya distribution.
-
-     The number of failures in a Bernoulli experiment with success
-     probability P before the N-th success follows this distribution.
-
- -- Function File:  nbininv (X, N, P)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the negative binomial distribution with parameters N
-     and P.
-
-     When N is integer this is the Pascal distribution.  When N is
-     extended to real numbers this is the Polya distribution.
-
-     The number of failures in a Bernoulli experiment with success
-     probability P before the N-th success follows this distribution.
-
- -- Function File:  normpdf (X)
- -- Function File:  normpdf (X, MU, SIGMA)
-     For each element of X, compute the probability density function
-     (PDF) at X of the normal distribution with mean MU and standard
-     deviation SIGMA.
-
-     Default values are MU = 0, SIGMA = 1.
-
- -- Function File:  normcdf (X)
- -- Function File:  normcdf (X, MU, SIGMA)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the normal distribution with mean MU and
-     standard deviation SIGMA.
-
-     Default values are MU = 0, SIGMA = 1.
-
- -- Function File:  norminv (X)
- -- Function File:  norminv (X, MU, SIGMA)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the normal distribution with mean MU and standard
-     deviation SIGMA.
-
-     Default values are MU = 0, SIGMA = 1.
-
- -- Function File:  poisspdf (X, LAMBDA)
-     For each element of X, compute the probability density function
-     (PDF) at X of the Poisson distribution with parameter LAMBDA.
-
- -- Function File:  poisscdf (X, LAMBDA)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the Poisson distribution with parameter
-     lambda.
-
- -- Function File:  poissinv (X, LAMBDA)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the Poisson distribution with parameter LAMBDA.
-
- -- Function File:  stdnormal_pdf (X)
-     For each element of X, compute the probability density function
-     (PDF) at X of the standard normal distribution (mean = 0, standard
-     deviation = 1).
-
- -- Function File:  stdnormal_cdf (X)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the standard normal distribution (mean = 0,
-     standard deviation = 1).
-
- -- Function File:  stdnormal_inv (X)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the standard normal distribution (mean = 0, standard
-     deviation = 1).
-
- -- Function File:  tpdf (X, N)
-     For each element of X, compute the probability density function
-     (PDF) at X of the T (Student) distribution with N degrees of
-     freedom.
-
- -- Function File:  tcdf (X, N)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the t (Student) distribution with N degrees
-     of freedom, i.e., PROB (t(N) <= X).
-
- -- Function File:  tinv (X, N)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the t (Student) distribution with N degrees of
-     freedom.  This function is analogous to looking in a table for the
-     t-value of a single-tailed distribution.
-
- -- Function File:  unidpdf (X, N)
-     For each element of X, compute the probability density function
-     (PDF) at X of a discrete uniform distribution which assumes the
-     integer values 1-N with equal probability.
-
-     Warning: The underlying implementation uses the double class and
-     will only be accurate for N <= `bitmax' (2^53 - 1 on IEEE-754
-     compatible systems).
-
- -- Function File:  unidcdf (X, N)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of a discrete uniform distribution which
-     assumes the integer values 1-N with equal probability.
-
- -- Function File:  unidinv (X, N)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the discrete uniform distribution which assumes the
-     integer values 1-N with equal probability.
-
- -- Function File:  unifpdf (X)
- -- Function File:  unifpdf (X, A, B)
-     For each element of X, compute the probability density function
-     (PDF) at X of the uniform distribution on the interval [A, B].
-
-     Default values are A = 0, B = 1.
-
- -- Function File:  unifcdf (X)
- -- Function File:  unifcdf (X, A, B)
-     For each element of X, compute the cumulative distribution
-     function (CDF) at X of the uniform distribution on the interval
-     [A, B].
-
-     Default values are A = 0, B = 1.
-
- -- Function File:  unifinv (X)
- -- Function File:  unifinv (X, A, B)
-     For each element of X, compute the quantile (the inverse of the
-     CDF) at X of the uniform distribution on the interval [A, B].
-
-     Default values are A = 0, B = 1.
-
- -- Function File:  wblpdf (X)
- -- Function File:  wblpdf (X, SCALE)
- -- Function File:  wblpdf (X, SCALE, SHAPE)
-     Compute the probability density function (PDF) at X of the Weibull
-     distribution with scale parameter SCALE and shape parameter SHAPE
-     which is given by
-
-          shape * scale^(-shape) * x^(shape-1) * exp (-(x/scale)^shape)
-
-     for X >= 0.
-
-     Default values are SCALE = 1, SHAPE = 1.
-
- -- Function File:  wblcdf (X)
- -- Function File:  wblcdf (X, SCALE)
- -- Function File:  wblcdf (X, SCALE, SHAPE)
-     Compute the cumulative distribution function (CDF) at X of the
-     Weibull distribution with scale parameter SCALE and shape
-     parameter SHAPE, which is
-
-          1 - exp (-(x/scale)^shape)
-
-     for X >= 0.
-
-     Default values are SCALE = 1, SHAPE = 1.
-
- -- Function File:  wblinv (X)
- -- Function File:  wblinv (X, SCALE)
- -- Function File:  wblinv (X, SCALE, SHAPE)
-     Compute the quantile (the inverse of the CDF) at X of the Weibull
-     distribution with scale parameter SCALE and shape parameter SHAPE.
-
-     Default values are SCALE = 1, SHAPE = 1.
 

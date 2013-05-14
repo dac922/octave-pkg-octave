@@ -31,6 +31,7 @@ along with Octave; see the file COPYING.  If not, see
 #include <QStringList>
 #include <QStringListModel>
 #include <QListView>
+#include <QFileInfo>
 // Could replace most of these with #include <QtGui>
 #include <QMessageBox>
 #include <QHBoxLayout>
@@ -42,9 +43,10 @@ along with Octave; see the file COPYING.  If not, see
 
 QUIWidgetCreator uiwidget_creator;
 
+
 QUIWidgetCreator::QUIWidgetCreator (void)
   : QObject (), dialog_result (-1), dialog_button (),
-    string_list (new QStringList ()), list_index (new QIntList ())
+    string_list (new QStringList ()), list_index (new QIntList ()), path_name (new QString ())
 { }
 
 
@@ -52,17 +54,18 @@ QUIWidgetCreator::~QUIWidgetCreator (void)
 {
   delete string_list;
   delete list_index;
+  delete path_name;
 }
 
 
 void
-QUIWidgetCreator::dialog_finished (int)
+QUIWidgetCreator::dialog_button_clicked (QAbstractButton *button)
 {
   // Store the value so that builtin functions can retrieve.
-  // The value should always be 1 for the Octave functions.
+  if (button)
+    dialog_button = button->text ();
 
-  // Value returned by message box is not quite always 1.  If the
-  // window upper-right close button is pressed, 'result' is 0.
+  // The value should always be 1 for the Octave functions.
   dialog_result = 1;
 
   // Wake up Octave process so that it continues.
@@ -71,16 +74,8 @@ QUIWidgetCreator::dialog_finished (int)
 
 
 void
-QUIWidgetCreator::dialog_button_clicked (QAbstractButton *button)
-{
-  // Store information about what button was pressed so that builtin
-  // functions can retrieve.
-  dialog_button = button->text ();
-}
-
-
-void
-QUIWidgetCreator::list_select_finished (const QIntList& selected, const int button_pressed)
+QUIWidgetCreator::list_select_finished (const QIntList& selected,
+                                        int button_pressed)
 {
   // Store the value so that builtin functions can retrieve.
   *list_index = selected;
@@ -92,7 +87,7 @@ QUIWidgetCreator::list_select_finished (const QIntList& selected, const int butt
 
 
 void
-QUIWidgetCreator::input_finished (const QStringList& input, const int button_pressed)
+QUIWidgetCreator::input_finished (const QStringList& input, int button_pressed)
 {
   // Store the value so that builtin functions can retrieve.
   *string_list = input;
@@ -102,13 +97,29 @@ QUIWidgetCreator::input_finished (const QStringList& input, const int button_pre
   waitcondition.wakeAll ();
 }
 
+void
+QUIWidgetCreator::filedialog_finished (const QStringList& files,
+                                       const QString& path, int filterindex)
+{
+  // Store the value so that builtin functions can retrieve.
+  *string_list = files;
+  dialog_result = filterindex;
+  *path_name = path;
 
-MessageDialog::MessageDialog (const QString& message, const QString& title,
+  // Wake up Octave process so that it continues.
+  waitcondition.wakeAll ();
+}
+
+
+
+MessageDialog::MessageDialog (const QString& message,
+                              const QString& title,
                               const QString& qsicon,
                               const QStringList& qsbutton,
                               const QString& defbutton,
                               const QStringList& role)
-  : QMessageBox (QMessageBox::NoIcon, title, message, 0, 0)
+  : QMessageBox (QMessageBox::NoIcon, title.isEmpty () ? " " : title,
+                 message, 0, 0)
 {
   // Create a NonModal message.
   setWindowModality (Qt::NonModal);
@@ -131,7 +142,7 @@ MessageDialog::MessageDialog (const QString& message, const QString& title,
     addButton (QMessageBox::Ok);
   else
     {
-      for (int i = 0; i < N; i++)
+      for (int i = N-1; i >= 0; i--)
         {
           // Interpret the button role string, because enumeration
           // QMessageBox::ButtonRole can't be made to pass through a signal.
@@ -151,21 +162,26 @@ MessageDialog::MessageDialog (const QString& message, const QString& title,
             setDefaultButton (pbutton);
           // Make the last button the button pressed when <esc> key activated.
           if (i == N-1)
-            setEscapeButton (pbutton);
+            {
+#define ACTIVE_ESCAPE 1
+#if ACTIVE_ESCAPE
+              setEscapeButton (pbutton);
+#else
+              setEscapeButton (0);
+#endif
+#undef ACTIVE_ESCAPE
+            }
         }
     }
 
   connect (this, SIGNAL (buttonClicked (QAbstractButton *)),
            &uiwidget_creator, SLOT (dialog_button_clicked (QAbstractButton *)));
-
-  connect (this, SIGNAL (finished (int)),
-           &uiwidget_creator, SLOT (dialog_finished (int)));
 }
 
 
 ListDialog::ListDialog (const QStringList& list, const QString& mode,
                         int wd, int ht, const QList<int>& initial,
-                        const QString& name, const QString& prompt_string,
+                        const QString& title, const QStringList& prompt,
                         const QString& ok_string, const QString& cancel_string)
   : QDialog ()
 {
@@ -194,7 +210,6 @@ ListDialog::ListDialog (const QStringList& list, const QString& mode,
     {
       QModelIndex idx = model->index (initial.value (i++) - 1, 0,
                                       QModelIndex ());
-
       selector->select (idx, QItemSelectionModel::Select);
     }
 
@@ -205,17 +220,36 @@ ListDialog::ListDialog (const QStringList& list, const QString& mode,
       fixed_layout = true;
     }
 
-  QPushButton *select_all = new QPushButton (tr ("Select All"));
-  QVBoxLayout *listLayout = new QVBoxLayout;
-  listLayout->addWidget (view);
-  listLayout->addWidget (select_all);
-  QGroupBox *listGroupBox = new QGroupBox (prompt_string);
-  listGroupBox->setLayout (listLayout);
+  view->setEditTriggers (QAbstractItemView::NoEditTriggers);
 
-  //    QIcon *question_mark = new QIcon;
-  QHBoxLayout *horizontalLayout = new QHBoxLayout;
-  //    horizontalLayout->addWidget (question_mark);
-  horizontalLayout->addWidget (listGroupBox);
+  QVBoxLayout *listLayout = new QVBoxLayout;
+  if (! prompt.isEmpty ())
+    {
+      // For now, assume html-like Rich Text.  May be incompatible
+      // with something down the road, but just testing capability.
+      QString prompt_string;
+      for (int j = 0; j < prompt.length (); j++)
+        {
+          if (j > 0)
+#define RICH_TEXT 1
+#if RICH_TEXT
+            prompt_string.append ("<br>");
+#else
+            prompt_string.append ("\n");
+#endif
+          prompt_string.append (prompt.at (j));
+        }
+      QLabel *plabel = new QLabel (prompt_string);
+#if RICH_TEXT
+      plabel->setTextFormat (Qt::RichText);
+#endif
+#undef RICH_TEXT
+      listLayout->addWidget (plabel);
+    }
+  listLayout->addWidget (view);
+  QPushButton *select_all = new QPushButton (tr ("Select All"));
+  select_all->setEnabled (mode == "Multiple");
+  listLayout->addWidget (select_all);
 
   QPushButton *buttonOk = new QPushButton (ok_string);
   QPushButton *buttonCancel = new QPushButton (cancel_string);
@@ -225,14 +259,15 @@ ListDialog::ListDialog (const QStringList& list, const QString& mode,
   buttonsLayout->addWidget (buttonCancel);
 
   QVBoxLayout *mainLayout = new QVBoxLayout;
-  mainLayout->addLayout (horizontalLayout);
+  mainLayout->addLayout (listLayout);
   mainLayout->addSpacing (12);
   mainLayout->addLayout (buttonsLayout);
   setLayout (mainLayout);
   if (fixed_layout)
     layout()->setSizeConstraint (QLayout::SetFixedSize);
 
-  setWindowTitle (name);
+  // If empty, make blank rather than use default OS behavior.
+  setWindowTitle (title.isEmpty () ? " " : title);
 
   connect (select_all, SIGNAL (clicked ()),
            view, SLOT (selectAll ()));
@@ -243,9 +278,9 @@ ListDialog::ListDialog (const QStringList& list, const QString& mode,
   connect (buttonCancel, SIGNAL (clicked ()),
            this, SLOT (buttonCancel_clicked ()));
 
-  connect (this, SIGNAL (finish_selection (const QIntList&, const int)),
+  connect (this, SIGNAL (finish_selection (const QIntList&, int)),
            &uiwidget_creator,
-           SLOT (list_select_finished (const QIntList&, const int)));
+           SLOT (list_select_finished (const QIntList&, int)));
 }
 
 
@@ -287,14 +322,14 @@ ListDialog::reject (void)
 
 
 InputDialog::InputDialog (const QStringList& prompt, const QString& title,
-                          const QIntList& nr, const QIntList& nc,
+                          const QFloatList& nr, const QFloatList& nc,
                           const QStringList& defaults)
   : QDialog ()
 {
 
-//#define LINE_EDIT_FOLLOWS_PROMPT
+#define LINE_EDIT_FOLLOWS_PROMPT 0
 
-#ifdef LINE_EDIT_FOLLOWS_PROMPT
+#if LINE_EDIT_FOLLOWS_PROMPT
     // Prompt on left followed by input on right.
     QGridLayout *promptInputLayout = new QGridLayout;
 #else
@@ -318,7 +353,7 @@ InputDialog::InputDialog (const QStringList& prompt, const QString& title,
               }
           }
         input_line << line_edit;
-#ifdef LINE_EDIT_FOLLOWS_PROMPT
+#if LINE_EDIT_FOLLOWS_PROMPT
         promptInputLayout->addWidget (label, i + 1, 0);
         promptInputLayout->addWidget (line_edit, i + 1, 1);
 #else
@@ -326,6 +361,7 @@ InputDialog::InputDialog (const QStringList& prompt, const QString& title,
         promptInputLayout->addWidget (line_edit);
 #endif
       }
+#undef LINE_EDIT_FOLLOWS_PROMPT
 
     QPushButton *buttonOk = new QPushButton("OK");
     QPushButton *buttonCancel = new QPushButton("Cancel");
@@ -340,7 +376,8 @@ InputDialog::InputDialog (const QStringList& prompt, const QString& title,
     mainLayout->addLayout (buttonsLayout);
     setLayout (mainLayout);
 
-    setWindowTitle (title);
+    // If empty, make blank rather than use default OS behavior.
+    setWindowTitle (title.isEmpty () ? " " : title);
 
     connect (buttonOk, SIGNAL (clicked ()),
              this, SLOT (buttonOk_clicked ()));
@@ -348,9 +385,9 @@ InputDialog::InputDialog (const QStringList& prompt, const QString& title,
     connect (buttonCancel, SIGNAL (clicked ()),
              this, SLOT (buttonCancel_clicked ()));
 
-    connect (this, SIGNAL (finish_input (const QStringList&, const int)),
+    connect (this, SIGNAL (finish_input (const QStringList&, int)),
              &uiwidget_creator,
-             SLOT (input_finished (const QStringList&, const int)));
+             SLOT (input_finished (const QStringList&, int)));
 }
 
 
@@ -365,7 +402,6 @@ InputDialog::buttonOk_clicked (void)
   emit finish_input (string_result, 1);
   done (QDialog::Accepted);
 }
-
 
 void
 InputDialog::buttonCancel_clicked (void)
@@ -384,82 +420,84 @@ InputDialog::reject (void)
   buttonCancel_clicked ();
 }
 
-
-cd_or_addpath_dialog::cd_or_addpath_dialog (const QString& file,
-                                            const QString& dir,
-                                            bool addpath_option)
-  : QDialog ()
+FileDialog::FileDialog (const QStringList& filters, const QString& title,
+                        const QString& filename, const QString& dirname,
+                        const QString& multimode)
+  : QFileDialog()
 {
-  QString prompt_string
-    = (addpath_option
-       ? tr ("The file %1 does not exist in the load path.  To debug the function you are editing, you must either change to the directory %2 or add that directory to the load path.").arg(file).arg(dir)
-       : tr ("The file %1 is shadowed by a file with the same name in the load path.  To debug the function you are editing, change to the directory %2.").arg(file).arg(dir));
+  // Create a NonModal message.
+  setWindowModality (Qt::NonModal);
 
-  QLabel *label = new QLabel (prompt_string);
-  label->setFixedWidth (500);
-  label->setWordWrap (true);
-  //    QIcon *question_mark = new QIcon;
-  QHBoxLayout *horizontalLayout = new QHBoxLayout;
-  //    horizontalLayout->addWidget (question_mark);
-  horizontalLayout->addWidget (label);
+  setWindowTitle (title.isEmpty () ? " " : title);
+  setDirectory (dirname);
 
-  QPushButton *buttonCd = new QPushButton (tr ("Change directory"));
-  QPushButton *buttonAddpath = 0;
-  if (addpath_option)
-    buttonAddpath = new QPushButton (tr ("Add directory to load path"));
-  QPushButton *buttonCancel = new QPushButton (tr ("Cancel"));
+  if (multimode == "on")         // uigetfile multiselect=on
+    {
+      setFileMode (QFileDialog::ExistingFiles);
+      setAcceptMode (QFileDialog::AcceptOpen);
+    }
+  else if (multimode == "create") // uiputfile
+    {
+      setFileMode (QFileDialog::AnyFile); 
+      setAcceptMode (QFileDialog::AcceptSave);
+      setOption (QFileDialog::DontConfirmOverwrite, false);
+      setConfirmOverwrite(true);
+    }
+  else if (multimode == "dir")    // uigetdir
+    {
+      setFileMode (QFileDialog::Directory);
+      setOption (QFileDialog::ShowDirsOnly, true);
+      setOption (QFileDialog::HideNameFilterDetails, true);
+      setAcceptMode (QFileDialog::AcceptOpen);
+    }
+  else                           // uigetfile multiselect=off
+    {
+      setFileMode (QFileDialog::ExistingFile);
+      setAcceptMode (QFileDialog::AcceptOpen);
+    }
 
-  QHBoxLayout *buttonsLayout = new QHBoxLayout;
-  buttonsLayout->addStretch (1);
-  buttonsLayout->addWidget (buttonCd);
-  if (addpath_option)
-    buttonsLayout->addWidget (buttonAddpath);
-  buttonsLayout->addWidget (buttonCancel);
+  setNameFilters (filters);
 
-  QVBoxLayout *mainLayout = new QVBoxLayout;
-  mainLayout->addLayout (horizontalLayout);
-  mainLayout->addSpacing (12);
-  mainLayout->addLayout (buttonsLayout);
-  setLayout (mainLayout);
-
-  setWindowTitle (tr ("Change Directory or Add Directory to Load Path"));
-
-  connect (buttonCd, SIGNAL (clicked ()),
-           this, SLOT (buttonCd_clicked ()));
-
-  connect (buttonAddpath, SIGNAL (clicked ()),
-           this, SLOT (buttonAddpath_clicked ()));
-
-  connect (buttonCancel, SIGNAL (clicked ()),
-           this, SLOT (buttonCancel_clicked ()));
-
-  connect (this, SIGNAL (finished (int)),
-           &uiwidget_creator, SLOT (dialog_finished (int)));
-}
-
-void
-cd_or_addpath_dialog::buttonCd_clicked (void)
-{
-  emit finished (1);
-  done (QDialog::Accepted);
-}
-
-void
-cd_or_addpath_dialog::buttonAddpath_clicked (void)
-{
-  emit finished (2);
-  done (QDialog::Accepted);
-}
-
-void
-cd_or_addpath_dialog::buttonCancel_clicked (void)
-{
-  emit finished (-1);
-  done (QDialog::Rejected);
-}
+  selectFile (filename);
   
-void
-cd_or_addpath_dialog::reject (void)
-{
-  buttonCancel_clicked ();
+  connect (this,
+           SIGNAL (finish_input (const QStringList&, const QString&, int)),
+           &uiwidget_creator,
+           SLOT (filedialog_finished (const QStringList&, const QString&,
+                                      int)));
 }
+
+void
+FileDialog::reject (void)
+{
+  QStringList empty;
+  emit finish_input (empty, "", 0);
+  done (QDialog::Rejected);
+
+}
+
+void FileDialog::accept(void)
+{
+  QStringList string_result;
+  QString path;
+  int idx = 1;
+
+  string_result = selectedFiles ();
+
+  // Matlab expects just the file name, whereas the file dialog gave us
+  // pull path names, so fix it.
+
+  for (int i = 0; i < string_result.size (); i++)
+    string_result[i] = QFileInfo (string_result[i]).fileName ();
+
+
+  path = directory ().absolutePath ();
+
+  QStringList filters = nameFilters ();
+  idx = filters.indexOf (selectedNameFilter ()) + 1;
+  
+  // send the selected info
+  emit finish_input (string_result, path, idx);
+  done (QDialog::Accepted);
+}
+

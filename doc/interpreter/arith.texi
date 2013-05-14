@@ -1843,6 +1843,62 @@ $$
 @end deftypefn
 
 
+@c ellipj libinterp/corefcn/ellipj.cc
+@anchor{doc-ellipj}
+@deftypefn  {Built-in Function} {[@var{sn}, @var{cn}, @var{dn}, @var{err}] =} ellipj (@var{u}, @var{m})
+@deftypefnx {Built-in Function} {[@var{sn}, @var{cn}, @var{dn}, @var{err}] =} ellipj (@var{u}, @var{m}, @var{tol})
+Compute the Jacobi elliptic functions @var{sn}, @var{cn}, and @var{dn}
+of complex argument @var{u} and real parameter @var{m}.
+
+If @var{m} is a scalar, the results are the same size as @var{u}.
+If @var{u} is a scalar, the results are the same size as @var{m}.
+If @var{u} is a column vector and @var{m} is a row vector, the
+results are matrices with @code{length (@var{u})} rows and
+@code{length (@var{m})} columns.  Otherwise, @var{u} and
+@var{m} must conform and the results will be the same size.
+
+The value of @var{u} may be complex.
+The value of @var{m} must be 0 <= m <= 1.
+
+@var{tol} is currently ignored (@sc{Matlab} uses this to allow faster,
+less accurate approximation).
+
+If requested, @var{err} contains the following status information
+and is the same size as the result.
+
+@enumerate 0
+@item
+Normal return.
+@item
+Error---no computation, algorithm termination condition not met,
+return @code{NaN}.
+@end enumerate
+ Ref: Abramowitz, Milton and Stegun, Irene A
+      Handbook of Mathematical Functions, Dover, 1965
+      Chapter 16 (Sections 16.4, 16.13 and 16.15)
+@seealso{@ref{doc-ellipke,,ellipke}}
+@end deftypefn
+
+
+@c ellipke scripts/specfun/ellipke.m
+@anchor{doc-ellipke}
+@deftypefn  {Function File} {} ellipke (@var{m})
+@deftypefnx {Function File} {} ellipke (@var{m}, @var{tol})
+@deftypefnx {Function File} {[@var{k}, @var{e}] =} ellipke (@dots{})
+Compute complete elliptic integral of the first K(@var{m}) and second
+E(@var{m}) kind.
+
+@var{m} is either real array or scalar with 0 <= m <= 1.
+
+@var{tol} is currently ignored (@sc{Matlab} uses this to allow faster,
+less accurate approximation).
+
+Ref: Abramowitz, Milton and Stegun, Irene A. Handbook of Mathematical
+Functions, Dover, 1965, Chapter 17.
+@seealso{@ref{doc-ellipj,,ellipj}}
+@end deftypefn
+
+
 @c erf libinterp/corefcn/mappers.cc
 @anchor{doc-erf}
 @deftypefn {Mapping Function} {} erf (@var{z})
@@ -1944,6 +2000,31 @@ Compute the inverse complementary error function, i.e., @var{y} such that
 erfc (@var{y}) == @var{x}
 @end example
 @seealso{@ref{doc-erfc,,erfc}, @ref{doc-erf,,erf}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfi,,erfi}, @ref{doc-dawson,,dawson}, @ref{doc-erfinv,,erfinv}}
+@end deftypefn
+
+
+@c expint scripts/specfun/expint.m
+@anchor{doc-expint}
+@deftypefn {Function File} {} expint (@var{x})
+Compute the exponential integral,
+@tex
+$$
+ E_1 (x) = \int_x^\infty {e^{-t} \over t} dt.
+$$
+@end tex
+@ifnottex
+
+@example
+@group
+              infinity
+             /
+expint (x) = | exp (-t)/t dt
+             /
+            x
+@end group
+@end example
+
+@end ifnottex
 @end deftypefn
 
 

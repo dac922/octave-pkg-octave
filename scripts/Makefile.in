@@ -2473,6 +2473,7 @@ plot_FCN_FILES = \
   plot/view.m \
   plot/waitbar.m \
   plot/waitforbuttonpress.m \
+  plot/waterfall.m \
   plot/whitebg.m \
   plot/xlabel.m \
   plot/xlim.m \
@@ -2612,6 +2613,8 @@ specfun_FCN_FILES = \
   specfun/bessel.m \
   specfun/beta.m \
   specfun/betaln.m \
+  specfun/ellipke.m \
+  specfun/expint.m \
   specfun/factor.m \
   specfun/factorial.m \
   specfun/isprime.m \
@@ -2627,6 +2630,7 @@ specfun_FCN_FILES = \
   specfun/realsqrt.m
 
 special_matrix_FCN_FILES = \
+  special-matrix/gallery.m \
   special-matrix/hadamard.m \
   special-matrix/hankel.m \
   special-matrix/hilb.m \
@@ -3403,6 +3407,15 @@ endef
 define test-file-commands
 ( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; $(GREP) '^%!' $< ) > $@-t
 mv $@-t $@
+endef
+
+define gdbinit_install_rule
+if [ -f .gdbinit ]; then \
+  echo "refusing to overwrite .gdbinit with newer version from $<" 1>&2; \
+else \
+  echo "Installing .gdbinit from version at $<" ; \
+  cp $< $@; \
+fi
 endef
 
 %.cc-tst : %.cc

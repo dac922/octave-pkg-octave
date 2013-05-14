@@ -4175,8 +4175,36 @@ into the color.
 @c rgb2ind scripts/image/rgb2ind.m
 -*- texinfo -*-
 @deftypefn  {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{map})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{n})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{tol})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{map}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{n}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{tol}, @var{dither_option})
 @deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{map})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{n})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{tol})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{map}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{n}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{tol}, @var{dither_option})
 Convert an image in red-green-blue (RGB) color space to an indexed image.
+
+The input image @var{rgb} must be an N-dimensional RGB image
+(MxNxO...x3 array) where M,N,O... are the image dimensions, and the
+final dimension contains the values in the red, green and blue
+channels. Alternatively, the red, green and blue color channels can
+be input as separate arrays @var{R}, @var{G} and  @var{B}.
+
+The input @var{map} defines the colormap to be used.  Alternatively,
+@var{n} or @var{tol} may be used to define the maximum number of
+colors to use in an automatically generated colormap.  @var{n} is
+related to @var{tol} by:  @var{n} = (floor (1/@var{tol}) + 1)^3;
+@var{tol} must be >0 and <=1.
+
+@var{dither_option} is a string which enables or disables dithering:
+'dither' (default) or 'nodither'.
+
 @seealso{ind2rgb, rgb2hsv, rgb2ntsc}
 @end deftypefn
 rgb2ntsc
@@ -12774,16 +12802,17 @@ Briefly, the entries are as shown:
 @group
 
         Fenced Letter Display
-  #% nx|___________________          nx = numel (x)
-  M% mi|       md         |          mi median index, md median
-  H% hi|hl              hu|   hs     hi lower hinge index, hl,hu hinges, hs h_spread
-  1    |x(1)         x(nx)|          x(1), x(nx) first and last data value
-             _______   
-       ______|step |_______          step 1.5*h_spread
-      f|ifl            ifh|          inner fence, lower and higher
-       |nfl            nfh|          # data points within fences
-      F|ofl            ofh|          outer fence, lower and higher
-       |nFl            nFh|          # data points outside outer fences
+#% nx|___________________     nx = numel (x)
+M% mi|       md         |     mi median index, md median
+H% hi|hl              hu| hs  hi lower hinge index, hl,hu hinges,
+1    |x(1)         x(nx)|     hs h_spreadx(1), x(nx) first 
+           _______            and last data value.
+     ______|step |_______     step 1.5*h_spread
+    f|ifl            ifh|     inner fence, lower and higher
+     |nfl            nfh|     no.\ of data points within fences
+    F|ofl            ofh|     outer fence, lower and higher
+     |nFl            nFh|     no.\ of data points outside outer
+                              fences
 @end group
 @end example
 
@@ -13143,7 +13172,7 @@ used to customize the dialog title.
 @deftypefnx {Function File} {[@dots{}] =} uigetfile (@dots{}, "Position", [@var{px} @var{py}])
 @deftypefnx {Function File} {[@dots{}] =} uigetfile (@dots{}, "MultiSelect", @var{mode})
 
-Open a GUI dialog for selecting a file.  It returns the filename @var{fname},
+Open a GUI dialog for selecting a file and return the filename @var{fname},
 the path to this file @var{fpath}, and the filter index @var{fltidx}.
 @var{flt} contains a (list of) file filter string(s) in one of the following
 formats:
@@ -13381,6 +13410,23 @@ Wait for button or mouse press.over a figure window.  The value of
 @var{b} returns 0 if a mouse button was pressed or 1 is a key was
 pressed.
 @seealso{ginput}
+@end deftypefn
+waterfall
+@c waterfall scripts/plot/waterfall.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} waterfall (@var{x}, @var{y}, @var{z})
+@deftypefnx {Function File} {} waterfall (@var{z})
+@deftypefnx {Function File} {@var{h} =} waterfall (@dots{})
+Plot a waterfall plot given matrices @var{x}, and @var{y} from
+@code{meshgrid} and a matrix @var{z} corresponding to the @var{x} and
+@var{y} coordinates of the mesh.  If @var{x} and @var{y} are vectors,
+then a typical vertex is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus,
+columns of @var{z} correspond to different @var{x} values and rows of
+@var{z} correspond to different @var{y} values.
+
+The optional return value @var{h} is a graphics handle to the created
+surface object.
+@seealso{meshgrid, meshz, surf}
 @end deftypefn
 whitebg
 @c whitebg scripts/plot/whitebg.m
@@ -16502,6 +16548,48 @@ betaln (a, b) = log (beta (a, b))
 calculated in a way to reduce the occurrence of underflow.
 @seealso{beta, betainc, gammaln}
 @end deftypefn
+ellipke
+@c ellipke scripts/specfun/ellipke.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} ellipke (@var{m})
+@deftypefnx {Function File} {} ellipke (@var{m}, @var{tol})
+@deftypefnx {Function File} {[@var{k}, @var{e}] =} ellipke (@dots{})
+Compute complete elliptic integral of the first K(@var{m}) and second
+E(@var{m}) kind.
+
+@var{m} is either real array or scalar with 0 <= m <= 1.
+
+@var{tol} is currently ignored (@sc{Matlab} uses this to allow faster,
+less accurate approximation).
+
+Ref: Abramowitz, Milton and Stegun, Irene A. Handbook of Mathematical
+Functions, Dover, 1965, Chapter 17.
+@seealso{ellipj}
+@end deftypefn
+expint
+@c expint scripts/specfun/expint.m
+-*- texinfo -*-
+@deftypefn {Function File} {} expint (@var{x})
+Compute the exponential integral,
+@tex
+$$
+ E_1 (x) = \int_x^\infty {e^{-t} \over t} dt.
+$$
+@end tex
+@ifnottex
+
+@example
+@group
+              infinity
+             /
+expint (x) = | exp (-t)/t dt
+             /
+            x
+@end group
+@end example
+
+@end ifnottex
+@end deftypefn
 factor
 @c factor scripts/specfun/factor.m
 -*- texinfo -*-
@@ -16871,6 +16959,328 @@ reports an error if any return value is complex.
 Return the real-valued square root of each element of @var{x}.  Report an
 error if any element results in a complex return value.
 @seealso{sqrt, realpow, reallog}
+@end deftypefn
+gallery
+@c gallery scripts/special-matrix/gallery.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} gallery (@var{name})
+@deftypefnx {Function File} {} gallery (@var{name}, @var{args})
+Create interesting matrices for testing.
+
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{c} =} gallery ("cauchy", @var{x})
+@deftypefnx {Function File} {@var{c} =} gallery ("cauchy", @var{x}, @var{y})
+Create a Cauchy matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{c} =} gallery ("chebspec", @var{n})
+@deftypefnx {Function File} {@var{c} =} gallery ("chebspec", @var{n}, @var{k})
+Create a Chebyshev spectral differentiation matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{c} =} gallery ("chebvand", @var{p})
+@deftypefnx {Function File} {@var{c} =} gallery ("chebvand", @var{m}, @var{p})
+Create a Vandermonde-like matrix for the Chebyshev polynomials.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("chow", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("chow", @var{n}, @var{alpha})
+@deftypefnx {Function File} {@var{a} =} gallery ("chow", @var{n}, @var{alpha}, @var{delta})
+Create a Chow matrix -- a singular Toeplitz lower Hessenberg matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{c} =} gallery ("circul", @var{v})
+Create a circulant matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("clement", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("clement", @var{n}, @var{k})
+Create a tridiagonal matrix with zero diagonal entries.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{c} =} gallery ("compar", @var{a})
+@deftypefnx {Function File} {@var{c} =} gallery ("compar", @var{a}, @var{k})
+Create a comparison matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("condex", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("condex", @var{n}, @var{k})
+@deftypefnx {Function File} {@var{a} =} gallery ("condex", @var{n}, @var{k}, @var{theta})
+Create a `counterexample' matrix to a condition estimator.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("cycol", [@var{m} @var{n}])
+@deftypefnx {Function File} {@var{a} =} gallery ("cycol", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery (@dots{}, @var{k})
+Create a matrix whose columns repeat cyclically.
+
+@end deftypefn
+
+@deftypefn  {Function File} {[@var{c},@var{d}, @var{e}] =} gallery ("dorr", @var{n})
+@deftypefnx {Function File} {[@var{c},@var{d}, @var{e}] =} gallery ("dorr", @var{n}, @var{theta})
+@deftypefnx {Function File} {@var{a} =} gallery ("dorr", @dots{})
+Create a diagonally dominant, ill conditioned, tridiagonal matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("dramadah", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("dramadah", @var{n}, @var{k})
+Create a (0, 1) matrix whose inverse has large integer entries.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("fiedler", @var{c})
+Create a symmetric Fiedler matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("forsythe", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("forsythe", @var{n}, @var{alpha})
+@deftypefnx {Function File} {@var{a} =} gallery ("forsythe", @var{n}, @var{alpha}, @var{lambda})
+Create a Forsythe matrix (a perturbed Jordan block).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{f} =} gallery ("frank", @var{n})
+@deftypefnx {Function File} {@var{f} =} gallery ("frank", @var{n}, @var{k})
+Create a Frank matrix (ill conditioned eigenvalues).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{c} =} gallery ("gcdmat", @var{n})
+Create a greatest common divisor matrix.
+
+@var{c} is an @var{n}-by-@var{n} matrix whose values correspond to the
+greatest common divisor of its coordinate values, i.e., @var{c}(i,j)
+correspond @code{gcd (i, j)}.
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("gearmat", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("gearmat", @var{n}, @var{i})
+@deftypefnx {Function File} {@var{a} =} gallery ("gearmat", @var{n}, @var{i}, @var{j})
+Create a Gear matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{g} =} gallery ("grcar", @var{n})
+@deftypefnx {Function File} {@var{g} =} gallery ("grcar", @var{n}, @var{k})
+Create a Toeplitz matrix with sensitive eigenvalues.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("hanowa", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("hanowa", @var{n}, @var{d})
+Create a matrix whose eigenvalues lie on a vertical line in the complex plane.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{v} =} gallery ("house", @var{x})
+@deftypefnx {Function File} {[@var{v}, @var{beta}] =} gallery ("house", @var{x})
+Create a householder matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("invhess", @var{x})
+@deftypefnx {Function File} {@var{a} =} gallery ("invhess", @var{x}, @var{y})
+Create the inverse of an upper Hessenberg matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("invol", @var{n})
+Create an involutory matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("ipjfact", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("ipjfact", @var{n}, @var{k})
+Create an Hankel matrix with factorial elements.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("jordbloc", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("jordbloc", @var{n}, @var{lambda})
+Create a Jordan block.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{u} =} gallery ("kahan", @var{n})
+@deftypefnx {Function File} {@var{u} =} gallery ("kahan", @var{n}, @var{theta})
+@deftypefnx {Function File} {@var{u} =} gallery ("kahan", @var{n}, @var{theta}, @var{pert})
+Create a Kahan matrix (upper trapezoidal).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("kms", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("kms", @var{n}, @var{rho})
+Create a Kac-Murdock-Szego Toeplitz matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{b} =} gallery ("krylov", @var{a})
+@deftypefnx {Function File} {@var{b} =} gallery ("krylov", @var{a}, @var{x})
+@deftypefnx {Function File} {@var{b} =} gallery ("krylov", @var{a}, @var{x}, @var{j})
+Create a Krylov matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("lauchli", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("lauchli", @var{n}, @var{mu})
+Create a Lauchli matrix (rectangular).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("lehmer", @var{n})
+Create a Lehmer matrix (symmetric positive definite).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{t} =} gallery ("lesp", @var{n})
+Create a tridiagonal matrix with real, sensitive eigenvalues.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("lotkin", @var{n})
+Create a Lotkin matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("minij", @var{n})
+Create a symmetric positive definite matrix MIN(i,j).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("moler", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("moler", @var{n}, @var{alpha})
+Create a Moler matrix (symmetric positive definite).
+
+@end deftypefn
+
+@deftypefn  {Function File} {[@var{a}, @var{t}] =} gallery ("neumann", @var{n})
+Create a singular matrix from the discrete Neumann problem (sparse).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{q} =} gallery ("orthog", @var{n})
+@deftypefnx {Function File} {@var{q} =} gallery ("orthog", @var{n}, @var{k})
+Create orthogonal and nearly orthogonal matrices.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("parter", @var{n})
+Create a Parter matrix (a Toeplitz matrix with singular values near pi).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{p} =} gallery ("pei", @var{n})
+@deftypefnx {Function File} {@var{p} =} gallery ("pei", @var{n}, @var{alpha})
+Create a Pei matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("poisson", @var{n})
+Create a block tridiagonal matrix from Poisson's equation (sparse).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("prolate", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("prolate", @var{n}, @var{w})
+Create a prolate matrix (symmetric, ill-conditioned Toeplitz matrix).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{h} =} gallery ("randhess", @var{x})
+Create a random, orthogonal upper Hessenberg matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("rando", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("rando", @var{n}, @var{k})
+Create a random matrix with elements -1, 0 or 1.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("randsvd", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("randsvd", @var{n}, @var{kappa})
+@deftypefnx {Function File} {@var{a} =} gallery ("randsvd", @var{n}, @var{kappa}, @var{mode})
+@deftypefnx {Function File} {@var{a} =} gallery ("randsvd", @var{n}, @var{kappa}, @var{mode}, @var{kl})
+@deftypefnx {Function File} {@var{a} =} gallery ("randsvd", @var{n}, @var{kappa}, @var{mode}, @var{kl}, @var{ku})
+Create a random matrix with pre-assigned singular values.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("redheff", @var{n})
+Create a zero and ones matrix of Redheffer associated with the Riemann
+hypothesis.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("riemann", @var{n})
+Create a matrix associated with the Riemann hypothesis.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("ris", @var{n})
+Create a symmetric Hankel matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("smoke", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("smoke", @var{n}, @var{k})
+Create a complex matrix, with a `smoke ring' pseudospectrum.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{t} =} gallery ("toeppd", @var{n})
+@deftypefnx {Function File} {@var{t} =} gallery ("toeppd", @var{n}, @var{m})
+@deftypefnx {Function File} {@var{t} =} gallery ("toeppd", @var{n}, @var{m}, @var{w})
+@deftypefnx {Function File} {@var{t} =} gallery ("toeppd", @var{n}, @var{m}, @var{w}, @var{theta})
+Create a symmetric positive definite Toeplitz matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{p} =} gallery ("toeppen", @var{n})
+@deftypefnx {Function File} {@var{p} =} gallery ("toeppen", @var{n}, @var{a})
+@deftypefnx {Function File} {@var{p} =} gallery ("toeppen", @var{n}, @var{a}, @var{b})
+@deftypefnx {Function File} {@var{p} =} gallery ("toeppen", @var{n}, @var{a}, @var{b}, @var{c})
+@deftypefnx {Function File} {@var{p} =} gallery ("toeppen", @var{n}, @var{a}, @var{b}, @var{c}, @var{d})
+@deftypefnx {Function File} {@var{p} =} gallery ("toeppen", @var{n}, @var{a}, @var{b}, @var{c}, @var{d}, @var{e})
+Create a pentadiagonal Toeplitz matrix (sparse).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("tridiag", @var{x}, @var{y}, @var{z})
+@deftypefnx {Function File} {@var{a} =} gallery ("tridiag", @var{n})
+@deftypefnx {Function File} {@var{a} =} gallery ("tridiag", @var{n}, @var{c}, @var{d}, @var{e})
+Create a tridiagonal matrix (sparse).
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{t} =} gallery ("triw", @var{n})
+@deftypefnx {Function File} {@var{t} =} gallery ("triw", @var{n}, @var{alpha})
+@deftypefnx {Function File} {@var{t} =} gallery ("triw", @var{n}, @var{alpha}, @var{k})
+Create an upper triangular matrix discussed by Kahan, Golub and Wilkinson.
+
+@end deftypefn
+
+@deftypefn  {Function File} {@var{a} =} gallery ("wathen", @var{nx}, @var{ny})
+@deftypefnx {Function File} {@var{a} =} gallery ("wathen", @var{nx}, @var{ny}, @var{k})
+Create the Wathen matrix.
+
+@end deftypefn
+
+@deftypefn  {Function File} {[@var{a}, @var{b}] =} gallery ("wilk", @var{n})
+Create various specific matrices devised/discussed by Wilkinson.
+
 @end deftypefn
 hadamard
 @c hadamard scripts/special-matrix/hadamard.m
@@ -20346,7 +20756,13 @@ with the default being @var{false}.
 @item @var{delimitertype} may take the value of @code{legacy},
 @code{simple} or @code{regularexpression}.
 If @var{delimitertype} is equal to @code{legacy}, each individual
-character of @var{del} is used to split the input.
+character of @var{del} is used to split the input.  For both @code{simple}
+and @code{regularexpression}, the string is split at the boundaries of the
+delimiter string.  If @var{delimiter} is a cell-string, then the string
+is split at the boundaries of each of the cells' strings.  @var{simple}
+delimiters may contain escaped characters, but are otherwise treated as
+literal strings.
+
 If the specified delimiters are single characters, the default is
 @var{delimitertype} is @code{legacy}.  Otherwise the default
 @var{delimitertype} is @code{simple}.

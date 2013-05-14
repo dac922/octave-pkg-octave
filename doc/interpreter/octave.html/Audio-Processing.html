@@ -59,7 +59,7 @@ files holding data in mu-law encoding end in <samp><span class="file">au</span><
    <p><a name="doc_002dlin2mu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>lin2mu</b> (<var>x, n</var>)<var><a name="index-lin2mu-3109"></a></var><br>
+&mdash; Function File:  <b>lin2mu</b> (<var>x, n</var>)<var><a name="index-lin2mu-3237"></a></var><br>
 <blockquote><p>Convert audio data from linear to mu-law.  Mu-law values use 8-bit
 unsigned integers.  Linear values use <var>n</var>-bit signed integers or
 floating point values in the range -1 &le; <var>x</var> &le; 1 if
@@ -75,7 +75,7 @@ the range of values in <var>x</var>.
    <p><a name="doc_002dmu2lin"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mu2lin</b> (<var>x, n</var>)<var><a name="index-mu2lin-3110"></a></var><br>
+&mdash; Function File:  <b>mu2lin</b> (<var>x, n</var>)<var><a name="index-mu2lin-3238"></a></var><br>
 <blockquote><p>Convert audio data from mu-law to linear.  Mu-law values are 8-bit
 unsigned integers.  Linear values use <var>n</var>-bit signed integers
 or floating point values in the range -1&le;y&le;1 if <var>n</var>
@@ -90,7 +90,7 @@ is 0.
    <p><a name="doc_002dloadaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>loadaudio</b> (<var>name, ext, bps</var>)<var><a name="index-loadaudio-3111"></a></var><br>
+&mdash; Function File:  <b>loadaudio</b> (<var>name, ext, bps</var>)<var><a name="index-loadaudio-3239"></a></var><br>
 <blockquote><p>Load audio data from the file <samp><var>name</var><span class="file">.</span><var>ext</var></samp> into the
 vector <var>x</var>.
 
@@ -109,7 +109,7 @@ the number of bits per sample used in the audio file.
    <p><a name="doc_002dsaveaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>saveaudio</b> (<var>name, x, ext, bps</var>)<var><a name="index-saveaudio-3112"></a></var><br>
+&mdash; Function File:  <b>saveaudio</b> (<var>name, x, ext, bps</var>)<var><a name="index-saveaudio-3240"></a></var><br>
 <blockquote><p>Save a vector <var>x</var> of audio data to the file
 <samp><var>name</var><span class="file">.</span><var>ext</var></samp>.  The optional parameters <var>ext</var> and
 <var>bps</var> determine the encoding and the number of bits per sample used
@@ -131,8 +131,8 @@ hardware are welcome.
    <p><a name="doc_002dplayaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>playaudio</b> (<var>name, ext</var>)<var><a name="index-playaudio-3113"></a></var><br>
-&mdash; Function File:  <b>playaudio</b> (<var>x</var>)<var><a name="index-playaudio-3114"></a></var><br>
+&mdash; Function File:  <b>playaudio</b> (<var>name, ext</var>)<var><a name="index-playaudio-3241"></a></var><br>
+&mdash; Function File:  <b>playaudio</b> (<var>x</var>)<var><a name="index-playaudio-3242"></a></var><br>
 <blockquote><p>Play the audio file <samp><var>name</var><span class="file">.</span><var>ext</var></samp> or the audio data
 stored in the vector <var>x</var>.
 
@@ -143,7 +143,7 @@ stored in the vector <var>x</var>.
    <p><a name="doc_002drecord"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>record</b> (<var>sec, sampling_rate</var>)<var><a name="index-record-3115"></a></var><br>
+&mdash; Function File:  <b>record</b> (<var>sec, sampling_rate</var>)<var><a name="index-record-3243"></a></var><br>
 <blockquote><p>Record <var>sec</var> seconds of audio input into the vector <var>x</var>.  The
 default value for <var>sampling_rate</var> is 8000 samples per second, or
 8kHz.  The program waits until the user types &lt;RET&gt; and then
@@ -156,9 +156,9 @@ immediately starts to record.
    <p><a name="doc_002dsetaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setaudio</b> ()<var><a name="index-setaudio-3116"></a></var><br>
-&mdash; Function File:  <b>setaudio</b> (<var>w_type</var>)<var><a name="index-setaudio-3117"></a></var><br>
-&mdash; Function File:  <b>setaudio</b> (<var>w_type, value</var>)<var><a name="index-setaudio-3118"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> ()<var><a name="index-setaudio-3244"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> (<var>w_type</var>)<var><a name="index-setaudio-3245"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> (<var>w_type, value</var>)<var><a name="index-setaudio-3246"></a></var><br>
 <blockquote><p>Execute the shell command &lsquo;<samp><span class="samp">mixer</span></samp>&rsquo;, possibly with optional
 arguments <var>w_type</var> and <var>value</var>. 
 </p></blockquote></div>
@@ -167,11 +167,11 @@ arguments <var>w_type</var> and <var>value</var>.
    <p><a name="doc_002dwavread"></a>
 
 <div class="defun">
-&mdash; Function File: <var>y</var> = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3119"></a></var><br>
-&mdash; Function File: [<var>y</var>, <var>Fs</var>, <var>bps</var>] = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3120"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n</var>)<var><a name="index-wavread-3121"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, </var>[<var>n1 n2</var>])<var><a name="index-wavread-3122"></a></var><br>
-&mdash; Function File: [<var>samples</var>, <var>channels</var>] = <b>wavread</b> (<var>filename, "size"</var>)<var><a name="index-wavread-3123"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3247"></a></var><br>
+&mdash; Function File: [<var>y</var>, <var>Fs</var>, <var>bps</var>] = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3248"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n</var>)<var><a name="index-wavread-3249"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, </var>[<var>n1 n2</var>])<var><a name="index-wavread-3250"></a></var><br>
+&mdash; Function File: [<var>samples</var>, <var>channels</var>] = <b>wavread</b> (<var>filename, "size"</var>)<var><a name="index-wavread-3251"></a></var><br>
 <blockquote>
         <p>Load the RIFF/WAVE sound file <var>filename</var>, and return the samples
 in vector <var>y</var>.  If the file contains multichannel data, then
@@ -202,9 +202,9 @@ instead of the audio data.
    <p><a name="doc_002dwavwrite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>wavwrite</b> (<var>y, filename</var>)<var><a name="index-wavwrite-3124"></a></var><br>
-&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, filename</var>)<var><a name="index-wavwrite-3125"></a></var><br>
-&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, bps, filename</var>)<var><a name="index-wavwrite-3126"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, filename</var>)<var><a name="index-wavwrite-3252"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, filename</var>)<var><a name="index-wavwrite-3253"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, bps, filename</var>)<var><a name="index-wavwrite-3254"></a></var><br>
 <blockquote><p>Write <var>y</var> to the canonical RIFF/WAVE sound file <var>filename</var>
 with sample rate <var>Fs</var> and bits per sample <var>bps</var>.  The
 default sample rate is 8000 Hz with 16-bits per sample.  Each column

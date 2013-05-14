@@ -24,36 +24,111 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #define QTERMINAL_H
 
 #include <QSettings>
-#include <QtGlobal>
+#include <QKeySequence>
+#include <QWidget>
+#include <QStringList>
+#include <QColor>
+#include <QList>
+#include <QMenu>
 
-#ifdef Q_OS_WIN32
-    #include "win32/QWinTerminalImpl.h"
-    class QTerminal : public QWinTerminalImpl
+class QTerminal : public QWidget
+{
+  Q_OBJECT
+
+public:
+
+  static QTerminal *create (QWidget *xparent = 0);
+
+  static QList<QColor> default_colors (void);
+
+  static QStringList color_names (void);
+
+  virtual ~QTerminal (void) { }
+
+  virtual void setTerminalFont(const QFont& font) = 0;
+
+  virtual void setSize(int h, int v) = 0;
+
+  virtual void sendText(const QString& text) = 0;
+
+  enum CursorType
     {
-        Q_OBJECT
-    public:
-        QTerminal(QWidget *xparent = 0)
-            : QWinTerminalImpl(xparent) { }
-        ~QTerminal() { }
-
-    public slots:
-        void notice_settings (const QSettings *settings);
-        void relay_command (const QString& text);
+      UnderlineCursor,
+      BlockCursor,
+      IBeamCursor
     };
-#else
-    #include "unix/QUnixTerminalImpl.h"
-    class QTerminal : public QUnixTerminalImpl
-    {
-        Q_OBJECT
-    public:
-        QTerminal(QWidget *xparent = 0)
-            : QUnixTerminalImpl(xparent) { }
-        ~QTerminal() { }
 
-    public slots:
-        void notice_settings (const QSettings *settings);
-        void relay_command (const QString& command);
-    };
-#endif
+  virtual void setCursorType (CursorType type, bool blinking)
+  {
+    // Provide empty default impl in order to avoid conflicts with the
+    // win impl.
+
+    Q_UNUSED (type);
+    Q_UNUSED (blinking);
+  }
+
+  virtual void setBackgroundColor (const QColor& color) = 0;
+
+  virtual void setForegroundColor (const QColor& color) = 0;
+
+  virtual void setSelectionColor (const QColor& color) = 0;
+
+  virtual void setCursorColor (bool useForegroundColor,
+                               const QColor& color) = 0;
+
+signals:
+
+  void report_status_message (const QString&);
+
+public slots:
+
+  virtual void copyClipboard (void) = 0;
+
+  virtual void pasteClipboard (void) = 0;
+
+  virtual void handleCustomContextMenuRequested (const QPoint& at)
+  {
+    _contextMenu->move (mapToGlobal (at));
+    _contextMenu->show ();
+  }
+
+  void notice_settings (const QSettings *settings);
+
+protected:
+
+  QTerminal (QWidget *xparent = 0) : QWidget (xparent)
+  {
+    setContextMenuPolicy (Qt::CustomContextMenu);
+
+    _contextMenu = new QMenu (this);
+
+    QAction *copyAction 
+      = _contextMenu->addAction (tr ("Copy"),
+                                 this, SLOT (copyClipboard ()));
+
+    QAction *pasteAction
+      = _contextMenu->addAction (tr ("Paste"),
+                                 this, SLOT (pasteClipboard ()));
+
+    connect (this, SIGNAL (customContextMenuRequested (QPoint)),
+             this, SLOT (handleCustomContextMenuRequested (QPoint)));
+
+    connect (this, SIGNAL (report_status_message (const QString&)),
+             xparent, SLOT (report_status_message (const QString&)));
+
+    connect (xparent, SIGNAL (settings_changed (const QSettings *)),
+             this, SLOT (notice_settings (const QSettings *)));
+
+    connect (xparent, SIGNAL (copyClipboard_signal ()),
+             this, SLOT (copyClipboard ()));
+
+    connect (xparent, SIGNAL (pasteClipboard_signal ()),
+             this, SLOT (pasteClipboard ()));
+  }
+
+private:
+
+    QMenu *_contextMenu;
+};
 
 #endif // QTERMINAL_H

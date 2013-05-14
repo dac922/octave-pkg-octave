@@ -22,6 +22,512 @@ manual into another language, under the above conditions for modified
 versions.
 
 
+File: octave.info,  Node: Using Octave Mode,  Next: Running Octave from Within Emacs,  Prev: Installing EOS,  Up: Emacs Octave Support
+
+H.2 Using Octave Mode
+=====================
+
+If you are lucky, your sysadmins have already arranged everything so
+that Emacs automatically goes into Octave mode whenever you visit an
+Octave code file as characterized by its extension `.m'.  If not,
+proceed as follows.
+
+  1. To begin using Octave mode for all `.m' files you visit, add the
+     following lines to a file loaded by Emacs at startup time,
+     typically your `~/.emacs' file:
+
+          (autoload 'octave-mode "octave-mod" nil t)
+          (setq auto-mode-alist
+                (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+  2. Finally, to turn on the abbrevs, auto-fill and font-lock features
+     automatically, also add the following lines to one of the Emacs
+     startup files:
+          (add-hook 'octave-mode-hook
+                    (lambda ()
+                      (abbrev-mode 1)
+                      (auto-fill-mode 1)
+                      (if (eq window-system 'x)
+                          (font-lock-mode 1))))
+     See the Emacs manual for more information about how to customize
+     Font-lock mode.
+
+   In Octave mode, the following special Emacs commands can be used in
+addition to the standard Emacs commands.
+
+`C-h m'
+     Describe the features of Octave mode.
+
+`LFD'
+     Reindent the current Octave line, insert a newline and indent the
+     new line (`octave-reindent-then-newline-and-indent').  An abbrev
+     before point is expanded if `abbrev-mode' is non-`nil'.
+
+`TAB'
+     Indents current Octave line based on its contents and on previous
+     lines (`indent-according-to-mode').
+
+`;'
+     Insert an "electric" semicolon (`octave-electric-semi').  If
+     `octave-auto-indent' is non-`nil', reindent the current line.  If
+     `octave-auto-newline' is non-`nil', automagically insert a newline
+     and indent the new line.
+
+``'
+     Start entering an abbreviation (`octave-abbrev-start').  If Abbrev
+     mode is turned on, typing ``C-h' or ``?' lists all abbrevs.  Any
+     other key combination is executed normally.  Note that all Octave
+     abbrevs start with a grave accent.
+
+`M-LFD'
+     Break line at point and insert continuation marker and alignment
+     (`octave-split-line').
+
+`M-TAB'
+     Perform completion on Octave symbol preceding point, comparing that
+     symbol against Octave's reserved words and built-in variables
+     (`octave-complete-symbol').
+
+`M-C-a'
+     Move backward to the beginning of a function
+     (`octave-beginning-of-defun').  With prefix argument N, do it that
+     many times if N is positive; otherwise, move forward to the N-th
+     following beginning of a function.
+
+`M-C-e'
+     Move forward to the end of a function (`octave-end-of-defun').
+     With prefix argument N, do it that many times if N is positive;
+     otherwise, move back to the N-th preceding end of a function.
+
+`M-C-h'
+     Puts point at beginning and mark at the end of the current Octave
+     function, i.e., the one containing point or following point
+     (`octave-mark-defun').
+
+`M-C-q'
+     Properly indents the Octave function which contains point
+     (`octave-indent-defun').
+
+`M-;'
+     If there is no comment already on this line, create a code-level
+     comment (started by two comment characters) if the line is empty,
+     or an in-line comment (started by one comment character) otherwise
+     (`octave-indent-for-comment').  Point is left after the start of
+     the comment which is properly aligned.
+
+`C-c ;'
+     Puts the comment character `#' (more precisely, the string value of
+     `octave-comment-start') at the beginning of every line in the
+     region (`octave-comment-region').  With just `C-u' prefix
+     argument, uncomment each line in the region.  A numeric prefix
+     argument N means use N comment characters.
+
+`C-c :'
+     Uncomments every line in the region (`octave-uncomment-region').
+
+`C-c C-p'
+     Move one line of Octave code backward, skipping empty and comment
+     lines (`octave-previous-code-line').  With numeric prefix argument
+     N, move that many code lines backward (forward if N is negative).
+
+`C-c C-n'
+     Move one line of Octave code forward, skipping empty and comment
+     lines (`octave-next-code-line').  With numeric prefix argument N,
+     move that many code lines forward (backward if N is negative).
+
+`C-c C-a'
+     Move to the `real' beginning of the current line
+     (`octave-beginning-of-line').  If point is in an empty or comment
+     line, simply go to its beginning; otherwise, move backwards to the
+     beginning of the first code line which is not inside a continuation
+     statement, i.e., which does not follow a code line ending in `...'
+     or `\', or is inside an open parenthesis list.
+
+`C-c C-e'
+     Move to the `real' end of the current line (`octave-end-of-line').
+     If point is in a code line, move forward to the end of the first
+     Octave code line which does not end in `...' or `\' or is inside an
+     open parenthesis list.  Otherwise, simply go to the end of the
+     current line.
+
+`C-c M-C-n'
+     Move forward across one balanced begin-end block of Octave code
+     (`octave-forward-block').  With numeric prefix argument N, move
+     forward across N such blocks (backward if N is negative).
+
+`C-c M-C-p'
+     Move back across one balanced begin-end block of Octave code
+     (`octave-backward-block').  With numeric prefix argument N, move
+     backward across N such blocks (forward if N is negative).
+
+`C-c M-C-d'
+     Move forward down one begin-end block level of Octave code
+     (`octave-down-block').  With numeric prefix argument, do it that
+     many times; a negative argument means move backward, but still go
+     down one level.
+
+`C-c M-C-u'
+     Move backward out of one begin-end block level of Octave code
+     (`octave-backward-up-block').  With numeric prefix argument, do it
+     that many times; a negative argument means move forward, but still
+     to a less deep spot.
+
+`C-c M-C-h'
+     Put point at the beginning of this block, mark at the end
+     (`octave-mark-block').  The block marked is the one that contains
+     point or follows point.
+
+`C-c ]'
+     Close the current block on a separate line (`octave-close-block').
+     An error is signaled if no block to close is found.
+
+`C-c f'
+     Insert a function skeleton, prompting for the function's name,
+     arguments and return values which have to be entered without
+     parentheses (`octave-insert-defun').
+
+`C-c C-h'
+     Search the function, operator and variable indices of all info
+     files with documentation for Octave for entries (`octave-help').
+     If used interactively, the entry is prompted for with completion.
+     If multiple matches are found, one can cycle through them using
+     the standard `,' (`Info-index-next') command of the Info reader.
+
+     The variable `octave-help-files' is a list of files to search
+     through and defaults to `'("octave")'.  If there is also an Octave
+     Local Guide with corresponding info file, say, `octave-LG', you can
+     have `octave-help' search both files by
+          (setq octave-help-files '("octave" "octave-LG"))
+     in one of your Emacs startup files.
+
+
+   A common problem is that the <RET> key does _not_ indent the line to
+where the new text should go after inserting the newline.  This is
+because the standard Emacs convention is that <RET> (aka `C-m') just
+adds a newline, whereas <LFD> (aka `C-j') adds a newline and indents
+it.  This is particularly inconvenient for users with keyboards which
+do not have a special <LFD> key at all; in such cases, it is typically
+more convenient to use <RET> as the <LFD> key (rather than typing
+`C-j').
+
+   You can make <RET> do this by adding
+     (define-key octave-mode-map "\C-m"
+       'octave-reindent-then-newline-and-indent)
+   to one of your Emacs startup files.  Another, more generally
+applicable solution is
+     (defun RET-behaves-as-LFD ()
+       (let ((x (key-binding "\C-j")))
+         (local-set-key "\C-m" x)))
+     (add-hook 'octave-mode-hook 'RET-behaves-as-LFD)
+   (this works for all modes by adding to the startup hooks, without
+having to know the particular binding of <RET> in that mode!).  Similar
+considerations apply for using <M-RET> as <M-LFD>.  As Barry A. Warsaw
+<bwarsaw@cnri.reston.va.us> says in the documentation for his
+`cc-mode', "This is a very common question.  `:-)' If you want this to
+be the default behavior, don't lobby me, lobby RMS!"
+
+   The following variables can be used to customize Octave mode.
+
+`octave-auto-indent'
+     Non-`nil' means auto-indent the current line after a semicolon or
+     space.  Default is `nil'.
+
+`octave-auto-newline'
+     Non-`nil' means auto-insert a newline and indent after semicolons
+     are typed.  The default value is `nil'.
+
+`octave-blink-matching-block'
+     Non-`nil' means show matching begin of block when inserting a
+     space, newline or `;' after an else or end keyword.  Default is
+     `t'.  This is an extremely useful feature for automatically
+     verifying that the keywords match--if they don't, an error message
+     is displayed.
+
+`octave-block-offset'
+     Extra indentation applied to statements in block structures.
+     Default is 2.
+
+`octave-continuation-offset'
+     Extra indentation applied to Octave continuation lines.  Default
+     is 4.
+
+`octave-continuation-string'
+     String used for Octave continuation lines.  Normally `\'.
+
+`octave-mode-startup-message'
+     If `t' (default), a startup message is displayed when Octave mode
+     is called.
+
+
+   If Font Lock mode is enabled, Octave mode will display
+
+   * strings in `font-lock-string-face'
+
+   * comments in `font-lock-comment-face'
+
+   * the Octave reserved words (such as all block keywords) and the text
+     functions (such as `cd' or `who') which are also reserved using
+     `font-lock-keyword-face'
+
+   * the built-in operators (`&&', `==', ...) using
+     `font-lock-reference-face'
+
+   * and the function names in function declarations in
+     `font-lock-function-name-face'.
+
+   There is also rudimentary support for Imenu (currently, function
+names can be indexed).
+
+   You can generate TAGS files for Emacs from Octave `.m' files using
+the shell script `octave-tags' that is installed alongside your copy of
+Octave.
+
+   Customization of Octave mode can be performed by modification of the
+variable `octave-mode-hook'.  If the value of this variable is
+non-`nil', turning on Octave mode calls its value.
+
+   If you discover a problem with Octave mode, you can conveniently
+send a bug report using `C-c C-b' (`octave-submit-bug-report').  This
+automatically sets up a mail buffer with version information already
+added.  You just need to add a description of the problem, including a
+reproducible test case and send the message.
+
+
+File: octave.info,  Node: Running Octave from Within Emacs,  Next: Using the Emacs Info Reader for Octave,  Prev: Using Octave Mode,  Up: Emacs Octave Support
+
+H.3 Running Octave from Within Emacs
+====================================
+
+The package `octave' provides commands for running an inferior Octave
+process in a special Emacs buffer.  Use
+     M-x run-octave
+   to directly start an inferior Octave process.  If Emacs does not know
+about this command, add the line
+     (autoload 'run-octave "octave-inf" nil t)
+   to your `.emacs' file.
+
+   This will start Octave in a special buffer the name of which is
+specified by the variable `inferior-octave-buffer' and defaults to
+`"*Inferior Octave*"'.  From within this buffer, you can interact with
+the inferior Octave process `as usual', i.e., by entering Octave
+commands at the prompt.  The buffer is in Inferior Octave mode, which
+is derived from the standard Comint mode, a major mode for interacting
+with an inferior interpreter.  See the documentation for `comint-mode'
+for more details, and use `C-h b' to find out about available special
+keybindings.
+
+   You can also communicate with an inferior Octave process from within
+files with Octave code (i.e., buffers in Octave mode), using the
+following commands.
+
+`C-c i l'
+     Send the current line to the inferior Octave process
+     (`octave-send-line').  With positive prefix argument N, send that
+     many lines.  If `octave-send-line-auto-forward' is non-`nil', go
+     to the next unsent code line.
+
+`C-c i b'
+     Send the current block to the inferior Octave process
+     (`octave-send-block').
+
+`C-c i f'
+     Send the current function to the inferior Octave process
+     (`octave-send-defun').
+
+`C-c i r'
+     Send the region to the inferior Octave process
+     (`octave-send-region').
+
+`C-c i s'
+     Make sure that `inferior-octave-buffer' is displayed
+     (`octave-show-process-buffer').
+
+`C-c i h'
+     Delete all windows that display the inferior Octave buffer
+     (`octave-hide-process-buffer').
+
+`C-c i k'
+     Kill the inferior Octave process and its buffer
+     (`octave-kill-process').
+
+   The effect of the commands which send code to the Octave process can
+be customized by the following variables.
+
+`octave-send-echo-input'
+     Non-`nil' means echo input sent to the inferior Octave process.
+     Default is `t'.
+
+`octave-send-show-buffer'
+     Non-`nil' means display the buffer running the Octave process after
+     sending a command (but without selecting it).  Default is `t'.
+
+   If you send code and there is no inferior Octave process yet, it
+will be started automatically.
+
+   The startup of the inferior Octave process is highly customizable.
+The variable `inferior-octave-startup-args' can be used for specifying
+command lines arguments to be passed to Octave on startup as a list of
+strings.  For example, to suppress the startup message and use
+`traditional' mode, set this to `'("-q" "--traditional")'.  You can
+also specify a startup file of Octave commands to be loaded on startup;
+note that these commands will not produce any visible output in the
+process buffer.  Which file to use is controlled by the variable
+`inferior-octave-startup-file'.  If this is `nil', the file
+`~/.emacs-octave' is used if it exists.
+
+   And finally, `inferior-octave-mode-hook' is run after starting the
+process and putting its buffer into Inferior Octave mode.  Hence, if you
+like the up and down arrow keys to behave in the interaction buffer as
+in the shell, and you want this buffer to use nice colors, add
+     (add-hook 'inferior-octave-mode-hook
+               (lambda ()
+                 (turn-on-font-lock)
+                 (define-key inferior-octave-mode-map [up]
+                   'comint-previous-input)
+                 (define-key inferior-octave-mode-map [down]
+                   'comint-next-input)))
+   to your `.emacs' file.  You could also swap the roles of `C-a'
+(`beginning-of-line') and `C-c C-a' (`comint-bol') using this hook.
+
+     *Note* that if you set your Octave prompts to something different
+     from the defaults, make sure that `inferior-octave-prompt' matches
+     them.  Otherwise, _nothing_ will work, because Emacs will not know
+     when Octave is waiting for input, or done sending output.
+
+
+File: octave.info,  Node: Using the Emacs Info Reader for Octave,  Prev: Running Octave from Within Emacs,  Up: Emacs Octave Support
+
+H.4 Using the Emacs Info Reader for Octave
+==========================================
+
+You may also use the Emacs Info reader with Octave's `doc' function.
+For this, the package `gnuserv' needs to be installed.
+
+   If `gnuserv' is installed, add the lines
+     (autoload 'octave-help "octave-hlp" nil t)
+     (require 'gnuserv)
+     (gnuserv-start)
+   to your `.emacs' file.
+
+   You can use either `plain' Emacs Info or the function `octave-help'
+as your Octave info reader (for `help -i').  In the former case, use
+`info_program ("info-emacs-info")'.  The latter is perhaps more
+attractive because it allows to look up keys in the indices of
+_several_ info files related to Octave (provided that the Emacs
+variable `octave-help-files' is set correctly).  In this case, use
+`info_program ("info-emacs-octave-help")'.
+
+   If you use Octave from within Emacs, it is best to add these
+settings to your `~/.emacs-octave' startup file (or the file pointed to
+by the Emacs variable `inferior-octave-startup-file').
+
+
+File: octave.info,  Node: Grammar and Parser,  Next: Copying,  Prev: Emacs Octave Support,  Up: Top
+
+Appendix I Grammar and Parser
+*****************************
+
+This appendix will eventually contain a semi-formal description of
+Octave's language.
+
+* Menu:
+
+* Keywords::
+* Parser::
+
+
+File: octave.info,  Node: Keywords,  Next: Parser,  Up: Grammar and Parser
+
+I.1 Keywords
+============
+
+The following identifiers are keywords, and may not be used as variable
+or function names:
+
+`__FILE__'               `__LINE__'               `break'
+`case'                   `catch'                  `classdef'
+`continue'               `do'                     `else'
+`elseif'                 `end'                    `end_try_catch'
+`end_unwind_protect'     `endclassdef'            `endenumeration'
+`endevents'              `endfor'                 `endfunction'
+`endif'                  `endmethods'             `endparfor'
+`endproperties'          `endswitch'              `endwhile'
+`enumeration'            `events'                 `for'
+`function'               `global'                 `if'
+`methods'                `otherwise'              `parfor'
+`persistent'             `properties'             `return'
+`static'                 `switch'                 `try'
+`until'                  `unwind_protect'         `unwind_protect_cleanup'
+`while'                                           
+
+   The function `iskeyword' can be used to quickly check whether an
+identifier is reserved by Octave.
+
+ -- Built-in Function:  iskeyword ()
+ -- Built-in Function:  iskeyword (NAME)
+     Return true if NAME is an Octave keyword.  If NAME is omitted,
+     return a list of keywords.
+
+     *See also:* *note isvarname: doc-isvarname, *note exist: doc-exist.
+
+
+File: octave.info,  Node: Parser,  Prev: Keywords,  Up: Grammar and Parser
+
+I.2 Parser
+==========
+
+The parser has a number of variables that affect its internal operation.
+These variables are generally documented in the manual alongside the
+code that they affect.  For example, `allow_noninteger_range_as_index'
+is discussed in the section on index expressions.
+
+   In addition, there are three non-specific parser customization
+functions.  `add_input_event_hook' can be used to schedule a user
+function for periodic evaluation.  `remove_input_event_hook' will stop
+a user function from being evaluated periodically.
+
+ -- Built-in Function: ID = add_input_event_hook (FCN)
+ -- Built-in Function: ID = add_input_event_hook (FCN, DATA)
+     Add the named function or function handle FCN to the list of
+     functions to call periodically when Octave is waiting for input.
+     The function should have the form
+
+          FCN (DATA)
+
+     If DATA is omitted, Octave calls the function without any
+     arguments.
+
+     The returned identifier may be used to remove the function handle
+     from the list of input hook functions.
+
+     *See also:* *note remove_input_event_hook:
+     doc-remove_input_event_hook.
+
+ -- Built-in Function:  remove_input_event_hook (NAME)
+ -- Built-in Function:  remove_input_event_hook (FCN_ID)
+     Remove the named function or function handle with the given
+     identifier from the list of functions to call periodically when
+     Octave is waiting for input.
+
+     *See also:* *note add_input_event_hook: doc-add_input_event_hook.
+
+   Finally, when the parser cannot identify an input token it calls a
+particular function to handle this.  By default, this is the function
+"unimplemented" which makes suggestions about possible Octave
+substitutes for MATLAB functions.
+
+ -- Built-in Function: VAL = missing_function_hook ()
+ -- Built-in Function: OLD_VAL = missing_function_hook (NEW_VAL)
+ -- Built-in Function:  missing_function_hook (NEW_VAL, "local")
+     Query or set the internal variable that specifies the function to
+     call when an unknown identifier is requested.
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+
 File: octave.info,  Node: Copying,  Next: Concept Index,  Prev: Grammar and Parser,  Up: Top
 
 Appendix J GNU GENERAL PUBLIC LICENSE
@@ -1434,7 +1940,7 @@ Concept Index
 * strings <1>:                           Strings.             (line   6)
 * strings:                               String Objects.      (line   6)
 * structural rank:                       Sparse Linear Algebra.
-                                                              (line 246)
+                                                              (line 247)
 * structure elements, looping over:      Looping Over Structure Elements.
                                                               (line   6)
 * structures <1>:                        Structures.          (line   6)
@@ -1568,7 +2074,7 @@ Function Index
 * arch_rnd:                              Signal Processing.  (line  394)
 * arch_test:                             Signal Processing.  (line  404)
 * area:                                  Two-Dimensional Plots.
-                                                             (line 1157)
+                                                             (line 1158)
 * arg:                                   Complex Arithmetic. (line   18)
 * argnames:                              Inline Functions.   (line   37)
 * argv:                                  Command Line Options.
@@ -1596,7 +2102,7 @@ Function Index
                                                              (line   33)
 * autoreg_matrix:                        Signal Processing.  (line  449)
 * autumn:                                Representing Images.
-                                                             (line  153)
+                                                             (line  179)
 * available_graphics_toolkits:           Graphics Toolkits.  (line   32)
 * axes:                                  Use of axis, line, and patch Functions.
                                                              (line   11)
@@ -1659,10 +2165,10 @@ Function Index
 * blkmm:                                 Functions of a Matrix.
                                                              (line   75)
 * bone:                                  Representing Images.
-                                                             (line  161)
+                                                             (line  187)
 * box:                                   Plot Annotations.   (line  179)
 * brighten:                              Representing Images.
-                                                             (line  351)
+                                                             (line  377)
 * bsxfun:                                Broadcasting.       (line   86)
 * builtin:                               Overloading and Autoloading.
                                                              (line   15)
@@ -1768,9 +2274,9 @@ Function Index
 * closereq:                              Manipulation of Plot Windows.
                                                              (line  159)
 * cmpermute:                             Representing Images.
-                                                             (line  441)
+                                                             (line  467)
 * cmunique:                              Representing Images.
-                                                             (line  407)
+                                                             (line  433)
 * colamd:                                Mathematical Considerations.
                                                              (line  278)
 * colloc:                                Orthogonal Collocation.
@@ -1779,17 +2285,17 @@ Function Index
                                                              (line  196)
 * colorbar:                              Plot Annotations.   (line  208)
 * colorcube:                             Representing Images.
-                                                             (line  169)
+                                                             (line  195)
 * colormap:                              Representing Images.
-                                                             (line  102)
+                                                             (line  128)
 * colperm:                               Mathematical Considerations.
                                                              (line  344)
 * colstyle:                              Marker Styles.      (line   28)
 * columns:                               Object Sizes.       (line   23)
 * comet:                                 Two-Dimensional Plots.
-                                                             (line 1190)
+                                                             (line 1191)
 * comet3:                                Two-Dimensional Plots.
-                                                             (line 1205)
+                                                             (line 1206)
 * command_line_path:                     Manipulating the Load Path.
                                                              (line  138)
 * common_size:                           Finding Elements and Checking Conditions.
@@ -1798,7 +2304,7 @@ Function Index
 * compan:                                Finding Roots.      (line   46)
 * compare_versions:                      System Information. (line  149)
 * compass:                               Two-Dimensional Plots.
-                                                             (line 1085)
+                                                             (line 1086)
 * completion_append_char:                Commands For Completion.
                                                              (line   17)
 * completion_matches:                    Commands For Completion.
@@ -1808,20 +2314,20 @@ Function Index
 * cond:                                  Basic Matrix Functions.
                                                              (line   41)
 * condest:                               Sparse Linear Algebra.
-                                                             (line  131)
+                                                             (line  132)
 * confirm_recursive_rmdir:               Filesystem Utilities.
                                                              (line  101)
 * conj:                                  Complex Arithmetic. (line   28)
 * contour:                               Two-Dimensional Plots.
-                                                             (line  680)
+                                                             (line  681)
 * contour3:                              Two-Dimensional Plots.
-                                                             (line  775)
+                                                             (line  776)
 * contourc:                              Two-Dimensional Plots.
-                                                             (line  744)
+                                                             (line  745)
 * contourf:                              Two-Dimensional Plots.
-                                                             (line  708)
+                                                             (line  709)
 * contrast:                              Representing Images.
-                                                             (line  321)
+                                                             (line  347)
 * conv:                                  Products of Polynomials.
                                                              (line    7)
 * conv2:                                 Products of Polynomials.
@@ -1831,9 +2337,9 @@ Function Index
 * convn:                                 Products of Polynomials.
                                                              (line   28)
 * cool:                                  Representing Images.
-                                                             (line  180)
+                                                             (line  206)
 * copper:                                Representing Images.
-                                                             (line  188)
+                                                             (line  214)
 * copyfile:                              Filesystem Utilities.
                                                              (line   33)
 * cor_test:                              Tests.              (line  101)
@@ -2000,9 +2506,11 @@ Function Index
 * eig:                                   Basic Matrix Functions.
                                                              (line   71)
 * eigs:                                  Sparse Linear Algebra.
-                                                             (line  346)
+                                                             (line  347)
 * elem:                                  Matrices and Arrays in Oct-Files.
                                                              (line   77)
+* ellipj:                                Special Functions.  (line  184)
+* ellipke:                               Special Functions.  (line  213)
 * ellipsoid:                             Three-dimensional Geometric Shapes.
                                                              (line   42)
 * empirical_cdf:                         Distributions.      (line  135)
@@ -2018,17 +2526,17 @@ Function Index
 * eps:                                   Mathematical Constants.
                                                              (line  120)
 * eq:                                    Comparison Ops.     (line   54)
-* erf:                                   Special Functions.  (line  184)
-* erfc:                                  Special Functions.  (line  197)
-* erfcinv:                               Special Functions.  (line  231)
-* erfcx:                                 Special Functions.  (line  204)
-* erfi:                                  Special Functions.  (line  213)
-* erfinv:                                Special Functions.  (line  222)
+* erf:                                   Special Functions.  (line  229)
+* erfc:                                  Special Functions.  (line  242)
+* erfcinv:                               Special Functions.  (line  276)
+* erfcx:                                 Special Functions.  (line  249)
+* erfi:                                  Special Functions.  (line  258)
+* erfinv:                                Special Functions.  (line  267)
 * errno:                                 Catching Errors.    (line  177)
 * errno_list:                            Catching Errors.    (line  185)
 * error:                                 Raising Errors.     (line   21)
 * errorbar:                              Two-Dimensional Plots.
-                                                             (line  822)
+                                                             (line  823)
 * errordlg:                              Dialog Box Functions.
                                                              (line   30)
 * etime:                                 Timing Utilities.   (line  359)
@@ -2049,6 +2557,7 @@ Function Index
 * exp:                                   Exponents and Logarithms.
                                                              (line    7)
 * expcdf:                                Distributions.      (line  149)
+* expint:                                Special Functions.  (line  285)
 * expinv:                                Distributions.      (line  156)
 * expm:                                  Functions of a Matrix.
                                                              (line    7)
@@ -2090,7 +2599,7 @@ Function Index
                                                              (line  396)
 * fdisp:                                 Simple File I/O.    (line  311)
 * feather:                               Two-Dimensional Plots.
-                                                             (line 1107)
+                                                             (line 1108)
 * feof:                                  EOF and Errors.     (line   25)
 * ferror:                                EOF and Errors.     (line   33)
 * feval:                                 Calling a Function by its Name.
@@ -2146,7 +2655,7 @@ Function Index
 * fix:                                   Utility Functions.  (line   18)
 * fixed_point_format:                    Matrices.           (line  204)
 * flag:                                  Representing Images.
-                                                             (line  196)
+                                                             (line  222)
 * flipdim:                               Rearranging Matrices.
                                                              (line   37)
 * fliplr:                                Rearranging Matrices.
@@ -2198,11 +2707,12 @@ Function Index
 * functions:                             Function Handles.   (line   43)
 * fwrite:                                Binary I/O.         (line  176)
 * fzero:                                 Solvers.            (line  180)
+* gallery:                               Famous Matrices.    (line    9)
 * gamcdf:                                Distributions.      (line  177)
 * gaminv:                                Distributions.      (line  182)
-* gamma:                                 Special Functions.  (line  240)
-* gammainc:                              Special Functions.  (line  251)
-* gammaln:                               Special Functions.  (line  343)
+* gamma:                                 Special Functions.  (line  295)
+* gammainc:                              Special Functions.  (line  306)
+* gammaln:                               Special Functions.  (line  398)
 * gampdf:                                Distributions.      (line  172)
 * gamrnd:                                Random Number Generation.
                                                              (line  180)
@@ -2272,7 +2782,7 @@ Function Index
 * gls:                                   Linear Least Squares.
                                                              (line   42)
 * gmap40:                                Representing Images.
-                                                             (line  337)
+                                                             (line  363)
 * gmres:                                 Specialized Solvers.
                                                              (line  144)
 * gmtime:                                Timing Utilities.   (line   88)
@@ -2282,7 +2792,7 @@ Function Index
 * gradient:                              Utility Functions.  (line  189)
 * graphics_toolkit:                      Graphics Toolkits.  (line    7)
 * gray:                                  Representing Images.
-                                                             (line  205)
+                                                             (line  231)
 * gray2ind:                              Representing Images.
                                                              (line   39)
 * grid:                                  Plot Annotations.   (line  192)
@@ -2305,9 +2815,9 @@ Function Index
                                                              (line   27)
 * gzip:                                  File Archiving Utilities.
                                                              (line   16)
-* hadamard:                              Famous Matrices.    (line    9)
+* hadamard:                              Famous Matrices.    (line  281)
 * hamming:                               Signal Processing.  (line  523)
-* hankel:                                Famous Matrices.    (line   32)
+* hankel:                                Famous Matrices.    (line  304)
 * hanning:                               Signal Processing.  (line  529)
 * help:                                  Getting Help.       (line   15)
 * helpdlg:                               Dialog Box Functions.
@@ -2319,7 +2829,7 @@ Function Index
 * hggroup:                               Object Groups.      (line   13)
 * hidden:                                Three-Dimensional Plots.
                                                              (line   91)
-* hilb:                                  Famous Matrices.    (line   49)
+* hilb:                                  Famous Matrices.    (line  321)
 * hist:                                  Two-Dimensional Plots.
                                                              (line  351)
 * histc:                                 Basic Statistical Functions.
@@ -2340,13 +2850,13 @@ Function Index
 * horzcat:                               Rearranging Matrices.
                                                              (line  135)
 * hot:                                   Representing Images.
-                                                             (line  213)
+                                                             (line  239)
 * hotelling_test:                        Tests.              (line  157)
 * hotelling_test_2:                      Tests.              (line  172)
 * housh:                                 Matrix Factorizations.
                                                              (line  584)
 * hsv:                                   Representing Images.
-                                                             (line  222)
+                                                             (line  248)
 * hsv2rgb:                               Color Conversion.   (line   26)
 * hurst:                                 Signal Processing.  (line  535)
 * hygecdf:                               Distributions.      (line  209)
@@ -2383,7 +2893,7 @@ Function Index
 * ind2gray:                              Representing Images.
                                                              (line   56)
 * ind2rgb:                               Representing Images.
-                                                             (line   84)
+                                                             (line  110)
 * ind2sub:                               Advanced Indexing.  (line  146)
 * index:                                 Manipulating Strings.
                                                              (line   88)
@@ -2425,7 +2935,7 @@ Function Index
 * intmin:                                Integer Data Types. (line   94)
 * inv:                                   Basic Matrix Functions.
                                                              (line  103)
-* invhilb:                               Famous Matrices.    (line   68)
+* invhilb:                               Famous Matrices.    (line  340)
 * ipermute:                              Rearranging Matrices.
                                                              (line  164)
 * iqr:                                   Descriptive Statistics.
@@ -2588,7 +3098,7 @@ Function Index
 * javarmpath:                            Java Interface Functions.
                                                              (line  127)
 * jet:                                   Representing Images.
-                                                             (line  235)
+                                                             (line  261)
 * kbhit:                                 Terminal Input.     (line   69)
 * kendall:                               Correlation and Regression Analysis.
                                                              (line   67)
@@ -2617,15 +3127,15 @@ Function Index
 * ldivide:                               Arithmetic Ops.     (line  129)
 * le:                                    Comparison Ops.     (line   84)
 * legend:                                Plot Annotations.   (line   31)
-* legendre:                              Special Functions.  (line  280)
+* legendre:                              Special Functions.  (line  335)
 * length:                                Object Sizes.       (line   60)
-* lgamma:                                Special Functions.  (line  342)
+* lgamma:                                Special Functions.  (line  397)
 * license:                               System Information. (line  185)
 * lin2mu:                                Audio Processing.   (line   28)
 * line:                                  Use of axis, line, and patch Functions.
                                                              (line   16)
 * lines:                                 Representing Images.
-                                                             (line  244)
+                                                             (line  270)
 * link:                                  Filesystem Utilities.
                                                              (line   52)
 * linkprop:                              Object Groups.      (line  178)
@@ -2662,7 +3172,7 @@ Function Index
 * loglog:                                Two-Dimensional Plots.
                                                              (line  236)
 * loglogerr:                             Two-Dimensional Plots.
-                                                             (line  924)
+                                                             (line  925)
 * logm:                                  Functions of a Matrix.
                                                              (line   30)
 * logncdf:                               Distributions.      (line  276)
@@ -2695,7 +3205,7 @@ Function Index
                                                              (line  278)
 * luupdate:                              Matrix Factorizations.
                                                              (line  209)
-* magic:                                 Famous Matrices.    (line   97)
+* magic:                                 Famous Matrices.    (line  369)
 * mahalanobis:                           Basic Statistical Functions.
                                                              (line  159)
 * make_absolute_filename:                Filesystem Utilities.
@@ -2818,7 +3328,7 @@ Function Index
                                                              (line  198)
 * normcdf:                               Distributions.      (line  337)
 * normest:                               Sparse Linear Algebra.
-                                                             (line   90)
+                                                             (line   91)
 * norminv:                               Distributions.      (line  345)
 * normpdf:                               Distributions.      (line  329)
 * normrnd:                               Random Number Generation.
@@ -2844,7 +3354,7 @@ Function Index
 * numel:                                 Object Sizes.       (line   39)
 * nzmax:                                 Information.        (line   36)
 * ocean:                                 Representing Images.
-                                                             (line  254)
+                                                             (line  280)
 * octave_config_info:                    System Information. (line  228)
 * octave_core_file_limit:                Saving Data on Unexpected Exits.
                                                              (line   73)
@@ -2860,7 +3370,7 @@ Function Index
 * onCleanup:                             Recovering From Errors.
                                                              (line   29)
 * onenormest:                            Sparse Linear Algebra.
-                                                             (line  102)
+                                                             (line  103)
 * ones:                                  Special Utility Matrices.
                                                              (line   43)
 * operator ():                           Matrices and Arrays in Oct-Files.
@@ -2894,10 +3404,10 @@ Function Index
 * PAGER_FLAGS:                           Paging Screen Output.
                                                              (line   54)
 * pareto:                                Two-Dimensional Plots.
-                                                             (line  617)
+                                                             (line  618)
 * parseparams:                           Variable-length Argument Lists.
                                                              (line   64)
-* pascal:                                Famous Matrices.    (line  104)
+* pascal:                                Famous Matrices.    (line  376)
 * patch:                                 Use of axis, line, and patch Functions.
                                                              (line   26)
 * path:                                  Manipulating the Load Path.
@@ -2914,7 +3424,7 @@ Function Index
 * pclose:                                Controlling Subprocesses.
                                                              (line  131)
 * pcolor:                                Two-Dimensional Plots.
-                                                             (line 1129)
+                                                             (line 1130)
 * pcr:                                   Iterative Techniques.
                                                              (line  160)
 * peaks:                                 Test Plotting Functions.
@@ -2929,11 +3439,11 @@ Function Index
 * pi:                                    Mathematical Constants.
                                                              (line   27)
 * pie:                                   Two-Dimensional Plots.
-                                                             (line  966)
+                                                             (line  967)
 * pie3:                                  Two-Dimensional Plots.
-                                                             (line  989)
+                                                             (line  990)
 * pink:                                  Representing Images.
-                                                             (line  262)
+                                                             (line  288)
 * pinv:                                  Basic Matrix Functions.
                                                              (line  283)
 * pipe:                                  Controlling Subprocesses.
@@ -2949,7 +3459,7 @@ Function Index
 * plot3:                                 Three-Dimensional Plots.
                                                              (line  521)
 * plotmatrix:                            Two-Dimensional Plots.
-                                                             (line  583)
+                                                             (line  584)
 * plotyy:                                Two-Dimensional Plots.
                                                              (line  169)
 * plus:                                  Arithmetic Ops.     (line  177)
@@ -2961,7 +3471,7 @@ Function Index
 * pol2cart:                              Coordinate Transformations.
                                                              (line   27)
 * polar:                                 Two-Dimensional Plots.
-                                                             (line  953)
+                                                             (line  954)
 * poly:                                  Miscellaneous Functions.
                                                              (line    7)
 * polyaffine:                            Derivatives / Integrals / Transforms.
@@ -3017,10 +3527,10 @@ Function Index
                                                              (line  108)
 * print_usage:                           Raising Errors.     (line  111)
 * printd:                                Two-Dimensional Plots.
-                                                             (line  444)
+                                                             (line  445)
 * printf:                                Formatted Output.   (line   14)
 * prism:                                 Representing Images.
-                                                             (line  271)
+                                                             (line  297)
 * probit:                                Basic Statistical Functions.
                                                              (line  142)
 * prod:                                  Sums and Products.  (line   35)
@@ -3076,15 +3586,15 @@ Function Index
                                                              (line  160)
 * quit:                                  Quitting Octave.    (line    8)
 * quiver:                                Two-Dimensional Plots.
-                                                             (line 1012)
+                                                             (line 1013)
 * quiver3:                               Two-Dimensional Plots.
-                                                             (line 1047)
+                                                             (line 1048)
 * qz:                                    Matrix Factorizations.
                                                              (line  391)
 * qzhess:                                Matrix Factorizations.
                                                              (line  448)
 * rainbow:                               Representing Images.
-                                                             (line  280)
+                                                             (line  306)
 * rand:                                  Special Utility Matrices.
                                                              (line  152)
 * rande:                                 Special Utility Matrices.
@@ -3144,13 +3654,13 @@ Function Index
 * refreshdata:                           Data Sources in Object Groups.
                                                              (line   12)
 * regexp:                                Manipulating Strings.
-                                                             (line  501)
+                                                             (line  508)
 * regexpi:                               Manipulating Strings.
-                                                             (line  699)
+                                                             (line  706)
 * regexprep:                             Manipulating Strings.
-                                                             (line  708)
+                                                             (line  715)
 * regexptranslate:                       Manipulating Strings.
-                                                             (line  742)
+                                                             (line  749)
 * register_graphics_toolkit:             Graphics Toolkits.  (line   44)
 * rehash:                                Manipulating the Load Path.
                                                              (line  110)
@@ -3183,7 +3693,7 @@ Function Index
                                                              (line   76)
 * rgb2ntsc:                              Color Conversion.   (line   42)
 * rgbplot:                               Representing Images.
-                                                             (line  126)
+                                                             (line  152)
 * ribbon:                                Three-Dimensional Plots.
                                                              (line  639)
 * rindex:                                Manipulating Strings.
@@ -3201,8 +3711,8 @@ Function Index
                                                              (line   59)
 * roots:                                 Finding Roots.      (line   11)
 * rose:                                  Two-Dimensional Plots.
-                                                             (line  652)
-* rosser:                                Famous Matrices.    (line  117)
+                                                             (line  653)
+* rosser:                                Famous Matrices.    (line  389)
 * rot90:                                 Rearranging Matrices.
                                                              (line   49)
 * rotdim:                                Rearranging Matrices.
@@ -3255,7 +3765,7 @@ Function Index
                                                              (line  155)
 * scanf:                                 Formatted Input.    (line   61)
 * scatter:                               Two-Dimensional Plots.
-                                                             (line  547)
+                                                             (line  548)
 * scatter3:                              Three-Dimensional Plots.
                                                              (line  668)
 * schur:                                 Matrix Factorizations.
@@ -3269,11 +3779,11 @@ Function Index
 * semilogx:                              Two-Dimensional Plots.
                                                              (line  204)
 * semilogxerr:                           Two-Dimensional Plots.
-                                                             (line  896)
+                                                             (line  897)
 * semilogy:                              Two-Dimensional Plots.
                                                              (line  220)
 * semilogyerr:                           Two-Dimensional Plots.
-                                                             (line  910)
+                                                             (line  911)
 * set:                                   Graphics Objects.   (line  144)
 * setappdata:                            Application-defined Data.
                                                              (line   11)
@@ -3341,7 +3851,7 @@ Function Index
 * sparse_auto_mutate:                    Return Types of Operators and Functions.
                                                              (line   53)
 * spaugment:                             Sparse Linear Algebra.
-                                                             (line  306)
+                                                             (line  307)
 * spconvert:                             Creating Sparse Matrices.
                                                              (line  255)
 * spdiags:                               Creating Sparse Matrices.
@@ -3364,7 +3874,7 @@ Function Index
 * sphere:                                Three-dimensional Geometric Shapes.
                                                              (line   30)
 * spinmap:                               Representing Images.
-                                                             (line  368)
+                                                             (line  394)
 * spline:                                One-dimensional Interpolation.
                                                              (line  169)
 * splinefit:                             Polynomial Interpolation.
@@ -3373,7 +3883,7 @@ Function Index
 * spones:                                Creating Sparse Matrices.
                                                              (line   87)
 * spparms:                               Sparse Linear Algebra.
-                                                             (line  178)
+                                                             (line  179)
 * sprand:                                Creating Sparse Matrices.
                                                              (line   91)
 * sprandn:                               Creating Sparse Matrices.
@@ -3381,9 +3891,9 @@ Function Index
 * sprandsym:                             Creating Sparse Matrices.
                                                              (line  116)
 * sprank:                                Sparse Linear Algebra.
-                                                             (line  246)
+                                                             (line  247)
 * spring:                                Representing Images.
-                                                             (line  289)
+                                                             (line  315)
 * sprintf:                               Formatted Output.   (line   34)
 * spstats:                               Information.        (line   47)
 * spy:                                   Information.        (line  137)
@@ -3396,7 +3906,7 @@ Function Index
 * squeeze:                               Object Sizes.       (line  129)
 * sscanf:                                Formatted Input.    (line   72)
 * stairs:                                Two-Dimensional Plots.
-                                                             (line  455)
+                                                             (line  456)
 * stat:                                  Filesystem Utilities.
                                                              (line  126)
 * statistics:                            Descriptive Statistics.
@@ -3415,9 +3925,9 @@ Function Index
 * stdout:                                C-Style I/O Functions.
                                                              (line   27)
 * stem:                                  Two-Dimensional Plots.
-                                                             (line  487)
+                                                             (line  488)
 * stem3:                                 Two-Dimensional Plots.
-                                                             (line  530)
+                                                             (line  531)
 * stemleaf:                              Two-Dimensional Plots.
                                                              (line  391)
 * stft:                                  Signal Processing.  (line  646)
@@ -3443,9 +3953,9 @@ Function Index
 * strncmpi:                              Comparing Strings.  (line   81)
 * strptime:                              Timing Utilities.   (line  308)
 * strread:                               Manipulating Strings.
-                                                             (line  324)
+                                                             (line  331)
 * strrep:                                Manipulating Strings.
-                                                             (line  464)
+                                                             (line  471)
 * strsplit:                              Manipulating Strings.
                                                              (line  219)
 * strtok:                                Manipulating Strings.
@@ -3476,12 +3986,12 @@ Function Index
 * subsref:                               Defining Indexing And Indexed Assignment.
                                                              (line   15)
 * substr:                                Manipulating Strings.
-                                                             (line  478)
+                                                             (line  485)
 * substruct:                             Manipulating Structures.
                                                              (line  185)
 * sum:                                   Sums and Products.  (line    7)
 * summer:                                Representing Images.
-                                                             (line  297)
+                                                             (line  323)
 * sumsq:                                 Sums and Products.  (line   62)
 * superiorto:                            Precedence of Objects.
                                                              (line   14)
@@ -3501,7 +4011,7 @@ Function Index
 * svd_driver:                            Matrix Factorizations.
                                                              (line  570)
 * svds:                                  Sparse Linear Algebra.
-                                                             (line  502)
+                                                             (line  503)
 * swapbytes:                             Built-in Data Types.
                                                              (line   92)
 * syl:                                   Functions of a Matrix.
@@ -3509,7 +4019,7 @@ Function Index
 * symamd:                                Mathematical Considerations.
                                                              (line  426)
 * symbfact:                              Sparse Linear Algebra.
-                                                             (line  256)
+                                                             (line  257)
 * symlink:                               Filesystem Utilities.
                                                              (line   60)
 * symrcm:                                Mathematical Considerations.
@@ -3552,7 +4062,7 @@ Function Index
 * tmpnam:                                Temporary Files.    (line   45)
 * toascii:                               String Conversions. (line  248)
 * toc:                                   Timing Utilities.   (line  401)
-* toeplitz:                              Famous Matrices.    (line  123)
+* toeplitz:                              Famous Matrices.    (line  395)
 * tolower:                               String Conversions. (line  257)
 * toupper:                               String Conversions. (line  268)
 * tpdf:                                  Distributions.      (line  381)
@@ -3629,7 +4139,7 @@ Function Index
 * unpack:                                File Archiving Utilities.
                                                              (line   79)
 * untabify:                              Manipulating Strings.
-                                                             (line  768)
+                                                             (line  775)
 * untar:                                 File Archiving Utilities.
                                                              (line   51)
 * unwrap:                                Signal Processing.  (line  364)
@@ -3644,7 +4154,7 @@ Function Index
                                                              (line  140)
 * usleep:                                Timing Utilities.   (line  446)
 * validatestring:                        Comparing Strings.  (line  101)
-* vander:                                Famous Matrices.    (line  143)
+* vander:                                Famous Matrices.    (line  415)
 * var:                                   Descriptive Statistics.
                                                              (line  161)
 * var_test:                              Tests.              (line  425)
@@ -3673,6 +4183,8 @@ Function Index
                                                              (line  191)
 * warning:                               Issuing Warnings.   (line   34)
 * warranty:                              Getting Help.       (line   91)
+* waterfall:                             Three-Dimensional Plots.
+                                                             (line  700)
 * wavread:                               Audio Processing.   (line  106)
 * wavwrite:                              Audio Processing.   (line  135)
 * wblcdf:                                Distributions.      (line  451)
@@ -3693,9 +4205,9 @@ Function Index
 * which:                                 Status of Variables.
                                                              (line  310)
 * white:                                 Representing Images.
-                                                             (line  305)
+                                                             (line  331)
 * whitebg:                               Representing Images.
-                                                             (line  383)
+                                                             (line  409)
 * who:                                   Status of Variables.
                                                              (line   18)
 * whos:                                  Status of Variables.
@@ -3713,9 +4225,9 @@ Function Index
 * WIFSTOPPED:                            Controlling Subprocesses.
                                                              (line  335)
 * wilcoxon_test:                         Tests.              (line  463)
-* wilkinson:                             Famous Matrices.    (line  160)
+* wilkinson:                             Famous Matrices.    (line  432)
 * winter:                                Representing Images.
-                                                             (line  313)
+                                                             (line  339)
 * WNOHANG:                               Controlling Subprocesses.
                                                              (line  357)
 * WSTOPSIG:                              Controlling Subprocesses.

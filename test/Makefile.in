@@ -72,8 +72,9 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk \
-	$(srcdir)/bug-38236/module.mk $(srcdir)/class-concat/module.mk \
-	$(srcdir)/classes/module.mk $(srcdir)/ctor-vs-method/module.mk \
+	$(srcdir)/bug-38236/module.mk $(srcdir)/bug-38691/module.mk \
+	$(srcdir)/class-concat/module.mk $(srcdir)/classes/module.mk \
+	$(srcdir)/ctor-vs-method/module.mk \
 	$(srcdir)/fcn-handle-derived-resolution/module.mk \
 	$(srcdir)/nest/module.mk $(top_srcdir)/build-aux/common.mk
 subdir = test
@@ -1745,8 +1746,9 @@ FCN_FILES = fntests.m args.tst bug-31371.tst bug-38576.tst \
 	range.tst recursion.tst return.tst slice.tst struct.tst \
 	switch.tst system.tst transpose.tst try.tst unwind.tst \
 	while.tst $(bug_35448_FCN_FILES) $(bug_36025_FCN_FILES) \
-	$(bug_38236_FCN_FILES) $(classes_FCN_FILES) \
-	$(class_concat_FCN_FILES) $(ctor_vs_method_FCN_FILES) \
+	$(bug_38236_FCN_FILES) $(bug_38691_FCN_FILES) \
+	$(classes_FCN_FILES) $(class_concat_FCN_FILES) \
+	$(ctor_vs_method_FCN_FILES) \
 	$(fcn_handle_derived_resolution_FCN_FILES) $(nest_FCN_FILES)
 bug_35448_FCN_FILES = \
   bug-35448/fA.m \
@@ -1764,6 +1766,13 @@ bug_38236_FCN_FILES = \
   bug-38236/df_vr.m \
   bug-38236/u_vr.m \
   bug-38236/bug-38236.tst
+
+bug_38691_FCN_FILES = \
+  bug-38691/dir1/func1.m \
+  bug-38691/dir2/func1.m \
+  bug-38691/dir2/func2.m \
+  bug-38691/dir2/func3.m \
+  bug-38691/bug-38691.tst
 
 class_Blork_FCN_FILES = \
   classes/@Blork/Blork.m \
@@ -1963,7 +1972,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/bug-38236/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/bug-38236/module.mk $(srcdir)/bug-38691/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1984,7 +1993,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/bug-38236/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk:
+$(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/bug-38236/module.mk $(srcdir)/bug-38691/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk:
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -2064,7 +2073,7 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(DATA)
+all-am: Makefile $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(fixedtestsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -2171,10 +2180,10 @@ uninstall-am: uninstall-nobase_fixedtestsDATA
 
 .MAKE: all check install install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	clean-local distclean distclean-generic distclean-libtool \
-	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-dvi \
+.PHONY: all all-am all-local check check-am clean clean-generic \
+	clean-libtool clean-local distclean distclean-generic \
+	distclean-libtool distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
 	install-nobase_fixedtestsDATA install-pdf install-pdf-am \
@@ -2449,6 +2458,15 @@ define test-file-commands
 mv $@-t $@
 endef
 
+define gdbinit_install_rule
+if [ -f .gdbinit ]; then \
+  echo "refusing to overwrite .gdbinit with newer version from $<" 1>&2; \
+else \
+  echo "Installing .gdbinit from version at $<" ; \
+  cp $< $@; \
+fi
+endef
+
 %.cc-tst : %.cc
 	$(test-file-commands)
 
@@ -2458,8 +2476,13 @@ endef
 %.ll-tst : %.ll
 	$(test-file-commands)
 
+all-local: .gdbinit
+
+.gdbinit: ../etc/gdbinit
+	@$(gdbinit_install_rule)
+
 check: sparse.tst bc-overload-tests.stamp
-	$(top_builddir)/run-octave --norc --silent --no-history $(srcdir)/fntests.m $(srcdir)
+	$(top_builddir)/run-octave $(RUN_OCTAVE_OPTIONS) --norc --silent --no-history $(srcdir)/fntests.m $(srcdir)
 
 sparse.tst: build-sparse-tests.sh
 	$(srcdir)/build-sparse-tests.sh

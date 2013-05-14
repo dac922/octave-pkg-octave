@@ -22,6 +22,767 @@ manual into another language, under the above conditions for modified
 versions.
 
 
+File: octave.info,  Node: File Archiving Utilities,  Next: Networking Utilities,  Prev: Filesystem Utilities,  Up: System Utilities
+
+36.3 File Archiving Utilities
+=============================
+
+ -- Function File:  bunzip2 (BZFILE)
+ -- Function File:  bunzip2 (BZFILE, DIR)
+     Unpack the bzip2 archive BZFILE to the directory DIR.  If DIR is
+     not specified, it defaults to the current directory.
+
+     *See also:* *note bzip2: doc-bzip2, *note unpack: doc-unpack,
+     *note gunzip: doc-gunzip, *note unzip: doc-unzip, *note untar:
+     doc-untar.
+
+ -- Function File: ENTRIES = gzip (FILES)
+ -- Function File: ENTRIES = gzip (FILES, OUTDIR)
+     Compress the list of files and/or directories specified in FILES.
+     Each file is compressed separately and a new file with a ".gz"
+     extension is created.  The original files are not modified.
+     Existing compressed files are silently overwritten.  If OUTDIR is
+     defined the compressed files are placed in this directory.
+
+     *See also:* *note gunzip: doc-gunzip, *note bzip2: doc-bzip2,
+     *note zip: doc-zip, *note tar: doc-tar.
+
+ -- Function File:  gunzip (GZFILE, DIR)
+     Unpack the gzip archive GZFILE to the directory DIR.  If DIR is
+     not specified, it defaults to the current directory.  If GZFILE is
+     a directory, all gzfiles in the directory will be recursively
+     gunzipped.
+
+     *See also:* *note gzip: doc-gzip, *note unpack: doc-unpack, *note
+     bunzip2: doc-bunzip2, *note unzip: doc-unzip, *note untar:
+     doc-untar.
+
+ -- Function File: ENTRIES = tar (TARFILE, FILES)
+ -- Function File: ENTRIES = tar (TARFILE, FILES, ROOT)
+     Pack FILES FILES into the TAR archive TARFILE.  The list of files
+     must be a string or a cell array of strings.
+
+     The optional argument ROOT changes the relative path of FILES from
+     the current directory.
+
+     If an output argument is requested the entries in the archive are
+     returned in a cell array.
+
+     *See also:* *note untar: doc-untar, *note bzip2: doc-bzip2, *note
+     gzip: doc-gzip, *note zip: doc-zip.
+
+ -- Function File:  untar (TARFILE)
+ -- Function File:  untar (TARFILE, DIR)
+     Unpack the TAR archive TARFILE to the directory DIR.  If DIR is
+     not specified, it defaults to the current directory.
+
+     *See also:* *note tar: doc-tar, *note unpack: doc-unpack, *note
+     bunzip2: doc-bunzip2, *note gunzip: doc-gunzip, *note unzip:
+     doc-unzip.
+
+ -- Function File: ENTRIES = zip (ZIPFILE, FILES)
+ -- Function File: ENTRIES = zip (ZIPFILE, FILES, ROOTDIR)
+     Compress the list of files and/or directories specified in FILES
+     into the archive ZIPFILE in the same directory.  If ROOTDIR is
+     defined the FILES are located relative to ROOTDIR rather than the
+     current directory.
+
+     *See also:* *note unzip: doc-unzip, *note bzip2: doc-bzip2, *note
+     gzip: doc-gzip, *note tar: doc-tar.
+
+ -- Function File:  unzip (ZIPFILE)
+ -- Function File:  unzip (ZIPFILE, DIR)
+     Unpack the ZIP archive ZIPFILE to the directory DIR.  If DIR is
+     not specified, it defaults to the current directory.
+
+     *See also:* *note zip: doc-zip, *note unpack: doc-unpack, *note
+     bunzip2: doc-bunzip2, *note gunzip: doc-gunzip, *note untar:
+     doc-untar.
+
+ -- Function File: FILES = unpack (FILE)
+ -- Function File: FILES = unpack (FILE, DIR)
+ -- Function File: FILES = unpack (FILE, DIR, FILETYPE)
+     Unpack the archive FILE based on its extension to the directory
+     DIR.  If FILE is a list of strings, then each file is unpacked
+     individually.  If DIR is not specified, it defaults to the current
+     directory.  If a directory is in the file list, then the FILETYPE
+     must also be specified.
+
+     The optional return value is a list of FILES unpacked.
+
+     *See also:* *note bzip2: doc-bzip2, *note gzip: doc-gzip, *note
+     zip: doc-zip, *note tar: doc-tar.
+
+ -- Function File: ENTRIES = bzip2 (FILES)
+ -- Function File: ENTRIES = bzip2 (FILES, OUTDIR)
+     Compress the list of files specified in FILES.  Each file is
+     compressed separately and a new file with a ".bz2" extension is
+     created.  The original files are not modified.  Existing
+     compressed files are silently overwritten.  If OUTDIR is defined
+     the compressed files are placed in this directory.
+
+     *See also:* *note bunzip2: doc-bunzip2, *note gzip: doc-gzip,
+     *note zip: doc-zip, *note tar: doc-tar.
+
+
+File: octave.info,  Node: Networking Utilities,  Next: Controlling Subprocesses,  Prev: File Archiving Utilities,  Up: System Utilities
+
+36.4 Networking Utilities
+=========================
+
+* Menu:
+
+* FTP Objects::
+* URL Manipulation::
+
+ -- Built-in Function:  gethostname ()
+     Return the hostname of the system where Octave is running.
+
+
+File: octave.info,  Node: FTP Objects,  Next: URL Manipulation,  Up: Networking Utilities
+
+36.4.1 FTP Objects
+------------------
+
+Octave supports the FTP protocol through an object-oriented interface.
+Use the function `ftp' to create an FTP object which represents the
+connection.  All FTP functions take an FTP object as the first argument.
+
+ -- Function File: F = ftp (HOST)
+ -- Function File: F = ftp (HOST, USERNAME, PASSWORD)
+     Connect to the FTP server HOST with USERNAME and PASSWORD.  If
+     USERNAME and PASSWORD are not specified, user "anonymous" with no
+     password is used.  The returned FTP object F represents the
+     established FTP connection.
+
+     The list of actions for an FTP object are shown below.  All
+     functions require an FTP object as the first argument.
+
+     Method     Description
+     ------------------------------------------------------------------ 
+     ascii      Set transfer type to ascii
+     binary     Set transfer type to binary
+     cd         Change remote working directory
+     close      Close FTP connection
+     delete     Delete remote file
+     dir        List remote directory contents
+     mget       Download remote files
+     mkdir      Create remote directory
+     mput       Upload local files
+     rename     Rename remote file or directory
+     rmdir      Remove remote directory
+
+
+ -- Function File:  close (F)
+     Close the FTP connection represented by the FTP object F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  mget (F, FILE)
+ -- Function File:  mget (F, DIR)
+ -- Function File:  mget (F, REMOTE_NAME, TARGET)
+     Download a remote file FILE or directory DIR to the local
+     directory on the FTP connection F.  F is an FTP object returned by
+     the `ftp' function.
+
+     The arguments FILE and DIR can include wildcards and any files or
+     directories on the remote server that match will be downloaded.
+
+     If a third argument TARGET is given, then a single file or
+     directory will be downloaded to the local directory and the local
+     name will be changed to TARGET.
+
+ -- Function File:  mput (F, FILE)
+     Upload the local file FILE into the current remote directory on
+     the FTP connection F.  F is an FTP object returned by the ftp
+     function.
+
+     The argument FILE is passed through the `glob' function and any
+     files that match the wildcards in FILE will be uploaded.
+
+ -- Function File:  cd (F, PATH)
+     Set the remote directory to PATH on the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File: LST = dir (F)
+     List the current directory in verbose form for the FTP connection
+     F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  ascii (F)
+     Set the FTP connection F to use ASCII mode for transfers.  ASCII
+     mode is only appropriate for text files as it will convert the
+     remote host's newline representation to the local host's newline
+     representation.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  binary (F)
+     Set the FTP connection F to use binary mode for transfers.  In
+     binary mode there is no conversion of newlines from the remote
+     representation to the local representation.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  delete (F, FILE)
+     Delete the remote file FILE over the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  rename (F, OLDNAME, NEWNAME)
+     Rename or move the remote file or directory OLDNAME to NEWNAME,
+     over the FTP connection F.
+
+     F is an FTP object returned by the ftp function.
+
+ -- Function File:  mkdir (F, PATH)
+     Create the remote directory PATH, over the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  rmdir (F, PATH)
+     Remove the remote directory PATH, over the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+
+File: octave.info,  Node: URL Manipulation,  Prev: FTP Objects,  Up: Networking Utilities
+
+36.4.2 URL Manipulation
+-----------------------
+
+ -- Loadable Function: S = urlread (URL)
+ -- Loadable Function: [S, SUCCESS] = urlread (URL)
+ -- Loadable Function: [S, SUCCESS, MESSAGE] = urlread (URL)
+ -- Loadable Function: [...] = urlread (URL, METHOD, PARAM)
+     Download a remote file specified by its URL and return its content
+     in string S.  For example:
+
+          s = urlread ("ftp://ftp.octave.org/pub/octave/README");
+
+     The variable SUCCESS is 1 if the download was successful,
+     otherwise it is 0 in which case MESSAGE contains an error message.
+     If no output argument is specified and an error occurs, then the
+     error is signaled through Octave's error handling mechanism.
+
+     This function uses libcurl.  Curl supports, among others, the HTTP,
+     FTP and FILE protocols.  Username and password may be specified in
+     the URL.  For example:
+
+          s = urlread ("http://user:password@example.com/file.txt");
+
+     GET and POST requests can be specified by METHOD and PARAM.  The
+     parameter METHOD is either `get' or `post' and PARAM is a cell
+     array of parameter and value pairs.  For example:
+
+          s = urlread ("http://www.google.com/search", "get",
+                      {"query", "octave"});
+
+     *See also:* *note urlwrite: doc-urlwrite.
+
+ -- Loadable Function:  urlwrite (URL, LOCALFILE)
+ -- Loadable Function: F = urlwrite (URL, LOCALFILE)
+ -- Loadable Function: [F, SUCCESS] = urlwrite (URL, LOCALFILE)
+ -- Loadable Function: [F, SUCCESS, MESSAGE] = urlwrite (URL, LOCALFILE)
+     Download a remote file specified by its URL and save it as
+     LOCALFILE.  For example:
+
+          urlwrite ("ftp://ftp.octave.org/pub/octave/README",
+                    "README.txt");
+
+     The full path of the downloaded file is returned in F.  The
+     variable SUCCESS is 1 if the download was successful, otherwise it
+     is 0 in which case MESSAGE contains an error message.  If no
+     output argument is specified and an error occurs, then the error
+     is signaled through Octave's error handling mechanism.
+
+     This function uses libcurl.  Curl supports, among others, the HTTP,
+     FTP and FILE protocols.  Username and password may be specified in
+     the URL, for example:
+
+          urlwrite ("http://username:password@example.com/file.txt",
+                    "file.txt");
+
+     GET and POST requests can be specified by METHOD and PARAM.  The
+     parameter METHOD is either `get' or `post' and PARAM is a cell
+     array of parameter and value pairs.  For example:
+
+          urlwrite ("http://www.google.com/search", "search.html",
+                    "get", {"query", "octave"});
+
+     *See also:* *note urlread: doc-urlread.
+
+
+File: octave.info,  Node: Controlling Subprocesses,  Next: Process ID Information,  Prev: Networking Utilities,  Up: System Utilities
+
+36.5 Controlling Subprocesses
+=============================
+
+Octave includes some high-level commands like `system' and `popen' for
+starting subprocesses.  If you want to run another program to perform
+some task and then look at its output, you will probably want to use
+these functions.
+
+   Octave also provides several very low-level Unix-like functions which
+can also be used for starting subprocesses, but you should probably only
+use them if you can't find any way to do what you need with the
+higher-level functions.
+
+ -- Built-in Function:  system ("STRING")
+ -- Built-in Function:  system ("STRING", RETURN_OUTPUT)
+ -- Built-in Function:  system ("STRING", RETURN_OUTPUT, TYPE)
+ -- Built-in Function: [STATUS, OUTPUT] = system (...)
+     Execute a shell command specified by STRING.  If the optional
+     argument TYPE is "async", the process is started in the background
+     and the process ID of the child process is returned immediately.
+     Otherwise, the child process is started and Octave waits until it
+     exits.  If the TYPE argument is omitted, it defaults to the value
+     "sync".
+
+     If SYSTEM is called with one or more output arguments, or if the
+     optional argument RETURN_OUTPUT is true and the subprocess is
+     started synchronously, then the output from the command is
+     returned as a variable.  Otherwise, if the subprocess is executed
+     synchronously, its output is sent to the standard output.  To send
+     the output of a command executed with `system' through the pager,
+     use a command like
+
+          [output, text] = system ("cmd");
+          disp (text);
+
+     or
+
+          printf ("%s\n", nthargout (2, "system", "cmd"));
+
+     The `system' function can return two values.  The first is the
+     exit status of the command and the second is any output from the
+     command that was written to the standard output stream.  For
+     example,
+
+          [status, output] = system ("echo foo; exit 2");
+
+     will set the variable `output' to the string `foo', and the
+     variable `status' to the integer `2'.
+
+     For commands run asynchronously, STATUS is the process id of the
+     command shell that is started to run the command.
+
+     *See also:* *note unix: doc-unix, *note dos: doc-dos.
+
+ -- Function File:  unix ("COMMAND")
+ -- Function File: STATUS = unix ("COMMAND")
+ -- Function File: [STATUS, TEXT] = unix ("COMMAND")
+ -- Function File: [...] = unix ("COMMAND", "-echo")
+     Execute a system command if running under a Unix-like operating
+     system, otherwise do nothing.  Return the exit status of the
+     program in STATUS and any output from the command in TEXT.  When
+     called with no output argument, or the "-echo" argument is given,
+     then TEXT is also sent to standard output.
+
+     *See also:* *note dos: doc-dos, *note system: doc-system, *note
+     isunix: doc-isunix, *note ispc: doc-ispc.
+
+ -- Function File:  dos ("COMMAND")
+ -- Function File: STATUS = dos ("COMMAND")
+ -- Function File: [STATUS, TEXT] = dos ("COMMAND")
+ -- Function File: [...] = dos ("COMMAND", "-echo")
+     Execute a system command if running under a Windows-like operating
+     system, otherwise do nothing.  Return the exit status of the
+     program in STATUS and any output from the command in TEXT.  When
+     called with no output argument, or the "-echo" argument is given,
+     then TEXT is also sent to standard output.
+
+     *See also:* *note unix: doc-unix, *note system: doc-system, *note
+     isunix: doc-isunix, *note ispc: doc-ispc.
+
+ -- Function File: OUTPUT = perl (SCRIPTFILE)
+ -- Function File: OUTPUT = perl (SCRIPTFILE, ARGUMENT1, ARGUMENT2, ...)
+ -- Function File: [OUTPUT, STATUS] = perl (...)
+     Invoke Perl script SCRIPTFILE, possibly with a list of command line
+     arguments.  Return output in OUTPUT and optional status in STATUS.
+     If SCRIPTFILE is not an absolute file name it is is searched for
+     in the current directory and then in the Octave loadpath.
+
+     *See also:* *note system: doc-system, *note python: doc-python.
+
+ -- Function File: OUTPUT = python (SCRIPTFILE)
+ -- Function File: OUTPUT = python (SCRIPTFILE, ARGUMENT1, ARGUMENT2,
+          ...)
+ -- Function File: [OUTPUT, STATUS] = python (...)
+     Invoke Python script SCRIPTFILE, possibly with a list of command
+     line arguments.  Return output in OUTPUT and optional status in
+     STATUS.  If SCRIPTFILE is not an absolute file name it is is
+     searched for in the current directory and then in the Octave
+     loadpath.
+
+     *See also:* *note system: doc-system, *note perl: doc-perl.
+
+ -- Built-in Function: FID = popen (COMMAND, MODE)
+     Start a process and create a pipe.  The name of the command to run
+     is given by COMMAND.  The file identifier corresponding to the
+     input or output stream of the process is returned in FID.  The
+     argument MODE may be
+
+    `"r"'
+          The pipe will be connected to the standard output of the
+          process, and open for reading.
+
+    `"w"'
+          The pipe will be connected to the standard input of the
+          process, and open for writing.
+
+     For example:
+
+          fid = popen ("ls -ltr / | tail -3", "r");
+          while (ischar (s = fgets (fid)))
+            fputs (stdout, s);
+          endwhile
+
+             -| drwxr-xr-x  33 root  root  3072 Feb 15 13:28 etc
+             -| drwxr-xr-x   3 root  root  1024 Feb 15 13:28 lib
+             -| drwxrwxrwt  15 root  root  2048 Feb 17 14:53 tmp
+
+ -- Built-in Function:  pclose (FID)
+     Close a file identifier that was opened by `popen'.  You may also
+     use `fclose' for the same purpose.
+
+ -- Built-in Function: [IN, OUT, PID] = popen2 (COMMAND, ARGS)
+     Start a subprocess with two-way communication.  The name of the
+     process is given by COMMAND, and ARGS is an array of strings
+     containing options for the command.  The file identifiers for the
+     input and output streams of the subprocess are returned in IN and
+     OUT.  If execution of the command is successful, PID contains the
+     process ID of the subprocess.  Otherwise, PID is -1.
+
+     For example:
+
+          [in, out, pid] = popen2 ("sort", "-r");
+          fputs (in, "these\nare\nsome\nstrings\n");
+          fclose (in);
+          EAGAIN = errno ("EAGAIN");
+          done = false;
+          do
+            s = fgets (out);
+            if (ischar (s))
+              fputs (stdout, s);
+            elseif (errno () == EAGAIN)
+              sleep (0.1);
+              fclear (out);
+            else
+              done = true;
+            endif
+          until (done)
+          fclose (out);
+          waitpid (pid);
+
+             -| these
+             -| strings
+             -| some
+             -| are
+
+     Note that `popen2', unlike `popen', will not "reap" the child
+     process.  If you don't use `waitpid' to check the child's exit
+     status, it will linger until Octave exits.
+
+ -- Built-in Function: VAL = EXEC_PATH ()
+ -- Built-in Function: OLD_VAL = EXEC_PATH (NEW_VAL)
+ -- Built-in Function:  EXEC_PATH (NEW_VAL, "local")
+     Query or set the internal variable that specifies a colon separated
+     list of directories to append to the shell PATH when executing
+     external programs.  The initial value of is taken from the
+     environment variable `OCTAVE_EXEC_PATH', but that value can be
+     overridden by the command line argument `--exec-path PATH'.
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+   In most cases, the following functions simply decode their arguments
+and make the corresponding Unix system calls.  For a complete example
+of how they can be used, look at the definition of the function
+`popen2'.
+
+ -- Built-in Function: [PID, MSG] = fork ()
+     Create a copy of the current process.
+
+     Fork can return one of the following values:
+
+    > 0
+          You are in the parent process.  The value returned from
+          `fork' is the process id of the child process.  You should
+          probably arrange to wait for any child processes to exit.
+
+    0
+          You are in the child process.  You can call `exec' to start
+          another process.  If that fails, you should probably call
+          `exit'.
+
+    < 0
+          The call to `fork' failed for some reason.  You must take
+          evasive action.  A system dependent error message will be
+          waiting in MSG.
+
+ -- Built-in Function: [ERR, MSG] = exec (FILE, ARGS)
+     Replace current process with a new process.  Calling `exec' without
+     first calling `fork' will terminate your current Octave process and
+     replace it with the program named by FILE.  For example,
+
+          exec ("ls" "-l")
+
+     will run `ls' and return you to your shell prompt.
+
+     If successful, `exec' does not return.  If `exec' does return, ERR
+     will be nonzero, and MSG will contain a system-dependent error
+     message.
+
+ -- Built-in Function: [READ_FD, WRITE_FD, ERR, MSG] = pipe ()
+     Create a pipe and return the reading and writing ends of the pipe
+     into READ_FD and WRITE_FD respectively.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ -- Built-in Function: [FID, MSG] = dup2 (OLD, NEW)
+     Duplicate a file descriptor.
+
+     If successful, FID is greater than zero and contains the new file
+     ID.  Otherwise, FID is negative and MSG contains a
+     system-dependent error message.
+
+ -- Built-in Function: [PID, STATUS, MSG] = waitpid (PID, OPTIONS)
+     Wait for process PID to terminate.  The PID argument can be:
+
+    -1
+          Wait for any child process.
+
+    0
+          Wait for any child process whose process group ID is equal to
+          that of the Octave interpreter process.
+
+    > 0
+          Wait for termination of the child process with ID PID.
+
+     The OPTIONS argument can be a bitwise OR of zero or more of the
+     following constants:
+
+    `0'
+          Wait until signal is received or a child process exits (this
+          is the default if the OPTIONS argument is missing).
+
+    `WNOHANG'
+          Do not hang if status is not immediately available.
+
+    `WUNTRACED'
+          Report the status of any child processes that are stopped,
+          and whose status has not yet been reported since they stopped.
+
+    `WCONTINUE'
+          Return if a stopped child has been resumed by delivery of
+          `SIGCONT'.  This value may not be meaningful on all systems.
+
+     If the returned value of PID is greater than 0, it is the process
+     ID of the child process that exited.  If an error occurs, PID will
+     be less than zero and MSG will contain a system-dependent error
+     message.  The value of STATUS contains additional system-dependent
+     information about the subprocess that exited.
+
+     *See also:* *note WCONTINUE: doc-WCONTINUE, *note WCOREDUMP:
+     doc-WCOREDUMP, *note WEXITSTATUS: doc-WEXITSTATUS, *note
+     WIFCONTINUED: doc-WIFCONTINUED, *note WIFSIGNALED:
+     doc-WIFSIGNALED, *note WIFSTOPPED: doc-WIFSTOPPED, *note WNOHANG:
+     doc-WNOHANG, *note WSTOPSIG: doc-WSTOPSIG, *note WTERMSIG:
+     doc-WTERMSIG, *note WUNTRACED: doc-WUNTRACED.
+
+ -- Built-in Function:  WCONTINUE ()
+     Return the numerical value of the option argument that may be
+     passed to `waitpid' to indicate that it should also return if a
+     stopped child has been resumed by delivery of a `SIGCONT' signal.
+
+     *See also:* *note waitpid: doc-waitpid, *note WNOHANG:
+     doc-WNOHANG, *note WUNTRACED: doc-WUNTRACED.
+
+ -- Built-in Function:  WCOREDUMP (STATUS)
+     Given STATUS from a call to `waitpid', return true if the child
+     produced a core dump.  This function should only be employed if
+     `WIFSIGNALED' returned true.  The macro used to implement this
+     function is not specified in POSIX.1-2001 and is not available on
+     some Unix implementations (e.g., AIX, SunOS).
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WEXITSTATUS: doc-WEXITSTATUS, *note
+     WIFSIGNALED: doc-WIFSIGNALED, *note WTERMSIG: doc-WTERMSIG, *note
+     WIFSTOPPED: doc-WIFSTOPPED, *note WSTOPSIG: doc-WSTOPSIG, *note
+     WIFCONTINUED: doc-WIFCONTINUED.
+
+ -- Built-in Function:  WEXITSTATUS (STATUS)
+     Given STATUS from a call to `waitpid', return the exit status of
+     the child.  This function should only be employed if `WIFEXITED'
+     returned true.
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WIFSIGNALED: doc-WIFSIGNALED, *note WTERMSIG:
+     doc-WTERMSIG, *note WCOREDUMP: doc-WCOREDUMP, *note WIFSTOPPED:
+     doc-WIFSTOPPED, *note WSTOPSIG: doc-WSTOPSIG, *note WIFCONTINUED:
+     doc-WIFCONTINUED.
+
+ -- Built-in Function:  WIFCONTINUED (STATUS)
+     Given STATUS from a call to `waitpid', return true if the child
+     process was resumed by delivery of `SIGCONT'.
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WEXITSTATUS: doc-WEXITSTATUS, *note
+     WIFSIGNALED: doc-WIFSIGNALED, *note WTERMSIG: doc-WTERMSIG, *note
+     WCOREDUMP: doc-WCOREDUMP, *note WIFSTOPPED: doc-WIFSTOPPED, *note
+     WSTOPSIG: doc-WSTOPSIG.
+
+ -- Built-in Function:  WIFSIGNALED (STATUS)
+     Given STATUS from a call to `waitpid', return true if the child
+     process was terminated by a signal.
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WEXITSTATUS: doc-WEXITSTATUS, *note WTERMSIG:
+     doc-WTERMSIG, *note WCOREDUMP: doc-WCOREDUMP, *note WIFSTOPPED:
+     doc-WIFSTOPPED, *note WSTOPSIG: doc-WSTOPSIG, *note WIFCONTINUED:
+     doc-WIFCONTINUED.
+
+ -- Built-in Function:  WIFSTOPPED (STATUS)
+     Given STATUS from a call to `waitpid', return true if the child
+     process was stopped by delivery of a signal; this is only possible
+     if the call was done using `WUNTRACED' or when the child is being
+     traced (see ptrace(2)).
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WEXITSTATUS: doc-WEXITSTATUS, *note
+     WIFSIGNALED: doc-WIFSIGNALED, *note WTERMSIG: doc-WTERMSIG, *note
+     WCOREDUMP: doc-WCOREDUMP, *note WSTOPSIG: doc-WSTOPSIG, *note
+     WIFCONTINUED: doc-WIFCONTINUED.
+
+ -- Built-in Function:  WIFEXITED (STATUS)
+     Given STATUS from a call to `waitpid', return true if the child
+     terminated normally.
+
+     *See also:* *note waitpid: doc-waitpid, *note WEXITSTATUS:
+     doc-WEXITSTATUS, *note WIFSIGNALED: doc-WIFSIGNALED, *note
+     WTERMSIG: doc-WTERMSIG, *note WCOREDUMP: doc-WCOREDUMP, *note
+     WIFSTOPPED: doc-WIFSTOPPED, *note WSTOPSIG: doc-WSTOPSIG, *note
+     WIFCONTINUED: doc-WIFCONTINUED.
+
+ -- Built-in Function:  WNOHANG ()
+     Return the numerical value of the option argument that may be
+     passed to `waitpid' to indicate that it should return its status
+     immediately instead of waiting for a process to exit.
+
+     *See also:* *note waitpid: doc-waitpid, *note WUNTRACED:
+     doc-WUNTRACED, *note WCONTINUE: doc-WCONTINUE.
+
+ -- Built-in Function:  WSTOPSIG (STATUS)
+     Given STATUS from a call to `waitpid', return the number of the
+     signal which caused the child to stop.  This function should only
+     be employed if `WIFSTOPPED' returned true.
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WEXITSTATUS: doc-WEXITSTATUS, *note
+     WIFSIGNALED: doc-WIFSIGNALED, *note WTERMSIG: doc-WTERMSIG, *note
+     WCOREDUMP: doc-WCOREDUMP, *note WIFSTOPPED: doc-WIFSTOPPED, *note
+     WIFCONTINUED: doc-WIFCONTINUED.
+
+ -- Built-in Function:  WTERMSIG (STATUS)
+     Given STATUS from a call to `waitpid', return the number of the
+     signal that caused the child process to terminate.  This function
+     should only be employed if `WIFSIGNALED' returned true.
+
+     *See also:* *note waitpid: doc-waitpid, *note WIFEXITED:
+     doc-WIFEXITED, *note WEXITSTATUS: doc-WEXITSTATUS, *note
+     WIFSIGNALED: doc-WIFSIGNALED, *note WCOREDUMP: doc-WCOREDUMP,
+     *note WIFSTOPPED: doc-WIFSTOPPED, *note WSTOPSIG: doc-WSTOPSIG,
+     *note WIFCONTINUED: doc-WIFCONTINUED.
+
+ -- Built-in Function:  WUNTRACED ()
+     Return the numerical value of the option argument that may be
+     passed to `waitpid' to indicate that it should also return if the
+     child process has stopped but is not traced via the `ptrace'
+     system call
+
+     *See also:* *note waitpid: doc-waitpid, *note WNOHANG:
+     doc-WNOHANG, *note WCONTINUE: doc-WCONTINUE.
+
+ -- Built-in Function: [ERR, MSG] = fcntl (FID, REQUEST, ARG)
+     Change the properties of the open file FID.  The following values
+     may be passed as REQUEST:
+
+    `F_DUPFD'
+          Return a duplicate file descriptor.
+
+    `F_GETFD'
+          Return the file descriptor flags for FID.
+
+    `F_SETFD'
+          Set the file descriptor flags for FID.
+
+    `F_GETFL'
+          Return the file status flags for FID.  The following codes
+          may be returned (some of the flags may be undefined on some
+          systems).
+
+         `O_RDONLY'
+               Open for reading only.
+
+         `O_WRONLY'
+               Open for writing only.
+
+         `O_RDWR'
+               Open for reading and writing.
+
+         `O_APPEND'
+               Append on each write.
+
+         `O_CREAT'
+               Create the file if it does not exist.
+
+         `O_NONBLOCK'
+               Non-blocking mode.
+
+         `O_SYNC'
+               Wait for writes to complete.
+
+         `O_ASYNC'
+               Asynchronous I/O.
+
+    `F_SETFL'
+          Set the file status flags for FID to the value specified by
+          ARG.  The only flags that can be changed are `O_APPEND' and
+          `O_NONBLOCK'.
+
+     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
+     ERR is nonzero and MSG contains a system-dependent error message.
+
+ -- Built-in Function: [ERR, MSG] = kill (PID, SIG)
+     Send signal SIG to process PID.
+
+     If PID is positive, then signal SIG is sent to PID.
+
+     If PID is 0, then signal SIG is sent to every process in the
+     process group of the current process.
+
+     If PID is -1, then signal SIG is sent to every process except
+     process 1.
+
+     If PID is less than -1, then signal SIG is sent to every process
+     in the process group -PID.
+
+     If SIG is 0, then no signal is sent, but error checking is still
+     performed.
+
+     Return 0 if successful, otherwise return -1.
+
+ -- Built-in Function:  SIG ()
+     Return a structure containing Unix signal names and their defined
+     values.
+
+
 File: octave.info,  Node: Process ID Information,  Next: Environment Variables,  Prev: Controlling Subprocesses,  Up: System Utilities
 
 36.6 Process, Group, and User IDs
@@ -5280,16 +6041,9 @@ D.2 Building the Development Sources
 ====================================
 
 In addition to all the tools (both optional and required) that are
-listed in *note Build Dependencies:: you will need:
-
-Mercurial
-     Distributed version control system
-     (`http://mercurial.selenic.com').  Octave's sources are stored in
-     a Mercurial archive.
-
-Git
-     Distributed version control system (`http://git-scm.com').  The
-     gnulib sources that Octave depends on are stored in a Git archive.
+listed in *note Build Dependencies:: you will need Mercurial, a
+distributed version control system (`http://mercurial.selenic.com').
+Octave's sources are stored in a Mercurial archive.
 
    Once you have the required tools installed, you can build Octave by
 doing
@@ -7062,510 +7816,4 @@ GNU Emacs as of version 19.35.
 Octave distribution to a place where Emacs can find them (this depends
 on how your Emacs was installed).  Byte-compile them for speed if you
 want.
-
-
-File: octave.info,  Node: Using Octave Mode,  Next: Running Octave from Within Emacs,  Prev: Installing EOS,  Up: Emacs Octave Support
-
-H.2 Using Octave Mode
-=====================
-
-If you are lucky, your sysadmins have already arranged everything so
-that Emacs automatically goes into Octave mode whenever you visit an
-Octave code file as characterized by its extension `.m'.  If not,
-proceed as follows.
-
-  1. To begin using Octave mode for all `.m' files you visit, add the
-     following lines to a file loaded by Emacs at startup time,
-     typically your `~/.emacs' file:
-
-          (autoload 'octave-mode "octave-mod" nil t)
-          (setq auto-mode-alist
-                (cons '("\\.m$" . octave-mode) auto-mode-alist))
-
-  2. Finally, to turn on the abbrevs, auto-fill and font-lock features
-     automatically, also add the following lines to one of the Emacs
-     startup files:
-          (add-hook 'octave-mode-hook
-                    (lambda ()
-                      (abbrev-mode 1)
-                      (auto-fill-mode 1)
-                      (if (eq window-system 'x)
-                          (font-lock-mode 1))))
-     See the Emacs manual for more information about how to customize
-     Font-lock mode.
-
-   In Octave mode, the following special Emacs commands can be used in
-addition to the standard Emacs commands.
-
-`C-h m'
-     Describe the features of Octave mode.
-
-`LFD'
-     Reindent the current Octave line, insert a newline and indent the
-     new line (`octave-reindent-then-newline-and-indent').  An abbrev
-     before point is expanded if `abbrev-mode' is non-`nil'.
-
-`TAB'
-     Indents current Octave line based on its contents and on previous
-     lines (`indent-according-to-mode').
-
-`;'
-     Insert an "electric" semicolon (`octave-electric-semi').  If
-     `octave-auto-indent' is non-`nil', reindent the current line.  If
-     `octave-auto-newline' is non-`nil', automagically insert a newline
-     and indent the new line.
-
-``'
-     Start entering an abbreviation (`octave-abbrev-start').  If Abbrev
-     mode is turned on, typing ``C-h' or ``?' lists all abbrevs.  Any
-     other key combination is executed normally.  Note that all Octave
-     abbrevs start with a grave accent.
-
-`M-LFD'
-     Break line at point and insert continuation marker and alignment
-     (`octave-split-line').
-
-`M-TAB'
-     Perform completion on Octave symbol preceding point, comparing that
-     symbol against Octave's reserved words and built-in variables
-     (`octave-complete-symbol').
-
-`M-C-a'
-     Move backward to the beginning of a function
-     (`octave-beginning-of-defun').  With prefix argument N, do it that
-     many times if N is positive; otherwise, move forward to the N-th
-     following beginning of a function.
-
-`M-C-e'
-     Move forward to the end of a function (`octave-end-of-defun').
-     With prefix argument N, do it that many times if N is positive;
-     otherwise, move back to the N-th preceding end of a function.
-
-`M-C-h'
-     Puts point at beginning and mark at the end of the current Octave
-     function, i.e., the one containing point or following point
-     (`octave-mark-defun').
-
-`M-C-q'
-     Properly indents the Octave function which contains point
-     (`octave-indent-defun').
-
-`M-;'
-     If there is no comment already on this line, create a code-level
-     comment (started by two comment characters) if the line is empty,
-     or an in-line comment (started by one comment character) otherwise
-     (`octave-indent-for-comment').  Point is left after the start of
-     the comment which is properly aligned.
-
-`C-c ;'
-     Puts the comment character `#' (more precisely, the string value of
-     `octave-comment-start') at the beginning of every line in the
-     region (`octave-comment-region').  With just `C-u' prefix
-     argument, uncomment each line in the region.  A numeric prefix
-     argument N means use N comment characters.
-
-`C-c :'
-     Uncomments every line in the region (`octave-uncomment-region').
-
-`C-c C-p'
-     Move one line of Octave code backward, skipping empty and comment
-     lines (`octave-previous-code-line').  With numeric prefix argument
-     N, move that many code lines backward (forward if N is negative).
-
-`C-c C-n'
-     Move one line of Octave code forward, skipping empty and comment
-     lines (`octave-next-code-line').  With numeric prefix argument N,
-     move that many code lines forward (backward if N is negative).
-
-`C-c C-a'
-     Move to the `real' beginning of the current line
-     (`octave-beginning-of-line').  If point is in an empty or comment
-     line, simply go to its beginning; otherwise, move backwards to the
-     beginning of the first code line which is not inside a continuation
-     statement, i.e., which does not follow a code line ending in `...'
-     or `\', or is inside an open parenthesis list.
-
-`C-c C-e'
-     Move to the `real' end of the current line (`octave-end-of-line').
-     If point is in a code line, move forward to the end of the first
-     Octave code line which does not end in `...' or `\' or is inside an
-     open parenthesis list.  Otherwise, simply go to the end of the
-     current line.
-
-`C-c M-C-n'
-     Move forward across one balanced begin-end block of Octave code
-     (`octave-forward-block').  With numeric prefix argument N, move
-     forward across N such blocks (backward if N is negative).
-
-`C-c M-C-p'
-     Move back across one balanced begin-end block of Octave code
-     (`octave-backward-block').  With numeric prefix argument N, move
-     backward across N such blocks (forward if N is negative).
-
-`C-c M-C-d'
-     Move forward down one begin-end block level of Octave code
-     (`octave-down-block').  With numeric prefix argument, do it that
-     many times; a negative argument means move backward, but still go
-     down one level.
-
-`C-c M-C-u'
-     Move backward out of one begin-end block level of Octave code
-     (`octave-backward-up-block').  With numeric prefix argument, do it
-     that many times; a negative argument means move forward, but still
-     to a less deep spot.
-
-`C-c M-C-h'
-     Put point at the beginning of this block, mark at the end
-     (`octave-mark-block').  The block marked is the one that contains
-     point or follows point.
-
-`C-c ]'
-     Close the current block on a separate line (`octave-close-block').
-     An error is signaled if no block to close is found.
-
-`C-c f'
-     Insert a function skeleton, prompting for the function's name,
-     arguments and return values which have to be entered without
-     parentheses (`octave-insert-defun').
-
-`C-c C-h'
-     Search the function, operator and variable indices of all info
-     files with documentation for Octave for entries (`octave-help').
-     If used interactively, the entry is prompted for with completion.
-     If multiple matches are found, one can cycle through them using
-     the standard `,' (`Info-index-next') command of the Info reader.
-
-     The variable `octave-help-files' is a list of files to search
-     through and defaults to `'("octave")'.  If there is also an Octave
-     Local Guide with corresponding info file, say, `octave-LG', you can
-     have `octave-help' search both files by
-          (setq octave-help-files '("octave" "octave-LG"))
-     in one of your Emacs startup files.
-
-
-   A common problem is that the <RET> key does _not_ indent the line to
-where the new text should go after inserting the newline.  This is
-because the standard Emacs convention is that <RET> (aka `C-m') just
-adds a newline, whereas <LFD> (aka `C-j') adds a newline and indents
-it.  This is particularly inconvenient for users with keyboards which
-do not have a special <LFD> key at all; in such cases, it is typically
-more convenient to use <RET> as the <LFD> key (rather than typing
-`C-j').
-
-   You can make <RET> do this by adding
-     (define-key octave-mode-map "\C-m"
-       'octave-reindent-then-newline-and-indent)
-   to one of your Emacs startup files.  Another, more generally
-applicable solution is
-     (defun RET-behaves-as-LFD ()
-       (let ((x (key-binding "\C-j")))
-         (local-set-key "\C-m" x)))
-     (add-hook 'octave-mode-hook 'RET-behaves-as-LFD)
-   (this works for all modes by adding to the startup hooks, without
-having to know the particular binding of <RET> in that mode!).  Similar
-considerations apply for using <M-RET> as <M-LFD>.  As Barry A. Warsaw
-<bwarsaw@cnri.reston.va.us> says in the documentation for his
-`cc-mode', "This is a very common question.  `:-)' If you want this to
-be the default behavior, don't lobby me, lobby RMS!"
-
-   The following variables can be used to customize Octave mode.
-
-`octave-auto-indent'
-     Non-`nil' means auto-indent the current line after a semicolon or
-     space.  Default is `nil'.
-
-`octave-auto-newline'
-     Non-`nil' means auto-insert a newline and indent after semicolons
-     are typed.  The default value is `nil'.
-
-`octave-blink-matching-block'
-     Non-`nil' means show matching begin of block when inserting a
-     space, newline or `;' after an else or end keyword.  Default is
-     `t'.  This is an extremely useful feature for automatically
-     verifying that the keywords match--if they don't, an error message
-     is displayed.
-
-`octave-block-offset'
-     Extra indentation applied to statements in block structures.
-     Default is 2.
-
-`octave-continuation-offset'
-     Extra indentation applied to Octave continuation lines.  Default
-     is 4.
-
-`octave-continuation-string'
-     String used for Octave continuation lines.  Normally `\'.
-
-`octave-mode-startup-message'
-     If `t' (default), a startup message is displayed when Octave mode
-     is called.
-
-
-   If Font Lock mode is enabled, Octave mode will display
-
-   * strings in `font-lock-string-face'
-
-   * comments in `font-lock-comment-face'
-
-   * the Octave reserved words (such as all block keywords) and the text
-     functions (such as `cd' or `who') which are also reserved using
-     `font-lock-keyword-face'
-
-   * the built-in operators (`&&', `==', ...) using
-     `font-lock-reference-face'
-
-   * and the function names in function declarations in
-     `font-lock-function-name-face'.
-
-   There is also rudimentary support for Imenu (currently, function
-names can be indexed).
-
-   You can generate TAGS files for Emacs from Octave `.m' files using
-the shell script `octave-tags' that is installed alongside your copy of
-Octave.
-
-   Customization of Octave mode can be performed by modification of the
-variable `octave-mode-hook'.  If the value of this variable is
-non-`nil', turning on Octave mode calls its value.
-
-   If you discover a problem with Octave mode, you can conveniently
-send a bug report using `C-c C-b' (`octave-submit-bug-report').  This
-automatically sets up a mail buffer with version information already
-added.  You just need to add a description of the problem, including a
-reproducible test case and send the message.
-
-
-File: octave.info,  Node: Running Octave from Within Emacs,  Next: Using the Emacs Info Reader for Octave,  Prev: Using Octave Mode,  Up: Emacs Octave Support
-
-H.3 Running Octave from Within Emacs
-====================================
-
-The package `octave' provides commands for running an inferior Octave
-process in a special Emacs buffer.  Use
-     M-x run-octave
-   to directly start an inferior Octave process.  If Emacs does not know
-about this command, add the line
-     (autoload 'run-octave "octave-inf" nil t)
-   to your `.emacs' file.
-
-   This will start Octave in a special buffer the name of which is
-specified by the variable `inferior-octave-buffer' and defaults to
-`"*Inferior Octave*"'.  From within this buffer, you can interact with
-the inferior Octave process `as usual', i.e., by entering Octave
-commands at the prompt.  The buffer is in Inferior Octave mode, which
-is derived from the standard Comint mode, a major mode for interacting
-with an inferior interpreter.  See the documentation for `comint-mode'
-for more details, and use `C-h b' to find out about available special
-keybindings.
-
-   You can also communicate with an inferior Octave process from within
-files with Octave code (i.e., buffers in Octave mode), using the
-following commands.
-
-`C-c i l'
-     Send the current line to the inferior Octave process
-     (`octave-send-line').  With positive prefix argument N, send that
-     many lines.  If `octave-send-line-auto-forward' is non-`nil', go
-     to the next unsent code line.
-
-`C-c i b'
-     Send the current block to the inferior Octave process
-     (`octave-send-block').
-
-`C-c i f'
-     Send the current function to the inferior Octave process
-     (`octave-send-defun').
-
-`C-c i r'
-     Send the region to the inferior Octave process
-     (`octave-send-region').
-
-`C-c i s'
-     Make sure that `inferior-octave-buffer' is displayed
-     (`octave-show-process-buffer').
-
-`C-c i h'
-     Delete all windows that display the inferior Octave buffer
-     (`octave-hide-process-buffer').
-
-`C-c i k'
-     Kill the inferior Octave process and its buffer
-     (`octave-kill-process').
-
-   The effect of the commands which send code to the Octave process can
-be customized by the following variables.
-
-`octave-send-echo-input'
-     Non-`nil' means echo input sent to the inferior Octave process.
-     Default is `t'.
-
-`octave-send-show-buffer'
-     Non-`nil' means display the buffer running the Octave process after
-     sending a command (but without selecting it).  Default is `t'.
-
-   If you send code and there is no inferior Octave process yet, it
-will be started automatically.
-
-   The startup of the inferior Octave process is highly customizable.
-The variable `inferior-octave-startup-args' can be used for specifying
-command lines arguments to be passed to Octave on startup as a list of
-strings.  For example, to suppress the startup message and use
-`traditional' mode, set this to `'("-q" "--traditional")'.  You can
-also specify a startup file of Octave commands to be loaded on startup;
-note that these commands will not produce any visible output in the
-process buffer.  Which file to use is controlled by the variable
-`inferior-octave-startup-file'.  If this is `nil', the file
-`~/.emacs-octave' is used if it exists.
-
-   And finally, `inferior-octave-mode-hook' is run after starting the
-process and putting its buffer into Inferior Octave mode.  Hence, if you
-like the up and down arrow keys to behave in the interaction buffer as
-in the shell, and you want this buffer to use nice colors, add
-     (add-hook 'inferior-octave-mode-hook
-               (lambda ()
-                 (turn-on-font-lock)
-                 (define-key inferior-octave-mode-map [up]
-                   'comint-previous-input)
-                 (define-key inferior-octave-mode-map [down]
-                   'comint-next-input)))
-   to your `.emacs' file.  You could also swap the roles of `C-a'
-(`beginning-of-line') and `C-c C-a' (`comint-bol') using this hook.
-
-     *Note* that if you set your Octave prompts to something different
-     from the defaults, make sure that `inferior-octave-prompt' matches
-     them.  Otherwise, _nothing_ will work, because Emacs will not know
-     when Octave is waiting for input, or done sending output.
-
-
-File: octave.info,  Node: Using the Emacs Info Reader for Octave,  Prev: Running Octave from Within Emacs,  Up: Emacs Octave Support
-
-H.4 Using the Emacs Info Reader for Octave
-==========================================
-
-You may also use the Emacs Info reader with Octave's `doc' function.
-For this, the package `gnuserv' needs to be installed.
-
-   If `gnuserv' is installed, add the lines
-     (autoload 'octave-help "octave-hlp" nil t)
-     (require 'gnuserv)
-     (gnuserv-start)
-   to your `.emacs' file.
-
-   You can use either `plain' Emacs Info or the function `octave-help'
-as your Octave info reader (for `help -i').  In the former case, use
-`info_program ("info-emacs-info")'.  The latter is perhaps more
-attractive because it allows to look up keys in the indices of
-_several_ info files related to Octave (provided that the Emacs
-variable `octave-help-files' is set correctly).  In this case, use
-`info_program ("info-emacs-octave-help")'.
-
-   If you use Octave from within Emacs, it is best to add these
-settings to your `~/.emacs-octave' startup file (or the file pointed to
-by the Emacs variable `inferior-octave-startup-file').
-
-
-File: octave.info,  Node: Grammar and Parser,  Next: Copying,  Prev: Emacs Octave Support,  Up: Top
-
-Appendix I Grammar and Parser
-*****************************
-
-This appendix will eventually contain a semi-formal description of
-Octave's language.
-
-* Menu:
-
-* Keywords::
-* Parser::
-
-
-File: octave.info,  Node: Keywords,  Next: Parser,  Up: Grammar and Parser
-
-I.1 Keywords
-============
-
-The following identifiers are keywords, and may not be used as variable
-or function names:
-
-`__FILE__'               `__LINE__'               `break'
-`case'                   `catch'                  `classdef'
-`continue'               `do'                     `else'
-`elseif'                 `end'                    `end_try_catch'
-`end_unwind_protect'     `endclassdef'            `endenumeration'
-`endevents'              `endfor'                 `endfunction'
-`endif'                  `endmethods'             `endparfor'
-`endproperties'          `endswitch'              `endwhile'
-`enumeration'            `events'                 `for'
-`function'               `global'                 `if'
-`methods'                `otherwise'              `parfor'
-`persistent'             `properties'             `return'
-`static'                 `switch'                 `try'
-`until'                  `unwind_protect'         `unwind_protect_cleanup'
-`while'                                           
-
-   The function `iskeyword' can be used to quickly check whether an
-identifier is reserved by Octave.
-
- -- Built-in Function:  iskeyword ()
- -- Built-in Function:  iskeyword (NAME)
-     Return true if NAME is an Octave keyword.  If NAME is omitted,
-     return a list of keywords.
-
-     *See also:* *note isvarname: doc-isvarname, *note exist: doc-exist.
-
-
-File: octave.info,  Node: Parser,  Prev: Keywords,  Up: Grammar and Parser
-
-I.2 Parser
-==========
-
-The parser has a number of variables that affect its internal operation.
-These variables are generally documented in the manual alongside the
-code that they affect.  For example, `allow_noninteger_range_as_index'
-is discussed in the section on index expressions.
-
-   In addition, there are three non-specific parser customization
-functions.  `add_input_event_hook' can be used to schedule a user
-function for periodic evaluation.  `remove_input_event_hook' will stop
-a user function from being evaluated periodically.
-
- -- Built-in Function: ID = add_input_event_hook (FCN)
- -- Built-in Function: ID = add_input_event_hook (FCN, DATA)
-     Add the named function or function handle FCN to the list of
-     functions to call periodically when Octave is waiting for input.
-     The function should have the form
-
-          FCN (DATA)
-
-     If DATA is omitted, Octave calls the function without any
-     arguments.
-
-     The returned identifier may be used to remove the function handle
-     from the list of input hook functions.
-
-     *See also:* *note remove_input_event_hook:
-     doc-remove_input_event_hook.
-
- -- Built-in Function:  remove_input_event_hook (NAME)
- -- Built-in Function:  remove_input_event_hook (FCN_ID)
-     Remove the named function or function handle with the given
-     identifier from the list of functions to call periodically when
-     Octave is waiting for input.
-
-     *See also:* *note add_input_event_hook: doc-add_input_event_hook.
-
-   Finally, when the parser cannot identify an input token it calls a
-particular function to handle this.  By default, this is the function
-"unimplemented" which makes suggestions about possible Octave
-substitutes for MATLAB functions.
-
- -- Built-in Function: VAL = missing_function_hook ()
- -- Built-in Function: OLD_VAL = missing_function_hook (NEW_VAL)
- -- Built-in Function:  missing_function_hook (NEW_VAL, "local")
-     Query or set the internal variable that specifies the function to
-     call when an unknown identifier is requested.
-
-     When called from inside a function with the "local" option, the
-     variable is changed locally for the function and any subroutines
-     it calls.  The original variable value is restored when exiting
-     the function.
 

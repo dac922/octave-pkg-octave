@@ -3,23 +3,50 @@ Francesco Potorti for the patch.
 
  -- Rafael Laboissiere <rafael@debian.org>  Tue, 24 Feb 2009 11:40:01 +0100
 
---- a/scripts/plot/__go_draw_axes__.m
-+++ b/scripts/plot/__go_draw_axes__.m
-@@ -689,7 +689,7 @@
- 	     usingclause{data_idx} = sprintf ("record=%d", numel (obj.xdata));
+--- a/scripts/plot/private/__go_draw_axes__.m
++++ b/scripts/plot/private/__go_draw_axes__.m
+@@ -798,7 +798,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
+              usingclause{data_idx} = sprintf ("record=%d", numel (obj.xdata));
  
- 	     if (isfield (obj, "markersize"))
--	       mdat = obj.markersize / 3;
-+	       mdat = obj.markersize / 6;
- 	     endif
+              if (isfield (obj, "markersize"))
+-               mdat = obj.markersize / 3;
++               mdat = obj.markersize / 6;
+              endif
  
               if (isfield (obj, "edgecolor"))
-@@ -1471,7 +1471,7 @@
+@@ -1845,7 +1845,7 @@ function style = do_linestyle_command (obj, linecolor, idx, mono,
+           style {sidx} = strcat (style{sidx}, "points");
+         endif
+         if (isfield (obj, "markersize"))
+-          fprintf (plot_stream, " pointsize %f", obj.markersize / 3);
++          fprintf (plot_stream, " pointsize %f", obj.markersize / 6);
+         endif
+       else
+         facesame = false;
+@@ -1870,7 +1870,7 @@ function style = do_linestyle_command (obj, linecolor, idx, mono,
+           fprintf (plot_stream, " pointtype %s", pt2);
+         endif
+         if (isfield (obj, "markersize"))
+-          fprintf (plot_stream, " pointsize %f", obj.markersize / 3);
++          fprintf (plot_stream, " pointsize %f", obj.markersize / 6);
+         endif
+       endif
      endif
- 
-     if (isfield (obj, "markersize"))
--      fprintf (plot_stream, " pointsize %f", obj.markersize / 3);
-+      fprintf (plot_stream, " pointsize %f", obj.markersize / 6);
-       found_style = true;
+@@ -1888,7 +1888,7 @@ function style = do_linestyle_command (obj, linecolor, idx, mono,
+             fprintf (plot_stream, " pointtype %s", pt);
+           endif
+           if (isfield (obj, "markersize"))
+-            fprintf (plot_stream, " pointsize %f", obj.markersize / 3);
++            fprintf (plot_stream, " pointsize %f", obj.markersize / 6);
+           endif
+         endif
+       else
+@@ -1918,7 +1918,7 @@ function style = do_linestyle_command (obj, linecolor, idx, mono,
+           fprintf (plot_stream, " pointtype %s", pt);
+         endif
+         if (isfield (obj, "markersize"))
+-          fprintf (plot_stream, " pointsize %f", obj.markersize / 3);
++          fprintf (plot_stream, " pointsize %f", obj.markersize / 6);
+         endif
+       endif
      endif
-   else

@@ -6,7 +6,7 @@ Description: Use libgl2ps-dev as packaged in Debian
  one will do for now.
 Forwarded: not-needed
 Author: Thomas Weber <tweber@debian.org>
---- a/src/gl2ps.c
+--- a/libinterp/interp-core/gl2ps.c
 +++ /dev/null
 @@ -1,6078 +0,0 @@
 -/*
@@ -6087,7 +6087,7 @@ Author: Thomas Weber <tweber@debian.org>
 -  else
 -    return "Unknown format";
 -}
---- a/src/gl2ps.h
+--- a/libinterp/interp-core/gl2ps.h
 +++ /dev/null
 @@ -1,200 +0,0 @@
 -/*
@@ -6290,9 +6290,9 @@ Author: Thomas Weber <tweber@debian.org>
 -#endif
 -
 -#endif /* __GL2PS_H__ */
---- a/src/xgl2ps.c
-+++ b/src/xgl2ps.c
-@@ -29,6 +29,6 @@
+--- a/libinterp/interp-core/xgl2ps.c
++++ b/libinterp/interp-core/xgl2ps.c
+@@ -31,6 +31,6 @@
  
  #if defined (HAVE_OPENGL)
  
@@ -6300,8 +6300,8 @@ Author: Thomas Weber <tweber@debian.org>
 +#include <gl2ps.c>
  
  #endif
---- a/src/gl2ps-renderer.cc
-+++ b/src/gl2ps-renderer.cc
+--- a/libinterp/interp-core/gl2ps-renderer.cc
++++ b/libinterp/interp-core/gl2ps-renderer.cc
 @@ -32,7 +32,7 @@
  #include "oct-locbuf.h"
  
@@ -6311,8 +6311,8 @@ Author: Thomas Weber <tweber@debian.org>
  
  void
  glps_renderer::draw (const graphics_object& go)
---- a/src/gl2ps-renderer.h
-+++ b/src/gl2ps-renderer.h
+--- a/libinterp/interp-core/gl2ps-renderer.h
++++ b/libinterp/interp-core/gl2ps-renderer.h
 @@ -24,7 +24,7 @@
  #define gl2ps_renderer_h 1
  
@@ -6322,35 +6322,36 @@ Author: Thomas Weber <tweber@debian.org>
  
  class
  OCTINTERP_API
---- a/src/Makefile.am
-+++ b/src/Makefile.am
-@@ -103,7 +103,6 @@
-   find-defun-files.sh \
-   gendoc.pl \
-   genprops.awk \
--  gl2ps.c \
-   graphics.h.in \
-   mk-errno-list \
-   mk-pkg-add \
-@@ -249,7 +248,6 @@
-   error.h \
-   file-io.h \
-   gl-render.h \
--  gl2ps.h \
-   gl2ps-renderer.h \
-   graphics-props.cc \
-   gripes.h \
-@@ -469,7 +467,6 @@
-   utils.cc \
-   variables.cc \
-   xdiv.cc \
--  xgl2ps.c \
-   xnorm.cc \
-   xpow.cc \
-   zfstream.cc \
+--- a/libinterp/interp-core/module.mk
++++ b/libinterp/interp-core/module.mk
+@@ -1,6 +1,5 @@
+ EXTRA_DIST += \
+   interp-core/module.mk \
+-  interp-core/gl2ps.c \
+   interp-core/mxarray.in.h \
+   interp-core/oct-errno.in.cc
+ 
+@@ -23,7 +22,6 @@
+   interp-core/event-queue.h \
+   interp-core/gl-render.h \
+   interp-core/gl2ps-renderer.h \
+-  interp-core/gl2ps.h \
+   interp-core/gripes.h \
+   interp-core/ls-ascii-helper.h \
+   interp-core/ls-hdf5.h \
+@@ -70,8 +69,7 @@
+ C_INTERP_CORE_SRC = \
+   interp-core/cutils.c \
+   interp-core/matherr.c \
+-  interp-core/siglist.c \
++  interp-core/siglist.c
+-  interp-core/xgl2ps.c
+ 
+ INTERP_CORE_SRC = \
+   interp-core/Cell.cc \
 --- a/configure.ac
 +++ b/configure.ac
-@@ -953,6 +953,16 @@
+@@ -1148,6 +1148,16 @@
  AC_SUBST(GRAPHICS_CFLAGS)
  AC_SUBST(GRAPHICS_LIBS)
  
@@ -6364,9 +6365,9 @@ Author: Thomas Weber <tweber@debian.org>
 +AC_SUBST(GL2PS_LIBS)
 +
 +
- # ----------------------------------------------------------------------
+ ### Start determination of shared vs. static libraries
  
- OCTAVE_PROG_AR
+ ## Use -static if compiling on Alpha OSF/1 1.3 systems.
 --- /dev/null
 +++ b/m4/ax_check_library.m4
 @@ -0,0 +1,95 @@
@@ -6465,23 +6466,24 @@ Author: Thomas Weber <tweber@debian.org>
 +      m4_ifnblank([$4], [$4]),
 +    m4_ifnblank([$5], [$5]))
 +])
---- a/src/link-deps.mk
-+++ b/src/link-deps.mk
-@@ -13,14 +13,16 @@
-   $(Z_LIBS) \
-   $(OPENGL_LIBS) \
-   $(X11_LIBS) \
--  $(CARBON_LIBS)
-+  $(CARBON_LIBS) \
+--- a/libinterp/link-deps.mk
++++ b/libinterp/link-deps.mk
+@@ -17,7 +17,8 @@
+   $(CARBON_LIBS) \
+   $(LLVM_LIBS) \
+   $(JAVA_LIBS) \
+-  $(LAPACK_LIBS)
++  $(LAPACK_LIBS) \
 +  $(GL2PS_LIBS)
  
  LIBOCTINTERP_LINK_OPTS = \
-   $(GRAPHICS_LDFLAGS) \
    $(FT2_LDFLAGS) \
-   $(HDF5_LDFLAGS) \
+@@ -25,7 +26,8 @@
    $(Z_LDFLAGS) \
--  $(REGEX_LDFLAGS)
-+  $(REGEX_LDFLAGS) \
+   $(REGEX_LDFLAGS) \
+   $(FFTW_XLDFLAGS) \
+-  $(LLVM_LDFLAGS)
++  $(LLVM_LDFLAGS) \
 +  $(GL2PS_LDFLAGS)
  
  OCT_LINK_DEPS =

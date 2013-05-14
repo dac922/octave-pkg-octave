@@ -1,9 +1,9 @@
 Description: Call the octave binaries by their name without version
 Forwarded: not-needed
 Author: Thomas Weber <tweber@debian.org>
---- a/scripts/pkg/pkg.m
-+++ b/scripts/pkg/pkg.m
-@@ -1341,10 +1341,9 @@
+--- a/scripts/pkg/private/configure_make.m
++++ b/scripts/pkg/private/configure_make.m
+@@ -27,10 +27,9 @@ function configure_make (desc, packdir, verbose)
    if (exist (fullfile (packdir, "src"), "dir"))
      src = fullfile (packdir, "src");
      octave_bindir = octave_config_info ("bindir");

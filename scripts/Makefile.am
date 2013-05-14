@@ -1,4 +1,4 @@
-# Makefile for octave's scripts directory
+# Makefile for Octave's scripts directory
 #
 # Copyright (C) 1993-2012 John W. Eaton
 #
@@ -24,6 +24,10 @@ AUTOMAKE_OPTIONS = subdir-objects
 
 EXTRA_DIST =
 
+CLEANFILES =
+
+DISTCLEANFILES =
+
 FCN_FILE_DIRS =
 
 FCN_FILES =
@@ -36,6 +40,8 @@ DIRSTAMP_FILES =
 
 IMAGES =
 
+JAR_FILES =
+
 ## Read subdirs to set all variables above
 include @ftp/module.mk
 include audio/module.mk
@@ -46,6 +52,7 @@ include geometry/module.mk
 include help/module.mk
 include image/module.mk
 include io/module.mk
+include java/module.mk
 include linear-algebra/module.mk
 include miscellaneous/module.mk
 include optimization/module.mk
@@ -67,17 +74,18 @@ include statistics/tests/module.mk
 include strings/module.mk
 include testfun/module.mk
 include time/module.mk
+include ui/module.mk
 
-nobase_fcnfile_DATA = $(FCN_FILES) $(GEN_FCN_FILES)
+nobase_fcnfile_DATA = $(FCN_FILES) $(GEN_FCN_FILES) $(JAR_FILES)
 
 image_DATA = $(IMAGES)
 
 FCN_FILES_IN = $(GEN_FCN_FILES:.m=.in)
 
 if AMCOND_BUILD_DOCS
-all-local: $(GEN_FCN_FILES) $(PKG_ADD_FILES) .DOCSTRINGS
+all-local: $(GEN_FCN_FILES) $(PKG_ADD_FILES) $(JAR_FILES) .DOCSTRINGS
 else
-all-local: $(GEN_FCN_FILES) $(PKG_ADD_FILES)
+all-local: $(GEN_FCN_FILES) $(PKG_ADD_FILES) $(JAR_FILES)
 endif
 
 octave_dirstamp = $(am__leading_dot)dirstamp
@@ -116,6 +124,10 @@ image/PKG_ADD: $(image_FCN_FILES) $(image_GEN_FCN_FILES) image/$(octave_dirstamp
 
 io/PKG_ADD: $(io_FCN_FILES) $(io_GEN_FCN_FILES) io/$(octave_dirstamp) mk-pkg-add
 	$(srcdir)/mk-pkg-add $(srcdir) $(io_FCN_FILES) -- $(io_GEN_FCN_FILES) > $@-t
+	mv $@-t $@
+
+java/PKG_ADD: $(java_FCN_FILES) $(java_GEN_FCN_FILES) java/$(octave_dirstamp) mk-pkg-add
+	$(srcdir)/mk-pkg-add $(srcdir) $(java_FCN_FILES) -- $(java_GEN_FCN_FILES) > $@-t
 	mv $@-t $@
 
 linear-algebra/PKG_ADD: $(linear_algebra_FCN_FILES) $(linear_algebra_GEN_FCN_FILES) linear-algebra/$(octave_dirstamp) mk-pkg-add
@@ -202,6 +214,10 @@ time/PKG_ADD: $(time_FCN_FILES) $(time_GEN_FCN_FILES) time/$(octave_dirstamp) mk
 	$(srcdir)/mk-pkg-add $(srcdir) $(time_FCN_FILES) -- $(time_GEN_FCN_FILES) > $@-t
 	mv $@-t $@
 
+ui/PKG_ADD: $(ui_FCN_FILES) $(ui_GEN_FCN_FILES) ui/$(octave_dirstamp) mk-pkg-add
+	$(srcdir)/mk-pkg-add $(srcdir) $(ui_FCN_FILES) -- $(ui_GEN_FCN_FILES) > $@-t
+	mv $@-t $@
+
 $(@ftp_GEN_FCN_FILES): @ftp/$(octave_dirstamp)
 $(audio_GEN_FCN_FILES): audio/$(octave_dirstamp)
 $(deprecated_GEN_FCN_FILES): deprecated/$(octave_dirstamp)
@@ -211,6 +227,7 @@ $(geometry_GEN_FCN_FILES): geometry/$(octave_dirstamp)
 $(help_GEN_FCN_FILES): help/$(octave_dirstamp)
 $(image_GEN_FCN_FILES): image/$(octave_dirstamp)
 $(io_GEN_FCN_FILES): io/$(octave_dirstamp)
+$(java_GEN_FCN_FILES): java/$(octave_dirstamp)
 $(linear_algebra_GEN_FCN_FILES): linear-algebra/$(octave_dirstamp)
 $(miscellaneous_GEN_FCN_FILES): miscellaneous/$(octave_dirstamp)
 $(optimization_GEN_FCN_FILES): optimization/$(octave_dirstamp)
@@ -232,6 +249,7 @@ $(statistics_tests_GEN_FCN_FILES): statistics/tests/$(octave_dirstamp)
 $(strings_GEN_FCN_FILES): strings/$(octave_dirstamp)
 $(testfun_GEN_FCN_FILES): testfun/$(octave_dirstamp)
 $(time_GEN_FCN_FILES): time/$(octave_dirstamp)
+$(ui_GEN_FCN_FILES): ui/$(octave_dirstamp)
 
 @ftp/$(octave_dirstamp):
 	$(MKDIR_P) @ftp
@@ -260,6 +278,9 @@ image/$(octave_dirstamp):
 io/$(octave_dirstamp):
 	$(MKDIR_P) io
 	: > io/$(octave_dirstamp)
+java/$(octave_dirstamp):
+	$(MKDIR_P) java
+	: > java/$(octave_dirstamp)
 linear-algebra/$(octave_dirstamp):
 	$(MKDIR_P) linear-algebra
 	: > linear-algebra/$(octave_dirstamp)
@@ -323,6 +344,9 @@ testfun/$(octave_dirstamp):
 time/$(octave_dirstamp):
 	$(MKDIR_P) time
 	: > time/$(octave_dirstamp)
+ui/$(octave_dirstamp):
+	$(MKDIR_P) ui
+	: > ui/$(octave_dirstamp)
 
 if AMCOND_BUILD_DOCS
 
@@ -371,6 +395,12 @@ check-missing-semicolon:
 	  done ) | ../run-octave -qf
 .PHONY: check-missing-semicolon
 
+## Add rule to generate ctags.
+## Automake would normally generate such a rule, but only if there is a
+## xxx_SOURCES target
+ctags:
+	ctags $(addprefix $(srcdir)/, $(FCN_FILES)) $(GEN_FCN_FILES)
+
 install-data-local: install-startup-files install-pkg-add
 
 uninstall-local: uninstall-startup-files uninstall-pkg-add
@@ -417,6 +447,12 @@ uninstall-pkg-add:
 	done
 .PHONY: uninstall-pkg-add
 
+if AMCOND_HAVE_JAVA
+else
+dist-hook:
+	@echo "Packaging distribution requires Java." ; exit 1;
+endif
+
 EXTRA_DIST += \
   $(IMAGES) \
   $(FCN_FILES) \
@@ -426,10 +462,14 @@ EXTRA_DIST += \
   mkdoc.pl \
   mk-pkg-add
 
-DISTCLEANFILES = \
+DISTCLEANFILES += \
   .DOCSTRINGS \
   DOCSTRINGS \
   $(PKG_ADD_FILES) \
   $(DIRSTAMP_FILES) \
   $(GEN_FCN_FILES)
 
+distclean-local:
+	if [ "x$(srcdir)" != "x." ]; then \
+	  rm $(java_JAVA_IMAGES); \
+	fi

@@ -37,12 +37,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Debugging.html#Debugging">Debugging</a>
 <p>Breakpoints can be set in any Octave function, using the <code>dbstop</code>
 function.
 
-<!-- dbstop src/debug.cc -->
+<!-- dbstop libinterp/interpfcn/debug.cc -->
    <p><a name="doc_002ddbstop"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>rline</var> = <b>dbstop</b> (<var>"func"</var>)<var><a name="index-dbstop-841"></a></var><br>
-&mdash; Loadable Function: <var>rline</var> = <b>dbstop</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbstop-842"></a></var><br>
+&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func"</var>)<var><a name="index-dbstop-877"></a></var><br>
+&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbstop-878"></a></var><br>
 <blockquote><p>Set a breakpoint in function <var>func</var>.
 
         <p>Arguments are
@@ -62,10 +62,7 @@ is set at the first executable line in the named function.
 breakpoint was set.  This can differ from specified line if
 the line is not executable.  For example, if a breakpoint attempted on a
 blank line then Octave will set the real breakpoint at the
-next executable line. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+next executable line.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbclear.html#doc_002ddbclear">dbclear</a>, <a href="doc_002ddbstatus.html#doc_002ddbstatus">dbstatus</a>, <a href="doc_002ddbstep.html#doc_002ddbstep">dbstep</a>, <a href="doc_002ddebug_005fon_005ferror.html#doc_002ddebug_005fon_005ferror">debug_on_error</a>, <a href="doc_002ddebug_005fon_005fwarning.html#doc_002ddebug_005fon_005fwarning">debug_on_warning</a>, <a href="doc_002ddebug_005fon_005finterrupt.html#doc_002ddebug_005fon_005finterrupt">debug_on_interrupt</a>. 
 </p></blockquote></div>
@@ -84,13 +81,13 @@ function.  For example:
 effectively set to line 27.  The status of breakpoints in a function can
 be queried with the <code>dbstatus</code> function.
 
-<!-- dbstatus src/debug.cc -->
+<!-- dbstatus libinterp/interpfcn/debug.cc -->
    <p><a name="doc_002ddbstatus"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dbstatus</b> ()<var><a name="index-dbstatus-843"></a></var><br>
-&mdash; Loadable Function: <var>brk_list</var> = <b>dbstatus</b> ()<var><a name="index-dbstatus-844"></a></var><br>
-&mdash; Loadable Function: <var>brk_list</var> = <b>dbstatus</b> (<var>"func"</var>)<var><a name="index-dbstatus-845"></a></var><br>
+&mdash; Built-in Function:  <b>dbstatus</b> ()<var><a name="index-dbstatus-879"></a></var><br>
+&mdash; Built-in Function: <var>brk_list</var> = <b>dbstatus</b> ()<var><a name="index-dbstatus-880"></a></var><br>
+&mdash; Built-in Function: <var>brk_list</var> = <b>dbstatus</b> (<var>"func"</var>)<var><a name="index-dbstatus-881"></a></var><br>
 <blockquote><p>Report the location of active breakpoints.
 
         <p>When called with no input or output arguments, print the list of
@@ -110,21 +107,18 @@ following fields.
           <br><dt>line<dd>A line number, or vector of line numbers, with a breakpoint. 
 </dl>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbclear.html#doc_002ddbclear">dbclear</a>, <a href="doc_002ddbwhere.html#doc_002ddbwhere">dbwhere</a>. 
 </p></blockquote></div>
 
 <p class="noindent">Taking the above as an example, <code>dbstatus ("asind")</code> should return
 28.  The breakpoints can then be cleared with the <code>dbclear</code> function
 
-<!-- dbclear src/debug.cc -->
+<!-- dbclear libinterp/interpfcn/debug.cc -->
    <p><a name="doc_002ddbclear"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dbclear</b> (<var>"func"</var>)<var><a name="index-dbclear-846"></a></var><br>
-&mdash; Loadable Function:  <b>dbclear</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbclear-847"></a></var><br>
+&mdash; Built-in Function:  <b>dbclear</b> (<var>"func"</var>)<var><a name="index-dbclear-882"></a></var><br>
+&mdash; Built-in Function:  <b>dbclear</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbclear-883"></a></var><br>
 <blockquote><p>Delete a breakpoint in the function <var>func</var>.
 
         <p>Arguments are
@@ -140,10 +134,7 @@ lines may be given as separate arguments or as a vector.
         <p>When called without a line number specification all breakpoints
 in the named function are cleared.
 
-        <p>If the requested line is not a breakpoint no action is performed. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If the requested line is not a breakpoint no action is performed.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbstop.html#doc_002ddbstop">dbstop</a>, <a href="doc_002ddbstatus.html#doc_002ddbstatus">dbstatus</a>, <a href="doc_002ddbwhere.html#doc_002ddbwhere">dbwhere</a>. 
 </p></blockquote></div>
@@ -175,12 +166,12 @@ subfunctions from the file containing them.
    <p>Another simple way of setting a breakpoint in an Octave script is the
 use of the <code>keyboard</code> function.
 
-<!-- keyboard src/input.cc -->
+<!-- keyboard libinterp/interpfcn/input.cc -->
    <p><a name="doc_002dkeyboard"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>keyboard</b> ()<var><a name="index-keyboard-848"></a></var><br>
-&mdash; Built-in Function:  <b>keyboard</b> (<var>prompt</var>)<var><a name="index-keyboard-849"></a></var><br>
+&mdash; Built-in Function:  <b>keyboard</b> ()<var><a name="index-keyboard-884"></a></var><br>
+&mdash; Built-in Function:  <b>keyboard</b> (<var>"prompt"</var>)<var><a name="index-keyboard-885"></a></var><br>
 <blockquote><p>This function is normally used for simple debugging.  When the
 <code>keyboard</code> function is executed, Octave prints a prompt and waits
 for user input.  The input strings are then evaluated and the results
@@ -190,10 +181,7 @@ prompt and return to normal execution type &lsquo;<samp><span class="samp">retur
 The <code>keyboard</code> function does not return an exit status.
 
         <p>If <code>keyboard</code> is invoked without arguments, a default prompt of
-&lsquo;<samp><span class="samp">debug&gt; </span></samp>&rsquo; is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&lsquo;<samp><span class="samp">debug&gt; </span></samp>&rsquo; is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbcont.html#doc_002ddbcont">dbcont</a>, <a href="doc_002ddbquit.html#doc_002ddbquit">dbquit</a>. 
 </p></blockquote></div>

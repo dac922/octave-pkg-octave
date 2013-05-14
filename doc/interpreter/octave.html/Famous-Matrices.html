@@ -34,11 +34,385 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Matrix-Manipulation.html#Matrix-Manipul
 
 <p>The following functions return famous matrix forms.
 
+<!-- gallery scripts/special-matrix/gallery.m -->
+   <p><a name="doc_002dgallery"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>gallery</b> (<var>name</var>)<var><a name="index-gallery-1842"></a></var><br>
+&mdash; Function File:  <b>gallery</b> (<var>name, args</var>)<var><a name="index-gallery-1843"></a></var><br>
+<blockquote><p>Create interesting matrices for testing.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"cauchy", x</var>)<var><a name="index-gallery-1844"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"cauchy", x, y</var>)<var><a name="index-gallery-1845"></a></var><br>
+<blockquote><p>Create a Cauchy matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"chebspec", n</var>)<var><a name="index-gallery-1846"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"chebspec", n, k</var>)<var><a name="index-gallery-1847"></a></var><br>
+<blockquote><p>Create a Chebyshev spectral differentiation matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"chebvand", p</var>)<var><a name="index-gallery-1848"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"chebvand", m, p</var>)<var><a name="index-gallery-1849"></a></var><br>
+<blockquote><p>Create a Vandermonde-like matrix for the Chebyshev polynomials.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"chow", n</var>)<var><a name="index-gallery-1850"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"chow", n, alpha</var>)<var><a name="index-gallery-1851"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"chow", n, alpha, delta</var>)<var><a name="index-gallery-1852"></a></var><br>
+<blockquote><p>Create a Chow matrix &ndash; a singular Toeplitz lower Hessenberg matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"circul", v</var>)<var><a name="index-gallery-1853"></a></var><br>
+<blockquote><p>Create a circulant matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"clement", n</var>)<var><a name="index-gallery-1854"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"clement", n, k</var>)<var><a name="index-gallery-1855"></a></var><br>
+<blockquote><p>Create a tridiagonal matrix with zero diagonal entries.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"compar", a</var>)<var><a name="index-gallery-1856"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"compar", a, k</var>)<var><a name="index-gallery-1857"></a></var><br>
+<blockquote><p>Create a comparison matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"condex", n</var>)<var><a name="index-gallery-1858"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"condex", n, k</var>)<var><a name="index-gallery-1859"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"condex", n, k, theta</var>)<var><a name="index-gallery-1860"></a></var><br>
+<blockquote><p>Create a `counterexample' matrix to a condition estimator.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"cycol", </var>[<var>m n</var>])<var><a name="index-gallery-1861"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"cycol", n</var>)<var><a name="index-gallery-1862"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var><small class="dots">...</small>, k</var>)<var><a name="index-gallery-1863"></a></var><br>
+<blockquote><p>Create a matrix whose columns repeat cyclically.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: [<var>c</var>,<var>d</var>, <var>e</var>] = <b>gallery</b> (<var>"dorr", n</var>)<var><a name="index-gallery-1864"></a></var><br>
+&mdash; Function File: [<var>c</var>,<var>d</var>, <var>e</var>] = <b>gallery</b> (<var>"dorr", n, theta</var>)<var><a name="index-gallery-1865"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"dorr", <small class="dots">...</small></var>)<var><a name="index-gallery-1866"></a></var><br>
+<blockquote><p>Create a diagonally dominant, ill conditioned, tridiagonal matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"dramadah", n</var>)<var><a name="index-gallery-1867"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"dramadah", n, k</var>)<var><a name="index-gallery-1868"></a></var><br>
+<blockquote><p>Create a (0, 1) matrix whose inverse has large integer entries.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"fiedler", c</var>)<var><a name="index-gallery-1869"></a></var><br>
+<blockquote><p>Create a symmetric Fiedler matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"forsythe", n</var>)<var><a name="index-gallery-1870"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"forsythe", n, alpha</var>)<var><a name="index-gallery-1871"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"forsythe", n, alpha, lambda</var>)<var><a name="index-gallery-1872"></a></var><br>
+<blockquote><p>Create a Forsythe matrix (a perturbed Jordan block).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>f</var> = <b>gallery</b> (<var>"frank", n</var>)<var><a name="index-gallery-1873"></a></var><br>
+&mdash; Function File: <var>f</var> = <b>gallery</b> (<var>"frank", n, k</var>)<var><a name="index-gallery-1874"></a></var><br>
+<blockquote><p>Create a Frank matrix (ill conditioned eigenvalues).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>c</var> = <b>gallery</b> (<var>"gcdmat", n</var>)<var><a name="index-gallery-1875"></a></var><br>
+<blockquote><p>Create a greatest common divisor matrix.
+
+        <p><var>c</var> is an <var>n</var>-by-<var>n</var> matrix whose values correspond to the
+greatest common divisor of its coordinate values, i.e., <var>c</var>(i,j)
+correspond <code>gcd (i, j)</code>. 
+</p></blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"gearmat", n</var>)<var><a name="index-gallery-1876"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"gearmat", n, i</var>)<var><a name="index-gallery-1877"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"gearmat", n, i, j</var>)<var><a name="index-gallery-1878"></a></var><br>
+<blockquote><p>Create a Gear matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>g</var> = <b>gallery</b> (<var>"grcar", n</var>)<var><a name="index-gallery-1879"></a></var><br>
+&mdash; Function File: <var>g</var> = <b>gallery</b> (<var>"grcar", n, k</var>)<var><a name="index-gallery-1880"></a></var><br>
+<blockquote><p>Create a Toeplitz matrix with sensitive eigenvalues.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"hanowa", n</var>)<var><a name="index-gallery-1881"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"hanowa", n, d</var>)<var><a name="index-gallery-1882"></a></var><br>
+<blockquote><p>Create a matrix whose eigenvalues lie on a vertical line in the complex plane.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>v</var> = <b>gallery</b> (<var>"house", x</var>)<var><a name="index-gallery-1883"></a></var><br>
+&mdash; Function File: [<var>v</var>, <var>beta</var>] = <b>gallery</b> (<var>"house", x</var>)<var><a name="index-gallery-1884"></a></var><br>
+<blockquote><p>Create a householder matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"invhess", x</var>)<var><a name="index-gallery-1885"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"invhess", x, y</var>)<var><a name="index-gallery-1886"></a></var><br>
+<blockquote><p>Create the inverse of an upper Hessenberg matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"invol", n</var>)<var><a name="index-gallery-1887"></a></var><br>
+<blockquote><p>Create an involutory matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"ipjfact", n</var>)<var><a name="index-gallery-1888"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"ipjfact", n, k</var>)<var><a name="index-gallery-1889"></a></var><br>
+<blockquote><p>Create an Hankel matrix with factorial elements.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"jordbloc", n</var>)<var><a name="index-gallery-1890"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"jordbloc", n, lambda</var>)<var><a name="index-gallery-1891"></a></var><br>
+<blockquote><p>Create a Jordan block.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>u</var> = <b>gallery</b> (<var>"kahan", n</var>)<var><a name="index-gallery-1892"></a></var><br>
+&mdash; Function File: <var>u</var> = <b>gallery</b> (<var>"kahan", n, theta</var>)<var><a name="index-gallery-1893"></a></var><br>
+&mdash; Function File: <var>u</var> = <b>gallery</b> (<var>"kahan", n, theta, pert</var>)<var><a name="index-gallery-1894"></a></var><br>
+<blockquote><p>Create a Kahan matrix (upper trapezoidal).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"kms", n</var>)<var><a name="index-gallery-1895"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"kms", n, rho</var>)<var><a name="index-gallery-1896"></a></var><br>
+<blockquote><p>Create a Kac-Murdock-Szego Toeplitz matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>b</var> = <b>gallery</b> (<var>"krylov", a</var>)<var><a name="index-gallery-1897"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>gallery</b> (<var>"krylov", a, x</var>)<var><a name="index-gallery-1898"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>gallery</b> (<var>"krylov", a, x, j</var>)<var><a name="index-gallery-1899"></a></var><br>
+<blockquote><p>Create a Krylov matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"lauchli", n</var>)<var><a name="index-gallery-1900"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"lauchli", n, mu</var>)<var><a name="index-gallery-1901"></a></var><br>
+<blockquote><p>Create a Lauchli matrix (rectangular).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"lehmer", n</var>)<var><a name="index-gallery-1902"></a></var><br>
+<blockquote><p>Create a Lehmer matrix (symmetric positive definite).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"lesp", n</var>)<var><a name="index-gallery-1903"></a></var><br>
+<blockquote><p>Create a tridiagonal matrix with real, sensitive eigenvalues.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"lotkin", n</var>)<var><a name="index-gallery-1904"></a></var><br>
+<blockquote><p>Create a Lotkin matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"minij", n</var>)<var><a name="index-gallery-1905"></a></var><br>
+<blockquote><p>Create a symmetric positive definite matrix MIN(i,j).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"moler", n</var>)<var><a name="index-gallery-1906"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"moler", n, alpha</var>)<var><a name="index-gallery-1907"></a></var><br>
+<blockquote><p>Create a Moler matrix (symmetric positive definite).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: [<var>a</var>, <var>t</var>] = <b>gallery</b> (<var>"neumann", n</var>)<var><a name="index-gallery-1908"></a></var><br>
+<blockquote><p>Create a singular matrix from the discrete Neumann problem (sparse).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>q</var> = <b>gallery</b> (<var>"orthog", n</var>)<var><a name="index-gallery-1909"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>gallery</b> (<var>"orthog", n, k</var>)<var><a name="index-gallery-1910"></a></var><br>
+<blockquote><p>Create orthogonal and nearly orthogonal matrices.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"parter", n</var>)<var><a name="index-gallery-1911"></a></var><br>
+<blockquote><p>Create a Parter matrix (a Toeplitz matrix with singular values near pi).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"pei", n</var>)<var><a name="index-gallery-1912"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"pei", n, alpha</var>)<var><a name="index-gallery-1913"></a></var><br>
+<blockquote><p>Create a Pei matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"poisson", n</var>)<var><a name="index-gallery-1914"></a></var><br>
+<blockquote><p>Create a block tridiagonal matrix from Poisson's equation (sparse).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"prolate", n</var>)<var><a name="index-gallery-1915"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"prolate", n, w</var>)<var><a name="index-gallery-1916"></a></var><br>
+<blockquote><p>Create a prolate matrix (symmetric, ill-conditioned Toeplitz matrix).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>h</var> = <b>gallery</b> (<var>"randhess", x</var>)<var><a name="index-gallery-1917"></a></var><br>
+<blockquote><p>Create a random, orthogonal upper Hessenberg matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"rando", n</var>)<var><a name="index-gallery-1918"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"rando", n, k</var>)<var><a name="index-gallery-1919"></a></var><br>
+<blockquote><p>Create a random matrix with elements -1, 0 or 1.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"randsvd", n</var>)<var><a name="index-gallery-1920"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"randsvd", n, kappa</var>)<var><a name="index-gallery-1921"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"randsvd", n, kappa, mode</var>)<var><a name="index-gallery-1922"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"randsvd", n, kappa, mode, kl</var>)<var><a name="index-gallery-1923"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"randsvd", n, kappa, mode, kl, ku</var>)<var><a name="index-gallery-1924"></a></var><br>
+<blockquote><p>Create a random matrix with pre-assigned singular values.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"redheff", n</var>)<var><a name="index-gallery-1925"></a></var><br>
+<blockquote><p>Create a zero and ones matrix of Redheffer associated with the Riemann
+hypothesis.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"riemann", n</var>)<var><a name="index-gallery-1926"></a></var><br>
+<blockquote><p>Create a matrix associated with the Riemann hypothesis.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"ris", n</var>)<var><a name="index-gallery-1927"></a></var><br>
+<blockquote><p>Create a symmetric Hankel matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"smoke", n</var>)<var><a name="index-gallery-1928"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"smoke", n, k</var>)<var><a name="index-gallery-1929"></a></var><br>
+<blockquote><p>Create a complex matrix, with a `smoke ring' pseudospectrum.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"toeppd", n</var>)<var><a name="index-gallery-1930"></a></var><br>
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"toeppd", n, m</var>)<var><a name="index-gallery-1931"></a></var><br>
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"toeppd", n, m, w</var>)<var><a name="index-gallery-1932"></a></var><br>
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"toeppd", n, m, w, theta</var>)<var><a name="index-gallery-1933"></a></var><br>
+<blockquote><p>Create a symmetric positive definite Toeplitz matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"toeppen", n</var>)<var><a name="index-gallery-1934"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"toeppen", n, a</var>)<var><a name="index-gallery-1935"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"toeppen", n, a, b</var>)<var><a name="index-gallery-1936"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"toeppen", n, a, b, c</var>)<var><a name="index-gallery-1937"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"toeppen", n, a, b, c, d</var>)<var><a name="index-gallery-1938"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>gallery</b> (<var>"toeppen", n, a, b, c, d, e</var>)<var><a name="index-gallery-1939"></a></var><br>
+<blockquote><p>Create a pentadiagonal Toeplitz matrix (sparse).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"tridiag", x, y, z</var>)<var><a name="index-gallery-1940"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"tridiag", n</var>)<var><a name="index-gallery-1941"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"tridiag", n, c, d, e</var>)<var><a name="index-gallery-1942"></a></var><br>
+<blockquote><p>Create a tridiagonal matrix (sparse).
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"triw", n</var>)<var><a name="index-gallery-1943"></a></var><br>
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"triw", n, alpha</var>)<var><a name="index-gallery-1944"></a></var><br>
+&mdash; Function File: <var>t</var> = <b>gallery</b> (<var>"triw", n, alpha, k</var>)<var><a name="index-gallery-1945"></a></var><br>
+<blockquote><p>Create an upper triangular matrix discussed by Kahan, Golub and Wilkinson.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"wathen", nx, ny</var>)<var><a name="index-gallery-1946"></a></var><br>
+&mdash; Function File: <var>a</var> = <b>gallery</b> (<var>"wathen", nx, ny, k</var>)<var><a name="index-gallery-1947"></a></var><br>
+<blockquote><p>Create the Wathen matrix.
+
+        </blockquote></div>
+
+<div class="defun">
+&mdash; Function File: [<var>a</var>, <var>b</var>] = <b>gallery</b> (<var>"wilk", n</var>)<var><a name="index-gallery-1948"></a></var><br>
+<blockquote><p>Create various specific matrices devised/discussed by Wilkinson.
+
+        </blockquote></div>
+
 <!-- hadamard scripts/special-matrix/hadamard.m -->
    <p><a name="doc_002dhadamard"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hadamard</b> (<var>n</var>)<var><a name="index-hadamard-1761"></a></var><br>
+&mdash; Function File:  <b>hadamard</b> (<var>n</var>)<var><a name="index-hadamard-1949"></a></var><br>
 <blockquote><p>Construct a Hadamard matrix (Hn) of size <var>n</var>-by-<var>n</var>.  The
 size <var>n</var> must be of the form 2^k * p in which
 p is one of 1, 12, 20 or 28.  The returned matrix is normalized,
@@ -59,9 +433,6 @@ meaning <code>Hn(:,1)&nbsp;==&nbsp;1</code><!-- /@w --> and <code>Hn(1,:)&nbsp;=
           <li>Multiplying any row or column by -1 and the matrix will remain a Hadamard
 matrix. 
 </ul>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcompan.html#doc_002dcompan">compan</a>, <a href="doc_002dhankel.html#doc_002dhankel">hankel</a>, <a href="doc_002dtoeplitz.html#doc_002dtoeplitz">toeplitz</a>. 
 </p></blockquote></div>
@@ -70,8 +441,8 @@ matrix.
    <p><a name="doc_002dhankel"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hankel</b> (<var>c</var>)<var><a name="index-hankel-1762"></a></var><br>
-&mdash; Function File:  <b>hankel</b> (<var>c, r</var>)<var><a name="index-hankel-1763"></a></var><br>
+&mdash; Function File:  <b>hankel</b> (<var>c</var>)<var><a name="index-hankel-1950"></a></var><br>
+&mdash; Function File:  <b>hankel</b> (<var>c, r</var>)<var><a name="index-hankel-1951"></a></var><br>
 <blockquote><p>Return the Hankel matrix constructed from the first column <var>c</var>, and
 (optionally) the last row <var>r</var>.  If the last element of <var>c</var> is
 not the same as the first element of <var>r</var>, the last element of
@@ -84,17 +455,14 @@ be a vector of zeros with the same size as <var>c</var>.
      <pre class="example">          H(i,j) = c(i+j-1),  i+j-1 &lt;= m;
           H(i,j) = r(i+j-m),  otherwise
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhadamard.html#doc_002dhadamard">hadamard</a>, <a href="doc_002dtoeplitz.html#doc_002dtoeplitz">toeplitz</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dhadamard.html#doc_002dhadamard">hadamard</a>, <a href="doc_002dtoeplitz.html#doc_002dtoeplitz">toeplitz</a>. 
 </p></blockquote></div>
 
 <!-- hilb scripts/special-matrix/hilb.m -->
    <p><a name="doc_002dhilb"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hilb</b> (<var>n</var>)<var><a name="index-hilb-1764"></a></var><br>
+&mdash; Function File:  <b>hilb</b> (<var>n</var>)<var><a name="index-hilb-1952"></a></var><br>
 <blockquote><p>Return the Hilbert matrix of order <var>n</var>.  The i,j element
 of a Hilbert matrix is defined as
 
@@ -110,17 +478,14 @@ a Hilbert matrix of order 5 reveals just how difficult the problem is.
           cond (hilb (5))
              &rArr; 4.7661e+05
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinvhilb.html#doc_002dinvhilb">invhilb</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dinvhilb.html#doc_002dinvhilb">invhilb</a>. 
 </p></blockquote></div>
 
 <!-- invhilb scripts/special-matrix/invhilb.m -->
    <p><a name="doc_002dinvhilb"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>invhilb</b> (<var>n</var>)<var><a name="index-invhilb-1765"></a></var><br>
+&mdash; Function File:  <b>invhilb</b> (<var>n</var>)<var><a name="index-invhilb-1953"></a></var><br>
 <blockquote><p>Return the inverse of the Hilbert matrix of order <var>n</var>.  This can be
 computed exactly using
 
@@ -144,10 +509,7 @@ See J. W. Demmel, <cite>Applied Numerical Linear Algebra</cite>, p. 92.
 
         <p>Compare this with the numerical calculation of <code>inverse (hilb (n))</code>,
 which suffers from the ill-conditioning of the Hilbert matrix, and the
-finite precision of your computer's floating point arithmetic. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+finite precision of your computer's floating point arithmetic.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dhilb.html#doc_002dhilb">hilb</a>. 
 </p></blockquote></div>
@@ -156,7 +518,7 @@ finite precision of your computer's floating point arithmetic.
    <p><a name="doc_002dmagic"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>magic</b> (<var>n</var>)<var><a name="index-magic-1766"></a></var><br>
+&mdash; Function File:  <b>magic</b> (<var>n</var>)<var><a name="index-magic-1954"></a></var><br>
 <blockquote>
         <p>Create an <var>n</var>-by-<var>n</var> magic square.  A magic square is an arrangement
 of the integers <code>1:n^2</code> such that the row sums, column sums, and
@@ -169,8 +531,8 @@ diagonal sums are all equal to the same value.
    <p><a name="doc_002dpascal"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>pascal</b> (<var>n</var>)<var><a name="index-pascal-1767"></a></var><br>
-&mdash; Function File:  <b>pascal</b> (<var>n, t</var>)<var><a name="index-pascal-1768"></a></var><br>
+&mdash; Function File:  <b>pascal</b> (<var>n</var>)<var><a name="index-pascal-1955"></a></var><br>
+&mdash; Function File:  <b>pascal</b> (<var>n, t</var>)<var><a name="index-pascal-1956"></a></var><br>
 <blockquote><p>Return the Pascal matrix of order <var>n</var> if <var>t</var><code> = 0</code>.  <var>t</var>
 defaults to 0.  Return the pseudo-lower triangular Cholesky&nbsp;factor of
 the Pascal matrix if <var>t</var><code> = 1</code> (The sign of some columns may be
@@ -181,9 +543,6 @@ Cholesky&nbsp;factor with strictly positive values on the diagonal.  If
 (</code><var>n</var><code>, 1)</code>, which is the cube root of the identity matrix.  That is,
 <code>pascal (</code><var>n</var><code>, 2) ^ 3 == eye (</code><var>n</var><code>)</code>.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>. 
 </p></blockquote></div>
 
@@ -191,13 +550,10 @@ Cholesky&nbsp;factor with strictly positive values on the diagonal.  If
    <p><a name="doc_002drosser"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rosser</b> ()<var><a name="index-rosser-1769"></a></var><br>
+&mdash; Function File:  <b>rosser</b> ()<var><a name="index-rosser-1957"></a></var><br>
 <blockquote><p>Return the Rosser matrix.  This is a difficult test case used to evaluate
 eigenvalue algorithms.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dwilkinson.html#doc_002dwilkinson">wilkinson</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
 </p></blockquote></div>
 
@@ -205,8 +561,8 @@ eigenvalue algorithms.
    <p><a name="doc_002dtoeplitz"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>toeplitz</b> (<var>c</var>)<var><a name="index-toeplitz-1770"></a></var><br>
-&mdash; Function File:  <b>toeplitz</b> (<var>c, r</var>)<var><a name="index-toeplitz-1771"></a></var><br>
+&mdash; Function File:  <b>toeplitz</b> (<var>c</var>)<var><a name="index-toeplitz-1958"></a></var><br>
+&mdash; Function File:  <b>toeplitz</b> (<var>c, r</var>)<var><a name="index-toeplitz-1959"></a></var><br>
 <blockquote><p>Return the Toeplitz matrix constructed from the first column <var>c</var>,
 and (optionally) the first row <var>r</var>.  If the first element of <var>r</var>
 is not the same as the first element of <var>c</var>, the first element of
@@ -223,18 +579,15 @@ taken to be the same as the first column.
            .     .      .       .  .
           c(n) c(n-1) c(n-2) ...  c(0)
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhankel.html#doc_002dhankel">hankel</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dhankel.html#doc_002dhankel">hankel</a>. 
 </p></blockquote></div>
 
 <!-- vander scripts/special-matrix/vander.m -->
    <p><a name="doc_002dvander"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>vander</b> (<var>c</var>)<var><a name="index-vander-1772"></a></var><br>
-&mdash; Function File:  <b>vander</b> (<var>c, n</var>)<var><a name="index-vander-1773"></a></var><br>
+&mdash; Function File:  <b>vander</b> (<var>c</var>)<var><a name="index-vander-1960"></a></var><br>
+&mdash; Function File:  <b>vander</b> (<var>c, n</var>)<var><a name="index-vander-1961"></a></var><br>
 <blockquote><p>Return the Vandermonde matrix whose next to last column is <var>c</var>. 
 If <var>n</var> is specified, it determines the number of columns;
 otherwise, <var>n</var> is taken to be equal to the length of <var>c</var>.
@@ -248,25 +601,19 @@ otherwise, <var>n</var> is taken to be equal to the length of <var>c</var>.
               .         .  .      .    .
           c(n)^(n-1) ... c(n)^2  c(n)  1
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyfit.html#doc_002dpolyfit">polyfit</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyfit.html#doc_002dpolyfit">polyfit</a>. 
 </p></blockquote></div>
 
 <!-- wilkinson scripts/special-matrix/wilkinson.m -->
    <p><a name="doc_002dwilkinson"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>wilkinson</b> (<var>n</var>)<var><a name="index-wilkinson-1774"></a></var><br>
+&mdash; Function File:  <b>wilkinson</b> (<var>n</var>)<var><a name="index-wilkinson-1962"></a></var><br>
 <blockquote><p>Return the Wilkinson matrix of order <var>n</var>.  Wilkinson matrices are
 symmetric and tridiagonal with pairs of nearly, but not exactly, equal
 eigenvalues.  They are useful in testing the behavior and performance
 of eigenvalue solvers.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002drosser.html#doc_002drosser">rosser</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
 </p></blockquote></div>
 

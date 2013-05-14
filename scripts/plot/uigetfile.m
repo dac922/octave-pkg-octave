@@ -24,7 +24,7 @@
 ## @deftypefnx {Function File} {[@dots{}] =} uigetfile (@dots{}, "Position", [@var{px} @var{py}])
 ## @deftypefnx {Function File} {[@dots{}] =} uigetfile (@dots{}, "MultiSelect", @var{mode})
 ##
-## Open a GUI dialog for selecting a file.  It returns the filename @var{fname},
+## Open a GUI dialog for selecting a file and return the filename @var{fname},
 ## the path to this file @var{fpath}, and the filter index @var{fltidx}.
 ## @var{flt} contains a (list of) file filter string(s) in one of the following
 ## formats:
@@ -58,25 +58,28 @@
 ## and a 2-element vector containing the pixel coordinates.
 ## Two or more files can be selected when setting the "MultiSelect" key to "on".
 ## In that case @var{fname} is a cell array containing the files.
+## @seealso{uiputfile, uigetdir}
 ## @end deftypefn
 
 ## Author: Kai Habel
 
 function [retfile, retpath, retindex] = uigetfile (varargin)
 
-  defaulttoolkit = get (0, "defaultfigure__graphics_toolkit__");
-  funcname = ["__uigetfile_", defaulttoolkit, "__"];
-  functype = exist (funcname);
-  if (! __is_function__ (funcname))
-    funcname = "__uigetfile_fltk__";
+  if (! __octave_link_enabled__ ())
+    defaulttoolkit = get (0, "defaultfigure__graphics_toolkit__");
+    funcname = ["__uigetfile_", defaulttoolkit, "__"];
+    functype = exist (funcname);
     if (! __is_function__ (funcname))
-      error ("uigetfile: fltk graphics toolkit required");
-    elseif (! strcmp (defaulttoolkit, "gnuplot"))
-      warning ("uigetfile: no implementation for toolkit '%s', using 'fltk' instead",
+      funcname = "__uigetfile_fltk__";
+      if (! __is_function__ (funcname))
+        error ("uigetfile: fltk graphics toolkit required");
+      elseif (! strcmp (defaulttoolkit, "gnuplot"))
+        warning ("uigetfile: no implementation for toolkit '%s', using 'fltk' instead",
                defaulttoolkit);
+      endif
     endif
   endif
-
+  
   if (nargin > 7)
     error ("uigetfile: number of input arguments must be less than eight");
   endif
@@ -98,9 +101,10 @@ function [retfile, retpath, retindex] = uigetfile (varargin)
     for i = 1 : length (varargin)
       val = varargin{i};
       if (ischar (val))
-        if (strncmpi (val, "multiselect", 11))
+        val = tolower (val);
+        if (strncmp (val, "multiselect", 11))
           idx1 = i;
-        elseif (strncmpi (val, "position", 8))
+        elseif (strncmp (val, "position", 8))
           idx2 = i;
         endif
       endif
@@ -164,7 +168,7 @@ function [retfile, retpath, retindex] = uigetfile (varargin)
       prop = varargin{i};
       val = varargin{i + 1};
       if (strncmp (tolower (prop), "position", 8))
-        if (ismatrix (val) && length(val) == 2)
+        if (ismatrix (val) && length (val) == 2)
           outargs{4} = val;
         else
           error ("uigetfile: expecting 2-element vector for position argument");
@@ -181,13 +185,18 @@ function [retfile, retpath, retindex] = uigetfile (varargin)
     endfor
   endif
 
-  [retfile, retpath, retindex] = feval (funcname, outargs{:});
+  if (__octave_link_enabled__ ())
+    [retfile, retpath, retindex] = __octave_link_file_dialog__ (outargs{:});
+  else
+    [retfile, retpath, retindex] = feval (funcname, outargs{:});
+  endif
 
 endfunction
 
+
 %!demo
-%! uigetfile({"*.gif;*.png;*.jpg", "Supported Picture Formats"})
+%! uigetfile ({'*.gif;*.png;*.jpg', 'Supported Picture Formats'});
 
 ## Remove from test statistics.  No real tests possible.
-%!test
-%! assert (1);
+%!assert (1)
+

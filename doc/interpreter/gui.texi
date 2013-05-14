@@ -59,7 +59,7 @@ a file name.
 Open a GUI dialog for selecting a directory.  If @var{init_path} is not
 given the current working directory is used.  @var{dialog_name} may be
 used to customize the dialog title.
-@seealso{@ref{doc-uigetfile,,uigetfile}}
+@seealso{@ref{doc-uigetfile,,uigetfile}, @ref{doc-uiputfile,,uiputfile}}
 @end deftypefn
 
 
@@ -72,7 +72,7 @@ used to customize the dialog title.
 @deftypefnx {Function File} {[@dots{}] =} uigetfile (@dots{}, "Position", [@var{px} @var{py}])
 @deftypefnx {Function File} {[@dots{}] =} uigetfile (@dots{}, "MultiSelect", @var{mode})
 
-Open a GUI dialog for selecting a file.  It returns the filename @var{fname},
+Open a GUI dialog for selecting a file and return the filename @var{fname},
 the path to this file @var{fpath}, and the filter index @var{fltidx}.
 @var{flt} contains a (list of) file filter string(s) in one of the following
 formats:
@@ -106,6 +106,7 @@ The screen position of the GUI dialog can be set using the "Position" key
 and a 2-element vector containing the pixel coordinates.
 Two or more files can be selected when setting the "MultiSelect" key to "on".
 In that case @var{fname} is a cell array containing the files.
+@seealso{@ref{doc-uiputfile,,uiputfile}, @ref{doc-uigetdir,,uigetdir}}
 @end deftypefn
 
 
@@ -124,25 +125,26 @@ If a filename is given the file extension is
 extracted and used as filter.
 In addition the path is selected as current path and the filename is selected
 as default file.
-Example: uiputfile("myfun.m");
+Example: uiputfile ("myfun.m");
 
 @item "*.ext"
 A single file extension.
-Example: uiputfile("*.ext");
+Example: uiputfile ("*.ext");
 
 @item @{"*.ext","My Description"@}
 A 2-column cell array containing the file extension in the 1st column and
 a brief description in the 2nd column.
-Example: uiputfile(@{"*.ext","My Description";"*.xyz","XYZ-Format"@});
+Example: uiputfile (@{"*.ext","My Description";"*.xyz","XYZ-Format"@});
 @end table
 
 The filter string can also contain a semicolon separated list of filter
 extensions.
-Example: uiputfile(@{"*.gif;*.png;*.jpg", "Supported Picture Formats"@});
+Example: uiputfile (@{"*.gif;*.png;*.jpg", "Supported Picture Formats"@});
 
 @var{dialog_name} can be used to customize the dialog title.
 If @var{default_file} is given it is preselected in the GUI dialog.
 If, in addition, a path is given it is also used as current path.
+@seealso{@ref{doc-uigetfile,,uigetfile}, @ref{doc-uigetdir,,uigetdir}}
 @end deftypefn
 
 
@@ -161,7 +163,7 @@ If, in addition, a path is given it is also used as current path.
 Return a handle @var{h} to a new waitbar object.  The waitbar is
 filled to fraction @var{frac} which must be in the range [0, 1].  The
 optional message @var{msg} is centered and displayed above the waitbar.
-The appearance of the waitbar figure window can be configured by passing 
+The appearance of the waitbar figure window can be configured by passing
 property/value pairs to the function.
 
 When called with a single input the current waitbar, if it exists, is
@@ -206,9 +208,9 @@ functions returns immediately.
 
 When specified, @var{timeout} defines the number of seconds to wait
 for the figure deletion or the @code{uiresume} call.  The timeout value
-must be at least 1. If a smaller value is specified, a warning is issued
+must be at least 1.  If a smaller value is specified, a warning is issued
 and a timeout value of 1 is used instead.  If a non-integer value is
-specified, it is truncated towards 0. If @var{timeout} is not specified,
+specified, it is truncated towards 0.  If @var{timeout} is not specified,
 the program execution is suspended indefinitely.
 @seealso{@ref{doc-uiresume,,uiresume}, @ref{doc-waitfor,,waitfor}}
 @end deftypefn
@@ -225,7 +227,7 @@ with handle @var{h}, this function does nothing.
 @end deftypefn
 
 
-@c waitfor src/graphics.cc
+@c waitfor libinterp/interpfcn/graphics.cc
 @anchor{doc-waitfor}
 @deftypefn  {Built-in Function} {} waitfor (@var{h})
 @deftypefnx {Built-in Function} {} waitfor (@var{h}, @var{prop})
@@ -331,14 +333,15 @@ group @var{group} exists.
 
 @c rmpref scripts/prefs/rmpref.m
 @anchor{doc-rmpref}
-@deftypefn {Function File} {} rmpref (@var{group}, @var{pref})
+@deftypefn  {Function File} {} rmpref (@var{group})
+@deftypefnx {Function File} {} rmpref (@var{group}, @var{pref})
 Remove the named preference @var{pref} from the preference group
 @var{group}.
 
 The named preference group must be a character string.
 
-The preference @var{pref} may be a character string or a cell array
-of character strings.
+The preference @var{pref} may be a character string or cell array
+of strings.
 
 If @var{pref} is not specified, remove the preference group
 @var{group}.

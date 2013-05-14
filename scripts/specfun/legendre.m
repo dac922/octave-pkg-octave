@@ -196,7 +196,7 @@ function retval = legendre (n, x, normalization)
   ## http://en.wikipedia.org/wiki/Associated_Legendre_function
 
   overflow = false;
-  retval = zeros([n+1, size(x)]);
+  retval = zeros ([n+1, size(x)]);
   for m = 1:n
     lpm1 = scale;
     lpm2 = (2*m-1) .* x .* scale;
@@ -222,7 +222,7 @@ function retval = legendre (n, x, normalization)
       ## normalization == "sch" or normalization == "norm"
       scale = scale / sqrt ((n-m+1)*(n+m))*(2*m-1);
     endif
-    scale = scale .* sqrt(1-x.^2);
+    scale = scale .* sqrt (1-x.^2);
   endfor
 
   retval(n+1,:) = scale(:);
@@ -286,7 +286,7 @@ endfunction
 
 %!test
 %! result = legendre (0, 0:0.1:1);
-%! assert (result, full(ones(1,11)));
+%! assert (result, full (ones (1,11)));
 
 %!test
 %! result = legendre (3, [-1,0,1;1,0,-1]);
@@ -303,13 +303,14 @@ endfunction
 %! assert (result, expected);
 
 %% Check correct invocation
-%!error legendre ();
-%!error legendre (1);
-%!error legendre (1,2,3,4);
-%!error legendre ([1, 2], [-1, 0, 1]);
-%!error legendre (-1, [-1, 0, 1]);
-%!error legendre (1.1, [-1, 0, 1]);
-%!error legendre (1, [-1+i, 0, 1]);
-%!error legendre (1, [-2, 0, 1]);
-%!error legendre (1, [-1, 0, 2]);
-%!error legendre (1, [-1, 0, 1], "badnorm");
+%!error legendre ()
+%!error legendre (1)
+%!error legendre (1,2,3,4)
+%!error legendre ([1, 2], [-1, 0, 1])
+%!error legendre (-1, [-1, 0, 1])
+%!error legendre (1.1, [-1, 0, 1])
+%!error legendre (1, [-1+i, 0, 1])
+%!error legendre (1, [-2, 0, 1])
+%!error legendre (1, [-1, 0, 2])
+%!error legendre (1, [-1, 0, 1], "badnorm")
+

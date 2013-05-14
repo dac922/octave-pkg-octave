@@ -33,7 +33,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Basic-Input-and-Output.html#Basic-Input
 
 <h4 class="subsection">14.1.3 Simple File I/O</h4>
 
-<p><a name="index-saving-data-905"></a><a name="index-loading-data-906"></a>The <code>save</code> and <code>load</code> commands allow data to be written to and
+<p><a name="index-saving-data-946"></a><a name="index-loading-data-947"></a>The <code>save</code> and <code>load</code> commands allow data to be written to and
 read from disk files in various formats.  The default format of files
 written by the <code>save</code> command can be controlled using the functions
 <code>default_save_options</code> and <code>save_precision</code>.
@@ -55,14 +55,14 @@ read into memory using the <code>load</code> command.
           -|    4   5   6
           -|    7   8   9
 </pre>
-   <!-- save src/load-save.cc -->
+   <!-- save libinterp/interpfcn/load-save.cc -->
    <p><a name="doc_002dsave"></a>
 
 <div class="defun">
-&mdash; Command:  <b>save</b><var> file<a name="index-save-907"></a></var><br>
-&mdash; Command:  <b>save</b><var> options file<a name="index-save-908"></a></var><br>
-&mdash; Command:  <b>save</b><var> options file v1 v2 <small class="dots">...</small><a name="index-save-909"></a></var><br>
-&mdash; Command:  <b>save</b><var> options file -struct STRUCT f1 f2 <small class="dots">...</small><a name="index-save-910"></a></var><br>
+&mdash; Command:  <b>save</b><var> file<a name="index-save-948"></a></var><br>
+&mdash; Command:  <b>save</b><var> options file<a name="index-save-949"></a></var><br>
+&mdash; Command:  <b>save</b><var> options file v1 v2 <small class="dots">...</small><a name="index-save-950"></a></var><br>
+&mdash; Command:  <b>save</b><var> options file -struct STRUCT f1 f2 <small class="dots">...</small><a name="index-save-951"></a></var><br>
 <blockquote><p>Save the named variables <var>v1</var>, <var>v2</var>, <small class="dots">...</small>, in the file
 <var>file</var>.  The special filename &lsquo;<samp><span class="samp">-</span></samp>&rsquo; may be used to write
 output to the terminal.  If no variable names are listed, Octave saves
@@ -120,6 +120,7 @@ libraries.
 
         <p>The list of variables to save may use wildcard patterns containing
 the following special characters:
+
           <dl>
 <dt><code>?</code><dd>Match any single character.
 
@@ -146,25 +147,84 @@ global variable.
      <pre class="example">          save -binary data a b*
 </pre>
         <p class="noindent">saves the variable &lsquo;<samp><span class="samp">a</span></samp>&rsquo; and all variables beginning with &lsquo;<samp><span class="samp">b</span></samp>&rsquo; to
-the file <samp><span class="file">data</span></samp> in Octave's binary format. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+the file <samp><span class="file">data</span></samp> in Octave's binary format.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dload.html#doc_002dload">load</a>, <a href="doc_002ddefault_005fsave_005foptions.html#doc_002ddefault_005fsave_005foptions">default_save_options</a>, <a href="doc_002dsave_005fheader_005fformat_005fstring.html#doc_002dsave_005fheader_005fformat_005fstring">save_header_format_string</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002dfread.html#doc_002dfread">fread</a>. 
 </p></blockquote></div>
 
-<!-- load src/load-save.cc -->
+   <p>There are three functions that modify the behavior of <code>save</code>.
+
+<!-- default_save_options libinterp/interpfcn/load-save.cc -->
+   <p><a name="doc_002ddefault_005fsave_005foptions"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>default_save_options</b> ()<var><a name="index-default_005fsave_005foptions-952"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>default_save_options</b> (<var>new_val</var>)<var><a name="index-default_005fsave_005foptions-953"></a></var><br>
+&mdash; Built-in Function:  <b>default_save_options</b> (<var>new_val, "local"</var>)<var><a name="index-default_005fsave_005foptions-954"></a></var><br>
+<blockquote><p>Query or set the internal variable that specifies the default options
+for the <code>save</code> command, and defines the default format. 
+Typical values include <code>"-ascii"</code>, <code>"-text -zip"</code>. 
+The default value is <samp><span class="option">-text</span></samp>.
+
+        <p>When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsave.html#doc_002dsave">save</a>. 
+</p></blockquote></div>
+
+<!-- save_precision libinterp/interpfcn/ls-oct-ascii.cc -->
+   <p><a name="doc_002dsave_005fprecision"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>save_precision</b> ()<var><a name="index-save_005fprecision-955"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>save_precision</b> (<var>new_val</var>)<var><a name="index-save_005fprecision-956"></a></var><br>
+&mdash; Built-in Function:  <b>save_precision</b> (<var>new_val, "local"</var>)<var><a name="index-save_005fprecision-957"></a></var><br>
+<blockquote><p>Query or set the internal variable that specifies the number of
+digits to keep when saving data in text format.
+
+        <p>When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function. 
+</p></blockquote></div>
+
+<!-- save_header_format_string libinterp/interpfcn/load-save.cc -->
+   <p><a name="doc_002dsave_005fheader_005fformat_005fstring"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>save_header_format_string</b> ()<var><a name="index-save_005fheader_005fformat_005fstring-958"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>save_header_format_string</b> (<var>new_val</var>)<var><a name="index-save_005fheader_005fformat_005fstring-959"></a></var><br>
+&mdash; Built-in Function:  <b>save_header_format_string</b> (<var>new_val, "local"</var>)<var><a name="index-save_005fheader_005fformat_005fstring-960"></a></var><br>
+<blockquote><p>Query or set the internal variable that specifies the format
+string used for the comment line written at the beginning of
+text-format data files saved by Octave.  The format string is
+passed to <code>strftime</code> and should begin with the character
+&lsquo;<samp><span class="samp">#</span></samp>&rsquo; and contain no newline characters.  If the value of
+<code>save_header_format_string</code> is the empty string,
+the header comment is omitted from text-format data files.  The
+default value is
+<!-- Set example in small font to prevent overfull line -->
+
+     <pre class="smallexample">          "# Created by Octave VERSION, %a %b %d %H:%M:%S %Y %Z &lt;USER@HOST&gt;"
+</pre>
+        <p>When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dsave.html#doc_002dsave">save</a>. 
+</p></blockquote></div>
+
+<!-- load libinterp/interpfcn/load-save.cc -->
    <p><a name="doc_002dload"></a>
 
 <div class="defun">
-&mdash; Command:  <b>load</b><var> file<a name="index-load-911"></a></var><br>
-&mdash; Command:  <b>load</b><var> options file<a name="index-load-912"></a></var><br>
-&mdash; Command:  <b>load</b><var> options file v1 v2 <small class="dots">...</small><a name="index-load-913"></a></var><br>
-&mdash; Command: S = <b>load</b> (<var>"options", "file", "v1", "v2", <small class="dots">...</small></var>)<var><a name="index-load-914"></a></var><br>
-&mdash; Command:  <b>load</b><var> file options<a name="index-load-915"></a></var><br>
-&mdash; Command:  <b>load</b><var> file options v1 v2 <small class="dots">...</small><a name="index-load-916"></a></var><br>
-&mdash; Command: S = <b>load</b> (<var>"file", "options", "v1", "v2", <small class="dots">...</small></var>)<var><a name="index-load-917"></a></var><br>
+&mdash; Command:  <b>load</b><var> file<a name="index-load-961"></a></var><br>
+&mdash; Command:  <b>load</b><var> options file<a name="index-load-962"></a></var><br>
+&mdash; Command:  <b>load</b><var> options file v1 v2 <small class="dots">...</small><a name="index-load-963"></a></var><br>
+&mdash; Command: S = <b>load</b> (<var>"options", "file", "v1", "v2", <small class="dots">...</small></var>)<var><a name="index-load-964"></a></var><br>
+&mdash; Command:  <b>load</b><var> file options<a name="index-load-965"></a></var><br>
+&mdash; Command:  <b>load</b><var> file options v1 v2 <small class="dots">...</small><a name="index-load-966"></a></var><br>
+&mdash; Command: S = <b>load</b> (<var>"file", "options", "v1", "v2", <small class="dots">...</small></var>)<var><a name="index-load-967"></a></var><br>
 <blockquote><p>Load the named variables <var>v1</var>, <var>v2</var>, <small class="dots">...</small>, from the file
 <var>file</var>.  If no variables are specified then all variables found in the
 file will be loaded.  As with <code>save</code>, the list of variables to extract
@@ -231,9 +291,6 @@ format.
 
           <br><dt><code>-text</code><dd>Force Octave to assume the file is in Octave's text format. 
 </dl>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsave.html#doc_002dsave">save</a>, <a href="doc_002ddlmwrite.html#doc_002ddlmwrite">dlmwrite</a>, <a href="doc_002dcsvwrite.html#doc_002dcsvwrite">csvwrite</a>, <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>. 
 </p></blockquote></div>
@@ -242,88 +299,17 @@ format.
    <p><a name="doc_002dfileread"></a>
 
 <div class="defun">
-&mdash; Function File: <var>str</var> = <b>fileread</b> (<var>filename</var>)<var><a name="index-fileread-918"></a></var><br>
-<blockquote><p>Read the contents of <var>filename</var> and return it as a string. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File: <var>str</var> = <b>fileread</b> (<var>filename</var>)<var><a name="index-fileread-968"></a></var><br>
+<blockquote><p>Read the contents of <var>filename</var> and return it as a string.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dtextread.html#doc_002dtextread">textread</a>, <a href="doc_002dsscanf.html#doc_002dsscanf">sscanf</a>. 
 </p></blockquote></div>
 
-   <p>There are three functions that modify the behavior of <code>save</code>.
-
-<!-- default_save_options src/load-save.cc -->
-   <p><a name="doc_002ddefault_005fsave_005foptions"></a>
-
-<div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>default_save_options</b> ()<var><a name="index-default_005fsave_005foptions-919"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>default_save_options</b> (<var>new_val</var>)<var><a name="index-default_005fsave_005foptions-920"></a></var><br>
-&mdash; Built-in Function:  <b>default_save_options</b> (<var>new_val, "local"</var>)<var><a name="index-default_005fsave_005foptions-921"></a></var><br>
-<blockquote><p>Query or set the internal variable that specifies the default options
-for the <code>save</code> command, and defines the default format. 
-Typical values include <code>"-ascii"</code>, <code>"-text -zip"</code>. 
-The default value is <samp><span class="option">-text</span></samp>.
-
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
-
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsave.html#doc_002dsave">save</a>. 
-</p></blockquote></div>
-
-<!-- save_precision src/ls-oct-ascii.cc -->
-   <p><a name="doc_002dsave_005fprecision"></a>
-
-<div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>save_precision</b> ()<var><a name="index-save_005fprecision-922"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>save_precision</b> (<var>new_val</var>)<var><a name="index-save_005fprecision-923"></a></var><br>
-&mdash; Built-in Function:  <b>save_precision</b> (<var>new_val, "local"</var>)<var><a name="index-save_005fprecision-924"></a></var><br>
-<blockquote><p>Query or set the internal variable that specifies the number of
-digits to keep when saving data in text format.
-
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-</p></blockquote></div>
-
-<!-- save_header_format_string src/load-save.cc -->
-   <p><a name="doc_002dsave_005fheader_005fformat_005fstring"></a>
-
-<div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>save_header_format_string</b> ()<var><a name="index-save_005fheader_005fformat_005fstring-925"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>save_header_format_string</b> (<var>new_val</var>)<var><a name="index-save_005fheader_005fformat_005fstring-926"></a></var><br>
-&mdash; Built-in Function:  <b>save_header_format_string</b> (<var>new_val, "local"</var>)<var><a name="index-save_005fheader_005fformat_005fstring-927"></a></var><br>
-<blockquote><p>Query or set the internal variable that specifies the format
-string used for the comment line written at the beginning of
-text-format data files saved by Octave.  The format string is
-passed to <code>strftime</code> and should begin with the character
-&lsquo;<samp><span class="samp">#</span></samp>&rsquo; and contain no newline characters.  If the value of
-<code>save_header_format_string</code> is the empty string,
-the header comment is omitted from text-format data files.  The
-default value is
-<!-- Set example in small font to prevent overfull line -->
-
-     <pre class="smallexample">          "# Created by Octave VERSION, %a %b %d %H:%M:%S %Y %Z &lt;USER@HOST&gt;"
-</pre>
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
-
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dsave.html#doc_002dsave">save</a>. 
-</p></blockquote></div>
-
-<!-- native_float_format src/sysdep.cc -->
+<!-- native_float_format libinterp/interpfcn/sysdep.cc -->
    <p><a name="doc_002dnative_005ffloat_005fformat"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>native_float_format</b> ()<var><a name="index-native_005ffloat_005fformat-928"></a></var><br>
+&mdash; Built-in Function:  <b>native_float_format</b> ()<var><a name="index-native_005ffloat_005fformat-969"></a></var><br>
 <blockquote><p>Return the native floating point format as a string
 </p></blockquote></div>
 
@@ -341,11 +327,11 @@ to data &lsquo;<samp><span class="samp">myfile.txt</span></samp>&rsquo;.
    <p class="noindent">See <a href="Opening-and-Closing-Files.html#Opening-and-Closing-Files">Opening and Closing Files</a>, for details on how to use <code>fopen</code>
 and <code>fclose</code>.
 
-<!-- fdisp src/pr-output.cc -->
+<!-- fdisp libinterp/interpfcn/pr-output.cc -->
    <p><a name="doc_002dfdisp"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fdisp</b> (<var>fid, x</var>)<var><a name="index-fdisp-929"></a></var><br>
+&mdash; Built-in Function:  <b>fdisp</b> (<var>fid, x</var>)<var><a name="index-fdisp-970"></a></var><br>
 <blockquote><p>Display the value of <var>x</var> on the stream <var>fid</var>.  For example:
 
      <pre class="example">          fdisp (stdout, "The value of pi is:"), fdisp (stdout, pi)
@@ -353,10 +339,7 @@ and <code>fclose</code>.
                -| the value of pi is:
                -| 3.1416
 </pre>
-        <p class="noindent">Note that the output from <code>fdisp</code> always ends with a newline. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p class="noindent">Note that the output from <code>fdisp</code> always ends with a newline.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddisp.html#doc_002ddisp">disp</a>. 
 </p></blockquote></div>
@@ -368,11 +351,11 @@ separated lists.
    <p><a name="doc_002ddlmwrite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>dlmwrite</b> (<var>file, M</var>)<var><a name="index-dlmwrite-930"></a></var><br>
-&mdash; Function File:  <b>dlmwrite</b> (<var>file, M, delim, r, c</var>)<var><a name="index-dlmwrite-931"></a></var><br>
-&mdash; Function File:  <b>dlmwrite</b> (<var>file, M, key, val <small class="dots">...</small></var>)<var><a name="index-dlmwrite-932"></a></var><br>
-&mdash; Function File:  <b>dlmwrite</b> (<var>file, M, "-append", <small class="dots">...</small></var>)<var><a name="index-dlmwrite-933"></a></var><br>
-&mdash; Function File:  <b>dlmwrite</b> (<var>fid, <small class="dots">...</small></var>)<var><a name="index-dlmwrite-934"></a></var><br>
+&mdash; Function File:  <b>dlmwrite</b> (<var>file, M</var>)<var><a name="index-dlmwrite-971"></a></var><br>
+&mdash; Function File:  <b>dlmwrite</b> (<var>file, M, delim, r, c</var>)<var><a name="index-dlmwrite-972"></a></var><br>
+&mdash; Function File:  <b>dlmwrite</b> (<var>file, M, key, val <small class="dots">...</small></var>)<var><a name="index-dlmwrite-973"></a></var><br>
+&mdash; Function File:  <b>dlmwrite</b> (<var>file, M, "-append", <small class="dots">...</small></var>)<var><a name="index-dlmwrite-974"></a></var><br>
+&mdash; Function File:  <b>dlmwrite</b> (<var>fid, <small class="dots">...</small></var>)<var><a name="index-dlmwrite-975"></a></var><br>
 <blockquote><p>Write the matrix <var>M</var> to the named file using delimiters.
 
         <p><var>file</var> should be a file name or writable file ID given by <code>fopen</code>.
@@ -414,21 +397,18 @@ format string (as used by fprintf) or a number of significant digits.
 </pre>
         <pre class="example">          dlmwrite ("file.tex", a, "delimiter", "&amp;", "newline", "\\n")
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002dcsvwrite.html#doc_002dcsvwrite">csvwrite</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002dcsvwrite.html#doc_002dcsvwrite">csvwrite</a>. 
 </p></blockquote></div>
 
-<!-- dlmread src/DLD-FUNCTIONS/dlmread.cc -->
+<!-- dlmread libinterp/corefcn/dlmread.cc -->
    <p><a name="doc_002ddlmread"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>data</var> = <b>dlmread</b> (<var>file</var>)<var><a name="index-dlmread-935"></a></var><br>
-&mdash; Loadable Function: <var>data</var> = <b>dlmread</b> (<var>file, sep</var>)<var><a name="index-dlmread-936"></a></var><br>
-&mdash; Loadable Function: <var>data</var> = <b>dlmread</b> (<var>file, sep, r0, c0</var>)<var><a name="index-dlmread-937"></a></var><br>
-&mdash; Loadable Function: <var>data</var> = <b>dlmread</b> (<var>file, sep, range</var>)<var><a name="index-dlmread-938"></a></var><br>
-&mdash; Loadable Function: <var>data</var> = <b>dlmread</b> (<var><small class="dots">...</small>, "emptyvalue", EMPTYVAL</var>)<var><a name="index-dlmread-939"></a></var><br>
+&mdash; Built-in Function: <var>data</var> = <b>dlmread</b> (<var>file</var>)<var><a name="index-dlmread-976"></a></var><br>
+&mdash; Built-in Function: <var>data</var> = <b>dlmread</b> (<var>file, sep</var>)<var><a name="index-dlmread-977"></a></var><br>
+&mdash; Built-in Function: <var>data</var> = <b>dlmread</b> (<var>file, sep, r0, c0</var>)<var><a name="index-dlmread-978"></a></var><br>
+&mdash; Built-in Function: <var>data</var> = <b>dlmread</b> (<var>file, sep, range</var>)<var><a name="index-dlmread-979"></a></var><br>
+&mdash; Built-in Function: <var>data</var> = <b>dlmread</b> (<var><small class="dots">...</small>, "emptyvalue", EMPTYVAL</var>)<var><a name="index-dlmread-980"></a></var><br>
 <blockquote><p>Read the matrix <var>data</var> from a text file.  If not defined the separator
 between fields is determined from the file itself.  Otherwise the
 separation character is defined by <var>sep</var>.
@@ -440,17 +420,14 @@ such that the first row corresponds to an index of zero.
         <p>The <var>range</var> parameter may be a 4-element vector containing the upper
 left and lower right corner <code>[</code><var>R0</var><code>,</code><var>C0</var><code>,</code><var>R1</var><code>,</code><var>C1</var><code>]</code>
 where the lowest index value is zero.  Alternatively, a spreadsheet style
-range such as 'A2..Q15' or 'T1:AA5' can be used.  The lowest alphabetical
+range such as "A2..Q15" or "T1:AA5" can be used.  The lowest alphabetical
 index 'A' refers to the first column.  The lowest row index is 1.
 
         <p><var>file</var> should be a file name or file id given by <code>fopen</code>.  In the
 latter case, the file is read until end of file is reached.
 
         <p>The "emptyvalue" option may be used to specify the value used to fill empty
-fields.  The default is zero. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+fields.  The default is zero.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002dtextscan.html#doc_002dtextscan">textscan</a>, <a href="doc_002dtextread.html#doc_002dtextread">textread</a>, <a href="doc_002ddlmwrite.html#doc_002ddlmwrite">dlmwrite</a>. 
 </p></blockquote></div>
@@ -459,8 +436,8 @@ fields.  The default is zero.
    <p><a name="doc_002dcsvwrite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>csvwrite</b> (<var>filename, x</var>)<var><a name="index-csvwrite-940"></a></var><br>
-&mdash; Function File:  <b>csvwrite</b> (<var>filename, x, dlm_opts</var>)<var><a name="index-csvwrite-941"></a></var><br>
+&mdash; Function File:  <b>csvwrite</b> (<var>filename, x</var>)<var><a name="index-csvwrite-981"></a></var><br>
+&mdash; Function File:  <b>csvwrite</b> (<var>filename, x, dlm_opts</var>)<var><a name="index-csvwrite-982"></a></var><br>
 <blockquote><p>Write the matrix <var>x</var> to the file <var>filename</var> in
 comma-separated-value<!-- /@w --> format.
 
@@ -468,28 +445,22 @@ comma-separated-value<!-- /@w --> format.
 
      <pre class="example">          dlmwrite (<var>filename</var>, <var>x</var>, ",", ...)
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002ddlmwrite.html#doc_002ddlmwrite">dlmwrite</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002ddlmwrite.html#doc_002ddlmwrite">dlmwrite</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>. 
 </p></blockquote></div>
 
 <!-- csvread scripts/io/csvread.m -->
    <p><a name="doc_002dcsvread"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>csvread</b> (<var>filename</var>)<var><a name="index-csvread-942"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>csvread</b> (<var>filename, dlm_opts</var>)<var><a name="index-csvread-943"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>csvread</b> (<var>filename</var>)<var><a name="index-csvread-983"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>csvread</b> (<var>filename, dlm_opts</var>)<var><a name="index-csvread-984"></a></var><br>
 <blockquote><p>Read the comma-separated-value file <var>filename</var> into the matrix <var>x</var>.
 
         <p>This function is equivalent to
 
      <pre class="example">          <var>x</var> = dlmread (<var>filename</var>, "," , ...)
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcsvwrite.html#doc_002dcsvwrite">csvwrite</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002ddlmwrite.html#doc_002ddlmwrite">dlmwrite</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcsvwrite.html#doc_002dcsvwrite">csvwrite</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002ddlmwrite.html#doc_002ddlmwrite">dlmwrite</a>. 
 </p></blockquote></div>
 
    <p>Formatted data from can be read from, or written to, text files as well.
@@ -498,11 +469,11 @@ comma-separated-value<!-- /@w --> format.
    <p><a name="doc_002dtextread"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename</var>)<var><a name="index-textread-944"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format</var>)<var><a name="index-textread-945"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format, n</var>)<var><a name="index-textread-946"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-textread-947"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format, n, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-textread-948"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename</var>)<var><a name="index-textread-985"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format</var>)<var><a name="index-textread-986"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format, n</var>)<var><a name="index-textread-987"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-textread-988"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>textread</b> (<var>filename, format, n, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-textread-989"></a></var><br>
 <blockquote><p>Read data from a text file.
 
         <p>The file <var>filename</var> is read and parsed according to <var>format</var>.  The
@@ -522,12 +493,14 @@ inferred from the file.  If set to "" (empty string) EOLs are ignored as
 delimiters. 
 </ul>
 
-        <p>The optional input <var>n</var> specifes the number of times to use
-<var>format</var> when parsing, i.e., the format repeat count.
+        <p>The optional input <var>n</var> specifies the number of data lines to read; in
+this sense it differs slightly from the format repeat count in strread.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
+        <p>If the format string is empty (not: omitted) and the file contains only
+numeric data (excluding headerlines), textread will return a rectangular
+matrix with the number of columns matching the number of numeric fields on
+the first data line of the file. Empty fields are returned as zero values.
+
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrread.html#doc_002dstrread">strread</a>, <a href="doc_002dload.html#doc_002dload">load</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dtextscan.html#doc_002dtextscan">textscan</a>. 
 </p></blockquote></div>
 
@@ -535,21 +508,21 @@ delimiters.
    <p><a name="doc_002dtextscan"></a>
 
 <div class="defun">
-&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format</var>)<var><a name="index-textscan-949"></a></var><br>
-&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format, n</var>)<var><a name="index-textscan-950"></a></var><br>
-&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format, param, value, <small class="dots">...</small></var>)<var><a name="index-textscan-951"></a></var><br>
-&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format, n, param, value, <small class="dots">...</small></var>)<var><a name="index-textscan-952"></a></var><br>
-&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>str, <small class="dots">...</small></var>)<var><a name="index-textscan-953"></a></var><br>
-&mdash; Function File: [<var>C</var>, <var>position</var>] = <b>textscan</b> (<var>fid, <small class="dots">...</small></var>)<var><a name="index-textscan-954"></a></var><br>
+&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format</var>)<var><a name="index-textscan-990"></a></var><br>
+&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format, n</var>)<var><a name="index-textscan-991"></a></var><br>
+&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format, param, value, <small class="dots">...</small></var>)<var><a name="index-textscan-992"></a></var><br>
+&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>fid, format, n, param, value, <small class="dots">...</small></var>)<var><a name="index-textscan-993"></a></var><br>
+&mdash; Function File: <var>C</var> = <b>textscan</b> (<var>str, <small class="dots">...</small></var>)<var><a name="index-textscan-994"></a></var><br>
+&mdash; Function File: [<var>C</var>, <var>position</var>] = <b>textscan</b> (<var>fid, <small class="dots">...</small></var>)<var><a name="index-textscan-995"></a></var><br>
 <blockquote><p>Read data from a text file or string.
 
-        <p>The file associated with <var>fid</var> is read and parsed according to
-<var>format</var>.  The function behaves like <code>strread</code> except it works by
-parsing a file instead of a string.  See the documentation of
-<code>strread</code> for details.
+        <p>The string <var>str</var> or file associated with <var>fid</var> is read from and
+parsed according to <var>format</var>.  The function behaves like <code>strread</code>
+except it can also read from file instead of a string.  See the documentation
+of <code>strread</code> for details.
 
-        <p>In addition to the options supported by
-<code>strread</code>, this function supports a few more:
+        <p>In addition to the options supported by <code>strread</code>, this function
+supports a few more:
 
           <ul>
 <li>"collectoutput":
@@ -568,21 +541,78 @@ The first <var>value</var> number of lines of <var>fid</var> are skipped.
           <li>"returnonerror":
 If set to numerical 1 or true (default), return normally when read errors
 have been encountered.  If set to 0 or false, return an error and no data. 
+As the string or file is read by columns rather than by rows, and because
+textscan is fairly forgiving as regards read errors, setting this option
+may have little or no actual effect. 
 </ul>
 
-        <p>The optional input <var>n</var> specifes the number of times to use
-<var>format</var> when parsing, i.e., the format repeat count.
+        <p>When reading from a character string, optional input argument <var>n</var>
+specifies the number of times <var>format</var> should be used (i.e., to limit
+the amount of data read). 
+When reading from file, <var>n</var> specifies the number of data lines to read;
+in this sense it differs slightly from the format repeat count in strread.
 
-        <p>The output <var>C</var> is a cell array whose length is given by the number
-of format specifiers.
+        <p>The output <var>C</var> is a cell array whose second dimension is determined
+by the number of format specifiers.
 
         <p>The second output, <var>position</var>, provides the position, in characters,
 from the beginning of the file.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
+        <p>If the format string is empty (not: omitted) and the file contains only
+numeric data (excluding headerlines), textscan will return data in a number
+of columns matching the number of numeric fields on the first data line of
+the file.
+
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dload.html#doc_002dload">load</a>, <a href="doc_002dstrread.html#doc_002dstrread">strread</a>, <a href="doc_002dtextread.html#doc_002dtextread">textread</a>. 
+</p></blockquote></div>
+
+   <p>The <code>importdata</code> function has the ability to work with a wide
+variety of data.
+
+<!-- importdata scripts/io/importdata.m -->
+   <p><a name="doc_002dimportdata"></a>
+
+<div class="defun">
+&mdash; Function File: <var>A</var> = <b>importdata</b> (<var>fname</var>)<var><a name="index-importdata-996"></a></var><br>
+&mdash; Function File: <var>A</var> = <b>importdata</b> (<var>fname, delimiter</var>)<var><a name="index-importdata-997"></a></var><br>
+&mdash; Function File: <var>A</var> = <b>importdata</b> (<var>fname, delimiter, header_rows</var>)<var><a name="index-importdata-998"></a></var><br>
+&mdash; Function File: [<var>A</var>, <var>delimiter</var>] = <b>importdata</b> (<var><small class="dots">...</small></var>)<var><a name="index-importdata-999"></a></var><br>
+&mdash; Function File: [<var>A</var>, <var>delimiter</var>, <var>header_rows</var>] = <b>importdata</b> (<var><small class="dots">...</small></var>)<var><a name="index-importdata-1000"></a></var><br>
+<blockquote><p>Importing data from file.
+
+        <p>Importing the contents of file <var>fname</var> into workspace.
+
+        <p>Input parameters:
+          <ul>
+<li><var>fname</var>
+The file name for the file to import.
+
+          <li><var>delimiter</var>
+The character separating columns of data. Use <code>\t</code> for tab. 
+(Only valid for ascii files)
+
+          <li><var>header_rows</var>
+Number of header rows before the data begins. (Only valid for ascii files)
+</ul>
+
+        <p>Different file types are supported:
+          <ul>
+<li>Ascii table
+
+          <p>Importing ascii table using the specified number of header rows and
+the specified delimiter.
+
+          <li>Image file
+
+          <li><span class="sc">Matlab</span> file
+
+          <li>Spreadsheet files (depending on external software)
+
+          <li>Wav file
+
+        </ul>
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtextscan.html#doc_002dtextscan">textscan</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dcsvread.html#doc_002dcsvread">csvread</a>, <a href="doc_002dload.html#doc_002dload">load</a>. 
 </p></blockquote></div>
 
 <ul class="menu">

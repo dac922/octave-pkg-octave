@@ -44,6 +44,7 @@ function __go_draw_figure__ (h, plot_stream, enhanced, mono)
         else
           bg_is_set = false;
         endif
+        fg_was_set = false;
 
         for i = nkids:-1:1
           type = get (kids(i), "type");
@@ -142,6 +143,11 @@ function __go_draw_figure__ (h, plot_stream, enhanced, mono)
                   if (isnumeric (fg) && strcmp (get (kids(i), "visible"), "on"))
                     fprintf (plot_stream, "set obj 2 rectangle from graph 0,0 to graph 1,1 behind fc rgb \"#%02x%02x%02x\"\n", 255 * fg);
                     fg_is_set = true;
+                    fg_was_set = true;
+                  elseif (fg_was_set)
+                    fprintf (plot_stream, "unset obj 2\n");
+                    fg_is_set = false;
+                    fg_was_set = false;
                   else
                     fg_is_set = false;
                   endif
@@ -152,12 +158,12 @@ function __go_draw_figure__ (h, plot_stream, enhanced, mono)
                   ## to __go_draw_axes__
                   hlegend = [];
                   fkids = get (h, "children");
-                  for j = 1 : numel(fkids)
+                  for j = 1 : numel (fkids)
                     if (ishandle (fkids (j))
                         && strcmp (get (fkids (j), "type"), "axes")
                         && (strcmp (get (fkids (j), "tag"), "legend")))
                       udata = get (fkids (j), "userdata");
-                      if (isscalar(udata.handle)
+                      if (isscalar (udata.handle)
                           && ! isempty (intersect (udata.handle, kids (i))))
                         hlegend = get (fkids (j));
                         break;
@@ -177,11 +183,17 @@ function __go_draw_figure__ (h, plot_stream, enhanced, mono)
               endif
             case "uimenu"
               ## ignore uimenu objects
+              kids(i) = [];
             otherwise
               error ("__go_draw_figure__: unknown object class, %s", type);
           endswitch
         endfor
-        fputs (plot_stream, "\nunset multiplot;\n");
+        if (isempty (kids))
+          fputs (plot_stream, "\nreset; clear;\n");
+          fflush (plot_stream);
+        else
+          fputs (plot_stream, "\nunset multiplot;\n");
+        endif
       else
         fputs (plot_stream, "\nreset; clear;\n");
         fflush (plot_stream);

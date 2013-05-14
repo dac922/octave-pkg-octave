@@ -135,7 +135,7 @@ function imwrite (img, varargin)
       if ((nd == 2 || nd == 3) && strcmp (img_class, "double"))
         img = uint8 (img * 255);
       endif
-      ## FIXME -- should we handle color images w/ alpha channel here?
+      ## FIXME: should we handle color images with alpha channel here?
       if (nd == 3 && size (img, 3) < 3)
         error ("imwrite: invalid dimensions for truecolor image");
       endif
@@ -161,17 +161,12 @@ function imwrite (img, varargin)
     else
       error ("imwrite: %s: invalid class for indexed image data", img_class);
     endif
-    if (isa (map, "double"))
-      if (ndims (map) != 2 || size (map, 2) != 3)
-        error ("imwrite: invalid size for colormap");
-      endif
-    else
-      error ("imwrite: %s invalid class for indexed image colormap",
-             class (map));
+    if (! iscolormap (map))
+      error ("imwrite: invalid indexed image colormap");
     endif
 
-    ## FIXME -- we should really be writing indexed images here but
-    ## __magick_write__ needs to be fixed to handle them.
+    ## FIXME: we should really be writing indexed images here but
+    ##        __magick_write__ needs to be fixed to handle them.
 
     [r, g, b] = ind2rgb (img, map);
     tmp = uint8 (cat (3, r, g, b) * 255);
@@ -187,14 +182,15 @@ function imwrite (img, varargin)
 
 endfunction
 
+
 %% Test input validation
-%!error imwrite ()                           # Wrong # of args
-%!error imwrite (1)                          # Wrong # of args
-%!error imwrite ({"cell"}, "filename.jpg")   # Wrong class for img
-%!error imwrite (1, [], "filename.jpg")      # Empty image map
-%!error imwrite (1, 2, 3)                    # No filename specified
-%!error imwrite (1, "filename")              # No fmt specified
-%!error imwrite (1, "filename", "junk")      # Invalid fmt specified
-%!error imwrite ([], "filename.jpg")         # Empty img matrix
-%!error imwrite (spones(2), "filename.jpg")  # Invalid sparse img
+%!error imwrite ()                            # Wrong # of args
+%!error imwrite (1)                           # Wrong # of args
+%!error imwrite ({"cell"}, "filename.jpg")    # Wrong class for img
+%!error imwrite (1, [], "filename.jpg")       # Empty image map
+%!error imwrite (1, 2, 3)                     # No filename specified
+%!error imwrite (1, "filename")               # No fmt specified
+%!error imwrite (1, "filename", "junk")       # Invalid fmt specified
+%!error imwrite ([], "filename.jpg")          # Empty img matrix
+%!error imwrite (spones (2), "filename.jpg")  # Invalid sparse img
 

@@ -18,7 +18,7 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {@var{parent} =} ancestor (@var{h}, @var{type})
-## @deftypefnx {Function File} {@var{parent} =} ancestor (@var{h}, @var{type}, 'toplevel')
+## @deftypefnx {Function File} {@var{parent} =} ancestor (@var{h}, @var{type}, "toplevel")
 ## Return the first ancestor of handle object @var{h} whose type matches
 ## @var{type}, where @var{type} is a character string.  If @var{type} is a
 ## cell array of strings, return the first parent whose type matches
@@ -49,7 +49,7 @@ function p = ancestor (h, type, toplevel)
         endif
       endif
       h = num2cell (h);
-      for nh = 1:numel(h)
+      for nh = 1:numel (h)
         while (true)
           if (isempty (h{nh}) || ! ishandle (h{nh}))
             break;
@@ -75,6 +75,7 @@ function p = ancestor (h, type, toplevel)
 
 endfunction
 
+
 %!test
 %! hf = figure ("visible", "off");
 %! unwind_protect
@@ -84,3 +85,4 @@ endfunction
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect
+

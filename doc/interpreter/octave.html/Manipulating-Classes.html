@@ -45,7 +45,7 @@ then Octave will printed nothing when displaying the contents of a class.
    <p><a name="doc_002ddisplay"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>display</b> (<var>a</var>)<var><a name="index-display-2992"></a></var><br>
+&mdash; Function File:  <b>display</b> (<var>a</var>)<var><a name="index-display-3260"></a></var><br>
 <blockquote><p>Display the contents of an object.  If <var>a</var> is an object of the
 class "myclass", then <code>display</code> is called in a case like
 
@@ -54,9 +54,6 @@ class "myclass", then <code>display</code> is called in a case like
         <p class="noindent">where Octave is required to display the contents of a variable of the
 type "myclass".
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>. 
 </p></blockquote></div>
 
@@ -65,7 +62,7 @@ type "myclass".
 <pre class="example"><pre class="verbatim">     function display (p)
        a = p.poly;
        first = true;
-       fprintf("%s =", inputname(1));
+       fprintf ("%s =", inputname (1));
        for i = 1 : length (a);
          if (a(i) != 0)
            if (first)
@@ -90,14 +87,14 @@ type "myclass".
          endif
        endfor
        if (first)
-         fprintf(" 0");
+         fprintf (" 0");
        endif
-       fprintf("\n");
+       fprintf ("\n");
      endfunction
 </pre>
 </pre>
    <p class="noindent">Note that in the display method, it makes sense to start the method
-with the line <code>fprintf("%s =", inputname(1))</code> to be consistent
+with the line <code>fprintf ("%s =", inputname (1))</code> to be consistent
 with the rest of Octave and print the variable name to be displayed
 when displaying the class.
 
@@ -181,7 +178,7 @@ initialized before it is saved.  This can be done with the
    <p><a name="doc_002dsaveobj"></a>
 
 <div class="defun">
-&mdash; Function File: <var>b</var> = <b>saveobj</b> (<var>a</var>)<var><a name="index-saveobj-2993"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>saveobj</b> (<var>a</var>)<var><a name="index-saveobj-3261"></a></var><br>
 <blockquote><p>Method of a class to manipulate an object prior to saving it to a file. 
 The function <code>saveobj</code> is called when the object <var>a</var> is saved
 using the <code>save</code> function.  An example of the use of <code>saveobj</code>
@@ -196,10 +193,7 @@ initialized before the object is saved.  For example:
             endif
           endfunction
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dloadobj.html#doc_002dloadobj">loadobj</a>, <a href="doc_002dclass.html#doc_002dclass">class</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dloadobj.html#doc_002dloadobj">loadobj</a>, <a href="doc_002dclass.html#doc_002dclass">class</a>. 
 </p></blockquote></div>
 
 <p class="noindent"><code>saveobj</code> is called just prior to saving the class to a
@@ -211,7 +205,7 @@ fields are reinserted into the user object.
    <p><a name="doc_002dloadobj"></a>
 
 <div class="defun">
-&mdash; Function File: <var>b</var> = <b>loadobj</b> (<var>a</var>)<var><a name="index-loadobj-2994"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>loadobj</b> (<var>a</var>)<var><a name="index-loadobj-3262"></a></var><br>
 <blockquote><p>Method of a class to manipulate an object after loading it from a file. 
 The function <code>loadobj</code> is called when the object <var>a</var> is loaded
 using the <code>load</code> function.  An example of the use of <code>saveobj</code>
@@ -223,10 +217,7 @@ For example:
             b.addmissingfield = addfield (b);
           endfunction
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsaveobj.html#doc_002dsaveobj">saveobj</a>, <a href="doc_002dclass.html#doc_002dclass">class</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsaveobj.html#doc_002dsaveobj">saveobj</a>, <a href="doc_002dclass.html#doc_002dclass">class</a>. 
 </p></blockquote></div>
 
    </body></html>

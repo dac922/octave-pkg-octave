@@ -56,8 +56,8 @@
 function [Ax, H1, H2] = plotyy (varargin)
 
   ## Don't use __plt_get_axis_arg__ here as ax is a two vector for plotyy
-  if (nargin > 1 && length (varargin{1}) == 2 && ishandle(varargin{1}(1))
-      && ishandle(varargin{1}(2))
+  if (nargin > 1 && length (varargin{1}) == 2 && ishandle (varargin{1}(1))
+      && ishandle (varargin{1}(2))
       && all (floor (varargin{1}) != varargin{1}))
     obj1 = get (varargin{1}(1));
     obj2 = get (varargin{1}(2));
@@ -91,6 +91,7 @@ function [Ax, H1, H2] = plotyy (varargin)
       ax = ax(1:2);
     elseif (length (ax) == 1)
       ax(2) = axes ();
+      set (ax(2), "nextplot", get (ax(1), "nextplot"));
     elseif (isempty (ax))
       ax(1) = axes ();
       ax(2) = axes ();
@@ -110,7 +111,7 @@ function [Ax, H1, H2] = plotyy (varargin)
     [ax, h1, h2] = __plotyy__ (ax, varargin{:});
   unwind_protect_cleanup
     ## Only change back to the old axis if we didn't delete it
-    if (ishandle(oldh) && strcmp (get (oldh, "type"), "axes"))
+    if (ishandle (oldh) && strcmp (get (oldh, "type"), "axes"))
       axes (oldh);
     endif
   end_unwind_protect
@@ -137,7 +138,7 @@ function [ax, h1, h2] = __plotyy__ (ax, x1, y1, x2, y2, varargin)
 
   xlim = [min([x1(:); x2(:)]), max([x1(:); x2(:)])];
 
-  if (ishandle(ax(1)) && strcmp (get (ax(1), "type"), "axes"))
+  if (ishandle (ax(1)) && strcmp (get (ax(1), "type"), "axes"))
     axes (ax(1));
   else
     ax(1) = axes ();
@@ -152,10 +153,11 @@ function [ax, h1, h2] = __plotyy__ (ax, x1, y1, x2, y2, varargin)
   cf = gcf ();
   set (cf, "nextplot", "add");
 
-  if (ishandle(ax(2)) && strcmp (get (ax(2), "type"), "axes"))
+  if (ishandle (ax(2)) && strcmp (get (ax(2), "type"), "axes"))
     axes (ax(2));
   else
     ax(2) = axes ();
+    set (ax(2), "nextplot", get (ax(1), "nextplot"));
   endif
   newplot ();
 
@@ -171,7 +173,6 @@ function [ax, h1, h2] = __plotyy__ (ax, x1, y1, x2, y2, varargin)
   h2 = feval (fun2, x2, y2);
   set (ax(2), "yaxislocation", "right");
   set (ax(2), "ycolor", getcolor (h2(1)));
-
 
   if (strcmp (get(ax(1), "activepositionproperty"), "position"))
     set (ax(2), "position", get (ax(1), "position"));
@@ -208,6 +209,8 @@ function [ax, h1, h2] = __plotyy__ (ax, x1, y1, x2, y2, varargin)
   addlistener (ax(2), "plotboxaspectratio", {@update_position, ax(1)});
   addlistener (ax(1), "plotboxaspectratiomode", {@update_position, ax(2)});
   addlistener (ax(2), "plotboxaspectratiomode", {@update_position, ax(1)});
+  addlistener (ax(1), "nextplot", {@update_nextplot, ax(2)});
+  addlistener (ax(2), "nextplot", {@update_nextplot, ax(1)});
 
   ## Store the axes handles for the sister axes.
   if (ishandle (ax(1)) && ! isprop (ax(1), "__plotyy_axes__"))
@@ -215,61 +218,89 @@ function [ax, h1, h2] = __plotyy__ (ax, x1, y1, x2, y2, varargin)
   elseif (ishandle (ax(1)))
     set (ax(1), "__plotyy_axes__", ax);
   else
-    error ("plotyy.m: This shouldn't happen. File a bug report.")
+    error ("plotyy.m: This shouldn't happen. File a bug report.");
   endif
   if (ishandle (ax(2)) && ! isprop (ax(2), "__plotyy_axes__"))
     addproperty ("__plotyy_axes__", ax(2), "data", ax);
   elseif (ishandle (ax(2)))
     set (ax(2), "__plotyy_axes__", ax);
   else
-    error ("plotyy.m: This shouldn't happen. File a bug report.")
+    error ("plotyy.m: This shouldn't happen. File a bug report.");
   endif
 endfunction
 
+
 %!demo
-%! clf
+%! clf;
 %! x = 0:0.1:2*pi;
 %! y1 = sin (x);
 %! y2 = exp (x - 1);
-%! ax = plotyy (x, y1, x - 1, y2, @plot, @semilogy);
-%! xlabel ("X");
-%! ylabel (ax(1), "Axis 1");
-%! ylabel (ax(2), "Axis 2");
-%! axes (ax(1))
-%! text (0.5, 0.5, "Left Axis", ...
-%!       "color", [0 0 1], "horizontalalignment", "center")
-%! axes (ax(2))
-%! text (4.5, 80, "Right Axis", ...
-%!       "color", [0 0.5 0], "horizontalalignment", "center")
+%! ax = plotyy (x,y1, x-1,y2, @plot, @semilogy);
+%! xlabel ('X');
+%! ylabel (ax(1), 'Axis 1');
+%! ylabel (ax(2), 'Axis 2');
+%! axes (ax(1));
+%! text (0.5, 0.5, 'Left Axis', ...
+%!       'color', [0 0 1], 'horizontalalignment', 'center');
+%! axes (ax(2));
+%! text (4.5, 80, 'Right Axis', ...
+%!       'color', [0 0.5 0], 'horizontalalignment', 'center');
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! x = linspace (-1, 1, 201);
+%! subplot (2,2,1);
+%!  plotyy (x,sin(pi*x), x,10*cos(pi*x));
+%! subplot (2,2,2);
+%!  surf (peaks (25));
+%! subplot (2,2,3);
+%!  contour (peaks (25));
+%! subplot (2,2,4);
+%!  plotyy (x,10*sin(2*pi*x), x,cos(2*pi*x));
+%! axis square;
+
+%!demo
+%! clf;
+%! x = linspace (-1, 1, 201);
+%! hax = plotyy (x, sin (pi*x), x, cos (pi*x));
+%! ylabel (hax(1), 'Blue on the Left');
+%! ylabel (hax(2), 'Green on the Right');
+%! xlabel ('xlabel');
 
 %!demo
 %! clf
-%! x = linspace (-1, 1, 201);
-%! subplot (2, 2, 1)
-%! plotyy (x, sin(pi*x), x, 10*cos(pi*x))
-%! subplot (2, 2, 2)
-%! surf (peaks (25))
-%! subplot (2, 2, 3)
-%! contour (peaks (25))
-%! subplot (2, 2, 4)
-%! plotyy (x, 10*sin(2*pi*x), x, cos(2*pi*x))
-%! axis square
-
-%!demo
-%! clf
-%! x = linspace (-1, 1, 201);
-%! subplot (1, 1, 1);
-%! hax = plotyy (x, sin(pi*x), x, cos(pi*x));
-%! ylabel ("Blue and on the Left")
-%! ylabel (hax(2), "Green and on the Right")
-%! xlabel ("xlabel")
+%! hold on
+%! t = (0:0.1:9);
+%! x = sin (t);
+%! y = 5 * cos (t);
+%! [hax, h1, h2] = plotyy (t, x, t, y);
+%! [~, h3, h4] = plotyy (t+1, x, t+1, y);
+%! set ([h3, h4], "linestyle", "--")
+%! xlabel (hax(1), 'xlabel')
+%! title (hax(2), 'title')
+%! ylabel (hax(1), 'Left axis is Blue')
+%! ylabel (hax(2), 'Right axis is Green')
 
 function deleteplotyy (h, d, ax2, t2)
   if (ishandle (ax2) && strcmp (get (ax2, "type"), "axes")
-      && (isempty (gcbf()) || strcmp (get (gcbf(), "beingdeleted"),"off"))
+      && (isempty (gcbf ()) || strcmp (get (gcbf (), "beingdeleted"),"off"))
       && strcmp (get (ax2, "beingdeleted"), "off"))
     set (t2, "deletefcn", []);
     delete (ax2);
+  endif
+endfunction
+
+function update_nextplot (h, d, ax2)
+  persistent recursion = false;
+  prop = "nextplot";
+  if (! recursion)
+    unwind_protect
+      recursion = true;
+      set (ax2, prop, get (h, prop));
+    unwind_protect_cleanup
+      recursion = false;
+    end_unwind_protect
   endif
 endfunction
 

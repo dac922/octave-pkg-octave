@@ -74,20 +74,20 @@ function h = pareto (varargin)
       endif
     endif
   else
-    y = cellfun ("int2str", num2cell (1 : numel(x)),
+    y = cellfun ("int2str", num2cell (1 : numel (x)),
                  "uniformoutput", false);
   endif
 
   [x, idx] = sort (x, "descend");
   y = y (idx);
   cdf = cumsum (x);
-  maxcdf = max(cdf);
+  maxcdf = max (cdf);
   cdf = cdf ./ maxcdf;
   cdf95 = cdf - 0.95;
-  idx95 = find(sign(cdf95(1:end-1)) != sign(cdf95(2:end)))(1);
+  idx95 = find (sign (cdf95(1:end-1)) != sign (cdf95(2:end)))(1);
 
   [ax, hbar, hline] = plotyy (1 : idx95, x (1 : idx95),
-                              1 : length(cdf), 100 .* cdf,
+                              1 : length (cdf), 100 .* cdf,
                               @bar, @plot);
 
   axis (ax(1), [1 - 0.6, idx95 + 0.6, 0, maxcdf]);
@@ -105,16 +105,16 @@ endfunction
 
 
 %!demo
-%! clf
+%! clf;
 %! colormap (jet (64));
-%! Cheese = {"Cheddar", "Swiss", "Camembert", "Munster", "Stilton", "Blue"};
+%! Cheese = {'Cheddar', 'Swiss', 'Camembert', 'Munster', 'Stilton', 'Blue'};
 %! Sold = [105, 30, 70, 10, 15, 20];
 %! pareto (Sold, Cheese);
 
 %!demo
-%! clf
-%! % Suppose that we want establish which products makes 80 % of turnover.
-%! Codes = {"AB4","BD7","CF8","CC5","AD11","BB5","BB3","AD8","DF3","DE7"};
+%! clf;
+%! % Suppose that we want establish which products makes 80% of turnover.
+%! Codes = {'AB4','BD7','CF8','CC5','AD11','BB5','BB3','AD8','DF3','DE7'};
 %! Value = [2.35 7.9 2.45 1.1 0.15 13.45 5.4 2.05 0.85  1.65]';
 %! SoldUnits = [54723 41114 16939 1576091 168000 687197 120222 168195, ...
 %!              1084118 55576]';

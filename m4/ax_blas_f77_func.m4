@@ -52,7 +52,7 @@
 #   modified version of the Autoconf Macro, you may extend this special
 #   exception to the GPL to apply to your modified version as well.
 
-#serial 5
+#serial 8
 
 AU_ALIAS([ACX_BLAS_F77_FUNC], [AX_BLAS_F77_FUNC])
 AC_DEFUN([AX_BLAS_F77_FUNC], [
@@ -150,9 +150,9 @@ elif test x"$ax_blas_ok" = xyes; then
       real s,a(1),b(1),sdot
       a(1) = 1.0
       b(1) = 1.0
-c Generate -2**33 + 1, if possible
+c Generate -2**32 + 1, if possible
       n = 2
-      n = -4 * (n ** 30)
+      n = -4 ** (n ** 30)
       n = n + 1
       if (n >= 0) goto 1
 c This means we're on 64-bit integers. Check whether the BLAS is, too.

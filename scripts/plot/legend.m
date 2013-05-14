@@ -19,20 +19,21 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} legend (@var{str1}, @var{str2}, @dots{})
 ## @deftypefnx {Function File} {} legend (@var{matstr})
-## @deftypefnx {Function File} {} legend (@var{cell})
+## @deftypefnx {Function File} {} legend (@var{cellstr})
 ## @deftypefnx {Function File} {} legend (@dots{}, "location", @var{pos})
 ## @deftypefnx {Function File} {} legend (@dots{}, "orientation", @var{orient})
 ## @deftypefnx {Function File} {} legend (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {} legend (@var{hobjs}, @dots{})
 ## @deftypefnx {Function File} {} legend (@var{hax}, @var{hobjs}, @dots{})
 ## @deftypefnx {Function File} {} legend ("@var{option}")
+## @deftypefnx {Function File} {[@var{hleg}, @var{hleg_obj}, @var{hplot}, @var{labels}] =} legend (@dots{})
 ##
 ## Display a legend for the axes with handle @var{hax}, or the current axes,
 ## using the specified strings as labels.  Legend entries may be specified
 ## as individual character string arguments, a character array, or a cell
 ## array of character strings.  If the handles, @var{hobjs}, are not specified
 ## then the legend's strings will be associated with the axes' descendants.
-## Legend works on line graphs, bar graphs, etc.
+## @code{legend} works on line graphs, bar graphs, etc.
 ## A plot must exist before legend is called.
 ##
 ## The optional parameter @var{pos} specifies the location of the legend
@@ -74,8 +75,8 @@
 ## @end multitable
 ##
 ## The optional parameter @var{orient} determines if the key elements
-## are placed vertically or horizontally.  The allowed values are "vertical"
-## or "horizontal" with the default being "vertical".
+## are placed vertically or horizontally.  The allowed values are
+## "vertical" (default) or "horizontal".
 ##
 ## The following customizations are available using @var{option}:
 ##
@@ -86,7 +87,7 @@
 ## @item "hide"
 ##   Hide legend on the plot
 ##
-## @itemx "toggle"
+## @item "toggle"
 ##   Toggles between "hide" and "show"
 ##
 ## @item "boxon"
@@ -96,14 +97,35 @@
 ##   Hide the box around legend
 ##
 ## @item "left"
-##   Place text to the left of the keys
+##   Place label text to the left of the keys
 ##
 ## @item "right"
-##   Place text to the right of the keys
+##   Place label text to the right of the keys
 ##
-## @itemx "off"
+## @item  "off"
 ##   Delete the legend object
 ## @end table
+##
+## The optional output values are
+##
+## @table @var
+## @item hleg
+##   The graphics handle of the legend object.
+##
+## @item hleg_obj
+##   Graphics handles to the text and line objects which make up the legend.
+##
+## @item hplot
+##   Graphics handles to the plot objects which were used in making the legend.
+##
+## @item labels
+##   A cell array of strings of the labels in the legend.
+## @end table 
+##
+## The legend label text is either provided in the call to @code{legend} or
+## is taken from the DisplayName property of graphics objects.  If no
+## labels or DisplayNames are available, then the label text is simply
+## "data1", "data2", @dots{}, "dataN".
 ## @end deftypefn
 
 function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
@@ -122,6 +144,7 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     ca = gca ();
   endif
 
+  ## Special handling for plotyy which has two axes objects
   if (ishandle (ca) && isprop (ca, "__plotyy_axes__"))
     plty = get (ca, "__plotyy_axes__");
     if (isscalar (plty) && ishandle (plty))
@@ -131,11 +154,11 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     elseif (all (ishandle (plty)))
       ca = [ca, plty(:).'];
     else
-      error ("legend.m: This should not happen. File a bug report.")
+      error ("legend.m: This should not happen. File a bug report.");
     endif
     ## Remove duplicates while preserving order
     [~, n] = unique (ca);
-    ca = ca (sort (n));
+    ca = ca(sort (n));
   endif
 
   if (nargin > 0 && all (ishandle (varargin{1})))
@@ -143,11 +166,11 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     varargin(1) = [];
   else
     kids = ca;
-    kids (strcmp (get (ca, "tag"), "legend")) = [];
+    kids(strcmp (get (ca, "tag"), "legend")) = [];
     if (isscalar (kids))
-      kids = get(kids, "children")(:);
+      kids = get (kids, "children")(:);
     else
-      kids = [get(kids, "children"){:}](:);
+      kids = flipud ([get(kids, "children"){:}](:));
     endif
   endif
   nargs = numel (varargin);
@@ -159,6 +182,7 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
   textpos = "default";
   box = "default";
 
+  ## Process old way of specifying position with a number rather than a string.
   if (nargs > 0)
     pos = varargin{nargs};
     if (isnumeric (pos) && isscalar (pos) && pos == fix (pos))
@@ -172,13 +196,14 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     endif
   endif
 
+  ## Find position and orientation property/value pairs
   while (nargs > 1)
     pos = varargin{nargs-1};
     str = varargin{nargs};
-    if (strcmpi (pos, "location")  && ischar (str))
+    if (strcmpi (pos, "location") && ischar (str))
       position = lower (str);
       nargs -= 2;
-    elseif (strcmpi (pos, "orientation")  && ischar (str))
+    elseif (strcmpi (pos, "orientation") && ischar (str))
       orientation = lower (str);
       nargs -= 2;
     else
@@ -188,14 +213,14 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
 
   ## Validate the orientation
   switch (orientation)
-    case {"vertical", "horizontal","default"}
+    case {"vertical", "horizontal", "default"}
     otherwise
       error ("legend: unrecognized legend orientation");
   endswitch
 
-  ## Validate the position type is valid
+  ## Validate the position type
   outside = false;
-  inout = findstr (position, "outside");
+  inout = strfind (position, "outside");
   if (! isempty (inout))
     outside = true;
     position = position(1:inout-1);
@@ -213,14 +238,15 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
       error ("legend: unrecognized legend position");
   endswitch
 
+  ## Find any existing legend object on figure
   hlegend = [];
   fkids = get (fig, "children");
-  for i = 1 : numel(fkids)
-    if (ishandle (fkids (i)) && strcmp (get (fkids (i), "type"), "axes")
-        && (strcmp (get (fkids (i), "tag"), "legend")))
-      udata = get (fkids (i), "userdata");
+  for i = 1 : numel (fkids)
+    if (ishandle (fkids(i)) && strcmp (get (fkids(i), "type"), "axes")
+        && (strcmp (get (fkids(i), "tag"), "legend")))
+      udata = get (fkids(i), "userdata");
       if (! isempty (intersect (udata.handle, ca)))
-        hlegend = fkids (i);
+        hlegend = fkids(i);
         break;
       endif
     endif
@@ -230,19 +256,27 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     arg = varargin{1};
     if (ischar (arg))
       if (rows (arg) == 1)
-        str = tolower (deblank (arg));
+        str = tolower (strtrim (arg));
         switch (str)
-          case {"off"}
+          case "off"
             delete (hlegend);
-            return
-          case {"hide"}
+            return;
+          case "hide"
             show = "off";
             nargs--;
           case "show"
-            show = "on";
+            if (! isempty (hlegend))
+              show = "on";
+            else
+              show = "create";
+              textpos = "left";
+            endif
             nargs--;
           case "toggle"
-            if (isempty (hlegend) || strcmp (get (hlegend, "visible"), "off"))
+            if (isempty (hlegend))
+              show = "create";
+              textpos = "left";
+            elseif (strcmp (get (hlegend, "visible"), "off"))
               show = "on";
             else
               show = "off";
@@ -260,23 +294,30 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
           case "right"
             textpos = "right";
             nargs--;
-          otherwise
         endswitch
       else
+        ## Character matrix of labels
         varargin = cellstr (arg);
         nargs = numel (varargin);
       endif
     elseif (iscellstr (arg))
+      ## Cell array of labels
       varargin = arg;
       nargs = numel (varargin);
     else
       error ("legend: expecting argument to be a character string");
     endif
+  elseif (nargs > 1 && iscellstr (varargin{1}))
+    ## Cell array of labels followed by property/value pairs
+    varargin = {varargin{1}{:}, varargin{2:end}};
+    nargs = numel (varargin);
   endif
+
+  have_labels = (nargs > 0);
 
   if (strcmp (show, "off"))
     if (! isempty (hlegend))
-      set (get (hlegend, "children"), "visible", "off");
+      set (findobj (hlegend), "visible", "off");
       hlegend = [];
     endif
     hobjects = [];
@@ -284,7 +325,9 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     text_strings = {};
   elseif (strcmp (show, "on"))
     if (! isempty (hlegend))
-      set (get (hlegend, "children"), "visible", "on");
+      set (findobj (hlegend), "visible", "on");
+      ## NOTE - Matlab sets both "visible", and "box" to "on"
+      set (hlegend, "visible", get (hlegend, "box"));
     else
       hobjects = [];
       hplots  = [];
@@ -292,19 +335,20 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     endif
   elseif (strcmp (box, "on"))
     if (! isempty (hlegend))
-      set (hlegend, "visible", "on", "box", "on");
+      set (hlegend, "box", "on", "visible", "on");
     endif
   elseif (strcmp (box, "off"))
     if (! isempty (hlegend))
       set (hlegend, "box", "off", "visible", "off");
     endif
-  elseif (nargs == 0 && !(strcmp (position, "default") &&
-                          strcmp (orientation, "default")))
+  elseif (! have_labels && !(strcmp (position, "default") &&
+                             strcmp (orientation, "default")))
+    ## Changing location or orientation of existing legend
     if (! isempty (hlegend))
       hax = getfield (get (hlegend, "userdata"), "handle");
       [hplots, text_strings] = __getlegenddata__ (hlegend);
 
-      if  (strcmp (position, "default"))
+      if (strcmp (position, "default"))
         h = legend (hax, hplots, text_strings, "orientation", orientation);
       elseif (strcmp (orientation, "default"))
         if (outside)
@@ -324,13 +368,16 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
       endif
     endif
   else
+    ## Create new legend
     hobjects = [];
     hplots  = [];
     text_strings = {};
 
-    if (nargs > 0)
+    if (have_labels)
+      ## Check for valid data that can be labeled.
       have_data = false;
-      for k = 1:nkids
+      have_dname = false;
+      for k = 1 : nkids
         typ = get (kids(k), "type");
         if (strcmp (typ, "line") || strcmp (typ, "surface")
             || strcmp (typ, "patch") || strcmp (typ, "hggroup"))
@@ -342,11 +389,40 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
       if (! have_data)
         warning ("legend: plot data is empty; setting key labels has no effect");
       endif
-    endif
+    else
+      ## No labels.  Search for DisplayName property.
+      have_dname = false;
+      for k = 1 : nkids
+        hkid = kids(k);
+        typ = get (hkid, "type");
+        if (strcmp (typ, "line") || strcmp (typ, "surface")
+            || strcmp (typ, "patch"))
+          if (! isempty (get (hkid, "displayname")))
+            have_dname = true;
+            break;
+          endif
+        elseif (strcmp (typ, "hggroup"))
+          hgkids = get (hkid, "children");
+          for j = 1 : length (hgkids)
+            hgobj = get (hgkids(j));
+            if (isfield (hgobj, "displayname") && ! isempty (hgobj.displayname))
+              have_dname = true;
+              break;  # break from j-loop over hgkids
+            endif
+          endfor
+          if (have_dname)
+            break;  # break from k loop over nkids
+          endif
+        endif  # elseif hggroup
+      endfor   # for loop k = 1 : nkids
+    endif      # else branch of if (have_labels)
 
-    if (strcmp (textpos, "default"))
-      warned = false;
+    if (have_labels || ! have_dname)
       k = nkids;
+      if (! have_labels)
+        varargin = arrayfun (@(x) sprintf ("data%d", x), [1:nkids]', "uniformoutput", false);
+        nargs = nkids;
+      endif
       for i = 1 : nargs
         arg = varargin{i};
         if (ischar (arg))
@@ -360,16 +436,20 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
             if (strcmp (get (kids(k), "type"), "hggroup"))
               hgkids = get (kids(k), "children");
               for j = 1 : length (hgkids)
-                hgobj = get (hgkids (j));
+                hgobj = get (hgkids(j));
                 if (isfield (hgobj, "displayname"))
-                  set (hgkids(j), "displayname", arg);
+                  if (have_labels)
+                    set (hgkids(j), "displayname", arg);
+                  endif
                   hplots = [hplots, hgkids(j)];
                   text_strings = {text_strings{:}, arg};
                   break;
                 endif
               endfor
             else
-              set (kids(k), "displayname", arg);
+              if (have_labels)
+                set (kids(k), "displayname", arg);
+              endif
               hplots = [hplots, kids(k)];
               text_strings = {text_strings{:}, arg};
             endif
@@ -377,17 +457,18 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
             if (--k == 0)
               break;
             endif
-          elseif (! warned)
-            break;
+          else
+            break;  # k = 0, no further handles to process
           endif
         else
           error ("legend: expecting argument to be a character string");
         endif
       endfor
-      if (i < nargs && ! warned)
+      if (have_labels && i < nargs)
         warning ("legend: ignoring extra labels");
       endif
     else
+      ## No labels specified but objects have DisplayName property set.
       k = nkids;
       while (k > 0)
         typ = get (kids(k), "type");
@@ -404,7 +485,7 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
           if (strcmp (get (kids(k), "type"), "hggroup"))
             hgkids = get (kids(k), "children");
             for j = 1 : length (hgkids)
-              hgobj = get (hgkids (j));
+              hgobj = get (hgkids(j));
               if (isfield (hgobj, "displayname")
                   && ! isempty (hgobj.displayname))
                 hplots = [hplots, hgkids(j)];
@@ -413,9 +494,9 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
               endif
             endfor
           else
-            if (! isempty (get (kids (k), "displayname")))
+            if (! isempty (get (kids(k), "displayname")))
               hplots = [hplots, kids(k)];
-              text_strings = {text_strings{:}, get(kids (k), "displayname")};
+              text_strings = {text_strings{:}, get(kids(k), "displayname")};
             endif
           endif
           if (--k == 0)
@@ -428,21 +509,21 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
     if (isempty (hplots))
       if (! isempty (hlegend))
         fkids = get (fig, "children");
-        delete (fkids (fkids == hlegend));
+        delete (fkids(fkids == hlegend));
         hlegend = [];
         hobjects = [];
         hplots  = [];
         text_strings = {};
       endif
     else
-      ## Delete the old legend if it exists
+      ## Preserve the old legend if it exists
       if (! isempty (hlegend))
         if (strcmp (textpos, "default"))
           textpos = get (hlegend, "textposition");
         endif
         if (strcmp (position, "default"))
           position = get (hlegend, "location");
-          inout = findstr (position, "outside");
+          inout = strfind (position, "outside");
           if (! isempty (inout))
             outside = true;
             position = position(1:inout-1);
@@ -454,10 +535,6 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
           orientation = get (hlegend, "orientation");
         endif
         box = get (hlegend, "box");
-        fkids = get (fig, "children");
-
-        delete (hlegend);
-        hlegend = [];
       else
         if (strcmp (textpos, "default"))
           textpos = "left";
@@ -468,7 +545,7 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
         if (strcmp (orientation, "default"))
           orientation = "vertical";
         endif
-        box = "off";
+        box = "on";
       endif
 
       ## Get axis size and fontsize in points.
@@ -497,24 +574,25 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
       ## FIXME hlegend should inherit properties from "ca"
       curaxes = get (fig, "currentaxes");
       unwind_protect
-        ud = ancestor(hplots, "axes");
-        if (!isscalar(ud))
+        ud = ancestor (hplots, "axes");
+        if (!isscalar (ud))
           ud = unique ([ud{:}]);
         endif
         if (isempty (hlegend))
           addprops = true;
           hlegend = axes ("tag", "legend", "userdata", struct ("handle", ud),
                           "box", box,
-                          "xtick", [], "ytick", [], "xticklabel", "",
-                          "yticklabel", "", "zticklabel", "",
-                          "xlim", [0, 1], "ylim", [0, 1], "visible", "off",
-                          "activepositionproperty", "position");
+                          "xtick", [], "ytick", [],
+                          "xticklabel", "", "yticklabel", "", "zticklabel", "",
+                          "xlim", [0, 1], "ylim", [0, 1],
+                          "visible", ifelse (strcmp (box, "on"), "on", "off"),
+                          "activepositionproperty", "position",
+                          "fontsize", ca_fontsize);
         else
           addprops = false;
           axes (hlegend);
           delete (get (hlegend, "children"));
         endif
-
         ## Add text label to the axis first, checking their extents
         nentries = numel (hplots);
         texthandle = [];
@@ -522,22 +600,24 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
         maxheight = 0;
         for k = 1 : nentries
           if (strcmp (textpos, "right"))
-            texthandle = [texthandle, text(0, 0, text_strings {k},
+            texthandle = [texthandle, text(0, 0, text_strings{k},
                                            "horizontalalignment", "left",
-                                           "userdata", hplots(k))];
+                                           "userdata", hplots(k),
+                                           "fontsize", ca_fontsize)];
           else
-            texthandle = [texthandle, text(0, 0, text_strings {k},
+            texthandle = [texthandle, text(0, 0, text_strings{k},
                                            "horizontalalignment", "right",
-                                           "userdata", hplots(k))];
+                                           "userdata", hplots(k),
+                                           "fontsize", ca_fontsize)];
           endif
-          units = get (texthandle (end), "units");
+          units = get (texthandle(end), "units");
           unwind_protect
-            set (texthandle (end), "units", "points");
-            extents = get (texthandle (end), "extent");
-            maxwidth = max (maxwidth, extents (3));
-            maxheight = max (maxheight, extents (4));
+            set (texthandle(end), "units", "points");
+            extents = get (texthandle(end), "extent");
+            maxwidth = max (maxwidth, extents(3));
+            maxheight = max (maxheight, extents(4));
           unwind_protect_cleanup
-            set (texthandle (end), "units", units);
+            set (texthandle(end), "units", units);
           end_unwind_protect
         endfor
 
@@ -545,24 +625,24 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
         if (strcmp (orientation, "vertical"))
           height = nentries * (ypad + maxheight);
           if (outside)
-            if (height > ca_pos (4))
+            if (height > ca_pos(4))
               ## Avoid shrinking the height of the axis to zero if outside
               num1 = ca_pos(4) / (maxheight + ypad) / 2;
             endif
           else
-            if (height > 0.9 * ca_pos (4))
+            if (height > 0.9 * ca_pos(4))
               num1 = 0.9 * ca_pos(4) / (maxheight + ypad);
             endif
           endif
         else
           width = nentries * (ypad + maxwidth);
           if (outside)
-            if (width > ca_pos (3))
+            if (width > ca_pos(3))
               ## Avoid shrinking the width of the axis to zero if outside
               num1 = ca_pos(3) / (maxwidth + ypad) / 2;
             endif
           else
-            if (width > 0.9 * ca_pos (3))
+            if (width > 0.9 * ca_pos(3))
               num1 = 0.9 * ca_pos(3) / (maxwidth + ypad);
             endif
           endif
@@ -679,7 +759,7 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
         xk = 0;
         yk = 0;
         for k = 1 : numel (hplots)
-          hobjects = [hobjects, texthandle (k)];
+          hobjects = [hobjects, texthandle(k)];
           switch (get (hplots(k), "type"))
           case "line"
             color = get (hplots(k), "color");
@@ -703,14 +783,26 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
               hobjects = [hobjects, l1];
             endif
 
-            addlistener(hplots(k), "color", {@updateline, hlegend, linelength});
-            addlistener(hplots(k), "linestyle", {@updateline, hlegend, linelength});
-            addlistener(hplots(k), "marker", {@updateline, hlegend, linelength});
-            addlistener(hplots(k), "markeredgecolor", {@updateline, hlegend, linelength});
-            addlistener(hplots(k), "markerfacecolor", {@updateline, hlegend, linelength});
-            addlistener(hplots(k), "markersize", {@updateline, hlegend, linelength});
-            addlistener(hplots(k), "displayname", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "color", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "linestyle", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "marker", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "markeredgecolor", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "markerfacecolor", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "markersize", {@updateline, hlegend, linelength});
+            addlistener (hplots(k), "displayname", {@updateline, hlegend, linelength});
           case "patch"
+            facecolor = get (hplots(k), "facecolor");
+            edgecolor = get (hplots(k), "edgecolor");
+            cdata = get (hplots(k), "cdata");
+            if (! strcmp (facecolor, "none") || ! strcmp (edgecolor, "none"))
+              p1 = patch ("xdata", ([0, linelength, linelength, 0] +
+                                   xoffset + xk * xstep) / lpos(3),
+                         "ydata", (lpos(4) - yoffset -
+                                   [yk-0.3, yk-0.3, yk+0.3, yk+0.3] .* ystep) / lpos(4),
+                         "facecolor", facecolor, "edgecolor", edgecolor, "cdata", cdata,
+                         "userdata", hplots(k));
+              hobjects = [hobjects, p1];
+            endif
           case "surface"
           endswitch
           set (texthandle (k), "position", [(txoffset + xk * xstep) / lpos(3), ...
@@ -737,16 +829,16 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
                    "xliminclude", "off", "yliminclude", "off");
         set (t1, "deletefcn", {@deletelegend1, hlegend});
 
-        ## Resize the axis the legend is attached to if the
-        ## legend is "outside" the plot and create listener to
+        ## Resize the axis that the legend is attached to if the
+        ## legend is "outside" the plot and create a listener to
         ## resize axis to original size if the legend is deleted,
-        ## hidden or shown
+        ## hidden, or shown.
         if (outside)
           for i = 1 : numel (ca)
             units = get (ca(i), "units");
             unwind_protect
               set (ca(i), "units", "points");
-              set (ca (i), "position", new_pos);
+              set (ca(i), "position", new_pos);
             unwind_protect_cleanup
               set (ca(i), "units", units);
             end_unwind_protect
@@ -782,6 +874,7 @@ function [hlegend2, hobjects2, hplot2, text_strings2] = legend (varargin)
         if (addprops)
           addlistener (hlegend, "edgecolor", @updatelegendtext);
           addlistener (hlegend, "textcolor", @updatelegendtext);
+          addlistener (hlegend, "fontsize", @updatelegendtext);
           addlistener (hlegend, "interpreter", @updatelegendtext);
           addlistener (hlegend, "location", @updatelegend);
           addlistener (hlegend, "orientation", @updatelegend);
@@ -823,9 +916,10 @@ function updatelegendtext (h, d)
   text_kids = findobj (kids, "-property", "interpreter", "type", "text");
   interpreter = get (h, "interpreter");
   textcolor = get (h, "textcolor");
-  set (kids, "interpreter", interpreter, "color", textcolor);
-  hobj = cell2mat (get (kids, "userdata"));
-  set (hobj, "interpreter", interpreter);
+  fontsize = get (h, "fontsize");
+  set (text_kids, "interpreter", interpreter,
+                  "fontsize", fontsize,
+                  "color", textcolor);
 endfunction
 
 function hideshowlegend (h, d, ca, pos1, pos2)
@@ -842,7 +936,7 @@ function hideshowlegend (h, d, ca, pos1, pos2)
 
   for i = 1 : numel (ca)
     if (ishandle (ca(i)) && strcmp (get (ca(i), "type"), "axes")
-        && (isempty (gcbf()) || strcmp (get (gcbf(), "beingdeleted"),"off"))
+        && (isempty (gcbf ()) || strcmp (get (gcbf (), "beingdeleted"),"off"))
         && strcmp (get (ca(i), "beingdeleted"), "off"))
       units = get (ca(i), "units");
       unwind_protect
@@ -861,7 +955,7 @@ endfunction
 
 function deletelegend1 (h, d, ca)
   if (ishandle (ca) && strcmp (get (ca, "type"), "axes")
-      && (isempty (gcbf()) || strcmp (get (gcbf(), "beingdeleted"),"off"))
+      && (isempty (gcbf ()) || strcmp (get (gcbf (), "beingdeleted"), "off"))
       && strcmp (get (ca, "beingdeleted"), "off"))
     delete (ca);
   endif
@@ -870,7 +964,7 @@ endfunction
 function deletelegend2 (h, d, ca, pos, outpos, t1, hplots)
   for i = 1 : numel (ca)
     if (ishandle (ca(i)) && strcmp (get (ca(i), "type"), "axes")
-        && (isempty (gcbf()) || strcmp (get (gcbf(), "beingdeleted"),"off"))
+        && (isempty (gcbf ()) || strcmp (get (gcbf (), "beingdeleted"), "off"))
         && strcmp (get (ca(i), "beingdeleted"), "off"))
       if (!isempty (pos) && !isempty(outpos))
         units = get (ca(i), "units");
@@ -887,13 +981,13 @@ function deletelegend2 (h, d, ca, pos, outpos, t1, hplots)
   delete (t1);
   for i = 1 : numel (hplots)
     if (ishandle (hplots(i)) && strcmp (get (hplots (i), "type"), "line"))
-      dellistener (hplots (i), "color");
-      dellistener (hplots (i), "linestyle");
-      dellistener (hplots (i), "marker");
-      dellistener (hplots (i), "markeredgecolor");
-      dellistener (hplots (i), "markerfacecolor");
-      dellistener (hplots (i), "markersize");
-      dellistener (hplots (i), "displayname");
+      dellistener (hplots(i), "color");
+      dellistener (hplots(i), "linestyle");
+      dellistener (hplots(i), "marker");
+      dellistener (hplots(i), "markeredgecolor");
+      dellistener (hplots(i), "markerfacecolor");
+      dellistener (hplots(i), "markersize");
+      dellistener (hplots(i), "displayname");
     endif
   endfor
 endfunction
@@ -903,12 +997,12 @@ function updateline (h, d, hlegend, linelength)
   ll = [];
   kids = get (hlegend, "children");
   for i = 1 : numel (kids)
-    if (get (kids (i), "userdata") == h
+    if (get (kids(i), "userdata") == h
         && strcmp (get (kids(i), "type"), "line"))
       if (strcmp (get (kids (i), "marker"), "none"))
-        ll = kids (i);
+        ll = kids(i);
       else
-        lm = kids (i);
+        lm = kids(i);
       endif
     endif
   endfor
@@ -924,7 +1018,7 @@ function updateline (h, d, hlegend, linelength)
     ## legend function to recreate a new legend
     [hplots, text_strings] = __getlegenddata__ (hlegend);
     for i = 1 : numel (hplots)
-      if (hplots (i) == h)
+      if (hplots(i) == h)
         hplots(i) = [];
         text_strings(i) = [];
         break;
@@ -945,7 +1039,7 @@ function updateline (h, d, hlegend, linelength)
       ypos1 = get (ll,"ydata");
       xpos1 = get (ll,"xdata");
       ypos2 = ypos1(1);
-      xpos2 = sum(xpos1) / 2;
+      xpos2 = sum (xpos1) / 2;
       delete (ll);
       if (! isempty (lm))
         delete (lm);
@@ -972,190 +1066,232 @@ function updateline (h, d, hlegend, linelength)
   endif
 endfunction
 
-%!demo
-%! clf
-%! x = 0:1;
-%! plot (x, x, ";I am Blue;", x, 2*x, ";I am Green;", x, 3*x, ";I am Red;")
 
 %!demo
-%! clf
-%! x = 0:1;
-%! plot (x, x, ";I am Blue;", x, 2*x, x, 3*x, ";I am Red;")
-%! title ("Blue and Green keys, with Green mising")
+%! plot (rand (2));
+%! title ('legend called with cellstr and string inputs for labels');
+%! legend ({'foo'}, 'bar');
 
 %!demo
-%! clf
-%! plot(1:10, 1:10, 1:10, fliplr(1:10));
-%! title("incline is blue and decline is green");
-%! legend({"I am blue", "I am green"}, "location", "east");
-%! legend({"I am blue", "I am green"}, "location", "east");
+%! plot (rand (3));
+%! title ('legend() without inputs creates default labels');
+%! legend ();
+
+%!demo
+%! clf;
+%! x = 0:1;
+%! plot (x,x,';I am Blue;', x,2*x, x,3*x,';I am Red;');
+%! title ('Blue and Red keys, with Green missing');
+
+%!demo
+%! clf;
+%! plot (1:10, 1:10, 1:10, fliplr (1:10));
+%! title ('incline is blue and decline is green');
+%! legend ({'I am blue', 'I am green'}, 'location', 'east');
+
+%!demo
+%! clf;
+%! plot (1:10, 1:10, 1:10, fliplr (1:10));
+%! title ('Legend with keys in horizontal orientation');
+%! legend ({'I am blue', 'I am green'}, 'location', 'east', 'orientation', 'horizontal');
+%! legend boxoff;
+
+%!demo
+%! clf;
+%! plot (1:10, 1:10, 1:10, fliplr (1:10));
+%! title ('Legend with box off');
+%! legend ({'I am blue', 'I am green'}, 'location', 'east');
+%! legend boxoff;
+
+%!demo
+%! clf;
+%! plot (1:10, 1:10, 1:10, fliplr (1:10));
+%! title ('Legend with text to the right of key');
+%! legend ({'I am blue', 'I am green'}, 'location', 'east');
+%! legend right;
+
+%!demo
+%! clf;
+%! plot (1:10, 1:10, 1:10, fliplr (1:10));
+%! title ('Using properties to have legend text shown to the right of key');
+%! h = legend ({'I am blue', 'I am green'}, 'location', 'east');
+%! legend ('left');
+%! set (h, 'textposition', 'right');
+%! set (h, 'textcolor', [1 0 1]);
+
+%!demo
+%! clf;
+%! plot (1:10, 1:10, 1:10, fliplr (1:10));
+%! title ('Legend is hidden')
+%! legend ({'I am blue', 'I am green'}, 'location', 'east');
+%! legend hide;
+
+%!demo
+%! clf;
+%! x = 0:1;
+%! plot (x,x,';I am Blue;', x,2*x,';I am Green;', x,3*x,';I am Red;');
+%! title ('labels embedded in call to plot');
+%! legend boxon
 %! legend hide
 %! legend show
 
 %!demo
-%! clf
-%! plot(1:10, 1:10, 1:10, fliplr(1:10));
-%! title("Legend is hidden")
-%! legend({"I am blue", "I am green"}, "location", "east");
-%! legend hide
+%! clf;
+%! x = 0:1;
+%! plot (x, x, ';\alpha;',  ...
+%!       x, 2*x, ';\beta=2\alpha;',  ...
+%!       x, 3*x, ';\gamma=3\alpha;');
+%! title ('labels with interpreted Greek text');
 
 %!demo
-%! clf
-%! plot(1:10, 1:10, 1:10, fliplr(1:10));
-%! title("Legend with box on")
-%! legend({"I am blue", "I am green"}, "location", "east");
-%! legend boxon
+%! clf;
+%! plot (rand (2));
+%! title ('Labels with TeX interpreter turned off');
+%! h = legend ('Hello_World', 'foo^bar');
+%! set (h, 'interpreter', 'none');
 
 %!demo
-%! clf
-%! plot(1:10, 1:10, 1:10, fliplr(1:10));
-%! title("Legend with text to the right")
-%! legend({"I am blue", "I am green"}, "location", "east");
-%! legend right
+%! clf;
+%! plot (1:10, 1:10);
+%! title ('a very long label can sometimes cause problems');
+%! legend ('hello very big world', 'location', 'northeastoutside');
 
 %!demo
-%! clf
-%! plot(1:10, 1:10);
-%! title("a very long label can sometimes cause problems");
-%! legend({"hello world"}, "location", "northeastoutside");
-
-%!demo
-%! clf
-%! plot(1:10, 1:10);
-%! title("a very long label can sometimes cause problems");
-%! legend("hello world", "location", "northeastoutside");
-
-%!demo
-%! clf
+%! clf;
 %! labels = {};
-%! colororder = get (gca, "colororder");
+%! colororder = get (gca, 'colororder');
 %! for i = 1:5
-%!   h = plot(1:100, i + rand(100,1)); hold on;
-%!   set (h, "color", colororder(i,:))
-%!   labels = {labels{:}, cstrcat("Signal ", num2str(i))};
-%! endfor
+%!   h = plot (1:100, i + rand (100,1)); hold on;
+%!   set (h, 'color', colororder(i,:));
+%!   labels = {labels{:}, ['Signal ', num2str(i)]};
+%! end
 %! hold off;
-%! title("Signals with random offset and uniform noise")
-%! xlabel("Sample Nr [k]"); ylabel("Amplitude [V]");
-%! legend(labels, "location", "southoutside");
-%! legend("boxon");
+%! title ({'Signals with random offset and uniform noise';
+%!         'Legend shown below and outside of plot'});
+%! xlabel ('Sample Nr [k]'); ylabel ('Amplitude [V]');
+%! legend (labels, 'location', 'southoutside');
 
 %!demo
-%! clf
-%! labels = {};
-%! colororder = get (gca, "colororder");
-%! for i = 1:5
-%!   h = plot(1:100, i + rand(100,1)); hold on;
-%!   set (h, "color", colororder(i,:))
-%!   labels = {labels{:}, cstrcat("Signal ", num2str(i))};
-%! endfor
-%! hold off;
-%! title("Signals with random offset and uniform noise")
-%! xlabel("Sample Nr [k]"); ylabel("Amplitude [V]");
-%! legend(labels{:}, "location", "southoutside")
-%! legend("boxon")
-
-%!demo
-%! clf
+%! clf;
 %! x = linspace (0, 10);
 %! plot (x, x);
-%! hold ("on");
-%! stem (x, x.^2, 'g')
-%! legend ("linear");
-%! hold ("off");
+%! hold on;
+%! stem (x, x.^2, 'g');
+%! title ('First created object gets first label');
+%! legend ('linear');
+%! hold off;
 
 %!demo
-%! clf
+%! clf;
 %! x = linspace (0, 10);
 %! plot (x, x, x, x.^2);
-%! legend ("linear");
+%! title ('First created object gets first label');
+%! legend ('linear');
 
 %!demo
-%! clf
+%! clf;
 %! x = linspace (0, 10);
 %! plot (x, x, x, x.^2);
-%! legend ("linear", "quadratic");
+%! title ('Labels are applied in order of object creation');
+%! legend ('linear', 'quadratic');
 
 %!demo
-%! clf
+%! clf;
 %! rand_2x3_data1 = [0.341447, 0.171220, 0.284370; 0.039773, 0.731725, 0.779382];
 %! bar (rand_2x3_data1);
 %! ylim ([0 1.0]);
-%! legend ({"1st Bar", "2nd Bar", "3rd Bar"});
+%! title ('legend() works for bar graphs (hgobjects)');
+%! legend ({'1st Bar', '2nd Bar', '3rd Bar'});
 
 %!demo
-%! clf
+%! clf;
 %! rand_2x3_data2 = [0.44804, 0.84368, 0.23012; 0.72311, 0.58335, 0.90531];
 %! bar (rand_2x3_data2);
 %! ylim ([0 1.2]);
-%! legend ("1st Bar", "2nd Bar", "3rd Bar");
-%! legend right
+%! title ('legend() works for bar graphs (hgobjects)');
+%! legend ('1st Bar', '2nd Bar', '3rd Bar');
+%! legend right;
 
 %!demo
-%! clf
+%! clf;
 %! x = 0:0.1:7;
-%! h = plot (x, sin(x), x, cos(x), x, sin(x.^2/10), x, cos(x.^2/10));
-%! title ("Only the sin() objects have keylabels");
-%! legend (h([1, 3]), {"sin(x)", "sin(x^2/10)"}, "location", "southwest");
+%! h = plot (x,sin(x), x,cos(x), x,sin(x.^2/10), x,cos(x.^2/10));
+%! title ('Only the sin() objects have keylabels');
+%! legend (h([1, 3]), {'sin (x)', 'sin (x^2/10)'}, 'location', 'southwest');
 
 %!demo
-%! clf
+%! clf;
 %! x = 0:0.1:10;
-%! plot (x, sin(x), ";sin(x);")
-%! hold all
-%! plot (x, cos(x), ";cos(x);")
-%! hold off
+%! plot (x, sin (x), ';sin (x);');
+%! hold all;
+%! plot (x, cos (x), ';cos (x);');
+%! hold off;
+%! title ('legend constructed from multiple plot calls');
 
 %!demo
-%! clf
+%! clf;
 %! x = 0:0.1:10;
-%! plot (x, sin(x), ";sin(x);")
-%! hold all
-%! plot (x, cos(x), ";cos(x);")
-%! hold off
-%! legend ({"sin(x)", "cos(x)"}, "location", "northeastoutside")
+%! plot (x, sin (x), ';sin (x);');
+%! hold all;
+%! plot (x, cos (x), ';cos (x);');
+%! hold off;
+%! title ('Specified label text overrides previous labels');
+%! legend ({'Sine', 'Cosine'}, 'location', 'northeastoutside');
 
 %!demo
-%! clf
+%! clf;
 %! x = 0:10;
 %! plot (x, rand (11));
-%! xlabel ("Indices")
-%! ylabel ("Random Values")
-%! title ("Legend ""off"" should delete the legend")
-%! legend (cellstr (num2str ((1:10)')), "location", "northeastoutside")
-%! legend off
-%! axis ([0, 10, 0 1])
+%! xlabel ('Indices');
+%! ylabel ('Random Values');
+%! title ('Legend ''off'' deletes the legend');
+%! legend (cellstr (num2str ((1:10)')), 'location', 'northeastoutside');
+%! legend off;
+%! axis ([0, 10, 0 1]);
 
 %!demo
-%! clf
-%! x = 1:5;
-%! subplot (2, 2, 1)
-%! plot (x, rand (numel (x)));
-%! legend (cellstr (num2str (x')), "location", "northwestoutside")
-%! legend boxon
-%! subplot (2, 2, 2)
-%! plot (x, rand (numel (x)));
-%! legend (cellstr (num2str (x')), "location", "northeastoutside")
-%! legend boxon
-%! subplot (2, 2, 3);
-%! plot (x, rand (numel (x)));
-%! legend (cellstr (num2str (x')), "location", "southwestoutside")
-%! legend boxon
-%! subplot (2, 2, 4)
-%! plot (x, rand (numel (x)));
-%! legend (cellstr (num2str (x')), "location", "southeastoutside")
-%! legend boxon
+%! clf;
+%! x = (1:5)';
+%! subplot (2,2,1);
+%!  plot (x, rand (numel (x)));
+%!  legend (cellstr (num2str (x)), 'location', 'northwestoutside');
+%! subplot (2,2,2);
+%!  plot (x, rand (numel (x)));
+%!  legend (cellstr (num2str (x)), 'location', 'northeastoutside');
+%! subplot (2,2,3);
+%!  plot (x, rand (numel (x)));
+%!  legend (cellstr (num2str (x)), 'location', 'southwestoutside');
+%! subplot (2,2,4);
+%!  plot (x, rand (numel (x)));
+%!  legend (cellstr (num2str (x)), 'location', 'southeastoutside');
 
 %!demo
-%! clf
-%! plot (rand (2))
-%! title ("Warn of extra labels")
-%! legend ("Hello", "World", "interpreter", "foobar")
+%! clf;
+%! plot (rand (2));
+%! title ('legend() will warn if extra labels are specified');
+%! legend ('Hello', 'World', 'interpreter', 'foobar');
 
 %!demo
-%! clf
-%! plot (rand (2))
-%! title ("Turn off TeX interpreter")
-%! h = legend ("Hello_World", "foo^bar");
-%! set (h, "interpreter", "none")
+%! x = 0:10;
+%! y1 = rand (size (x));
+%! y2 = rand (size (x));
+%! [ax, h1, h2] = plotyy (x, y1, x, y2);
+%! title ('plotyy legend test #1: Blue and Green labels');
+%! legend ([h1, h2], {'Blue', 'Green'}, 'location', 'south');
+
+%!demo
+%! x = 0:10;
+%! y1 = rand (size (x));
+%! y2 = rand (size (x));
+%! [ax, h1, h2] = plotyy (x, y1, x, y2);
+%! title ('plotyy legend test #2: Blue and Green labels');
+%! legend ({'Blue', 'Green'}, 'location', 'south');
+
+%!demo
+%! x = 0:10;
+%! y1 = rand (size (x));
+%! y2 = rand (size (x));
+%! [ax, h1, h2] = plotyy (x, y1, x, y2);
+%! title ('plotyy legend test #3: Blue and Green labels');
+%! legend ('Blue', 'Green', 'location', 'south');
 

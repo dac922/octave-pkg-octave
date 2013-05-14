@@ -17,7 +17,7 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{args} =} __print_parse_opts__ (@var{propname}, @var{propvalue})
+## @deftypefn  {Function File} {@var{args} =} __print_parse_opts__ (@var{propname}, @var{propvalue})
 ## @deftypefnx {Function File} {@var{args} =} __print_parse_opts__ (@var{struct})
 ## Undocumented internal function.
 ## @end deftypefn
@@ -36,6 +36,7 @@ function arg_st = __print_parse_opts__ (varargin)
   arg_st.fig2dev_binary = __quote_path__ (__find_binary__ ("fig2dev"));
   arg_st.fontsize = "";
   arg_st.font = "";
+  arg_st.scalefontsize = 1;
   arg_st.force_solid = 0; # 0=default, -1=dashed, +1=solid
   arg_st.formatted_for_printing = false;
   arg_st.ghostscript.binary = __quote_path__ (__ghostscript_binary__ ());
@@ -48,6 +49,8 @@ function arg_st = __print_parse_opts__ (varargin)
   arg_st.ghostscript.pageoffset = [];
   arg_st.ghostscript.resolution = 150;
   arg_st.ghostscript.antialiasing = false;
+  arg_st.ghostscript.antialiasing_textalphabits = 4;
+  arg_st.ghostscript.antialiasing_graphicsalphabits = 4;
   arg_st.loose = false;
   arg_st.lpr_binary = __quote_path__ (__find_binary__ ("lpr"));
   arg_st.name = "";
@@ -74,7 +77,7 @@ function arg_st = __print_parse_opts__ (varargin)
     varargin(1) = [];
   endif
 
-  for i = 1:numel(varargin)
+  for i = 1:numel (varargin)
     arg = strtrim (varargin{i});
     if (ischar (arg))
       if (strcmp (arg, "-color"))
@@ -117,6 +120,20 @@ function arg_st = __print_parse_opts__ (varargin)
         arg_st.fig2dev_binary = arg{10:end};
       elseif (strncmp (arg, "-PSTOEDIT:", 9))
         arg_st.pstoedit_binary = arg{10:end};
+      elseif (strncmpi (arg, "-textalphabits=", 15))
+        n = find (arg == "=");
+        if (! isempty (n) && n == numel (arg) - 1 && ismember (arg(end), "124"))
+          arg_st.ghostscript.antialiasing_textalphabits = str2num (arg(end));
+        else
+          error ("print: improper syntax, or value, for TextAlphaBits");
+        endif
+      elseif (strncmpi (arg, "-graphicsalphabits=", 19))
+        n = find (arg == "=");
+        if (! isempty (n) && n == numel (arg) - 1 && ismember (arg(end), "124"))
+          arg_st.ghostscript.antialiasing_graphicsalphabits = str2num (arg(end));
+        else
+          error ("print: improper syntax, or value, for GraphicsAlphaBits");
+        endif
       elseif ((length (arg) > 2) && arg(1:2) == "-G")
         arg_st.ghostscript.binary = file_in_path (getenv ("PATH"), arg(3:end));
         if (isempty (arg_st.ghostscript.binary))
@@ -142,7 +159,7 @@ function arg_st = __print_parse_opts__ (varargin)
       elseif (length (arg) >= 1 && arg(1) == "-")
         error ("print: unknown option '%s'", arg);
       elseif (length (arg) > 0)
-        arg_st.name = arg;
+        arg_st.name = tilde_expand (arg);
       endif
     elseif (isfigure (arg))
       arg_st.figure = arg;
@@ -326,8 +343,12 @@ function arg_st = __print_parse_opts__ (varargin)
       arg_st.ghostscript.pageoffset = paperposition(1:2);
     endif
   else
-    ## Convert canvas size to points from pixles.
-    arg_st.canvas_size = arg_st.canvas_size * 72 / arg_st.ghostscript.resolution;
+    ## Convert canvas size to points from pixels.
+    if (! isempty (arg_st.fontsize))
+      ## Work around the eps bbox having whole numbers (both gnuplot & gl2ps).
+      arg_st.scalefontsize = arg_st.ghostscript.resolution / 72;
+    endif
+    arg_st.ghostscript.resolution = 72;
     arg_st.ghostscript.papersize = arg_st.canvas_size;
     arg_st.ghostscript.epscrop = true;
     arg_st.ghostscript.pageoffset = [0, 0];
@@ -366,7 +387,7 @@ endfunction
 %! assert (opts.use_color, 1);
 %! assert (opts.send_to_printer, true);
 %! assert (opts.canvas_size, [576, 432]);
-%! assert (opts.ghostscript.device, "pswrite")
+%! assert (opts.ghostscript.device, "pswrite");
 
 #%!test
 %! opts = __print_parse_opts__ ("test.pdf", "-S640,480");
@@ -378,7 +399,7 @@ endfunction
 %! assert (opts.send_to_printer, true);
 %! assert (opts.use_color, 1);
 %! assert (opts.append_to_file, false);
-%! assert (opts.ghostscript.device, "pswrite")
+%! assert (opts.ghostscript.device, "pswrite");
 %! assert (opts.ghostscript.epscrop, false);
 
 #%!test
@@ -386,13 +407,13 @@ endfunction
 %! assert (opts.tight_flag, true);
 %! assert (opts.send_to_printer, true);
 %! assert (opts.use_color, -1);
-%! assert (opts.ghostscript.device, "")
+%! assert (opts.ghostscript.device, "");
 
 #%!test
 %! opts = __print_parse_opts__ ("-djpg", "foobar", "-mono", "-loose");
-%! assert (opts.devopt, "jpeg")
-%! assert (opts.name, "foobar.jpg")
-%! assert (opts.ghostscript.device, "jpeg")
+%! assert (opts.devopt, "jpeg");
+%! assert (opts.name, "foobar.jpg");
+%! assert (opts.ghostscript.device, "jpeg");
 %! assert (opts.ghostscript.epscrop, true);
 %! assert (opts.ghostscript.papersize, "");
 %! assert (opts.ghostscript.pageoffset, [0, 0]);
@@ -402,24 +423,33 @@ endfunction
 
 #%!test
 %! opts = __print_parse_opts__ ("-ddeskjet", "foobar", "-mono", "-Pmyprinter");
-%! assert (opts.ghostscript.output, "foobar.deskjet")
-%! assert (opts.ghostscript.device, "deskjet")
-%! assert (opts.devopt, "deskjet")
+%! assert (opts.ghostscript.output, "foobar.deskjet");
+%! assert (opts.ghostscript.device, "deskjet");
+%! assert (opts.devopt, "deskjet");
 %! assert (opts.send_to_printer, true);
 %! assert (opts.printer, "-Pmyprinter");
 %! assert (opts.use_color, -1);
 
 #%!test
 %! opts = __print_parse_opts__ ("-f5", "-dljet3");
-%! assert (opts.ghostscript.device, "ljet3")
-%! assert (strfind (opts.ghostscript.output, ".ljet3"))
-%! assert (opts.devopt, "ljet3")
+%! assert (opts.ghostscript.device, "ljet3");
+%! assert (strfind (opts.ghostscript.output, ".ljet3"));
+%! assert (opts.devopt, "ljet3");
 %! assert (opts.send_to_printer, true);
-%! assert (opts.figure, 5)
+%! assert (opts.figure, 5);
 
 function cmd = __quote_path__ (cmd)
-  if (any (cmd == " ") && ! (cmd(1) == """" && cmd(end) == """"))
-    cmd = strcat ("""", strrep (cmd, """", """"""), """");
+  if (! isempty (cmd))
+    is_quoted = all (cmd([1, end]) == "'");
+    if (! is_quoted)
+      dos_shell = ! isunix () && ispc ();
+      if (dos_shell && any (cmd == "/"))
+        cmd = strrep (cmd, "/", "\\");
+      endif
+      if (any (cmd == " "))
+        cmd = strcat ('"', strrep (cmd, '"', '""') ,'"');
+      endif
+    endif
   endif
 endfunction
 
@@ -539,7 +569,7 @@ function [papersize, paperposition] = gs_papersize (hfig, paperorientation)
   ##         Papersize is tall when portrait,and wide when landscape.
   if ((papersize(1) > papersize(2) && strcmpi (paperorientation, "portrait"))
       || (papersize(1) < papersize(2) && strcmpi (paperorientation, "landscape")))
-    papersize = papersize ([2,1]);
+    papersize = papersize([2,1]);
     paperposition = paperposition([2,1,4,3]);
   endif
 

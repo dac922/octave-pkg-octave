@@ -33,7 +33,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 
 <h2 class="chapter">4 Numeric Data Types</h2>
 
-<p><a name="index-numeric-constant-241"></a><a name="index-numeric-value-242"></a>
+<p><a name="index-numeric-constant-259"></a><a name="index-numeric-value-260"></a>
 A <dfn>numeric constant</dfn> may be a scalar, a vector, or a matrix, and it
 may contain complex values.
 
@@ -77,25 +77,22 @@ If it does, Octave will print an error message, like this:
    <p class="noindent">You may also use &lsquo;<samp><span class="samp">j</span></samp>&rsquo;, &lsquo;<samp><span class="samp">I</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">J</span></samp>&rsquo; in place of the
 &lsquo;<samp><span class="samp">i</span></samp>&rsquo; above.  All four forms are equivalent.
 
-<!-- double src/ov-re-mat.cc -->
+<!-- double libinterp/octave-value/ov-re-mat.cc -->
    <p><a name="doc_002ddouble"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>double</b> (<var>x</var>)<var><a name="index-double-243"></a></var><br>
-<blockquote><p>Convert <var>x</var> to double precision type. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>double</b> (<var>x</var>)<var><a name="index-double-261"></a></var><br>
+<blockquote><p>Convert <var>x</var> to double precision type.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsingle.html#doc_002dsingle">single</a>. 
 </p></blockquote></div>
 
-<!-- complex src/data.cc -->
+<!-- complex libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dcomplex"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>complex</b> (<var>x</var>)<var><a name="index-complex-244"></a></var><br>
-&mdash; Built-in Function:  <b>complex</b> (<var>re, im</var>)<var><a name="index-complex-245"></a></var><br>
+&mdash; Built-in Function:  <b>complex</b> (<var>x</var>)<var><a name="index-complex-262"></a></var><br>
+&mdash; Built-in Function:  <b>complex</b> (<var>re, im</var>)<var><a name="index-complex-263"></a></var><br>
 <blockquote><p>Return a complex result from real arguments.  With 1 real argument <var>x</var>,
 return the complex result <var>x</var><code> + 0i</code>.  With 2 real arguments,
 return the complex result <var>re</var><code> + </code><var>im</var>.  <code>complex</code> can
@@ -103,13 +100,9 @@ often be more convenient than expressions such as <code>a + i*b</code>.
 For example:
 
      <pre class="example">          complex ([1, 2], [3, 4])
-          &rArr;
-             1 + 3i   2 + 4i
+            &rArr; [ 1 + 3i   2 + 4i ]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dreal.html#doc_002dreal">real</a>, <a href="doc_002dimag.html#doc_002dimag">imag</a>, <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dreal.html#doc_002dreal">real</a>, <a href="doc_002dimag.html#doc_002dimag">imag</a>, <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002dabs.html#doc_002dabs">abs</a>, <a href="doc_002darg.html#doc_002darg">arg</a>. 
 </p></blockquote></div>
 
 <ul class="menu">

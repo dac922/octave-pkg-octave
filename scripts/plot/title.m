@@ -46,26 +46,26 @@ endfunction
 
 
 %!demo
-%! clf ();
-%! ax = axes();
-%! xl = get (ax,"title");
-%! title ("Testing title");
-%! assert (get (xl,"string"), "Testing title");
+%! clf;
+%! ax = axes ();
+%! xl = get (ax, 'title');
+%! title ('Testing title');
+%! assert (get (xl, 'string'), 'Testing title');
 
 %!demo
-%! clf ();
+%! clf;
 %! plot3 ([0,1], [0,1], [0,1]);
-%! xl = get(gca (), "title");
-%! title ("Testing title");
-%! assert (get (xl,"string"),"Testing title");
+%! xl = get (gca, 'title');
+%! title ('Testing title');
+%! assert (get (xl, 'string'), 'Testing title');
 
 %!test
 %! hf = figure ("visible", "off");
 %! unwind_protect
-%!   ax = axes();
-%!   xl = get (ax,"title");
+%!   ax = axes ();
+%!   xl = get (ax, "title");
 %!   title ("Testing title");
-%!   assert (get (xl,"string"), "Testing title");
+%!   assert (get (xl, "string"), "Testing title");
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect
@@ -74,9 +74,9 @@ endfunction
 %! hf = figure ("visible", "off");
 %! unwind_protect
 %!   plot3 ([0,1], [0,1], [0,1]);
-%!   xl = get (gca (), "title");
-%!   title("Testing title");
-%!   assert (get (xl,"string"), "Testing title");
+%!   xl = get (gca, "title");
+%!   title ("Testing title");
+%!   assert (get (xl, "string"), "Testing title");
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect

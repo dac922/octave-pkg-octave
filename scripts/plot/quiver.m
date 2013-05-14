@@ -21,7 +21,7 @@
 ## @deftypefnx {Function File} {} quiver (@var{x}, @var{y}, @var{u}, @var{v})
 ## @deftypefnx {Function File} {} quiver (@dots{}, @var{s})
 ## @deftypefnx {Function File} {} quiver (@dots{}, @var{style})
-## @deftypefnx {Function File} {} quiver (@dots{}, 'filled')
+## @deftypefnx {Function File} {} quiver (@dots{}, "filled")
 ## @deftypefnx {Function File} {} quiver (@var{h}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} quiver (@dots{})
 ##
@@ -31,7 +31,7 @@
 ##
 ## If @var{x} and @var{y} are undefined they are assumed to be
 ## @code{(1:@var{m}, 1:@var{n})} where @code{[@var{m}, @var{n}] =
-## size(@var{u})}.
+## size (@var{u})}.
 ##
 ## The variable @var{s} is a scalar defining a scaling factor to use for
 ## the arrows of the field relative to the mesh spacing.  A value of 0
@@ -40,7 +40,7 @@
 ## The style to use for the plot can be defined with a line style @var{style}
 ## in a similar manner to the line styles used with the @code{plot} command.
 ## If a marker is specified then markers at the grid points of the vectors are
-## printed rather than arrows.  If the argument 'filled' is given then the
+## printed rather than arrows.  If the argument "filled" is given then the
 ## markers as filled.
 ##
 ## The optional return value @var{h} is a graphics handle to a quiver object.
@@ -83,17 +83,17 @@ endfunction
 
 
 %!demo
-%! clf
+%! clf;
 %! [x,y] = meshgrid (1:2:20);
 %! h = quiver (x,y, sin (2*pi*x/10), sin (2*pi*y/10));
-%! set (h, "maxheadsize", 0.33);
+%! set (h, 'maxheadsize', 0.33);
 
 %!demo
-%! clf
-%! axis ("equal");
-%! x = linspace (0,3,80);
+%! clf;
+%! axis ('equal');
+%! x = linspace (0, 3, 80);
 %! y = sin (2*pi*x);
 %! theta = 2*pi*x + pi/2;
 %! quiver (x, y, sin (theta)/10, cos (theta)/10);
-%! hold on; plot(x,y,"r"); hold off;
+%! hold on; plot (x,y,'r'); hold off;
 

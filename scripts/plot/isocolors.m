@@ -98,7 +98,7 @@
 
 ## Author: Martin Helm <martin@mhelm.de>
 
-function varargout = isocolors(varargin)
+function varargout = isocolors (varargin)
   calc_rgb = false;
   switch (nargin)
     case 2
@@ -134,7 +134,7 @@ function varargout = isocolors(varargin)
     otherwise
       print_usage ();
   endswitch
-  if (ismatrix (vp) && size (vp,2) == 3)
+  if (ismatrix (vp) && columns (vp) == 3)
     pa = [];
     v = vp;
   elseif ( ishandle (vp) )
@@ -144,7 +144,7 @@ function varargout = isocolors(varargin)
     error ("isocolors: last argument is not a vertex list or patch handle");
   endif
   if (calc_rgb)
-    new_col = zeros (size (v, 1), 3);
+    new_col = zeros (rows (v), 3);
     new_col(:,1) = __interp_cube__ (x, y, z, R, v, "values" );
     new_col(:,2) = __interp_cube__ (x, y, z, G, v, "values" );
     new_col(:,3) = __interp_cube__ (x, y, z, B, v, "values" );
@@ -163,10 +163,12 @@ function varargout = isocolors(varargin)
   endswitch
 endfunction
 
+
 %!test
-%!  [x, y, z] = meshgrid (0:.5:2, 0:.5:2, 0:.5:2);
-%!  c = (x-.5).^2 + (y-.5).^2 + (z-.5).^2;
-%!  [f, v] = isosurface (x, y, z, c, .4);
-%!  cdat = isocolors (x, y, z, c, v);
-%!  assert (size (cdat, 1) == size (v, 1));
+%! [x, y, z] = meshgrid (0:.5:2, 0:.5:2, 0:.5:2);
+%! c = (x-.5).^2 + (y-.5).^2 + (z-.5).^2;
+%! [f, v] = isosurface (x, y, z, c, .4);
+%! cdat = isocolors (x, y, z, c, v);
+%! assert (rows (cdat) == rows (v));
 ## Can't create a patch handle for tests without a figure
+

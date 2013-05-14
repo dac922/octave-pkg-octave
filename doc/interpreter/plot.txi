@@ -62,6 +62,9 @@ and @ref{Advanced Plotting}.
 * Plot Annotations::            
 * Multiple Plots on One Page::  
 * Multiple Plot Windows::       
+* Use of axis@comma{} line@comma{} and patch Functions::
+* Manipulation of Plot Windows::
+* Use of the @code{interpreter} Property::
 * Printing and Saving Plots::              
 * Interacting with Plots::      
 * Test Plotting Functions::     
@@ -135,6 +138,10 @@ shown in @ref{fig:hist}.
 @DOCSTRING(barh)
 
 @DOCSTRING(hist)
+
+@DOCSTRING(stemleaf)
+
+@DOCSTRING(printd)
 
 @DOCSTRING(stairs)
 
@@ -363,6 +370,8 @@ three-dimensional plots.
 
 @DOCSTRING(isocolors)
 
+@DOCSTRING(shrinkfaces)
+
 @DOCSTRING(diffuse)
 
 @DOCSTRING(specular)
@@ -382,6 +391,8 @@ three-dimensional plots.
 @DOCSTRING(shading)
 
 @DOCSTRING(scatter3)
+
+@DOCSTRING(waterfall)
 
 @menu
 * Aspect Ratio::
@@ -511,8 +522,9 @@ creates two figures, with the first displaying a sine wave and
 the second a cosine wave.  Figure numbers must be positive integers.
 
 @DOCSTRING(figure)
-@subsection Use of @code{axis},  @code{line}, and @code{patch} functions
-@cindex use of @code{axis},  @code{line}, and @code{patch} functions
+
+@node Use of axis@comma{} line@comma{} and patch Functions
+@subsection Use of axis@comma{} line@comma{} and patch Functions
 
 You can create axes, line, and patch objects directly using the
 @code{axes}, @code{line}, and @code{patch} functions.  These objects
@@ -526,8 +538,8 @@ become children of the current axes object.
 
 @DOCSTRING(surface)
 
-@subsection Manipulation of plot windows
-@cindex manipulation of plot windows
+@node Manipulation of Plot Windows
+@subsection Manipulation of Plot Windows
 
 By default, Octave refreshes the plot window when a prompt is printed,
 or when waiting for input.  The
@@ -585,8 +597,8 @@ figure window, call the @code{close} function.
 
 @DOCSTRING(closereq)
 
+@node Use of the @code{interpreter} Property
 @subsection Use of the @code{interpreter} Property
-@cindex use of the @code{interpreter} property
 
 All text objects, including titles, labels, legends, and text, include
 the property 'interpreter', this property determines the manner in which
@@ -809,11 +821,11 @@ A complete example showing the capabilities of the extended text is
 @example
 @group
 x = 0:0.01:3;
-plot(x,erf(x));
+plot (x, erf (x));
 hold on;
-plot(x,x,"r");
-axis([0, 3, 0, 1]);
-text(0.65, 0.6175, strcat('\leftarrow x = @{2/\surd\pi',
+plot (x,x,"r");
+axis ([0, 3, 0, 1]);
+text (0.65, 0.6175, strcat ('\leftarrow x = @{2/\surd\pi',
 ' @{\fontsize@{16@}\int_@{\fontsize@{8@}0@}^@{\fontsize@{8@}x@}@}',
 ' e^@{-t^2@} dt@} = 0.6175'))
 @end group
@@ -834,15 +846,22 @@ The result of which can be seen in @ref{fig:extendedtext}
 @cindex printing plots
 @cindex saving plots
 
-The @code{print} command allows you to save plots in a variety of
-formats.  For example,
+The @code{print} command allows you to send plots to you printer and
+to save plots in a variety of formats.  For example,
+
+@example
+print -dpsc
+@end example
+
+@noindent
+prints the current figure to a color PostScript printer.  And,
 
 @example
 print -deps foo.eps
 @end example
 
 @noindent
-writes the current figure to an encapsulated PostScript file called
+saves the current figure to an encapsulated PostScript file called
 @file{foo.eps}.
 
 @DOCSTRING(print)
@@ -1145,6 +1164,8 @@ objects.
 
 @DOCSTRING(allchild)
 
+@DOCSTRING(findfigs)
+
 @node Graphics Object Properties
 @subsection Graphics Object Properties
 @cindex graphics object properties
@@ -1169,6 +1190,7 @@ hierarchy.
 @cindex root figure properties
 
 The @code{root figure} properties are:
+
 @table @code
 @item __modified__  
 --- Values: "on," "off"
@@ -1241,6 +1263,7 @@ The @code{root figure} properties are:
 @cindex figure properties
 
 The @code{figure} properties are:
+
 @table @code
 @item __graphics_toolkit__  
 --- The graphics toolkit currently in use.
@@ -1324,6 +1347,7 @@ callback functions get called when a key is pressed/released
 respectively.  The functions are called with two input arguments.  The
 first argument holds the handle of the calling figure.  The second
 argument holds the event structure which has the following members:
+
 @table @code
 @item Character
 The ASCII value of the key
@@ -1345,6 +1369,7 @@ the key.  Possible values are @code{"shift"}, @code{"alt"}, and
 
 @item nextplot
 May be one of
+
 @table @code
 @item "new"
 
@@ -1440,6 +1465,7 @@ holds the current coordinates of the cursor.
 @cindex axes properties
 
 The @code{axes} properties are:
+
 @table @code
 @item __modified__
 
@@ -1569,6 +1595,7 @@ Octave.
 
 @item nextplot
 May be one of
+
 @table @code
 @item "new"
 
@@ -1785,6 +1812,7 @@ Either @code{"manual"} or @code{"auto"}.
 @cindex line properties
 
 The @code{line} properties are:
+
 @table @code
 @item __modified__
 
@@ -1896,6 +1924,7 @@ The data to be plotted.
 @cindex text properties
 
 The @code{text} properties are:
+
 @table @code
 @item __modified__
 
@@ -2013,6 +2042,7 @@ May be @code{"normalized"} or @code{"graph"}.
 @cindex image properties
 
 The @code{image} properties are:
+
 @table @code
 @item __modified__
 
@@ -2089,6 +2119,7 @@ the image.
 @cindex patch properties
 
 The @code{patch} properties are:
+
 @table @code
 @item __modified__
 
@@ -2237,6 +2268,7 @@ Data defining the patch object.
 @cindex surface properties
 
 The @code{surface} properties are:
+
 @table @code
 @item __modified__
 
@@ -2512,6 +2544,7 @@ Line styles are specified by the following properties:
 @table @code
 @item linestyle
 May be one of
+
 @table @code
 @item "-"
 Solid line.  [default]
@@ -2540,20 +2573,21 @@ of 2 is twice as wide as the default, etc.
 @cindex marker styles, graphics
 
 Marker styles are specified by the following properties:
+
 @table @code
 @item marker
 A character indicating a plot marker to be place at each data point, or
 @code{"none"}, meaning no markers should be displayed.
 
-@itemx markeredgecolor
+@item markeredgecolor
 The color of the edge around the marker, or @code{"auto"}, meaning that
 the edge color is the same as the face color.  @xref{Colors}.
 
-@itemx markerfacecolor
+@item markerfacecolor
 The color of the marker, or @code{"none"} to indicate that the marker
 should not be filled.  @xref{Colors}.
 
-@itemx markersize
+@item markersize
 A number specifying the size of the marker.  The default is 1.  A value
 of 2 is twice as large as the default, etc.
 @end table
@@ -2586,7 +2620,7 @@ with an object either at the objects creation or later with the
 @code{set} function.  For example,
 
 @example
-plot (x, "DeleteFcn", @@(s, e) disp("Window Deleted"))
+plot (x, "DeleteFcn", @@(s, e) disp ("Window Deleted"))
 @end example
 
 @noindent

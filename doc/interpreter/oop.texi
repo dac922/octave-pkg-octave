@@ -170,7 +170,7 @@ isa (p, "polynomial")
 @end group
 @end example
 
-@c isobject src/ov-class.cc
+@c isobject libinterp/octave-value/ov-class.cc
 @anchor{doc-isobject}
 @deftypefn {Built-in Function} {} isobject (@var{x})
 Return true if @var{x} is a class object.
@@ -182,12 +182,17 @@ Return true if @var{x} is a class object.
 The available methods of a class can be displayed with the
 @code{methods} function.
 
-@c methods src/ov-class.cc
+@c methods scripts/general/methods.m
 @anchor{doc-methods}
-@deftypefn  {Built-in Function} {} methods (@var{x})
-@deftypefnx {Built-in Function} {} methods ("classname")
+@deftypefn  {Function File} {} methods (@var{obj})
+@deftypefnx {Function File} {} methods ("@var{classname}")
+@deftypefnx {Function File} {@var{mtds} =} methods (@dots{})
+
 Return a cell array containing the names of the methods for the
-object @var{x} or the named class.
+object @var{obj} or the named class @var{classname}.
+@var{obj} may be an Octave class object or a Java object.
+
+@seealso{@ref{doc-fieldnames,,fieldnames}}
 @end deftypefn
 
 
@@ -195,7 +200,7 @@ object @var{x} or the named class.
 To inquire whether a particular method is available to a user class, the
 @code{ismethod} function can be used.
 
-@c ismethod src/ov-class.cc
+@c ismethod libinterp/octave-value/ov-class.cc
 @anchor{doc-ismethod}
 @deftypefn {Built-in Function} {} ismethod (@var{x}, @var{method})
 Return true if @var{x} is a class object and the string @var{method}
@@ -252,7 +257,7 @@ An example of a display method for the polynomial class might be
 function display (p)
   a = p.poly;
   first = true;
-  fprintf("%s =", inputname(1));
+  fprintf ("%s =", inputname (1));
   for i = 1 : length (a);
     if (a(i) != 0)
       if (first)
@@ -277,9 +282,9 @@ function display (p)
     endif
   endfor
   if (first)
-    fprintf(" 0");
+    fprintf (" 0");
   endif
-  fprintf("\n");
+  fprintf ("\n");
 endfunction
 @end verbatim
 
@@ -288,7 +293,7 @@ endfunction
 
 @noindent
 Note that in the display method, it makes sense to start the method
-with the line @code{fprintf("%s =", inputname(1))} to be consistent
+with the line @code{fprintf ("%s =", inputname (1))} to be consistent
 with the rest of Octave and print the variable name to be displayed
 when displaying the class. 
 
@@ -463,7 +468,7 @@ class @code{@var{p} (@var{n})} might mean either the coefficient of the
 polynomial at @var{n}.  The meaning of this subscripted referencing is 
 determined by the @code{subsref} method.
 
-@c subsref src/ov.cc
+@c subsref libinterp/octave-value/ov.cc
 @anchor{doc-subsref}
 @deftypefn {Built-in Function} {} subsref (@var{val}, @var{idx})
 Perform the subscripted element selection operation according to
@@ -480,13 +485,13 @@ a matrix
 
 @example
 @group
-val = magic(3)
-     @result{} val = [ 8   1   6
-                3   5   7
-                4   9   2 ]
+val = magic (3)
+    @result{} val = [ 8   1   6
+               3   5   7
+               4   9   2 ]
 idx.type = "()";
 idx.subs = @{":", 1:2@};
-subsref(val, idx)
+subsref (val, idx)
      @result{} [ 8   1
           3   5
           4   9 ]
@@ -555,7 +560,7 @@ endfunction
 The equivalent functionality for subscripted assignments uses the 
 @code{subsasgn} method.
 
-@c subsasgn src/ov.cc
+@c subsasgn libinterp/octave-value/ov.cc
 @anchor{doc-subsasgn}
 @deftypefn {Built-in Function} {} subsasgn (@var{val}, @var{idx}, @var{rhs})
 Perform the subscripted assignment operation according to
@@ -572,13 +577,13 @@ The following example shows how to set the two first columns of a
 
 @example
 @group
-val = magic(3);
+val = magic (3);
 idx.type = "()";
 idx.subs = @{":", 1:2@};
 subsasgn (val, idx, 0)
-     @result{} [ 0   0   6
-          0   0   7
-          0   0   2 ]
+     @result{}  [ 0   0   6
+           0   0   7
+           0   0   2 ]
 @end group
 @end example
 
@@ -590,7 +595,7 @@ and @samp{subs}, return @var{rhs}.
 @end deftypefn
 
 
-@c optimize_subsasgn_calls src/ov-usr-fcn.cc
+@c optimize_subsasgn_calls libinterp/octave-value/ov-usr-fcn.cc
 @anchor{doc-optimize_subsasgn_calls}
 @deftypefn  {Built-in Function} {@var{val} =} optimize_subsasgn_calls ()
 @deftypefnx {Built-in Function} {@var{old_val} =} optimize_subsasgn_calls (@var{new_val})
@@ -639,7 +644,7 @@ follows:
 
 @example
 @group
-p = polynomial([1,2,3,4]);
+p = polynomial ([1,2,3,4]);
 p(end-1)
   @result{} 3
 @end group
@@ -736,7 +741,7 @@ and the corresponding method looking like this:
 @group
   function x = subsasgn (x, ss, val)
     @dots{}
-    x.myfield(ss.subs@{1@}) = val;
+    x.myfield (ss.subs@{1@}) = val;
   endfunction
 @end group
 @end example
@@ -812,9 +817,9 @@ like
 @verbatim
 function [y, dy] = polyval (p, varargin)
   if (nargout == 2)
-    [y, dy] = polyval (fliplr(p.poly), varargin{:});
+    [y, dy] = polyval (fliplr (p.poly), varargin{:});
   else
-    y = polyval (fliplr(p.poly), varargin{:});
+    y = polyval (fliplr (p.poly), varargin{:});
   endif
 endfunction
 @end verbatim
@@ -829,14 +834,14 @@ polynomial class is the @code{plot} function.
 @example
 @group
 @verbatim
-function h = plot(p, varargin)
+function h = plot (p, varargin)
   n = 128;
   rmax = max (abs (roots (p.poly)));
   x = [0 : (n - 1)] / (n - 1) * 2.2 * rmax - 1.1 * rmax;
   if (nargout > 0)
-    h = plot(x, p(x), varargin{:});
+    h = plot (x, p(x), varargin{:});
   else
-    plot(x, p(x), varargin{:});
+    plot (x, p(x), varargin{:});
   endif
 endfunction
 @end verbatim
@@ -902,6 +907,13 @@ endfunction
 @cindex transpose
 @cindex transpose, complex-conjugate
 @cindex unary minus
+
+@c Need at least one plaintext sentence here between the @node and @float
+@c table below or the two will overlap due to a bug in Texinfo. 
+@c This is not our fault; this *is* a ridiculous kluge.
+The following table shows, for each built-in numerical operation, the
+corresponding function name to use when providing an overloaded method for a
+user class.
 
 @float Table,tab:overload_ops
 @opindex +
@@ -1018,7 +1030,7 @@ An example @code{mtimes} method for our polynomial class might look like
 @group
 @verbatim
 function y = mtimes (a, b)
-  y = polynomial (conv (double(a),double(b)));
+  y = polynomial (conv (double (a), double (b)));
 endfunction
 @end verbatim
 
@@ -1035,7 +1047,7 @@ of which method of which class to call when there are mixed objects given
 to a function or operator.  To do this the @code{superiorto} and
 @code{inferiorto} functions can be used
 
-@c superiorto src/ov-class.cc
+@c superiorto libinterp/octave-value/ov-class.cc
 @anchor{doc-superiorto}
 @deftypefn {Built-in Function} {} superiorto (@var{class_name}, @dots{})
 When called from a class constructor, mark the object currently
@@ -1045,7 +1057,7 @@ This function may only be called from a class constructor.
 @end deftypefn
 
 
-@c inferiorto src/ov-class.cc
+@c inferiorto libinterp/octave-value/ov-class.cc
 @anchor{doc-inferiorto}
 @deftypefn {Built-in Function} {} inferiorto (@var{class_name}, @dots{})
 When called from a class constructor, mark the object currently
@@ -1111,6 +1123,8 @@ Note that user classes always have higher precedence than built-in
 Octave types.  So in fact marking our polynomial class higher than the 
 "double" class is in fact not necessary.
 
+When faced with two objects that have the same precedence, Octave will use the
+method of the object that appears first on the list of arguments.
 
 @node Inheritance and Aggregation
 @section Inheritance and Aggregation
@@ -1200,7 +1214,7 @@ As before, we need a @code{display} method.  A simple example might be
 @verbatim
 function display (f)
 
-  display(f.polynomial);
+  display (f.polynomial);
 
 endfunction
 
@@ -1218,15 +1232,15 @@ class type and examine the underlying structure.
 
 @example
 @group
-octave:1> f=FIRfilter(polynomial([1 1 1]/3))
+octave:1> f = FIRfilter (polynomial ([1 1 1]/3))
 f.polynomial = 0.333333 + 0.333333 * X + 0.333333 * X ^ 2
-octave:2> class(f)
+octave:2> class (f)
 ans = FIRfilter
-octave:3> isa(f,"FIRfilter")
+octave:3> isa (f,"FIRfilter")
 ans =  1
-octave:4> isa(f,"polynomial")
+octave:4> isa (f,"polynomial")
 ans =  1
-octave:5> struct(f)
+octave:5> struct (f)
 ans = 
 @{
 polynomial = 0.333333 + 0.333333 * X + 0.333333 * X ^ 2
@@ -1247,7 +1261,7 @@ function out = subsref (f, x)
   switch x.type
     case "()"
       n = f.polynomial;
-      out = filter(n.poly, 1, x.subs{1});
+      out = filter (n.poly, 1, x.subs{1});
     case "."
       fld = x.subs;
       if (strcmp (fld, "polynomial"))
@@ -1269,9 +1283,9 @@ to the constructor.
 
 @example
 @group
-octave:2> f=FIRfilter(polynomial([1 1 1]/3));
-octave:3> x=ones(5,1);
-octave:4> y=f(x)
+octave:2> f = FIRfilter (polynomial ([1 1 1]/3));
+octave:3> x = ones (5,1);
+octave:4> y = f(x)
 y =
 
    0.33333
@@ -1286,7 +1300,7 @@ The "." case allows us to view the contents of the polynomial field.
 
 @example
 @group
-octave:1> f=FIRfilter(polynomial([1 1 1]/3));
+octave:1> f = FIRfilter (polynomial ([1 1 1]/3));
 octave:2> f.polynomial
 ans = 0.333333 + 0.333333 * X + 0.333333 * X ^ 2
 @end group
@@ -1322,12 +1336,11 @@ So that
 
 @example
 @group
-octave:6> f=FIRfilter();
-octave:7> f.polynomial = polynomial([1 2 3]);
+octave:6> f = FIRfilter ();
+octave:7> f.polynomial = polynomial ([1 2 3]);
 f.polynomial = 1 + 2 * X + 3 * X ^ 2
 @end group
 @end example
-
 
 Defining the FIRfilter class as a child of the polynomial class
 implies that and FIRfilter object may be used any place that a

@@ -38,7 +38,7 @@ function retval = semilogx (varargin)
   [h, varargin, nargs] = __plt_get_axis_arg__ ("semilogx", varargin{:});
 
   if (nargs < 1)
-    print_usage();
+    print_usage ();
   endif
 
   oldh = gca ();
@@ -64,45 +64,45 @@ endfunction
 
 
 %!demo
-%! clf ();
+%! clf;
 %! x = 1:0.01:10;
 %! y = (x .* (1 + rand (size (x)))) .^ 2;
 %! semilogx (y, x);
 
 %!demo
-%! clf ();
+%! clf;
 %! x = logspace (-5, 1, 10);
 %! y = logspace (-5, 1, 10);
 %!
-%! subplot (1, 2, 1);
-%! semilogx (x, y);
-%! xlabel ("semilogx (x, y)");
+%! subplot (1,2,1);
+%!  semilogx (x, y);
+%!  xlabel ('semilogx (x, y)');
 %!
-%! subplot (1, 2, 2);
-%! semilogx (-x, y);
-%! xlabel ("semilogx (-x, y)");
+%! subplot (1,2,2);
+%!  semilogx (-x, y);
+%!  xlabel ('semilogx (-x, y)');
 
 %!demo
-%! clf ();
+%! clf;
 %! x = logspace (-5, 1, 10);
 %! y = logspace (-5, 1, 10);
 %!
-%! subplot (1, 2, 1);
-%! semilogx (x, y);
-%! set (gca, "xdir", "reverse", "activepositionproperty", "outerposition")
-%! xlabel ({"semilogx (x, y)", "xdir = reversed"})
+%! subplot (1,2,1);
+%!  semilogx (x, y);
+%!  set (gca, 'xdir', 'reverse', 'activepositionproperty', 'outerposition');
+%!  xlabel ({'semilogx (x, y)', 'xdir = reversed'});
 %!
-%! subplot (1, 2, 2);
-%! semilogx (-x, y);
-%! set (gca, "xdir", "reverse", "activepositionproperty", "outerposition");
-%! xlabel ({"semilogx (-x, y)", "xdir = reversed"});
+%! subplot (1,2,2);
+%!  semilogx (-x, y);
+%!  set (gca, 'xdir', 'reverse', 'activepositionproperty', 'outerposition');
+%!  xlabel ({'semilogx (-x, y)', 'xdir = reversed'});
 
 %!test
 %! hf = figure ("visible", "off");
 %! unwind_protect
 %!   a = logspace (-5, 1, 10);
 %!   b = logspace (-5, 1, 10);
-%!   semilogx (a, b)
+%!   semilogx (a, b);
 %!   assert (get (gca, "xscale"), "log");
 %!   assert (get (gca, "yscale"), "linear");
 %! unwind_protect_cleanup

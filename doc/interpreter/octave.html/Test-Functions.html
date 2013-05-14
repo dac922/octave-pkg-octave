@@ -36,13 +36,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Test-and-Demo-Functions.html#Test-and-D
 <p><a name="doc_002dtest"></a>
 
 <div class="defun">
-&mdash; Command:  <b>test</b><var> name<a name="index-test-3375"></a></var><br>
-&mdash; Command:  <b>test</b><var> name quiet|normal|verbose<a name="index-test-3376"></a></var><br>
-&mdash; Function File:  <b>test</b> (<var>'name', 'quiet|normal|verbose', fid</var>)<var><a name="index-test-3377"></a></var><br>
-&mdash; Function File:  <b>test</b> ([]<var>, 'explain', fid</var>)<var><a name="index-test-3378"></a></var><br>
-&mdash; Function File: <var>success</var> = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3379"></a></var><br>
-&mdash; Function File: [<var>n</var>, <var>max</var>] = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3380"></a></var><br>
-&mdash; Function File: [<var>code</var>, <var>idx</var>] = <b>test</b> (<var>'name', 'grabdemo'</var>)<var><a name="index-test-3381"></a></var><br>
+&mdash; Command:  <b>test</b><var> name<a name="index-test-3750"></a></var><br>
+&mdash; Command:  <b>test</b><var> name quiet|normal|verbose<a name="index-test-3751"></a></var><br>
+&mdash; Function File:  <b>test</b> (<var>"name", "quiet|normal|verbose", fid</var>)<var><a name="index-test-3752"></a></var><br>
+&mdash; Function File:  <b>test</b> ([]<var>, "explain", fid</var>)<var><a name="index-test-3753"></a></var><br>
+&mdash; Function File: <var>success</var> = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3754"></a></var><br>
+&mdash; Function File: [<var>n</var>, <var>max</var>] = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3755"></a></var><br>
+&mdash; Function File: [<var>code</var>, <var>idx</var>] = <b>test</b> (<var>"name", "grabdemo"</var>)<var><a name="index-test-3756"></a></var><br>
 <blockquote>
         <p>Perform tests from the first file in the loadpath matching <var>name</var>. 
 <code>test</code> can be called as a command or as a function.  Called with
@@ -53,12 +53,12 @@ after the first error is encountered.
 output is selected.
 
           <dl>
-<dt>'quiet'<dd> Don't report all the tests as they happen, just the errors.
+<dt>"quiet"<dd> Don't report all the tests as they happen, just the errors.
 
-          <br><dt>'normal'<dd>Report all tests as they happen, but don't do tests which require
+          <br><dt>"normal"<dd>Report all tests as they happen, but don't do tests which require
 user interaction.
 
-          <br><dt>'verbose'<dd>Do tests which require user interaction. 
+          <br><dt>"verbose"<dd>Do tests which require user interaction. 
 </dl>
 
         <p>The argument <var>fid</var> can be used to allow batch processing.  Errors
@@ -74,16 +74,13 @@ true if all of the tests were successful.  Called with two output arguments
 <var>n</var> and <var>max</var>, the number of successful tests and the total number
 of tests in the file <var>name</var> are returned.
 
-        <p>If the second argument is the string 'grabdemo', the contents of the demo
+        <p>If the second argument is the string "grabdemo", the contents of the demo
 blocks are extracted but not executed.  Code for all code blocks is
 concatenated and returned as <var>code</var> with <var>idx</var> being a vector of
 positions of the ends of the demo blocks.
 
-        <p>If the second argument is 'explain', then <var>name</var> is ignored and an
-explanation of the line markers used is written to the file <var>fid</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If the second argument is "explain", then <var>name</var> is ignored and an
+explanation of the line markers used is written to the file <var>fid</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dassert.html#doc_002dassert">assert</a>, <a href="doc_002dfail.html#doc_002dfail">fail</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002ddemo.html#doc_002ddemo">demo</a>, <a href="doc_002dexample.html#doc_002dexample">example</a>. 
 </p></blockquote></div>
@@ -95,8 +92,12 @@ generates an error, then the test is said to fail.
 
    <p>Since <code>eval()</code> will stop at the first error it encounters, you must
 divide your tests up into blocks, with anything in a separate
-block evaluated separately.  Blocks are introduced by the keyword
-<code>test</code> immediately following &lsquo;<samp><span class="samp">%!</span></samp>&rsquo;.  For example:
+block evaluated separately.  Blocks are introduced by valid keywords like
+<code>test</code>, <code>function</code>, or <code>assert</code> immediately following &lsquo;<samp><span class="samp">%!</span></samp>&rsquo;. 
+A block is defined by indentation as in Python.  Lines beginning with
+&lsquo;<samp><span class="samp">%!&lt;whitespace&gt;</span></samp>&rsquo; are part of the preceeding block.
+
+   <p>For example:
 
 <pre class="example">     %!test error ("this test fails!");
      %!test "test doesn't fail. it doesn't generate an error";
@@ -116,7 +117,7 @@ produces a correct value.  A real test might look something like
      %! get = kron (<var>b</var>, <var>a</var>);
      %! if (any (size (expect) != size (get)))
      %!   error ("wrong size: expected %d,%d but got %d,%d",
-     %!          size(expect), size(get));
+     %!          size (expect), size (get));
      %! elseif (any (any (expect != get)))
      %!   error ("didn't get what was expected.");
      %! endif
@@ -159,7 +160,7 @@ for <code>svds</code> begin with
 
 <pre class="example">     %!testif HAVE_ARPACK
 </pre>
-   <p class="noindent">Review <samp><span class="file">config.h</span></samp> or <code>octave_config_info ("DEFS")</code> to see some
+   <p class="noindent">Review <samp><span class="file">config.h</span></samp> or <code>octave_config_info ("features")</code> to see some
 of the possible values to check.
 
    <p>Sometimes during development there is a test that should work but is
@@ -203,6 +204,19 @@ is empty), and then uses it in several subsequent tests.
 </pre>
    <p>Note that all previous variables and values are lost when a new
 shared block is declared.
+
+   <p>Remember that <code>%!function</code> begins a new block and that
+<code>%!endfunction</code> ends this block.  Be aware that until a new block
+is started, lines starting with &lsquo;<samp><span class="samp">%!&lt;space&gt;</span></samp>&rsquo; will be discarded as comments. 
+The following is nearly identical to the example above, but does nothing.
+
+<pre class="example">     %!function <var>a</var> = fn (<var>b</var>)
+     %!  <var>a</var> = 2*<var>b</var>;
+     %!endfunction
+     %! assert (fn(2), 4);
+</pre>
+   <p class="noindent">Because there is a space after &lsquo;<samp><span class="samp">%!</span></samp>&rsquo; the <code>assert</code> statement does
+not begin a new block and this line is treated as a comment.
 
    <p>Error and warning blocks are like test blocks, but they only succeed
 if the code generates an error.  You can check the text of the error
@@ -251,6 +265,35 @@ in the log file but not executed.  For example:
      %! <var>t</var> = [0:0.01:2*pi]; <var>x</var> = sin (<var>t</var>);
      %! plot (<var>t</var>, <var>x</var>);
      %! # you should now see a sine wave in your figure window
+</pre>
+   <p class="noindent">The following trivial code snippet provides examples for the use of
+fail, assert, error and xtest:
+
+<pre class="example">     function output = must_be_zero (<var>input</var>)
+       if (<var>input</var> != 0)
+         error ("Non-zero input!")
+       endif
+       output = input;
+     endfunction
+     
+     %!fail ("must_be_zero (1)");
+     %!assert (must_be_zero (0), 0);
+     %!error &lt;Non-zero&gt; must_be_zero (1);
+     %!xtest error ("This code generates an error");
+</pre>
+   <p class="noindent">When putting this a file <samp><span class="file">must_be_zero.m</span></samp>, and running the test, we see
+
+<pre class="example">     test must_be_zero verbose
+     
+     &rArr;
+     &gt;&gt;&gt;&gt;&gt; /path/to/must_be_zero.m
+       ***** fail ("must_be_zero (1)");
+       ***** assert (must_be_zero (0), 0);
+       ***** error &lt;Non-zero&gt; must_be_zero (1);
+       ***** xtest error ("This code generates an error");
+     !!!!! known failure
+     This code generates an error
+     PASSES 4 out of 4 tests (1 expected failures)
 </pre>
    <h5 class="subsubheading">Block type summary:</h5>
 
@@ -302,11 +345,11 @@ path and the user will have to remember to type
    <p><a name="doc_002dassert"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>assert</b> (<var>cond</var>)<var><a name="index-assert-3382"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>cond, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3383"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>cond, msg_id, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3384"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>observed, expected</var>)<var><a name="index-assert-3385"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>observed, expected, tol</var>)<var><a name="index-assert-3386"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond</var>)<var><a name="index-assert-3757"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3758"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond, msg_id, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3759"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>observed, expected</var>)<var><a name="index-assert-3760"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>observed, expected, tol</var>)<var><a name="index-assert-3761"></a></var><br>
 <blockquote>
         <p>Produce an error if the specified condition is not met.  <code>assert</code> can
 be called in three different ways.
@@ -323,15 +366,12 @@ strings, cell arrays, or structures.
           <br><dt><code>assert (</code><var>observed</var><code>, </code><var>expected</var><code>, </code><var>tol</var><code>)</code><dd>Produce an error if observed is not the same as expected but equality
 comparison for numeric data uses a tolerance <var>tol</var>. 
 If <var>tol</var> is positive then it is an absolute tolerance which will produce
-an error if <code>abs(</code><var>observed</var><code> - </code><var>expected</var><code>) &gt; abs(</code><var>tol</var><code>)</code>. 
+an error if <code>abs (</code><var>observed</var><code> - </code><var>expected</var><code>) &gt; abs (</code><var>tol</var><code>)</code>. 
 If <var>tol</var> is negative then it is a relative tolerance which will produce
-an error if <code>abs(</code><var>observed</var><code> - </code><var>expected</var><code>) &gt;
-abs(</code><var>tol</var><code> * </code><var>expected</var><code>)</code>.  If <var>expected</var> is zero <var>tol</var> will
+an error if <code>abs (</code><var>observed</var><code> - </code><var>expected</var><code>) &gt;
+abs (</code><var>tol</var><code> * </code><var>expected</var><code>)</code>.  If <var>expected</var> is zero <var>tol</var> will
 always be interpreted as an absolute tolerance. 
 </dl>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dtest.html#doc_002dtest">test</a>, <a href="doc_002dfail.html#doc_002dfail">fail</a>, <a href="doc_002derror.html#doc_002derror">error</a>. 
 </p></blockquote></div>
@@ -340,17 +380,25 @@ always be interpreted as an absolute tolerance.
    <p><a name="doc_002dfail"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fail</b> (<var>code</var>)<var><a name="index-fail-3387"></a></var><br>
-&mdash; Function File:  <b>fail</b> (<var>code, pattern</var>)<var><a name="index-fail-3388"></a></var><br>
-&mdash; Function File:  <b>fail</b> (<var>code, 'warning', pattern</var>)<var><a name="index-fail-3389"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code</var>)<var><a name="index-fail-3762"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code, pattern</var>)<var><a name="index-fail-3763"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code, "warning", pattern</var>)<var><a name="index-fail-3764"></a></var><br>
 <blockquote>
         <p>Return true if <var>code</var> fails with an error message matching
 <var>pattern</var>, otherwise produce an error.  Note that <var>code</var>
 is a string and if <var>code</var> runs successfully, the error produced is:
 
-     <pre class="example">                    expected error but got none
+     <pre class="example">                    expected error &lt;.&gt; but got none
 </pre>
-        <p>If the code fails with a different error, the message produced is:
+        <p>Code must be in the form of a string that may be passed by
+<code>fail</code> to the Octave interpreter via the <code>evalin</code> function,
+that is, a (quoted) string constant or a string variable.
+
+        <p>If called with two arguments, the behavior is similar to
+<code>fail (</code><var>code</var><code>)</code>, except the return value will only be true if
+code fails with an error message containing pattern (case sensitive). 
+If the code fails with a different error to that given in pattern,
+the message produced is:
 
      <pre class="example">                    expected &lt;pattern&gt;
                     but got &lt;text of actual error&gt;
@@ -358,11 +406,8 @@ is a string and if <var>code</var> runs successfully, the error produced is:
         <p>The angle brackets are not part of the output.
 
         <p>Called with three arguments, the behavior is similar to
-<code>fail(</code><var>code</var><code>, </code><var>pattern</var><code>)</code>, but produces an error if no
-warning is given during code execution or if the code fails. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<code>fail (</code><var>code</var><code>, </code><var>pattern</var><code>)</code>, but produces an error if no
+warning is given during code execution or if the code fails.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dassert.html#doc_002dassert">assert</a>. 
 </p></blockquote></div>

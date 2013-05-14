@@ -41,55 +41,58 @@ and <a href="Interpolation-on-Scattered-Data.html#Interpolation-on-Scattered-Dat
    <p><a name="doc_002dinterp1"></a>
 
 <div class="defun">
-&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var>x, y, xi</var>)<var><a name="index-interp1-2747"></a></var><br>
-&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var>y, xi</var>)<var><a name="index-interp1-2748"></a></var><br>
-&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interp1-2749"></a></var><br>
-&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var><small class="dots">...</small>, extrap</var>)<var><a name="index-interp1-2750"></a></var><br>
-&mdash; Function File: <var>pp</var> = <b>interp1</b> (<var><small class="dots">...</small>, 'pp'</var>)<var><a name="index-interp1-2751"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var>x, y, xi</var>)<var><a name="index-interp1-2961"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var>y, xi</var>)<var><a name="index-interp1-2962"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interp1-2963"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>interp1</b> (<var><small class="dots">...</small>, extrap</var>)<var><a name="index-interp1-2964"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>interp1</b> (<var><small class="dots">...</small>, "pp"</var>)<var><a name="index-interp1-2965"></a></var><br>
 <blockquote>
-        <p>One-dimensional interpolation.  Interpolate <var>y</var>, defined at the
-points <var>x</var>, at the points <var>xi</var>.  The sample points <var>x</var>
-must be monotonic.  If not specified, <var>x</var> is taken to be the
-indices of <var>y</var>.  If <var>y</var> is an array, treat the columns
+        <p>One-dimensional interpolation.  Interpolates to determine the value of
+<var>yi</var> at the points, <var>xi</var>.  If not specified, <var>x</var> is taken
+to be the indices of <var>y</var>.  If <var>y</var> is an array, treat the columns
 of <var>y</var> separately.
 
         <p>Method is one of:
 
           <dl>
-<dt>'nearest'<dd>Return the nearest neighbor.
+<dt>"nearest"<dd>Return the nearest neighbor.
 
-          <br><dt>'linear'<dd>Linear interpolation from nearest neighbors
+          <br><dt>"linear"<dd>Linear interpolation from nearest neighbors
 
-          <br><dt>'pchip'<dd>Piecewise cubic Hermite interpolating polynomial
+          <br><dt>"pchip"<dd>Piecewise cubic Hermite interpolating polynomial
 
-          <br><dt>'cubic'<dd>Cubic interpolation (same as <code>pchip</code>)
+          <br><dt>"cubic"<dd>Cubic interpolation (same as <code>pchip</code>)
 
-          <br><dt>'spline'<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
+          <br><dt>"spline"<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
 throughout the curve
 </dl>
 
         <p>Appending '*' to the start of the above method forces <code>interp1</code>
-to assume that <var>x</var> is uniformly spaced, and only <var>x</var><code>
-(1)</code> and <var>x</var><code> (2)</code> are referenced.  This is usually faster,
-and is never slower.  The default method is 'linear'.
+to assume that <var>x</var> is uniformly spaced, and only <var>x</var><code>(1)</code>
+and <var>x</var><code>(2)</code> are referenced.  This is usually faster,
+and is never slower.  The default method is "linear".
 
-        <p>If <var>extrap</var> is the string 'extrap', then extrapolate values beyond
+        <p>If <var>extrap</var> is the string "extrap", then extrapolate values beyond
 the endpoints.  If <var>extrap</var> is a number, replace values beyond the
 endpoints with that number.  If <var>extrap</var> is missing, assume NA.
 
-        <p>If the string argument 'pp' is specified, then <var>xi</var> should not be
+        <p>If the string argument "pp" is specified, then <var>xi</var> should not be
 supplied and <code>interp1</code> returns the piecewise polynomial that
 can later be used with <code>ppval</code> to evaluate the interpolation. 
 There is an equivalence, such that <code>ppval (interp1 (</code><var>x</var><code>,
-</code><var>y</var><code>, </code><var>method</var><code>, 'pp'), </code><var>xi</var><code>) == interp1 (</code><var>x</var><code>, </code><var>y</var><code>,
-</code><var>xi</var><code>, </code><var>method</var><code>, 'extrap')</code>.
+</code><var>y</var><code>, </code><var>method</var><code>, "pp"), </code><var>xi</var><code>) == interp1 (</code><var>x</var><code>, </code><var>y</var><code>,
+</code><var>xi</var><code>, </code><var>method</var><code>, "extrap")</code>.
 
         <p>Duplicate points in <var>x</var> specify a discontinuous interpolant.  There
-should be at most 2 consecutive points with the same value. 
-The discontinuous interpolant is right-continuous if <var>x</var> is increasing,
-left-continuous if it is decreasing. 
-Discontinuities are (currently) only allowed for "nearest" and "linear"
-methods; in all other cases, <var>x</var> must be strictly monotonic.
+may be at most 2 consecutive points with the same value. 
+If <var>x</var> is increasing, the default discontinuous interpolant is
+right-continuous. If <var>x</var> is decreasing, the default discontinuous
+interpolant is left-continuous. 
+The continuity condition of the interpolant may be specified by using
+the options, "-left" or "-right", to select a left-continuous
+or right-continuous interpolant, respectively. 
+Discontinuous interpolation is only allowed for "nearest" and "linear"
+methods; in all other cases, the <var>x</var>-values must be unique.
 
         <p>An example of the use of <code>interp1</code> is
 
@@ -105,10 +108,7 @@ methods; in all other cases, <var>x</var> must be strictly monotonic.
                 xf, cub, "c", xf, near, "m", xp, yp, "r*");
           legend ("original", "linear", "spline", "cubic", "nearest");
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterpft.html#doc_002dinterpft">interpft</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterpft.html#doc_002dinterpft">interpft</a>. 
 </p></blockquote></div>
 
    <p>There are some important differences between the various interpolation
@@ -126,17 +126,17 @@ discontinuous, then 'pchip' interpolation might give better results.
      dt = 1;
      ti =-2:0.025:2;
      dti = 0.025;
-     y = sign(t);
-     ys = interp1(t,y,ti,'spline');
-     yp = interp1(t,y,ti,'pchip');
-     ddys = diff(diff(ys)./dti)./dti;
-     ddyp = diff(diff(yp)./dti)./dti;
-     figure(1);
-     plot (ti, ys,'r-', ti, yp,'g-');
-     legend('spline','pchip',4);
-     figure(2);
-     plot (ti, ddys,'r+', ti, ddyp,'g*');
-     legend('spline','pchip');
+     y = sign (t);
+     ys = interp1 (t,y,ti,'spline');
+     yp = interp1 (t,y,ti,'pchip');
+     ddys = diff (diff (ys)./dti) ./ dti;
+     ddyp = diff (diff (yp)./dti) ./ dti;
+     figure (1);
+     plot (ti,ys,'r-', ti,yp,'g-');
+     legend ('spline', 'pchip', 4);
+     figure (2);
+     plot (ti,ddys,'r+', ti,ddyp,'g*');
+     legend ('spline', 'pchip');
 </pre>
    <p class="noindent">The result of which can be seen in <a href="fig_003ainterpderiv1.html#fig_003ainterpderiv1">fig:interpderiv1</a> and
 <a href="fig_003ainterpderiv2.html#fig_003ainterpderiv2">fig:interpderiv2</a>.
@@ -159,7 +159,7 @@ faster than <code>interp1</code> as to performs little error checking.
    <p><a name="doc_002dinterp1q"></a>
 
 <div class="defun">
-&mdash; Function File: <var>yi</var> = <b>interp1q</b> (<var>x, y, xi</var>)<var><a name="index-interp1q-2752"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>interp1q</b> (<var>x, y, xi</var>)<var><a name="index-interp1q-2966"></a></var><br>
 <blockquote><p>One-dimensional linear interpolation without error checking. 
 Interpolates <var>y</var>, defined at the points <var>x</var>, at the points
 <var>xi</var>.  The sample points <var>x</var> must be a strictly monotonically
@@ -173,10 +173,7 @@ in NA being returned.
         <p>Note that the error checking is only a significant portion of the
 execution time of this <code>interp1</code> if the size of the input arguments
 is relatively small.  Therefore, the benefit of using <code>interp1q</code>
-is relatively small. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+is relatively small.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp1.html#doc_002dinterp1">interp1</a>. 
 </p></blockquote></div>
@@ -189,8 +186,8 @@ reconverted to the time domain.
    <p><a name="doc_002dinterpft"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>interpft</b> (<var>x, n</var>)<var><a name="index-interpft-2753"></a></var><br>
-&mdash; Function File:  <b>interpft</b> (<var>x, n, dim</var>)<var><a name="index-interpft-2754"></a></var><br>
+&mdash; Function File:  <b>interpft</b> (<var>x, n</var>)<var><a name="index-interpft-2967"></a></var><br>
+&mdash; Function File:  <b>interpft</b> (<var>x, n, dim</var>)<var><a name="index-interpft-2968"></a></var><br>
 <blockquote>
         <p>Fourier interpolation.  If <var>x</var> is a vector, then <var>x</var> is
 resampled with <var>n</var> points.  The data in <var>x</var> is assumed to be
@@ -201,9 +198,6 @@ along the dimension <var>dim</var>.
         <p><code>interpft</code> assumes that the interpolated function is periodic,
 and so assumptions are made about the endpoints of the interpolation.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp1.html#doc_002dinterp1">interp1</a>. 
 </p></blockquote></div>
 
@@ -218,9 +212,9 @@ points.  An example of the use of <code>interpft</code> is
      ti = t(1) + [0 : k-1]*dt*n/k;
      y = sin (4*t + 0.3) .* cos (3*t - 0.1);
      yp = sin (4*ti + 0.3) .* cos (3*ti - 0.1);
-     plot (ti, yp, 'g', ti, interp1(t, y, ti, 'spline'), 'b', ...
+     plot (ti, yp, 'g', ti, interp1 (t, y, ti, 'spline'), 'b', ...
            ti, interpft (y, k), 'c', t, y, 'r+');
-     legend ('sin(4t+0.3)cos(3t-0.1','spline','interpft','data');
+     legend ('sin(4t+0.3)cos(3t-0.1', 'spline', 'interpft', 'data');
 </pre>
    <p class="noindent">which demonstrates the poor behavior of Fourier interpolation for non-periodic
 functions, as can be seen in <a href="fig_003ainterpft.html#fig_003ainterpft">fig:interpft</a>.
@@ -237,8 +231,8 @@ underlie the <code>interp1</code> function can be called directly.
    <p><a name="doc_002dspline"></a>
 
 <div class="defun">
-&mdash; Function File: <var>pp</var> = <b>spline</b> (<var>x, y</var>)<var><a name="index-spline-2755"></a></var><br>
-&mdash; Function File: <var>yi</var> = <b>spline</b> (<var>x, y, xi</var>)<var><a name="index-spline-2756"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>spline</b> (<var>x, y</var>)<var><a name="index-spline-2969"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>spline</b> (<var>x, y, xi</var>)<var><a name="index-spline-2970"></a></var><br>
 <blockquote><p>Return the cubic spline interpolant of points <var>x</var> and <var>y</var>.
 
         <p>When called with two arguments, return the piecewise polynomial <var>pp</var>
@@ -267,9 +261,6 @@ and each row of this matrix is then treated separately.  Note that this
 is exactly opposite to <code>interp1</code> but is done for <span class="sc">matlab</span>
 compatibility.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpchip.html#doc_002dpchip">pchip</a>, <a href="doc_002dppval.html#doc_002dppval">ppval</a>, <a href="doc_002dmkpp.html#doc_002dmkpp">mkpp</a>, <a href="doc_002dunmkpp.html#doc_002dunmkpp">unmkpp</a>. 
 </p></blockquote></div>
 

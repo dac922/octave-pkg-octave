@@ -35,7 +35,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Contributing-Guidelines.html#Contributi
 <h3 class="section">D.3 Basics of Generating a Changeset</h3>
 
 <p>The preferable form of contribution is creating a Mercurial changeset
-and sending it via e-mail to the octave-maintainers mailing list. 
+and submit it to the <a href="http://savannah.gnu.org/bugs/?group=octave">bug</a> or
+<a href="http://savannah.gnu.org/patch/?func=additem&amp;group=octave">patch</a>
+trackers<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>. 
 Mercurial is the source code management system currently used to develop
 Octave.  Other forms of contributions (e.g., simple diff patches) are
 also acceptable, but they slow down the review process.  If you want to
@@ -57,13 +59,12 @@ you will also find help how to install Mercurial.
      hg export -o ../cool.diff tip
                                   # export the changeset to a diff
                                   # file
-     # send ../cool.diff via email
+     # attach ../cool.diff to your bug report
 </pre>
    <p>You may want to get familiar with Mercurial queues to manage your
 changesets.  Here is a slightly more complex example using Mercurial
 queues, where work on two unrelated changesets is done in parallel and
-one of the changesets is updated after discussion on the maintainers
-mailing list:
+one of the changesets is updated after discussion on the bug tracker:
 
 <pre class="example">     hg qnew nasty_bug            # create a new patch
      # change sources...
@@ -73,7 +74,7 @@ mailing list:
                                   # save again with commit message
      hg export -o ../nasty.diff tip
                                   # export the patch
-     # send ../nasty.diff via email
+     # attach ../nasty.diff to your bug report
      hg qpop                      # undo the application of the patch
                                   # and remove the changes from the
                                   # source tree
@@ -83,14 +84,22 @@ mailing list:
                                   # save the changes into the patch
      hg export -o ../doc.diff tip
                                   # export the second patch
-     # send ../doc.diff tip via email
+     # attach ../doc.diff to your bug report
      hg qpop
-     # discussion in the maintainers mailing list ...
+     # discussion in the bug tracker ...
      hg qpush nasty_bug           # apply the patch again
      # change sources yet again ...
      hg qref
      hg export -o ../nasty2.diff tip
-     # send ../nasty2.diff via email
+     # attach ../nasty2.diff to your bug report
 </pre>
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Please use the patch tracker only for patches which add new
+features.  If you have a patch to submit that fixes a bug, you should use the
+bug tracker instead.</p>
+
+   <hr></div>
+
    </body></html>
 

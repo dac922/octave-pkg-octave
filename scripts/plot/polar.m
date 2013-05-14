@@ -38,7 +38,7 @@ function retval = polar (varargin)
   [h, varargin, nargs] = __plt_get_axis_arg__ ("polar", varargin{:});
 
   if (nargs < 1)
-    print_usage();
+    print_usage ();
   endif
 
   oldh = gca ();
@@ -55,8 +55,8 @@ function retval = polar (varargin)
     elseif (nargs == 2)
       if (ischar (varargin{2}))
         tmp = __plr1__ (h, varargin{:});
-        if (iscomplex(varargin{1}))
-          maxr = max (imag(varargin{1})(:));
+        if (iscomplex (varargin{1}))
+          maxr = max (imag (varargin{1})(:));
         else
           maxr = max (varargin{1}(:));
         endif
@@ -68,8 +68,8 @@ function retval = polar (varargin)
     elseif (nargs == 1)
       fmt = "";
       tmp = __plr1__ (h, varargin{:}, fmt);
-      if (iscomplex(varargin{1}))
-        maxr = max (imag(varargin{1})(:));
+      if (iscomplex (varargin{1}))
+        maxr = max (imag (varargin{1})(:));
       else
         maxr = max (varargin{1}(:));
       endif
@@ -217,14 +217,14 @@ endfunction
 
 
 %!demo
-%! clf
-%! theta = linspace (0, 2*pi, 1000);
+%! clf;
+%! theta = linspace (0,2*pi,1000);
 %! rho = sin (7*theta);
 %! polar (theta, rho);
 
 %!demo
-%! clf
-%! theta = linspace (0, 10*pi, 1000);
+%! clf;
+%! theta = linspace (0,10*pi,1000);
 %! rho = sin (5/4*theta);
 %! polar (theta, rho);
 

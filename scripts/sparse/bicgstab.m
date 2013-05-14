@@ -18,7 +18,6 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-##
 ## @deftypefn  {Function File} {@var{x} =} bicgstab (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{M1}, @var{M2}, @var{x0})
 ## @deftypefnx {Function File} {@var{x} =} bicgstab (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{P})
 ## @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}] =} bicgstab (@var{A}, @var{b}, @dots{})
@@ -49,6 +48,7 @@
 ##
 ## @itemize @minus
 ## @item @var{flag} indicates the exit status:
+##
 ## @itemize @minus
 ## @item 0: iteration converged to the within the chosen tolerance
 ##
@@ -138,7 +138,7 @@ function [x, flag, relres, iter, resvec] = bicgstab (A, b, tol, maxit,
     rr = res;
 
     ## Vector of the residual norms for each iteration.
-    resvec = norm(res) / norm_b;
+    resvec = norm (res) / norm_b;
 
     ## Default behaviour we don't reach tolerance tol within maxit iterations.
     flag = 1;
@@ -206,11 +206,12 @@ function [x, flag, relres, iter, resvec] = bicgstab (A, b, tol, maxit,
 
 endfunction
 
+
 %!demo
 %! % Solve system of A*x=b
-%! A = [5 -1 3;-1 2 -2;3 -2 3]
-%! b = [7;-1;4]
-%! [x, flag, relres, iter, resvec] = bicgstab(A, b)
+%! A = [5 -1 3;-1 2 -2;3 -2 3];
+%! b = [7;-1;4];
+%! [x, flag, relres, iter, resvec] = bicgstab (A, b)
 
 %!shared A, b, n, M1, M2
 %!
@@ -245,3 +246,4 @@ endfunction
 %! b = sum (A, 2);
 %! [x, flag, relres, iter, resvec] = bicgstab (A, b, tol, [], diag (diag (A)));
 %! assert (x, ones (size (b)), 1e-7);
+

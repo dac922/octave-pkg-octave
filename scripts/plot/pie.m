@@ -29,7 +29,7 @@
 ## size of the values of @var{x}.
 ##
 ## The variable @var{explode} is a vector of the same length as @var{x} that
-## if non zero 'explodes' the slice from the pie chart.
+## if non zero "explodes" the slice from the pie chart.
 ##
 ## If given @var{labels} is a cell array of strings of the same length as
 ## @var{x}, giving the labels of each of the slices of the pie chart.
@@ -68,20 +68,20 @@ endfunction
 
 
 %!demo
-%! clf
+%! clf;
 %! pie ([3, 2, 1], [0, 0, 1]);
 %! colormap ([1,0,0;0,1,0;0,0,1;1,1,0;1,0,1;0,1,1]);
 
 %!demo
-%! clf
-%! pie ([3, 2, 1], [0, 0, 1], {"Cheddar", "Swiss", "Camembert"});
+%! clf;
+%! pie ([3, 2, 1], [0, 0, 1], {'Cheddar', 'Swiss', 'Camembert'});
 %! colormap ([1,0,0;0,1,0;0,0,1;1,1,0;1,0,1;0,1,1]);
 %! axis ([-2,2,-2,2]);
 
 %!demo
-%! clf
-%! pie ([0.17, 0.34, 0.41], {"Cheddar", "Swiss", "Camembert"});
+%! clf;
+%! pie ([0.17, 0.34, 0.41], {'Cheddar', 'Swiss', 'Camembert'});
 %! colormap ([1,0,0;0,1,0;0,0,1;1,1,0;1,0,1;0,1,1]);
 %! axis ([-2,2,-2,2]);
-%! title ("missing slice");
+%! title ('missing slice');
 

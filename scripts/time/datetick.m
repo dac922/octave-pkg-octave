@@ -22,13 +22,12 @@
 ## @deftypefnx {Function File} {} datetick (@var{axis}, @var{form})
 ## @deftypefnx {Function File} {} datetick (@dots{}, "keeplimits")
 ## @deftypefnx {Function File} {} datetick (@dots{}, "keepticks")
-## @deftypefnx {Function File} {} datetick (@dots{ax}, @dots{})
-## Add date formatted tick labels to an axis.  The axis the apply the
-## ticks to is determined by @var{axis} that can take the values "x",
-## "y" or "z".  The default value is "x".  The formatting of the labels is
-## determined by the variable @var{form}, that can either be a string in
-## the format needed by @code{dateform}, or a positive integer that can
-## be accepted by @code{datestr}.
+## @deftypefnx {Function File} {} datetick (@var{hax}, @dots{})
+## Add date formatted tick labels to an axis.  The axis to apply the
+## ticks to is determined by @var{axis} which can take the values "x",
+## "y", or "z".  The default value is "x".  The formatting of the labels is
+## determined by the variable @var{form}, which can either be a string or
+## positive integer that @code{datestr} accepts.
 ## @seealso{datenum, datestr}
 ## @end deftypefn
 
@@ -46,7 +45,9 @@ function datetick (varargin)
 
 endfunction
 
+
 %!demo
+%! clf;
 %! yr = 1900:10:2000;
 %! pop = [76.094, 92.407, 106.461, 123.077 131.954, 151.868, 179.979, ...
 %!        203.984, 227.225, 249.623, 282.224];
@@ -56,16 +57,17 @@ endfunction
 %! datetick ("x", "YYYY");
 
 %!demo
-%! yr =1988:2:2002;
-%! yr =datenum(yr,1,1);
+%! clf;
+%! yr = 1988:2:2002;
+%! yr = datenum (yr,1,1);
 %! pr = [12.1 13.3 12.6 13.1 13.3 14.1 14.4 15.2];
-%! plot(yr,pr);
-%! xlabel('year')
-%! ylabel('average price')
-%! ax=gca;
-%! set(ax,'xtick',datenum(1990:5:2005,1,1))
-%! datetick(2,'keepticks')
-%! set(ax,'ytick',12:16)
+%! plot (yr, pr);
+%! xlabel ("year");
+%! ylabel ("average price");
+%! ax = gca;
+%! set (ax, "xtick", datenum (1990:5:2005,1,1));
+%! datetick (2, "keepticks");
+%! set (ax, "ytick", 12:16);
 
 ## Remove from test statistics.  No real tests possible.
 %!assert (1)
@@ -132,7 +134,7 @@ function __datetick__ (varargin)
   else
     ## Need to do our own axis tick position calculation as
     ## year, etc, don't fallback on nice datenum values.
-    objs = findall (gca());
+    objs = findall (gca ());
     xmax = NaN;
     xmin = NaN;
     for i = 1 : length (objs)
@@ -156,7 +158,7 @@ function __datetick__ (varargin)
       ## Day scale or less
       if (xmax - xmin < N / 24 / 60 / 60)
         scl = 1 / 24 / 60 / 60;
-      elseif (xmax - xmin < N / 24 / 6)
+      elseif (xmax - xmin < N / 24 / 60)
         scl = 1 / 24 / 60;
       else
         scl = 1 / 24;
@@ -183,7 +185,7 @@ function __datetick__ (varargin)
       elseif (maxyear - minyear < N)
         sep = __calc_tick_sep__ (minmonth , maxmonth);
         xmin = datenum (ymin, sep * floor (minmonth / sep), 1);
-        xmax = datenum (ymin, sep * ceil (maxmonth / sep), 1);
+        xmax = datenum (ymax, sep * ceil (maxmonth / sep), 1);
         nticks = ceil (maxmonth / sep) - floor (minmonth / sep) + 1;
       else
         sep = __calc_tick_sep__ (minyear , maxyear);
@@ -196,22 +198,22 @@ function __datetick__ (varargin)
   endif
 
   if (isempty (form))
-    r = max(ticks) - min(ticks);
-    if r < 10/60/24
+    r = max (ticks) - min (ticks);
+    if (r < 10/60/24)
       ## minutes and seconds
       form = 13;
-    elseif r < 2
+    elseif (r < 2)
       ## hours
       form = 15;
-    elseif r < 15
+    elseif (r < 15)
       ## days
       form = 8;
-    elseif r < 365
+    elseif (r < 365)
       ## FIXME -- FORM should be 19 for European users who use dd/mm
       ## instead of mm/dd.  How can that be determined automatically?
       ## months
       form = 6;
-    elseif r < 90*12
+    elseif (r < 90*12)
       ## quarters
       form = 27;
     else
@@ -241,16 +243,16 @@ function __datetick__ (varargin)
 
   if (keepticks)
     if (keeplimits)
-      set (gca(), strcat (ax, "ticklabel"), sticks);
+      set (gca (), strcat (ax, "ticklabel"), sticks);
     else
-      set (gca(), strcat (ax, "ticklabel"), sticks, strcat (ax, "lim"),
+      set (gca (), strcat (ax, "ticklabel"), sticks, strcat (ax, "lim"),
       [min(ticks), max(ticks)]);
     endif
   else
     if (keeplimits)
-      set (gca(), strcat (ax, "tick"), ticks, strcat (ax, "ticklabel"), sticks);
+      set (gca (), strcat (ax, "tick"), ticks, strcat (ax, "ticklabel"), sticks);
     else
-      set (gca(), strcat (ax, "tick"), ticks, strcat (ax, "ticklabel"), sticks,
+      set (gca (), strcat (ax, "tick"), ticks, strcat (ax, "ticklabel"), sticks,
       strcat (ax, "lim"), [min(ticks), max(ticks)]);
     endif
   endif

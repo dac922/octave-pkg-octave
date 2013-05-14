@@ -23,8 +23,32 @@
 ## horizontally.  If the arguments are cells strings,  @code{strcat}
 ## returns a cell string with the individual cells concatenated.
 ## For numerical input, each element is converted to the
-## corresponding ASCII character.  Trailing white space is eliminated.
+## corresponding ASCII character.  Trailing white space for each of
+## the inputs (@var{s1}, @var{S2}, @dots{}) is eliminated before they
+## are concatenated.
+##
 ## For example:
+##
+## @example
+## @group
+## strcat ("|", " leading space is preserved", "|")
+##     @result{} | leading space is perserved|
+## @end group
+## @end example
+##
+## @example
+## @group
+## strcat ("|", "trailing space is eliminated ", "|")
+##     @result{} |trailing space is eliminated|
+## @end group
+## @end example
+##
+## @example
+## @group
+## strcat ("homogeneous space |", "  ", "| is also eliminated")
+##     @result{} homogeneous space || is also eliminated
+## @end group
+## @end example
 ##
 ## @example
 ## @group
@@ -96,32 +120,31 @@ endfunction
 
 ## test the dimensionality
 ## 1d
-%!assert(strcat("ab ", "ab "), "abab")
-%!assert(strcat({"ab "}, "ab "), {"ab ab"})
-%!assert(strcat("ab ", {"ab "}), {"abab "})
-%!assert(strcat({"ab "}, {"ab "}), {"ab ab "})
-%!assert(strcat("", "ab"), "ab")
-%!assert(strcat("", {"ab"}, {""}), {"ab"})
+%!assert (strcat ("ab ", "ab "), "abab")
+%!assert (strcat ({"ab "}, "ab "), {"ab ab"})
+%!assert (strcat ("ab ", {"ab "}), {"abab "})
+%!assert (strcat ({"ab "}, {"ab "}), {"ab ab "})
+%!assert (strcat ("", "ab"), "ab")
+%!assert (strcat ("", {"ab"}, {""}), {"ab"})
 ## 2d
-%!assert(strcat(["ab ";"cde"], ["ab ";"cde"]), ["abab  ";"cdecde"])
+%!assert (strcat (["ab ";"cde"], ["ab ";"cde"]), ["abab  ";"cdecde"])
 
 ## test for deblanking implied trailing spaces of character input
-%!assert((strcmp (strcat ("foo", "bar"), "foobar")
-%!        && strcmp (strcat (["a"; "bb"], ["foo"; "bar"]), ["afoo "; "bbbar"])));
+%!assert (strcat ("foo", "bar"), "foobar")
+%!assert (strcat (["a"; "bb"], ["foo"; "bar"]), ["afoo "; "bbbar"])
 
 ## test for mixing character and cell inputs
-%!assert(all (strcmp (strcat ("a", {"bc", "de"}, "f"), {"abcf", "adef"})))
+%!assert (strcat ("a", {"bc", "de"}, "f"), {"abcf", "adef"})
 
 ## test for scalar strings with vector strings
-%!assert(all (strcmp (strcat (["a"; "b"], "c"), ["ac"; "bc"])))
+%!assert (strcat (["a"; "b"], "c"), ["ac"; "bc"])
 
 ## test with cells with strings of differing lengths
-%!assert(all (strcmp (strcat ({"a", "bb"}, "ccc"), {"accc", "bbccc"})))
-%!assert(all (strcmp (strcat ("a", {"bb", "ccc"}), {"abb", "accc"})))
+%!assert (all (strcmp (strcat ({"a", "bb"}, "ccc"), {"accc", "bbccc"})))
+%!assert (all (strcmp (strcat ("a", {"bb", "ccc"}), {"abb", "accc"})))
 
-%!error strcat ();
+%!assert (strcat (1, 2), strcat (char (1), char (2)))
+%!assert (strcat ("", 2), strcat ([], char (2)))
 
-%!assert (strcat (1, 2), strcat (char(1), char(2)))
-
-%!assert (strcat ('', 2), strcat ([], char(2)))
+%!error strcat ()
 

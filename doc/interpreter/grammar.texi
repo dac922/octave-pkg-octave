@@ -48,18 +48,18 @@ or function names:
 @item @code{endif} @tab @code{endmethods} @tab @code{endparfor}
 @item @code{endproperties} @tab @code{endswitch} @tab @code{endwhile}
 @item @code{enumeration} @tab @code{events} @tab @code{for}
-@item @code{function} @tab @code{get} @tab @code{global}
-@item @code{if} @tab @code{methods} @tab @code{otherwise}
-@item @code{parfor} @tab @code{persistent} @tab @code{properties}
-@item @code{return} @tab @code{set} @tab @code{static}
-@item @code{switch} @tab @code{try} @tab @code{until}
-@item @code{unwind_protect} @tab @code{unwind_protect_cleanup} @tab @code{while}
+@item @code{function} @tab @code{global} @tab @code{if}
+@item @code{methods} @tab @code{otherwise} @tab @code{parfor}
+@item @code{persistent} @tab @code{properties} @tab @code{return}
+@item @code{static} @tab @code{switch} @tab @code{try}
+@item @code{until} @tab @code{unwind_protect} @tab @code{unwind_protect_cleanup}
+@item @code{while}
 @end multitable
 
 The function @code{iskeyword} can be used to quickly check whether an
 identifier is reserved by Octave.
 
-@c iskeyword src/lex.cc
+@c iskeyword libinterp/parse-tree/lex.cc
 @anchor{doc-iskeyword}
 @deftypefn  {Built-in Function} {} iskeyword ()
 @deftypefnx {Built-in Function} {} iskeyword (@var{name})
@@ -83,11 +83,11 @@ In addition, there are three non-specific parser customization functions.
 periodic evaluation.  @code{remove_input_event_hook} will stop a user function
 from being evaluated periodically.
 
-@c add_input_event_hook src/input.cc
+@c add_input_event_hook libinterp/interpfcn/input.cc
 @anchor{doc-add_input_event_hook}
-@deftypefn  {Built-in Function} {} add_input_event_hook (@var{fcn})
-@deftypefnx {Built-in Function} {} add_input_event_hook (@var{fcn}, @var{data})
-Add the named function @var{fcn} to the list of functions to call
+@deftypefn  {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn})
+@deftypefnx {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn}, @var{data})
+Add the named function or function handle @var{fcn} to the list of functions to call
 periodically when Octave is waiting for input.  The function should
 have the form
 
@@ -97,15 +97,20 @@ have the form
 
 If @var{data} is omitted, Octave calls the function without any
 arguments.
+
+The returned identifier may be used to remove the function handle from
+the list of input hook functions.
 @seealso{@ref{doc-remove_input_event_hook,,remove_input_event_hook}}
 @end deftypefn
 
 
-@c remove_input_event_hook src/input.cc
+@c remove_input_event_hook libinterp/interpfcn/input.cc
 @anchor{doc-remove_input_event_hook}
-@deftypefn {Built-in Function} {} remove_input_event_hook (@var{fcn})
-Remove the named function @var{fcn} from the list of functions to call
-periodically when Octave is waiting for input.
+@deftypefn {Built-in Function} {} remove_input_event_hook (@var{name})
+@deftypefnx {Built-in Function} {} remove_input_event_hook (@var{fcn_id})
+Remove the named function or function handle with the given identifier
+from the list of functions to call periodically when Octave is waiting
+for input.
 @seealso{@ref{doc-add_input_event_hook,,add_input_event_hook}}
 @end deftypefn
 
@@ -115,7 +120,7 @@ function to handle this.  By default, this is the function "unimplemented"
 which makes suggestions about possible Octave substitutes for @sc{matlab}
 functions.
 
-@c missing_function_hook src/variables.cc
+@c missing_function_hook libinterp/interpfcn/variables.cc
 @anchor{doc-missing_function_hook}
 @deftypefn  {Built-in Function} {@var{val} =} missing_function_hook ()
 @deftypefnx {Built-in Function} {@var{old_val} =} missing_function_hook (@var{new_val})

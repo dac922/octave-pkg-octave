@@ -41,26 +41,23 @@ both return new polynomials describing the result.  As an example we'll
 compute the definite integral of p(x) = x^2 + 1 from 0 to 3.
 
 <pre class="example">     c = [1, 0, 1];
-     integral = polyint(c);
-     area = polyval(integral, 3) - polyval(integral, 0)
+     integral = polyint (c);
+     area = polyval (integral, 3) - polyval (integral, 0)
      &rArr; 12
 </pre>
    <!-- polyder scripts/polynomial/polyder.m -->
    <p><a name="doc_002dpolyder"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>polyder</b> (<var>p</var>)<var><a name="index-polyder-2723"></a></var><br>
-&mdash; Function File: [<var>k</var>] = <b>polyder</b> (<var>a, b</var>)<var><a name="index-polyder-2724"></a></var><br>
-&mdash; Function File: [<var>q</var>, <var>d</var>] = <b>polyder</b> (<var>b, a</var>)<var><a name="index-polyder-2725"></a></var><br>
+&mdash; Function File:  <b>polyder</b> (<var>p</var>)<var><a name="index-polyder-2930"></a></var><br>
+&mdash; Function File: [<var>k</var>] = <b>polyder</b> (<var>a, b</var>)<var><a name="index-polyder-2931"></a></var><br>
+&mdash; Function File: [<var>q</var>, <var>d</var>] = <b>polyder</b> (<var>b, a</var>)<var><a name="index-polyder-2932"></a></var><br>
 <blockquote><p>Return the coefficients of the derivative of the polynomial whose
 coefficients are given by the vector <var>p</var>.  If a pair of polynomials
 is given, return the derivative of the product <var>a</var>*<var>b</var>. 
 If two inputs and two outputs are given, return the derivative of the
 polynomial quotient <var>b</var>/<var>a</var>.  The quotient numerator is
-in <var>q</var> and the denominator in <var>d</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+in <var>q</var> and the denominator in <var>d</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyint.html#doc_002dpolyint">polyint</a>, <a href="doc_002dpolyval.html#doc_002dpolyval">polyval</a>, <a href="doc_002dpolyreduce.html#doc_002dpolyreduce">polyreduce</a>. 
 </p></blockquote></div>
@@ -69,14 +66,11 @@ in <var>q</var> and the denominator in <var>d</var>.
    <p><a name="doc_002dpolyint"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>polyint</b> (<var>p</var>)<var><a name="index-polyint-2726"></a></var><br>
-&mdash; Function File:  <b>polyint</b> (<var>p, k</var>)<var><a name="index-polyint-2727"></a></var><br>
+&mdash; Function File:  <b>polyint</b> (<var>p</var>)<var><a name="index-polyint-2933"></a></var><br>
+&mdash; Function File:  <b>polyint</b> (<var>p, k</var>)<var><a name="index-polyint-2934"></a></var><br>
 <blockquote><p>Return the coefficients of the integral of the polynomial whose
 coefficients are represented by the vector <var>p</var>.  The variable
-<var>k</var> is the constant of integration, which by default is set to zero. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<var>k</var> is the constant of integration, which by default is set to zero.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyder.html#doc_002dpolyder">polyder</a>, <a href="doc_002dpolyval.html#doc_002dpolyval">polyval</a>. 
 </p></blockquote></div>
@@ -85,7 +79,7 @@ coefficients are represented by the vector <var>p</var>.  The variable
    <p><a name="doc_002dpolyaffine"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>polyaffine</b> (<var>f, mu</var>)<var><a name="index-polyaffine-2728"></a></var><br>
+&mdash; Function File:  <b>polyaffine</b> (<var>f, mu</var>)<var><a name="index-polyaffine-2935"></a></var><br>
 <blockquote><p>Return the coefficients of the polynomial vector <var>f</var> after an affine
 transformation.  If <var>f</var> is the vector representing the polynomial f(x),
 then <var>g</var><code> = polyaffine (</code><var>f</var><code>, </code><var>mu</var><code>)</code> is the vector
@@ -93,10 +87,7 @@ representing:
 
      <pre class="example">          g(x) = f( (x - <var>mu</var>(1)) / <var>mu</var>(2) )
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyval.html#doc_002dpolyval">polyval</a>, <a href="doc_002dpolyfit.html#doc_002dpolyfit">polyfit</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyval.html#doc_002dpolyval">polyval</a>, <a href="doc_002dpolyfit.html#doc_002dpolyfit">polyfit</a>. 
 </p></blockquote></div>
 
    </body></html>

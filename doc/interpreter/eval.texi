@@ -29,7 +29,7 @@ Sometimes, you may find it necessary to evaluate an expression that has
 been computed and stored in a string, which is exactly what the
 @code{eval} function lets you do.
 
-@c eval src/oct-parse.cc
+@c eval libinterp/parse-tree/oct-parse.cc
 @anchor{doc-eval}
 @deftypefn  {Built-in Function} {} eval (@var{try})
 @deftypefnx {Built-in Function} {} eval (@var{try}, @var{catch})
@@ -42,7 +42,7 @@ The following example makes the variable @var{a} with the approximate
 value 3.1416 available.
 
 @example
-eval("a = acos(-1);");
+eval ("a = acos(-1);");
 @end example
 
 If an error occurs during the evaluation of @var{try} the @var{catch}
@@ -118,7 +118,7 @@ function, etc.  @xref{Predicates for Numeric Objects}, for example,
 for a list of predicates for numeric objects, and see @ref{Status of
 Variables}, for a description of the @code{exist} function.
 
-@c feval src/oct-parse.cc
+@c feval libinterp/parse-tree/oct-parse.cc
 @anchor{doc-feval}
 @deftypefn {Built-in Function} {} feval (@var{name}, @dots{})
 Evaluate the function named @var{name}.  Any arguments after the first
@@ -144,9 +144,9 @@ offer.  For example,
 @group
 @var{f} = @@exp;
 feval (@var{f}, 1)
-     @result{} 2.7183
+    @result{} 2.7183
 @var{f} (1)
-     @result{} 2.7183
+    @result{} 2.7183
 @end group
 @end example
 
@@ -210,8 +210,8 @@ With @code{evalin}, you could write @code{save} as follows:
 @group
 function save (file, name1, name2)
   f = open_save_file (file);
-  save_var(f, name1, evalin ("caller", name1));
-  save_var(f, name2, evalin ("caller", name2));
+  save_var (f, name1, evalin ("caller", name1));
+  save_var (f, name2, evalin ("caller", name2));
 endfunction
 @end group
 @end example
@@ -261,7 +261,7 @@ the given pattern.  Other examples such as @code{save} and @code{load}
 are written in C++ where all Octave variables
 are in the @samp{caller} context and @code{evalin} is not needed.
 
-@c evalin src/oct-parse.cc
+@c evalin libinterp/parse-tree/oct-parse.cc
 @anchor{doc-evalin}
 @deftypefn  {Built-in Function} {} evalin (@var{context}, @var{try})
 @deftypefnx {Built-in Function} {} evalin (@var{context}, @var{try}, @var{catch})
@@ -272,7 +272,7 @@ context @var{context}, which may be either @code{"caller"} or
 @end deftypefn
 
 
-@c assignin src/oct-parse.cc
+@c assignin libinterp/parse-tree/oct-parse.cc
 @anchor{doc-assignin}
 @deftypefn {Built-in Function} {} assignin (@var{context}, @var{varname}, @var{value})
 Assign @var{value} to @var{varname} in context @var{context}, which

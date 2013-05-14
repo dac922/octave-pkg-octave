@@ -46,7 +46,7 @@ high probability of returning a full matrix will always return one.  For
 example adding a scalar constant to a sparse matrix will almost always
 make it a full matrix, and so the example,
 
-<pre class="example">     speye(3) + 0
+<pre class="example">     speye (3) + 0
      &rArr;   1  0  0
        0  1  0
        0  0  1
@@ -64,7 +64,7 @@ matrices exist, in general this does not cause any problems.  However,
 one area where it does cause a problem is where a sparse matrix is
 promoted to a full matrix, where subsequent operations would resparsify
 the matrix.  Such cases are rare, but can be artificially created, for
-example <code>(fliplr(speye(3)) + speye(3)) - speye(3)</code> gives a full
+example <code>(fliplr (speye (3)) + speye (3)) - speye (3)</code> gives a full
 matrix when it should give a sparse one.  In general, where such cases
 occur, they impose only a small memory penalty.
 
@@ -73,30 +73,30 @@ sparse matrices will cause a problem.  That is in the handling of the
 <dfn>diag</dfn> function.  Whether <dfn>diag</dfn> returns a sparse or full matrix
 depending on the type of its input arguments.  So
 
-<pre class="example">      a = diag (sparse([1,2,3]), -1);
+<pre class="example">      a = diag (sparse ([1,2,3]), -1);
 </pre>
    <p class="noindent">should return a sparse matrix.  To ensure this actually happens, the
 <dfn>sparse</dfn> function, and other functions based on it like <dfn>speye</dfn>,
 always returns a sparse matrix, even if the memory used will be larger
 than its full representation.
 
-<!-- sparse_auto_mutate src/ov-base.cc -->
+<!-- sparse_auto_mutate libinterp/octave-value/ov-base.cc -->
    <p><a name="doc_002dsparse_005fauto_005fmutate"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>sparse_auto_mutate</b> ()<var><a name="index-sparse_005fauto_005fmutate-2219"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>sparse_auto_mutate</b> (<var>new_val</var>)<var><a name="index-sparse_005fauto_005fmutate-2220"></a></var><br>
-&mdash; Built-in Function:  <b>sparse_auto_mutate</b> (<var>new_val, "local"</var>)<var><a name="index-sparse_005fauto_005fmutate-2221"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>sparse_auto_mutate</b> ()<var><a name="index-sparse_005fauto_005fmutate-2421"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>sparse_auto_mutate</b> (<var>new_val</var>)<var><a name="index-sparse_005fauto_005fmutate-2422"></a></var><br>
+&mdash; Built-in Function:  <b>sparse_auto_mutate</b> (<var>new_val, "local"</var>)<var><a name="index-sparse_005fauto_005fmutate-2423"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether Octave will
 automatically mutate sparse matrices to full matrices to save memory. 
 For example:
 
      <pre class="example">          s = speye (3);
-          sparse_auto_mutate (false)
+          sparse_auto_mutate (false);
           s(:, 1) = 1;
           typeinfo (s)
           &rArr; sparse matrix
-          sparse_auto_mutate (true)
+          sparse_auto_mutate (true);
           s(1, :) = 1;
           typeinfo (s)
           &rArr; matrix

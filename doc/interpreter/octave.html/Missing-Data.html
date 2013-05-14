@@ -34,22 +34,22 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Built_002din-Data-Types.html#Built_002d
 
 <h4 class="subsection">3.1.2 Missing Data</h4>
 
-<p><a name="index-missing-data-212"></a>
+<p><a name="index-missing-data-230"></a>
 It is possible to represent missing data explicitly in Octave using
 <code>NA</code> (short for &ldquo;Not Available&rdquo;).  Missing data can only be
 represented when data is represented as floating point numbers.  In this
 case missing data is represented as a special case of the representation
 of <code>NaN</code>.
 
-<!-- NA src/data.cc -->
+<!-- NA libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dNA"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>NA</b><var><a name="index-NA-213"></a></var><br>
-&mdash; Built-in Function:  <b>NA</b> (<var>n</var>)<var><a name="index-NA-214"></a></var><br>
-&mdash; Built-in Function:  <b>NA</b> (<var>n, m</var>)<var><a name="index-NA-215"></a></var><br>
-&mdash; Built-in Function:  <b>NA</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-NA-216"></a></var><br>
-&mdash; Built-in Function:  <b>NA</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-NA-217"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b><var><a name="index-NA-231"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var>n</var>)<var><a name="index-NA-232"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var>n, m</var>)<var><a name="index-NA-233"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-NA-234"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-NA-235"></a></var><br>
 <blockquote><p>Return a scalar, matrix, or N-dimensional array whose elements are all equal
 to the special constant used to designate missing values.
 
@@ -62,19 +62,16 @@ specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+either "double" or "single".
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disna.html#doc_002disna">isna</a>. 
 </p></blockquote></div>
 
-<!-- isna src/mappers.cc -->
+<!-- isna libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disna"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isna</b> (<var>x</var>)<var><a name="index-isna-218"></a></var><br>
+&mdash; Mapping Function:  <b>isna</b> (<var>x</var>)<var><a name="index-isna-236"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>x</var> are
 NA (missing) values and false where they are not. 
 For example:
@@ -82,10 +79,7 @@ For example:
      <pre class="example">          isna ([13, Inf, NA, NaN])
                &rArr; [ 0, 0, 1, 0 ]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disnan.html#doc_002disnan">isnan</a>, <a href="doc_002disinf.html#doc_002disinf">isinf</a>, <a href="doc_002disfinite.html#doc_002disfinite">isfinite</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002disnan.html#doc_002disnan">isnan</a>, <a href="doc_002disinf.html#doc_002disinf">isinf</a>, <a href="doc_002disfinite.html#doc_002disfinite">isfinite</a>. 
 </p></blockquote></div>
 
    </body></html>

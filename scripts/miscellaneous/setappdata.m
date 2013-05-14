@@ -30,12 +30,12 @@ function setappdata (h, varargin)
     error ("setappdata: invalid input");
   endif
 
-  for nh = 1:numel(h)
+  for nh = 1:numel (h)
     if (! isfield (get (h(nh)), "__appdata__"))
       addproperty ("__appdata__", h(nh), "any", struct ());
     endif
     appdata = get (h(nh), "__appdata__");
-    for narg = 1:2:numel(varargin)
+    for narg = 1:2:numel (varargin)
       if (iscellstr (varargin{narg}))
         ## Handle cell arrays like set() does.
         set (h(nh), "__appdata__", appdata);
@@ -52,8 +52,9 @@ function setappdata (h, varargin)
 
 endfunction
 
+
 %!test
-%! setappdata (0, "hello", "world")
-%! assert (isappdata (0, "hello"), true)
-%!assert (getappdata (0, "hello"), "world")
+%! setappdata (0, "hello", "world");
+%! assert (isappdata (0, "hello"), true);
+%! assert (getappdata (0, "hello"), "world");
 

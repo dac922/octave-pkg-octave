@@ -93,7 +93,7 @@ given in the following example, where the C++ wrapper is
      DEFUN_DLD (fortdemo , args , , "Fortran Demo.")
      {
        octave_value_list retval;
-       int nargin = args.length();
+       int nargin = args.length ();
        if (nargin != 1)
          print_usage ();
        else
@@ -151,7 +151,7 @@ as exception handling.  An example of the behavior of this function is
      &rArr;
        b = 1.00000   0.50000   0.33333
        s = There are   3 values in the input vector
-     [b, s] = fortdemo(0:3)
+     [b, s] = fortdemo (0:3)
      error: fortsub:divide by zero
      error: exception encountered in Fortran subroutine fortsub_
      error: fortdemo: error in Fortran

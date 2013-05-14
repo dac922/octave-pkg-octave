@@ -42,11 +42,11 @@ x-dot
 is the derivative of x.  The equation is solved using Petzold's
 DAE solver <span class="sc">daspk</span>.
 
-<!-- daspk src/DLD-FUNCTIONS/daspk.cc -->
+<!-- daspk libinterp/corefcn/daspk.cc -->
    <p><a name="doc_002ddaspk"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>daspk</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-daspk-2352"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>daspk</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-daspk-2554"></a></var><br>
 <blockquote><p>Solve the set of differential-algebraic equations
 
      <pre class="example">          0 = f (x, xdot, t)
@@ -108,21 +108,18 @@ greater than zero (consistent with the Fortran version of <span class="sc">daspk
 less than zero and <var>msg</var> will contain additional information.
 
         <p>You can use the function <code>daspk_options</code> to set optional
-parameters for <code>daspk</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+parameters for <code>daspk</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddassl.html#doc_002ddassl">dassl</a>. 
 </p></blockquote></div>
 
-<!-- daspk_options src/DLD-FUNCTIONS/daspk.cc -->
+<!-- daspk_options libinterp/corefcn/daspk.cc -->
    <p><a name="doc_002ddaspk_005foptions"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>daspk_options</b> ()<var><a name="index-daspk_005foptions-2353"></a></var><br>
-&mdash; Loadable Function: val = <b>daspk_options</b> (<var>opt</var>)<var><a name="index-daspk_005foptions-2354"></a></var><br>
-&mdash; Loadable Function:  <b>daspk_options</b> (<var>opt, val</var>)<var><a name="index-daspk_005foptions-2355"></a></var><br>
+&mdash; Built-in Function:  <b>daspk_options</b> ()<var><a name="index-daspk_005foptions-2555"></a></var><br>
+&mdash; Built-in Function: val = <b>daspk_options</b> (<var>opt</var>)<var><a name="index-daspk_005foptions-2556"></a></var><br>
+&mdash; Built-in Function:  <b>daspk_options</b> (<var>opt, val</var>)<var><a name="index-daspk_005foptions-2557"></a></var><br>
 <blockquote><p>Query or set options for the function <code>daspk</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 
@@ -265,11 +262,11 @@ regions (default is not specified).
 and <span class="sc">dasrt</span>, which can be used to solve DAEs with constraints
 (stopping conditions).
 
-<!-- dassl src/DLD-FUNCTIONS/dassl.cc -->
+<!-- dassl libinterp/corefcn/dassl.cc -->
    <p><a name="doc_002ddassl"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>dassl</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dassl-2356"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>dassl</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dassl-2558"></a></var><br>
 <blockquote><p>Solve the set of differential-algebraic equations
 
      <pre class="example">          0 = f (x, xdot, t)
@@ -331,21 +328,18 @@ greater than zero (consistent with the Fortran version of <span class="sc">dassl
 less than zero and <var>msg</var> will contain additional information.
 
         <p>You can use the function <code>dassl_options</code> to set optional
-parameters for <code>dassl</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+parameters for <code>dassl</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddaspk.html#doc_002ddaspk">daspk</a>, <a href="doc_002ddasrt.html#doc_002ddasrt">dasrt</a>, <a href="doc_002dlsode.html#doc_002dlsode">lsode</a>. 
 </p></blockquote></div>
 
-<!-- dassl_options src/DLD-FUNCTIONS/dassl.cc -->
+<!-- dassl_options libinterp/corefcn/dassl.cc -->
    <p><a name="doc_002ddassl_005foptions"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dassl_options</b> ()<var><a name="index-dassl_005foptions-2357"></a></var><br>
-&mdash; Loadable Function: val = <b>dassl_options</b> (<var>opt</var>)<var><a name="index-dassl_005foptions-2358"></a></var><br>
-&mdash; Loadable Function:  <b>dassl_options</b> (<var>opt, val</var>)<var><a name="index-dassl_005foptions-2359"></a></var><br>
+&mdash; Built-in Function:  <b>dassl_options</b> ()<var><a name="index-dassl_005foptions-2559"></a></var><br>
+&mdash; Built-in Function: val = <b>dassl_options</b> (<var>opt</var>)<var><a name="index-dassl_005foptions-2560"></a></var><br>
+&mdash; Built-in Function:  <b>dassl_options</b> (<var>opt, val</var>)<var><a name="index-dassl_005foptions-2561"></a></var><br>
 <blockquote><p>Query or set options for the function <code>dassl</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 
@@ -395,14 +389,14 @@ underlying Fortran code.
 </dl>
         </p></blockquote></div>
 
-<!-- dasrt src/DLD-FUNCTIONS/dasrt.cc -->
+<!-- dasrt libinterp/corefcn/dasrt.cc -->
    <p><a name="doc_002ddasrt"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>x</var>, <var>xdot</var>, <var>t_out</var>, <var>istat</var>, <var>msg</var>] = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2360"></a></var><br>
-&mdash; Loadable Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2361"></a></var><br>
-&mdash; Loadable Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2362"></a></var><br>
-&mdash; Loadable Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2363"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>t_out</var>, <var>istat</var>, <var>msg</var>] = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2562"></a></var><br>
+&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2563"></a></var><br>
+&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2564"></a></var><br>
+&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2565"></a></var><br>
 <blockquote><p>Solve the set of differential-algebraic equations
 
      <pre class="example">          0 = f (x, xdot, t)
@@ -497,21 +491,18 @@ greater than zero (consistent with the Fortran version of <span class="sc">dassl
 less than zero and <var>msg</var> will contain additional information.
 
         <p>You can use the function <code>dasrt_options</code> to set optional
-parameters for <code>dasrt</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+parameters for <code>dasrt</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddasrt_005foptions.html#doc_002ddasrt_005foptions">dasrt_options</a>, <a href="doc_002ddaspk.html#doc_002ddaspk">daspk</a>, <a href="doc_002ddasrt.html#doc_002ddasrt">dasrt</a>, <a href="doc_002dlsode.html#doc_002dlsode">lsode</a>. 
 </p></blockquote></div>
 
-<!-- dasrt_options src/DLD-FUNCTIONS/dasrt.cc -->
+<!-- dasrt_options libinterp/corefcn/dasrt.cc -->
    <p><a name="doc_002ddasrt_005foptions"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dasrt_options</b> ()<var><a name="index-dasrt_005foptions-2364"></a></var><br>
-&mdash; Loadable Function: val = <b>dasrt_options</b> (<var>opt</var>)<var><a name="index-dasrt_005foptions-2365"></a></var><br>
-&mdash; Loadable Function:  <b>dasrt_options</b> (<var>opt, val</var>)<var><a name="index-dasrt_005foptions-2366"></a></var><br>
+&mdash; Built-in Function:  <b>dasrt_options</b> ()<var><a name="index-dasrt_005foptions-2566"></a></var><br>
+&mdash; Built-in Function: val = <b>dasrt_options</b> (<var>opt</var>)<var><a name="index-dasrt_005foptions-2567"></a></var><br>
+&mdash; Built-in Function:  <b>dasrt_options</b> (<var>opt, val</var>)<var><a name="index-dasrt_005foptions-2568"></a></var><br>
 <blockquote><p>Query or set options for the function <code>dasrt</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 

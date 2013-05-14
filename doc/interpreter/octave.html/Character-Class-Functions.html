@@ -41,32 +41,26 @@ corresponding character in the string array.  For example:
 <pre class="example">     isalpha ("!Q@WERT^Y&amp;")
           &rArr; [ 0, 1, 0, 1, 1, 1, 1, 0, 1, 0 ]
 </pre>
-   <!-- isalnum src/mappers.cc -->
+   <!-- isalnum libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disalnum"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isalnum</b> (<var>s</var>)<var><a name="index-isalnum-417"></a></var><br>
+&mdash; Mapping Function:  <b>isalnum</b> (<var>s</var>)<var><a name="index-isalnum-440"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
 letters or digits and false where they are not.  This is equivalent to
-(<code>isalpha (</code><var>s</var><code>) | isdigit (</code><var>s</var><code>)</code>). 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+(<code>isalpha (</code><var>s</var><code>) | isdigit (</code><var>s</var><code>)</code>).
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>, <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>. 
 </p></blockquote></div>
 
-<!-- isalpha src/mappers.cc -->
+<!-- isalpha libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disalpha"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isalpha</b> (<var>s</var>)<var><a name="index-isalpha-418"></a></var><br>
+&mdash; Mapping Function:  <b>isalpha</b> (<var>s</var>)<var><a name="index-isalpha-441"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
 letters and false where they are not.  This is equivalent to
-(<code>islower (</code><var>s</var><code>) | isupper (</code><var>s</var><code>)</code>). 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+(<code>islower (</code><var>s</var><code>) | isupper (</code><var>s</var><code>)</code>).
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>, <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>, <a href="doc_002disalnum.html#doc_002disalnum">isalnum</a>, <a href="doc_002dislower.html#doc_002dislower">islower</a>, <a href="doc_002disupper.html#doc_002disupper">isupper</a>. 
 </p></blockquote></div>
@@ -75,151 +69,121 @@ letters and false where they are not.  This is equivalent to
    <p><a name="doc_002disletter"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isletter</b> (<var>s</var>)<var><a name="index-isletter-419"></a></var><br>
+&mdash; Function File:  <b>isletter</b> (<var>s</var>)<var><a name="index-isletter-442"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var>
 are letters and false where they are not.  This is an alias for
-the <code>isalpha</code> function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+the <code>isalpha</code> function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>, <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>, <a href="doc_002disalnum.html#doc_002disalnum">isalnum</a>. 
 </p></blockquote></div>
 
-<!-- islower src/mappers.cc -->
+<!-- islower libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002dislower"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>islower</b> (<var>s</var>)<var><a name="index-islower-420"></a></var><br>
+&mdash; Mapping Function:  <b>islower</b> (<var>s</var>)<var><a name="index-islower-443"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
-lowercase letters and false where they are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+lowercase letters and false where they are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disupper.html#doc_002disupper">isupper</a>, <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disletter.html#doc_002disletter">isletter</a>, <a href="doc_002disalnum.html#doc_002disalnum">isalnum</a>. 
 </p></blockquote></div>
 
-<!-- isupper src/mappers.cc -->
+<!-- isupper libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disupper"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isupper</b> (<var>s</var>)<var><a name="index-isupper-421"></a></var><br>
+&mdash; Mapping Function:  <b>isupper</b> (<var>s</var>)<var><a name="index-isupper-444"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
-uppercase letters and false where they are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+uppercase letters and false where they are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dislower.html#doc_002dislower">islower</a>, <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disletter.html#doc_002disletter">isletter</a>, <a href="doc_002disalnum.html#doc_002disalnum">isalnum</a>. 
 </p></blockquote></div>
 
-<!-- isdigit src/mappers.cc -->
+<!-- isdigit libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disdigit"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isdigit</b> (<var>s</var>)<var><a name="index-isdigit-422"></a></var><br>
+&mdash; Mapping Function:  <b>isdigit</b> (<var>s</var>)<var><a name="index-isdigit-445"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
-decimal digits (0-9) and false where they are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+decimal digits (0-9) and false where they are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disxdigit.html#doc_002disxdigit">isxdigit</a>, <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disletter.html#doc_002disletter">isletter</a>, <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>. 
 </p></blockquote></div>
 
-<!-- isxdigit src/mappers.cc -->
+<!-- isxdigit libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disxdigit"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isxdigit</b> (<var>s</var>)<var><a name="index-isxdigit-423"></a></var><br>
+&mdash; Mapping Function:  <b>isxdigit</b> (<var>s</var>)<var><a name="index-isxdigit-446"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
-hexadecimal digits (0-9 and a-fA-F). 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+hexadecimal digits (0-9 and a-fA-F).
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>. 
 </p></blockquote></div>
 
-<!-- ispunct src/mappers.cc -->
+<!-- ispunct libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002dispunct"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>ispunct</b> (<var>s</var>)<var><a name="index-ispunct-424"></a></var><br>
+&mdash; Mapping Function:  <b>ispunct</b> (<var>s</var>)<var><a name="index-ispunct-447"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
-punctuation characters and false where they are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+punctuation characters and false where they are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>. 
 </p></blockquote></div>
 
-<!-- isspace src/mappers.cc -->
+<!-- isspace libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disspace"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isspace</b> (<var>s</var>)<var><a name="index-isspace-425"></a></var><br>
+&mdash; Mapping Function:  <b>isspace</b> (<var>s</var>)<var><a name="index-isspace-448"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
 whitespace characters (space, formfeed, newline, carriage return, tab, and
-vertical tab) and false where they are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+vertical tab) and false where they are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>, <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>. 
 </p></blockquote></div>
 
-<!-- iscntrl src/mappers.cc -->
+<!-- iscntrl libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002discntrl"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>iscntrl</b> (<var>s</var>)<var><a name="index-iscntrl-426"></a></var><br>
+&mdash; Mapping Function:  <b>iscntrl</b> (<var>s</var>)<var><a name="index-iscntrl-449"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
-control characters and false where they are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+control characters and false where they are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>. 
 </p></blockquote></div>
 
-<!-- isgraph src/mappers.cc -->
+<!-- isgraph libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disgraph"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isgraph</b> (<var>s</var>)<var><a name="index-isgraph-427"></a></var><br>
+&mdash; Mapping Function:  <b>isgraph</b> (<var>s</var>)<var><a name="index-isgraph-450"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
 printable characters (but not the space character) and false where they are
-not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disprint.html#doc_002disprint">isprint</a>. 
 </p></blockquote></div>
 
-<!-- isprint src/mappers.cc -->
+<!-- isprint libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disprint"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isprint</b> (<var>s</var>)<var><a name="index-isprint-428"></a></var><br>
+&mdash; Mapping Function:  <b>isprint</b> (<var>s</var>)<var><a name="index-isprint-451"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
 printable characters (including the space character) and false where they
-are not. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+are not.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disgraph.html#doc_002disgraph">isgraph</a>. 
 </p></blockquote></div>
 
-<!-- isascii src/mappers.cc -->
+<!-- isascii libinterp/corefcn/mappers.cc -->
    <p><a name="doc_002disascii"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isascii</b> (<var>s</var>)<var><a name="index-isascii-429"></a></var><br>
+&mdash; Mapping Function:  <b>isascii</b> (<var>s</var>)<var><a name="index-isascii-452"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>s</var> are
 ASCII characters (in the range 0 to 127 decimal) and false where they are
 not. 
@@ -229,7 +193,7 @@ not.
    <p><a name="doc_002disstrprop"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isstrprop</b> (<var>str, prop</var>)<var><a name="index-isstrprop-430"></a></var><br>
+&mdash; Function File:  <b>isstrprop</b> (<var>str, prop</var>)<var><a name="index-isstrprop-453"></a></var><br>
 <blockquote><p>Test character string properties.  For example:
 
      <pre class="example">          isstrprop ("abc123", "alpha")
@@ -271,9 +235,6 @@ or letter or digit).
 
         </dl>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disalpha.html#doc_002disalpha">isalpha</a>, <a href="doc_002disalnum.html#doc_002disalnum">isalnum</a>, <a href="doc_002dislower.html#doc_002dislower">islower</a>, <a href="doc_002disupper.html#doc_002disupper">isupper</a>, <a href="doc_002disdigit.html#doc_002disdigit">isdigit</a>, <a href="doc_002disxdigit.html#doc_002disxdigit">isxdigit</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>, <a href="doc_002dispunct.html#doc_002dispunct">ispunct</a>, <a href="doc_002discntrl.html#doc_002discntrl">iscntrl</a>, <a href="doc_002disgraph.html#doc_002disgraph">isgraph</a>, <a href="doc_002disprint.html#doc_002disprint">isprint</a>, <a href="doc_002disascii.html#doc_002disascii">isascii</a>. 
 </p></blockquote></div>
 

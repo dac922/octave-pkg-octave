@@ -18,7 +18,7 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} scatter3 (@var{x}, @var{y}, @var{z}, @var{s}, @var{c})
-## @deftypefnx {Function File} {} scatter3 (@dots{}, 'filled')
+## @deftypefnx {Function File} {} scatter3 (@dots{}, "filled")
 ## @deftypefnx {Function File} {} scatter3 (@dots{}, @var{style})
 ## @deftypefnx {Function File} {} scatter3 (@dots{}, @var{prop}, @var{val})
 ## @deftypefnx {Function File} {} scatter3 (@var{h}, @dots{})
@@ -38,7 +38,7 @@
 ##
 ## The marker to use can be changed with the @var{style} argument, that is a
 ## string defining a marker in the same manner as the @code{plot} command.
-## If the argument 'filled' is given then the markers as filled.  All
+## If the argument "filled" is given then the markers as filled.  All
 ## additional arguments are passed to the underlying patch command.
 ##
 ## The optional return value @var{h} is a graphics handle to the hggroup
@@ -84,28 +84,27 @@ endfunction
 
 
 %!demo
-%! clf
+%! clf;
 %! [x, y, z] = peaks (20);
 %! scatter3 (x(:), y(:), z(:), [], z(:));
+%! %% Default scatter3 with constant size bubbles and color determined by Z
 
 %!demo
-%! clf
-%! x = rand (20,1);
-%! y = rand (20,1);
-%! z = rand (20,1);
-%! scatter3 (x(:), y(:), z(:), 10, z(:), "s");
+%! clf;
+%! x = rand (20,1);  y = rand (20,1);  z = rand (20,1);
+%! scatter3 (x(:), y(:), z(:), 10, z(:), 's');
+%! %% scatter3 using a square marker of size 10 and color determined by Z
 
 %!demo
-%! clf
-%! x = rand (20,1);
-%! y = rand (20,1);
-%! z = rand (20,1);
-%! scatter3 (x(:), y(:), z(:), 20*z(:), z(:), "s");
+%! clf;
+%! x = rand (20,1);  y = rand (20,1);  z = rand (20,1);
+%! scatter3 (x(:), y(:), z(:), 20*z(:), [], 's');
+%! %% scatter3 using a square marker whose size is determined by Z
 
 %!demo
-%! clf
-%! x = rand (20,1);
-%! y = rand (20,1);
-%! z = rand (20,1);
-%! scatter3 (x(:), y(:), z(:), 20*z(:), [], "s");
+%! clf;
+%! x = rand (20,1);  y = rand (20,1);  z = rand (20,1);
+%! scatter3 (x(:), y(:), z(:), 20*z(:), z(:), 's');
+%! %% scatter3 using a square marker.
+%! %% Size and color of marker are determined by Z
 

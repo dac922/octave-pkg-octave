@@ -45,8 +45,8 @@ convergence is not guaranteed even if a solution exists.
    <p><a name="doc_002dfsolve"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fsolve</b> (<var>fcn, x0, options</var>)<var><a name="index-fsolve-2165"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>fvec</var>, <var>info</var>, <var>output</var>, <var>fjac</var>] = <b>fsolve</b> (<var>fcn, <small class="dots">...</small></var>)<var><a name="index-fsolve-2166"></a></var><br>
+&mdash; Function File:  <b>fsolve</b> (<var>fcn, x0, options</var>)<var><a name="index-fsolve-2364"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fvec</var>, <var>info</var>, <var>output</var>, <var>fjac</var>] = <b>fsolve</b> (<var>fcn, <small class="dots">...</small></var>)<var><a name="index-fsolve-2365"></a></var><br>
 <blockquote><p>Solve a system of nonlinear equations defined by the function <var>fcn</var>. 
 <var>fcn</var> should accept a vector (array) defining the unknown variables,
 and return a vector of left-hand sides of the equations.  Right-hand sides
@@ -117,7 +117,7 @@ calculation in Jacobian calculation are significant, the best strategy is to
 employ OutputFcn: After a vector is evaluated for residuals, if OutputFcn is
 called with that vector, then the intermediate results should be saved for
 future Jacobian evaluation, and should be kept until a Jacobian evaluation
-is requested or until outputfcn is called with a different vector, in which
+is requested or until OutputFcn is called with a different vector, in which
 case they should be dropped in favor of this most recent vector.  A short
 example how this can be achieved follows:
 
@@ -144,10 +144,7 @@ example how this can be achieved follows:
           
           fsolve (@user_func, x0, optimset ("OutputFcn", @user_func, ...))
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfzero.html#doc_002dfzero">fzero</a>, <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfzero.html#doc_002dfzero">fzero</a>, <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>. 
 </p></blockquote></div>
 
    <p>The following is a complete example.  To solve the set of equations
@@ -214,9 +211,9 @@ analytically as
    <p><a name="doc_002dfzero"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fzero</b> (<var>fun, x0</var>)<var><a name="index-fzero-2167"></a></var><br>
-&mdash; Function File:  <b>fzero</b> (<var>fun, x0, options</var>)<var><a name="index-fzero-2168"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] = <b>fzero</b> (<var><small class="dots">...</small></var>)<var><a name="index-fzero-2169"></a></var><br>
+&mdash; Function File:  <b>fzero</b> (<var>fun, x0</var>)<var><a name="index-fzero-2366"></a></var><br>
+&mdash; Function File:  <b>fzero</b> (<var>fun, x0, options</var>)<var><a name="index-fzero-2367"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] = <b>fzero</b> (<var><small class="dots">...</small></var>)<var><a name="index-fzero-2368"></a></var><br>
 <blockquote><p>Find a zero of a univariate function.
 
         <p><var>fun</var> is a function handle, inline function, or string
@@ -271,9 +268,6 @@ The algorithm may have converged to a singular point.
           <li>brackety
  A two-element vector with the final bracketing of the zero along the y-axis. 
 </ul>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>, <a href="doc_002dfsolve.html#doc_002dfsolve">fsolve</a>. 
 </p></blockquote></div>

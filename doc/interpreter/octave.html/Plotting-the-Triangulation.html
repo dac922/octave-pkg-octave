@@ -33,24 +33,22 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Delaunay-Triangulation.html#Delaunay-Tr
 <h4 class="subsection">30.1.1 Plotting the Triangulation</h4>
 
 <p>Octave has the functions <code>triplot</code>, <code>trimesh</code>, and <code>trisurf</code>
-to plot the Delaunay triangulation of a 2-dimensional set of points.
+to plot the Delaunay triangulation of a 2-dimensional set of points. 
+<code>tetramesh</code> will plot the triangulation of a 3-dimensional set of points.
 
 <!-- triplot scripts/plot/triplot.m -->
    <p><a name="doc_002dtriplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>triplot</b> (<var>tri, x, y</var>)<var><a name="index-triplot-2782"></a></var><br>
-&mdash; Function File:  <b>triplot</b> (<var>tri, x, y, linespec</var>)<var><a name="index-triplot-2783"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>triplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-triplot-2784"></a></var><br>
+&mdash; Function File:  <b>triplot</b> (<var>tri, x, y</var>)<var><a name="index-triplot-2996"></a></var><br>
+&mdash; Function File:  <b>triplot</b> (<var>tri, x, y, linespec</var>)<var><a name="index-triplot-2997"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>triplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-triplot-2998"></a></var><br>
 <blockquote><p>Plot a triangular mesh in 2D.  The variable <var>tri</var> is the triangular
 meshing of the points <code>(</code><var>x</var><code>, </code><var>y</var><code>)</code> which is returned from
 <code>delaunay</code>.  If given, <var>linespec</var> determines the properties
 to use for the lines.
 
-        <p>The optional return value <var>h</var> is a graphics handle to the created plot. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dtrimesh.html#doc_002dtrimesh">trimesh</a>, <a href="doc_002dtrisurf.html#doc_002dtrisurf">trisurf</a>, <a href="doc_002ddelaunay.html#doc_002ddelaunay">delaunay</a>. 
 </p></blockquote></div>
@@ -59,17 +57,14 @@ to use for the lines.
    <p><a name="doc_002dtrimesh"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>trimesh</b> (<var>tri, x, y, z</var>)<var><a name="index-trimesh-2785"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>trimesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-trimesh-2786"></a></var><br>
+&mdash; Function File:  <b>trimesh</b> (<var>tri, x, y, z</var>)<var><a name="index-trimesh-2999"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>trimesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-trimesh-3000"></a></var><br>
 <blockquote><p>Plot a triangular mesh in 3D.  The variable <var>tri</var> is the triangular
 meshing of the points <code>(</code><var>x</var><code>, </code><var>y</var><code>)</code> which is returned
 from <code>delaunay</code>.  The variable <var>z</var> is value at the point
 <code>(</code><var>x</var><code>, </code><var>y</var><code>)</code>.
 
-        <p>The optional return value <var>h</var> is a graphics handle to the created plot. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dtriplot.html#doc_002dtriplot">triplot</a>, <a href="doc_002dtrisurf.html#doc_002dtrisurf">trisurf</a>, <a href="doc_002ddelaunay3.html#doc_002ddelaunay3">delaunay3</a>. 
 </p></blockquote></div>
@@ -78,19 +73,50 @@ from <code>delaunay</code>.  The variable <var>z</var> is value at the point
    <p><a name="doc_002dtrisurf"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>trisurf</b> (<var>tri, x, y, z</var>)<var><a name="index-trisurf-2787"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>trisurf</b> (<var><small class="dots">...</small></var>)<var><a name="index-trisurf-2788"></a></var><br>
+&mdash; Function File:  <b>trisurf</b> (<var>tri, x, y, z</var>)<var><a name="index-trisurf-3001"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>trisurf</b> (<var><small class="dots">...</small></var>)<var><a name="index-trisurf-3002"></a></var><br>
 <blockquote><p>Plot a triangular surface in 3D.  The variable <var>tri</var> is the triangular
 meshing of the points <code>(</code><var>x</var><code>, </code><var>y</var><code>)</code> which is returned
 from <code>delaunay</code>.  The variable <var>z</var> is value at the point
 <code>(</code><var>x</var><code>, </code><var>y</var><code>)</code>.
 
-        <p>The optional return value <var>h</var> is a graphics handle to the created plot. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dtriplot.html#doc_002dtriplot">triplot</a>, <a href="doc_002dtrimesh.html#doc_002dtrimesh">trimesh</a>, <a href="doc_002ddelaunay3.html#doc_002ddelaunay3">delaunay3</a>. 
+</p></blockquote></div>
+
+<!-- tetramesh scripts/plot/tetramesh.m -->
+   <p><a name="doc_002dtetramesh"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>tetramesh</b> (<var>T, X</var>)<var><a name="index-tetramesh-3003"></a></var><br>
+&mdash; Function File:  <b>tetramesh</b> (<var>T, X, C</var>)<var><a name="index-tetramesh-3004"></a></var><br>
+&mdash; Function File:  <b>tetramesh</b> (<var><small class="dots">...</small>, property, val, <small class="dots">...</small></var>)<var><a name="index-tetramesh-3005"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>tetramesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-tetramesh-3006"></a></var><br>
+<blockquote>
+        <p>Display the tetrahedrons defined in the m-by-4 matrix <var>T</var>
+as 3-D patches.  <var>T</var> is typically the output of a Delaunay triangulation
+of a 3-D set of points.  Every row of <var>T</var> contains four indices into
+the n-by-3 matrix <var>X</var> of the vertices of a tetrahedron.  Every row in
+<var>X</var> represents one point in 3-D space.
+
+        <p>The vector <var>C</var> specifies the color of each tetrahedron as an index
+into the current colormap.  The default value is 1:m where m is the number
+of tetrahedrons; the indices are scaled to map to the full range of the
+colormap.  If there are more tetrahedrons than colors in the colormap then
+the values in <var>C</var> are cyclically repeated.
+
+        <p>Calling <code>tetramesh (..., "property", "value", ...)</code> passes all
+property/value pairs directly to the patch function as additional arguments.
+
+        <p>The optional return value <var>h</var> is a vector of patch handles where each
+handle represents one tetrahedron in the order given by <var>T</var>. 
+A typical use case for <var>h</var> is to turn the respective patch "visible"
+property "on" or "off".
+
+        <p>Type <code>demo tetramesh</code> to see examples on using <code>tetramesh</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddelaunay3.html#doc_002ddelaunay3">delaunay3</a>, <a href="doc_002ddelaunayn.html#doc_002ddelaunayn">delaunayn</a>, <a href="doc_002dtrimesh.html#doc_002dtrimesh">trimesh</a>, <a href="doc_002dpatch.html#doc_002dpatch">patch</a>. 
 </p></blockquote></div>
 
    <p>The difference between <code>triplot</code>, and <code>trimesh</code> or <code>triplot</code>,

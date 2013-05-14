@@ -74,21 +74,26 @@ function h = surfc (varargin)
 
 endfunction
 
-%!demo
-%! clf
-%! [~,~,Z]=peaks;
-%! surfc(Z);
 
 %!demo
-%! clf
-%! [~,~,Z]=sombrero;
-%! [Fx,Fy] = gradient(Z);
-%! surfc(Z,Fx+Fy);
+%! clf;
+%! colormap ('default');
+%! [~,~,Z] = peaks ();
+%! surfc (Z);
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! [~,~,Z] = sombrero ();
+%! [Fx,Fy] = gradient (Z);
+%! surfc (Z, Fx+Fy);
 %! shading interp;
 
 %!demo
-%! clf
-%! [X,Y,Z]=sombrero;
-%! [~,Fy] = gradient(Z);
-%! surfc(X,Y,Z,Fy);
+%! clf;
+%! colormap ('default');
+%! [X,Y,Z] = sombrero ();
+%! [~,Fy] = gradient (Z);
+%! surfc (X,Y,Z,Fy);
 %! shading interp;
+

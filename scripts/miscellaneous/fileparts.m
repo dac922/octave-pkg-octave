@@ -34,7 +34,7 @@ function [directory, name, extension, version] = fileparts (filename)
       es = rindex (filename, ".");
       ## These can be the same if they are both 0 (no dir or ext).
       if (es <= ds)
-        es = length(filename)+1;
+        es = length (filename)+1;
       endif
       if (ds == 0)
         directory = "";
@@ -58,6 +58,7 @@ function [directory, name, extension, version] = fileparts (filename)
   endif
 
 endfunction
+
 
 %!test
 %! [d, n, e] = fileparts ("file");
@@ -94,3 +95,4 @@ endfunction
 %!test
 %! [d, n, e] = fileparts (".ext");
 %! assert (strcmp (d, "") && strcmp (n, char (zeros (1, 0))) && strcmp (e, ".ext"));
+

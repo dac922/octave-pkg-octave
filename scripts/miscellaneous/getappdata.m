@@ -15,12 +15,14 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+## @deftypefn  {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+## @deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
+## 
 ## Return the @var{value} for named application data for the object(s) with
 ## handle(s) @var{h}.
-## @deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
-## Return a structure, @var{appdata}, whose fields correspond to the appdata
-## properties.
+## 
+## @code{getappdata(@var{h})} returns a structure, @var{appdata}, whose fields
+## correspond to the appdata properties.
 ## @end deftypefn
 
 ## Author: Ben Abbott <bpabbott@mac.com>
@@ -32,8 +34,8 @@ function val = getappdata (h, name)
     ## FIXME - Is there a better way to handle non-existent appdata
     ## and missing fields?
     val = cell (numel (h), 1);
-    appdata = struct();
-    for nh = 1:numel(h)
+    appdata = struct ();
+    for nh = 1:numel (h)
       try
         appdata = get (h(nh), "__appdata__");
       end_try_catch

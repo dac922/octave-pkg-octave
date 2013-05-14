@@ -82,7 +82,7 @@ own field names.  For example:
    <p>Here is another example, using this comma separated list on the
 left-hand side of an assignment:
 
-<pre class="example">     [x.a] = deal("new string1", "new string2");
+<pre class="example">     [x.a] = deal ("new string1", "new string2");
       x(1).a
           &rArr; ans = new string1
       x(2).a
@@ -92,7 +92,7 @@ left-hand side of an assignment:
 (see <a href="Index-Expressions.html#Index-Expressions">Index Expressions</a>):
 
 <pre class="example">     x(3:4) = x(1:2);
-     [x([1,3]).a] = deal("other string1", "other string2");
+     [x([1,3]).a] = deal ("other string1", "other string2");
      x.a
           &rArr;
              ans = other string1
@@ -103,7 +103,7 @@ left-hand side of an assignment:
    <p>The function <code>size</code> will return the size of the structure.  For
 the example above
 
-<pre class="example">     size(x)
+<pre class="example">     size (x)
           &rArr; ans =
      
                1   4

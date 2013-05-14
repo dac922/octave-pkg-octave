@@ -30,41 +30,44 @@
 ## extracted and used as filter.
 ## In addition the path is selected as current path and the filename is selected
 ## as default file.
-## Example: uiputfile("myfun.m");
+## Example: uiputfile ("myfun.m");
 ##
 ## @item "*.ext"
 ## A single file extension.
-## Example: uiputfile("*.ext");
+## Example: uiputfile ("*.ext");
 ##
 ## @item @{"*.ext","My Description"@}
 ## A 2-column cell array containing the file extension in the 1st column and
 ## a brief description in the 2nd column.
-## Example: uiputfile(@{"*.ext","My Description";"*.xyz","XYZ-Format"@});
+## Example: uiputfile (@{"*.ext","My Description";"*.xyz","XYZ-Format"@});
 ## @end table
 ##
 ## The filter string can also contain a semicolon separated list of filter
 ## extensions.
-## Example: uiputfile(@{"*.gif;*.png;*.jpg", "Supported Picture Formats"@});
+## Example: uiputfile (@{"*.gif;*.png;*.jpg", "Supported Picture Formats"@});
 ##
 ## @var{dialog_name} can be used to customize the dialog title.
 ## If @var{default_file} is given it is preselected in the GUI dialog.
 ## If, in addition, a path is given it is also used as current path.
+## @seealso{uigetfile, uigetdir}
 ## @end deftypefn
 
 ## Author: Kai Habel
 
 function [retfile, retpath, retindex] = uiputfile (varargin)
 
-  defaulttoolkit = get (0, "defaultfigure__graphics_toolkit__");
-  funcname = ["__uiputfile_", defaulttoolkit, "__"];
-  functype = exist (funcname);
-  if (! __is_function__ (funcname))
-    funcname = "__uiputfile_fltk__";
+  if (! __octave_link_enabled__ ())
+    defaulttoolkit = get (0, "defaultfigure__graphics_toolkit__");
+    funcname = ["__uiputfile_", defaulttoolkit, "__"];
+    functype = exist (funcname);
     if (! __is_function__ (funcname))
-      error ("uiputfile: fltk graphics toolkit required");
-    elseif (! strcmp (defaulttoolkit, "gnuplot"))
-      warning ("uiputfile: no implementation for toolkit '%s', using 'fltk' instead",
+      funcname = "__uiputfile_fltk__";
+      if (! __is_function__ (funcname))
+        error ("uiputfile: fltk graphics toolkit required");
+      elseif (! strcmp (defaulttoolkit, "gnuplot"))
+        warning ("uiputfile: no implementation for toolkit '%s', using 'fltk' instead",
                defaulttoolkit);
+      endif
     endif
   endif
 
@@ -79,7 +82,7 @@ function [retfile, retpath, retindex] = uiputfile (varargin)
                  "create",
                  pwd};           # Default directory
 
-  outargs = cell(6, 1);
+  outargs = cell (6, 1);
   for i = 1 : 6
     outargs{i} = defaultvals{i};
   endfor
@@ -116,13 +119,18 @@ function [retfile, retpath, retindex] = uiputfile (varargin)
     endif
   endif
 
-  [retfile, retpath, retindex] = feval (funcname, outargs{:});
+  if (__octave_link_enabled__ ())
+    [retfile, retpath, retindex] = __octave_link_file_dialog__ (outargs{:});
+  else
+    [retfile, retpath, retindex] = feval (funcname, outargs{:});
+  endif
 
 endfunction
 
+
 %!demo
-%! uiputfile({"*.gif;*.png;*.jpg", "Supported Picture Formats"})
+%! uiputfile ({'*.gif;*.png;*.jpg', 'Supported Picture Formats'});
 
 ## Remove from test statistics.  No real tests possible.
-%!test
-%! assert (1);
+%!assert (1)
+

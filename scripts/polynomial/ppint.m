@@ -47,12 +47,16 @@ function ppi = ppint (pp, c)
   ppi = mkpp (x, pi, d);
 
   tmp = -cumsum (ppjumps (ppi), length (d) + 1);
-  ppi.coefs(prod(d)+1:end, k) = tmp(:);
+  ppi.coefs(prod (d)+1 : end, k) = tmp(:);
 
 endfunction
 
+
 %!shared x,y,pp,ppi
-%! x=0:8;y=[ones(size(x));x+1];pp=spline(x,y);
-%! ppi=ppint(pp);
-%!assert(ppval(ppi,x),[x;0.5*x.^2+x],1e-14)
-%!assert(ppi.order,5)
+%! x = 0:8;
+%! y = [ ones(size(x)); x+1 ];
+%! pp = spline (x, y);
+%! ppi = ppint (pp);
+%!assert (ppval (ppi, x), [x; 0.5*x.^2 + x], 1e-14)
+%!assert (ppi.order, 5)
+

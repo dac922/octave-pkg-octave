@@ -121,10 +121,10 @@ function retval = plot3 (varargin)
             y = real (x);
             y_set = 1;
             z_set = 1;
-            if (rows(x) > 1)
-              x = repmat ((1:rows(x))', 1, columns(x));
+            if (rows (x) > 1)
+              x = repmat ((1:rows (x))', 1, columns (x));
             else
-              x = 1:columns(x);
+              x = 1:columns (x);
             endif
           endif
         else
@@ -164,7 +164,7 @@ function retval = plot3 (varargin)
         elseif (length (x) == rows (z) && length (y) == columns (z))
           [x, y] = meshgrid (x, y);
         else
-          error ("plot3: [length(x), length(y)] must match size(z)");
+          error ("plot3: [length(x), length(y)] must match size (z)");
         endif
       endif
 
@@ -218,7 +218,7 @@ function retval = plot3 (varargin)
         elseif (length (x) == rows (z) && length (y) == columns (z))
           [x, y] = meshgrid (x, y);
         else
-          error ("plot3: [length(x), length(y)] must match size(z)");
+          error ("plot3: [length(x), length(y)] must match size (z)");
         endif
       endif
 
@@ -278,9 +278,9 @@ function retval = plot3 (varargin)
       y_set = 1;
       z_set = 1;
       if (rows (x) > 1)
-        x = repmat ((1:rows (x))', 1, columns(x));
+        x = repmat ((1:rows (x))', 1, columns (x));
       else
-        x = 1:columns(x);
+        x = 1:columns (x);
       endif
     endif
 
@@ -292,7 +292,7 @@ function retval = plot3 (varargin)
       elseif (length (x) == rows (z) && length (y) == columns (z))
         [x, y] = meshgrid (x, y);
       else
-        error ("plot3: [length(x), length(y)] must match size(z)");
+        error ("plot3: [length(x), length(y)] must match size (z)");
       endif
     endif
 
@@ -327,7 +327,7 @@ function retval = plot3 (varargin)
   endif
 
   if (!isempty (hlgnd))
-    legend (gca(), hlgnd, tlgnd);
+    legend (gca (), hlgnd, tlgnd);
   endif
 
   set (gca (), "view", [-37.5, 30]);
@@ -338,8 +338,10 @@ function retval = plot3 (varargin)
 
 endfunction
 
+
 %!demo
-%! clf
+%! clf;
 %! z = [0:0.05:5];
-%! plot3 (cos(2*pi*z), sin(2*pi*z), z, ";helix;");
-%! plot3 (z, exp(2i*pi*z), ";complex sinusoid;");
+%! plot3 (cos (2*pi*z), sin (2*pi*z), z, ';helix;');
+%! plot3 (z, exp (2i*pi*z), ';complex sinusoid;');
+

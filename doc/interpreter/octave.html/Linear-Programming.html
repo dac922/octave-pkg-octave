@@ -46,7 +46,7 @@ A*x = b where x &ge; 0.
    <p><a name="doc_002dglpk"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>xopt</var>, <var>fmin</var>, <var>status</var>, <var>extra</var>] = <b>glpk</b> (<var>c, A, b, lb, ub, ctype, vartype, sense, param</var>)<var><a name="index-glpk-2373"></a></var><br>
+&mdash; Function File: [<var>xopt</var>, <var>fmin</var>, <var>status</var>, <var>extra</var>] = <b>glpk</b> (<var>c, A, b, lb, ub, ctype, vartype, sense, param</var>)<var><a name="index-glpk-2575"></a></var><br>
 <blockquote><p>Solve a linear program using the GNU <span class="sc">glpk</span> library.  Given three
 arguments, <code>glpk</code> solves the following standard LP:
 
@@ -88,6 +88,7 @@ infinite.
           <br><dt><var>ctype</var><dd>An array of characters containing the sense of each constraint in the
 constraint matrix.  Each element of the array may be one of the
 following values
+
                <dl>
 <dt>"F"<dd>A free (unbounded) constraint (the constraint is ignored).
 
@@ -102,6 +103,7 @@ following values
 </dl>
 
           <br><dt><var>vartype</var><dd>A column array containing the types of the variables.
+
                <dl>
 <dt>"C"<dd>A continuous variable.
 
@@ -120,6 +122,7 @@ from the default.
 
                <dl>
 <dt><code>msglev (LPX_K_MSGLEV<!-- /@w -->, default: 1)</code><dd>Level of messages output by solver routines:
+
                     <dl>
 <dt>0<dd>No output.
 
@@ -131,6 +134,7 @@ from the default.
 </dl>
 
                <br><dt><code>scale (LPX_K_SCALE<!-- /@w -->, default: 1)</code><dd>Scaling option:
+
                     <dl>
 <dt>0<dd>No scaling.
 
@@ -140,6 +144,7 @@ from the default.
 </dl>
 
                <br><dt><code>dual    (LPX_K_DUAL<!-- /@w -->, default: 0)</code><dd>Dual simplex option:
+
                     <dl>
 <dt>0<dd>Do not use the dual simplex.
 
@@ -147,6 +152,7 @@ from the default.
 </dl>
 
                <br><dt><code>price   (LPX_K_PRICE<!-- /@w -->, default: 1)</code><dd>Pricing option (for both primal and dual simplex):
+
                     <dl>
 <dt>0<dd>Textbook pricing.
 
@@ -154,6 +160,7 @@ from the default.
 </dl>
 
                <br><dt><code>round   (LPX_K_ROUND<!-- /@w -->, default: 0)</code><dd>Solution rounding option:
+
                     <dl>
 <dt>0<dd>Report all primal and dual values "as is".
 
@@ -170,6 +177,7 @@ frequently the solver sends information about the solution to the
 standard output.
 
                <br><dt><code>branch (LPX_K_BRANCH<!-- /@w -->, default: 2)</code><dd>Branching heuristic option (for MIP only):
+
                     <dl>
 <dt>0<dd>Branch on the first variable.
 
@@ -179,6 +187,7 @@ standard output.
 </dl>
 
                <br><dt><code>btrack (LPX_K_BTRACK<!-- /@w -->, default: 2)</code><dd>Backtracking heuristic option (for MIP only):
+
                     <dl>
 <dt>0<dd>Depth first search.
 
@@ -192,6 +201,7 @@ the built-in LP presolver.  Otherwise the LP presolver is not used.
 
                <br><dt><code>lpsolver (default: 1)</code><dd>Select which solver to use.  If the problem is a MIP problem this flag
 will be ignored.
+
                     <dl>
 <dt>1<dd>Revised simplex method.
 
@@ -265,6 +275,7 @@ detailed understanding of its purpose.
           <br><dt><var>status</var><dd>Status of the optimization.
 
           <p>Simplex Method:
+
                <dl>
 <dt>180 (<code>LPX_OPT</code><!-- /@w -->)<dd>Solution is optimal.
 
@@ -278,13 +289,17 @@ detailed understanding of its purpose.
 
                <br><dt>185 (<code>LPX_UNDEF</code><!-- /@w -->)<dd>Solution status is undefined. 
 </dl>
-          Interior Point Method:
+
+          <p>Interior Point Method:
+
                <dl>
 <dt>150 (<code>LPX_T_UNDEF</code><!-- /@w -->)<dd>The interior point method is undefined.
 
                <br><dt>151 (<code>LPX_T_OPT</code><!-- /@w -->)<dd>The interior point method is optimal. 
 </dl>
-          Mixed Integer Method:
+
+          <p>Mixed Integer Method:
+
                <dl>
 <dt>170 (<code>LPX_I_UNDEF</code><!-- /@w -->)<dd>The status is undefined.
 
@@ -294,7 +309,8 @@ detailed understanding of its purpose.
 
                <br><dt>173 (<code>LPX_I_NOFEAS</code><!-- /@w -->)<dd>No integer feasible solution. 
 </dl>
-          If an error occurs, <var>status</var> will contain one of the following
+
+          <p class="noindent">If an error occurs, <var>status</var> will contain one of the following
 codes:
 
                <dl>
@@ -322,6 +338,7 @@ codes:
 </dl>
 
           <br><dt><var>extra</var><dd>A data structure containing the following fields:
+
                <dl>
 <dt><code>lambda</code><dd>Dual variables.
 

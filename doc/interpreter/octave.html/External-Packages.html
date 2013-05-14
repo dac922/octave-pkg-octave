@@ -38,9 +38,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Build-Dependencies.html#Build-Dependenc
 <dt>BLAS<dd>Basic Linear Algebra Subroutine library
 (<a href="http://www.netlib.org/blas">http://www.netlib.org/blas</a>).  Accelerated BLAS libraries such as
 ATLAS (<a href="http://math-atlas.sourceforge.net">http://math-atlas.sourceforge.net</a>) are recommeded for
-better performance. 
-<br><dt>LAPACK<dd>Linear Algebra Package (<a href="http://www.netlib.org/lapack">http://www.netlib.org/lapack</a>). 
-<br><dt>PCRE<dd>The Perl Compatible Regular Expression library (http://www.pcre.org). 
+better performance.
+
+     <br><dt>LAPACK<dd>Linear Algebra Package (<a href="http://www.netlib.org/lapack">http://www.netlib.org/lapack</a>).
+
+     <br><dt>PCRE<dd>The Perl Compatible Regular Expression library (http://www.pcre.org). 
 </dl>
 
    <p>The following external package is optional but strongly recommended:
@@ -50,7 +52,7 @@ better performance.
 </dl>
 
    <p>If you wish to build Octave without GNU readline installed, you must use
-the <code>--disable-readline</code> option when running the configure script.
+the <samp><span class="option">--disable-readline</span></samp> option when running the configure script.
 
    <p>The following external software packages are optional but recommended:
 
@@ -92,7 +94,11 @@ functions.
 (<a href="http://www.hdfgroup.org/HDF5">http://www.hdfgroup.org/HDF5</a>).  HDF5 is required for Octave's
 <code>load</code> and <code>save</code> commands to read and write HDF data files.
 
-     <br><dt>OpenGL<dd>API for portable 2D and 3D graphics (<a href="http://www.opengl.org">http://www.opengl.org</a>).  An
+     <br><dt>LLVM<dd>Compiler framework, (<a href="http://www.llvm.org">http://www.llvm.org</a>). LLVM is required for
+Octave's experimental just-in-time (JIT) compilation for speeding up the
+interpreter.
+
+     <br><dt>OpenGL<dd>API for portable 2-D and 3-D graphics (<a href="http://www.opengl.org">http://www.opengl.org</a>).  An
 OpenGL implementation is required to provide Octave's OpenGL-based
 graphics functions.  Octave's OpenGL-based graphics functions usually
 outperform the gnuplot-based graphics functions because plot data can be
@@ -109,6 +115,15 @@ required to provide the functions <code>convhull</code>, <code>convhulln</code>,
 provide improved performance for the functions <code>qrdelete</code>,
 <code>qrinsert</code>, <code>qrshift</code>, and <code>qrupdate</code>.
 
+     <br><dt>QScintilla<dd>Source code highlighter and manipulator; a Qt  port of Scintilla
+(<a href="http://www.riverbankcomputing.co.uk/software/qscintilla">http://www.riverbankcomputing.co.uk/software/qscintilla</a>). 
+QScintilla is used for syntax highlighting and code completion in the
+GUI.
+
+     <br><dt>Qt<dd>GUI and utility libraries (<a href=""></a>). Qt is required for building the GUI. 
+It is a large framework, but the only components required are the GUI,
+core, WebKit, and network modules.
+
      <br><dt>SuiteSparse<dd>Sparse matrix factorization library
 (<a href="http://www.cise.ufl.edu/research/sparse/SuiteSparse">http://www.cise.ufl.edu/research/sparse/SuiteSparse</a>). 
 SuiteSparse is required to provide sparse matrix factorizations and
@@ -116,7 +131,7 @@ solution of linear equations for sparse systems.
 
      <br><dt>zlib<dd>Data compression library (<a href="http://zlib.net">http://zlib.net</a>).  The zlib library is
 required for Octave's <code>load</code> and <code>save</code> commands to handle
-compressed data, including <span class="sc">Matlab</span> v5 MAT files. 
+compressed data, including <span class="sc">matlab</span> v5 MAT files. 
 </dl>
 
    </body></html>

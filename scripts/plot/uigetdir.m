@@ -23,23 +23,25 @@
 ## Open a GUI dialog for selecting a directory.  If @var{init_path} is not
 ## given the current working directory is used.  @var{dialog_name} may be
 ## used to customize the dialog title.
-## @seealso{uigetfile}
+## @seealso{uigetfile, uiputfile}
 ## @end deftypefn
 
 ## Author: Kai Habel
 
 function dirname = uigetdir (init_path = pwd, dialog_name = "Select Directory to Open")
 
-  defaulttoolkit = get (0, "defaultfigure__graphics_toolkit__");
-  funcname = ["__uigetdir_", defaulttoolkit, "__"];
-  functype = exist (funcname);
-  if (! __is_function__ (funcname))
-    funcname = "__uigetdir_fltk__";
+  if (! __octave_link_enabled__ ())
+    defaulttoolkit = get (0, "defaultfigure__graphics_toolkit__");
+    funcname = ["__uigetdir_", defaulttoolkit, "__"];
+    functype = exist (funcname);
     if (! __is_function__ (funcname))
-      error ("uigetdir: fltk graphics toolkit required");
-    elseif (! strcmp (defaulttoolkit, "gnuplot"))
-      warning ("uigetdir: no implementation for toolkit '%s', using 'fltk' instead",
-               defaulttoolkit);
+      funcname = "__uigetdir_fltk__";
+      if (! __is_function__ (funcname))
+        error ("uigetdir: fltk graphics toolkit required");
+      elseif (! strcmp (defaulttoolkit, "gnuplot"))
+        warning ("uigetdir: no implementation for toolkit '%s', using 'fltk' instead",
+                 defaulttoolkit);
+      endif
     endif
   endif
 
@@ -54,13 +56,26 @@ function dirname = uigetdir (init_path = pwd, dialog_name = "Select Directory to
   if (!isdir (init_path))
     init_path = fileparts (init_path);
   endif
-  dirname = feval (funcname, init_path, dialog_name);
 
+  if (__octave_link_enabled__ ())
+    file_filter = cell (0, 2);
+    default_file_name = "";
+    dialog_position = [240, 120];
+    dialog_mode = "dir";
+
+    [filename, dirname, filterindex] ...
+      = __octave_link_file_dialog__ (file_filter, dialog_name,
+                                     default_file_name, dialog_position,
+                                     dialog_mode, init_path);
+  else
+    dirname = feval (funcname, init_path, dialog_name);
+  endif
 endfunction
 
+
 %!demo
-%! uigetdir(pwd, "Select Directory")
+%! uigetdir (pwd, 'Select Directory');
 
 ## Remove from test statistics.  No real tests possible.
-%!test
-%! assert (1);
+%!assert (1)
+

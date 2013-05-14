@@ -1,4 +1,4 @@
-# Makefile for octave
+# Makefile for Octave
 #
 # Copyright (C) 1993-2012 John W. Eaton
 #
@@ -37,12 +37,14 @@ EXTRA_DIST = \
   INSTALL.OCTAVE \
   NEWS \
   README \
-  autogen.sh \
-  build-aux/bootstrap \
-  build-aux/bootstrap.conf \
+  CITATION \
+  bootstrap \
+  bootstrap.conf \
+  build-aux/find-files-with-tests.sh \
   build-aux/mk-opts.pl \
   build-aux/mkinstalldirs \
   build-aux/move-if-change \
+  build-aux/OctJavaQry.class \
   etc/NEWS.1 \
   etc/NEWS.2 \
   etc/NEWS.3 \
@@ -67,11 +69,18 @@ EXTRA_DIST = \
 
 include m4/module.mk
 
-# Subdirectories in which to run `make all'.
-SUBDIRS = libgnu libcruft liboctave src scripts @DOCDIR@ examples test
+# Subdirectories in which to run `make all'.  Including "." here
+# is an attempt to force all preceding directories in the list to
+# be processed before the current directory so that the
+# scripts/DOCSTRINGS libinterp/DOCSTRINGS files are built before
+# attempting to build AUTHORS and BUGS.
+SUBDIRS = libgnu liboctave libinterp
+if AMCOND_BUILD_GUI
+SUBDIRS += libgui
+endif
+SUBDIRS += src scripts . @DOCDIR@ examples test
 
-if AMCOND_BUILD_DOCS
-else
+if ! AMCOND_BUILD_DOCS
 dist-hook:
 	echo "Documentation disabled.  Cannot package distribution!" ; exit 1;
 endif
@@ -87,13 +96,16 @@ INFO_FILES = \
 
 CLEANFILES = $(BUILT_SOURCES)
 
-DISTCLEANFILES = .gdbinit 
+DISTCLEANFILES = \
+  .gdbinit \
+  ChangeLog
 
 MAINTAINERCLEANFILES = $(BUILT_DISTFILES)
 
 CONFIG_FILES = @ac_config_headers@ @ac_config_files@
 
 nodist_octinclude_HEADERS = config.h
+octinclude_HEADERS = oct-conf-post.h
 
 all-local: $(noinst_SCRIPTS) $(INFO_FILES) .gdbinit
 	@echo ""
@@ -112,15 +124,12 @@ run-octave: run-octave.in Makefile
 	chmod a+rx "$@"
 
 .gdbinit: etc/gdbinit
-	@if [ -f .gdbinit ]; then \
-	  echo "refusing to overwrite .gdbinit with newer version from $<" 1>&2; \
-	else \
-	  echo "Installing .gdbinit from version at $<" ; \
-	  cp $< $@; \
-	fi
+	@$(gdbinit_install_rule)
 
+if AMCOND_BUILD_DOCS
 AUTHORS BUGS INSTALL.OCTAVE:
 	$(MAKE) -C doc/interpreter ../../$@
+endif
 .PHONY: AUTHORS BUGS INSTALL.OCTAVE
 
 ChangeLog:
@@ -128,7 +137,9 @@ ChangeLog:
 	mv $@.t $@
 .PHONY: ChangeLog
 
-octetc_DATA = NEWS
+octetc_DATA = \
+  NEWS \
+  CITATION
 
 DIRS_TO_MAKE = \
   $(localfcnfiledir) \

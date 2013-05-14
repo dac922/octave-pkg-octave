@@ -15,7 +15,6 @@
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-##
 ## @deftypefn  {Function File} {@var{x} =} bicg (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{M1}, @var{M2}, @var{x0})
 ## @deftypefnx {Function File} {@var{x} =} bicg (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{P})
 ## @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}] =} bicg (@var{A}, @var{b}, @dots{})
@@ -40,13 +39,14 @@
 ## The preconditioner @var{P} is given as @code{P = M1 * M2}.
 ## Both @var{M1} and @var{M2} can be passed as a matrix or as
 ## a function handle or inline function @code{g} such that
-## @code{g(x, 'notransp') = M1 \ x} or @code{g(x, 'notransp') = M2 \ x} and
-## @code{g(x, 'transp') = M1' \ x} or @code{g(x, 'transp') = M2' \ x}.
+## @code{g(x, "notransp") = M1 \ x} or @code{g(x, "notransp") = M2 \ x} and
+## @code{g(x, "transp") = M1' \ x} or @code{g(x, "transp") = M2' \ x}.
 ##
 ## If called with more than one output parameter
 ##
 ## @itemize @minus
 ## @item @var{flag} indicates the exit status:
+##
 ## @itemize @minus
 ## @item 0: iteration converged to the within the chosen tolerance
 ##
@@ -228,7 +228,6 @@ endfunction;
 %! M2 = spdiags ([4*ones(n,1) -ones(n,1)], 0:1, n, n);
 %! [x, flag, relres, iter, resvec] = bicg (A, b, tol, maxit, M1, M2);
 %! assert (x, ones (size (b)), 1e-7);
-%!
 
 %!function y = afun (x, t, a)
 %!  switch t
@@ -260,3 +259,4 @@ endfunction;
 %! b = sum (A, 2);
 %! [x, flag, relres, iter, resvec] = bicg (A, b, tol, [], diag (diag (A)));
 %! assert (x, ones (size (b)), 1e-7);
+

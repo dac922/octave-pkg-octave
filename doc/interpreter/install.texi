@@ -67,16 +67,16 @@ part of your system, or you may have to build some or all of them
 yourself.
 
 @menu
-* Obtaining the Depencies Automatically::
+* Obtaining the Dependencies Automatically::
 * Build Tools::
 * External Packages::
 @end menu
 
-@node Obtaining the Depencies Automatically
-@subsection Obtaining the Depencies Automatically
+@node Obtaining the Dependencies Automatically
+@subsection Obtaining the Dependencies Automatically
 
 On some systems you can obtain many of Octave's build dependencies
-automatically. The commands for doing this vary by system. Similarly,
+automatically.  The commands for doing this vary by system.  Similarly,
 the names of pre-compiled packages vary by system and do not always
 match exactly the names listed in @ref{Build Tools} and @ref{External
 Packages}.
@@ -184,8 +184,10 @@ Basic Linear Algebra Subroutine library
 (@url{http://www.netlib.org/blas}).  Accelerated BLAS libraries such as
 ATLAS (@url{http://math-atlas.sourceforge.net}) are recommeded for
 better performance.
+
 @item LAPACK
 Linear Algebra Package (@url{http://www.netlib.org/lapack}).
+
 @item PCRE
 The Perl Compatible Regular Expression library (http://www.pcre.org).
 @end table
@@ -198,7 +200,7 @@ Command-line editing library (@url{www.gnu.org/s/readline}).
 @end table
 
 If you wish to build Octave without GNU readline installed, you must use
-the @code{--disable-readline} option when running the configure script.
+the @option{--disable-readline} option when running the configure script.
 
 The following external software packages are optional but recommended:
 
@@ -250,8 +252,13 @@ Library for manipulating portable data files
 (@url{http://www.hdfgroup.org/HDF5}).  HDF5 is required for Octave's
 @code{load} and @code{save} commands to read and write HDF data files.
 
+@item LLVM
+Compiler framework, (@url{http://www.llvm.org}). LLVM is required for
+Octave's experimental just-in-time (JIT) compilation for speeding up the
+interpreter.
+
 @item OpenGL
-API for portable 2D and 3D graphics (@url{http://www.opengl.org}).  An
+API for portable 2-D and 3-D graphics (@url{http://www.opengl.org}).  An
 OpenGL implementation is required to provide Octave's OpenGL-based
 graphics functions.  Octave's OpenGL-based graphics functions usually
 outperform the gnuplot-based graphics functions because plot data can be
@@ -270,6 +277,17 @@ QR factorization updating library
 provide improved performance for the functions @code{qrdelete},
 @code{qrinsert}, @code{qrshift}, and @code{qrupdate}.
 
+@item QScintilla
+Source code highlighter and manipulator; a Qt  port of Scintilla
+(@url{http://www.riverbankcomputing.co.uk/software/qscintilla}).
+QScintilla is used for syntax highlighting and code completion in the
+GUI.
+
+@item Qt
+GUI and utility libraries (@url{}). Qt is required for building the GUI.
+It is a large framework, but the only components required are the GUI,
+core, WebKit, and network modules.
+
 @item SuiteSparse
 Sparse matrix factorization library
 (@url{http://www.cise.ufl.edu/research/sparse/SuiteSparse}).
@@ -279,7 +297,7 @@ solution of linear equations for sparse systems.
 @item zlib
 Data compression library (@url{http://zlib.net}).  The zlib library is
 required for Octave's @code{load} and @code{save} commands to handle
-compressed data, including @sc{Matlab} v5 MAT files.
+compressed data, including @sc{matlab} v5 MAT files.
 @end table
 
 @node Running Configure and Make
@@ -523,7 +541,7 @@ Octave is installed (for example, @samp{i586-unknown-gnu}).
 Octave and other binaries that people will want to run directly.
 
 @item @var{prefix}/lib/octave-@var{version}
-Libraries like libcruft.a and liboctave.a.
+Libraries like liboctave.a and liboctinterp.a.
 
 @item @var{prefix}/octave-@var{version}/include/octave
 Include files distributed with Octave.
@@ -780,12 +798,12 @@ Octave's 64-bit index support is activated with the configure option
 @end example
 
 You must ensure that all Fortran sources except those in the
-@file{libcruft/ranlib} directory are compiled such that INTEGERS are
-8-bytes wide.  If you are using gfortan, the configure script should
+@file{liboctave/cruft/ranlib} directory are compiled such that INTEGERS are
+8-bytes wide.  If you are using gfortran, the configure script should
 automatically set the Makefile variable @w{@env{F77_INTEGER_8_FLAG}} to 
 @option{-fdefault-integer-8}.  If you are using another compiler, you
 must set this variable yourself.  You should NOT set this flag in
-@env{FFLAGS}, otherwise the files in @file{libcruft/ranlib} will be
+@env{FFLAGS}, otherwise the files in @file{liboctave/cruft/ranlib} will be
 miscompiled.
 
 @item Other dependencies
@@ -960,7 +978,7 @@ make[2]: *** [zgemm.o] Error 1
 @end example
 
 @noindent
-when compiling the Fortran subroutines in the @file{libcruft}
+when compiling the Fortran subroutines in the @file{liboctave/cruft}
 subdirectory, you should either upgrade your compiler or try compiling
 with optimization turned off.
 

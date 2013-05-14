@@ -62,7 +62,7 @@ In summary, most image processing code will follow the structure of this code
 @group
 I = imread ("my_input_image.img");
 J = process_my_image (I);
-imwrite ("my_output_image.img", J);
+imwrite (J, "my_output_image.img");
 @end group
 @end example
 
@@ -132,7 +132,7 @@ quality and lower compression.
 @end deftypefn
 
 
-@c IMAGE_PATH src/defaults.cc
+@c IMAGE_PATH libinterp/interpfcn/defaults.cc
 @anchor{doc-IMAGE_PATH}
 @deftypefn  {Built-in Function} {@var{val} =} IMAGE_PATH ()
 @deftypefnx {Built-in Function} {@var{old_val} =} IMAGE_PATH (@var{new_val})
@@ -207,7 +207,7 @@ Number of iterations to loop an animation (e.g., Netscape loop extension)
 for.
 
 @item ByteOrder
-Endian option for formats that support it.  Is either @code{"little-endian"},
+Endian option for formats that support it.  Value is @code{"little-endian"},
 @code{"big-endian"}, or @code{"undefined"}.
 
 @item Gamma
@@ -219,8 +219,7 @@ workstations may look different due to differences in the display monitor.
 
 @item ModulusDepth
 Image modulus depth (minimum number of bits required to support
-red/green/blue
-components without loss of accuracy).
+red/green/blue components without loss of accuracy).
 
 @item Quality
 JPEG/MIFF/PNG compression level.
@@ -229,19 +228,18 @@ JPEG/MIFF/PNG compression level.
 Preferred number of colors in the image.
 
 @item ResolutionUnits
-Units of image resolution.  Is either @code{"pixels per inch"},
+Units of image resolution.  Value is @code{"pixels per inch"},
 @code{"pixels per centimeter"}, or @code{"undefined"}.
 
 @item ColorType
-Image type.  Is either @code{"grayscale"}, @code{"indexed"},
-@code{"truecolor"},
-or @code{"undefined"}.
+Image type.  Value is @code{"grayscale"}, @code{"indexed"},
+@code{"truecolor"}, or @code{"undefined"}.
 
 @item View
 FlashPix viewing parameters.
 @end table
 
-@seealso{@ref{doc-imread,,imread}, @ref{doc-imwrite,,imwrite}}
+@seealso{@ref{doc-imread,,imread}, @ref{doc-imwrite,,imwrite}, @ref{doc-imshow,,imshow}}
 @end deftypefn
 
 
@@ -262,7 +260,7 @@ shows the image given in the first input argument.
 @deftypefnx {Function File} {} imshow (@dots{}, @var{string_param1}, @var{value1}, @dots{})
 @deftypefnx {Function File} {@var{h} =} imshow (@dots{})
 Display the image @var{im}, where @var{im} can be a 2-dimensional
-(gray-scale image) or a 3-dimensional (RGB image) matrix.
+(grayscale image) or a 3-dimensional (RGB image) matrix.
 
 If @var{limits} is a 2-element vector @code{[@var{low}, @var{high}]},
 the image is shown using a display range between @var{low} and
@@ -278,6 +276,7 @@ shown.
 
 If given, the parameter @var{string_param1} has value
 @var{value1}.  @var{string_param1} can be any of the following:
+
 @table @asis
 @item "displayrange"
 @var{value1} is the display range as described above.
@@ -292,45 +291,51 @@ The optional return value @var{h} is a graphics handle to the image.
 @anchor{doc-image}
 @deftypefn  {Function File} {} image (@var{img})
 @deftypefnx {Function File} {} image (@var{x}, @var{y}, @var{img})
+@deftypefnx {Function File} {} image (@dots{}, "@var{property}", @var{value}, @dots{})
 @deftypefnx {Function File} {@var{h} =} image (@dots{})
-Display a matrix as a color image.  The elements of @var{img} are indices
-into the current colormap, and the colormap will be scaled so that the
-extremes of @var{img} are mapped to the extremes of the colormap.
+Display a matrix as an indexed color image.
 
-The axis values corresponding to the matrix elements are specified in
-@var{x} and @var{y}.  If you're not using gnuplot 4.2 or later, these
-variables are ignored.
+The elements of @var{img} are indices into the current colormap.
+@var{x} and @var{y} are optional 2-element vectors, @w{@code{[min, max]}},
+which specify the range for the axis labels.  If a range is specified as
+@w{@code{[max, min]}} then the image will be reversed along that axis.  For
+convenience, @var{x} and @var{y} may be specified as N-element vectors
+matching the length of the data in @var{img}.  However, only the first and
+last elements will be used to determine the axis limits.
+@strong{Warning:} @var{x} and @var{y} are ignored when using gnuplot 4.0
+or earlier.
+
+The optional return value @var{h} is a graphics handle to the image.
 
 Implementation Note: The origin (0, 0) for images is located in the
 upper left.  For ordinary plots, the origin is located in the lower
 left.  Octave handles this inversion by plotting the data normally,
 and then reversing the direction of the y-axis by setting the
-@code{ydir} property to @code{"reverse"}.  This has implications whenever
+@code{ydir} property to "reverse".  This has implications whenever
 an image and an ordinary plot need to be overlaid.  The recommended
 solution is to display the image and then plot the reversed ydata
-using, for example, @code{flipud (ydata,1)}.
+using, for example, @code{flipud (ydata)}.
 
-The optional return value @var{h} is a graphics handle to the image.
 @seealso{@ref{doc-imshow,,imshow}, @ref{doc-imagesc,,imagesc}, @ref{doc-colormap,,colormap}}
 @end deftypefn
 
 
 @c imagesc scripts/image/imagesc.m
 @anchor{doc-imagesc}
-@deftypefn  {Function File} {} imagesc (@var{A})
-@deftypefnx {Function File} {} imagesc (@var{x}, @var{y}, @var{A})
-@deftypefnx {Function File} {} imagesc (@dots{}, @var{limits})
+@deftypefn  {Function File} {} imagesc (@var{img})
+@deftypefnx {Function File} {} imagesc (@var{x}, @var{y}, @var{img})
+@deftypefnx {Function File} {} imagesc (@dots{}, @var{climits})
 @deftypefnx {Function File} {} imagesc (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} imagesc (@dots{})
-Display a scaled version of the matrix @var{A} as a color image.  The
+Display a scaled version of the matrix @var{img} as a color image.  The
 colormap is scaled so that the entries of the matrix occupy the entire
-colormap.  If @var{limits} = [@var{lo}, @var{hi}] are given, then that
-range is set to the 'clim' of the current axes.
+colormap.  If @code{@var{climits} = [@var{lo}, @var{hi}]} is given, then that
+range is set to the "clim" of the current axes.
 
 The axis values corresponding to the matrix elements are specified in
 @var{x} and @var{y}, either as pairs giving the minimum and maximum
 values for the respective axes, or as values for each row and column
-of the matrix @var{A}.
+of the matrix @var{img}.
 
 The optional return value @var{h} is a graphics handle to the image.
 @seealso{@ref{doc-image,,image}, @ref{doc-imshow,,imshow}, @ref{doc-caxis,,caxis}}
@@ -340,15 +345,15 @@ The optional return value @var{h} is a graphics handle to the image.
 @node Representing Images
 @section Representing Images
 
-In general Octave supports four different kinds of images, gray-scale
-images, RGB images, binary images, and indexed images.  A gray-scale
+In general Octave supports four different kinds of images, grayscale
+images, RGB images, binary images, and indexed images.  A grayscale
 image is represented with an M-by-N matrix in which each
 element corresponds to the intensity of a pixel.  An RGB image is
 represented with an M-by-N-by-3 array where each
 3-vector corresponds to the red, green, and blue intensities of each
 pixel.
 
-The actual meaning of the value of a pixel in a gray-scale or RGB
+The actual meaning of the value of a pixel in a grayscale or RGB
 image depends on the class of the matrix.  If the matrix is of class
 @code{double} pixel intensities are between 0 and 1, if it is of class
 @code{uint8} intensities are between 0 and 255, and if it is of class
@@ -364,62 +369,170 @@ index in the color map, and each row in the color map corresponds to
 an RGB color.  The color map must be of class @code{double} with values
 between 0 and 1.
 
+@c iscolormap scripts/image/iscolormap.m
+@anchor{doc-iscolormap}
+@deftypefn {Function File} {} iscolormap (@var{cmap})
+Return true if @var{cmap} is a colormap.
+
+A colormap is a real matrix with @var{n} rows and 3 columns.
+Each row represents a single color.  The columns contain red, green,
+and blue intensities respectively.  All entries must be between 0 and 1
+inclusive.
+@seealso{@ref{doc-colormap,,colormap}, @ref{doc-rgbplot,,rgbplot}}
+@end deftypefn
+
+
 @c gray2ind scripts/image/gray2ind.m
 @anchor{doc-gray2ind}
-@deftypefn {Function File} {[@var{img}, @var{map}] =} gray2ind (@var{I}, @var{n})
-Convert a gray scale intensity image to an Octave indexed image.
-The indexed image will consist of @var{n} different intensity values.  If not
-given @var{n} will default to 64.
+@deftypefn  {Function File} {@var{img} =} gray2ind (@var{I})
+@deftypefnx {Function File} {@var{img} =} gray2ind (@var{I}, @var{n})
+@deftypefnx {Function File} {@var{img} =} gray2ind (@var{BW})
+@deftypefnx {Function File} {@var{img} =} gray2ind (@var{BW}, @var{n})
+@deftypefnx {Function File} {[@var{img}, @var{map}] =} gray2ind (@dots{})
+Convert a grayscale or binary intensity image to an indexed image.
+
+The indexed image will consist of @var{n} different intensity values.
+If not given @var{n} defaults to 64 for grayscale images or 2 for
+binary black and white images.
+
+The output @var{img} is of class uint8 if @var{n} is less than or
+equal to 256; Otherwise the return class is uint16.
+@seealso{@ref{doc-ind2gray,,ind2gray}, @ref{doc-rgb2ind,,rgb2ind}}
 @end deftypefn
 
 
 @c ind2gray scripts/image/ind2gray.m
 @anchor{doc-ind2gray}
-@deftypefn {Function File} {} ind2gray (@var{x}, @var{map})
-Convert an Octave indexed image to a gray scale intensity image.
-If @var{map} is omitted, the current colormap is used to determine the
-intensities.
-@seealso{@ref{doc-gray2ind,,gray2ind}, @ref{doc-rgb2ntsc,,rgb2ntsc}, @ref{doc-image,,image}, @ref{doc-colormap,,colormap}}
+@deftypefn {Function File} {@var{I} =} ind2gray (@var{x}, @var{map})
+Convert a color indexed image to a grayscale intensity image.
+
+The image @var{x} must be an indexed image which will be converted using the
+colormap @var{cmap}.  If @var{cmap} does not contain enough colors for the
+image, pixels in @var{x} outside the range are mapped to the last color in
+the map before conversion to grayscale.
+
+The output @var{I} is of the same class as the input @var{x} and may be
+one of @code{uint8}, @code{uint16}, @code{single}, or @code{double}.
+
+Implementation Note: There are several ways of converting colors to
+grayscale intensities.  This functions uses the luminance value obtained
+from @code{rgb2ntsc} which is @code{I = 0.299*R + 0.587*G + 0.114*B}.  
+Other possibilities include the value component from @code{rgb2hsv} or
+using a single color channel from @code{ind2rgb}.
+@seealso{@ref{doc-gray2ind,,gray2ind}, @ref{doc-ind2rgb,,ind2rgb}}
 @end deftypefn
 
 
 @c rgb2ind scripts/image/rgb2ind.m
 @anchor{doc-rgb2ind}
 @deftypefn  {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{map})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{n})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{tol})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{map}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{n}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{rgb}, @var{tol}, @var{dither_option})
 @deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B})
-Convert an RGB image to an Octave indexed image.
-@seealso{@ref{doc-ind2rgb,,ind2rgb}, @ref{doc-rgb2ntsc,,rgb2ntsc}}
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{map})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{n})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{tol})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{map}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{n}, @var{dither_option})
+@deftypefnx {Function File} {[@var{x}, @var{map}] =} rgb2ind (@var{R}, @var{G}, @var{B}, @var{tol}, @var{dither_option})
+Convert an image in red-green-blue (RGB) color space to an indexed image.
+
+The input image @var{rgb} must be an N-dimensional RGB image
+(MxNxO...x3 array) where M,N,O... are the image dimensions, and the
+final dimension contains the values in the red, green and blue
+channels. Alternatively, the red, green and blue color channels can
+be input as separate arrays @var{R}, @var{G} and  @var{B}.
+
+The input @var{map} defines the colormap to be used.  Alternatively,
+@var{n} or @var{tol} may be used to define the maximum number of
+colors to use in an automatically generated colormap.  @var{n} is
+related to @var{tol} by:  @var{n} = (floor (1/@var{tol}) + 1)^3;
+@var{tol} must be >0 and <=1.
+
+@var{dither_option} is a string which enables or disables dithering:
+'dither' (default) or 'nodither'.
+
+@seealso{@ref{doc-ind2rgb,,ind2rgb}, @ref{doc-rgb2hsv,,rgb2hsv}, @ref{doc-rgb2ntsc,,rgb2ntsc}}
 @end deftypefn
 
 
 @c ind2rgb scripts/image/ind2rgb.m
 @anchor{doc-ind2rgb}
 @deftypefn  {Function File} {@var{rgb} =} ind2rgb (@var{x}, @var{map})
-@deftypefnx {Function File} {[@var{R}, @var{R}, @var{R}] =} ind2rgb (@var{x}, @var{map})
+@deftypefnx {Function File} {[@var{R}, @var{G}, @var{B}] =} ind2rgb (@var{x}, @var{map})
 Convert an indexed image to red, green, and blue color components.
-If the colormap doesn't contain enough colors, pad it with the
-last color in the map.
-If @var{map} is omitted, the current colormap is used for the conversion.
-@seealso{@ref{doc-rgb2ind,,rgb2ind}, @ref{doc-image,,image}, @ref{doc-imshow,,imshow}, @ref{doc-ind2gray,,ind2gray}, @ref{doc-gray2ind,,gray2ind}}
+
+The image @var{x} must be an indexed image which will be converted using the
+colormap @var{map}.  If @var{map} does not contain enough colors for the
+image, pixels in @var{x} outside the range are mapped to the last color in
+the map.
+
+The output may be a single RGB image (MxNx3 matrix where M and N are the
+original image @var{x} dimensions, one for each of the red, green and blue
+channels).  Alternatively, the individual red, green, and blue color matrices
+of size MxN may be returned.
+
+@seealso{@ref{doc-rgb2ind,,rgb2ind}, @ref{doc-ind2gray,,ind2gray}, @ref{doc-hsv2rgb,,hsv2rgb}, @ref{doc-ntsc2rgb,,ntsc2rgb}}
 @end deftypefn
 
 
 @c colormap scripts/image/colormap.m
 @anchor{doc-colormap}
-@deftypefn  {Function File} {} colormap (@var{map})
-@deftypefnx {Function File} {} colormap ("default")
-Set the current colormap.
+@deftypefn  {Function File} {@var{cmap} =} colormap ()
+@deftypefnx {Function File} {@var{cmap} =} colormap (@var{map})
+@deftypefnx {Function File} {@var{cmap} =} colormap ("default")
+@deftypefnx {Function File} {@var{cmap} =} colormap ("list")
+@deftypefnx {Function File} {@var{cmap} =} colormap ("register", "@var{name}")
+@deftypefnx {Function File} {@var{cmap} =} colormap ("unregister", "@var{name}")
+Query or set the current colormap.
 
 @code{colormap (@var{map})} sets the current colormap to @var{map}.  The
-color map should be an @var{n} row by 3 column matrix.  The columns
+colormap should be an @var{n} row by 3 column matrix.  The columns
 contain red, green, and blue intensities respectively.  All entries
-should be between 0 and 1 inclusive.  The new colormap is returned.
+must be between 0 and 1 inclusive.  The new colormap is returned.
 
 @code{colormap ("default")} restores the default colormap (the
 @code{jet} map with 64 entries).  The default colormap is returned.
 
+@code{colormap ("list")} returns a cell array with all the available
+colormaps.  The options `register' and `unregister' will add or remove the
+colormap @var{name} to it.
+
 With no arguments, @code{colormap} returns the current color map.
 @seealso{@ref{doc-jet,,jet}}
+@end deftypefn
+
+
+@c rgbplot scripts/image/rgbplot.m
+@anchor{doc-rgbplot}
+@deftypefn  {Function File} {} rgbplot (@var{cmap})
+@deftypefnx {Function File} {} rgbplot (@var{cmap}, @var{style})
+@deftypefnx {Function File} {@var{h} =} rgbplot (@dots{})
+Plot the components of a colormap.
+
+Two different @var{style}s are available for displaying the @var{cmap}:
+
+@table @asis
+@item profile (default)
+Plot the RGB line profile of the colormap for each of the channels (red,
+green and blue) with the plot lines colored appropriately.  Each line
+represents the intensity of each RGB components across the colormap.
+
+@item composite
+Draw the colormap across the X-axis so that the actual index colors are
+visible rather than the individual color components.
+
+@end table
+
+The optional return value @var{h} is a graphics handle to the created plot.
+
+Run @code{demo rgbplot} to see an example of @code{rgbplot} and each style
+option.
+@seealso{@ref{doc-colormap,,colormap}}
 @end deftypefn
 
 
@@ -441,6 +554,21 @@ If unspecified, the length of the current colormap, or 64, is used.
 @deftypefnx {Function File} {@var{map} =} bone (@var{n})
 Create color colormap.  This colormap varies from black to white with
 gray-blue shades.
+The argument @var{n} must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+@seealso{@ref{doc-colormap,,colormap}}
+@end deftypefn
+
+
+@c colorcube scripts/image/colorcube.m
+@anchor{doc-colorcube}
+@deftypefn  {Function File} {@var{map} =} colorcube ()
+@deftypefnx {Function File} {@var{map} =} colorcube (@var{n})
+Create color colormap.  This colormap is composed of as many equally
+spaced colors (not grays) in the RGB color space as possible.  If there
+are not a perfect number @var{n} of regularly spaced colors then the
+remaining entries in the colormap are gradients of pure red, green, blue,
+and gray.
 The argument @var{n} must be a scalar.
 If unspecified, the length of the current colormap, or 64, is used.
 @seealso{@ref{doc-colormap,,colormap}}
@@ -474,7 +602,7 @@ If unspecified, the length of the current colormap, or 64, is used.
 @anchor{doc-flag}
 @deftypefn  {Function File} {@var{map} =} flag ()
 @deftypefnx {Function File} {@var{map} =} flag (@var{n})
-Create color colormap.  This colormap cycles through red, white, blue
+Create color colormap.  This colormap cycles through red, white, blue,
 and black with each index change.
 The argument @var{n} must be a scalar.
 If unspecified, the length of the current colormap, or 64, is used.
@@ -490,6 +618,7 @@ Create gray colormap.  This colormap varies from black to white with
 shades of gray.
 The argument @var{n} must be a scalar.
 If unspecified, the length of the current colormap, or 64, is used.
+@seealso{@ref{doc-colormap,,colormap}}
 @end deftypefn
 
 
@@ -510,10 +639,10 @@ If unspecified, the length of the current colormap, or 64, is used.
 @deftypefn {Function File} {} hsv (@var{n})
 Create color colormap.  This colormap begins with red, changes through
 yellow, green, cyan, blue, and magenta, before returning to red.
-It is useful for displaying periodic functions.  It is obtained by linearly
-varying the hue through all possible values while keeping constant maximum
-saturation and value and is equivalent to
-@code{hsv2rgb ([linspace(0,1,N)', ones(N,2)])}.
+It is useful for displaying periodic functions.  The map is obtained by
+linearly varying the hue through all possible values while keeping constant
+maximum saturation and value.  The equivalent code is
+@code{hsv2rgb ([(0:N-1)'/N, ones(N,2)])}.
 
 The argument @var{n} must be a scalar.
 If unspecified, the length of the current colormap, or 64, is used.
@@ -533,6 +662,19 @@ If unspecified, the length of the current colormap, or 64, is used.
 @end deftypefn
 
 
+@c lines scripts/image/lines.m
+@anchor{doc-lines}
+@deftypefn  {Function File} {@var{map} =} lines ()
+@deftypefnx {Function File} {@var{map} =} lines (@var{n})
+Create color colormap.  This colormap is composed of the list of colors
+in the current axes "ColorOrder" property.  The default is blue,
+green, red, cyan, pink, yellow, and gray.
+The argument @var{n} must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+@seealso{@ref{doc-colormap,,colormap}}
+@end deftypefn
+
+
 @c ocean scripts/image/ocean.m
 @anchor{doc-ocean}
 @deftypefn  {Function File} {@var{map} =} ocean ()
@@ -541,6 +683,7 @@ Create color colormap.  This colormap varies from black to white with shades
 of blue.
 The argument @var{n} must be a scalar.
 If unspecified, the length of the current colormap, or 64, is used.
+@seealso{@ref{doc-colormap,,colormap}}
 @end deftypefn
 
 
@@ -626,20 +769,21 @@ If unspecified, the length of the current colormap, or 64, is used.
 
 @c contrast scripts/image/contrast.m
 @anchor{doc-contrast}
-@deftypefn {Function File} {} contrast (@var{x}, @var{n})
+@deftypefn  {Function File} {@var{cmap} =} contrast (@var{x})
+@deftypefnx {Function File} {@var{cmap} =} contrast (@var{x}, @var{n})
 Return a gray colormap that maximizes the contrast in an image.  The
 returned colormap will have @var{n} rows.  If @var{n} is not defined
-then the size of the current colormap is used instead.
-@seealso{@ref{doc-colormap,,colormap}}
+then the size of the current colormap is used.
+@seealso{@ref{doc-colormap,,colormap}, @ref{doc-brighten,,brighten}}
 @end deftypefn
 
 
 An additional colormap is @code{gmap40}.  This code map contains only
 colors with integer values of the red, green and blue components.  This
 is a workaround for a limitation of gnuplot 4.0, that does not allow the color
-of line or patch objects to be set, and so @code{gmap40} is useful for gnuplot
-4.0 users, and in particular in conjunction with the @var{bar},
-@var{barh} or @var{contour} functions.
+of line or patch objects to be set.  @code{gmap40} is chiefly useful to gnuplot
+4.0 users, and particularly in conjunction with the @var{bar}, @var{surf},
+and @var{contour} functions.
 
 @c gmap40 scripts/image/gmap40.m
 @anchor{doc-gmap40}
@@ -649,8 +793,8 @@ Create color colormap.  The colormap consists of red, green, blue, yellow,
 magenta and cyan.  This colormap is specifically designed for users of
 gnuplot 4.0 where these 6 colors are the allowable ones for patch objects.
 The argument @var{n} must be a scalar.
-If unspecified, a length of 6 is assumed.  Larger values
-of @var{n} result in a repetition of the above colors.
+If unspecified, a length of 6 is assumed.  Larger values of @var{n} result
+in a repetition of the above colors.
 @seealso{@ref{doc-colormap,,colormap}}
 @end deftypefn
 
@@ -661,33 +805,36 @@ replace it.
 @c brighten scripts/image/brighten.m
 @anchor{doc-brighten}
 @deftypefn  {Function File} {@var{map_out} =} brighten (@var{map}, @var{beta})
-@deftypefnx {Function File} {@var{map_out} =} brighten (@var{h}, @var{beta})
 @deftypefnx {Function File} {@var{map_out} =} brighten (@var{beta})
-Darken or brighten the given colormap.  If the @var{map} argument
-is omitted, the function is applied to the current colormap.  The first
-argument can also be a valid graphics handle @var{h}, in which case
-@code{brighten} is applied to the colormap associated with this handle.
+@deftypefnx {Function File} {@var{map_out} =} brighten (@var{h}, @var{beta})
+Brighten or darken a colormap.  If the @var{map} argument is omitted, the
+function is applied to the current colormap.  The first argument can also be
+a valid graphics handle @var{h}, in which case @code{brighten} is applied to
+the colormap associated with this handle.
 
-Should the resulting colormap @var{map_out} not be assigned, it will be
-written to the current colormap.
+The argument @var{beta} must be a scalar between -1 and 1, where a
+negative value darkens and a positive value brightens the colormap.
 
-The argument @var{beta} should be a scalar between -1 and 1,
-where a negative value darkens and a positive value brightens
-the colormap.
-@seealso{@ref{doc-colormap,,colormap}}
+If no output is specified then the result is written to the current colormap.
+@seealso{@ref{doc-colormap,,colormap}, @ref{doc-contrast,,contrast}}
 @end deftypefn
 
 
-@c spinmap scripts/plot/spinmap.m
+@c spinmap scripts/image/spinmap.m
 @anchor{doc-spinmap}
-@deftypefn {Function File} {} spinmap (@var{t}, @var{inc})
-Cycle the colormap for @var{t} seconds with an increment
-of @var{inc}.  Both parameters are optional.  The default cycle time
-is 5 seconds and the default increment is 2.
+@deftypefn  {Function File} {} spinmap ()
+@deftypefnx {Function File} {} spinmap (@var{t})
+@deftypefnx {Function File} {} spinmap (@var{t}, @var{inc})
+@deftypefnx {Function File} {} spinmap ("inf")
+Cycle the colormap for @var{t} seconds with a color increment of @var{inc}.
+Both parameters are optional.  The default cycle time is 5 seconds and the
+default increment is 2.  If the option "inf" is given then cycle
+continuously until @kbd{Control-C} is pressed.
 
-A higher value of @var{inc} causes a faster cycle through the
-colormap.
-@seealso{@ref{doc-gca,,gca}, @ref{doc-colorbar,,colorbar}}
+When rotating the original color 1 becomes color 2, color 2 becomes
+color 3, etc.  A positive or negative increment is allowed and a higher
+value of @var{inc} will cause faster cycling through the colormap.
+@seealso{@ref{doc-colormap,,colormap}}
 @end deftypefn
 
 
@@ -710,6 +857,64 @@ is set to @var{color} rather than inverted.  @var{color} may be a string
 representing one of the eight known colors or an RGB triplet.  The special
 string argument "none" restores the plot to the default colors.
 @seealso{@ref{doc-reset,,reset}}
+@end deftypefn
+
+
+The following functions can be used to manipulate colormaps.
+
+@c cmunique scripts/image/cmunique.m
+@anchor{doc-cmunique}
+@deftypefn  {Function File} {[@var{Y}, @var{newmap}] =} cmunique (@var{X}, @var{map})
+@deftypefnx {Function File} {[@var{Y}, @var{newmap}] =} cmunique (@var{RGB})
+@deftypefnx {Function File} {[@var{Y}, @var{newmap}] =} cmunique (@var{I})
+Convert an input image @var{X} to an ouput indexed image @var{Y} which uses
+the smallest colormap possible @var{newmap}.
+
+When the input is an indexed image (@var{X} with colormap @var{map}) the 
+output is a colormap @var{newmap} from which any repeated rows have been
+eliminated.  The output image, @var{Y}, is the original input image with
+the indices adjusted to match the new, possibly smaller, colormap.
+
+When the input is an RGB image (an @nospell{MxNx3} array), the output
+colormap will contain one entry for every unique color in the original image.
+In the worst case the new map could have as many rows as the number of
+pixels in the original image.
+
+When the input is a grayscale image @var{I}, the output colormap will
+contain one entry for every unique intensity value in the original image.
+In the worst case the new map could have as many rows as the number of
+pixels in the original image.
+
+Implementation Details:
+
+@var{newmap} is always an Mx3 matrix, even if the input image is
+an intensity grayscale image @var{I} (all three RGB planes are
+assigned the same value).
+
+The output image is of class uint8 if the size of the new colormap is
+less than or equal to 256.  Otherwise, the output image is of class double.
+
+@seealso{@ref{doc-rgb2ind,,rgb2ind}, @ref{doc-gray2ind,,gray2ind}}
+@end deftypefn
+
+
+@c cmpermute scripts/image/cmpermute.m
+@anchor{doc-cmpermute}
+@deftypefn  {Function File} {[@var{Y}, @var{newmap}] =} cmpermute (@var{X}, @var{map})
+@deftypefnx {Function File} {[@var{Y}, @var{newmap}] =} cmpermute (@var{X}, @var{map}, @var{index})
+Reorder colors in a colormap.
+
+When called with only two arguments, @code{cmpermute} randomly rearranges
+the colormap @var{map} and returns a new colormap @var{newmap}.  It also
+returns the indexed image @var{Y} which is the equivalent of the original
+input image @var{X} when displayed using @var{newmap}.  
+
+When called with an optional third argument the order of colors in the
+new colormap is defined by @var{index}.
+
+@strong{Caution:} @code{index} should not have repeated elements or the
+function will fail.
+
 @end deftypefn
 
 
@@ -748,40 +953,83 @@ and vice versa.
 
 @c rgb2hsv scripts/image/rgb2hsv.m
 @anchor{doc-rgb2hsv}
-@deftypefn {Function File} {@var{hsv_map} =} rgb2hsv (@var{rgb})
-Transform a colormap or image from the RGB space to the HSV space.
+@deftypefn  {Function File} {@var{hsv_map} =} rgb2hsv (@var{rgb})
+@deftypefnx {Function File} {@var{hsv_map} =} rgb2hsv (@var{rgb})
+Transform a colormap or image from red-green-blue (RGB) space to
+hue-saturation-value (HSV) space.
 
-A color in the RGB space consists of the red, green and blue intensities.
+A color in the RGB space consists of red, green, and blue intensities.
 
-In the HSV space each color is represented by their hue, saturation
-and value (brightness).  Value gives the amount of light in the color.
-Hue describes the dominant wavelength.
-Saturation is the amount of hue mixed into the color.
-@seealso{@ref{doc-hsv2rgb,,hsv2rgb}}
+A color in HSV space is represented by hue, saturation, and value
+(brightness) levels.  Value gives the amount of light in the color.  Hue
+describes the dominant wavelength.  Saturation is the amount of hue mixed
+into the color.
+@seealso{@ref{doc-hsv2rgb,,hsv2rgb}, @ref{doc-rgb2ind,,rgb2ind}, @ref{doc-rgb2ntsc,,rgb2ntsc}}
 @end deftypefn
 
 
 @c hsv2rgb scripts/image/hsv2rgb.m
 @anchor{doc-hsv2rgb}
-@deftypefn {Function File} {@var{rgb_map} =} hsv2rgb (@var{hsv_map})
-Transform a colormap or image from the HSV space to the RGB space.
-@seealso{@ref{doc-rgb2hsv,,rgb2hsv}}
+@deftypefn  {Function File} {@var{rgb_map} =} hsv2rgb (@var{hsv_map})
+@deftypefnx {Function File} {@var{rgb_img} =} hsv2rgb (@var{hsv_img})
+Transform a colormap or image from hue-saturation-value (HSV) space to
+red-green-blue (RGB) space.
+
+A color in HSV space is represented by hue, saturation and value
+(brightness) levels.  Value gives the amount of light in the color.  Hue
+describes the dominant wavelength.  Saturation is the amount of hue mixed
+into the color.
+
+A color in the RGB space consists of red, green, and blue intensities.
+@seealso{@ref{doc-rgb2hsv,,rgb2hsv}, @ref{doc-ind2rgb,,ind2rgb}, @ref{doc-ntsc2rgb,,ntsc2rgb}}
 @end deftypefn
 
 
 @c rgb2ntsc scripts/image/rgb2ntsc.m
 @anchor{doc-rgb2ntsc}
-@deftypefn {Function File} {} rgb2ntsc (@var{rgb})
-Transform a colormap or image from RGB to NTSC.
-@seealso{@ref{doc-ntsc2rgb,,ntsc2rgb}}
+@deftypefn  {Function File} {@var{yiq_map} =} rgb2ntsc (@var{rgb_map})
+@deftypefnx {Function File} {@var{yiq_img} =} rgb2ntsc (@var{rgb_img})
+Transform a colormap or image from red-green-blue (RGB) color space to
+luminance-chrominance (NTSC) space.  The input may be of class uint8,
+uint16, single, or double.  The output is of class double.
+
+Implementation Note:
+The reference matrix for the transformation is
+
+@example
+@group
+/Y\     0.299  0.587  0.114  /R\ 
+|I|  =  0.596 -0.274 -0.322  |G| 
+\Q/     0.211 -0.523  0.312  \B/ 
+@end group
+@end example
+
+@noindent
+as documented in @url{http://en.wikipedia.org/wiki/YIQ} and truncated to 3
+significant figures.  Note: The FCC version of NTSC uses only 2
+significant digits and is slightly different.
+@seealso{@ref{doc-ntsc2rgb,,ntsc2rgb}, @ref{doc-rgb2hsv,,rgb2hsv}, @ref{doc-rgb2ind,,rgb2ind}}
 @end deftypefn
 
 
 @c ntsc2rgb scripts/image/ntsc2rgb.m
 @anchor{doc-ntsc2rgb}
-@deftypefn {Function File} {} ntsc2rgb (@var{yiq})
-Transform a colormap or image from NTSC to RGB.
-@seealso{@ref{doc-rgb2ntsc,,rgb2ntsc}}
+@deftypefn  {Function File} {@var{rgb_map} =} ntsc2rgb (@var{yiq_map})
+@deftypefnx {Function File} {@var{rgb_img} =} ntsc2rgb (@var{yiq_img})
+Transform a colormap or image from luminance-chrominance (NTSC) space to
+red-green-blue (RGB) color space.
+
+Implementation Note:
+The conversion matrix is chosen to be the inverse of the
+matrix used for rgb2ntsc such that
+
+@example
+x == ntsc2rgb (rgb2ntsc (x))
+@end example
+
+@sc{matlab} uses a slightly different matrix where rounding
+means the equality above does not hold.
+@seealso{@ref{doc-rgb2ntsc,,rgb2ntsc}, @ref{doc-hsv2rgb,,hsv2rgb}, @ref{doc-ind2rgb,,ind2rgb}}
 @end deftypefn
 
 

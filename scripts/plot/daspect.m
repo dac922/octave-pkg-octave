@@ -17,23 +17,28 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} daspect (@var{data_aspect_ratio})
-## Set the data aspect ratio of the current axes.  The aspect ratio is
-## a normalized 3-element vector representing the span of the x, y, and
-## z-axes limits.
-##
-## @deftypefnx {Function File} {@var{data_aspect_ratio} =} daspect ( )
-## Return the data aspect ratio of the current axes.
-##
+## @deftypefn  {Function File} {@var{data_aspect_ratio} =} daspect ()
+## @deftypefnx {Function File} {} daspect (@var{data_aspect_ratio})
 ## @deftypefnx {Function File} {} daspect (@var{mode})
-## Set the data aspect ratio mode of the current axes.
-##
 ## @deftypefnx {Function File} {@var{data_aspect_ratio_mode} =} daspect ("mode")
-## Return the data aspect ratio mode of the current axes.
-##
 ## @deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
-## Use the axes, with handle @var{hax}, instead of the current axes.
+## Query or set the data aspect ratio of the current axes.  The aspect 
+## ratio is a normalized 3-element vector representing the span of the x, y,
+## and z-axis limits.
+## 
+## @code{(daspect (@var{mode}))}
 ##
+## Set the data aspect ratio mode of the current axes.  @var{mode} is
+## either "auto" or "manual".
+## 
+## @code{daspect ("mode")}
+##
+## Return the data aspect ratio mode of the current axes.
+## 
+## @code{daspect (@var{hax}, @dots{})}
+##
+## Operate on the axes in handle @var{hax} instead of the current axes.
+## 
 ## @seealso{axis, pbaspect, xlim, ylim, zlim}
 ## @end deftypefn
 
@@ -89,45 +94,46 @@ function varargout = daspect (varargin)
 
 endfunction
 
-%!demo
-%! x = 0:0.01:4;
-%! clf
-%! plot (x, cos (x), x, sin (x))
-%! axis square
-%! daspect ([1 1 1])
-%! title ("square plot-box with axis limits [0, 4, -2, 2]")
 
 %!demo
+%! clf;
 %! x = 0:0.01:4;
-%! clf
-%! plot (x, cos (x), x, sin (x))
-%! axis ([0 4 -1 1])
-%! daspect ([2 1 1])
-%! title ("square plot-box with axis limits [0, 4, -1, 1]")
+%! plot (x,cos(x), x,sin(x));
+%! axis square;
+%! daspect ([1 1 1]);
+%! title ('square plot-box with axis limits [0, 4, -2, 2]');
 
 %!demo
+%! clf;
 %! x = 0:0.01:4;
-%! clf
-%! plot (x, cos (x), x, sin (x))
-%! daspect ([1 2 1])
-%! pbaspect ([2 1 1])
-%! title ("2x1 plot box with axis limits [0, 4, -2, 2]")
+%! plot (x,cos (x), x,sin (x));
+%! axis ([0 4 -1 1]);
+%! daspect ([2 1 1]);
+%! title ('square plot-box with axis limits [0, 4, -1, 1]');
 
 %!demo
+%! clf;
 %! x = 0:0.01:4;
-%! clf
-%! plot (x, cos (x), x, sin (x))
-%! axis square
-%! set (gca, "activepositionproperty", "position")
-%! daspect ([1 1 1])
-%! title ("square plot-box with axis limits [0, 4, -2, 2]")
+%! plot (x,cos(x), x,sin(x));
+%! daspect ([1 2 1]);
+%! pbaspect ([2 1 1]);
+%! title ('2x1 plot box with axis limits [0, 4, -2, 2]');
 
 %!demo
+%! clf;
 %! x = 0:0.01:4;
-%! clf
-%! plot (x, cos (x), x, sin (x))
-%! axis ([0 4 -1 1])
-%! set (gca, "activepositionproperty", "position")
-%! daspect ([2 1 1])
-%! title ("square plot-box with axis limits [0, 4, -1, 1]")
+%! plot (x,cos(x), x, sin(x));
+%! axis square;
+%! set (gca, 'activepositionproperty', 'position');
+%! daspect ([1 1 1]);
+%! title ('square plot-box with axis limits [0, 4, -2, 2]');
+
+%!demo
+%! clf;
+%! x = 0:0.01:4;
+%! plot (x,cos(x), x,sin(x));
+%! axis ([0 4 -1 1]);
+%! set (gca, 'activepositionproperty', 'position');
+%! daspect ([2 1 1]);
+%! title ('square plot-box with axis limits [0, 4, -1, 1]');
 

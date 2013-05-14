@@ -45,12 +45,12 @@ function varargout = __bar__ (vertical, func, varargin)
     if (isvector (y))
       y = y(:);
     endif
-    if (size (x, 1) != size (y, 1))
+    if (rows (x) != rows (y))
       y = varargin{1};
       if (isvector (y))
         y = y(:);
       endif
-      x = [1:size(y,1)]';
+      x = [1:rows(y)]';
       idx = 2;
     else
       if (! isvector (x))
@@ -63,7 +63,7 @@ function varargout = __bar__ (vertical, func, varargin)
     if (isvector (y))
       y = y(:);
     endif
-    x = [1:size(y,1)]';
+    x = [1:rows(y)]';
     idx = 2;
   endif
 
@@ -82,12 +82,14 @@ function varargout = __bar__ (vertical, func, varargin)
         [linespec, valid] = __pltopt__ (func, varargin{idx}, false);
         if (valid)
           have_line_spec = true;
-          newargs = [{"facecolor", linespec.color}, newargs]
+          ## FIXME: strange parse error requires semicolon to be spaced
+          ##        away from closing ']' on next line.
+          newargs = [{"facecolor", linespec.color}, newargs] ;
           idx++;
           continue;
         endif
       endif
-      if (isscalar(varargin{idx}))
+      if (isscalar (varargin{idx}))
         width = varargin{idx++};
       elseif (idx == nargin - 2)
         newargs = [newargs,varargin(idx++)];
@@ -103,8 +105,8 @@ function varargout = __bar__ (vertical, func, varargin)
     endif
   endwhile
 
-  xlen = size (x, 1);
-  ylen = size (y, 1);
+  xlen = rows (x);
+  ylen = rows (y);
 
   if (xlen != ylen)
     error ("%s: length of x and y must be equal", func);
@@ -113,9 +115,9 @@ function varargout = __bar__ (vertical, func, varargin)
     error ("%s: x vector values must be in ascending order", func);
   endif
 
-  ycols = size (y, 2);
+  ycols = columns (y);
   if (numel (x) > 1)
-    cutoff = min (diff (double(x))) / 2;
+    cutoff = min (diff (double (x))) / 2;
   else
     cutoff = 1;
   endif
@@ -137,7 +139,7 @@ function varargout = __bar__ (vertical, func, varargin)
     y0 = zeros (size (y)) + bv;
     y1 = y;
   else
-    y1 = cumsum(y,2);
+    y1 = cumsum (y,2);
     y0 = [zeros(ylen,1)+bv, y1(:,1:end-1)];
   endif
 
@@ -194,10 +196,10 @@ function tmp = bars (ax, vertical, x, y, xb, yb, width, group, have_color_spec, 
         else
           lev = (i - 1) * (clim(2) - clim(1)) / (ycols - 1) - clim(1);
         endif
-        h = patch(xb(:,:,i), yb(:,:,i), "FaceColor", "flat",
-                  "cdata", lev, "parent", hg);
+        h = patch (xb(:,:,i), yb(:,:,i), "FaceColor", "flat",
+                   "cdata", lev, "parent", hg);
       else
-        h = patch(xb(:,:,i), yb(:,:,i), "parent", hg);
+        h = patch (xb(:,:,i), yb(:,:,i), "parent", hg);
       endif
     else
       if (! have_color_spec)
@@ -206,16 +208,17 @@ function tmp = bars (ax, vertical, x, y, xb, yb, width, group, have_color_spec, 
         else
           lev = (i - 1) * (clim(2) - clim(1)) / (ycols - 1) - clim(1);
         endif
-        h = patch(yb(:,:,i), xb(:,:,i), "FaceColor", "flat",
-                  "cdata", lev, "parent", hg);
+        h = patch (yb(:,:,i), xb(:,:,i), "FaceColor", "flat",
+                   "cdata", lev, "parent", hg);
       else
-        h = patch(yb(:,:,i), xb(:,:,i), "parent", hg);
+        h = patch (yb(:,:,i), xb(:,:,i), "parent", hg);
       endif
     endif
 
     if (i == 1)
       x_axis_range = get (ax, "xlim");
-      h_baseline = line (x_axis_range, [0, 0], "color", [0, 0, 0]);
+      h_baseline = line (x_axis_range, [base_value, base_value],
+                         "color", [0, 0, 0]);
       set (h_baseline, "handlevisibility", "off");
       set (h_baseline, "xliminclude", "off");
       addlistener (ax, "xlim", @update_xlim);
@@ -228,7 +231,8 @@ function tmp = bars (ax, vertical, x, y, xb, yb, width, group, have_color_spec, 
     addproperty ("basevalue", hg, "data", base_value);
     addproperty ("baseline", hg, "data", h_baseline);
 
-    addlistener (hg, "showbaseline", @show_baseline);
+    addlistener (hg, "showbaseline", {@show_baseline, "showbl"});
+    addlistener (hg, "visible", {@show_baseline, "visib"});
     addlistener (hg, "basevalue", @move_baseline);
 
     addproperty ("barwidth", hg, "data", width);
@@ -314,20 +318,27 @@ function update_baseline (h, d)
   endfor
 endfunction
 
-function show_baseline (h, d)
+function show_baseline (h, d, prop = "")
   persistent recursion = false;
-
+  
   ## Don't allow recursion
   if (! recursion)
     unwind_protect
       recursion = true;
       hlist = get (h, "bargroup");
-      showbaseline = get (h, "showbaseline");
-      for hh = hlist(:)'
-        if (hh != h)
-          set (hh, "showbaseline", showbaseline);
+      if (strcmp (prop, "showbl"))
+        showbaseline = get (h, "showbaseline");
+        for hh = hlist(:)'
+          if (hh != h)
+            set (hh, "showbaseline", showbaseline);
+          endif
+        endfor
+      elseif (strcmp (prop, "visib"))
+        showbaseline = "on";
+        if (all (strcmp (get (hlist, "visible"), "off")))
+          showbaseline = "off";
         endif
-      endfor
+      endif
       set (get (h, "baseline"), "visible", showbaseline);
     unwind_protect_cleanup
       recursion = false;
@@ -401,7 +412,7 @@ function update_group (h, d)
     unwind_protect
       recursion = true;
       hlist = get (h, "bargroup");
-      barwidth = get(h, "barwidth");
+      barwidth = get (h, "barwidth");
       barlayout = get (h, "barlayout");
       horizontal = get (h, "horizontal");
 

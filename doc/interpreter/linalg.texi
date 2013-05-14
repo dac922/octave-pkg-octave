@@ -84,13 +84,13 @@ flag a non-Hermitian matrix.
 @node Basic Matrix Functions
 @section Basic Matrix Functions
 
-@c balance src/DLD-FUNCTIONS/balance.cc
+@c balance libinterp/corefcn/balance.cc
 @anchor{doc-balance}
-@deftypefn  {Loadable Function} {@var{AA} =} balance (@var{A})
-@deftypefnx {Loadable Function} {@var{AA} =} balance (@var{A}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{DD}, @var{AA}] =} balance (@var{A}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{D}, @var{P}, @var{AA}] =} balance (@var{A}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{CC}, @var{DD}, @var{AA}, @var{BB}] =} balance (@var{A}, @var{B}, @var{opt})
+@deftypefn  {Built-in Function} {@var{AA} =} balance (@var{A})
+@deftypefnx {Built-in Function} {@var{AA} =} balance (@var{A}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{DD}, @var{AA}] =} balance (@var{A}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{D}, @var{P}, @var{AA}] =} balance (@var{A}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{CC}, @var{DD}, @var{AA}, @var{BB}] =} balance (@var{A}, @var{B}, @var{opt})
 
 Compute @code{@var{AA} = @var{DD} \ @var{A} * @var{DD}} in which @var{AA}
 is a matrix whose row and column norms are roughly equal in magnitude, and
@@ -149,10 +149,10 @@ singular value decomposition.  Other possible selections are
 @end deftypefn
 
 
-@c det src/DLD-FUNCTIONS/det.cc
+@c det libinterp/corefcn/det.cc
 @anchor{doc-det}
-@deftypefn  {Loadable Function} {} det (@var{A})
-@deftypefnx {Loadable Function} {[@var{d}, @var{rcond}] =} det (@var{A})
+@deftypefn  {Built-in Function} {} det (@var{A})
+@deftypefnx {Built-in Function} {[@var{d}, @var{rcond}] =} det (@var{A})
 Compute the determinant of @var{A}.
 
 Return an estimate of the reciprocal condition number if requested.
@@ -167,28 +167,28 @@ For that, use any of the condition number functions: @code{cond},
 @end deftypefn
 
 
-@c eig src/DLD-FUNCTIONS/eig.cc
+@c eig libinterp/corefcn/eig.cc
 @anchor{doc-eig}
-@deftypefn  {Loadable Function} {@var{lambda} =} eig (@var{A})
-@deftypefnx {Loadable Function} {@var{lambda} =} eig (@var{A}, @var{B})
-@deftypefnx {Loadable Function} {[@var{V}, @var{lambda}] =} eig (@var{A})
-@deftypefnx {Loadable Function} {[@var{V}, @var{lambda}] =} eig (@var{A}, @var{B})
-Compute the eigenvalues and eigenvectors of a matrix.
+@deftypefn  {Built-in Function} {@var{lambda} =} eig (@var{A})
+@deftypefnx {Built-in Function} {@var{lambda} =} eig (@var{A}, @var{B})
+@deftypefnx {Built-in Function} {[@var{V}, @var{lambda}] =} eig (@var{A})
+@deftypefnx {Built-in Function} {[@var{V}, @var{lambda}] =} eig (@var{A}, @var{B})
+Compute the eigenvalues (and optionally the eigenvectors) of a matrix
+or a pair of matrices
 
-Eigenvalues are computed in a several step process which begins with a
-Hessenberg decomposition, followed by a Schur@tie{}decomposition, from which
-the eigenvalues are apparent.  The eigenvectors, when desired, are computed
-by further manipulations of the Schur@tie{}decomposition.
+The algorithm used depends on whether there are one or two input
+matrices, if they are real or complex and if they are symmetric
+(Hermitian if complex) or non-symmetric.
 
 The eigenvalues returned by @code{eig} are not ordered.
 @seealso{@ref{doc-eigs,,eigs}, @ref{doc-svd,,svd}}
 @end deftypefn
 
 
-@c givens src/DLD-FUNCTIONS/givens.cc
+@c givens libinterp/corefcn/givens.cc
 @anchor{doc-givens}
-@deftypefn  {Loadable Function} {@var{g} =} givens (@var{x}, @var{y})
-@deftypefnx {Loadable Function} {[@var{c}, @var{s}] =} givens (@var{x}, @var{y})
+@deftypefn  {Built-in Function} {@var{g} =} givens (@var{x}, @var{y})
+@deftypefnx {Built-in Function} {[@var{c}, @var{s}] =} givens (@var{x}, @var{y})
 @tex
 Return a $2\times 2$ orthogonal matrix
 $$
@@ -211,8 +211,8 @@ For example:
 @example
 @group
 givens (1, 1)
-     @result{}   0.70711   0.70711
-         -0.70711   0.70711
+   @result{}   0.70711   0.70711
+       -0.70711   0.70711
 @end group
 @end example
 @end deftypefn
@@ -234,10 +234,10 @@ $2 \times 2$ orthogonal matrix
 @end deftypefn
 
 
-@c inv src/DLD-FUNCTIONS/inv.cc
+@c inv libinterp/corefcn/inv.cc
 @anchor{doc-inv}
-@deftypefn  {Loadable Function} {@var{x} =} inv (@var{A})
-@deftypefnx {Loadable Function} {[@var{x}, @var{rcond}] =} inv (@var{A})
+@deftypefn  {Built-in Function} {@var{x} =} inv (@var{A})
+@deftypefnx {Built-in Function} {[@var{x}, @var{rcond}] =} inv (@var{A})
 Compute the inverse of the square matrix @var{A}.  Return an estimate
 of the reciprocal condition number if requested, otherwise warn of an
 ill-conditioned matrix if the reciprocal condition number is small.
@@ -255,62 +255,62 @@ of a sparse matrix if possible.
 @end deftypefn
 
 
-@c matrix_type src/DLD-FUNCTIONS/matrix_type.cc
+@c matrix_type libinterp/corefcn/matrix_type.cc
 @anchor{doc-matrix_type}
-@deftypefn  {Loadable Function} {@var{type} =} matrix_type (@var{A})
-@deftypefnx {Loadable Function} {@var{type} =} matrix_type (@var{A}, 'nocompute')
-@deftypefnx {Loadable Function} {@var{A} =} matrix_type (@var{A}, @var{type})
-@deftypefnx {Loadable Function} {@var{A} =} matrix_type (@var{A}, 'upper', @var{perm})
-@deftypefnx {Loadable Function} {@var{A} =} matrix_type (@var{A}, 'lower', @var{perm})
-@deftypefnx {Loadable Function} {@var{A} =} matrix_type (@var{A}, 'banded', @var{nl}, @var{nu})
+@deftypefn  {Built-in Function} {@var{type} =} matrix_type (@var{A})
+@deftypefnx {Built-in Function} {@var{type} =} matrix_type (@var{A}, "nocompute")
+@deftypefnx {Built-in Function} {@var{A} =} matrix_type (@var{A}, @var{type})
+@deftypefnx {Built-in Function} {@var{A} =} matrix_type (@var{A}, "upper", @var{perm})
+@deftypefnx {Built-in Function} {@var{A} =} matrix_type (@var{A}, "lower", @var{perm})
+@deftypefnx {Built-in Function} {@var{A} =} matrix_type (@var{A}, "banded", @var{nl}, @var{nu})
 Identify the matrix type or mark a matrix as a particular type.  This allows
 more rapid solutions of linear equations involving @var{A} to be performed.
 Called with a single argument, @code{matrix_type} returns the type of the
 matrix and caches it for future use.  Called with more than one argument,
 @code{matrix_type} allows the type of the matrix to be defined.
 
-If the option 'nocompute' is given, the function will not attempt to guess
+If the option "nocompute" is given, the function will not attempt to guess
 the type if it is still unknown.  This is useful for debugging purposes.
 
 The possible matrix types depend on whether the matrix is full or sparse, and
 can be one of the following
 
 @table @asis
-@item 'unknown'
+@item "unknown"
 Remove any previously cached matrix type, and mark type as unknown.
 
-@item 'full'
+@item "full"
 Mark the matrix as full.
 
-@item 'positive definite'
+@item "positive definite"
 Probable full positive definite matrix.
 
-@item 'diagonal'
+@item "diagonal"
 Diagonal matrix.  (Sparse matrices only)
 
-@item 'permuted diagonal'
+@item "permuted diagonal"
 Permuted Diagonal matrix.  The permutation does not need to be specifically
 indicated, as the structure of the matrix explicitly gives this.  (Sparse
 matrices only)
 
-@item 'upper'
+@item "upper"
 Upper triangular.  If the optional third argument @var{perm} is given, the
 matrix is assumed to be a permuted upper triangular with the permutations
 defined by the vector @var{perm}.
 
-@item 'lower'
+@item "lower"
 Lower triangular.  If the optional third argument @var{perm} is given, the
 matrix is assumed to be a permuted lower triangular with the permutations
 defined by the vector @var{perm}.
 
-@item 'banded'
-@itemx 'banded positive definite'
+@item "banded"
+@itemx "banded positive definite"
 Banded matrix with the band size of @var{nl} below the diagonal and @var{nu}
 above it.  If @var{nl} and @var{nu} are 1, then the matrix is tridiagonal and
 treated with specialized code.  In addition the matrix can be marked as
 probably a positive definite.  (Sparse matrices only)
 
-@item 'singular'
+@item "singular"
 The matrix is assumed to be singular and will be treated with a minimum norm
 solution.
 
@@ -333,7 +333,7 @@ LU@tie{}factorization.  Once the matrix has been factorized,
 @end deftypefn
 
 
-@c norm src/data.cc
+@c norm libinterp/interpfcn/data.cc
 @anchor{doc-norm}
 @deftypefn  {Built-in Function} {} norm (@var{A})
 @deftypefnx {Built-in Function} {} norm (@var{A}, @var{p})
@@ -427,28 +427,29 @@ max (size (@var{A})) * max (svd (@var{A})) * eps
 @end deftypefn
 
 
-@c mgorth src/DLD-FUNCTIONS/mgorth.cc
+@c mgorth libinterp/corefcn/mgorth.cc
 @anchor{doc-mgorth}
-@deftypefn {Loadable Function} {[@var{y}, @var{h}] =} mgorth (@var{x}, @var{v})
-Orthogonalize a given column vector @var{x} with respect to a given
-orthonormal basis @var{v} using a modified Gram-Schmidt orthogonalization.  
+@deftypefn {Built-in Function} {[@var{y}, @var{h}] =} mgorth (@var{x}, @var{v})
+Orthogonalize a given column vector @var{x} with respect to a set of
+orthonormal vectors comprising the columns of @var{v}
+using the modified Gram-Schmidt method.
 On exit, @var{y} is a unit vector such that:
 
 @example
 @group
   norm (@var{y}) = 1
   @var{v}' * @var{y} = 0
-  @var{x} = @var{h}*[@var{v}, @var{y}]
+  @var{x} = [@var{v}, @var{y}]*@var{h}'
 @end group
 @end example
 
 @end deftypefn
 
 
-@c pinv src/DLD-FUNCTIONS/pinv.cc
+@c pinv libinterp/corefcn/pinv.cc
 @anchor{doc-pinv}
-@deftypefn  {Loadable Function} {} pinv (@var{x})
-@deftypefnx {Loadable Function} {} pinv (@var{x}, @var{tol})
+@deftypefn  {Built-in Function} {} pinv (@var{x})
+@deftypefnx {Built-in Function} {} pinv (@var{x}, @var{tol})
 Return the pseudoinverse of @var{x}.  Singular values less than
 @var{tol} are ignored.
 
@@ -482,9 +483,9 @@ singular value of @var{A}.
 @end deftypefn
 
 
-@c rcond src/DLD-FUNCTIONS/rcond.cc
+@c rcond libinterp/corefcn/rcond.cc
 @anchor{doc-rcond}
-@deftypefn {Loadable Function} {@var{c} =} rcond (@var{A})
+@deftypefn {Built-in Function} {@var{c} =} rcond (@var{A})
 Compute the 1-norm estimate of the reciprocal condition number as returned
 by @sc{lapack}.  If the matrix is well-conditioned then @var{c} will be near
 1 and if the matrix is poorly conditioned it will be close to zero.
@@ -521,14 +522,14 @@ has been performed.
 @node Matrix Factorizations
 @section Matrix Factorizations
 
-@c chol src/DLD-FUNCTIONS/chol.cc
+@c chol libinterp/dldfcn/chol.cc
 @anchor{doc-chol}
 @deftypefn  {Loadable Function} {@var{R} =} chol (@var{A})
 @deftypefnx {Loadable Function} {[@var{R}, @var{p}] =} chol (@var{A})
 @deftypefnx {Loadable Function} {[@var{R}, @var{p}, @var{Q}] =} chol (@var{S})
-@deftypefnx {Loadable Function} {[@var{R}, @var{p}, @var{Q}] =} chol (@var{S}, 'vector')
-@deftypefnx {Loadable Function} {[@var{L}, @dots{}] =} chol (@dots{}, 'lower')
-@deftypefnx {Loadable Function} {[@var{L}, @dots{}] =} chol (@dots{}, 'upper')
+@deftypefnx {Loadable Function} {[@var{R}, @var{p}, @var{Q}] =} chol (@var{S}, "vector")
+@deftypefnx {Loadable Function} {[@var{L}, @dots{}] =} chol (@dots{}, "lower")
+@deftypefnx {Loadable Function} {[@var{L}, @dots{}] =} chol (@dots{}, "upper")
 @cindex Cholesky factorization
 Compute the Cholesky@tie{}factor, @var{R}, of the symmetric positive definite
 matrix @var{A}, where
@@ -564,7 +565,7 @@ $ R^T R = Q^T A Q$.
 @end ifnottex
 
 The sparsity preserving permutation is generally returned as a matrix.
-However, given the flag 'vector', @var{Q} will be returned as a vector
+However, given the flag "vector", @var{Q} will be returned as a vector
 such that
 @tex
 $ R^T R = A (Q, Q)$.
@@ -577,7 +578,7 @@ $ R^T R = A (Q, Q)$.
 
 @end ifnottex
 
-Called with either a sparse or full matrix and using the 'lower' flag,
+Called with either a sparse or full matrix and using the "lower" flag,
 @code{chol} returns the lower triangular factorization such that
 @tex
 $ L L^T = A $.
@@ -590,9 +591,9 @@ $ L L^T = A $.
 
 @end ifnottex
 
-For full matrices, if the 'lower' flag is set only the lower triangular part
-of the matrix is used for the factorization, otherwise the upper triangular
-part is used.
+For full matrices, if the "lower" flag is set only the lower triangular
+part of the matrix is used for the factorization, otherwise the upper
+triangular part is used.
 
 In general the lower triangular factorization is significantly faster for
 sparse matrices.
@@ -600,7 +601,7 @@ sparse matrices.
 @end deftypefn
 
 
-@c cholinv src/DLD-FUNCTIONS/chol.cc
+@c cholinv libinterp/dldfcn/chol.cc
 @anchor{doc-cholinv}
 @deftypefn {Loadable Function} {} cholinv (@var{A})
 Use the Cholesky@tie{}factorization to compute the inverse of the
@@ -609,7 +610,7 @@ symmetric positive definite matrix @var{A}.
 @end deftypefn
 
 
-@c chol2inv src/DLD-FUNCTIONS/chol.cc
+@c chol2inv libinterp/dldfcn/chol.cc
 @anchor{doc-chol2inv}
 @deftypefn {Loadable Function} {} chol2inv (@var{U})
 Invert a symmetric, positive definite square matrix from its Cholesky
@@ -621,12 +622,13 @@ using @code{inv}.
 @end deftypefn
 
 
-@c cholupdate src/DLD-FUNCTIONS/chol.cc
+@c cholupdate libinterp/dldfcn/chol.cc
 @anchor{doc-cholupdate}
 @deftypefn {Loadable Function} {[@var{R1}, @var{info}] =} cholupdate (@var{R}, @var{u}, @var{op})
 Update or downdate a Cholesky@tie{}factorization.  Given an upper triangular
 matrix @var{R} and a column vector @var{u}, attempt to determine another
 upper triangular matrix @var{R1} such that
+
 @itemize @bullet
 @item
 @var{R1}'*@var{R1} = @var{R}'*@var{R} + @var{u}*@var{u}'
@@ -638,6 +640,7 @@ if @var{op} is "-"
 @end itemize
 
 If @var{op} is "-", @var{info} is set to
+
 @itemize
 @item 0 if the downdate was successful,
 
@@ -651,7 +654,7 @@ If @var{info} is not present, an error message is printed in cases 1 and 2.
 @end deftypefn
 
 
-@c cholinsert src/DLD-FUNCTIONS/chol.cc
+@c cholinsert libinterp/dldfcn/chol.cc
 @anchor{doc-cholinsert}
 @deftypefn  {Loadable Function} {@var{R1} =} cholinsert (@var{R}, @var{j}, @var{u})
 @deftypefnx {Loadable Function} {[@var{R1}, @var{info}] =} cholinsert (@var{R}, @var{j}, @var{u})
@@ -661,6 +664,7 @@ triangular, return the Cholesky@tie{}factorization of
 @var{A1}, where @w{A1(p,p) = A}, @w{A1(:,j) = A1(j,:)' = u} and
 @w{p = [1:j-1,j+1:n+1]}.  @w{u(j)} should be positive.
 On return, @var{info} is set to
+
 @itemize
 @item 0 if the insertion was successful,
 
@@ -674,7 +678,7 @@ If @var{info} is not present, an error message is printed in cases 1 and 2.
 @end deftypefn
 
 
-@c choldelete src/DLD-FUNCTIONS/chol.cc
+@c choldelete libinterp/dldfcn/chol.cc
 @anchor{doc-choldelete}
 @deftypefn {Loadable Function} {@var{R1} =} choldelete (@var{R}, @var{j})
 Given a Cholesky@tie{}factorization of a real symmetric or complex Hermitian
@@ -685,7 +689,7 @@ triangular, return the Cholesky@tie{}factorization of @w{A(p,p)}, where
 @end deftypefn
 
 
-@c cholshift src/DLD-FUNCTIONS/chol.cc
+@c cholshift libinterp/dldfcn/chol.cc
 @anchor{doc-cholshift}
 @deftypefn {Loadable Function} {@var{R1} =} cholshift (@var{R}, @var{i}, @var{j})
 Given a Cholesky@tie{}factorization of a real symmetric or complex Hermitian
@@ -700,10 +704,10 @@ triangular, return the Cholesky@tie{}factorization of
 @end deftypefn
 
 
-@c hess src/DLD-FUNCTIONS/hess.cc
+@c hess libinterp/corefcn/hess.cc
 @anchor{doc-hess}
-@deftypefn  {Loadable Function} {@var{H} =} hess (@var{A})
-@deftypefnx {Loadable Function} {[@var{P}, @var{H}] =} hess (@var{A})
+@deftypefn  {Built-in Function} {@var{H} =} hess (@var{A})
+@deftypefnx {Built-in Function} {[@var{P}, @var{H}] =} hess (@var{A})
 @cindex Hessenberg decomposition
 Compute the Hessenberg decomposition of the matrix @var{A}.
 
@@ -728,15 +732,15 @@ Nash, and Van Loan, IEEE Transactions on Automatic Control, 1979).
 @end deftypefn
 
 
-@c lu src/DLD-FUNCTIONS/lu.cc
+@c lu libinterp/corefcn/lu.cc
 @anchor{doc-lu}
-@deftypefn  {Loadable Function} {[@var{L}, @var{U}] =} lu (@var{A})
-@deftypefnx {Loadable Function} {[@var{L}, @var{U}, @var{P}] =} lu (@var{A})
-@deftypefnx {Loadable Function} {[@var{L}, @var{U}, @var{P}, @var{Q}] =} lu (@var{S})
-@deftypefnx {Loadable Function} {[@var{L}, @var{U}, @var{P}, @var{Q}, @var{R}] =} lu (@var{S})
-@deftypefnx {Loadable Function} {[@dots{}] =} lu (@var{S}, @var{thres})
-@deftypefnx {Loadable Function} {@var{y} =} lu (@dots{})
-@deftypefnx {Loadable Function} {[@dots{}] =} lu (@dots{}, 'vector')
+@deftypefn  {Built-in Function} {[@var{L}, @var{U}] =} lu (@var{A})
+@deftypefnx {Built-in Function} {[@var{L}, @var{U}, @var{P}] =} lu (@var{A})
+@deftypefnx {Built-in Function} {[@var{L}, @var{U}, @var{P}, @var{Q}] =} lu (@var{S})
+@deftypefnx {Built-in Function} {[@var{L}, @var{U}, @var{P}, @var{Q}, @var{R}] =} lu (@var{S})
+@deftypefnx {Built-in Function} {[@dots{}] =} lu (@var{S}, @var{thres})
+@deftypefnx {Built-in Function} {@var{y} =} lu (@dots{})
+@deftypefnx {Built-in Function} {[@dots{}] =} lu (@dots{}, "vector")
 @cindex LU decomposition
 Compute the LU@tie{}decomposition of @var{A}.  If @var{A} is full
 subroutines from
@@ -792,7 +796,7 @@ element defines the pivoting tolerance for the unsymmetric @sc{umfpack}
 pivoting strategy and the second for the symmetric strategy.  By default,
 the values defined by @code{spparms} are used ([0.1, 0.001]).
 
-Given the string argument 'vector', @code{lu} returns the values of @var{P}
+Given the string argument "vector", @code{lu} returns the values of @var{P}
 and @var{Q} as vector values, such that for full matrix, @code{@var{A}
 (@var{P},:) = @var{L} * @var{U}}, and @code{@var{R}(@var{P},:) * @var{A}
 (:, @var{Q}) = @var{L} * @var{U}}.
@@ -807,10 +811,10 @@ information.
 @end deftypefn
 
 
-@c luupdate src/DLD-FUNCTIONS/lu.cc
+@c luupdate libinterp/corefcn/lu.cc
 @anchor{doc-luupdate}
-@deftypefn  {Loadable Function} {[@var{L}, @var{U}] =} luupdate (@var{L}, @var{U}, @var{x}, @var{y})
-@deftypefnx {Loadable Function} {[@var{L}, @var{U}, @var{P}] =} luupdate (@var{L}, @var{U}, @var{P}, @var{x}, @var{y})
+@deftypefn  {Built-in Function} {[@var{L}, @var{U}] =} luupdate (@var{L}, @var{U}, @var{x}, @var{y})
+@deftypefnx {Built-in Function} {[@var{L}, @var{U}, @var{P}] =} luupdate (@var{L}, @var{U}, @var{P}, @var{x}, @var{y})
 Given an LU@tie{}factorization of a real or complex matrix
 @w{@var{A} = @var{L}*@var{U}}, @var{L}@tie{}lower unit trapezoidal and
 @var{U}@tie{}upper trapezoidal, return the LU@tie{}factorization
@@ -824,7 +828,7 @@ Note that if @var{L}, @var{U}, @var{P} is a pivoted LU@tie{}factorization
 as obtained by @code{lu}:
 
 @example
-  [@var{L}, @var{U}, @var{P}] = lu (@var{A});
+[@var{L}, @var{U}, @var{P}] = lu (@var{A});
 @end example
 
 @noindent
@@ -832,14 +836,14 @@ then a factorization of @xcode{@var{A}+@var{x}*@var{y}.'} can be obtained
 either as
 
 @example
-  [@var{L1}, @var{U1}] = lu (@var{L}, @var{U}, @var{P}*@var{x}, @var{y})
+[@var{L1}, @var{U1}] = lu (@var{L}, @var{U}, @var{P}*@var{x}, @var{y})
 @end example
 
 @noindent
 or
 
 @example
-  [@var{L1}, @var{U1}, @var{P1}] = lu (@var{L}, @var{U}, @var{P}, @var{x}, @var{y})
+[@var{L1}, @var{U1}, @var{P1}] = lu (@var{L}, @var{U}, @var{P}, @var{x}, @var{y})
 @end example
 
 The first form uses the unpivoted algorithm, which is faster, but less
@@ -853,7 +857,7 @@ recompute the factorization from scratch.
 @end deftypefn
 
 
-@c qr src/DLD-FUNCTIONS/qr.cc
+@c qr libinterp/dldfcn/qr.cc
 @anchor{doc-qr}
 @deftypefn  {Loadable Function} {[@var{Q}, @var{R}, @var{P}] =} qr (@var{A})
 @deftypefnx {Loadable Function} {[@var{Q}, @var{R}, @var{P}] =} qr (@var{A}, '0')
@@ -894,7 +898,7 @@ $$
 @ifnottex
 
 @example
-@code{min norm(A x - b)}
+min norm(A x - b)
 @end example
 
 @end ifnottex
@@ -978,7 +982,7 @@ x = @var{R} \ @var{C}
 @end deftypefn
 
 
-@c qrupdate src/DLD-FUNCTIONS/qr.cc
+@c qrupdate libinterp/dldfcn/qr.cc
 @anchor{doc-qrupdate}
 @deftypefn {Loadable Function} {[@var{Q1}, @var{R1}] =} qrupdate (@var{Q}, @var{R}, @var{u}, @var{v})
 Given a QR@tie{}factorization of a real or complex matrix
@@ -997,7 +1001,7 @@ The QR@tie{}factorization supplied may be either full
 @end deftypefn
 
 
-@c qrinsert src/DLD-FUNCTIONS/qr.cc
+@c qrinsert libinterp/dldfcn/qr.cc
 @anchor{doc-qrinsert}
 @deftypefn {Loadable Function} {[@var{Q1}, @var{R1}] =} qrinsert (@var{Q}, @var{R}, @var{j}, @var{x}, @var{orient})
 Given a QR@tie{}factorization of a real or complex matrix
@@ -1027,7 +1031,7 @@ If @var{orient} is @code{"row"}, full factorization is needed.
 @end deftypefn
 
 
-@c qrdelete src/DLD-FUNCTIONS/qr.cc
+@c qrdelete libinterp/dldfcn/qr.cc
 @anchor{doc-qrdelete}
 @deftypefn {Loadable Function} {[@var{Q1}, @var{R1}] =} qrdelete (@var{Q}, @var{R}, @var{j}, @var{orient})
 Given a QR@tie{}factorization of a real or complex matrix
@@ -1036,7 +1040,7 @@ Given a QR@tie{}factorization of a real or complex matrix
 @w{[A(:,1:j-1) A(:,j+1:n)]}, i.e., @var{A} with one column deleted
 (if @var{orient} is "col"), or the QR@tie{}factorization of
 @w{[A(1:j-1,:);A(j+1:n,:)]}, i.e., @var{A} with one row deleted (if
-   @var{orient} is "row").
+@var{orient} is "row").
 
 The default value of @var{orient} is "col".
 
@@ -1057,7 +1061,7 @@ If @var{orient} is @code{"row"}, full factorization is needed.
 @end deftypefn
 
 
-@c qrshift src/DLD-FUNCTIONS/qr.cc
+@c qrshift libinterp/dldfcn/qr.cc
 @anchor{doc-qrshift}
 @deftypefn {Loadable Function} {[@var{Q1}, @var{R1}] =} qrshift (@var{Q}, @var{R}, @var{i}, @var{j})
 Given a QR@tie{}factorization of a real or complex matrix
@@ -1072,10 +1076,10 @@ of @w{@var{A}(:,p)}, where @w{p} is the permutation @*
 @end deftypefn
 
 
-@c qz src/DLD-FUNCTIONS/qz.cc
+@c qz libinterp/corefcn/qz.cc
 @anchor{doc-qz}
-@deftypefn  {Loadable Function} {@var{lambda} =} qz (@var{A}, @var{B})
-@deftypefnx {Loadable Function} {@var{lambda} =} qz (@var{A}, @var{B}, @var{opt})
+@deftypefn  {Built-in Function} {@var{lambda} =} qz (@var{A}, @var{B})
+@deftypefnx {Built-in Function} {@var{lambda} =} qz (@var{A}, @var{B}, @var{opt})
 QZ@tie{}decomposition of the generalized eigenvalue problem
 (@math{A x = s B x}).  There are three ways to call this function:
 @enumerate
@@ -1104,9 +1108,9 @@ $$ AA = Q^T AZ, BB = Q^T BZ $$
 @example
 @group
 
-    A * V = B * V * diag (@var{lambda})
-    W' * A = diag (@var{lambda}) * W' * B
-    AA = Q * A * Z, BB = Q * B * Z
+A * V = B * V * diag (@var{lambda})
+W' * A = diag (@var{lambda}) * W' * B
+AA = Q * A * Z, BB = Q * B * Z
 
 @end group
 @end example
@@ -1126,6 +1130,7 @@ the generalized eigenvectors @var{V}, @var{W}, nor the orthogonal matrix
 @item opt
 for ordering eigenvalues of the GEP pencil.  The leading block
 of the revised pencil contains all eigenvalues that satisfy:
+
 @table @asis
 @item "N"
 = unordered (default)
@@ -1181,13 +1186,13 @@ Algorithm taken from Golub and Van Loan,
 @end deftypefn
 
 
-@c schur src/DLD-FUNCTIONS/schur.cc
+@c schur libinterp/corefcn/schur.cc
 @anchor{doc-schur}
-@deftypefn  {Loadable Function} {@var{S} =} schur (@var{A})
-@deftypefnx {Loadable Function} {@var{S} =} schur (@var{A}, "real")
-@deftypefnx {Loadable Function} {@var{S} =} schur (@var{A}, "complex")
-@deftypefnx {Loadable Function} {@var{S} =} schur (@var{A}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{U}, @var{S}] =} schur (@var{A}, @dots{})
+@deftypefn  {Built-in Function} {@var{S} =} schur (@var{A})
+@deftypefnx {Built-in Function} {@var{S} =} schur (@var{A}, "real")
+@deftypefnx {Built-in Function} {@var{S} =} schur (@var{A}, "complex")
+@deftypefnx {Built-in Function} {@var{S} =} schur (@var{A}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{U}, @var{S}] =} schur (@var{A}, @dots{})
 @cindex Schur decomposition
 Compute the Schur@tie{}decomposition of @var{A}
 @tex
@@ -1251,7 +1256,7 @@ Riccati equations in control (see @code{are} and @code{dare}).
 @end deftypefn
 
 
-@c rsf2csf src/DLD-FUNCTIONS/schur.cc
+@c rsf2csf libinterp/corefcn/schur.cc
 @anchor{doc-rsf2csf}
 @deftypefn {Function File} {[@var{U}, @var{T}] =} rsf2csf (@var{UR}, @var{TR})
 Convert a real, upper quasi-triangular Schur@tie{}form @var{TR} to a complex,
@@ -1281,11 +1286,11 @@ spanned by the columns of matrices @var{A} and @var{B}.
 @end deftypefn
 
 
-@c svd src/DLD-FUNCTIONS/svd.cc
+@c svd libinterp/corefcn/svd.cc
 @anchor{doc-svd}
-@deftypefn  {Loadable Function} {@var{s} =} svd (@var{A})
-@deftypefnx {Loadable Function} {[@var{U}, @var{S}, @var{V}] =} svd (@var{A})
-@deftypefnx {Loadable Function} {[@var{U}, @var{S}, @var{V}] =} svd (@var{A}, @var{econ})
+@deftypefn  {Built-in Function} {@var{s} =} svd (@var{A})
+@deftypefnx {Built-in Function} {[@var{U}, @var{S}, @var{V}] =} svd (@var{A})
+@deftypefnx {Built-in Function} {[@var{U}, @var{S}, @var{V}] =} svd (@var{A}, @var{econ})
 @cindex singular value decomposition
 Compute the singular value decomposition of @var{A}
 @tex
@@ -1367,11 +1372,11 @@ decomposition, eliminating the unnecessary rows or columns of @var{U} or
 @end deftypefn
 
 
-@c svd_driver src/DLD-FUNCTIONS/svd.cc
+@c svd_driver libinterp/corefcn/svd.cc
 @anchor{doc-svd_driver}
-@deftypefn  {Loadable Function} {@var{val} =} svd_driver ()
-@deftypefnx {Loadable Function} {@var{old_val} =} svd_driver (@var{new_val})
-@deftypefnx {Loadable Function} {} svd_driver (@var{new_val}, "local")
+@deftypefn  {Built-in Function} {@var{val} =} svd_driver ()
+@deftypefnx {Built-in Function} {@var{old_val} =} svd_driver (@var{new_val})
+@deftypefnx {Built-in Function} {} svd_driver (@var{new_val}, "local")
 Query or set the underlying @sc{lapack} driver used by @code{svd}.
 Currently recognized values are "gesvd" and "gesdd".  The default
 is "gesvd".
@@ -1393,8 +1398,8 @@ to be the j-th column of identity, i.e.,
 
 @example
 @group
-(I - beta*housv*housv')x =  norm(x)*e(j) if x(j) < 0,
-(I - beta*housv*housv')x = -norm(x)*e(j) if x(j) >= 0
+(I - beta*housv*housv')x =  norm (x)*e(j) if x(j) < 0,
+(I - beta*housv*housv')x = -norm (x)*e(j) if x(j) >= 0
 @end group
 @end example
 
@@ -1444,7 +1449,7 @@ a*u(:,k)-u*h(:,k)}, and @nospell{@xcode{ek'}} is the vector
 meaningless.
 
 If @var{V} is a vector and @var{k} is greater than
-@code{length(A)-1}, then @var{h} contains the Hessenberg matrix such
+@code{length (A) - 1}, then @var{h} contains the Hessenberg matrix such
 that @code{a*u == u*h}.
 
 The value of @var{nu} is the dimension of the span of the Krylov
@@ -1544,10 +1549,10 @@ number of square roots actually computed.
 @end deftypefn
 
 
-@c sqrtm src/DLD-FUNCTIONS/sqrtm.cc
+@c sqrtm libinterp/corefcn/sqrtm.cc
 @anchor{doc-sqrtm}
-@deftypefn  {Loadable Function} {@var{s} =} sqrtm (@var{A})
-@deftypefnx {Loadable Function} {[@var{s}, @var{error_estimate}] =} sqrtm (@var{A})
+@deftypefn  {Built-in Function} {@var{s} =} sqrtm (@var{A})
+@deftypefnx {Built-in Function} {[@var{s}, @var{error_estimate}] =} sqrtm (@var{A})
 Compute the matrix square root of the square matrix @var{A}.
 
 Ref: N.J. Higham.  @cite{A New sqrtm for @sc{matlab}}.  Numerical
@@ -1557,15 +1562,15 @@ Mathematics, Manchester, England, January 1999.
 @end deftypefn
 
 
-@c kron src/DLD-FUNCTIONS/kron.cc
+@c kron libinterp/corefcn/kron.cc
 @anchor{doc-kron}
-@deftypefn  {Loadable Function} {} kron (@var{A}, @var{B})
-@deftypefnx {Loadable Function} {} kron (@var{A1}, @var{A2}, @dots{})
+@deftypefn  {Built-in Function} {} kron (@var{A}, @var{B})
+@deftypefnx {Built-in Function} {} kron (@var{A1}, @var{A2}, @dots{})
 Form the Kronecker product of two or more matrices, defined block by 
 block as
 
 @example
-x = [a(i, j) b]
+x = [ a(i,j)*b ]
 @end example
 
 For example:
@@ -1573,9 +1578,9 @@ For example:
 @example
 @group
 kron (1:4, ones (3, 1))
-      @result{}  1  2  3  4
-          1  2  3  4
-          1  2  3  4
+     @result{}  1  2  3  4
+         1  2  3  4
+         1  2  3  4
 @end group
 @end example
 
@@ -1591,9 +1596,9 @@ Since the Kronecker product is associative, this is well-defined.
 @end deftypefn
 
 
-@c blkmm src/DLD-FUNCTIONS/dot.cc
+@c blkmm libinterp/corefcn/dot.cc
 @anchor{doc-blkmm}
-@deftypefn {Loadable Function} {} blkmm (@var{A}, @var{B})
+@deftypefn {Built-in Function} {} blkmm (@var{A}, @var{B})
 Compute products of matrix blocks.  The blocks are given as
 2-dimensional subarrays of the arrays @var{A}, @var{B}.
 The size of @var{A} must have the form @code{[m,k,@dots{}]} and
@@ -1602,17 +1607,17 @@ then of size @code{[m,n,@dots{}]} and is computed as follows:
 
 @example
 @group
-  for i = 1:prod (size (@var{A})(3:end))
-    @var{C}(:,:,i) = @var{A}(:,:,i) * @var{B}(:,:,i)
-  endfor
+for i = 1:prod (size (@var{A})(3:end))
+  @var{C}(:,:,i) = @var{A}(:,:,i) * @var{B}(:,:,i)
+endfor
 @end group
 @end example
 @end deftypefn
 
 
-@c syl src/DLD-FUNCTIONS/syl.cc
+@c syl libinterp/corefcn/syl.cc
 @anchor{doc-syl}
-@deftypefn {Loadable Function} {@var{x} =} syl (@var{A}, @var{B}, @var{C})
+@deftypefn {Built-in Function} {@var{x} =} syl (@var{A}, @var{B}, @var{C})
 Solve the Sylvester equation
 @tex
 $$
@@ -1631,7 +1636,7 @@ using standard @sc{lapack} subroutines.  For example:
 @example
 @group
 syl ([1, 2; 3, 4], [5, 6; 7, 8], [9, 10; 11, 12])
-     @result{} [ -0.50000, -0.66667; -0.66667, -0.50000 ]
+   @result{} [ -0.50000, -0.66667; -0.66667, -0.50000 ]
 @end group
 @end example
 @end deftypefn
@@ -1642,7 +1647,6 @@ syl ([1, 2; 3, 4], [5, 6; 7, 8], [9, 10; 11, 12])
 
 @c bicg scripts/sparse/bicg.m
 @anchor{doc-bicg}
-
 @deftypefn  {Function File} {@var{x} =} bicg (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{M1}, @var{M2}, @var{x0})
 @deftypefnx {Function File} {@var{x} =} bicg (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{P})
 @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}] =} bicg (@var{A}, @var{b}, @dots{})
@@ -1667,13 +1671,14 @@ and @code{f(x, "transp") = A'*x}.
 The preconditioner @var{P} is given as @code{P = M1 * M2}.
 Both @var{M1} and @var{M2} can be passed as a matrix or as
 a function handle or inline function @code{g} such that
-@code{g(x, 'notransp') = M1 \ x} or @code{g(x, 'notransp') = M2 \ x} and
-@code{g(x, 'transp') = M1' \ x} or @code{g(x, 'transp') = M2' \ x}.
+@code{g(x, "notransp") = M1 \ x} or @code{g(x, "notransp") = M2 \ x} and
+@code{g(x, "transp") = M1' \ x} or @code{g(x, "transp") = M2' \ x}.
 
 If called with more than one output parameter
 
 @itemize @minus
 @item @var{flag} indicates the exit status:
+
 @itemize @minus
 @item 0: iteration converged to the within the chosen tolerance
 
@@ -1697,7 +1702,6 @@ If called with more than one output parameter
 
 @c bicgstab scripts/sparse/bicgstab.m
 @anchor{doc-bicgstab}
-
 @deftypefn  {Function File} {@var{x} =} bicgstab (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{M1}, @var{M2}, @var{x0})
 @deftypefnx {Function File} {@var{x} =} bicgstab (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{P})
 @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}] =} bicgstab (@var{A}, @var{b}, @dots{})
@@ -1728,6 +1732,7 @@ If called with more than one output parameter
 
 @itemize @minus
 @item @var{flag} indicates the exit status:
+
 @itemize @minus
 @item 0: iteration converged to the within the chosen tolerance
 
@@ -1751,7 +1756,6 @@ If called with more than one output parameter
 
 @c cgs scripts/sparse/cgs.m
 @anchor{doc-cgs}
-
 @deftypefn  {Function File} {@var{x} =} cgs (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{M1}, @var{M2}, @var{x0})
 @deftypefnx {Function File} {@var{x} =} cgs (@var{A}, @var{b}, @var{rtol}, @var{maxit}, @var{P})
 @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}] =} cgs (@var{A}, @var{b}, @dots{})
@@ -1782,6 +1786,7 @@ If called with more than one output parameter
 
 @itemize @minus
 @item @var{flag} indicates the exit status:
+
 @itemize @minus
 @item 0: iteration converged to the within the chosen tolerance
 
@@ -1820,7 +1825,7 @@ if not given or set to [] the default value
 @code{min (10, numel (b) / restart)} is used.
 
 @item @var{x0} is the initial guess,
-if not given or set to [] the default value @code{zeros(size (b))} is used.
+if not given or set to [] the default value @code{zeros (size (b))} is used.
 
 @item @var{m} is the restart parameter,
 if not given or set to [] the default value @code{numel (b)} is used.
@@ -1837,6 +1842,7 @@ Besides the vector @var{x}, additional outputs are:
 
 @itemize @minus
 @item @var{flag} indicates the exit status:
+
 @table @asis
 @item 0 : iteration converged to within the specified tolerance
 
@@ -1844,7 +1850,7 @@ Besides the vector @var{x}, additional outputs are:
 
 @item 2 : unused, but skipped for compatibility
 
-@item 3 : algorithm reached stagnation
+@item 3 : algorithm reached stagnation (no change between iterations)
 @end table
 
 @item @var{relres} is the final value of the relative residual.

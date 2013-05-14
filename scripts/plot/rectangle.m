@@ -72,7 +72,7 @@ function hg = __rectangle__ (hax, varargin)
 
   while (iarg < length (varargin))
     arg = varargin{iarg};
-    if (ischar(arg))
+    if (ischar (arg))
       if (strcmpi (arg, "position"))
         pos = varargin{iarg+1};
         varargin(iarg:iarg+1) = [];
@@ -205,18 +205,18 @@ endfunction
 
 
 %!demo
-%! clf
-%! axis equal
-%! rectangle ("Position", [0.05, 0.05, 0.9, 0.9], "Curvature", [0.5, 0.5]);
+%! clf;
+%! axis equal;
+%! rectangle ('Position', [0.05, 0.05, 0.9, 0.9], 'Curvature', [0.5, 0.5]);
 
 %!demo
-%! clf
-%! axis equal
-%! rectangle ("Position", [0.05, 0.05, 0.9, 0.4], "Curvature", 1.0);
+%! clf;
+%! axis equal;
+%! rectangle ('Position', [0.05, 0.05, 0.9, 0.4], 'Curvature', 1.0);
 
 %!demo
-%! clf
-%! axis equal
-%! h = rectangle ("Position", [0.05, 0.05, 0.9, 0.4], "Curvature",  1.0);
-%! set (h, "FaceColor", [0, 1, 0]);
+%! clf;
+%! axis equal;
+%! h = rectangle ('Position', [0.05, 0.05, 0.9, 0.4], 'Curvature', 1.0);
+%! set (h, 'FaceColor', [0, 1, 0]);
 

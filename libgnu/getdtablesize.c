@@ -1,7 +1,5 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* getdtablesize() function for platforms that don't have it.
-   Copyright (C) 2008-2012 Free Software Foundation, Inc.
+   Copyright (C) 2008-2013 Free Software Foundation, Inc.
    Written by Bruno Haible <bruno@clisp.org>, 2008.
 
    This program is free software: you can redistribute it and/or modify
@@ -29,7 +27,7 @@
 #include "msvc-inval.h"
 
 #if HAVE_MSVC_INVALID_PARAMETER_HANDLER
-static inline int
+static int
 _setmaxstdio_nothrow (int newmax)
 {
   int result;

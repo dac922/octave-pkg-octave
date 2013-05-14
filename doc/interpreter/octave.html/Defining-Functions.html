@@ -6,6 +6,7 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Functions-and-Scripts.html#Functions-and-Scripts" title="Functions and Scripts">
+<link rel="prev" href="Introduction-to-Function-and-Script-Files.html#Introduction-to-Function-and-Script-Files" title="Introduction to Function and Script Files">
 <link rel="next" href="Multiple-Return-Values.html#Multiple-Return-Values" title="Multiple Return Values">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
@@ -26,13 +27,14 @@
 <a name="Defining-Functions"></a>
 <p>
 Next:&nbsp;<a rel="next" accesskey="n" href="Multiple-Return-Values.html#Multiple-Return-Values">Multiple Return Values</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Introduction-to-Function-and-Script-Files.html#Introduction-to-Function-and-Script-Files">Introduction to Function and Script Files</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="Functions-and-Scripts.html#Functions-and-Scripts">Functions and Scripts</a>
 <hr>
 </div>
 
-<h3 class="section">11.1 Defining Functions</h3>
+<h3 class="section">11.2 Defining Functions</h3>
 
-<p><a name="index-g_t_0040code_007bfunction_007d-statement-722"></a><a name="index-g_t_0040code_007bendfunction_007d-statement-723"></a>
+<p><a name="index-g_t_0040code_007bfunction_007d-statement-752"></a><a name="index-g_t_0040code_007bendfunction_007d-statement-753"></a>
 In its simplest form, the definition of a function named <var>name</var>
 looks like this:
 
@@ -173,20 +175,20 @@ use a variable that has not been given a value will result in an error.
 To avoid such problems and to provide useful messages, we check for both
 possibilities and issue our own error message.
 
-<!-- nargin src/ov-usr-fcn.cc -->
+<!-- nargin libinterp/octave-value/ov-usr-fcn.cc -->
    <p><a name="doc_002dnargin"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nargin</b> ()<var><a name="index-nargin-724"></a></var><br>
-&mdash; Built-in Function:  <b>nargin</b> (<var>fcn_name</var>)<var><a name="index-nargin-725"></a></var><br>
+&mdash; Built-in Function:  <b>nargin</b> ()<var><a name="index-nargin-754"></a></var><br>
+&mdash; Built-in Function:  <b>nargin</b> (<var>fcn</var>)<var><a name="index-nargin-755"></a></var><br>
 <blockquote><p>Within a function, return the number of arguments passed to the function. 
 At the top level, return the number of command line arguments passed to
-Octave.  If called with the optional argument <var>fcn_name</var>, return the
-maximum number of arguments the named function can accept, or -1 if the
-function accepts a variable number of arguments. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+Octave.
+
+        <p>If called with the optional argument <var>fcn</var>, a function name or handle,
+return the declared number of arguments that the function can accept. 
+If the last argument is <var>varargin</var> the returned value is negative. 
+This feature does not work on builtin functions.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002dnthargout.html#doc_002dnthargout">nthargout</a>. 
 </p></blockquote></div>
@@ -195,18 +197,18 @@ function accepts a variable number of arguments.
    <p><a name="doc_002dinputname"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>inputname</b> (<var>n</var>)<var><a name="index-inputname-726"></a></var><br>
+&mdash; Function File:  <b>inputname</b> (<var>n</var>)<var><a name="index-inputname-756"></a></var><br>
 <blockquote><p>Return the name of the <var>n</var>-th argument to the calling function. 
 If the argument is not a simple variable name, return an empty string. 
 </p></blockquote></div>
 
-<!-- silent_functions src/pt-eval.cc -->
+<!-- silent_functions libinterp/parse-tree/pt-eval.cc -->
    <p><a name="doc_002dsilent_005ffunctions"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>silent_functions</b> ()<var><a name="index-silent_005ffunctions-727"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>silent_functions</b> (<var>new_val</var>)<var><a name="index-silent_005ffunctions-728"></a></var><br>
-&mdash; Built-in Function:  <b>silent_functions</b> (<var>new_val, "local"</var>)<var><a name="index-silent_005ffunctions-729"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>silent_functions</b> ()<var><a name="index-silent_005ffunctions-757"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>silent_functions</b> (<var>new_val</var>)<var><a name="index-silent_005ffunctions-758"></a></var><br>
+&mdash; Built-in Function:  <b>silent_functions</b> (<var>new_val, "local"</var>)<var><a name="index-silent_005ffunctions-759"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether internal
 output from a function is suppressed.  If this option is disabled,
 Octave will display the results produced by evaluating expressions

@@ -76,7 +76,7 @@ function y = polyout (c, x)
     tmp = " ";
   endif
 
-  if(nargout == 0)
+  if (nargout == 0)
     disp (tmp);
   else
     y = tmp;
@@ -96,8 +96,11 @@ function str = coeff (c)
   endif
 endfunction
 
-%!assert (polyout ([3 2 1]), '3*s^2 + 2*s^1 + 1')
-%!assert (polyout ([3 2 1], 'x'), '3*x^2 + 2*x^1 + 1')
-%!assert (polyout ([3 2 1], 'wxyz'), '3*wxyz^2 + 2*wxyz^1 + 1')
-%!assert (polyout ([5 4 3 2 1], '1'),'5*1^4 + 4*1^3 + 3*1^2 + 2*1^1 + 1')
+
+%!assert (polyout ([3 2 1]), "3*s^2 + 2*s^1 + 1")
+%!assert (polyout ([3 2 1], "x"), "3*x^2 + 2*x^1 + 1")
+%!assert (polyout ([3 2 1], "wxyz"), "3*wxyz^2 + 2*wxyz^1 + 1")
+%!assert (polyout ([5 4 3 2 1], "1"),"5*1^4 + 4*1^3 + 3*1^2 + 2*1^1 + 1")
+
 %!error polyout ([])
+

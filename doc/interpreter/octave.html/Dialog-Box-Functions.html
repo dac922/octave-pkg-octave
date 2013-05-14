@@ -1,0 +1,243 @@
+<html lang="en">
+<head>
+<title>Dialog Box Functions - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Java-Interface.html#Java-Interface" title="Java Interface">
+<link rel="prev" href="Java-Interface-Functions.html#Java-Interface-Functions" title="Java Interface Functions">
+<link rel="next" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions" title="FAQ - Frequently asked Questions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dialog-Box-Functions"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions">FAQ - Frequently asked Questions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Java-Interface-Functions.html#Java-Interface-Functions">Java Interface Functions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Java-Interface.html#Java-Interface">Java Interface</a>
+<hr>
+</div>
+
+<h3 class="section">37.2 Dialog Box Functions</h3>
+
+<p>The following functions all use the Java Interface to provide some form
+of dialog box.
+
+   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3687"></a><!-- msgbox scripts/ui/msgbox.m -->
+<a name="doc_002dmsgbox"></a>
+
+<div class="defun">
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg</var>)<var><a name="index-msgbox-3688"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title</var>)<var><a name="index-msgbox-3689"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title, icon</var>)<var><a name="index-msgbox-3690"></a></var><br>
+<blockquote><p>Display <var>msg</var> using a message dialog box.
+
+        <p>The message may have multiple lines separated by newline characters
+(<code>"\n"</code>), or it may be a cellstr array with one element for each
+line.  The optional input <var>title</var> (character string) can be used to
+decorate the dialog caption.
+
+        <p>The optional argument <var>icon</var> selects a dialog icon. 
+It can be one of <code>"none"</code> (default), <code>"error"</code>, <code>"help"</code>, or
+<code>"warn"</code>.
+
+        <p>The return value is always 1.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
+</p></blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-an-error-dialog-3691"></a><!-- errordlg scripts/ui/errordlg.m -->
+<a name="doc_002derrordlg"></a>
+
+<div class="defun">
+&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg</var>)<var><a name="index-errordlg-3692"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg, title</var>)<var><a name="index-errordlg-3693"></a></var><br>
+<blockquote><p>Display <var>msg</var> using an error dialog box.
+
+        <p>The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional input <var>title</var> (character string) can be used to
+set the dialog caption.  The default title is "Error Dialog".
+
+        <p>The return value is always 1.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
+</p></blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-help-dialog-3694"></a><!-- helpdlg scripts/ui/helpdlg.m -->
+<a name="doc_002dhelpdlg"></a>
+
+<div class="defun">
+&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg</var>)<var><a name="index-helpdlg-3695"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg, title</var>)<var><a name="index-helpdlg-3696"></a></var><br>
+<blockquote><p>Display <var>msg</var> in a help dialog box.
+
+        <p>The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional input <var>title</var> (character string) can be used to
+set the dialog caption.  The default title is "Help Dialog".
+
+        <p>The return value is always 1.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
+</p></blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-an-input-dialog-3697"></a><!-- inputdlg scripts/ui/inputdlg.m -->
+<a name="doc_002dinputdlg"></a>
+
+<div class="defun">
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt</var>)<var><a name="index-inputdlg-3698"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title</var>)<var><a name="index-inputdlg-3699"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols</var>)<var><a name="index-inputdlg-3700"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols, defaults</var>)<var><a name="index-inputdlg-3701"></a></var><br>
+<blockquote><p>Return user input from a multi-textfield dialog box in a cell array
+of strings, or an empty cell array if the dialog is closed by the
+Cancel button.
+
+        <p>Inputs:
+
+          <dl>
+<dt><var>prompt</var><dd>A cell array with strings labeling each text field.  This input is required.
+
+          <br><dt><var>title</var><dd>String to use for the caption of the dialog.  The default is "Input Dialog".
+
+          <br><dt><var>rowscols</var><dd>Specifies the size of the text fields and can take three forms:
+
+               <ol type=1 start=1>
+<li>a scalar value which defines the number of rows used for each
+text field.
+
+               <li>a vector which defines the individual number of rows
+used for each text field.
+
+               <li>a matrix which defines the individual number of rows and
+columns used for each text field.  In the matrix each row describes
+a single text field.  The first column specifies the number of input
+rows to use and the second column specifies the text field width.
+               </ol>
+
+          <br><dt><var>defaults</var><dd>A list of default values to place in each text fields.  It must be
+a cell array of strings with the same size as <var>prompt</var>. 
+</dl>
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
+</p></blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-list-dialog-3702"></a><!-- listdlg scripts/ui/listdlg.m -->
+<a name="doc_002dlistdlg"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>sel</var>, <var>ok</var>] = <b>listdlg</b> (<var>key, value, <small class="dots">...</small></var>)<var><a name="index-listdlg-3703"></a></var><br>
+<blockquote><p>Return user inputs from a list dialog box in a vector of
+selection indices <var>sel</var> and a flag <var>ok</var> indicating how the
+user closed the dialog box.  The value of <var>ok</var> is 1 if the user
+closed the box with the OK button, otherwise it is 0 and <var>sel</var> is
+empty.
+
+        <p>The indices in <var>sel</var> are 1-based.
+
+        <p>The arguments are specified in form of <var>key</var>, <var>value</var> pairs. 
+The "ListString" argument pair must be specified.
+
+        <p>Valid <var>key</var> and <var>value</var> pairs are:
+
+          <dl>
+<dt>"ListString"<dd>a cell array of strings comprising the content of the list.
+
+          <br><dt>"SelectionMode"<dd>can be either "Single" or "Multiple" (default).
+
+          <br><dt>"ListSize"<dd>a vector with two elements <var>width</var> and <var>height</var> defining
+the size of the list field in pixels.  Default is [160 300].
+
+          <br><dt>"InitialValue"<dd>a vector containing 1-based indices of preselected elements.  Default
+is 1 (first item).
+
+          <br><dt>"Name"<dd>a string to be used as the dialog caption.  Default is "".
+
+          <br><dt>"PromptString"<dd>a cell array of strings to be displayed above the list field.  Default
+is {}.
+
+          <br><dt>"OKString"<dd>a string used to label the OK button.  Default is "OK".
+
+          <br><dt>"CancelString"<dd>a string used to label the Cancel button.  Default is "Cancel". 
+</dl>
+
+        <p>Example:
+
+     <pre class="example">          [sel, ok] = listdlg ("ListString", {"An item", "another", "yet another"},
+                               "SelectionMode", "Multiple");
+          if (ok == 1)
+            for i = 1:numel (sel)
+              disp (sel(i));
+            endfor
+          endif
+</pre>
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
+</p></blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-question-dialog-3704"></a><!-- questdlg scripts/ui/questdlg.m -->
+<a name="doc_002dquestdlg"></a>
+
+<div class="defun">
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg</var>)<var><a name="index-questdlg-3705"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title</var>)<var><a name="index-questdlg-3706"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, default</var>)<var><a name="index-questdlg-3707"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, default</var>)<var><a name="index-questdlg-3708"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, btn3, default</var>)<var><a name="index-questdlg-3709"></a></var><br>
+<blockquote><p>Display <var>msg</var> using a question dialog box and return the caption
+of the activated button.
+
+        <p>The dialog may contain two or three buttons which will all close the dialog.
+
+        <p>The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional <var>title</var> (character string) can be used to
+decorate the dialog caption.
+
+        <p>The string <var>default</var> identifies the default button,
+which is activated by pressing the &lt;ENTER&gt; key. 
+It must match one of the strings given in <var>btn1</var>, <var>btn2</var>, or
+<var>btn3</var>.
+
+        <p>If only <var>msg</var> and <var>title</var> are specified, three buttons with
+the default captions "Yes", "No", and "Cancel" are used.
+
+        <p>If only two button captions, <var>btn1</var> and <var>btn2</var>, are specified
+the dialog will have only these two buttons.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
+</p></blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3710"></a><!-- warndlg scripts/ui/warndlg.m -->
+<a name="doc_002dwarndlg"></a>
+
+<div class="defun">
+&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg</var>)<var><a name="index-warndlg-3711"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg, title</var>)<var><a name="index-warndlg-3712"></a></var><br>
+<blockquote><p>Display <var>msg</var> using a warning dialog box.
+
+        <p>The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional input <var>title</var> (character string) can be used to
+set the dialog caption.  The default title is "Warning Dialog".
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>. 
+</p></blockquote></div>
+
+<!--  -->
+   </body></html>
+

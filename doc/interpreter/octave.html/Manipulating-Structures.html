@@ -36,93 +36,134 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Structures.html#Structures">Structures<
 
 <p>Other functions that can manipulate the fields of a structure are given below.
 
-<!-- nfields src/ov-struct.cc -->
+<!-- nfields libinterp/octave-value/ov-struct.cc -->
    <p><a name="doc_002dnfields"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nfields</b> (<var>s</var>)<var><a name="index-nfields-444"></a></var><br>
+&mdash; Built-in Function:  <b>nfields</b> (<var>s</var>)<var><a name="index-nfields-467"></a></var><br>
 <blockquote><p>Return the number of fields of the structure <var>s</var>. 
 </p></blockquote></div>
 
-<!-- fieldnames src/ov-struct.cc -->
+<!-- fieldnames scripts/general/fieldnames.m -->
    <p><a name="doc_002dfieldnames"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-445"></a></var><br>
-<blockquote><p>Return a cell array of strings naming the elements of the structure
-<var>struct</var>.  It is an error to call <code>fieldnames</code> with an
-argument that is not a structure. 
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-468"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>obj</var>)<var><a name="index-fieldnames-469"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>javaobj</var>)<var><a name="index-fieldnames-470"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>"jclassname"</var>)<var><a name="index-fieldnames-471"></a></var><br>
+<blockquote><p>Return a cell array of strings with the names of the fields in the
+specified input.
+
+        <p>When the input is a structure <var>struct</var>, the names are the elements
+of the structure.
+
+        <p>When the input is an Octave object <var>obj</var>, the names are the public
+properties of the object.
+
+        <p>When the input is a Java object <var>javaobj</var> or Java classname
+<var>jclassname</var>) the name are the public data elements of the object or
+class.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstruct.html#doc_002dstruct">struct</a>, <a href="doc_002dmethods.html#doc_002dmethods">methods</a>. 
 </p></blockquote></div>
 
-<!-- isfield src/ov-struct.cc -->
+<!-- isfield libinterp/octave-value/ov-struct.cc -->
    <p><a name="doc_002disfield"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isfield</b> (<var>x, name</var>)<var><a name="index-isfield-446"></a></var><br>
+&mdash; Built-in Function:  <b>isfield</b> (<var>x, name</var>)<var><a name="index-isfield-472"></a></var><br>
 <blockquote><p>Return true if the <var>x</var> is a structure and it
 includes an element named <var>name</var>.  If <var>name</var> is a cell
 array of strings then a logical array of equal dimension is returned. 
-</p></blockquote></div>
-
-<!-- getfield scripts/miscellaneous/getfield.m -->
-   <p><a name="doc_002dgetfield"></a>
-
-<div class="defun">
-&mdash; Function File: [<var>v1</var>, <small class="dots">...</small>] = <b>getfield</b> (<var>s, key, <small class="dots">...</small></var>)<var><a name="index-getfield-447"></a></var><br>
-<blockquote><p>Extract a field from a structure (or a nested structure).  For example:
-
-     <pre class="example">          ss(1,2).fd(3).b = 5;
-          getfield (ss, {1,2}, "fd", {3}, "b")
-             &rArr; 5
-</pre>
-        <p>Note that the function call in the previous example is equivalent to
-the expression
-
-     <pre class="example">          i1 = {1,2}; i2 = "fd"; i3 = {3}; i4= "b";
-          ss(i1{:}).(i2)(i3{:}).(i4)
-             &rArr; 5
-</pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsetfield.html#doc_002dsetfield">setfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
 </p></blockquote></div>
 
 <!-- setfield scripts/miscellaneous/setfield.m -->
    <p><a name="doc_002dsetfield"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>k1</var>, <small class="dots">...</small>, <var>v1</var>] = <b>setfield</b> (<var>s, k1, v1, <small class="dots">...</small></var>)<var><a name="index-setfield-448"></a></var><br>
-<blockquote><p>Set a field member in a (nested) structure array.  For example:
+&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, field, val</var>)<var><a name="index-setfield-473"></a></var><br>
+&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small>, val</var>)<var><a name="index-setfield-474"></a></var><br>
+<blockquote>
+        <p>Set a field member <var>field</var> in a structure <var>s</var> equal to <var>val</var>.  For example:
 
-     <pre class="example">          oo(1,1).f0 = 1;
-          oo = setfield (oo, {1,2}, "fd", {3}, "b", 6);
-          oo(1,2).fd(3).b == 6
-               &rArr; ans = 1
+     <pre class="example">          <var>s</var> = struct ();
+          <var>s</var> = setfield (<var>s</var>, "foo bar", 42);
 </pre>
+        <p class="noindent">This is equivalent to
+
+     <pre class="example">          <var>s</var>.("foo bar") = 42;
+</pre>
+        <p class="noindent">Note that ordinary structure syntax <var>s</var><code>.foo bar = 42</code> cannot be
+used here, as the field name is not a valid Octave identifier. Using
+arbitrary strings for field name is incompatible with <span class="sc">Matlab</span>, so
+this usage will warn if the <code>Octave:matlab-incompatible</code> warning
+is set. See <a href="doc_002dwarning_005fids.html#doc_002dwarning_005fids">doc-warning_ids</a>.
+
+        <p>With the second calling form, set a field on a structure array,
+possibly nested, with successive nested indices <var>idx1</var>,
+<var>idx2</var>, <small class="dots">...</small> and fields <var>field1</var>, <var>field2</var>, <small class="dots">...</small>
+The indices must be cells containing the desired index at this
+nesting depth.
+
+        <p>Thus consider instead,
+
+     <pre class="example">          <var>s</var> = struct ("baz", 42);
+          setfield (<var>s</var>, {1}, "foo", {1}, "bar", 5)
+              &rArr; ans =
+              scalar structure containing the fields:
+                baz =  42
+                foo =
+                  scalar structure containing the fields:
+                    bar =  54
+</pre>
+        <p>Here we first have an ordinary structure array with one field
+<code>baz</code> set to 42. Then we set another field in a nested scalar structure
+indexing with two single cells containing the unique desired indices.
+
+        <p>Finally an example with nested structure arrays,
+
+     <pre class="example">          <var>sa</var>.foo = 1;
+          <var>sa</var> = setfield (<var>sa</var>, {2}, "bar", {3}, "baz", 6);
+          <var>sa</var>(2).bar(3)
+               &rArr; ans =
+               scalar structure containing the fields:
+                 baz =  6
+</pre>
+        <p>Here <var>sa</var> is a structure array whose field <code>fd</code> at elements
+1 and 2 field is in turn
+another structure array whose third element is a structure
+
         <p>Note that the same result as in the above example could be achieved by:
 
-     <pre class="example">          i1 = {1,2}; i2 = "fd"; i3 = {3}; i4 = "b";
-          oo(i1{:}).(i2)(i3{:}).(i4) == 6
-               &rArr; ans = 1
+     <pre class="example">          <var>SA</var>.foo = 1;
+          <var>SA</var>(2).bar(3).baz = 6
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetfield.html#doc_002dgetfield">getfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetfield.html#doc_002dgetfield">getfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
 </p></blockquote></div>
 
-<!-- rmfield src/ov-struct.cc -->
+<!-- getfield scripts/miscellaneous/getfield.m -->
+   <p><a name="doc_002dgetfield"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, field</var>)<var><a name="index-getfield-475"></a></var><br>
+&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small></var>)<var><a name="index-getfield-476"></a></var><br>
+<blockquote><p>Extract a field from a structure (or a nested structure). The syntax
+is the same as <code>setfield</code>, except it omits the final <var>val</var>
+argument, returning this value instead of setting it.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsetfield.html#doc_002dsetfield">setfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
+</p></blockquote></div>
+
+<!-- rmfield libinterp/octave-value/ov-struct.cc -->
    <p><a name="doc_002drmfield"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-449"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, "f"</var>)<var><a name="index-rmfield-477"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-478"></a></var><br>
 <blockquote><p>Return a copy of the structure (array) <var>s</var> with the field <var>f</var>
 removed.  If <var>f</var> is a cell array of strings or a character array, remove
-the named fields. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+each of the named fields.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcellstr.html#doc_002dcellstr">cellstr</a>, <a href="doc_002discellstr.html#doc_002discellstr">iscellstr</a>, <a href="doc_002dsetfield.html#doc_002dsetfield">setfield</a>. 
 </p></blockquote></div>
@@ -131,8 +172,8 @@ the named fields.
    <p><a name="doc_002dorderfields"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1</var>)<var><a name="index-orderfields-450"></a></var><br>
-&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-451"></a></var><br>
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1</var>)<var><a name="index-orderfields-479"></a></var><br>
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-480"></a></var><br>
 <blockquote><p>Return a copy of <var>s1</var> with fields arranged alphabetically or
 as specified by <var>s2</var>.
 
@@ -149,7 +190,7 @@ which converts the original name order into the new name order.
 
         <p>Examples:
 
-     <pre class="example">          s = struct("d", 4, "b", 2, "a", 1, "c", 3);
+     <pre class="example">          s = struct ("d", 4, "b", 2, "a", 1, "c", 3);
           t1 = orderfields (s)
                &rArr; t1 =
                   {
@@ -158,7 +199,7 @@ which converts the original name order into the new name order.
                     c =  3
                     d =  4
                   }
-          t = struct("d", {}, "c", {}, "b", "a", {});
+          t = struct ("d", {}, "c", {}, "b", {}, "a", {});
           t2 = orderfields (s, t)
                &rArr; t2 =
                   {
@@ -167,7 +208,7 @@ which converts the original name order into the new name order.
                     b =  2
                     a =  1
                   }
-          t3 = orderfields (s, [3, 2, 4, 1]);
+          t3 = orderfields (s, [3, 2, 4, 1])
                &rArr; t3 =
                   {
                     a =  1
@@ -189,17 +230,14 @@ which converts the original name order into the new name order.
                      2
                      3
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetfield.html#doc_002dgetfield">getfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetfield.html#doc_002dgetfield">getfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
 </p></blockquote></div>
 
 <!-- substruct scripts/miscellaneous/substruct.m -->
    <p><a name="doc_002dsubstruct"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-452"></a></var><br>
+&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-481"></a></var><br>
 <blockquote><p>Create a subscript structure for use with <code>subsref</code> or
 <code>subsasgn</code>.  For example:
 
@@ -218,10 +256,7 @@ which converts the original name order into the new name order.
           subsref (x, idx)
              &rArr; 7  8  9
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>. 
 </p></blockquote></div>
 
    </body></html>

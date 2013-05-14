@@ -76,11 +76,11 @@ three-dimensional plots.
    <p><a name="doc_002dmesh"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mesh</b> (<var>x, y, z</var>)<var><a name="index-mesh-1237"></a></var><br>
-&mdash; Function File:  <b>mesh</b> (<var>z</var>)<var><a name="index-mesh-1238"></a></var><br>
-&mdash; Function File:  <b>mesh</b> (<var><small class="dots">...</small>, c</var>)<var><a name="index-mesh-1239"></a></var><br>
-&mdash; Function File:  <b>mesh</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-mesh-1240"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>mesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-mesh-1241"></a></var><br>
+&mdash; Function File:  <b>mesh</b> (<var>x, y, z</var>)<var><a name="index-mesh-1293"></a></var><br>
+&mdash; Function File:  <b>mesh</b> (<var>z</var>)<var><a name="index-mesh-1294"></a></var><br>
+&mdash; Function File:  <b>mesh</b> (<var><small class="dots">...</small>, c</var>)<var><a name="index-mesh-1295"></a></var><br>
+&mdash; Function File:  <b>mesh</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-mesh-1296"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>mesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-mesh-1297"></a></var><br>
 <blockquote><p>Plot a mesh given matrices <var>x</var>, and <var>y</var> from <code>meshgrid</code> and
 a matrix <var>z</var> corresponding to the <var>x</var> and <var>y</var> coordinates of
 the mesh.  If <var>x</var> and <var>y</var> are vectors, then a typical vertex
@@ -93,10 +93,7 @@ and the value of <var>z</var>.  Optionally the color of the mesh can be
 specified independent of <var>z</var>, by adding a fourth matrix, <var>c</var>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created
-surface object. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+surface object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dcontour.html#doc_002dcontour">contour</a>, <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dsurf.html#doc_002dsurf">surf</a>. 
 </p></blockquote></div>
@@ -105,16 +102,13 @@ surface object.
    <p><a name="doc_002dmeshc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>meshc</b> (<var>x, y, z</var>)<var><a name="index-meshc-1242"></a></var><br>
+&mdash; Function File:  <b>meshc</b> (<var>x, y, z</var>)<var><a name="index-meshc-1298"></a></var><br>
 <blockquote><p>Plot a mesh and contour given matrices <var>x</var>, and <var>y</var> from
 <code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
 <var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors,
 then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
 columns of <var>z</var> correspond to different <var>x</var> values and rows of
-<var>z</var> correspond to different <var>y</var> values. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<var>z</var> correspond to different <var>y</var> values.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>, <a href="doc_002dcontour.html#doc_002dcontour">contour</a>. 
 </p></blockquote></div>
@@ -123,16 +117,13 @@ columns of <var>z</var> correspond to different <var>x</var> values and rows of
    <p><a name="doc_002dmeshz"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>meshz</b> (<var>x, y, z</var>)<var><a name="index-meshz-1243"></a></var><br>
+&mdash; Function File:  <b>meshz</b> (<var>x, y, z</var>)<var><a name="index-meshz-1299"></a></var><br>
 <blockquote><p>Plot a curtain mesh given matrices <var>x</var>, and <var>y</var> from
 <code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
 <var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors,
 then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
 columns of <var>z</var> correspond to different <var>x</var> values and rows of
-<var>z</var> correspond to different <var>y</var> values. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<var>z</var> correspond to different <var>y</var> values.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>, <a href="doc_002dcontour.html#doc_002dcontour">contour</a>. 
 </p></blockquote></div>
@@ -141,14 +132,11 @@ columns of <var>z</var> correspond to different <var>x</var> values and rows of
    <p><a name="doc_002dhidden"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hidden</b> (<var>mode</var>)<var><a name="index-hidden-1244"></a></var><br>
-&mdash; Function File:  <b>hidden</b> ()<var><a name="index-hidden-1245"></a></var><br>
+&mdash; Function File:  <b>hidden</b> (<var>mode</var>)<var><a name="index-hidden-1300"></a></var><br>
+&mdash; Function File:  <b>hidden</b> ()<var><a name="index-hidden-1301"></a></var><br>
 <blockquote><p>Manipulation the mesh hidden line removal.  Called with no argument
 the hidden line removal is toggled.  The argument <var>mode</var> can be either
-'on' or 'off' and the set of the hidden line removal is set accordingly. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+"on" or "off" and the set of the hidden line removal is set accordingly.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>, <a href="doc_002dmeshc.html#doc_002dmeshc">meshc</a>, <a href="doc_002dsurf.html#doc_002dsurf">surf</a>. 
 </p></blockquote></div>
@@ -157,11 +145,11 @@ the hidden line removal is toggled.  The argument <var>mode</var> can be either
    <p><a name="doc_002dsurf"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>surf</b> (<var>x, y, z</var>)<var><a name="index-surf-1246"></a></var><br>
-&mdash; Function File:  <b>surf</b> (<var>z</var>)<var><a name="index-surf-1247"></a></var><br>
-&mdash; Function File:  <b>surf</b> (<var><small class="dots">...</small>, c</var>)<var><a name="index-surf-1248"></a></var><br>
-&mdash; Function File:  <b>surf</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-surf-1249"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>surf</b> (<var><small class="dots">...</small></var>)<var><a name="index-surf-1250"></a></var><br>
+&mdash; Function File:  <b>surf</b> (<var>x, y, z</var>)<var><a name="index-surf-1302"></a></var><br>
+&mdash; Function File:  <b>surf</b> (<var>z</var>)<var><a name="index-surf-1303"></a></var><br>
+&mdash; Function File:  <b>surf</b> (<var><small class="dots">...</small>, c</var>)<var><a name="index-surf-1304"></a></var><br>
+&mdash; Function File:  <b>surf</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-surf-1305"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>surf</b> (<var><small class="dots">...</small></var>)<var><a name="index-surf-1306"></a></var><br>
 <blockquote><p>Plot a surface given matrices <var>x</var>, and <var>y</var> from <code>meshgrid</code> and
 a matrix <var>z</var> corresponding to the <var>x</var> and <var>y</var> coordinates of
 the mesh.  If <var>x</var> and <var>y</var> are vectors, then a typical vertex
@@ -174,10 +162,7 @@ the value of <var>z</var>.  Optionally the color of the surface can be
 specified independent of <var>z</var>, by adding a fourth matrix, <var>c</var>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created
-surface object. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+surface object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dcontour.html#doc_002dcontour">contour</a>, <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>. 
 </p></blockquote></div>
@@ -186,16 +171,13 @@ surface object.
    <p><a name="doc_002dsurfc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>surfc</b> (<var>x, y, z</var>)<var><a name="index-surfc-1251"></a></var><br>
+&mdash; Function File:  <b>surfc</b> (<var>x, y, z</var>)<var><a name="index-surfc-1307"></a></var><br>
 <blockquote><p>Plot a surface and contour given matrices <var>x</var>, and <var>y</var> from
 <code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
 <var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors,
 then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
 columns of <var>z</var> correspond to different <var>x</var> values and rows of
-<var>z</var> correspond to different <var>y</var> values. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<var>z</var> correspond to different <var>y</var> values.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002dcontour.html#doc_002dcontour">contour</a>. 
 </p></blockquote></div>
@@ -204,27 +186,27 @@ columns of <var>z</var> correspond to different <var>x</var> values and rows of
    <p><a name="doc_002dsurfl"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>surfl</b> (<var>x, y, z</var>)<var><a name="index-surfl-1252"></a></var><br>
-&mdash; Function File:  <b>surfl</b> (<var>z</var>)<var><a name="index-surfl-1253"></a></var><br>
-&mdash; Function File:  <b>surfl</b> (<var>x, y, z, L</var>)<var><a name="index-surfl-1254"></a></var><br>
-&mdash; Function File:  <b>surfl</b> (<var>x, y, z, L, P</var>)<var><a name="index-surfl-1255"></a></var><br>
-&mdash; Function File:  <b>surfl</b> (<var><small class="dots">...</small>, "light"</var>)<var><a name="index-surfl-1256"></a></var><br>
+&mdash; Function File:  <b>surfl</b> (<var>x, y, z</var>)<var><a name="index-surfl-1308"></a></var><br>
+&mdash; Function File:  <b>surfl</b> (<var>z</var>)<var><a name="index-surfl-1309"></a></var><br>
+&mdash; Function File:  <b>surfl</b> (<var>x, y, z, L</var>)<var><a name="index-surfl-1310"></a></var><br>
+&mdash; Function File:  <b>surfl</b> (<var>x, y, z, L, P</var>)<var><a name="index-surfl-1311"></a></var><br>
+&mdash; Function File:  <b>surfl</b> (<var><small class="dots">...</small>, "light"</var>)<var><a name="index-surfl-1312"></a></var><br>
 <blockquote><p>Plot a lighted surface given matrices <var>x</var>, and <var>y</var> from
-<code>meshgrid</code> and
-a matrix <var>z</var> corresponding to the <var>x</var> and <var>y</var> coordinates of
-the mesh.  If <var>x</var> and <var>y</var> are vectors, then a typical vertex
-is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus, columns of <var>z</var>
-correspond to different <var>x</var> values and rows of <var>z</var> correspond
-to different <var>y</var> values.
+<code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
+<var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors, then
+a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus, columns
+of <var>z</var> correspond to different <var>x</var> values and rows of <var>z</var>
+correspond to different <var>y</var> values.
 
-        <p>The light direction can be specified using <var>L</var>.  It can be
-given as 2-element vector [azimuth, elevation] in degrees or as 3-element
-vector [lx, ly, lz]. 
-The default value is rotated 45° counter-clockwise from the current view.
+        <p>The light direction can be specified using <var>L</var>.  It can be given as a
+2-element vector [azimuth, elevation] in degrees or as a 3-element vector
+[lx, ly, lz].  The default value is rotated 45 degrees counterclockwise
+from the current view.
 
         <p>The material properties of the surface can specified using a 4-element vector
 <var>P</var> = [<var>AM</var> <var>D</var> <var>SP</var> <var>exp</var>] which defaults to
 <var>p</var> = [0.55 0.6 0.4 10].
+
           <dl>
 <dt>"AM" strength of ambient light
 <br><dt>"D" strength of diffuse reflection
@@ -232,10 +214,9 @@ The default value is rotated 45° counter-clockwise from the current view.
 <br><dt>"EXP" specular exponent<dd></dl>
 
         <p>The default lighting mode "cdata", changes the cdata property to give the
-impression
-of a lighted surface.  Please note: the alternative "light" mode, which
-creates a light
-object to illuminate the surface is not implemented (yet).
+impression of a lighted surface.  Please note: the alternative "light"
+mode, which creates a light object to illuminate the surface is not
+implemented (yet).
 
         <p>Example:
 
@@ -243,26 +224,23 @@ object to illuminate the surface is not implemented (yet).
           surfl (peaks);
           shading interp;
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002ddiffuse.html#doc_002ddiffuse">diffuse</a>, <a href="doc_002dspecular.html#doc_002dspecular">specular</a>, <a href="doc_002dsurface.html#doc_002dsurface">surface</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002ddiffuse.html#doc_002ddiffuse">diffuse</a>, <a href="doc_002dspecular.html#doc_002dspecular">specular</a>, <a href="doc_002dsurface.html#doc_002dsurface">surface</a>. 
 </p></blockquote></div>
 
 <!-- surfnorm scripts/plot/surfnorm.m -->
    <p><a name="doc_002dsurfnorm"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>surfnorm</b> (<var>x, y, z</var>)<var><a name="index-surfnorm-1257"></a></var><br>
-&mdash; Function File:  <b>surfnorm</b> (<var>z</var>)<var><a name="index-surfnorm-1258"></a></var><br>
-&mdash; Function File: [<var>nx</var>, <var>ny</var>, <var>nz</var>] = <b>surfnorm</b> (<var><small class="dots">...</small></var>)<var><a name="index-surfnorm-1259"></a></var><br>
-&mdash; Function File:  <b>surfnorm</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-surfnorm-1260"></a></var><br>
+&mdash; Function File:  <b>surfnorm</b> (<var>x, y, z</var>)<var><a name="index-surfnorm-1313"></a></var><br>
+&mdash; Function File:  <b>surfnorm</b> (<var>z</var>)<var><a name="index-surfnorm-1314"></a></var><br>
+&mdash; Function File: [<var>nx</var>, <var>ny</var>, <var>nz</var>] = <b>surfnorm</b> (<var><small class="dots">...</small></var>)<var><a name="index-surfnorm-1315"></a></var><br>
+&mdash; Function File:  <b>surfnorm</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-surfnorm-1316"></a></var><br>
 <blockquote><p>Find the vectors normal to a meshgridded surface.  The meshed gridded
 surface is defined by <var>x</var>, <var>y</var>, and <var>z</var>.  If <var>x</var> and
 <var>y</var> are not defined, then it is assumed that they are given by
 
-     <pre class="example">          [<var>x</var>, <var>y</var>] = meshgrid (1:size (<var>z</var>, 1),
-                             1:size (<var>z</var>, 2));
+     <pre class="example">          [<var>x</var>, <var>y</var>] = meshgrid (1:rows (<var>z</var>),
+                             1:columns (<var>z</var>));
 </pre>
         <p>If no return arguments are requested, a surface plot with the normal
 vectors to the surface is plotted.  Otherwise the components of the normal
@@ -279,23 +257,20 @@ normal to the surface at the meshgridded points.
 
      <pre class="example">          surfnorm (peaks (25));
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002dquiver3.html#doc_002dquiver3">quiver3</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002dquiver3.html#doc_002dquiver3">quiver3</a>. 
 </p></blockquote></div>
 
 <!-- isosurface scripts/plot/isosurface.m -->
    <p><a name="doc_002disosurface"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>fv</var>] = <b>isosurface</b> (<var>val, iso</var>)<var><a name="index-isosurface-1261"></a></var><br>
-&mdash; Function File: [<var>fv</var>] = <b>isosurface</b> (<var>x, y, z, val, iso</var>)<var><a name="index-isosurface-1262"></a></var><br>
-&mdash; Function File: [<var>fv</var>] = <b>isosurface</b> (<var><small class="dots">...</small>, "noshare", "verbose"</var>)<var><a name="index-isosurface-1263"></a></var><br>
-&mdash; Function File: [<var>fvc</var>] = <b>isosurface</b> (<var><small class="dots">...</small>, col</var>)<var><a name="index-isosurface-1264"></a></var><br>
-&mdash; Function File: [<var>f</var>, <var>v</var>] = <b>isosurface</b> (<var>x, y, z, val, iso</var>)<var><a name="index-isosurface-1265"></a></var><br>
-&mdash; Function File: [<var>f</var>, <var>v</var>, <var>c</var>] = <b>isosurface</b> (<var>x, y, z, val, iso, col</var>)<var><a name="index-isosurface-1266"></a></var><br>
-&mdash; Function File:  <b>isosurface</b> (<var>x, y, z, val, iso, col, opt</var>)<var><a name="index-isosurface-1267"></a></var><br>
+&mdash; Function File: [<var>fv</var>] = <b>isosurface</b> (<var>val, iso</var>)<var><a name="index-isosurface-1317"></a></var><br>
+&mdash; Function File: [<var>fv</var>] = <b>isosurface</b> (<var>x, y, z, val, iso</var>)<var><a name="index-isosurface-1318"></a></var><br>
+&mdash; Function File: [<var>fv</var>] = <b>isosurface</b> (<var><small class="dots">...</small>, "noshare", "verbose"</var>)<var><a name="index-isosurface-1319"></a></var><br>
+&mdash; Function File: [<var>fvc</var>] = <b>isosurface</b> (<var><small class="dots">...</small>, col</var>)<var><a name="index-isosurface-1320"></a></var><br>
+&mdash; Function File: [<var>f</var>, <var>v</var>] = <b>isosurface</b> (<var>x, y, z, val, iso</var>)<var><a name="index-isosurface-1321"></a></var><br>
+&mdash; Function File: [<var>f</var>, <var>v</var>, <var>c</var>] = <b>isosurface</b> (<var>x, y, z, val, iso, col</var>)<var><a name="index-isosurface-1322"></a></var><br>
+&mdash; Function File:  <b>isosurface</b> (<var>x, y, z, val, iso, col, opt</var>)<var><a name="index-isosurface-1323"></a></var><br>
 <blockquote>
         <p>If called with one output argument and the first input argument
 <var>val</var> is a three-dimensional array that contains the data of an
@@ -378,22 +353,19 @@ coloring
           # set (p, "FaceLighting", "phong");
           # light ("Position", [1 1 5]);
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disonormals.html#doc_002disonormals">isonormals</a>, <a href="doc_002disocolors.html#doc_002disocolors">isocolors</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002disonormals.html#doc_002disonormals">isonormals</a>, <a href="doc_002disocolors.html#doc_002disocolors">isocolors</a>. 
 </p></blockquote></div>
 
 <!-- isonormals scripts/plot/isonormals.m -->
    <p><a name="doc_002disonormals"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>val, v</var>)<var><a name="index-isonormals-1268"></a></var><br>
-&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>val, p</var>)<var><a name="index-isonormals-1269"></a></var><br>
-&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>x, y, z, val, v</var>)<var><a name="index-isonormals-1270"></a></var><br>
-&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>x, y, z, val, p</var>)<var><a name="index-isonormals-1271"></a></var><br>
-&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var><small class="dots">...</small>, "negate"</var>)<var><a name="index-isonormals-1272"></a></var><br>
-&mdash; Function File:  <b>isonormals</b> (<var><small class="dots">...</small>, p</var>)<var><a name="index-isonormals-1273"></a></var><br>
+&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>val, v</var>)<var><a name="index-isonormals-1324"></a></var><br>
+&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>val, p</var>)<var><a name="index-isonormals-1325"></a></var><br>
+&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>x, y, z, val, v</var>)<var><a name="index-isonormals-1326"></a></var><br>
+&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var>x, y, z, val, p</var>)<var><a name="index-isonormals-1327"></a></var><br>
+&mdash; Function File: [<var>n</var>] = <b>isonormals</b> (<var><small class="dots">...</small>, "negate"</var>)<var><a name="index-isonormals-1328"></a></var><br>
+&mdash; Function File:  <b>isonormals</b> (<var><small class="dots">...</small>, p</var>)<var><a name="index-isonormals-1329"></a></var><br>
 <blockquote>
         <p>If called with one output argument and the first input argument
 <var>val</var> is a three-dimensional array that contains the data for an
@@ -459,22 +431,19 @@ given by the patch handle <var>p</var>.
           isonormals (x, y, z, c, v, "negate"); # Use reverse directly
           isofinish (p);
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disosurface.html#doc_002disosurface">isosurface</a>, <a href="doc_002disocolors.html#doc_002disocolors">isocolors</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002disosurface.html#doc_002disosurface">isosurface</a>, <a href="doc_002disocolors.html#doc_002disocolors">isocolors</a>. 
 </p></blockquote></div>
 
 <!-- isocolors scripts/plot/isocolors.m -->
    <p><a name="doc_002disocolors"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>c, v</var>)<var><a name="index-isocolors-1274"></a></var><br>
-&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>x, y, z, c, v</var>)<var><a name="index-isocolors-1275"></a></var><br>
-&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>x, y, z, r, g, b, v</var>)<var><a name="index-isocolors-1276"></a></var><br>
-&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>r, g, b, v</var>)<var><a name="index-isocolors-1277"></a></var><br>
-&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var><small class="dots">...</small>, p</var>)<var><a name="index-isocolors-1278"></a></var><br>
-&mdash; Function File:  <b>isocolors</b> (<var><small class="dots">...</small></var>)<var><a name="index-isocolors-1279"></a></var><br>
+&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>c, v</var>)<var><a name="index-isocolors-1330"></a></var><br>
+&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>x, y, z, c, v</var>)<var><a name="index-isocolors-1331"></a></var><br>
+&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>x, y, z, r, g, b, v</var>)<var><a name="index-isocolors-1332"></a></var><br>
+&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var>r, g, b, v</var>)<var><a name="index-isocolors-1333"></a></var><br>
+&mdash; Function File: [<var>cd</var>] = <b>isocolors</b> (<var><small class="dots">...</small>, p</var>)<var><a name="index-isocolors-1334"></a></var><br>
+&mdash; Function File:  <b>isocolors</b> (<var><small class="dots">...</small></var>)<var><a name="index-isocolors-1335"></a></var><br>
 <blockquote>
         <p>If called with one output argument and the first input argument
 <var>c</var> is a three-dimensional array that contains color values and
@@ -542,26 +511,65 @@ change the colors of a patch that is given by the patch handle
           set (p, "FaceVertexCData", cdat);
           isofinish (p);
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disosurface.html#doc_002disosurface">isosurface</a>, <a href="doc_002disonormals.html#doc_002disonormals">isonormals</a>.
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002disosurface.html#doc_002disosurface">isosurface</a>, <a href="doc_002disonormals.html#doc_002disonormals">isonormals</a>.
 
         </blockquote></div>
+
+<!-- shrinkfaces scripts/plot/shrinkfaces.m -->
+   <p><a name="doc_002dshrinkfaces"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>shrinkfaces</b> (<var>p, sf</var>)<var><a name="index-shrinkfaces-1336"></a></var><br>
+&mdash; Function File: <var>nfv</var> = <b>shrinkfaces</b> (<var>p, sf</var>)<var><a name="index-shrinkfaces-1337"></a></var><br>
+&mdash; Function File: <var>nfv</var> = <b>shrinkfaces</b> (<var>fv, sf</var>)<var><a name="index-shrinkfaces-1338"></a></var><br>
+&mdash; Function File: <var>nfv</var> = <b>shrinkfaces</b> (<var>f, v, sf</var>)<var><a name="index-shrinkfaces-1339"></a></var><br>
+&mdash; Function File: [<var>nf</var>, <var>nv</var>] = <b>shrinkfaces</b> (<var><small class="dots">...</small></var>)<var><a name="index-shrinkfaces-1340"></a></var><br>
+<blockquote>
+        <p>Reduce the faces area for a given patch, structure or explicit faces
+and points matrices by a scale factor <var>sf</var>.  The structure
+<var>fv</var> must contain the fields 'faces' and 'vertices'.  If the
+factor <var>sf</var> is omitted then a default of 0.3 is used.
+
+        <p>Given a patch handle as the first input argument and no output
+parameters, perform the shrinking of the patch faces in place and
+redraw the patch.
+
+        <p>If called with one output argument, return a structure with fields
+'faces', 'vertices', and 'facevertexcdata' containing the data after
+shrinking which can then directly be used as an input argument for the
+<samp><span class="command">patch</span></samp> function.
+
+        <p>Performing the shrinking on faces which are not convex can lead to
+undesired results.
+
+        <p>For example,
+
+     <pre class="example">          [phi r] = meshgrid (linspace (0, 1.5*pi, 16), linspace (1, 2, 4));
+          tri = delaunay (phi(:), r(:));
+          v = [r(:).*sin(phi(:)) r(:).*cos(phi(:))];
+          clf ()
+          p = patch ("Faces", tri, "Vertices", v, "FaceColor", "none");
+          fv = shrinkfaces (p);
+          patch (fv)
+          axis equal
+          grid on
+</pre>
+        <p class="noindent">draws a triangulated 3/4 circle and the corresponding shrunken
+version.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpatch.html#doc_002dpatch">patch</a>. 
+</p></blockquote></div>
 
 <!-- diffuse scripts/plot/diffuse.m -->
    <p><a name="doc_002ddiffuse"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>diffuse</b> (<var>sx, sy, sz, lv</var>)<var><a name="index-diffuse-1280"></a></var><br>
+&mdash; Function File:  <b>diffuse</b> (<var>sx, sy, sz, lv</var>)<var><a name="index-diffuse-1341"></a></var><br>
 <blockquote><p>Calculate diffuse reflection strength of a surface defined by the normal
 vector elements <var>sx</var>, <var>sy</var>, <var>sz</var>. 
 The light vector can be specified using parameter <var>lv</var>.  It can be
 given as 2-element vector [azimuth, elevation] in degrees or as 3-element
-vector [lx, ly, lz]. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+vector [lx, ly, lz].
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dspecular.html#doc_002dspecular">specular</a>, <a href="doc_002dsurfl.html#doc_002dsurfl">surfl</a>. 
 </p></blockquote></div>
@@ -570,8 +578,8 @@ vector [lx, ly, lz].
    <p><a name="doc_002dspecular"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>specular</b> (<var>sx, sy, sz, lv, vv</var>)<var><a name="index-specular-1281"></a></var><br>
-&mdash; Function File:  <b>specular</b> (<var>sx, sy, sz, lv, vv, se</var>)<var><a name="index-specular-1282"></a></var><br>
+&mdash; Function File:  <b>specular</b> (<var>sx, sy, sz, lv, vv</var>)<var><a name="index-specular-1342"></a></var><br>
+&mdash; Function File:  <b>specular</b> (<var>sx, sy, sz, lv, vv, se</var>)<var><a name="index-specular-1343"></a></var><br>
 <blockquote><p>Calculate specular reflection strength of a surface defined by the normal
 vector elements <var>sx</var>, <var>sy</var>, <var>sz</var> using Phong's approximation. 
 The light and view vectors can be specified using parameter <var>lv</var> and
@@ -579,10 +587,7 @@ The light and view vectors can be specified using parameter <var>lv</var> and
 Both can be given as 2-element vectors [azimuth, elevation] in degrees or as
 3-element
 vector [x, y, z].  An optional 6th argument describes the specular exponent
-(spread) <var>se</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+(spread) <var>se</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurfl.html#doc_002dsurfl">surfl</a>, <a href="doc_002ddiffuse.html#doc_002ddiffuse">diffuse</a>. 
 </p></blockquote></div>
@@ -591,9 +596,9 @@ vector [x, y, z].  An optional 6th argument describes the specular exponent
    <p><a name="doc_002dmeshgrid"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>xx</var>, <var>yy</var>, <var>zz</var>] = <b>meshgrid</b> (<var>x, y, z</var>)<var><a name="index-meshgrid-1283"></a></var><br>
-&mdash; Function File: [<var>xx</var>, <var>yy</var>] = <b>meshgrid</b> (<var>x, y</var>)<var><a name="index-meshgrid-1284"></a></var><br>
-&mdash; Function File: [<var>xx</var>, <var>yy</var>] = <b>meshgrid</b> (<var>x</var>)<var><a name="index-meshgrid-1285"></a></var><br>
+&mdash; Function File: [<var>xx</var>, <var>yy</var>, <var>zz</var>] = <b>meshgrid</b> (<var>x, y, z</var>)<var><a name="index-meshgrid-1344"></a></var><br>
+&mdash; Function File: [<var>xx</var>, <var>yy</var>] = <b>meshgrid</b> (<var>x, y</var>)<var><a name="index-meshgrid-1345"></a></var><br>
+&mdash; Function File: [<var>xx</var>, <var>yy</var>] = <b>meshgrid</b> (<var>x</var>)<var><a name="index-meshgrid-1346"></a></var><br>
 <blockquote><p>Given vectors of <var>x</var> and <var>y</var> and <var>z</var> coordinates, and
 returning 3 arguments, return three-dimensional arrays corresponding
 to the <var>x</var>, <var>y</var>, and <var>z</var> coordinates of a mesh.  When
@@ -601,10 +606,7 @@ returning only 2 arguments, return matrices corresponding to the
 <var>x</var> and <var>y</var> coordinates of a mesh.  The rows of <var>xx</var> are
 copies of <var>x</var>, and the columns of <var>yy</var> are copies of <var>y</var>. 
 If <var>y</var> is omitted, then it is assumed to be the same as <var>x</var>,
-and <var>z</var> is assumed the same as <var>y</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+and <var>z</var> is assumed the same as <var>y</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>, <a href="doc_002dcontour.html#doc_002dcontour">contour</a>. 
 </p></blockquote></div>
@@ -613,19 +615,16 @@ and <var>z</var> is assumed the same as <var>y</var>.
    <p><a name="doc_002dndgrid"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>y1</var>, <var>y2</var>, <small class="dots">...</small>, <var>y</var>n] = <b>ndgrid</b> (<var>x1, x2, <small class="dots">...</small>, xn</var>)<var><a name="index-ndgrid-1286"></a></var><br>
-&mdash; Function File: [<var>y1</var>, <var>y2</var>, <small class="dots">...</small>, <var>y</var>n] = <b>ndgrid</b> (<var>x</var>)<var><a name="index-ndgrid-1287"></a></var><br>
+&mdash; Function File: [<var>y1</var>, <var>y2</var>, <small class="dots">...</small>, <var>y</var>n] = <b>ndgrid</b> (<var>x1, x2, <small class="dots">...</small>, xn</var>)<var><a name="index-ndgrid-1347"></a></var><br>
+&mdash; Function File: [<var>y1</var>, <var>y2</var>, <small class="dots">...</small>, <var>y</var>n] = <b>ndgrid</b> (<var>x</var>)<var><a name="index-ndgrid-1348"></a></var><br>
 <blockquote><p>Given n vectors <var>x1</var>, <small class="dots">...</small> <var>x</var>n, <code>ndgrid</code> returns
-n arrays of dimension n. The elements of the i-th output argument
+n arrays of dimension n.  The elements of the i-th output argument
 contains the elements of the vector <var>x</var>i repeated over all
 dimensions different from the i-th dimension.  Calling ndgrid with
 only one input argument <var>x</var> is equivalent of calling ndgrid with
 all n input arguments equal to <var>x</var>:
 
-        <p>[<var>y1</var>, <var>y2</var>, <small class="dots">...</small>,  <var>y</var>n] = ndgrid (<var>x</var>, <small class="dots">...</small>, <var>x</var>)
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>[<var>y1</var>, <var>y2</var>, <small class="dots">...</small>, <var>y</var>n] = ndgrid (<var>x</var>, <small class="dots">...</small>, <var>x</var>)
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>. 
 </p></blockquote></div>
@@ -634,7 +633,7 @@ all n input arguments equal to <var>x</var>:
    <p><a name="doc_002dplot3"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>plot3</b> (<var>args</var>)<var><a name="index-plot3-1288"></a></var><br>
+&mdash; Function File:  <b>plot3</b> (<var>args</var>)<var><a name="index-plot3-1349"></a></var><br>
 <blockquote><p>Produce three-dimensional plots.  Many different combinations of
 arguments are possible.  The simplest form is
 
@@ -679,22 +678,20 @@ with an empty format string, as
           plot3 (cos (2*pi*z), sin (2*pi*z), z, ";helix;");
           plot3 (z, exp (2i*pi*z), ";complex sinusoid;");
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dxlabel.html#doc_002dxlabel">xlabel</a>, <a href="doc_002dylabel.html#doc_002dylabel">ylabel</a>, <a href="doc_002dzlabel.html#doc_002dzlabel">zlabel</a>, <a href="doc_002dtitle.html#doc_002dtitle">title</a>, <a href="doc_002dprint.html#doc_002dprint">print</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dxlabel.html#doc_002dxlabel">xlabel</a>, <a href="doc_002dylabel.html#doc_002dylabel">ylabel</a>, <a href="doc_002dzlabel.html#doc_002dzlabel">zlabel</a>, <a href="doc_002dtitle.html#doc_002dtitle">title</a>, <a href="doc_002dprint.html#doc_002dprint">print</a>. 
 </p></blockquote></div>
 
 <!-- view scripts/plot/view.m -->
    <p><a name="doc_002dview"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>azimuth</var>, <var>elevation</var>] = <b>view</b> ()<var><a name="index-view-1289"></a></var><br>
-&mdash; Function File:  <b>view</b> (<var>azimuth, elevation</var>)<var><a name="index-view-1290"></a></var><br>
-&mdash; Function File:  <b>view</b> ([<var>azimuth elevation</var>])<var><a name="index-view-1291"></a></var><br>
-&mdash; Function File:  <b>view</b> ([<var>x y z</var>])<var><a name="index-view-1292"></a></var><br>
-&mdash; Function File:  <b>view</b> (<var>dims</var>)<var><a name="index-view-1293"></a></var><br>
-&mdash; Function File:  <b>view</b> (<var>ax, <small class="dots">...</small></var>)<var><a name="index-view-1294"></a></var><br>
+&mdash; Function File: [<var>azimuth</var>, <var>elevation</var>] = <b>view</b> ()<var><a name="index-view-1350"></a></var><br>
+&mdash; Function File:  <b>view</b> (<var>azimuth, elevation</var>)<var><a name="index-view-1351"></a></var><br>
+&mdash; Function File:  <b>view</b> ([<var>azimuth elevation</var>])<var><a name="index-view-1352"></a></var><br>
+&mdash; Function File:  <b>view</b> ([<var>x y z</var>])<var><a name="index-view-1353"></a></var><br>
+&mdash; Function File:  <b>view</b> (<var>2</var>)<var><a name="index-view-1354"></a></var><br>
+&mdash; Function File:  <b>view</b> (<var>3</var>)<var><a name="index-view-1355"></a></var><br>
+&mdash; Function File:  <b>view</b> (<var>ax, <small class="dots">...</small></var>)<var><a name="index-view-1356"></a></var><br>
 <blockquote><p>Query or set the viewpoint for the current axes.  The parameters
 <var>azimuth</var> and <var>elevation</var> can be given as two arguments or as
 2-element vector. 
@@ -712,12 +709,12 @@ it is set for the current axes.
    <p><a name="doc_002dslice"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>slice</b> (<var>x, y, z, v, sx, sy, sz</var>)<var><a name="index-slice-1295"></a></var><br>
-&mdash; Function File:  <b>slice</b> (<var>x, y, z, v, xi, yi, zi</var>)<var><a name="index-slice-1296"></a></var><br>
-&mdash; Function File:  <b>slice</b> (<var>v, sx, sy, sz</var>)<var><a name="index-slice-1297"></a></var><br>
-&mdash; Function File:  <b>slice</b> (<var>v, xi, yi, zi</var>)<var><a name="index-slice-1298"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>slice</b> (<var><small class="dots">...</small></var>)<var><a name="index-slice-1299"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>slice</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-slice-1300"></a></var><br>
+&mdash; Function File:  <b>slice</b> (<var>x, y, z, v, sx, sy, sz</var>)<var><a name="index-slice-1357"></a></var><br>
+&mdash; Function File:  <b>slice</b> (<var>x, y, z, v, xi, yi, zi</var>)<var><a name="index-slice-1358"></a></var><br>
+&mdash; Function File:  <b>slice</b> (<var>v, sx, sy, sz</var>)<var><a name="index-slice-1359"></a></var><br>
+&mdash; Function File:  <b>slice</b> (<var>v, xi, yi, zi</var>)<var><a name="index-slice-1360"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>slice</b> (<var><small class="dots">...</small></var>)<var><a name="index-slice-1361"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>slice</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-slice-1362"></a></var><br>
 <blockquote><p>Plot slices of 3-D data/scalar fields.  Each element of the 3-dimensional
 array <var>v</var> represents a scalar value at a location given by the
 parameters <var>x</var>, <var>y</var>, and <var>z</var>.  The parameters <var>x</var>,
@@ -759,23 +756,20 @@ surface object.
           zi = xi + yi;
           slice (x, y, z, v, xi, yi, zi);
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp3.html#doc_002dinterp3">interp3</a>, <a href="doc_002dsurface.html#doc_002dsurface">surface</a>, <a href="doc_002dpcolor.html#doc_002dpcolor">pcolor</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp3.html#doc_002dinterp3">interp3</a>, <a href="doc_002dsurface.html#doc_002dsurface">surface</a>, <a href="doc_002dpcolor.html#doc_002dpcolor">pcolor</a>. 
 </p></blockquote></div>
 
 <!-- ribbon scripts/plot/ribbon.m -->
    <p><a name="doc_002dribbon"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ribbon</b> (<var>x, y, width</var>)<var><a name="index-ribbon-1301"></a></var><br>
-&mdash; Function File:  <b>ribbon</b> (<var>y</var>)<var><a name="index-ribbon-1302"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ribbon</b> (<var><small class="dots">...</small></var>)<var><a name="index-ribbon-1303"></a></var><br>
+&mdash; Function File:  <b>ribbon</b> (<var>x, y, width</var>)<var><a name="index-ribbon-1363"></a></var><br>
+&mdash; Function File:  <b>ribbon</b> (<var>y</var>)<var><a name="index-ribbon-1364"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ribbon</b> (<var><small class="dots">...</small></var>)<var><a name="index-ribbon-1365"></a></var><br>
 <blockquote><p>Plot a ribbon plot for the columns of <var>y</var> vs.  <var>x</var>.  The
 optional parameter <var>width</var> specifies the width of a single ribbon
 (default is 0.75).  If <var>x</var> is omitted, a vector containing the
-row numbers is assumed (1:rows(Y)).
+row numbers is assumed (1:rows (Y)).
 
         <p>The optional return value <var>h</var> is a vector of graphics handles to
 the surface objects representing each ribbon. 
@@ -785,8 +779,8 @@ the surface objects representing each ribbon.
    <p><a name="doc_002dshading"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>shading</b> (<var>type</var>)<var><a name="index-shading-1304"></a></var><br>
-&mdash; Function File:  <b>shading</b> (<var>ax, <small class="dots">...</small></var>)<var><a name="index-shading-1305"></a></var><br>
+&mdash; Function File:  <b>shading</b> (<var>type</var>)<var><a name="index-shading-1366"></a></var><br>
+&mdash; Function File:  <b>shading</b> (<var>ax, <small class="dots">...</small></var>)<var><a name="index-shading-1367"></a></var><br>
 <blockquote><p>Set the shading of surface or patch graphic objects.  Valid arguments
 for <var>type</var> are
 
@@ -807,12 +801,12 @@ of the current axis.
    <p><a name="doc_002dscatter3"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>scatter3</b> (<var>x, y, z, s, c</var>)<var><a name="index-scatter3-1306"></a></var><br>
-&mdash; Function File:  <b>scatter3</b> (<var><small class="dots">...</small>, 'filled'</var>)<var><a name="index-scatter3-1307"></a></var><br>
-&mdash; Function File:  <b>scatter3</b> (<var><small class="dots">...</small>, style</var>)<var><a name="index-scatter3-1308"></a></var><br>
-&mdash; Function File:  <b>scatter3</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-scatter3-1309"></a></var><br>
-&mdash; Function File:  <b>scatter3</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-scatter3-1310"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>scatter3</b> (<var><small class="dots">...</small></var>)<var><a name="index-scatter3-1311"></a></var><br>
+&mdash; Function File:  <b>scatter3</b> (<var>x, y, z, s, c</var>)<var><a name="index-scatter3-1368"></a></var><br>
+&mdash; Function File:  <b>scatter3</b> (<var><small class="dots">...</small>, "filled"</var>)<var><a name="index-scatter3-1369"></a></var><br>
+&mdash; Function File:  <b>scatter3</b> (<var><small class="dots">...</small>, style</var>)<var><a name="index-scatter3-1370"></a></var><br>
+&mdash; Function File:  <b>scatter3</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-scatter3-1371"></a></var><br>
+&mdash; Function File:  <b>scatter3</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-scatter3-1372"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>scatter3</b> (<var><small class="dots">...</small></var>)<var><a name="index-scatter3-1373"></a></var><br>
 <blockquote>
         <p>Plot a scatter plot of the data in 3D.  A marker is plotted at each point
 defined by the points in the vectors <var>x</var>, <var>y</var> and <var>z</var>.  The size
@@ -828,7 +822,7 @@ the colors of each of the markers individually.
 
         <p>The marker to use can be changed with the <var>style</var> argument, that is a
 string defining a marker in the same manner as the <code>plot</code> command. 
-If the argument 'filled' is given then the markers as filled.  All
+If the argument "filled" is given then the markers as filled.  All
 additional arguments are passed to the underlying patch command.
 
         <p>The optional return value <var>h</var> is a graphics handle to the hggroup
@@ -837,10 +831,27 @@ object representing the points.
      <pre class="example">          [x, y, z] = peaks (20);
           scatter3 (x(:), y(:), z(:), [], z(:));
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dpatch.html#doc_002dpatch">patch</a>, <a href="doc_002dscatter.html#doc_002dscatter">scatter</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dpatch.html#doc_002dpatch">patch</a>, <a href="doc_002dscatter.html#doc_002dscatter">scatter</a>. 
+</p></blockquote></div>
+
+<!-- waterfall scripts/plot/waterfall.m -->
+   <p><a name="doc_002dwaterfall"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>waterfall</b> (<var>x, y, z</var>)<var><a name="index-waterfall-1374"></a></var><br>
+&mdash; Function File:  <b>waterfall</b> (<var>z</var>)<var><a name="index-waterfall-1375"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>waterfall</b> (<var><small class="dots">...</small></var>)<var><a name="index-waterfall-1376"></a></var><br>
+<blockquote><p>Plot a waterfall plot given matrices <var>x</var>, and <var>y</var> from
+<code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
+<var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors,
+then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
+columns of <var>z</var> correspond to different <var>x</var> values and rows of
+<var>z</var> correspond to different <var>y</var> values.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created
+surface object.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dmeshz.html#doc_002dmeshz">meshz</a>, <a href="doc_002dsurf.html#doc_002dsurf">surf</a>. 
 </p></blockquote></div>
 
 <ul class="menu">

@@ -44,37 +44,32 @@ purpose concatenation functions can be used: see <a href="doc_002dcat.html#doc_0
 convert numerical input into character data by taking the corresponding ASCII
 character for each element, as in the following example:
 
-     <pre class="example">          char([98, 97, 110, 97, 110, 97])
-               &rArr; ans =
-                 banana
+     <pre class="example">          char ([98, 97, 110, 97, 110, 97])
+             &rArr; banana
 </pre>
      <li><code>char</code> and <code>strvcat</code>
 concatenate vertically, while <code>strcat</code> and <code>cstrcat</code> concatenate
 horizontally.  For example:
 
-     <pre class="example">          char("an apple", "two pears")
-               &rArr; ans =
-                 an apple
+     <pre class="example">          char ("an apple", "two pears")
+              &rArr; an apple
                  two pears
           
-          strcat("oc", "tave", " is", " good", " for you")
-               &rArr; ans =
-                 octave is good for you
+          strcat ("oc", "tave", " is", " good", " for you")
+               &rArr; octave is good for you
 </pre>
      <li><code>char</code> generates an empty row in the output
 for each empty string in the input.  <code>strvcat</code>, on the other hand,
 eliminates empty strings.
 
-     <pre class="example">          char("orange", "green", "", "red")
-               &rArr; ans =
-                 orange
+     <pre class="example">          char ("orange", "green", "", "red")
+              &rArr; orange
                  green
           
                  red
           
-          strvcat("orange", "green", "", "red")
-               &rArr; ans =
-                 orange
+          strvcat ("orange", "green", "", "red")
+              &rArr; orange
                  green
                  red
 </pre>
@@ -83,47 +78,44 @@ array data (see <a href="Cell-Arrays.html#Cell-Arrays">Cell Arrays</a>).  <code>
 <code>strvcat</code> convert cell arrays into character arrays, while <code>strcat</code>
 concatenates within the cells of the cell arrays:
 
-     <pre class="example">          char({"red", "green", "", "blue"})
-               &rArr; ans =
-                 red
-                 green
+     <pre class="example">          char ({"red", "green", "", "blue"})
+               &rArr; red
+                  green
           
-                 blue
+                  blue
           
-          strcat({"abc"; "ghi"}, {"def"; "jkl"})
-               &rArr; ans =
-                 {
-                   [1,1] = abcdef
-                   [2,1] = ghijkl
-                 }
+          strcat ({"abc"; "ghi"}, {"def"; "jkl"})
+               &rArr;
+                  {
+                    [1,1] = abcdef
+                    [2,1] = ghijkl
+                  }
 </pre>
      <li><code>strcat</code> removes trailing white space in the arguments (except
 within cell arrays), while <code>cstrcat</code> leaves white space untouched.  Both
 kinds of behavior can be useful as can be seen in the examples:
 
-     <pre class="example">          strcat(["dir1";"directory2"], ["/";"/"], ["file1";"file2"])
-               &rArr; ans =
-                 dir1/file1
-                 directory2/file2
+     <pre class="example">          strcat (["dir1";"directory2"], ["/";"/"], ["file1";"file2"])
+               &rArr; dir1/file1
+                  directory2/file2
           
-          cstrcat(["thirteen apples"; "a banana"], [" 5$";" 1$"])
-               &rArr; ans =
-                 thirteen apples 5$
-                 a banana        1$
+          cstrcat (["thirteen apples"; "a banana"], [" 5$";" 1$"])
+                &rArr; thirteen apples 5$
+                   a banana        1$
 </pre>
      <p>Note that in the above example for <code>cstrcat</code>, the white space originates
 from the internal representation of the strings in a string array
 (see <a href="Character-Arrays.html#Character-Arrays">Character Arrays</a>). 
 </ul>
 
-<!-- char src/strfns.cc -->
+<!-- char libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dchar"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>char</b> (<var>x</var>)<var><a name="index-char-333"></a></var><br>
-&mdash; Built-in Function:  <b>char</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-char-334"></a></var><br>
-&mdash; Built-in Function:  <b>char</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-char-335"></a></var><br>
-&mdash; Built-in Function:  <b>char</b> (<var>cell_array</var>)<var><a name="index-char-336"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>x</var>)<var><a name="index-char-351"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-char-352"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-char-353"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>cell_array</var>)<var><a name="index-char-354"></a></var><br>
 <blockquote><p>Create a string array from one or more numeric matrices, character
 matrices, or cell arrays.  Arguments are concatenated vertically. 
 The returned values are padded with blanks as needed to make each row
@@ -140,28 +132,25 @@ converted through
 For example:
 
      <pre class="example">          char ([97, 98, 99], "", {"98", "99", 100}, "str1", ["ha", "lf"])
-               &rArr; ["abc    "
-                   "       "
-                   "98     "
-                   "99     "
-                   "d      "
-                   "str1   "
-                   "half   "]
+             &rArr; ["abc    "
+                 "       "
+                 "98     "
+                 "99     "
+                 "d      "
+                 "str1   "
+                 "half   "]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>, <a href="doc_002dcellstr.html#doc_002dcellstr">cellstr</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>, <a href="doc_002dcellstr.html#doc_002dcellstr">cellstr</a>. 
 </p></blockquote></div>
 
-<!-- strvcat src/strfns.cc -->
+<!-- strvcat libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dstrvcat"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strvcat</b> (<var>x</var>)<var><a name="index-strvcat-337"></a></var><br>
-&mdash; Built-in Function:  <b>strvcat</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-strvcat-338"></a></var><br>
-&mdash; Built-in Function:  <b>strvcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strvcat-339"></a></var><br>
-&mdash; Built-in Function:  <b>strvcat</b> (<var>cell_array</var>)<var><a name="index-strvcat-340"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>x</var>)<var><a name="index-strvcat-355"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-strvcat-356"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strvcat-357"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>cell_array</var>)<var><a name="index-strvcat-358"></a></var><br>
 <blockquote><p>Create a character array from one or more numeric matrices, character
 matrices, or cell arrays.  Arguments are concatenated vertically. 
 The returned values are padded with blanks as needed to make each row
@@ -178,32 +167,41 @@ converted through
 For example:
 
      <pre class="example">          strvcat ([97, 98, 99], "", {"98", "99", 100}, "str1", ["ha", "lf"])
-               &rArr; ["abc    "
-                   "98     "
-                   "99     "
-                   "d      "
-                   "str1   "
-                   "half   "]
+                &rArr; ["abc    "
+                    "98     "
+                    "99     "
+                    "d      "
+                    "str1   "
+                    "half   "]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrcat.html#doc_002dstrcat">strcat</a>, <a href="doc_002dcstrcat.html#doc_002dcstrcat">cstrcat</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrcat.html#doc_002dstrcat">strcat</a>, <a href="doc_002dcstrcat.html#doc_002dcstrcat">cstrcat</a>. 
 </p></blockquote></div>
 
 <!-- strcat scripts/strings/strcat.m -->
    <p><a name="doc_002dstrcat"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>strcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strcat-341"></a></var><br>
+&mdash; Function File:  <b>strcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strcat-359"></a></var><br>
 <blockquote><p>Return a string containing all the arguments concatenated
 horizontally.  If the arguments are cells strings,  <code>strcat</code>
 returns a cell string with the individual cells concatenated. 
 For numerical input, each element is converted to the
-corresponding ASCII character.  Trailing white space is eliminated. 
-For example:
+corresponding ASCII character.  Trailing white space for each of
+the inputs (<var>s1</var>, <var>S2</var>, <small class="dots">...</small>) is eliminated before they
+are concatenated.
 
-     <pre class="example">          s = [ "ab"; "cde" ];
+        <p>For example:
+
+     <pre class="example">          strcat ("|", " leading space is preserved", "|")
+              &rArr; | leading space is perserved|
+</pre>
+        <pre class="example">          strcat ("|", "trailing space is eliminated ", "|")
+              &rArr; |trailing space is eliminated|
+</pre>
+        <pre class="example">          strcat ("homogeneous space |", "  ", "| is also eliminated")
+              &rArr; homogeneous space || is also eliminated
+</pre>
+        <pre class="example">          s = [ "ab"; "cde" ];
           strcat (s, s, s)
               &rArr;
                   "ab ab ab "
@@ -217,17 +215,14 @@ For example:
                     [2,1] = cdecdecde
                   }
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcstrcat.html#doc_002dcstrcat">cstrcat</a>, <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcstrcat.html#doc_002dcstrcat">cstrcat</a>, <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>. 
 </p></blockquote></div>
 
 <!-- cstrcat scripts/strings/cstrcat.m -->
    <p><a name="doc_002dcstrcat"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cstrcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-cstrcat-342"></a></var><br>
+&mdash; Function File:  <b>cstrcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-cstrcat-360"></a></var><br>
 <blockquote><p>Return a string containing all the arguments concatenated
 horizontally.  Trailing white space is preserved.  For example:
 
@@ -236,13 +231,10 @@ horizontally.  Trailing white space is preserved.  For example:
 </pre>
         <pre class="example">          s = [ "ab"; "cde" ];
           cstrcat (s, s, s)
-               &rArr; "ab ab ab "
-                  "cdecdecde"
+                &rArr; "ab ab ab "
+                   "cdecdecde"
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcat.html#doc_002dstrcat">strcat</a>, <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcat.html#doc_002dstrcat">strcat</a>, <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>. 
 </p></blockquote></div>
 
    </body></html>

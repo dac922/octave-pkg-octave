@@ -71,7 +71,7 @@ function h = __errplot__ (fstr, p, varargin)
           (__line__ (hg, "linestyle", "-", "marker", "none",
                    "color", fmt.color))];
 
-    switch (numel(varargin))
+    switch (numel (varargin))
       case 2
         ydata = varargin{1}(:,i);
         xdata = 1:numel (ydata);
@@ -196,7 +196,7 @@ function h = __errplot__ (fstr, p, varargin)
   ## Process legend key
   if (! isempty (fmt.key))    
     hlegend = [];
-    fkids = get (gcf(), "children");
+    fkids = get (gcf (), "children");
     for i = 1 : numel (fkids)
       if (ishandle (fkids(i)) && strcmp (get (fkids(i), "type"), "axes")
           && (strcmp (get (fkids(i), "tag"), "legend")))
@@ -218,8 +218,8 @@ function h = __errplot__ (fstr, p, varargin)
     hlgnd(end+1) = hg;
     tlgnd(end+1) = fmt.key;
 
-    legend (gca(), hlgnd, tlgnd);
-  end 
+    legend (gca (), hlgnd, tlgnd);
+  endif
 
 endfunction
 
@@ -232,7 +232,7 @@ function [xdata, ydata] = errorbar_data (xdata, ydata, ldata, udata,
     xhi = xdata + dx;
   else
     n = xdata > 0;
-    rx = exp(0.01 * (max (log(xdata(n))) - min (log(xdata(n)))));
+    rx = exp (0.01 * (max (log (xdata(n))) - min (log (xdata(n)))));
     xlo = xdata/rx;
     xhi = xdata*rx;
   endif
@@ -242,7 +242,7 @@ function [xdata, ydata] = errorbar_data (xdata, ydata, ldata, udata,
     yhi = ydata + dy;
   else
     n = ydata > 0;
-    ry = exp(0.01 * (max (log(ydata(n))) - min (log(ydata(n)))));
+    ry = exp (0.01 * (max (log (ydata(n))) - min (log (ydata(n)))));
     ylo = ydata/ry;
     yhi = ydata*ry;
   endif

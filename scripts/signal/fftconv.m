@@ -67,8 +67,8 @@ endfunction
 
 %% FIXME: Borrow tests from conv.m.  May need a tolerance on the assert comparison
 %!test
-%!  x = ones(3,1);
-%!  y = ones(1,3);
+%!  x = ones (3,1);
+%!  y = ones (1,3);
 %!  b = 2;
 %!  c = 3;
 %!  assert (fftconv (x, x), [1; 2; 3; 2; 1], 5*eps);
@@ -84,23 +84,24 @@ endfunction
 %!test
 %!  a = 1:10;
 %!  b = 1:3;
-%!  assert (size(conv(a,b)), [1, numel(a)+numel(b)-1])
-%!  assert (size(conv(b,a)), [1, numel(a)+numel(b)-1])
+%!  assert (size (conv (a,b)), [1, numel(a)+numel(b)-1])
+%!  assert (size (conv (b,a)), [1, numel(a)+numel(b)-1])
 
 %!  a = (1:10).';
 %!  b = 1:3;
-%!  assert (size(conv(a,b)), [numel(a)+numel(b)-1, 1])
-%!  assert (size(conv(b,a)), [numel(a)+numel(b)-1, 1])
+%!  assert (size (conv (a,b)), [numel(a)+numel(b)-1, 1])
+%!  assert (size (conv (b,a)), [numel(a)+numel(b)-1, 1])
 
 %!test
 %!  a = 1:10;
 %!  b = (1:3).';
-%!  assert (size(conv(a,b)), [1, numel(a)+numel(b)-1])
-%!  assert (size(conv(b,a)), [1, numel(a)+numel(b)-1])
+%!  assert (size (conv (a,b)), [1, numel(a)+numel(b)-1])
+%!  assert (size (conv (b,a)), [1, numel(a)+numel(b)-1])
 
 %% Test input validation
-%!error fftconv (1);
-%!error fftconv (1,2,3,4);
-%!error fftconv ([1, 2; 3, 4], 3);
-%!error fftconv (2, []);
-%!error fftconv ([1,1], [2,2] , [3, 4]);
+%!error fftconv (1)
+%!error fftconv (1,2,3,4)
+%!error fftconv ([1, 2; 3, 4], 3)
+%!error fftconv (2, [])
+%!error fftconv ([1,1], [2,2] , [3, 4])
+

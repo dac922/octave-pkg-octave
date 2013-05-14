@@ -42,12 +42,9 @@ command, the use of the command <code>mex</code> is limited to within Octave.
    <p><a name="doc_002dmex"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mex</b> [<var>options</var>]<var> file <small class="dots">...</small><a name="index-mex-3372"></a></var><br>
+&mdash; Function File:  <b>mex</b> [<var>options</var>]<var> file <small class="dots">...</small><a name="index-mex-3747"></a></var><br>
 <blockquote><p>Compile source code written in C, C++, or Fortran, to a MEX file. 
-This is equivalent to <code>mkoctfile --mex [options] file</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+This is equivalent to <code>mkoctfile --mex [options] file</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmkoctfile.html#doc_002dmkoctfile">mkoctfile</a>. 
 </p></blockquote></div>
@@ -56,11 +53,8 @@ This is equivalent to <code>mkoctfile --mex [options] file</code>.
    <p><a name="doc_002dmexext"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mexext</b> ()<var><a name="index-mexext-3373"></a></var><br>
-<blockquote><p>Return the filename extension used for MEX files. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File:  <b>mexext</b> ()<var><a name="index-mexext-3748"></a></var><br>
+<blockquote><p>Return the filename extension used for MEX files.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmex.html#doc_002dmex">mex</a>. 
 </p></blockquote></div>
@@ -99,7 +93,7 @@ file <samp><span class="file">firstmexdemo.c</span></samp>, it can be compiled w
    <p class="noindent">which creates a file <samp><span class="file">firstmexdemo.mex</span></samp>.  The function can then be run
 from Octave as
 
-<pre class="example">     firstmexdemo()
+<pre class="example">     firstmexdemo ()
      &rArr; 1.2346
 </pre>
    <p>It should be noted that the mex-file contains no help string for the
@@ -142,10 +136,10 @@ the mex-file based on the function name.  For example if
 </pre>
    <p>Then as can be seen by
 
-<pre class="example">     myfunc()
+<pre class="example">     myfunc ()
      &rArr; You called function: myfunc
          This is the principal function
-     myfunc2()
+     myfunc2 ()
      &rArr; You called function: myfunc2
 </pre>
    <p class="noindent">the behavior of the mex-file can be altered depending on the functions

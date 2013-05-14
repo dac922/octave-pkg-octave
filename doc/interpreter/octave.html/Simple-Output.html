@@ -44,33 +44,32 @@ to the file &lsquo;<samp><span class="samp">free.txt</span></samp>&rsquo;.
      fputs (fid, "Free Software is needed for Free Science");
      fclose (fid);
 </pre>
-   <!-- fputs src/file-io.cc -->
+   <!-- fputs libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dfputs"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fputs</b> (<var>fid, string</var>)<var><a name="index-fputs-982"></a></var><br>
+&mdash; Built-in Function:  <b>fputs</b> (<var>fid, string</var>)<var><a name="index-fputs-1028"></a></var><br>
 <blockquote><p>Write a string to a file with no formatting.
 
-        <p>Return a non-negative number on success and EOF on error. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>Return a non-negative number on success and EOF on error.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dscanf.html#doc_002dscanf">scanf</a>, <a href="doc_002dsscanf.html#doc_002dsscanf">sscanf</a>, <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dfgets.html#doc_002dfgets">fgets</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfdisp.html#doc_002dfdisp">fdisp</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
 </p></blockquote></div>
 
    <p>A function much similar to <code>fputs</code> is available for writing data
 to the screen.  The <code>puts</code> function works just like <code>fputs</code>
 except it doesn't take a file pointer as its input.
 
-<!-- puts src/file-io.cc -->
+<!-- puts libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dputs"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>puts</b> (<var>string</var>)<var><a name="index-puts-983"></a></var><br>
+&mdash; Built-in Function:  <b>puts</b> (<var>string</var>)<var><a name="index-puts-1029"></a></var><br>
 <blockquote><p>Write a string to the standard output with no formatting.
 
-        <p>Return a non-negative number on success and EOF on error. 
+        <p>Return a non-negative number on success and EOF on error.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfputs.html#doc_002dfputs">fputs</a>, <a href="doc_002ddisp.html#doc_002ddisp">disp</a>. 
 </p></blockquote></div>
 
    </body></html>

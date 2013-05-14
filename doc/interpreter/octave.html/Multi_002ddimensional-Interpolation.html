@@ -41,11 +41,11 @@ in <a href="Interpolation-on-Scattered-Data.html#Interpolation-on-Scattered-Data
    <p><a name="doc_002dinterp2"></a>
 
 <div class="defun">
-&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var>x, y, z, xi, yi</var>)<var><a name="index-interp2-2757"></a></var><br>
-&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var>Z, xi, yi</var>)<var><a name="index-interp2-2758"></a></var><br>
-&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var>Z, n</var>)<var><a name="index-interp2-2759"></a></var><br>
-&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interp2-2760"></a></var><br>
-&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var><small class="dots">...</small>, method, extrapval</var>)<var><a name="index-interp2-2761"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var>x, y, z, xi, yi</var>)<var><a name="index-interp2-2971"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var>Z, xi, yi</var>)<var><a name="index-interp2-2972"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var>Z, n</var>)<var><a name="index-interp2-2973"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interp2-2974"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>interp2</b> (<var><small class="dots">...</small>, method, extrapval</var>)<var><a name="index-interp2-2975"></a></var><br>
 <blockquote>
         <p>Two-dimensional interpolation.  <var>x</var>, <var>y</var> and <var>z</var> describe a
 surface function.  If <var>x</var> and <var>y</var> are vectors their length
@@ -58,8 +58,8 @@ format.
 matrices <var>xi</var>, <var>yi</var>.
 
           <p>If the last argument is a string, the interpolation method can
-be specified.  The method can be 'linear', 'nearest' or 'cubic'. 
-If it is omitted 'linear' interpolation is assumed.
+be specified.  The method can be "linear", "nearest" or "cubic". 
+If it is omitted "linear" interpolation is assumed.
 
           <br><dt><code>interp2 (</code><var>z</var><code>, </code><var>xi</var><code>, </code><var>yi</var><code>)</code><dd>Assumes <var>x</var><code> = 1:rows (</code><var>z</var><code>)</code> and <var>y</var><code> =
 1:columns (</code><var>z</var><code>)</code>
@@ -72,15 +72,15 @@ of <var>n</var><code> = 1</code> is assumed.
 interpolation.  It can take one of the following values
 
           <dl>
-<dt>'nearest'<dd>Return the nearest neighbor.
+<dt>"nearest"<dd>Return the nearest neighbor.
 
-          <br><dt>'linear'<dd>Linear interpolation from nearest neighbors.
+          <br><dt>"linear"<dd>Linear interpolation from nearest neighbors.
 
-          <br><dt>'pchip'<dd>Piecewise cubic Hermite interpolating polynomial.
+          <br><dt>"pchip"<dd>Piecewise cubic Hermite interpolating polynomial.
 
-          <br><dt>'cubic'<dd>Cubic interpolation from four nearest neighbors.
+          <br><dt>"cubic"<dd>Cubic interpolation from four nearest neighbors.
 
-          <br><dt>'spline'<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
+          <br><dt>"spline"<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
 throughout the curve. 
 </dl>
 
@@ -89,9 +89,6 @@ values outside the mesh as set to this value.  Note that in this case
 <var>method</var> must be defined as well.  If <var>extrapval</var> is not
 defined then NA is assumed.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp1.html#doc_002dinterp1">interp1</a>. 
 </p></blockquote></div>
 
@@ -99,18 +96,18 @@ defined then NA is assumed.
    <p><a name="doc_002dinterp3"></a>
 
 <div class="defun">
-&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>x, y, z, v, xi, yi, zi</var>)<var><a name="index-interp3-2762"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>v, xi, yi, zi</var>)<var><a name="index-interp3-2763"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>v, m</var>)<var><a name="index-interp3-2764"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>v</var>)<var><a name="index-interp3-2765"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interp3-2766"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var><small class="dots">...</small>, method, extrapval</var>)<var><a name="index-interp3-2767"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>x, y, z, v, xi, yi, zi</var>)<var><a name="index-interp3-2976"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>v, xi, yi, zi</var>)<var><a name="index-interp3-2977"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>v, m</var>)<var><a name="index-interp3-2978"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var>v</var>)<var><a name="index-interp3-2979"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interp3-2980"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interp3</b> (<var><small class="dots">...</small>, method, extrapval</var>)<var><a name="index-interp3-2981"></a></var><br>
 <blockquote>
         <p>Perform 3-dimensional interpolation.  Each element of the 3-dimensional
 array <var>v</var> represents a value at a location given by the parameters
 <var>x</var>, <var>y</var>, and <var>z</var>.  The parameters <var>x</var>, <var>x</var>, and
 <var>z</var> are either 3-dimensional arrays of the same size as the array
-<var>v</var> in the 'meshgrid' format or vectors.  The parameters <var>xi</var>, etc. 
+<var>v</var> in the "meshgrid" format or vectors.  The parameters <var>xi</var>, etc. 
 respect a similar format to <var>x</var>, etc., and they represent the points
 at which the array <var>vi</var> is interpolated.
 
@@ -124,24 +121,21 @@ specified, then <var>m</var> is assumed to be <code>1</code>.
         <p>Method is one of:
 
           <dl>
-<dt>'nearest'<dd>Return the nearest neighbor.
+<dt>"nearest"<dd>Return the nearest neighbor.
 
-          <br><dt>'linear'<dd>Linear interpolation from nearest neighbors.
+          <br><dt>"linear"<dd>Linear interpolation from nearest neighbors.
 
-          <br><dt>'cubic'<dd>Cubic interpolation from four nearest neighbors (not implemented yet).
+          <br><dt>"cubic"<dd>Cubic interpolation from four nearest neighbors (not implemented yet).
 
-          <br><dt>'spline'<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
+          <br><dt>"spline"<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
 throughout the curve. 
 </dl>
 
-        <p>The default method is 'linear'.
+        <p>The default method is "linear".
 
-        <p>If <var>extrap</var> is the string 'extrap', then extrapolate values beyond
+        <p>If <var>extrap</var> is the string "extrap", then extrapolate values beyond
 the endpoints.  If <var>extrap</var> is a number, replace values beyond the
-endpoints with that number.  If <var>extrap</var> is missing, assume NA. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+endpoints with that number.  If <var>extrap</var> is missing, assume NA.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp1.html#doc_002dinterp1">interp1</a>, <a href="doc_002dinterp2.html#doc_002dinterp2">interp2</a>, <a href="doc_002dspline.html#doc_002dspline">spline</a>, <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>. 
 </p></blockquote></div>
@@ -150,19 +144,19 @@ endpoints with that number.  If <var>extrap</var> is missing, assume NA.
    <p><a name="doc_002dinterpn"></a>
 
 <div class="defun">
-&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>x1, x2, <small class="dots">...</small>, v, y1, y2, <small class="dots">...</small></var>)<var><a name="index-interpn-2768"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>v, y1, y2, <small class="dots">...</small></var>)<var><a name="index-interpn-2769"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>v, m</var>)<var><a name="index-interpn-2770"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>v</var>)<var><a name="index-interpn-2771"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interpn-2772"></a></var><br>
-&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var><small class="dots">...</small>, method, extrapval</var>)<var><a name="index-interpn-2773"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>x1, x2, <small class="dots">...</small>, v, y1, y2, <small class="dots">...</small></var>)<var><a name="index-interpn-2982"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>v, y1, y2, <small class="dots">...</small></var>)<var><a name="index-interpn-2983"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>v, m</var>)<var><a name="index-interpn-2984"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var>v</var>)<var><a name="index-interpn-2985"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var><small class="dots">...</small>, method</var>)<var><a name="index-interpn-2986"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>interpn</b> (<var><small class="dots">...</small>, method, extrapval</var>)<var><a name="index-interpn-2987"></a></var><br>
 <blockquote>
         <p>Perform <var>n</var>-dimensional interpolation, where <var>n</var> is at least two. 
 Each element of the <var>n</var>-dimensional array <var>v</var> represents a value
 at a location given by the parameters <var>x1</var>, <var>x2</var>, <small class="dots">...</small>, <var>xn</var>. 
 The parameters <var>x1</var>, <var>x2</var>, <small class="dots">...</small>, <var>xn</var> are either
 <var>n</var>-dimensional arrays of the same size as the array <var>v</var> in
-the 'ndgrid' format or vectors.  The parameters <var>y1</var>, etc. respect a
+the "ndgrid" format or vectors.  The parameters <var>y1</var>, etc. respect a
 similar format to <var>x1</var>, etc., and they represent the points at which
 the array <var>vi</var> is interpolated.
 
@@ -175,24 +169,21 @@ specified, then <var>m</var> is assumed to be <code>1</code>.
         <p>Method is one of:
 
           <dl>
-<dt>'nearest'<dd>Return the nearest neighbor.
+<dt>"nearest"<dd>Return the nearest neighbor.
 
-          <br><dt>'linear'<dd>Linear interpolation from nearest neighbors.
+          <br><dt>"linear"<dd>Linear interpolation from nearest neighbors.
 
-          <br><dt>'cubic'<dd>Cubic interpolation from four nearest neighbors (not implemented yet).
+          <br><dt>"cubic"<dd>Cubic interpolation from four nearest neighbors (not implemented yet).
 
-          <br><dt>'spline'<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
+          <br><dt>"spline"<dd>Cubic spline interpolation&mdash;smooth first and second derivatives
 throughout the curve. 
 </dl>
 
-        <p>The default method is 'linear'.
+        <p>The default method is "linear".
 
         <p>If <var>extrapval</var> is the scalar value, use it to replace the values
 beyond the endpoints with that number.  If <var>extrapval</var> is missing,
-assume NA. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+assume NA.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp1.html#doc_002dinterp1">interp1</a>, <a href="doc_002dinterp2.html#doc_002dinterp2">interp2</a>, <a href="doc_002dspline.html#doc_002dspline">spline</a>, <a href="doc_002dndgrid.html#doc_002dndgrid">ndgrid</a>. 
 </p></blockquote></div>
@@ -212,9 +203,9 @@ Consider the example,
      v = f (xx,yy,zz);
      xi = yi = zi = -1:0.1:1;
      [xxi, yyi, zzi] = meshgrid (xi, yi, zi);
-     vi = interp3(x, y, z, v, xxi, yyi, zzi, 'spline');
+     vi = interp3 (x, y, z, v, xxi, yyi, zzi, 'spline');
      [xxi, yyi, zzi] = ndgrid (xi, yi, zi);
-     vi2 = interpn(x, y, z, v, xxi, yyi, zzi, 'spline');
+     vi2 = interpn (x, y, z, v, xxi, yyi, zzi, 'spline');
      mesh (zi, yi, squeeze (vi2(1,:,:)));
 </pre>
    <p class="noindent">where <code>vi</code> and <code>vi2</code> are identical.  The reversal of the
@@ -233,7 +224,7 @@ cubic interpolation of <code>interp2</code> function can be called directly.
    <p><a name="doc_002dbicubic"></a>
 
 <div class="defun">
-&mdash; Function File: <var>zi</var> = <b>bicubic</b> (<var>x, y, z, xi, yi, extrapval</var>)<var><a name="index-bicubic-2774"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>bicubic</b> (<var>x, y, z, xi, yi, extrapval</var>)<var><a name="index-bicubic-2988"></a></var><br>
 <blockquote>
         <p>Return a matrix <var>zi</var> corresponding to the bicubic
 interpolations at <var>xi</var> and <var>yi</var> of the data supplied
@@ -241,10 +232,7 @@ as <var>x</var>, <var>y</var> and <var>z</var>.  Points outside the grid are set
 to <var>extrapval</var>.
 
         <p>See <a href="http://wiki.woodpecker.org.cn/moin/Octave/Bicubic">http://wiki.woodpecker.org.cn/moin/Octave/Bicubic</a>
-for further information. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+for further information.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinterp2.html#doc_002dinterp2">interp2</a>. 
 </p></blockquote></div>

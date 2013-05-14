@@ -34,15 +34,15 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Image-Processing.html#Image-Processing"
 
 <h3 class="section">32.3 Representing Images</h3>
 
-<p>In general Octave supports four different kinds of images, gray-scale
-images, RGB images, binary images, and indexed images.  A gray-scale
+<p>In general Octave supports four different kinds of images, grayscale
+images, RGB images, binary images, and indexed images.  A grayscale
 image is represented with an M-by-N matrix in which each
 element corresponds to the intensity of a pixel.  An RGB image is
 represented with an M-by-N-by-3 array where each
 3-vector corresponds to the red, green, and blue intensities of each
 pixel.
 
-   <p>The actual meaning of the value of a pixel in a gray-scale or RGB
+   <p>The actual meaning of the value of a pixel in a grayscale or RGB
 image depends on the class of the matrix.  If the matrix is of class
 <code>double</code> pixel intensities are between 0 and 1, if it is of class
 <code>uint8</code> intensities are between 0 and 255, and if it is of class
@@ -58,99 +58,193 @@ index in the color map, and each row in the color map corresponds to
 an RGB color.  The color map must be of class <code>double</code> with values
 between 0 and 1.
 
+<!-- iscolormap scripts/image/iscolormap.m -->
+   <p><a name="doc_002discolormap"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>iscolormap</b> (<var>cmap</var>)<var><a name="index-iscolormap-3138"></a></var><br>
+<blockquote><p>Return true if <var>cmap</var> is a colormap.
+
+        <p>A colormap is a real matrix with <var>n</var> rows and 3 columns. 
+Each row represents a single color.  The columns contain red, green,
+and blue intensities respectively.  All entries must be between 0 and 1
+inclusive.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002drgbplot.html#doc_002drgbplot">rgbplot</a>. 
+</p></blockquote></div>
+
 <!-- gray2ind scripts/image/gray2ind.m -->
    <p><a name="doc_002dgray2ind"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>img</var>, <var>map</var>] = <b>gray2ind</b> (<var>I, n</var>)<var><a name="index-gray2ind-2912"></a></var><br>
-<blockquote><p>Convert a gray scale intensity image to an Octave indexed image. 
-The indexed image will consist of <var>n</var> different intensity values.  If not
-given <var>n</var> will default to 64. 
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I</var>)<var><a name="index-gray2ind-3139"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I, n</var>)<var><a name="index-gray2ind-3140"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW</var>)<var><a name="index-gray2ind-3141"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW, n</var>)<var><a name="index-gray2ind-3142"></a></var><br>
+&mdash; Function File: [<var>img</var>, <var>map</var>] = <b>gray2ind</b> (<var><small class="dots">...</small></var>)<var><a name="index-gray2ind-3143"></a></var><br>
+<blockquote><p>Convert a grayscale or binary intensity image to an indexed image.
+
+        <p>The indexed image will consist of <var>n</var> different intensity values. 
+If not given <var>n</var> defaults to 64 for grayscale images or 2 for
+binary black and white images.
+
+        <p>The output <var>img</var> is of class uint8 if <var>n</var> is less than or
+equal to 256; Otherwise the return class is uint16.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2gray.html#doc_002dind2gray">ind2gray</a>, <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>. 
 </p></blockquote></div>
 
 <!-- ind2gray scripts/image/ind2gray.m -->
    <p><a name="doc_002dind2gray"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ind2gray</b> (<var>x, map</var>)<var><a name="index-ind2gray-2913"></a></var><br>
-<blockquote><p>Convert an Octave indexed image to a gray scale intensity image. 
-If <var>map</var> is omitted, the current colormap is used to determine the
-intensities. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File: <var>I</var> = <b>ind2gray</b> (<var>x, map</var>)<var><a name="index-ind2gray-3144"></a></var><br>
+<blockquote><p>Convert a color indexed image to a grayscale intensity image.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>, <a href="doc_002drgb2ntsc.html#doc_002drgb2ntsc">rgb2ntsc</a>, <a href="doc_002dimage.html#doc_002dimage">image</a>, <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
+        <p>The image <var>x</var> must be an indexed image which will be converted using the
+colormap <var>cmap</var>.  If <var>cmap</var> does not contain enough colors for the
+image, pixels in <var>x</var> outside the range are mapped to the last color in
+the map before conversion to grayscale.
+
+        <p>The output <var>I</var> is of the same class as the input <var>x</var> and may be
+one of <code>uint8</code>, <code>uint16</code>, <code>single</code>, or <code>double</code>.
+
+        <p>Implementation Note: There are several ways of converting colors to
+grayscale intensities.  This functions uses the luminance value obtained
+from <code>rgb2ntsc</code> which is <code>I = 0.299*R + 0.587*G + 0.114*B</code>. 
+Other possibilities include the value component from <code>rgb2hsv</code> or
+using a single color channel from <code>ind2rgb</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>, <a href="doc_002dind2rgb.html#doc_002dind2rgb">ind2rgb</a>. 
 </p></blockquote></div>
 
 <!-- rgb2ind scripts/image/rgb2ind.m -->
    <p><a name="doc_002drgb2ind"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb</var>)<var><a name="index-rgb2ind-2914"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B</var>)<var><a name="index-rgb2ind-2915"></a></var><br>
-<blockquote><p>Convert an RGB image to an Octave indexed image. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb</var>)<var><a name="index-rgb2ind-3145"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, map</var>)<var><a name="index-rgb2ind-3146"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, n</var>)<var><a name="index-rgb2ind-3147"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, tol</var>)<var><a name="index-rgb2ind-3148"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, map, dither_option</var>)<var><a name="index-rgb2ind-3149"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, n, dither_option</var>)<var><a name="index-rgb2ind-3150"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, tol, dither_option</var>)<var><a name="index-rgb2ind-3151"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B</var>)<var><a name="index-rgb2ind-3152"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, map</var>)<var><a name="index-rgb2ind-3153"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, n</var>)<var><a name="index-rgb2ind-3154"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, tol</var>)<var><a name="index-rgb2ind-3155"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, map, dither_option</var>)<var><a name="index-rgb2ind-3156"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, n, dither_option</var>)<var><a name="index-rgb2ind-3157"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, tol, dither_option</var>)<var><a name="index-rgb2ind-3158"></a></var><br>
+<blockquote><p>Convert an image in red-green-blue (RGB) color space to an indexed image.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2rgb.html#doc_002dind2rgb">ind2rgb</a>, <a href="doc_002drgb2ntsc.html#doc_002drgb2ntsc">rgb2ntsc</a>. 
+        <p>The input image <var>rgb</var> must be an N-dimensional RGB image
+(MxNxO...x3 array) where M,N,O... are the image dimensions, and the
+final dimension contains the values in the red, green and blue
+channels. Alternatively, the red, green and blue color channels can
+be input as separate arrays <var>R</var>, <var>G</var> and  <var>B</var>.
+
+        <p>The input <var>map</var> defines the colormap to be used.  Alternatively,
+<var>n</var> or <var>tol</var> may be used to define the maximum number of
+colors to use in an automatically generated colormap.  <var>n</var> is
+related to <var>tol</var> by:  <var>n</var> = (floor (1/<var>tol</var>) + 1)^3;
+<var>tol</var> must be &gt;0 and &lt;=1.
+
+        <p><var>dither_option</var> is a string which enables or disables dithering:
+'dither' (default) or 'nodither'.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2rgb.html#doc_002dind2rgb">ind2rgb</a>, <a href="doc_002drgb2hsv.html#doc_002drgb2hsv">rgb2hsv</a>, <a href="doc_002drgb2ntsc.html#doc_002drgb2ntsc">rgb2ntsc</a>. 
 </p></blockquote></div>
 
 <!-- ind2rgb scripts/image/ind2rgb.m -->
    <p><a name="doc_002dind2rgb"></a>
 
 <div class="defun">
-&mdash; Function File: <var>rgb</var> = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-2916"></a></var><br>
-&mdash; Function File: [<var>R</var>, <var>R</var>, <var>R</var>] = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-2917"></a></var><br>
-<blockquote><p>Convert an indexed image to red, green, and blue color components. 
-If the colormap doesn't contain enough colors, pad it with the
-last color in the map. 
-If <var>map</var> is omitted, the current colormap is used for the conversion. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File: <var>rgb</var> = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3159"></a></var><br>
+&mdash; Function File: [<var>R</var>, <var>G</var>, <var>B</var>] = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3160"></a></var><br>
+<blockquote><p>Convert an indexed image to red, green, and blue color components.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>, <a href="doc_002dimage.html#doc_002dimage">image</a>, <a href="doc_002dimshow.html#doc_002dimshow">imshow</a>, <a href="doc_002dind2gray.html#doc_002dind2gray">ind2gray</a>, <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>. 
+        <p>The image <var>x</var> must be an indexed image which will be converted using the
+colormap <var>map</var>.  If <var>map</var> does not contain enough colors for the
+image, pixels in <var>x</var> outside the range are mapped to the last color in
+the map.
+
+        <p>The output may be a single RGB image (MxNx3 matrix where M and N are the
+original image <var>x</var> dimensions, one for each of the red, green and blue
+channels).  Alternatively, the individual red, green, and blue color matrices
+of size MxN may be returned.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>, <a href="doc_002dind2gray.html#doc_002dind2gray">ind2gray</a>, <a href="doc_002dhsv2rgb.html#doc_002dhsv2rgb">hsv2rgb</a>, <a href="doc_002dntsc2rgb.html#doc_002dntsc2rgb">ntsc2rgb</a>. 
 </p></blockquote></div>
 
 <!-- colormap scripts/image/colormap.m -->
    <p><a name="doc_002dcolormap"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>colormap</b> (<var>map</var>)<var><a name="index-colormap-2918"></a></var><br>
-&mdash; Function File:  <b>colormap</b> (<var>"default"</var>)<var><a name="index-colormap-2919"></a></var><br>
-<blockquote><p>Set the current colormap.
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> ()<var><a name="index-colormap-3161"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>map</var>)<var><a name="index-colormap-3162"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"default"</var>)<var><a name="index-colormap-3163"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"list"</var>)<var><a name="index-colormap-3164"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"register", "name"</var>)<var><a name="index-colormap-3165"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"unregister", "name"</var>)<var><a name="index-colormap-3166"></a></var><br>
+<blockquote><p>Query or set the current colormap.
 
         <p><code>colormap (</code><var>map</var><code>)</code> sets the current colormap to <var>map</var>.  The
-color map should be an <var>n</var> row by 3 column matrix.  The columns
+colormap should be an <var>n</var> row by 3 column matrix.  The columns
 contain red, green, and blue intensities respectively.  All entries
-should be between 0 and 1 inclusive.  The new colormap is returned.
+must be between 0 and 1 inclusive.  The new colormap is returned.
 
         <p><code>colormap ("default")</code> restores the default colormap (the
 <code>jet</code> map with 64 entries).  The default colormap is returned.
 
-        <p>With no arguments, <code>colormap</code> returns the current color map. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p><code>colormap ("list")</code> returns a cell array with all the available
+colormaps.  The options `register' and `unregister' will add or remove the
+colormap <var>name</var> to it.
+
+        <p>With no arguments, <code>colormap</code> returns the current color map.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002djet.html#doc_002djet">jet</a>. 
+</p></blockquote></div>
+
+<!-- rgbplot scripts/image/rgbplot.m -->
+   <p><a name="doc_002drgbplot"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>rgbplot</b> (<var>cmap</var>)<var><a name="index-rgbplot-3167"></a></var><br>
+&mdash; Function File:  <b>rgbplot</b> (<var>cmap, style</var>)<var><a name="index-rgbplot-3168"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>rgbplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-rgbplot-3169"></a></var><br>
+<blockquote><p>Plot the components of a colormap.
+
+        <p>Two different <var>style</var>s are available for displaying the <var>cmap</var>:
+
+          <dl>
+<dt>profile (default)<dd>Plot the RGB line profile of the colormap for each of the channels (red,
+green and blue) with the plot lines colored appropriately.  Each line
+represents the intensity of each RGB components across the colormap.
+
+          <br><dt>composite<dd>Draw the colormap across the X-axis so that the actual index colors are
+visible rather than the individual color components.
+
+        </dl>
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
+
+        <p>Run <code>demo rgbplot</code> to see an example of <code>rgbplot</code> and each style
+option.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
 
 <!-- autumn scripts/image/autumn.m -->
    <p><a name="doc_002dautumn"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>autumn</b> ()<var><a name="index-autumn-2920"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>autumn</b> (<var>n</var>)<var><a name="index-autumn-2921"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>autumn</b> ()<var><a name="index-autumn-3170"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>autumn</b> (<var>n</var>)<var><a name="index-autumn-3171"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from red through orange
 to yellow. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -159,15 +253,29 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dbone"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>bone</b> ()<var><a name="index-bone-2922"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>bone</b> (<var>n</var>)<var><a name="index-bone-2923"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>bone</b> ()<var><a name="index-bone-3172"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>bone</b> (<var>n</var>)<var><a name="index-bone-3173"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with
 gray-blue shades. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
+</p></blockquote></div>
+
+<!-- colorcube scripts/image/colorcube.m -->
+   <p><a name="doc_002dcolorcube"></a>
+
+<div class="defun">
+&mdash; Function File: <var>map</var> = <b>colorcube</b> ()<var><a name="index-colorcube-3174"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>colorcube</b> (<var>n</var>)<var><a name="index-colorcube-3175"></a></var><br>
+<blockquote><p>Create color colormap.  This colormap is composed of as many equally
+spaced colors (not grays) in the RGB color space as possible.  If there
+are not a perfect number <var>n</var> of regularly spaced colors then the
+remaining entries in the colormap are gradients of pure red, green, blue,
+and gray. 
+The argument <var>n</var> must be a scalar. 
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -176,14 +284,11 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcool"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>cool</b> ()<var><a name="index-cool-2924"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>cool</b> (<var>n</var>)<var><a name="index-cool-2925"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>cool</b> ()<var><a name="index-cool-3176"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>cool</b> (<var>n</var>)<var><a name="index-cool-3177"></a></var><br>
 <blockquote><p>Create color colormap.  The colormap varies from cyan to magenta. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -192,15 +297,12 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcopper"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>copper</b> ()<var><a name="index-copper-2926"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>copper</b> (<var>n</var>)<var><a name="index-copper-2927"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>copper</b> ()<var><a name="index-copper-3178"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>copper</b> (<var>n</var>)<var><a name="index-copper-3179"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to
 a light copper tone. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -209,15 +311,12 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dflag"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>flag</b> ()<var><a name="index-flag-2928"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>flag</b> (<var>n</var>)<var><a name="index-flag-2929"></a></var><br>
-<blockquote><p>Create color colormap.  This colormap cycles through red, white, blue
+&mdash; Function File: <var>map</var> = <b>flag</b> ()<var><a name="index-flag-3180"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>flag</b> (<var>n</var>)<var><a name="index-flag-3181"></a></var><br>
+<blockquote><p>Create color colormap.  This colormap cycles through red, white, blue,
 and black with each index change. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -226,27 +325,26 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dgray"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>gray</b> ()<var><a name="index-gray-2930"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>gray</b> (<var>n</var>)<var><a name="index-gray-2931"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gray</b> ()<var><a name="index-gray-3182"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gray</b> (<var>n</var>)<var><a name="index-gray-3183"></a></var><br>
 <blockquote><p>Create gray colormap.  This colormap varies from black to white with
 shades of gray. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
+If unspecified, the length of the current colormap, or 64, is used.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
 
 <!-- hot scripts/image/hot.m -->
    <p><a name="doc_002dhot"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>hot</b> ()<var><a name="index-hot-2932"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>hot</b> (<var>n</var>)<var><a name="index-hot-2933"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>hot</b> ()<var><a name="index-hot-3184"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>hot</b> (<var>n</var>)<var><a name="index-hot-3185"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from black through dark red,
 red, orange, yellow, to white. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -255,19 +353,16 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dhsv"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hsv</b> (<var>n</var>)<var><a name="index-hsv-2934"></a></var><br>
+&mdash; Function File:  <b>hsv</b> (<var>n</var>)<var><a name="index-hsv-3186"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap begins with red, changes through
 yellow, green, cyan, blue, and magenta, before returning to red. 
-It is useful for displaying periodic functions.  It is obtained by linearly
-varying the hue through all possible values while keeping constant maximum
-saturation and value and is equivalent to
-<code>hsv2rgb ([linspace(0,1,N)', ones(N,2)])</code>.
+It is useful for displaying periodic functions.  The map is obtained by
+linearly varying the hue through all possible values while keeping constant
+maximum saturation and value.  The equivalent code is
+<code>hsv2rgb ([(0:N-1)'/N, ones(N,2)])</code>.
 
         <p>The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -276,15 +371,27 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002djet"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>jet</b> ()<var><a name="index-jet-2935"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>jet</b> (<var>n</var>)<var><a name="index-jet-2936"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>jet</b> ()<var><a name="index-jet-3187"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>jet</b> (<var>n</var>)<var><a name="index-jet-3188"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from dark blue through blue,
 cyan, green, yellow, red, to dark red. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
+</p></blockquote></div>
+
+<!-- lines scripts/image/lines.m -->
+   <p><a name="doc_002dlines"></a>
+
+<div class="defun">
+&mdash; Function File: <var>map</var> = <b>lines</b> ()<var><a name="index-lines-3189"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>lines</b> (<var>n</var>)<var><a name="index-lines-3190"></a></var><br>
+<blockquote><p>Create color colormap.  This colormap is composed of the list of colors
+in the current axes "ColorOrder" property.  The default is blue,
+green, red, cyan, pink, yellow, and gray. 
+The argument <var>n</var> must be a scalar. 
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -293,27 +400,26 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002docean"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>ocean</b> ()<var><a name="index-ocean-2937"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>ocean</b> (<var>n</var>)<var><a name="index-ocean-2938"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>ocean</b> ()<var><a name="index-ocean-3191"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>ocean</b> (<var>n</var>)<var><a name="index-ocean-3192"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with shades
 of blue. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
+If unspecified, the length of the current colormap, or 64, is used.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
 
 <!-- pink scripts/image/pink.m -->
    <p><a name="doc_002dpink"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>pink</b> ()<var><a name="index-pink-2939"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>pink</b> (<var>n</var>)<var><a name="index-pink-2940"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>pink</b> ()<var><a name="index-pink-3193"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>pink</b> (<var>n</var>)<var><a name="index-pink-3194"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with
 shades of gray-pink.  It gives a sepia tone when used on grayscale images. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -322,15 +428,12 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dprism"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>prism</b> ()<var><a name="index-prism-2941"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>prism</b> (<var>n</var>)<var><a name="index-prism-2942"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>prism</b> ()<var><a name="index-prism-3195"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>prism</b> (<var>n</var>)<var><a name="index-prism-3196"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap cycles through red, orange, yellow,
 green, blue and violet with each index change. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -339,15 +442,12 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002drainbow"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>rainbow</b> ()<var><a name="index-rainbow-2943"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>rainbow</b> (<var>n</var>)<var><a name="index-rainbow-2944"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>rainbow</b> ()<var><a name="index-rainbow-3197"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>rainbow</b> (<var>n</var>)<var><a name="index-rainbow-3198"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from red through orange,
 yellow, green, blue, to violet. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -356,14 +456,11 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dspring"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>spring</b> ()<var><a name="index-spring-2945"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>spring</b> (<var>n</var>)<var><a name="index-spring-2946"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>spring</b> ()<var><a name="index-spring-3199"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>spring</b> (<var>n</var>)<var><a name="index-spring-3200"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from magenta to yellow. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -372,14 +469,11 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dsummer"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>summer</b> ()<var><a name="index-summer-2947"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>summer</b> (<var>n</var>)<var><a name="index-summer-2948"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>summer</b> ()<var><a name="index-summer-3201"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>summer</b> (<var>n</var>)<var><a name="index-summer-3202"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from green to yellow. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -388,14 +482,11 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dwhite"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>white</b> ()<var><a name="index-white-2949"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>white</b> (<var>n</var>)<var><a name="index-white-2950"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>white</b> ()<var><a name="index-white-3203"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>white</b> (<var>n</var>)<var><a name="index-white-3204"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is completely white. 
 The argument <var>n</var> should be a scalar.  If it
-is omitted, the length of the current colormap or 64 is assumed. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+is omitted, the length of the current colormap or 64 is assumed.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -404,14 +495,11 @@ is omitted, the length of the current colormap or 64 is assumed.
    <p><a name="doc_002dwinter"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>winter</b> ()<var><a name="index-winter-2951"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>winter</b> (<var>n</var>)<var><a name="index-winter-2952"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>winter</b> ()<var><a name="index-winter-3205"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>winter</b> (<var>n</var>)<var><a name="index-winter-3206"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from blue to green. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, the length of the current colormap, or 64, is used. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, the length of the current colormap, or 64, is used.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -420,39 +508,34 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcontrast"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>contrast</b> (<var>x, n</var>)<var><a name="index-contrast-2953"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x</var>)<var><a name="index-contrast-3207"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x, n</var>)<var><a name="index-contrast-3208"></a></var><br>
 <blockquote><p>Return a gray colormap that maximizes the contrast in an image.  The
 returned colormap will have <var>n</var> rows.  If <var>n</var> is not defined
-then the size of the current colormap is used instead. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+then the size of the current colormap is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dbrighten.html#doc_002dbrighten">brighten</a>. 
 </p></blockquote></div>
 
    <p>An additional colormap is <code>gmap40</code>.  This code map contains only
 colors with integer values of the red, green and blue components.  This
 is a workaround for a limitation of gnuplot 4.0, that does not allow the color
-of line or patch objects to be set, and so <code>gmap40</code> is useful for gnuplot
-4.0 users, and in particular in conjunction with the <var>bar</var>,
-<var>barh</var> or <var>contour</var> functions.
+of line or patch objects to be set.  <code>gmap40</code> is chiefly useful to gnuplot
+4.0 users, and particularly in conjunction with the <var>bar</var>, <var>surf</var>,
+and <var>contour</var> functions.
 
 <!-- gmap40 scripts/image/gmap40.m -->
    <p><a name="doc_002dgmap40"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>gmap40</b> ()<var><a name="index-gmap40-2954"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>gmap40</b> (<var>n</var>)<var><a name="index-gmap40-2955"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gmap40</b> ()<var><a name="index-gmap40-3209"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gmap40</b> (<var>n</var>)<var><a name="index-gmap40-3210"></a></var><br>
 <blockquote><p>Create color colormap.  The colormap consists of red, green, blue, yellow,
 magenta and cyan.  This colormap is specifically designed for users of
 gnuplot 4.0 where these 6 colors are the allowable ones for patch objects. 
 The argument <var>n</var> must be a scalar. 
-If unspecified, a length of 6 is assumed.  Larger values
-of <var>n</var> result in a repetition of the above colors. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If unspecified, a length of 6 is assumed.  Larger values of <var>n</var> result
+in a repetition of the above colors.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -464,55 +547,52 @@ replace it.
    <p><a name="doc_002dbrighten"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>map, beta</var>)<var><a name="index-brighten-2956"></a></var><br>
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>h, beta</var>)<var><a name="index-brighten-2957"></a></var><br>
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>beta</var>)<var><a name="index-brighten-2958"></a></var><br>
-<blockquote><p>Darken or brighten the given colormap.  If the <var>map</var> argument
-is omitted, the function is applied to the current colormap.  The first
-argument can also be a valid graphics handle <var>h</var>, in which case
-<code>brighten</code> is applied to the colormap associated with this handle.
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>map, beta</var>)<var><a name="index-brighten-3211"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>beta</var>)<var><a name="index-brighten-3212"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>h, beta</var>)<var><a name="index-brighten-3213"></a></var><br>
+<blockquote><p>Brighten or darken a colormap.  If the <var>map</var> argument is omitted, the
+function is applied to the current colormap.  The first argument can also be
+a valid graphics handle <var>h</var>, in which case <code>brighten</code> is applied to
+the colormap associated with this handle.
 
-        <p>Should the resulting colormap <var>map_out</var> not be assigned, it will be
-written to the current colormap.
+        <p>The argument <var>beta</var> must be a scalar between -1 and 1, where a
+negative value darkens and a positive value brightens the colormap.
 
-        <p>The argument <var>beta</var> should be a scalar between -1 and 1,
-where a negative value darkens and a positive value brightens
-the colormap. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If no output is specified then the result is written to the current colormap.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dcontrast.html#doc_002dcontrast">contrast</a>. 
 </p></blockquote></div>
 
-<!-- spinmap scripts/plot/spinmap.m -->
+<!-- spinmap scripts/image/spinmap.m -->
    <p><a name="doc_002dspinmap"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>spinmap</b> (<var>t, inc</var>)<var><a name="index-spinmap-2959"></a></var><br>
-<blockquote><p>Cycle the colormap for <var>t</var> seconds with an increment
-of <var>inc</var>.  Both parameters are optional.  The default cycle time
-is 5 seconds and the default increment is 2.
+&mdash; Function File:  <b>spinmap</b> ()<var><a name="index-spinmap-3214"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>t</var>)<var><a name="index-spinmap-3215"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>t, inc</var>)<var><a name="index-spinmap-3216"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>"inf"</var>)<var><a name="index-spinmap-3217"></a></var><br>
+<blockquote><p>Cycle the colormap for <var>t</var> seconds with a color increment of <var>inc</var>. 
+Both parameters are optional.  The default cycle time is 5 seconds and the
+default increment is 2.  If the option "inf" is given then cycle
+continuously until <kbd>Control-C</kbd> is pressed.
 
-        <p>A higher value of <var>inc</var> causes a faster cycle through the
-colormap. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>When rotating the original color 1 becomes color 2, color 2 becomes
+color 3, etc.  A positive or negative increment is allowed and a higher
+value of <var>inc</var> will cause faster cycling through the colormap.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgca.html#doc_002dgca">gca</a>, <a href="doc_002dcolorbar.html#doc_002dcolorbar">colorbar</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
 
 <!-- whitebg scripts/plot/whitebg.m -->
    <p><a name="doc_002dwhitebg"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>whitebg</b> ()<var><a name="index-whitebg-2960"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>color</var>)<var><a name="index-whitebg-2961"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>"none"</var>)<var><a name="index-whitebg-2962"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig</var>)<var><a name="index-whitebg-2963"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig, color</var>)<var><a name="index-whitebg-2964"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig, "none"</var>)<var><a name="index-whitebg-2965"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> ()<var><a name="index-whitebg-3218"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>color</var>)<var><a name="index-whitebg-3219"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>"none"</var>)<var><a name="index-whitebg-3220"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>fig</var>)<var><a name="index-whitebg-3221"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>fig, color</var>)<var><a name="index-whitebg-3222"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>fig, "none"</var>)<var><a name="index-whitebg-3223"></a></var><br>
 <blockquote><p>Invert the colors in the current color scheme.  The root properties are
 also inverted such that all subsequent plot use the new color scheme.
 
@@ -522,13 +602,70 @@ this case only the specified figure has its color properties changed.
         <p>If the optional argument <var>color</var> is present then the background color
 is set to <var>color</var> rather than inverted.  <var>color</var> may be a string
 representing one of the eight known colors or an RGB triplet.  The special
-string argument "none" restores the plot to the default colors. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+string argument "none" restores the plot to the default colors.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dreset.html#doc_002dreset">reset</a>. 
 </p></blockquote></div>
+
+   <p>The following functions can be used to manipulate colormaps.
+
+<!-- cmunique scripts/image/cmunique.m -->
+   <p><a name="doc_002dcmunique"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>X, map</var>)<var><a name="index-cmunique-3224"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>RGB</var>)<var><a name="index-cmunique-3225"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>I</var>)<var><a name="index-cmunique-3226"></a></var><br>
+<blockquote><p>Convert an input image <var>X</var> to an ouput indexed image <var>Y</var> which uses
+the smallest colormap possible <var>newmap</var>.
+
+        <p>When the input is an indexed image (<var>X</var> with colormap <var>map</var>) the
+output is a colormap <var>newmap</var> from which any repeated rows have been
+eliminated.  The output image, <var>Y</var>, is the original input image with
+the indices adjusted to match the new, possibly smaller, colormap.
+
+        <p>When the input is an RGB image (an MxNx3 array), the output
+colormap will contain one entry for every unique color in the original image. 
+In the worst case the new map could have as many rows as the number of
+pixels in the original image.
+
+        <p>When the input is a grayscale image <var>I</var>, the output colormap will
+contain one entry for every unique intensity value in the original image. 
+In the worst case the new map could have as many rows as the number of
+pixels in the original image.
+
+        <p>Implementation Details:
+
+        <p><var>newmap</var> is always an Mx3 matrix, even if the input image is
+an intensity grayscale image <var>I</var> (all three RGB planes are
+assigned the same value).
+
+        <p>The output image is of class uint8 if the size of the new colormap is
+less than or equal to 256.  Otherwise, the output image is of class double.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>, <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>. 
+</p></blockquote></div>
+
+<!-- cmpermute scripts/image/cmpermute.m -->
+   <p><a name="doc_002dcmpermute"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map</var>)<var><a name="index-cmpermute-3227"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map, index</var>)<var><a name="index-cmpermute-3228"></a></var><br>
+<blockquote><p>Reorder colors in a colormap.
+
+        <p>When called with only two arguments, <code>cmpermute</code> randomly rearranges
+the colormap <var>map</var> and returns a new colormap <var>newmap</var>.  It also
+returns the indexed image <var>Y</var> which is the equivalent of the original
+input image <var>X</var> when displayed using <var>newmap</var>.
+
+        <p>When called with an optional third argument the order of colors in the
+new colormap is defined by <var>index</var>.
+
+        <p><strong>Caution:</strong> <code>index</code> should not have repeated elements or the
+function will fail.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -65,13 +65,13 @@ function [xx, yy, zz] = cylinder (varargin)
   endif
 
   if (length (r) < 2)
-    error ("cylinder: length(R) must be larger than 2");
+    error ("cylinder: length (R) must be larger than 2");
   endif
 
   phi = linspace (0, 2*pi, n+1);
-  idx = 1:length(r);
-  [phi, idx] = meshgrid(phi, idx);
-  z = (idx - 1) / (length(r) - 1);
+  idx = 1:length (r);
+  [phi, idx] = meshgrid (phi, idx);
+  z = (idx - 1) / (length (r) - 1);
   r = r(idx);
   [x, y] = pol2cart (phi, r);
 
@@ -85,8 +85,11 @@ function [xx, yy, zz] = cylinder (varargin)
 
 endfunction
 
+
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! [x, y, z] = cylinder (10:-1:0,50);
 %! surf (x, y, z);
-%! title ("a cone")
+%! title ('a cone');
+

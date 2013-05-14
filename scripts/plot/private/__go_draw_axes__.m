@@ -47,8 +47,8 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
       else
         h = axis_obj.__plotyy_axes__;
         h = h(ishandle (h));
-        h = h(isprop (h, "__ploty_axes__"));
-        rmappdata (h, "__plotyy_axes__")
+        h = h(isprop (h, "__plotyy_axes__"));
+        rmappdata (h, "__plotyy_axes__");
       endif
     endif
 
@@ -90,7 +90,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
           x = [1, 1];
         else
           ## 3D plots need to be sized down to fit in the window.
-          x = 1.0 ./ sqrt([2, 2.5]);
+          x = 1.0 ./ sqrt ([2, 2.5]);
         endif
         fprintf (plot_stream, "set tmargin screen %.15g;\n",
                  pos(2)+pos(4)/2+x(2)*pos(4)/2);
@@ -442,6 +442,16 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
 
       obj = get (kids(end));
 
+      if (isfield (obj, "xdata"))
+        obj.xdata = double (obj.xdata);
+      end
+      if (isfield (obj, "ydata"))
+        obj.ydata = double (obj.ydata);
+      end
+      if (isfield (obj, "zdata"))
+        obj.zdata = double (obj.zdata);
+      end
+
       if (isfield (obj, "units"))
         units = obj.units;
         unwind_protect
@@ -453,7 +463,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
       endif
       kids = kids(1:(end-1));
 
-      if (strcmpi (obj.visible, "off"))
+      if (strcmp (obj.visible, "off"))
         continue;
       endif
 
@@ -495,13 +505,13 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
             img_xdata = img_xdata(2:-1:1);
             img_data = img_data(:,end:-1:1,:);
           elseif (img_xdata(1) == img_xdata(2))
-            img_xdata = img_xdata(1) + [0, size(img_data,2)-1];
+            img_xdata = img_xdata(1) + [0, columns(img_data)-1];
           endif
           if (img_ydata(2) < img_ydata(1))
             img_ydata = img_ydata(2:-1:1);
             img_data = img_data(end:-1:1,:,:);
           elseif (img_ydata(1) == img_ydata(2))
-            img_ydata = img_ydata(1) + [0, size(img_data,1)-1];
+            img_ydata = img_ydata(1) + [0, rows(img_data)-1];
           endif
 
           [y_dim, x_dim] = size (img_data(:,:,1));
@@ -574,7 +584,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
             ydat = obj.ydata(:);
             data{data_idx} = [xdat, ydat]';
             usingclause{data_idx} = sprintf ("record=%d using ($1):($2) axes %s%s",
-                                            rows(xdat), xaxisloc_using, yaxisloc_using);
+                                            rows (xdat), xaxisloc_using, yaxisloc_using);
           endif
 
           style = do_linestyle_command (obj, obj.color, data_idx, mono,
@@ -680,14 +690,14 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                      || strncmp (obj.facecolor, "interp", 6))
                      && isfield (obj, "cdata"))
                    if (ndims (obj.cdata) == 2
-                       && (size (obj.cdata, 2) == nc
-                           && (size (obj.cdata, 1) == 1
-                               || size (obj.cdata, 1) == 3)))
+                       && (columns (obj.cdata) == nc
+                           && (rows (obj.cdata) == 1
+                               || rows (obj.cdata) == 3)))
                      ccol = cdat (:, i);
                    elseif (ndims (obj.cdata) == 2
-                       && (size (obj.cdata, 1) == nc
-                           && (size (obj.cdata, 2) == 1
-                               || size (obj.cdata, 2) == 3)))
+                       && (rows (obj.cdata) == nc
+                           && (columns (obj.cdata) == 1
+                               || columns (obj.cdata) == 3)))
                      ccol = cdat (i, :);
                    elseif (ndims (obj.cdata) == 3)
                      ccol = permute (cdat (:, i, :), [1, 3, 2]);
@@ -704,17 +714,17 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                        if (cdatadirect)
                          r = round (ccol);
                        else
-                         r = 1 + round ((size (cmap, 1) - 1)
+                         r = 1 + round ((rows (cmap) - 1)
                                         * (ccol - clim(1))/(clim(2) - clim(1)));
                        endif
-                       r = max (1, min (r, size (cmap, 1)));
+                       r = max (1, min (r, rows (cmap)));
                        color = cmap(r, :);
                      endif
                    elseif (strncmp (obj.facecolor, "interp", 6))
                      if (nd == 3 && numel (xcol) == 3)
                        ccdat = ccol;
                        if (! isvector (ccdat))
-                         tmp = rows(cmap) + rows(addedcmap) + ...
+                         tmp = rows (cmap) + rows (addedcmap) + ...
                               [1 : rows(ccdat)];
                          addedcmap = [addedcmap; ccdat];
                          ccdat = tmp(:);
@@ -728,10 +738,10 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                        if (cdatadirect)
                          r = round (ccol);
                        else
-                         r = 1 + round ((size (cmap, 1) - 1)
+                         r = 1 + round ((rows (cmap) - 1)
                                         * (ccol - clim(1))/(clim(2) - clim(1)));
                        endif
-                       r = max (1, min (r, size (cmap, 1)));
+                       r = max (1, min (r, rows (cmap)));
                        color = cmap(r(1),:);
                      endif
                    endif
@@ -746,7 +756,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
 
                if (nd == 3 && numel (xcol) == 3)
                  if (isnan (ccdat))
-                   ccdat = (rows (cmap) + rows(addedcmap) + 1) * ones(3, 1);
+                   ccdat = (rows (cmap) + rows (addedcmap) + 1) * ones(3, 1);
                    addedcmap = [addedcmap; reshape(color, 1, 3)];
                  endif
                  data{data_3d_idx} = [data{data_3d_idx}, ...
@@ -812,14 +822,14 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                     || strncmp (ec, "interp", 6))
                    && isfield (obj, "cdata"))
                  if (ndims (obj.cdata) == 2
-                     && (size (obj.cdata, 2) == nc
-                         && (size (obj.cdata, 1) == 1
-                             || size (obj.cdata, 1) == 3)))
+                     && (columns (obj.cdata) == nc
+                         && (rows (obj.cdata) == 1
+                             || rows (obj.cdata) == 3)))
                    ccol = cdat (:, i);
                  elseif (ndims (obj.cdata) == 2
-                         && (size (obj.cdata, 1) == nc
-                             && (size (obj.cdata, 2) == 1
-                                 || size (obj.cdata, 2) == 3)))
+                         && (rows (obj.cdata) == nc
+                             && (columns (obj.cdata) == 1
+                                 || columns (obj.cdata) == 3)))
                    ccol = cdat (i, :);
                  elseif (ndims (obj.cdata) == 3)
                    ccol = permute (cdat (:, i, :), [1, 3, 2]);
@@ -827,22 +837,22 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                    ccol = cdat;
                  endif
                  if (strncmp (ec, "flat", 4))
-                   if (numel(ccol) == 3)
+                   if (numel (ccol) == 3)
                      color = ccol;
                    else
                      if (isscalar (ccol))
-                       ccol = repmat(ccol, numel (xcol), 1);
+                       ccol = repmat (ccol, numel (xcol), 1);
                      endif
                      color = "flat";
                      have_cdata(data_idx) = true;
                    endif
                  elseif (strncmp (ec, "interp", 6))
-                   if (numel(ccol) == 3)
+                   if (numel (ccol) == 3)
                      warning ("\"interp\" not supported, using 1st entry of cdata");
                      color = ccol(1,:);
                    else
                      if (isscalar (ccol))
-                       ccol = repmat(ccol, numel (xcol), 1);
+                       ccol = repmat (ccol, numel (xcol), 1);
                      endif
                      color = "interp";
                      have_cdata(data_idx) = true;
@@ -877,7 +887,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
              endif
 
              if (isfield (obj, "linewidth"))
-               lw = sprintf("linewidth %f", obj.linewidth);
+               lw = sprintf ("linewidth %f", obj.linewidth);
              else
                lw  = "";
              endif
@@ -923,7 +933,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                    else
                      m = mdat;
                    endif
-                   ps = sprintf("pointsize %f", m / 3);
+                   ps = sprintf ("pointsize %f", m / 3);
                  else
                    ps = "";
                  endif
@@ -950,7 +960,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                    else
                      m = mdat;
                    endif
-                   ps = sprintf("pointsize %f", m / 3);
+                   ps = sprintf ("pointsize %f", m / 3);
                  else
                    ps = "";
                  endif
@@ -977,7 +987,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                      else
                        m = mdat;
                      endif
-                     ps = sprintf("pointsize %f", m / 3);
+                     ps = sprintf ("pointsize %f", m / 3);
                    else
                      ps = "";
                    endif
@@ -987,7 +997,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                  endif
                else
                  if (!isempty (style))
-                   if (length(tmpwith) < sidx || isempty (tmpwith{sidx}))
+                   if (length (tmpwith) < sidx || isempty (tmpwith{sidx}))
                      tmpwith{sidx} = sprintf ("with %s %s %s %s",
                                               style, lw, lt,
                                               colorspec);
@@ -1012,7 +1022,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                      else
                        m = mdat;
                      endif
-                     ps = sprintf("pointsize %f", m / 3);
+                     ps = sprintf ("pointsize %f", m / 3);
                    else
                      ps = "";
                    endif
@@ -1122,7 +1132,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
             cdat = obj.cdata;
 
             err = false;
-            if (! size_equal(zdat, cdat))
+            if (! size_equal (zdat, cdat))
               err = true;
             endif
             if (isvector (xdat) && isvector (ydat) && ismatrix (zdat))
@@ -1188,11 +1198,11 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
               if (all (obj.facecolor == 1))
                 hidden_removal = true;
               endif
-              fputs(plot_stream,"unset pm3d;\n");
-              fputs(plot_stream,"set style increment user;\n");
+              fputs (plot_stream,"unset pm3d;\n");
+              fputs (plot_stream,"set style increment user;\n");
               withpm3d = false;
-              withclause{data_idx} = sprintf("with %s linestyle %d",
-                                             style{1}, data_idx);
+              withclause{data_idx} = sprintf ("with %s linestyle %d",
+                                              style{1}, data_idx);
               fputs (plot_stream, "unset pm3d\n");
             endif
 
@@ -1267,7 +1277,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
                                               style{3}, data_idx);
             endif
             if (withpm3d && strncmp (style {1}, "linespoints", 11))
-              if (isempty(zz))
+              if (isempty (zz))
                 len = 3 * xlen;
                 zz = zeros (ylen, len);
                 k = 1;
@@ -1315,7 +1325,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
           endif
 
           if (ischar (obj.string))
-            num_lines = size (obj.string, 1);
+            num_lines = rows (obj.string);
           else
             num_lines = numel (obj.string);
           endif
@@ -1335,7 +1345,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
           ## Gnuplot's Character units are different for x/y and vary with fontsize. The aspect ratio
           ## of 1:1.7 was determined by experiment to work for eps/ps/etc. For the MacOS aqua terminal
           ## a value of 2.5 is needed. However, the difference is barely noticable.
-          dx_and_dy = [(-dy * sind (angle)), (dy * cosd(angle))] .* [1.7 1];
+          dx_and_dy = [(-dy * sind (angle)), (dy * cosd (angle))] .* [1.7 1];
 
           ## FIXME - Multiline text produced the gnuplot "warning: ft_render: skipping glyph"
           if (nd == 3)
@@ -1376,7 +1386,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
       fputs (plot_stream, "set pm3d explicit;\n");
     endif
 
-    if (isnan(hidden_removal) || hidden_removal)
+    if (isnan (hidden_removal) || hidden_removal)
       fputs (plot_stream, "set hidden3d;\n");
     else
       fputs (plot_stream, "unset hidden3d;\n");
@@ -1425,19 +1435,19 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
     endif
 
     cmap = parent_figure_obj.colormap;
-    cmap_sz = rows(cmap);
+    cmap_sz = rows (cmap);
     if (! any (isinf (clim)))
       if (truecolor || ! cdatadirect)
-        if (rows(addedcmap) > 0)
+        if (rows (addedcmap) > 0)
           for i = 1:data_idx
             if (have_3d_patch(i))
               data{i}(end,:) = clim(2) * (data{i}(end, :) - 0.5) / cmap_sz;
              endif
           endfor
-          fprintf (plot_stream, "set cbrange [%g:%g];\n", clim(1), clim(2) *
-                   (cmap_sz + rows(addedcmap)) / cmap_sz);
+          fprintf (plot_stream, "set cbrange [%.15e:%.15e];\n", clim(1), clim(2) *
+                   (cmap_sz + rows (addedcmap)) / cmap_sz);
         else
-          fprintf (plot_stream, "set cbrange [%g:%g];\n", clim);
+          fprintf (plot_stream, "set cbrange [%.15e:%.15e];\n", clim);
         endif
       else
         fprintf (plot_stream, "set cbrange [1:%d];\n", cmap_sz +
@@ -1544,7 +1554,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
       keypos = hlgnd.location;
       if (ischar (keypos))
         keypos = lower (keypos);
-        keyout = findstr (keypos, "outside");
+        keyout = strfind (keypos, "outside");
         if (! isempty (keyout))
           inout = "outside";
           keypos = keypos(1:keyout-1);
@@ -1581,16 +1591,29 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
       else
         fontspec = "";
       endif
-      fprintf (plot_stream, "set key %s %s;\nset key %s %s %s %s;\n",
-               inout, pos, box, reverse, horzvert, fontspec);
+      textcolors = get (findobj (hlgnd.children, "type", "text"), "color");
+      if (iscell (textcolors))
+        textcolors = cell2mat (textcolors);
+        textcolors = unique (textcolors, "rows");
+      endif
+      if (rows (textcolors) > 1)
+        ## Gnuplot is unable to assign arbitrary colors to each text entry
+        ## for the key/legend.  But, the text color can be set to match the
+        ## color of the plot object.
+        colorspec = "textcolor variable";
+      else
+        colorspec = get_text_colorspec (textcolors, mono);
+      endif
+      fprintf (plot_stream, "set key %s %s;\nset key %s %s %s %s %s;\n",
+               inout, pos, box, reverse, horzvert, fontspec, colorspec);
     else
       fputs (plot_stream, "unset key;\n");
     endif
     fputs (plot_stream, "set style data lines;\n");
 
     cmap = [cmap; addedcmap];
-    cmap_sz = cmap_sz + rows(addedcmap);
-    if (length(cmap) > 0)
+    cmap_sz = cmap_sz + rows (addedcmap);
+    if (length (cmap) > 0)
       fprintf (plot_stream,
                "set palette positive color model RGB maxcolors %i;\n",
                cmap_sz);
@@ -1628,7 +1651,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
         if (numel (is_image_data) > 1 && is_image_data(2))
           ## Remove terminating semicolon
           n = max (strfind (withclause{1}, ";"));
-          if (! isempty(n))
+          if (! isempty (n))
             withclause{1} = withclause{1}(1:n-1);
           endif
         endif
@@ -1656,7 +1679,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
             if (numel (is_image_data) > i && is_image_data(i+1))
               ## Remove terminating semicolon
               n = max (strfind (withclause{i}, ";"));
-              if (! isempty(n))
+              if (! isempty (n))
                 withclause{i} = withclause{i}(1:n-1);
               endif
             endif
@@ -1689,7 +1712,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
           ## Can't write 3d patch data as binary as can't plot more than
           ## a single patch at a time and have to plot all patches together
           ## so that the gnuplot depth ordering is done correctly
-          for j = 1 : 4 : columns(data{i})
+          for j = 1 : 4 : columns (data{i})
             if (j != 1)
               fputs (plot_stream, "\n\n");
             endif
@@ -1729,9 +1752,9 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono,
 endfunction
 
 function x = flip (x)
-  if (size (x, 1) == 1)
+  if (rows (x) == 1)
     x = fliplr (x);
-  elseif (size (x, 2) == 1 || ischar (x))
+  elseif (columns (x) == 1 || ischar (x))
     x = flipud (x);
   else
     x = flipud (fliplr (x));
@@ -2096,7 +2119,7 @@ function do_tics_1 (ticmode, tics, mtics, labelmode, labels, color, ax,
                     fontname, fontspec, interpreter, scale, sgn, gnuplot_term)
   persistent warned_latex = false;
   if (strcmpi (interpreter, "tex"))
-    for n = 1 : numel(labels)
+    for n = 1 : numel (labels)
       labels{n} = __tex2enhanced__ (labels{n}, fontname, false, false);
     endfor
   elseif (strcmpi (interpreter, "latex"))
@@ -2137,16 +2160,16 @@ function do_tics_1 (ticmode, tics, mtics, labelmode, labels, color, ax,
         k = 1;
         ntics = numel (tics);
         nlabels = numel (labels);
-        fprintf (plot_stream, "set format %s \"%%s\";\n", ax);
+        fprintf (plot_stream, "set format %s \"%%g\";\n", ax);
         if (mirror)
-          fprintf (plot_stream, "set %stics %s %s %s mirror (", ax,
+          fprintf (plot_stream, "set %stics add %s %s %s mirror (", ax,
                    tickdir, ticklength, axispos);
         else
-          fprintf (plot_stream, "set %stics %s %s %s nomirror (", ax,
+          fprintf (plot_stream, "set %stics add %s %s %s nomirror (", ax,
                    tickdir, ticklength, axispos);
         endif
 
-        labels = regexprep(labels, '%', "%%");
+        labels = regexprep (labels, '%', "%%");
         for i = 1:ntics
           fprintf (plot_stream, " \"%s\" %.15g", labels{k++}, tics(i));
           if (i < ntics)
@@ -2162,7 +2185,7 @@ function do_tics_1 (ticmode, tics, mtics, labelmode, labels, color, ax,
         else
           fprintf (plot_stream, "unset m%stics;\n", ax);
         endif
-     else
+      else
         error ("__go_draw_axes__: unsupported type of ticklabel");
       endif
     else
@@ -2205,9 +2228,8 @@ function ticklabel = ticklabel_to_cell (ticklabel)
     ticklabel = num2str (ticklabel(:), 5);
   endif
   if (ischar (ticklabel))
-    if (size (ticklabel, 1) == 1 && any (ticklabel == "|"))
-      n = setdiff (findstr (ticklabel, "|"), findstr (ticklabel, '\|'));
-      ticklabel = strsplit (ticklabel, "|");
+    if (rows (ticklabel) == 1 && any (ticklabel == "|"))
+      ticklabel = strsplit (ticklabel, "|", false);
     else
       ticklabel = cellstr (ticklabel);
     endif
@@ -2237,7 +2259,7 @@ function [f, s, fnt, it, bld] = get_fontname_and_size (t)
   it = false;
   bld = false;
   if (! isempty (t.fontweight) && strcmpi (t.fontweight, "bold"))
-    if (! isempty(t.fontangle)
+    if (! isempty (t.fontangle)
         && (strcmpi (t.fontangle, "italic")
             || strcmpi (t.fontangle, "oblique")))
       f = cstrcat (f, "-bolditalic");
@@ -2247,7 +2269,7 @@ function [f, s, fnt, it, bld] = get_fontname_and_size (t)
       f = cstrcat (f, "-bold");
       bld = true;
     endif
-  elseif (! isempty(t.fontangle)
+  elseif (! isempty (t.fontangle)
           && (strcmpi (t.fontangle, "italic")
               || strcmpi (t.fontangle, "oblique")))
     f = cstrcat (f, "-italic");
@@ -2276,13 +2298,13 @@ function [str, f, s] = __maybe_munge_text__ (enhanced, obj, fld)
 
   ## The text object maybe multiline, and may be of any class
   str = getfield (obj, fld);
-  if (ischar (str) && size (str, 1) > 1)
+  if (ischar (str) && rows (str) > 1)
     str = cellstr (str);
   elseif (isnumeric (str))
     str = cellstr (num2str (str(:)));
   endif
   if (iscellstr (str))
-    for n = 1:numel(str)
+    for n = 1:numel (str)
       if (isnumeric (str{n}))
         str{n} = num2str (str{n});
       endif
@@ -2293,7 +2315,7 @@ function [str, f, s] = __maybe_munge_text__ (enhanced, obj, fld)
   if (enhanced)
     if (strcmpi (obj.interpreter, "tex"))
       if (iscellstr (str))
-        for n = 1:numel(str)
+        for n = 1:numel (str)
           str{n} = __tex2enhanced__ (str{n}, fnt, it, bld);
         endfor
       else
@@ -2317,14 +2339,14 @@ function str = no_super_sub_scripts (str)
     labels = cellstr (str);
   endif
   for marker = "_^" 
-    for m = 1 : numel(labels)
+    for m = 1 : numel (labels)
       n1 = strfind (labels{m}, sprintf ("\\%s", marker));
       n2 = strfind (labels{m}, marker);
       if (! isempty (n1))
         n1 = n1 + 1;
         n2 = setdiff (n2, n1);
-      end
-      for n = numel(n2):-1:1
+      endif
+      for n = numel (n2):-1:1
         labels{m} = [labels{m}(1:n2(n)-1), "\\", labels{m}(n2(n):end)];
       endfor
     endfor
@@ -2340,7 +2362,7 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
   persistent sym = __setup_sym_table__ ();
   persistent flds = fieldnames (sym);
 
-  [s, e, m] = regexp(str,'\\([a-zA-Z]+|0)','start','end','matches');
+  [s, e, m] = regexp (str, "\\\\([a-zA-Z]+|0)", "start", "end", "matches");
 
   for i = length (s) : -1 : 1
     ## special case for "\0"  and replace with "{/Symbol \306}'
@@ -2349,7 +2371,7 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
     else
       f = m{i}(2:end);
       if (isfield (sym, f))
-        g = getfield(sym, f);
+        g = getfield (sym, f);
         ## FIXME The symbol font doesn't seem to support bold or italic
         ##if (bld)
         ##  if (it)
@@ -2369,54 +2391,54 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
         it = true;
         if (bld)
           str = cstrcat (str(1:s(i) - 1), '/', fnt, '-bolditalic ',
-                        str(s(i) + 3:end));
+                         str(s(i) + 3:end));
         else
           str = cstrcat (str(1:s(i) - 1), '/', fnt, '-italic ',
-                        str(s(i) + 3:end));
+                         str(s(i) + 3:end));
         endif
       elseif (strncmp (f, "bf", 2))
         bld = true;
         if (it)
           str = cstrcat (str(1:s(i) - 1), '/', fnt, '-bolditalic ',
-                        str(2(i) + 3:end));
+                         str(2(i) + 3:end));
         else
           str = cstrcat (str(1:s(i) - 1), '/', fnt, '-bold ',
-                        str(s(i) + 3:end));
+                         str(s(i) + 3:end));
         endif
       elseif (strcmpi (f, "color"))
         ## FIXME Ignore \color but remove trailing {} block as well
-        d = strfind(str(e(i) + 1:end),'}');
+        d = strfind (str(e(i) + 1:end),'}');
         if (isempty (d))
           warning ('syntax error in \color argument');
         else
           str = cstrcat (str(1:s(i) - 1), str(e(i) + d + 1:end));
         endif
-      elseif(strcmpi (f, "fontname"))
-        b1 = strfind(str(e(i) + 1:end),'{');
-        b2 = strfind(str(e(i) + 1:end),'}');
-        if (isempty(b1) || isempty(b2))
+      elseif (strcmpi (f, "fontname"))
+        b1 = strfind (str(e(i) + 1:end),'{');
+        b2 = strfind (str(e(i) + 1:end),'}');
+        if (isempty (b1) || isempty (b2))
           warning ('syntax error in \fontname argument');
         else
           str = cstrcat (str(1:s(i) - 1), '/',
-                        str(e(i)+b1(1) + 1:e(i)+b2(1)-1), '{}',
-                        str(e(i) + b2(1) + 1:end));
+                         str(e(i)+b1(1) + 1:e(i)+b2(1)-1), '{}',
+                         str(e(i) + b2(1) + 1:end));
         endif
-      elseif(strcmpi (f, "fontsize"))
-        b1 = strfind(str(e(i) + 1:end),'{');
-        b2 = strfind(str(e(i) + 1:end),'}');
-        if (isempty(b1) || isempty(b2))
+      elseif (strcmpi (f, "fontsize"))
+        b1 = strfind (str(e(i) + 1:end),'{');
+        b2 = strfind (str(e(i) + 1:end),'}');
+        if (isempty (b1) || isempty (b2))
           warning ('syntax error in \fontname argument');
         else
           str = cstrcat (str(1:s(i) - 1), '/=',
-                        str(e(i)+b1(1) + 1:e(i)+b2(1)-1), '{}',
-                        str(e(i) + b2(1) + 1:end));
+                         str(e(i)+b1(1) + 1:e(i)+b2(1)-1), '{}',
+                         str(e(i) + b2(1) + 1:end));
         endif
       else
         ## Last desperate attempt to treat the symbol. Look for things
         ## like \pix, that should be translated to the symbol Pi and x
         for j = 1 : length (flds)
           if (strncmp (flds{j}, f, length (flds{j})))
-            g = getfield(sym, flds{j});
+            g = getfield (sym, flds{j});
             ## FIXME The symbol font doesn't seem to support bold or italic
             ##if (bld)
             ##  if (it)
@@ -2428,7 +2450,7 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
             ##  g = regexprep (g, '/Symbol', '/Symbol-italic');
             ##endif
             str = cstrcat (str(1:s(i) - 1), g,
-                          str(s(i) + length (flds{j}) + 1:end));
+                           str(s(i) + length (flds{j}) + 1:end));
             break;
           endif
         endfor
@@ -2444,15 +2466,15 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
 
   ## FIXME -- This is a mess... Is it worth it just for a "@" character?
 
-  [s, m] = regexp(str,'[_\^]','start','matches');
+  [s, m] = regexp (str,'[_\^]','start','matches');
   i = 1;
   p = 0;
   while (i < length (s))
-    if (i < length(s))
+    if (i < length (s))
       if (str(s(i) + p + 1) == "{")
-        s1 = strfind(str(s(i) + p + 2:end),'{');
+        s1 = strfind (str(s(i) + p + 2:end),'{');
         si = 1;
-        l1 = strfind(str(s(i) + p + 1:end),'}');
+        l1 = strfind (str(s(i) + p + 1:end),'}');
         li = 1;
         while (li <= length (l1) && si <= length (s1))
           if (l1(li) < s1(si))
@@ -2464,12 +2486,12 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
             si++;
           endif
         endwhile
-        l1 = l1 (min (length(l1), si));
+        l1 = l1 (min (length (l1), si));
         if (s(i) + l1 + 1 == s(i+1))
           if (str(s(i + 1) + p + 1) == "{")
-            s2 = strfind(str(s(i + 1) + p + 2:end),'{');
+            s2 = strfind (str(s(i + 1) + p + 2:end),'{');
             si = 1;
-            l2 = strfind(str(s(i + 1) + p + 1:end),'}');
+            l2 = strfind (str(s(i + 1) + p + 1:end),'}');
             li = 1;
             while (li <= length (l2) && si <= length (s2))
               if (l2(li) < s2(si))
@@ -2481,20 +2503,20 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
                 si++;
               endif
             endwhile
-            l2 = l2 (min (length(l2), si));
+            l2 = l2 (min (length (l2), si));
             if (length_string (str(s(i)+p+2:s(i)+p+l1-1)) <=
-                length_string(str(s(i+1)+p+2:s(i+1)+p+l2-1)))
+                length_string (str(s(i+1)+p+2:s(i+1)+p+l2-1)))
               ## Shortest already first!
               str = cstrcat (str(1:s(i)+p-1), "@", str(s(i)+p:end));
             else
               ## Have to swap sub/super-script to get shortest first.
               str = cstrcat (str(1:s(i)+p-1), "@", str(s(i+1)+p:s(i+1)+p+l2),
-                            str(s(i)+p:s(i)+p+l1), str(s(i+1)+p+l2+1:end));
+                             str(s(i)+p:s(i)+p+l1), str(s(i+1)+p+l2+1:end));
             endif
           else
             ## Have to swap sub/super-script to get shortest first.
             str = cstrcat (str(1:s(i)+p-1), "@", str(s(i+1)+p:s(i+1)+p+1),
-                          str(s(i)+p:s(i)+p+l1), str(s(i+1)+p+2:end));
+                           str(s(i)+p:s(i)+p+l1), str(s(i+1)+p+2:end));
           endif
           i += 2;
           p ++;
@@ -2519,7 +2541,7 @@ function str = __tex2enhanced__ (str, fnt, it, bld)
 endfunction
 
 function l = length_string (s)
-  l = length (s) - length (strfind(s,'{')) - length (strfind(s,'}'));
+  l = length (s) - length (strfind (s,'{')) - length (strfind (s,'}'));
   m = regexp (s, '/([\w-]+|[\w-]+=\d+)', 'matches');
   if (!isempty (m))
     l = l - sum (cellfun ("length", m));

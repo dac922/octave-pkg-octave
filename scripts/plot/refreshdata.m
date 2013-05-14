@@ -82,7 +82,7 @@ function refreshdata (h, workspace)
   for i = 1 : numel (h)
     obj = get (h (i));
     fldnames = fieldnames (obj);
-    m = regexpi (fieldnames(obj), '^.+datasource$', "match");
+    m = regexpi (fieldnames (obj), '^.+datasource$', "match");
     idx = ! cellfun ("isempty", m);
     if (any (idx))
       tmp = m(idx);
@@ -103,15 +103,18 @@ function refreshdata (h, workspace)
       endif
     endfor
   endfor
+
 endfunction
 
+
 %!demo
-%! clf
+%! clf;
 %! x = 0:0.1:10;
 %! y = sin (x);
-%! plot (x, y, "ydatasource", "y");
+%! plot (x, y, 'ydatasource', 'y');
 %! for i = 1 : 100
-%!   pause(0.1)
+%!   pause (0.1);
 %!   y = sin (x + 0.1 * i);
-%!   refreshdata(gcf(), "caller");
-%! endfor
+%!   refreshdata (gcf, 'caller');
+%! end
+

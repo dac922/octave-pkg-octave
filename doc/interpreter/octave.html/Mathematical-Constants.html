@@ -32,15 +32,15 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic<
 
 <h3 class="section">17.9 Mathematical Constants</h3>
 
-<!-- e src/data.cc -->
+<!-- e libinterp/interpfcn/data.cc -->
 <p><a name="doc_002de"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>e</b><var><a name="index-e-1956"></a></var><br>
-&mdash; Built-in Function:  <b>e</b> (<var>n</var>)<var><a name="index-e-1957"></a></var><br>
-&mdash; Built-in Function:  <b>e</b> (<var>n, m</var>)<var><a name="index-e-1958"></a></var><br>
-&mdash; Built-in Function:  <b>e</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-e-1959"></a></var><br>
-&mdash; Built-in Function:  <b>e</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-e-1960"></a></var><br>
+&mdash; Built-in Function:  <b>e</b><var><a name="index-e-2155"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var>n</var>)<var><a name="index-e-2156"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var>n, m</var>)<var><a name="index-e-2157"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-e-2158"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-e-2159"></a></var><br>
 <blockquote><p>Return a scalar, matrix, or N-dimensional array whose elements are all equal
 to the base of natural logarithms.  The constant
 &lsquo;<samp><span class="samp">e</span></samp>&rsquo; satisfies the equation <code>log</code> (e) = 1.
@@ -51,18 +51,20 @@ specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
+either "double" or "single".
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlog.html#doc_002dlog">log</a>, <a href="doc_002dexp.html#doc_002dexp">exp</a>, <a href="doc_002dpi.html#doc_002dpi">pi</a>, <a href="doc_002dI.html#doc_002dI">I</a>. 
 </p></blockquote></div>
 
-<!-- pi src/data.cc -->
+<!-- pi libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dpi"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>pi</b><var><a name="index-pi-1961"></a></var><br>
-&mdash; Built-in Function:  <b>pi</b> (<var>n</var>)<var><a name="index-pi-1962"></a></var><br>
-&mdash; Built-in Function:  <b>pi</b> (<var>n, m</var>)<var><a name="index-pi-1963"></a></var><br>
-&mdash; Built-in Function:  <b>pi</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-pi-1964"></a></var><br>
-&mdash; Built-in Function:  <b>pi</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-pi-1965"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b><var><a name="index-pi-2160"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var>n</var>)<var><a name="index-pi-2161"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var>n, m</var>)<var><a name="index-pi-2162"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-pi-2163"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-pi-2164"></a></var><br>
 <blockquote><p>Return a scalar, matrix, or N-dimensional array whose elements are all equal
 to the ratio of the circumference of a circle to its
 diameter. 
@@ -75,23 +77,26 @@ specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
+either "double" or "single".
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002de.html#doc_002de">e</a>, <a href="doc_002dI.html#doc_002dI">I</a>. 
 </p></blockquote></div>
 
-<!-- I src/data.cc -->
+<!-- I libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dI"></a><!-- List other forms of function in documentation index -->
-<a name="index-i-1966"></a><a name="index-j-1967"></a><a name="index-J-1968"></a>
+<a name="index-i-2165"></a><a name="index-j-2166"></a><a name="index-J-2167"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>I</b><var><a name="index-I-1969"></a></var><br>
-&mdash; Built-in Function:  <b>I</b> (<var>n</var>)<var><a name="index-I-1970"></a></var><br>
-&mdash; Built-in Function:  <b>I</b> (<var>n, m</var>)<var><a name="index-I-1971"></a></var><br>
-&mdash; Built-in Function:  <b>I</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-I-1972"></a></var><br>
-&mdash; Built-in Function:  <b>I</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-I-1973"></a></var><br>
+&mdash; Built-in Function:  <b>I</b><var><a name="index-I-2168"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var>n</var>)<var><a name="index-I-2169"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var>n, m</var>)<var><a name="index-I-2170"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-I-2171"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-I-2172"></a></var><br>
 <blockquote><p>Return a scalar, matrix, or N-dimensional array whose elements are all equal
 to the pure imaginary unit, defined as
-<code>sqrt (-1)</code>. 
- I, and its equivalents i, J, and j, are functions so any of the names may
+<code>sqrt (-1)</code>.
+
+        <p>I, and its equivalents i, j, and J, are functions so any of the names may
 be reused for other purposes (such as i for a counter variable).
 
         <p>When called with no arguments, return a scalar with the value i.  When
@@ -100,19 +105,21 @@ specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
+either "double" or "single".
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002de.html#doc_002de">e</a>, <a href="doc_002dpi.html#doc_002dpi">pi</a>, <a href="doc_002dlog.html#doc_002dlog">log</a>, <a href="doc_002dexp.html#doc_002dexp">exp</a>. 
 </p></blockquote></div>
 
-<!-- Inf src/data.cc -->
+<!-- Inf libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dInf"></a><!-- List other form of function in documentation index -->
-<a name="index-inf-1974"></a>
+<a name="index-inf-2173"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>Inf</b><var><a name="index-Inf-1975"></a></var><br>
-&mdash; Built-in Function:  <b>Inf</b> (<var>n</var>)<var><a name="index-Inf-1976"></a></var><br>
-&mdash; Built-in Function:  <b>Inf</b> (<var>n, m</var>)<var><a name="index-Inf-1977"></a></var><br>
-&mdash; Built-in Function:  <b>Inf</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-Inf-1978"></a></var><br>
-&mdash; Built-in Function:  <b>Inf</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-Inf-1979"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b><var><a name="index-Inf-2174"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var>n</var>)<var><a name="index-Inf-2175"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var>n, m</var>)<var><a name="index-Inf-2176"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-Inf-2177"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-Inf-2178"></a></var><br>
 <blockquote><p>Return a scalar, matrix or N-dimensional array whose elements are all equal
 to the IEEE representation for positive infinity.
 
@@ -120,9 +127,8 @@ to the IEEE representation for positive infinity.
 the IEEE floating point format for numbers.  Two common examples which
 produce infinity are division by zero and overflow.
 
-     <pre class="example">          [1/0 e^800]
-          &rArr;
-          Inf   Inf
+     <pre class="example">          [ 1/0 e^800 ]
+          &rArr; Inf   Inf
 </pre>
         <p>When called with no arguments, return a scalar with the value &lsquo;<samp><span class="samp">Inf</span></samp>&rsquo;. 
 When called with a single argument, return a square matrix with the dimension
@@ -130,24 +136,21 @@ specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+either "double" or "single".
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disinf.html#doc_002disinf">isinf</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002disinf.html#doc_002disinf">isinf</a>, <a href="doc_002dNaN.html#doc_002dNaN">NaN</a>. 
 </p></blockquote></div>
 
-<!-- NaN src/data.cc -->
+<!-- NaN libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dNaN"></a><!-- List other form of function in documentation index -->
-<a name="index-nan-1980"></a>
+<a name="index-nan-2179"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>NaN</b><var><a name="index-NaN-1981"></a></var><br>
-&mdash; Built-in Function:  <b>NaN</b> (<var>n</var>)<var><a name="index-NaN-1982"></a></var><br>
-&mdash; Built-in Function:  <b>NaN</b> (<var>n, m</var>)<var><a name="index-NaN-1983"></a></var><br>
-&mdash; Built-in Function:  <b>NaN</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-NaN-1984"></a></var><br>
-&mdash; Built-in Function:  <b>NaN</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-NaN-1985"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b><var><a name="index-NaN-2180"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var>n</var>)<var><a name="index-NaN-2181"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var>n, m</var>)<var><a name="index-NaN-2182"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-NaN-2183"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-NaN-2184"></a></var><br>
 <blockquote><p>Return a scalar, matrix, or N-dimensional array whose elements are all equal
 to the IEEE symbol NaN (Not a Number). 
 NaN is the result of operations which do not produce a well defined numerical
@@ -165,23 +168,20 @@ specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+either "double" or "single".
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disnan.html#doc_002disnan">isnan</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002disnan.html#doc_002disnan">isnan</a>, <a href="doc_002dInf.html#doc_002dInf">Inf</a>. 
 </p></blockquote></div>
 
-<!-- eps src/data.cc -->
+<!-- eps libinterp/interpfcn/data.cc -->
    <p><a name="doc_002deps"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>eps</b><var><a name="index-eps-1986"></a></var><br>
-&mdash; Built-in Function:  <b>eps</b> (<var>x</var>)<var><a name="index-eps-1987"></a></var><br>
-&mdash; Built-in Function:  <b>eps</b> (<var>n, m</var>)<var><a name="index-eps-1988"></a></var><br>
-&mdash; Built-in Function:  <b>eps</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-eps-1989"></a></var><br>
-&mdash; Built-in Function:  <b>eps</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-eps-1990"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b><var><a name="index-eps-2185"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var>x</var>)<var><a name="index-eps-2186"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var>n, m</var>)<var><a name="index-eps-2187"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-eps-2188"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-eps-2189"></a></var><br>
 <blockquote><p>Return a scalar, matrix or N-dimensional array whose elements are all eps,
 the machine precision.  More precisely, <code>eps</code> is the relative spacing
 between any two adjacent numbers in the machine's floating point system. 
@@ -191,25 +191,27 @@ floating point arithmetic, <code>eps</code> is approximately
 for single precision.
 
         <p>When called with no arguments, return a scalar with the value
-<code>eps(1.0)</code>. 
+<code>eps (1.0)</code>. 
 Given a single argument <var>x</var>, return the distance between <var>x</var> and
 the next largest value. 
 When called with more than one argument the first two arguments are taken as
 the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
+either "double" or "single".
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealmax.html#doc_002drealmax">realmax</a>, <a href="doc_002drealmin.html#doc_002drealmin">realmin</a>, <a href="doc_002dintmax.html#doc_002dintmax">intmax</a>, <a href="doc_002dbitmax.html#doc_002dbitmax">bitmax</a>. 
 </p></blockquote></div>
 
-<!-- realmax src/data.cc -->
+<!-- realmax libinterp/interpfcn/data.cc -->
    <p><a name="doc_002drealmax"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>realmax</b><var><a name="index-realmax-1991"></a></var><br>
-&mdash; Built-in Function:  <b>realmax</b> (<var>n</var>)<var><a name="index-realmax-1992"></a></var><br>
-&mdash; Built-in Function:  <b>realmax</b> (<var>n, m</var>)<var><a name="index-realmax-1993"></a></var><br>
-&mdash; Built-in Function:  <b>realmax</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-realmax-1994"></a></var><br>
-&mdash; Built-in Function:  <b>realmax</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-realmax-1995"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b><var><a name="index-realmax-2190"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var>n</var>)<var><a name="index-realmax-2191"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var>n, m</var>)<var><a name="index-realmax-2192"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-realmax-2193"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-realmax-2194"></a></var><br>
 <blockquote><p>Return a scalar, matrix or N-dimensional array whose elements are all equal
 to the largest floating point number that is representable.  The actual
 value is system dependent.  On machines that support IEEE
@@ -218,29 +220,26 @@ floating point arithmetic, <code>realmax</code> is approximately
 for single precision.
 
         <p>When called with no arguments, return a scalar with the value
-<code>realmax("double")</code>. 
+<code>realmax ("double")</code>. 
 When called with a single argument, return a square matrix with the dimension
 specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+either "double" or "single".
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealmin.html#doc_002drealmin">realmin</a>, <a href="doc_002dintmax.html#doc_002dintmax">intmax</a>, <a href="doc_002dbitmax.html#doc_002dbitmax">bitmax</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealmin.html#doc_002drealmin">realmin</a>, <a href="doc_002dintmax.html#doc_002dintmax">intmax</a>, <a href="doc_002dbitmax.html#doc_002dbitmax">bitmax</a>, <a href="doc_002deps.html#doc_002deps">eps</a>. 
 </p></blockquote></div>
 
-<!-- realmin src/data.cc -->
+<!-- realmin libinterp/interpfcn/data.cc -->
    <p><a name="doc_002drealmin"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>realmin</b><var><a name="index-realmin-1996"></a></var><br>
-&mdash; Built-in Function:  <b>realmin</b> (<var>n</var>)<var><a name="index-realmin-1997"></a></var><br>
-&mdash; Built-in Function:  <b>realmin</b> (<var>n, m</var>)<var><a name="index-realmin-1998"></a></var><br>
-&mdash; Built-in Function:  <b>realmin</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-realmin-1999"></a></var><br>
-&mdash; Built-in Function:  <b>realmin</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-realmin-2000"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b><var><a name="index-realmin-2195"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var>n</var>)<var><a name="index-realmin-2196"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var>n, m</var>)<var><a name="index-realmin-2197"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-realmin-2198"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-realmin-2199"></a></var><br>
 <blockquote><p>Return a scalar, matrix or N-dimensional array whose elements are all equal
 to the smallest normalized floating point number that is representable. 
 The actual value is system dependent.  On machines that support
@@ -249,18 +248,15 @@ IEEE floating point arithmetic, <code>realmin</code> is approximately
 for single precision.
 
         <p>When called with no arguments, return a scalar with the value
-<code>realmin("double")</code>. 
+<code>realmin ("double")</code>. 
 When called with a single argument, return a square matrix with the dimension
 specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions. 
 The optional argument <var>class</var> specifies the return type and may be
-either "double" or "single". 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+either "double" or "single".
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealmax.html#doc_002drealmax">realmax</a>, <a href="doc_002dintmin.html#doc_002dintmin">intmin</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealmax.html#doc_002drealmax">realmax</a>, <a href="doc_002dintmin.html#doc_002dintmin">intmin</a>, <a href="doc_002deps.html#doc_002deps">eps</a>. 
 </p></blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->

@@ -1,6 +1,6 @@
 @c DO NOT EDIT!  Generated automatically by munge-texi.pl.
 
-@c Copyright (C) 2007-2012 S�ren Hauberg
+@c Copyright (C) 2007-2012 Søren Hauberg
 @c
 @c This file is part of Octave.
 @c
@@ -229,7 +229,7 @@ and those which were installed by the system administrator.
 [user_packages, system_packages] = pkg ("list")
 @end example
 
-The option '-forge' lists packages available at the Octave-Forge repository.
+The option "-forge" lists packages available at the Octave-Forge repository.
 This requires an internet connection and the cURL library.  For example:
 
 @example
@@ -238,7 +238,7 @@ oct_forge_pkgs = pkg ("list", "-forge")
 
 @item describe
 Show a short description of the named installed packages, with the option
-'-verbose' also list functions provided by the package.  For example,
+"-verbose" also list functions provided by the package.  For example,
 
 @example
 pkg describe -verbose all
@@ -425,8 +425,12 @@ top level directory of any given name.  This directory will in the
 following be referred to as @code{package} and may contain the
 following files:
 
-@noindent
 @table @code
+@item package/CITATION
+This is am optional file describing instructions on how to cite
+the package for publication.  It will be displayed verbatim by the
+function @code{citation}.
+
 @item package/COPYING
 This is a required file containing the license of the package.  No
 restrictions is made on the license in general.  If however the
@@ -456,6 +460,7 @@ into @file{package/ONEWS}.
 @item package/ONEWS
 This is an optional file describing old entries from the @file{NEWS} file.
 
+@cindex PKG_ADD
 @anchor{doc-PKG_ADD}
 @item package/PKG_ADD
 An optional file that includes commands that are run when the package
@@ -480,6 +485,8 @@ autoload ('bar', which ('foo'));
 @xref{PKG_ADD and PKG_DEL Directives}, for details on @w{@code{PKG_ADD}}
 directives.
 
+@cindex PKG_DEL
+@anchor{doc-PKG_DEL}
 @item package/PKG_DEL
 An optional file that includes commands that are run when the package
 is removed from the users path.  Note that @w{@code{PKG_DEL}} directives in
@@ -504,7 +511,6 @@ package.
 Besides the above mentioned files, a package can also contain on or
 more of the following directories:
 
-@noindent
 @table @code
 @item package/inst
 An optional directory containing any files that are directly installed
@@ -549,7 +555,6 @@ The @file{DESCRIPTION} file contains various information about the
 package, such as its name, author, and version.  This file has a very
 simple format
 
-@noindent
 @itemize
 @item
 Lines starting with @samp{#} are comments.
@@ -584,7 +589,6 @@ License: GPL version 3 or later
 
 The package manager currently recognizes the following keywords
 
-@noindent
 @table @code
 @item Name
 Name of the package.
@@ -685,7 +689,6 @@ name will be used instead.
 The optional @file{INDEX} file provides a categorical view of the
 functions in the package.  This file has a very simple format
 
-@noindent
 @itemize
 @item Lines beginning with @samp{#} are comments.
 

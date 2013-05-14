@@ -37,7 +37,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="GUI-Development.html#GUI-Development">G
 <p><a name="doc_002daddpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>addpref</b> (<var>group, pref, val</var>)<var><a name="index-addpref-3096"></a></var><br>
+&mdash; Function File:  <b>addpref</b> (<var>group, pref, val</var>)<var><a name="index-addpref-3364"></a></var><br>
 <blockquote><p>Add a preference <var>pref</var> and associated value <var>val</var> to the
 named preference group <var>group</var>.
 
@@ -46,10 +46,7 @@ named preference group <var>group</var>.
         <p>The preference <var>pref</var> may be a character string or a cell array
 of character strings.  The corresponding value <var>val</var> may be any
 value, or, if <var>pref</var> is a cell array of strings, <var>val</var>
-must be a cell array of values with the same size as <var>pref</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+must be a cell array of values with the same size as <var>pref</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
 </p></blockquote></div>
@@ -58,7 +55,7 @@ must be a cell array of values with the same size as <var>pref</var>.
    <p><a name="doc_002dgetpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>getpref</b> (<var>group, pref, default</var>)<var><a name="index-getpref-3097"></a></var><br>
+&mdash; Function File:  <b>getpref</b> (<var>group, pref, default</var>)<var><a name="index-getpref-3365"></a></var><br>
 <blockquote><p>Return the preference value corresponding to the named preference
 <var>pref</var> in the preference group <var>group</var>.
 
@@ -77,10 +74,7 @@ may be any value, or, if <var>pref</var> is a cell array of strings,
 structure of preferences for the preference group <var>group</var>.
 
         <p>If no arguments are specified, return a structure containing all
-groups of preferences and their values. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+groups of preferences and their values.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
 </p></blockquote></div>
@@ -89,7 +83,7 @@ groups of preferences and their values.
    <p><a name="doc_002dispref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ispref</b> (<var>group, pref</var>)<var><a name="index-ispref-3098"></a></var><br>
+&mdash; Function File:  <b>ispref</b> (<var>group, pref</var>)<var><a name="index-ispref-3366"></a></var><br>
 <blockquote><p>Return true if the named preference <var>pref</var> exists in the
 preference group <var>group</var>.
 
@@ -99,10 +93,7 @@ preference group <var>group</var>.
 of character strings.
 
         <p>If <var>pref</var> is not specified, return true if the preference
-group <var>group</var> exists. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+group <var>group</var> exists.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>, <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
 </p></blockquote></div>
@@ -111,22 +102,20 @@ group <var>group</var> exists.
    <p><a name="doc_002drmpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rmpref</b> (<var>group, pref</var>)<var><a name="index-rmpref-3099"></a></var><br>
+&mdash; Function File:  <b>rmpref</b> (<var>group</var>)<var><a name="index-rmpref-3367"></a></var><br>
+&mdash; Function File:  <b>rmpref</b> (<var>group, pref</var>)<var><a name="index-rmpref-3368"></a></var><br>
 <blockquote><p>Remove the named preference <var>pref</var> from the preference group
 <var>group</var>.
 
         <p>The named preference group must be a character string.
 
-        <p>The preference <var>pref</var> may be a character string or a cell array
-of character strings.
+        <p>The preference <var>pref</var> may be a character string or cell array
+of strings.
 
         <p>If <var>pref</var> is not specified, remove the preference group
 <var>group</var>.
 
-        <p>It is an error to remove a nonexistent preference or group. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>It is an error to remove a nonexistent preference or group.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>. 
 </p></blockquote></div>
@@ -135,7 +124,7 @@ of character strings.
    <p><a name="doc_002dsetpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setpref</b> (<var>group, pref, val</var>)<var><a name="index-setpref-3100"></a></var><br>
+&mdash; Function File:  <b>setpref</b> (<var>group, pref, val</var>)<var><a name="index-setpref-3369"></a></var><br>
 <blockquote><p>Set a preference <var>pref</var> to the given <var>val</var> in the named
 preference group <var>group</var>.
 
@@ -146,10 +135,7 @@ of character strings.  The corresponding value <var>val</var> may be any
 value, or, if <var>pref</var> is a cell array of strings, <var>val</var>
 must be a cell array of values with the same size as <var>pref</var>.
 
-        <p>If the named preference or group does not exist, it is added. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If the named preference or group does not exist, it is added.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
 </p></blockquote></div>

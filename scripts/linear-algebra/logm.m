@@ -104,7 +104,7 @@ function [s, iters] = logm (A, opt_iters = 100)
   s = 2^k * u * s * u';
 
   ## Remove small complex values (O(eps)) which may have entered calculation
-  if (real_eig && isreal(A))
+  if (real_eig && isreal (A))
     s = real (s);
   endif
 
@@ -156,16 +156,16 @@ function [x, w] = gauss_legendre (n)
 endfunction
 
 
-%!assert(norm(logm([1 -1;0 1]) - [0 -1; 0 0]) < 1e-5);
-%!assert(norm(expm(logm([-1 2 ; 4 -1])) - [-1 2 ; 4 -1]) < 1e-5);
-%!assert(logm([1 -1 -1;0 1 -1; 0 0 1]), [0 -1 -1.5; 0 0 -1; 0 0 0], 1e-5);
-%!assert (logm (expm ([0 1i; -1i 0])), [0 1i; -1i 0], 10 * eps)
-
-%% Test input validation
-%!error logm ();
-%!error logm (1, 2, 3);
-%!error <logm: A must be a square matrix> logm([1 0;0 1; 2 2]);
-
+%!assert (norm (logm ([1 -1;0 1]) - [0 -1; 0 0]) < 1e-5)
+%!assert (norm (expm (logm ([-1 2 ; 4 -1])) - [-1 2 ; 4 -1]) < 1e-5)
+%!assert (logm ([1 -1 -1;0 1 -1; 0 0 1]), [0 -1 -1.5; 0 0 -1; 0 0 0], 1e-5)
 %!assert (logm (10), log (10))
 %!assert (full (logm (eye (3))), logm (full (eye (3))))
 %!assert (full (logm (10*eye (3))), logm (full (10*eye (3))), 8*eps)
+%!assert (logm (expm ([0 1i; -1i 0])), [0 1i; -1i 0], 10 * eps)
+
+%% Test input validation
+%!error logm ()
+%!error logm (1, 2, 3)
+%!error <logm: A must be a square matrix> logm ([1 0;0 1; 2 2])
+

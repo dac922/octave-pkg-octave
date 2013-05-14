@@ -51,10 +51,10 @@ legend displaying the name of the plotted function.
    <p><a name="doc_002dfplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fplot</b> (<var>fn, limits</var>)<var><a name="index-fplot-1206"></a></var><br>
-&mdash; Function File:  <b>fplot</b> (<var>fn, limits, tol</var>)<var><a name="index-fplot-1207"></a></var><br>
-&mdash; Function File:  <b>fplot</b> (<var>fn, limits, n</var>)<var><a name="index-fplot-1208"></a></var><br>
-&mdash; Function File:  <b>fplot</b> (<var><small class="dots">...</small>, fmt</var>)<var><a name="index-fplot-1209"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits</var>)<var><a name="index-fplot-1262"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits, tol</var>)<var><a name="index-fplot-1263"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits, n</var>)<var><a name="index-fplot-1264"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var><small class="dots">...</small>, fmt</var>)<var><a name="index-fplot-1265"></a></var><br>
 <blockquote><p>Plot a function <var>fn</var> within defined limits. 
 <var>fn</var> is a function handle, inline function, or string
 containing the name of the function to evaluate. 
@@ -68,10 +68,7 @@ to the plot command.
      <pre class="example">          fplot ("cos", [0, 2*pi])
           fplot ("[cos(x), sin(x)]", [0, 2*pi])
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>. 
 </p></blockquote></div>
 
    <p>Other functions that can create two-dimensional plots directly from a
@@ -82,12 +79,12 @@ function include <code>ezplot</code>, <code>ezcontour</code>, <code>ezcontourf</
    <p><a name="doc_002dezplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezplot</b> (<var>f</var>)<var><a name="index-ezplot-1210"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var>fx, fy</var>)<var><a name="index-ezplot-1211"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezplot-1212"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezplot-1213"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezplot-1214"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezplot-1215"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>f</var>)<var><a name="index-ezplot-1266"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>fx, fy</var>)<var><a name="index-ezplot-1267"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezplot-1268"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezplot-1269"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezplot-1270"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezplot-1271"></a></var><br>
 <blockquote>
         <p>Plot the curve defined by <var>f</var> in two dimensions.  The function
 <var>f</var> may be a string, inline function or function handle and can
@@ -121,9 +118,6 @@ the function.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dezplot3.html#doc_002dezplot3">ezplot3</a>. 
 </p></blockquote></div>
 
@@ -131,11 +125,11 @@ the function.
    <p><a name="doc_002dezcontour"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezcontour</b> (<var>f</var>)<var><a name="index-ezcontour-1216"></a></var><br>
-&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontour-1217"></a></var><br>
-&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontour-1218"></a></var><br>
-&mdash; Function File:  <b>ezcontour</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezcontour-1219"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezcontour</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontour-1220"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var>f</var>)<var><a name="index-ezcontour-1272"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontour-1273"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontour-1274"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezcontour-1275"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezcontour</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontour-1276"></a></var><br>
 <blockquote>
         <p>Plot the contour lines of a function.  <var>f</var> is a string, inline function
 or function handle with two arguments defining the function.  By default the
@@ -154,21 +148,18 @@ separately.
      <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
           ezcontour (f, [-3, 3]);
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezcontourf.html#doc_002dezcontourf">ezcontourf</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezcontourf.html#doc_002dezcontourf">ezcontourf</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
 </p></blockquote></div>
 
 <!-- ezcontourf scripts/plot/ezcontourf.m -->
    <p><a name="doc_002dezcontourf"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezcontourf</b> (<var>f</var>)<var><a name="index-ezcontourf-1221"></a></var><br>
-&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontourf-1222"></a></var><br>
-&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontourf-1223"></a></var><br>
-&mdash; Function File:  <b>ezcontourf</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezcontourf-1224"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezcontourf</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontourf-1225"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var>f</var>)<var><a name="index-ezcontourf-1277"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontourf-1278"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontourf-1279"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezcontourf-1280"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezcontourf</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontourf-1281"></a></var><br>
 <blockquote>
         <p>Plot the filled contour lines of a function.  <var>f</var> is a string, inline
 function or function handle with two arguments defining the function.  By
@@ -187,39 +178,38 @@ separately.
      <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
           ezcontourf (f, [-3, 3]);
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezcontour.html#doc_002dezcontour">ezcontour</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezcontour.html#doc_002dezcontour">ezcontour</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
 </p></blockquote></div>
 
 <!-- ezpolar scripts/plot/ezpolar.m -->
    <p><a name="doc_002dezpolar"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezpolar</b> (<var>f</var>)<var><a name="index-ezpolar-1226"></a></var><br>
-&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezpolar-1227"></a></var><br>
-&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezpolar-1228"></a></var><br>
-&mdash; Function File:  <b>ezpolar</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezpolar-1229"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezpolar</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezpolar-1230"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var>f</var>)<var><a name="index-ezpolar-1282"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezpolar-1283"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezpolar-1284"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezpolar-1285"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezpolar</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezpolar-1286"></a></var><br>
 <blockquote>
-        <p>Plot a function in polar coordinates.  The function <var>f</var> is either
-a string, inline function or function handle with one arguments defining
-the function.  By default the plot is over the domain <code>0 &lt; </code><var>x</var><code> &lt;
-2*pi</code> with 60 points.
+        <p>Plot a function in polar coordinates.  The function <var>f</var> is
+a string, inline function, or function handle with a single argument. 
+The expected form of the function is
+<var>rho</var><code> = </code><var>f</var><code>(</code><var>theta</var><code>)</code>. 
+By default the plot is over the domain <code>0 &lt; </code><var>theta</var><code> &lt; 2*pi</code> with 60
+points.
 
         <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>t</var>.  <var>n</var> is a scalar defining the number of points to
-use.
+values of <var>theta</var>.  <var>n</var> is a scalar defining the number of points to
+use.  If the optional input <var>hax</var> is given then the plot is placed into
+the specified axes rather than the current axes.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
+        <p>Example:
+
      <pre class="example">          ezpolar (@(t) 1 + sin (t));
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolar.html#doc_002dpolar">polar</a>, <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolar.html#doc_002dpolar">polar</a>, <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>. 
 </p></blockquote></div>
 
    </body></html>

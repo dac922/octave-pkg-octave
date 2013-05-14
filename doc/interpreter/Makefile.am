@@ -1,4 +1,4 @@
-# Makefile for octave's doc/interpreter directory
+# Makefile for Octave's doc/interpreter directory
 #
 # Copyright (C) 1993-2012 John W. Eaton
 #
@@ -19,10 +19,6 @@
 # <http://www.gnu.org/licenses/>.
 
 include $(top_srcdir)/build-aux/common.mk
-
-## Automake generated rules for documentation are not parallel-safe.
-## Restrict current directory to run serially
-.NOTPARALLEL:
 
 TEXINFO_TEX = ../texinfo.tex
 
@@ -87,12 +83,31 @@ include images.mk
 $(srcdir)/images.mk: $(srcdir)/config-images.sh $(srcdir)/images.awk $(srcdir)/images
 	$(srcdir)/config-images.sh $(top_srcdir)
 
-IMAGES = \
+JAVA_IMAGES = \
+  java-images/image001.png \
+  java-images/image002.png \
+  java-images/image003.png \
+  java-images/image004.png \
+  java-images/image005.png \
+  java-images/image006.png \
+  java-images/image007.png \
+  java-images/image008.png \
+  java-images/image009.png
+
+BUILT_IMAGES = \
   $(IMAGES_EPS) \
   $(IMAGES_PDF) \
   $(IMAGES_PNG) \
-  $(IMAGES_TXT) \
-  $(HTMLDIR_IMAGES)
+  $(IMAGES_TXT)
+
+IMAGES = \
+  $(BUILT_IMAGES) \
+  $(JAVA_IMAGES)
+
+## FIXME: JAVA_IMAGES will eventually need to be added to the HTML build.
+##        It will require a different Makefile rule later because 
+##        JAVA_IMAGES live in a subdir rather than in the current directory.
+HTMLDIR_IMAGES = $(addprefix octave.html/, $(IMAGES_PNG))
 
 LOGOS = \
   octave_logo.eps \
@@ -126,6 +141,7 @@ MUNGED_TEXI_SRC = \
   interp.texi \
   intro.texi \
   io.texi \
+  java.texi \
   linalg.texi \
   matrix.texi \
   nonlin.texi \
@@ -153,23 +169,30 @@ MUNGED_TEXI_SRC = \
 
 TXI_SRC = $(MUNGED_TEXI_SRC:.texi=.txi)
 
-info_TEXINFOS = octave.texi
-
-octave_TEXINFOS = \
+BUILT_TEXINFOS = \
   contributors.texi \
   $(MUNGED_TEXI_SRC)
 
-octave.info octave.dvi octave.html octave.pdf: $(srcdir)/version.texi $(octave_TEXINFOS) $(EXAMPLE_FILES) $(srcdir)/images.mk
+info_TEXINFOS = octave.texi
 
-octave.info: $(IMAGES_TXT)
+octave_TEXINFOS = \
+  $(BUILT_TEXINFOS) \
+  $(EXAMPLE_FILES) \
+  $(IMAGES) \
+  $(LOGOS) \
+  $(srcdir)/images.mk
 
-octave.dvi octave.ps: $(IMAGES_EPS) octave_logo.eps
+all-local: dvi html pdf ps doc-cache
 
-octave.html: $(IMAGES_PNG)
+html: $(HTMLDIR_IMAGES)
 
-octave.pdf: $(IMAGES_PDF) octave_logo.pdf
+$(HTMLDIR_IMAGES): $(IMAGES_PNG) | octave.html
+	cp $(@F) octave.html
 
-all-local: dvi html pdf ps doc-cache $(HTMLDIR_IMAGES)
+## The texi2dvi script (used to create both PDF and DVI output formats)
+## uses some fixed temporary file names.  In order to avoid a race condition
+## the DVI and PDF builds are forced to run serially through a Makefile rule.
+octave.pdf: octave.dvi
 
 # Prevent packaging of distribution unless all libraries 
 # necessary to create documentation are present
@@ -179,12 +202,12 @@ dist-hook:
 	@$(GREP) '#define HAVE_UMFPACK 1' $(top_builddir)/config.h > /dev/null || { echo "Documentation creation requires missing UMFPACK library.  Cannot package distribution!" ; exit 1; }
 	@$(GREP) '#define HAVE_QHULL 1' $(top_builddir)/config.h > /dev/null || { echo "Documentation creation requires missing QHULL library.  Cannot package distribution!" ; exit 1; }
 
-octetc_DATA = doc-cache
+octetc_DATA = doc-cache macros.texi
 
 DOCSTRING_FILES = $(shell $(srcdir)/find-docstring-files.sh "$(top_srcdir)")
 
 doc-cache: $(DOCSTRING_FILES) mk_doc_cache.m
-	$(top_builddir)/run-octave -f -q -H $(srcdir)/mk_doc_cache.m doc-cache $(DOCSTRING_FILES) || { rm -f doc-cache; exit 1; }
+	$(top_builddir)/run-octave -f -q -H $(srcdir)/mk_doc_cache.m doc-cache $(srcdir)/macros.texi $(DOCSTRING_FILES) || { rm -f doc-cache; exit 1; }
 
 $(MUNGED_TEXI_SRC): $(DOCSTRING_FILES) $(munge_texi_SOURCES)
 
@@ -198,6 +221,10 @@ contributors.texi: contributors.in
 
 ../../AUTHORS: preface.texi contributors.texi
 	rm -f AUTHORS
+	if [ "x$(srcdir)" != "x." ] && [ -f $(srcdir)/contributors.texi ] && [ ! -f contributors.texi ]; then \
+		cp $(srcdir)/contributors.texi contributors.texi; \
+		touch -r $(srcdir)/contributors.texi contributors.texi; \
+	fi
 	-$(MAKEINFO) -D AUTHORSONLY \
 	  --no-validate --no-headers --no-split --output AUTHORS $<
 	mv AUTHORS ../../AUTHORS
@@ -214,11 +241,11 @@ contributors.texi: contributors.in
 	  --no-validate --no-headers --no-split --output INSTALL $<
 	mv INSTALL ../../INSTALL.OCTAVE
 
+
 undocumented_list:
 	rm -f $@
 	-$(PERL) $(srcdir)/doccheck/mk_undocumented_list > $@
 .PHONY: undocumented_list
-
 
 SPELLCHECK_FILES = $(MUNGED_TEXI_SRC:.texi=.scheck)
 
@@ -246,6 +273,7 @@ EXTRA_DIST = \
   images \
   images.awk \
   images.mk \
+  macros.texi \
   mk_doc_cache.m \
   mkcontrib.awk \
   munge-texi.pl \
@@ -258,7 +286,10 @@ EXTRA_DIST = \
   $(LOGOS) \
   $(TXI_SRC)
 
-DISTCLEANFILES = $(octave_TEXINFOS)
+clean-local:
+	rm -rf t2d_cache
 
-MAINTAINERCLEANFILES = $(IMAGES) doc-cache
+DISTCLEANFILES = $(BUILT_TEXINFOS)
+
+MAINTAINERCLEANFILES = $(BUILT_IMAGES) doc-cache
 

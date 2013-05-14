@@ -178,10 +178,6 @@ A
 
 @DOCSTRING(save)
 
-@DOCSTRING(load)
-
-@DOCSTRING(fileread)
-
 There are three functions that modify the behavior of @code{save}.
 
 @DOCSTRING(default_save_options)
@@ -189,6 +185,10 @@ There are three functions that modify the behavior of @code{save}.
 @DOCSTRING(save_precision)
 
 @DOCSTRING(save_header_format_string)
+
+@DOCSTRING(load)
+
+@DOCSTRING(fileread)
 
 @DOCSTRING(native_float_format)
 
@@ -230,6 +230,11 @@ Formatted data from can be read from, or written to, text files as well.
 
 @DOCSTRING(textscan)
 
+The @code{importdata} function has the ability to work with a wide
+variety of data.
+
+@DOCSTRING(importdata)
+
 @menu
 * Saving Data on Unexpected Exits::
 @end menu
@@ -239,7 +244,7 @@ Formatted data from can be read from, or written to, text files as well.
 
 If Octave for some reason exits unexpectedly it will by default save the
 variables available in the workspace to a file in the current directory.
-By default this file is named @samp{octave-core} and can be loaded
+By default this file is named @samp{octave-workspace} and can be loaded
 into memory with the @code{load} command.  While the default behavior
 most often is reasonable it can be changed through the following
 functions.

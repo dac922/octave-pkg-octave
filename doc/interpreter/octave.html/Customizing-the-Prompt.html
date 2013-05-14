@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Command-Line-Editing.html#Command-Line-
 
 <h4 class="subsection">2.4.7 Customizing the Prompt</h4>
 
-<p><a name="index-prompt-customization-155"></a><a name="index-customizing-the-prompt-156"></a>
+<p><a name="index-prompt-customization-173"></a><a name="index-customizing-the-prompt-174"></a>
 The following variables are available for customizing the appearance of
 the command-line prompts.  Octave allows the prompt to be customized by
 inserting a number of backslash-escaped special characters that are
@@ -72,13 +72,13 @@ number of commands in the history list when Octave starts.
      <br><dt>&lsquo;<samp><span class="samp">\\</span></samp>&rsquo;<dd>A backslash. 
 </dl>
 
-<!-- PS1 src/input.cc -->
+<!-- PS1 libinterp/interpfcn/input.cc -->
    <p><a name="doc_002dPS1"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>PS1</b> ()<var><a name="index-PS1-157"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>PS1</b> (<var>new_val</var>)<var><a name="index-PS1-158"></a></var><br>
-&mdash; Built-in Function:  <b>PS1</b> (<var>new_val, "local"</var>)<var><a name="index-PS1-159"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>PS1</b> ()<var><a name="index-PS1-175"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>PS1</b> (<var>new_val</var>)<var><a name="index-PS1-176"></a></var><br>
+&mdash; Built-in Function:  <b>PS1</b> (<var>new_val, "local"</var>)<var><a name="index-PS1-177"></a></var><br>
 <blockquote><p>Query or set the primary prompt string.  When executing interactively,
 Octave displays the primary prompt when it is ready to read a command.
 
@@ -101,21 +101,18 @@ This can be useful for coloring the prompt.  For example,
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dPS2.html#doc_002dPS2">PS2</a>, <a href="doc_002dPS4.html#doc_002dPS4">PS4</a>. 
 </p></blockquote></div>
 
-<!-- PS2 src/input.cc -->
+<!-- PS2 libinterp/interpfcn/input.cc -->
    <p><a name="doc_002dPS2"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>PS2</b> ()<var><a name="index-PS2-160"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>PS2</b> (<var>new_val</var>)<var><a name="index-PS2-161"></a></var><br>
-&mdash; Built-in Function:  <b>PS2</b> (<var>new_val, "local"</var>)<var><a name="index-PS2-162"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>PS2</b> ()<var><a name="index-PS2-178"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>PS2</b> (<var>new_val</var>)<var><a name="index-PS2-179"></a></var><br>
+&mdash; Built-in Function:  <b>PS2</b> (<var>new_val, "local"</var>)<var><a name="index-PS2-180"></a></var><br>
 <blockquote><p>Query or set the secondary prompt string.  The secondary prompt is
 printed when Octave is expecting additional input to complete a
 command.  For example, if you are typing a <code>for</code> loop that spans several
@@ -125,21 +122,18 @@ string is <code>"&gt; "</code>.
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dPS1.html#doc_002dPS1">PS1</a>, <a href="doc_002dPS4.html#doc_002dPS4">PS4</a>. 
 </p></blockquote></div>
 
-<!-- PS4 src/input.cc -->
+<!-- PS4 libinterp/interpfcn/input.cc -->
    <p><a name="doc_002dPS4"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>PS4</b> ()<var><a name="index-PS4-163"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>PS4</b> (<var>new_val</var>)<var><a name="index-PS4-164"></a></var><br>
-&mdash; Built-in Function:  <b>PS4</b> (<var>new_val, "local"</var>)<var><a name="index-PS4-165"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>PS4</b> ()<var><a name="index-PS4-181"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>PS4</b> (<var>new_val</var>)<var><a name="index-PS4-182"></a></var><br>
+&mdash; Built-in Function:  <b>PS4</b> (<var>new_val, "local"</var>)<var><a name="index-PS4-183"></a></var><br>
 <blockquote><p>Query or set the character string used to prefix output produced
 when echoing commands is enabled. 
 The default value is <code>"+ "</code>. 
@@ -147,10 +141,7 @@ See <a href="Diary-and-Echo-Commands.html#Diary-and-Echo-Commands">Diary and Ech
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002decho.html#doc_002decho">echo</a>, <a href="doc_002decho_005fexecuting_005fcommands.html#doc_002decho_005fexecuting_005fcommands">echo_executing_commands</a>, <a href="doc_002dPS1.html#doc_002dPS1">PS1</a>, <a href="doc_002dPS2.html#doc_002dPS2">PS2</a>. 
 </p></blockquote></div>

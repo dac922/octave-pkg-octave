@@ -33,7 +33,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 
 <h2 class="chapter">7 Variables</h2>
 
-<p><a name="index-variables_002c-user_002ddefined-476"></a><a name="index-user_002ddefined-variables-477"></a>
+<p><a name="index-variables_002c-user_002ddefined-506"></a><a name="index-user_002ddefined-variables-507"></a>
 Variables let you give names to values and refer to them later.  You have
 already seen variables in many of the examples.  The name of a variable
 must be a sequence of letters, digits and underscores, but it may not begin
@@ -70,11 +70,11 @@ store a numeric value in a variable and then to later use the same name
 to hold a string value in the same program.  Variables may not be used
 before they have been given a value.  Doing so results in an error.
 
-   <p><a name="index-g_t_0040code_007bans_007d-478"></a><!-- ans scripts/miscellaneous/ans.m -->
+   <p><a name="index-g_t_0040code_007bans_007d-508"></a><!-- ans scripts/miscellaneous/ans.m -->
 <a name="doc_002dans"></a>
 
 <div class="defun">
-&mdash; Automatic Variable: <b>ans</b><var><a name="index-ans-479"></a></var><br>
+&mdash; Automatic Variable: <b>ans</b><var><a name="index-ans-509"></a></var><br>
 <blockquote><p>The most recently computed result that was not
 explicitly assigned to a variable.  For example, after the expression
 
@@ -83,15 +83,12 @@ explicitly assigned to a variable.  For example, after the expression
         <p class="noindent">is evaluated, the value returned by <code>ans</code> is 25. 
 </p></blockquote></div>
 
-<!-- isvarname src/utils.cc -->
+<!-- isvarname libinterp/interpfcn/utils.cc -->
    <p><a name="doc_002disvarname"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isvarname</b> (<var>name</var>)<var><a name="index-isvarname-480"></a></var><br>
-<blockquote><p>Return true if <var>name</var> is a valid variable name. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>isvarname</b> (<var>name</var>)<var><a name="index-isvarname-510"></a></var><br>
+<blockquote><p>Return true if <var>name</var> is a valid variable name.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002diskeyword.html#doc_002diskeyword">iskeyword</a>, <a href="doc_002dexist.html#doc_002dexist">exist</a>, <a href="doc_002dwho.html#doc_002dwho">who</a>. 
 </p></blockquote></div>
@@ -100,8 +97,8 @@ explicitly assigned to a variable.  For example, after the expression
    <p><a name="doc_002dgenvarname"></a>
 
 <div class="defun">
-&mdash; Function File: <var>varname</var> = <b>genvarname</b> (<var>str</var>)<var><a name="index-genvarname-481"></a></var><br>
-&mdash; Function File: <var>varname</var> = <b>genvarname</b> (<var>str, exclusions</var>)<var><a name="index-genvarname-482"></a></var><br>
+&mdash; Function File: <var>varname</var> = <b>genvarname</b> (<var>str</var>)<var><a name="index-genvarname-511"></a></var><br>
+&mdash; Function File: <var>varname</var> = <b>genvarname</b> (<var>str, exclusions</var>)<var><a name="index-genvarname-512"></a></var><br>
 <blockquote><p>Create unique variable(s) from <var>str</var>.  If <var>exclusions</var> is
 given, then the variable(s) will be unique to each other and to
 <var>exclusions</var> (<var>exclusions</var> may be either a string or a cellstr).
@@ -156,10 +153,7 @@ genvarname will not generate such names.
         <p>genvarname will also make sure that returned names do not clash with
 keywords such as "for" and "if".  A number will be appended if necessary. 
 Note, however, that this does <strong>not</strong> include function names,
-such as "sin".  Such names should be included in <var>avoid</var> if necessary. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+such as "sin".  Such names should be included in <var>avoid</var> if necessary.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disvarname.html#doc_002disvarname">isvarname</a>, <a href="doc_002dexist.html#doc_002dexist">exist</a>, <a href="doc_002dtmpnam.html#doc_002dtmpnam">tmpnam</a>, <a href="doc_002deval.html#doc_002deval">eval</a>. 
 </p></blockquote></div>
@@ -168,7 +162,7 @@ such as "sin".  Such names should be included in <var>avoid</var> if necessary.
    <p><a name="doc_002dnamelengthmax"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>namelengthmax</b> ()<var><a name="index-namelengthmax-483"></a></var><br>
+&mdash; Function File:  <b>namelengthmax</b> ()<var><a name="index-namelengthmax-513"></a></var><br>
 <blockquote><p>Return the <span class="sc">matlab</span> compatible maximum variable name length.  Octave is
 capable of storing strings up to 2^31 - 1 in length. 
 However for <span class="sc">matlab</span> compatibility all variable, function,

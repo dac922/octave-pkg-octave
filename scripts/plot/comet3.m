@@ -43,7 +43,7 @@ function comet3 (varargin)
     print_usage ();
   elseif (nargin == 1)
     z = varargin{1};
-    x = y = 1:numel(z);
+    x = y = 1:numel (z);
     p = 0.1;
   elseif (nargin == 3)
     x = varargin{1};
@@ -80,7 +80,9 @@ function comet3 (varargin)
 
 endfunction
 
+
 %!demo
-%! clf
+%! clf;
 %! t = 0:pi/20:5*pi;
-%! comet3 (cos(t), sin(t), t, 0.01);
+%! comet3 (cos (t), sin (t), t, 0.01);
+

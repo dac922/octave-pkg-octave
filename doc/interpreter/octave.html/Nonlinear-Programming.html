@@ -41,12 +41,12 @@ successive quadratic programming solver.
    <p><a name="doc_002dsqp"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>obj</var>, <var>info</var>, <var>iter</var>, <var>nf</var>, <var>lambda</var>] = <b>sqp</b> (<var>x0, phi</var>)<var><a name="index-sqp-2386"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g</var>)<var><a name="index-sqp-2387"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h</var>)<var><a name="index-sqp-2388"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h, lb, ub</var>)<var><a name="index-sqp-2389"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h, lb, ub, maxiter</var>)<var><a name="index-sqp-2390"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h, lb, ub, maxiter, tol</var>)<var><a name="index-sqp-2391"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>obj</var>, <var>info</var>, <var>iter</var>, <var>nf</var>, <var>lambda</var>] = <b>sqp</b> (<var>x0, phi</var>)<var><a name="index-sqp-2588"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g</var>)<var><a name="index-sqp-2589"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h</var>)<var><a name="index-sqp-2590"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h, lb, ub</var>)<var><a name="index-sqp-2591"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h, lb, ub, maxiter</var>)<var><a name="index-sqp-2592"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>sqp</b> (<var>x0, phi, g, h, lb, ub, maxiter, tol</var>)<var><a name="index-sqp-2593"></a></var><br>
 <blockquote><p>Solve the nonlinear program
 
      <pre class="example">          min phi (x)
@@ -110,7 +110,7 @@ specified then the other will default to (-<var>realmax</var>,
 iterations.  The default value is 100.
 
         <p>The eighth argument <var>tol</var> specifies the tolerance for the
-stopping criteria.  The default value is <code>sqrt(eps)</code>.
+stopping criteria.  The default value is <code>sqrt (eps)</code>.
 
         <p>The value returned in <var>info</var> may be one of the following:
 
@@ -159,10 +159,7 @@ is less than <var>tol</var><code> * norm (x)</code>.
              0.0379578
             -0.0052227
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dqp.html#doc_002dqp">qp</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dqp.html#doc_002dqp">qp</a>. 
 </p></blockquote></div>
 
    </body></html>

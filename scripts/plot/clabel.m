@@ -67,7 +67,7 @@ function retval = clabel (c, varargin)
     hparent = gca ();
   else
     arg = varargin{1};
-    if (isscalar (arg) && ishandle(arg)
+    if (isscalar (arg) && ishandle (arg)
         && strcmp (get (arg, "type"), "hggroup"))
       obj = get (arg);
       if (! isfield (obj, "contourmatrix"))
@@ -81,7 +81,7 @@ function retval = clabel (c, varargin)
     endif
   endif
 
-  if (length(varargin) > 0 && isnumeric (varargin{1}))
+  if (length (varargin) > 0 && isnumeric (varargin{1}))
     v = varargin{1}(:);
     varargin(1) = [];
   else
@@ -127,16 +127,19 @@ function retval = clabel (c, varargin)
   else
     retval =  __clabel__ (c, v, hparent, label_spacing, [], varargin{:});
   endif
+
 endfunction
 
 
 %!demo
-%! clf
-%! [c, h] = contour (peaks(), -4:6);
-%! clabel (c, h, -4:2:6, "fontsize", 12);
+%! clf;
+%! colormap ('default');
+%! [c, h] = contour (peaks (), -4:6);
+%! clabel (c, h, -4:2:6, 'fontsize', 12);
 
 %!demo
-%! clf
-%! [c, h] = contourf (peaks(), -7:6);
-%! clabel (c, h, -6:2:6, "fontsize", 12);
+%! clf;
+%! colormap ('default');
+%! [c, h] = contourf (peaks (), -7:6);
+%! clabel (c, h, -6:2:6, 'fontsize', 12);
 

@@ -34,17 +34,17 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Lin
 
 <h3 class="section">18.3 Matrix Factorizations</h3>
 
-<!-- chol src/DLD-FUNCTIONS/chol.cc -->
+<!-- chol libinterp/dldfcn/chol.cc -->
 <p><a name="doc_002dchol"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R</var> = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2045"></a></var><br>
-&mdash; Loadable Function: [<var>R</var>, <var>p</var>] = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2046"></a></var><br>
-&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S</var>)<var><a name="index-chol-2047"></a></var><br>
-&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S, 'vector'</var>)<var><a name="index-chol-2048"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, 'lower'</var>)<var><a name="index-chol-2049"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, 'upper'</var>)<var><a name="index-chol-2050"></a></var><br>
-<blockquote><p><a name="index-Cholesky-factorization-2051"></a>Compute the Cholesky&nbsp;factor, <var>R</var>, of the symmetric positive definite
+&mdash; Loadable Function: <var>R</var> = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2244"></a></var><br>
+&mdash; Loadable Function: [<var>R</var>, <var>p</var>] = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2245"></a></var><br>
+&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S</var>)<var><a name="index-chol-2246"></a></var><br>
+&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S, "vector"</var>)<var><a name="index-chol-2247"></a></var><br>
+&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, "lower"</var>)<var><a name="index-chol-2248"></a></var><br>
+&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, "upper"</var>)<var><a name="index-chol-2249"></a></var><br>
+<blockquote><p><a name="index-Cholesky-factorization-2250"></a>Compute the Cholesky&nbsp;factor, <var>R</var>, of the symmetric positive definite
 matrix <var>A</var>, where
 
      <pre class="example">          <var>R</var>' * <var>R</var> = <var>A</var>.
@@ -62,68 +62,60 @@ is the factorization of <var>A</var><code>(</code><var>Q</var><code>,</code><var
      <pre class="example">          <var>R</var>' * <var>R</var> = <var>Q</var>' * <var>A</var> * <var>Q</var>.
 </pre>
         <p>The sparsity preserving permutation is generally returned as a matrix. 
-However, given the flag 'vector', <var>Q</var> will be returned as a vector
+However, given the flag "vector", <var>Q</var> will be returned as a vector
 such that
 
      <pre class="example">          <var>R</var>' * <var>R</var> = <var>A</var>(<var>Q</var>, <var>Q</var>).
 </pre>
-        <p>Called with either a sparse or full matrix and using the 'lower' flag,
+        <p>Called with either a sparse or full matrix and using the "lower" flag,
 <code>chol</code> returns the lower triangular factorization such that
 
      <pre class="example">          <var>L</var> * <var>L</var>' = <var>A</var>.
 </pre>
-        <p>For full matrices, if the 'lower' flag is set only the lower triangular part
-of the matrix is used for the factorization, otherwise the upper triangular
-part is used.
+        <p>For full matrices, if the "lower" flag is set only the lower triangular
+part of the matrix is used for the factorization, otherwise the upper
+triangular part is used.
 
         <p>In general the lower triangular factorization is significantly faster for
-sparse matrices. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+sparse matrices.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcholinv.html#doc_002dcholinv">cholinv</a>, <a href="doc_002dchol2inv.html#doc_002dchol2inv">chol2inv</a>. 
 </p></blockquote></div>
 
-<!-- cholinv src/DLD-FUNCTIONS/chol.cc -->
+<!-- cholinv libinterp/dldfcn/chol.cc -->
    <p><a name="doc_002dcholinv"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>cholinv</b> (<var>A</var>)<var><a name="index-cholinv-2052"></a></var><br>
+&mdash; Loadable Function:  <b>cholinv</b> (<var>A</var>)<var><a name="index-cholinv-2251"></a></var><br>
 <blockquote><p>Use the Cholesky&nbsp;factorization to compute the inverse of the
-symmetric positive definite matrix <var>A</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+symmetric positive definite matrix <var>A</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dchol2inv.html#doc_002dchol2inv">chol2inv</a>, <a href="doc_002dinv.html#doc_002dinv">inv</a>. 
 </p></blockquote></div>
 
-<!-- chol2inv src/DLD-FUNCTIONS/chol.cc -->
+<!-- chol2inv libinterp/dldfcn/chol.cc -->
    <p><a name="doc_002dchol2inv"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>chol2inv</b> (<var>U</var>)<var><a name="index-chol2inv-2053"></a></var><br>
+&mdash; Loadable Function:  <b>chol2inv</b> (<var>U</var>)<var><a name="index-chol2inv-2252"></a></var><br>
 <blockquote><p>Invert a symmetric, positive definite square matrix from its Cholesky
 decomposition, <var>U</var>.  Note that <var>U</var> should be an upper-triangular
 matrix with positive diagonal elements.  <code>chol2inv (</code><var>U</var><code>)</code>
 provides <code>inv (</code><var>U</var><code>'*</code><var>U</var><code>)</code> but it is much faster than
-using <code>inv</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+using <code>inv</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholinv.html#doc_002dcholinv">cholinv</a>, <a href="doc_002dinv.html#doc_002dinv">inv</a>. 
 </p></blockquote></div>
 
-<!-- cholupdate src/DLD-FUNCTIONS/chol.cc -->
+<!-- cholupdate libinterp/dldfcn/chol.cc -->
    <p><a name="doc_002dcholupdate"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholupdate</b> (<var>R, u, op</var>)<var><a name="index-cholupdate-2054"></a></var><br>
+&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholupdate</b> (<var>R, u, op</var>)<var><a name="index-cholupdate-2253"></a></var><br>
 <blockquote><p>Update or downdate a Cholesky&nbsp;factorization.  Given an upper triangular
 matrix <var>R</var> and a column vector <var>u</var>, attempt to determine another
 upper triangular matrix <var>R1</var> such that
+
           <ul>
 <li><var>R1</var>'*<var>R1</var> = <var>R</var>'*<var>R</var> + <var>u</var>*<var>u</var>'
 if <var>op</var> is "+"
@@ -133,6 +125,7 @@ if <var>op</var> is "-"
 </ul>
 
         <p>If <var>op</var> is "-", <var>info</var> is set to
+
           <ul>
 <li>0 if the downdate was successful,
 
@@ -141,26 +134,24 @@ if <var>op</var> is "-"
           <li>2 if <var>R</var> is singular. 
 </ul>
 
-        <p>If <var>info</var> is not present, an error message is printed in cases 1 and 2. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If <var>info</var> is not present, an error message is printed in cases 1 and 2.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>. 
 </p></blockquote></div>
 
-<!-- cholinsert src/DLD-FUNCTIONS/chol.cc -->
+<!-- cholinsert libinterp/dldfcn/chol.cc -->
    <p><a name="doc_002dcholinsert"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R1</var> = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2055"></a></var><br>
-&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2056"></a></var><br>
+&mdash; Loadable Function: <var>R1</var> = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2254"></a></var><br>
+&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2255"></a></var><br>
 <blockquote><p>Given a Cholesky&nbsp;factorization of a real symmetric or complex Hermitian
 positive definite matrix <var>A</var>&nbsp;=&nbsp;<var>R</var>'*<var>R</var><!-- /@w -->, <var>R</var>&nbsp;upper
 triangular, return the Cholesky&nbsp;factorization of
 <var>A1</var>, where A1(p,p)&nbsp;=&nbsp;A<!-- /@w -->, A1(:,j)&nbsp;=&nbsp;A1(j,:)'&nbsp;=&nbsp;u<!-- /@w --> and
 p&nbsp;=&nbsp;[1:j-1,j+1:n+1]<!-- /@w -->.  u(j)<!-- /@w --> should be positive. 
 On return, <var>info</var> is set to
+
           <ul>
 <li>0 if the insertion was successful,
 
@@ -169,35 +160,29 @@ On return, <var>info</var> is set to
           <li>2 if <var>R</var> is singular. 
 </ul>
 
-        <p>If <var>info</var> is not present, an error message is printed in cases 1 and 2. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If <var>info</var> is not present, an error message is printed in cases 1 and 2.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholupdate.html#doc_002dcholupdate">cholupdate</a>, <a href="doc_002dcholdelete.html#doc_002dcholdelete">choldelete</a>. 
 </p></blockquote></div>
 
-<!-- choldelete src/DLD-FUNCTIONS/chol.cc -->
+<!-- choldelete libinterp/dldfcn/chol.cc -->
    <p><a name="doc_002dcholdelete"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R1</var> = <b>choldelete</b> (<var>R, j</var>)<var><a name="index-choldelete-2057"></a></var><br>
+&mdash; Loadable Function: <var>R1</var> = <b>choldelete</b> (<var>R, j</var>)<var><a name="index-choldelete-2256"></a></var><br>
 <blockquote><p>Given a Cholesky&nbsp;factorization of a real symmetric or complex Hermitian
 positive definite matrix <var>A</var>&nbsp;=&nbsp;<var>R</var>'*<var>R</var><!-- /@w -->, <var>R</var>&nbsp;upper
 triangular, return the Cholesky&nbsp;factorization of A(p,p)<!-- /@w -->, where
-p&nbsp;=&nbsp;[1:j-1,j+1:n+1]<!-- /@w -->. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+p&nbsp;=&nbsp;[1:j-1,j+1:n+1]<!-- /@w -->.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholupdate.html#doc_002dcholupdate">cholupdate</a>, <a href="doc_002dcholinsert.html#doc_002dcholinsert">cholinsert</a>. 
 </p></blockquote></div>
 
-<!-- cholshift src/DLD-FUNCTIONS/chol.cc -->
+<!-- cholshift libinterp/dldfcn/chol.cc -->
    <p><a name="doc_002dcholshift"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R1</var> = <b>cholshift</b> (<var>R, i, j</var>)<var><a name="index-cholshift-2058"></a></var><br>
+&mdash; Loadable Function: <var>R1</var> = <b>cholshift</b> (<var>R, i, j</var>)<var><a name="index-cholshift-2257"></a></var><br>
 <blockquote><p>Given a Cholesky&nbsp;factorization of a real symmetric or complex Hermitian
 positive definite matrix <var>A</var>&nbsp;=&nbsp;<var>R</var>'*<var>R</var><!-- /@w -->, <var>R</var>&nbsp;upper
 triangular, return the Cholesky&nbsp;factorization of
@@ -206,19 +191,16 @@ triangular, return the Cholesky&nbsp;factorization of
  or <br>
 <code>p = [1:j-1, shift(j:i,-1), i+1:n]</code> if <var>j</var>&nbsp;&lt;&nbsp;<var>i</var><!-- /@w -->.  <br>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholinsert.html#doc_002dcholinsert">cholinsert</a>, <a href="doc_002dcholdelete.html#doc_002dcholdelete">choldelete</a>. 
 </p></blockquote></div>
 
-<!-- hess src/DLD-FUNCTIONS/hess.cc -->
+<!-- hess libinterp/corefcn/hess.cc -->
    <p><a name="doc_002dhess"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>H</var> = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2059"></a></var><br>
-&mdash; Loadable Function: [<var>P</var>, <var>H</var>] = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2060"></a></var><br>
-<blockquote><p><a name="index-Hessenberg-decomposition-2061"></a>Compute the Hessenberg decomposition of the matrix <var>A</var>.
+&mdash; Built-in Function: <var>H</var> = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2258"></a></var><br>
+&mdash; Built-in Function: [<var>P</var>, <var>H</var>] = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2259"></a></var><br>
+<blockquote><p><a name="index-Hessenberg-decomposition-2260"></a>Compute the Hessenberg decomposition of the matrix <var>A</var>.
 
         <p>The Hessenberg decomposition is
 <var>P</var><code> * </code><var>H</var><code> * </code><var>P</var><code>' = </code><var>A</var> where <var>P</var> is a square
@@ -231,18 +213,18 @@ eigenvalue computation, but has other applications as well (see Golub,
 Nash, and Van Loan, IEEE Transactions on Automatic Control, 1979). 
 </p></blockquote></div>
 
-<!-- lu src/DLD-FUNCTIONS/lu.cc -->
+<!-- lu libinterp/corefcn/lu.cc -->
    <p><a name="doc_002dlu"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>L</var>, <var>U</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2062"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2063"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2064"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>, <var>R</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2065"></a></var><br>
-&mdash; Loadable Function: [<small class="dots">...</small>] = <b>lu</b> (<var>S, thres</var>)<var><a name="index-lu-2066"></a></var><br>
-&mdash; Loadable Function: <var>y</var> = <b>lu</b> (<var><small class="dots">...</small></var>)<var><a name="index-lu-2067"></a></var><br>
-&mdash; Loadable Function: [<small class="dots">...</small>] = <b>lu</b> (<var><small class="dots">...</small>, 'vector'</var>)<var><a name="index-lu-2068"></a></var><br>
-<blockquote><p><a name="index-LU-decomposition-2069"></a>Compute the LU&nbsp;decomposition of <var>A</var>.  If <var>A</var> is full
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2261"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2262"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2263"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>, <var>R</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2264"></a></var><br>
+&mdash; Built-in Function: [<small class="dots">...</small>] = <b>lu</b> (<var>S, thres</var>)<var><a name="index-lu-2265"></a></var><br>
+&mdash; Built-in Function: <var>y</var> = <b>lu</b> (<var><small class="dots">...</small></var>)<var><a name="index-lu-2266"></a></var><br>
+&mdash; Built-in Function: [<small class="dots">...</small>] = <b>lu</b> (<var><small class="dots">...</small>, "vector"</var>)<var><a name="index-lu-2267"></a></var><br>
+<blockquote><p><a name="index-LU-decomposition-2268"></a>Compute the LU&nbsp;decomposition of <var>A</var>.  If <var>A</var> is full
 subroutines from
 <span class="sc">lapack</span> are used and if <var>A</var> is sparse then <span class="sc">umfpack</span> is used.  The
 result is returned in a permuted form, according to the optional return
@@ -289,7 +271,7 @@ element defines the pivoting tolerance for the unsymmetric <span class="sc">umfp
 pivoting strategy and the second for the symmetric strategy.  By default,
 the values defined by <code>spparms</code> are used ([0.1, 0.001]).
 
-        <p>Given the string argument 'vector', <code>lu</code> returns the values of <var>P</var>
+        <p>Given the string argument "vector", <code>lu</code> returns the values of <var>P</var>
 and <var>Q</var> as vector values, such that for full matrix, <var>A</var><code>
 (</code><var>P</var><code>,:) = </code><var>L</var><code> * </code><var>U</var>, and <var>R</var><code>(</code><var>P</var><code>,:) * </code><var>A</var><code>
 (:, </code><var>Q</var><code>) = </code><var>L</var><code> * </code><var>U</var>.
@@ -303,12 +285,12 @@ For both full and sparse matrices, <code>lu</code> loses the permutation
 information. 
 </p></blockquote></div>
 
-<!-- luupdate src/DLD-FUNCTIONS/lu.cc -->
+<!-- luupdate libinterp/corefcn/lu.cc -->
    <p><a name="doc_002dluupdate"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>L</var>, <var>U</var>] = <b>luupdate</b> (<var>L, U, x, y</var>)<var><a name="index-luupdate-2070"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>luupdate</b> (<var>L, U, P, x, y</var>)<var><a name="index-luupdate-2071"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>] = <b>luupdate</b> (<var>L, U, x, y</var>)<var><a name="index-luupdate-2269"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>luupdate</b> (<var>L, U, P, x, y</var>)<var><a name="index-luupdate-2270"></a></var><br>
 <blockquote><p>Given an LU&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>L</var>*<var>U</var><!-- /@w -->, <var>L</var>&nbsp;lower unit trapezoidal and
 <var>U</var>&nbsp;upper trapezoidal, return the LU&nbsp;factorization
@@ -321,16 +303,16 @@ in that case, an updated permutation matrix is returned.
 Note that if <var>L</var>, <var>U</var>, <var>P</var> is a pivoted LU&nbsp;factorization
 as obtained by <code>lu</code>:
 
-     <pre class="example">            [<var>L</var>, <var>U</var>, <var>P</var>] = lu (<var>A</var>);
+     <pre class="example">          [<var>L</var>, <var>U</var>, <var>P</var>] = lu (<var>A</var>);
 </pre>
         <p class="noindent">then a factorization of <var>A</var><code>+</code><var>x</var><code>*</code><var>y</var><code>.'</code> can be obtained
 either as
 
-     <pre class="example">            [<var>L1</var>, <var>U1</var>] = lu (<var>L</var>, <var>U</var>, <var>P</var>*<var>x</var>, <var>y</var>)
+     <pre class="example">          [<var>L1</var>, <var>U1</var>] = lu (<var>L</var>, <var>U</var>, <var>P</var>*<var>x</var>, <var>y</var>)
 </pre>
         <p class="noindent">or
 
-     <pre class="example">            [<var>L1</var>, <var>U1</var>, <var>P1</var>] = lu (<var>L</var>, <var>U</var>, <var>P</var>, <var>x</var>, <var>y</var>)
+     <pre class="example">          [<var>L1</var>, <var>U1</var>, <var>P1</var>] = lu (<var>L</var>, <var>U</var>, <var>P</var>, <var>x</var>, <var>y</var>)
 </pre>
         <p>The first form uses the unpivoted algorithm, which is faster, but less
 stable.  The second form uses a slower pivoted algorithm, which is more
@@ -338,23 +320,20 @@ stable.
 
         <p>The matrix case is done as a sequence of rank-1 updates;
 thus, for large enough k, it will be both faster and more accurate to
-recompute the factorization from scratch. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+recompute the factorization from scratch.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlu.html#doc_002dlu">lu</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>, <a href="doc_002dcholupdate.html#doc_002dcholupdate">cholupdate</a>. 
 </p></blockquote></div>
 
-<!-- qr src/DLD-FUNCTIONS/qr.cc -->
+<!-- qr libinterp/dldfcn/qr.cc -->
    <p><a name="doc_002dqr"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A</var>)<var><a name="index-qr-2072"></a></var><br>
-&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A, '0'</var>)<var><a name="index-qr-2073"></a></var><br>
-&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B</var>)<var><a name="index-qr-2074"></a></var><br>
-&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B, '0'</var>)<var><a name="index-qr-2075"></a></var><br>
-<blockquote><p><a name="index-QR-factorization-2076"></a>Compute the QR&nbsp;factorization of <var>A</var>, using standard <span class="sc">lapack</span>
+&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A</var>)<var><a name="index-qr-2271"></a></var><br>
+&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A, '0'</var>)<var><a name="index-qr-2272"></a></var><br>
+&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B</var>)<var><a name="index-qr-2273"></a></var><br>
+&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B, '0'</var>)<var><a name="index-qr-2274"></a></var><br>
+<blockquote><p><a name="index-QR-factorization-2275"></a>Compute the QR&nbsp;factorization of <var>A</var>, using standard <span class="sc">lapack</span>
 subroutines.  For example, given the matrix <var>A</var><code> = [1, 2; 3, 4]</code>,
 
      <pre class="example">          [<var>Q</var>, <var>R</var>] = qr (<var>A</var>)
@@ -374,7 +353,7 @@ subroutines.  For example, given the matrix <var>A</var><code> = [1, 2; 3, 4]</c
         <p>The <code>qr</code> factorization has applications in the solution of least
 squares problems
 
-     <pre class="example">          <code>min norm(A x - b)</code>
+     <pre class="example">          min norm(A x - b)
 </pre>
         <p>for overdetermined systems of equations (i.e.,
 <var>A</var>
@@ -435,11 +414,11 @@ as
 </pre>
         </blockquote></div>
 
-<!-- qrupdate src/DLD-FUNCTIONS/qr.cc -->
+<!-- qrupdate libinterp/dldfcn/qr.cc -->
    <p><a name="doc_002dqrupdate"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrupdate</b> (<var>Q, R, u, v</var>)<var><a name="index-qrupdate-2077"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrupdate</b> (<var>Q, R, u, v</var>)<var><a name="index-qrupdate-2276"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization
@@ -452,17 +431,14 @@ to recompute the factorization from scratch.
         <p>The QR&nbsp;factorization supplied may be either full
 (Q is square) or economized (R is square).
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrinsert.html#doc_002dqrinsert">qrinsert</a>, <a href="doc_002dqrdelete.html#doc_002dqrdelete">qrdelete</a>. 
 </p></blockquote></div>
 
-<!-- qrinsert src/DLD-FUNCTIONS/qr.cc -->
+<!-- qrinsert libinterp/dldfcn/qr.cc -->
    <p><a name="doc_002dqrinsert"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrinsert</b> (<var>Q, R, j, x, orient</var>)<var><a name="index-qrinsert-2078"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrinsert</b> (<var>Q, R, j, x, orient</var>)<var><a name="index-qrinsert-2277"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization of
@@ -485,26 +461,23 @@ recompute the factorization from scratch.
 the QR&nbsp;factorization supplied may be either full
 (Q is square) or economized (R is square).
 
-        <p>If <var>orient</var> is <code>"row"</code>, full factorization is needed. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If <var>orient</var> is <code>"row"</code>, full factorization is needed.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>, <a href="doc_002dqrdelete.html#doc_002dqrdelete">qrdelete</a>. 
 </p></blockquote></div>
 
-<!-- qrdelete src/DLD-FUNCTIONS/qr.cc -->
+<!-- qrdelete libinterp/dldfcn/qr.cc -->
    <p><a name="doc_002dqrdelete"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrdelete</b> (<var>Q, R, j, orient</var>)<var><a name="index-qrdelete-2079"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrdelete</b> (<var>Q, R, j, orient</var>)<var><a name="index-qrdelete-2278"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization of
 [A(:,1:j-1)&nbsp;A(:,j+1:n)]<!-- /@w -->, i.e., <var>A</var> with one column deleted
 (if <var>orient</var> is "col"), or the QR&nbsp;factorization of
 [A(1:j-1,:);A(j+1:n,:)]<!-- /@w -->, i.e., <var>A</var> with one row deleted (if
-   <var>orient</var> is "row").
+<var>orient</var> is "row").
 
         <p>The default value of <var>orient</var> is "col".
 
@@ -520,19 +493,16 @@ recompute the factorization from scratch.
 the QR&nbsp;factorization supplied may be either full
 (Q is square) or economized (R is square).
 
-        <p>If <var>orient</var> is <code>"row"</code>, full factorization is needed. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If <var>orient</var> is <code>"row"</code>, full factorization is needed.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrinsert.html#doc_002dqrinsert">qrinsert</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>. 
 </p></blockquote></div>
 
-<!-- qrshift src/DLD-FUNCTIONS/qr.cc -->
+<!-- qrshift libinterp/dldfcn/qr.cc -->
    <p><a name="doc_002dqrshift"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrshift</b> (<var>Q, R, i, j</var>)<var><a name="index-qrshift-2080"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrshift</b> (<var>Q, R, i, j</var>)<var><a name="index-qrshift-2279"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization
@@ -541,18 +511,15 @@ of <var>A</var>(:,p)<!-- /@w -->, where p<!-- /@w --> is the permutation <br>
  or <br>
 <code>p = [1:j-1, shift(j:i,-1), i+1:n]</code> if <var>j</var>&nbsp;&lt;&nbsp;<var>i</var><!-- /@w -->.  <br>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrinsert.html#doc_002dqrinsert">qrinsert</a>, <a href="doc_002dqrdelete.html#doc_002dqrdelete">qrdelete</a>. 
 </p></blockquote></div>
 
-<!-- qz src/DLD-FUNCTIONS/qz.cc -->
+<!-- qz libinterp/corefcn/qz.cc -->
    <p><a name="doc_002dqz"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>lambda</var> = <b>qz</b> (<var>A, B</var>)<var><a name="index-qz-2081"></a></var><br>
-&mdash; Loadable Function: <var>lambda</var> = <b>qz</b> (<var>A, B, opt</var>)<var><a name="index-qz-2082"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>qz</b> (<var>A, B</var>)<var><a name="index-qz-2280"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>qz</b> (<var>A, B, opt</var>)<var><a name="index-qz-2281"></a></var><br>
 <blockquote><p>QZ&nbsp;decomposition of the generalized eigenvalue problem
 (A x = s B x).  There are three ways to call this function:
           <ol type=1 start=1>
@@ -568,9 +535,9 @@ of (A - s B).
 generalized eigenvalues of (A - s B)
 
           <pre class="example">               
-                   A * V = B * V * diag (<var>lambda</var>)
-                   W' * A = diag (<var>lambda</var>) * W' * B
-                   AA = Q * A * Z, BB = Q * B * Z
+               A * V = B * V * diag (<var>lambda</var>)
+               W' * A = diag (<var>lambda</var>) * W' * B
+               AA = Q * A * Z, BB = Q * B * Z
 </pre>
           <p>with <var>Q</var> and <var>Z</var> orthogonal (unitary)= <var>I</var>
 
@@ -585,6 +552,7 @@ the generalized eigenvectors <var>V</var>, <var>W</var>, nor the orthogonal matr
                <dl>
 <dt><var>opt</var><dd>for ordering eigenvalues of the GEP pencil.  The leading block
 of the revised pencil contains all eigenvalues that satisfy:
+
                     <dl>
 <dt>"N"<dd>= unordered (default)
 
@@ -603,10 +571,7 @@ in the closed right half-plane
 
         <p>Note: <code>qz</code> performs permutation balancing, but not scaling
 (see <a href="doc_002dbalance.html#doc_002dbalance">doc-balance</a>).  The order of output arguments was selected for
-compatibility with <span class="sc">matlab</span>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+compatibility with <span class="sc">matlab</span>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbalance.html#doc_002dbalance">balance</a>, <a href="doc_002deig.html#doc_002deig">eig</a>, <a href="doc_002dschur.html#doc_002dschur">schur</a>. 
 </p></blockquote></div>
@@ -615,7 +580,7 @@ compatibility with <span class="sc">matlab</span>.
    <p><a name="doc_002dqzhess"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>aa</var>, <var>bb</var>, <var>q</var>, <var>z</var>] = <b>qzhess</b> (<var>A, B</var>)<var><a name="index-qzhess-2083"></a></var><br>
+&mdash; Function File: [<var>aa</var>, <var>bb</var>, <var>q</var>, <var>z</var>] = <b>qzhess</b> (<var>A, B</var>)<var><a name="index-qzhess-2282"></a></var><br>
 <blockquote><p>Compute the Hessenberg-triangular decomposition of the matrix pencil
 <code>(</code><var>A</var><code>, </code><var>B</var><code>)</code>, returning
 <var>aa</var><code> = </code><var>q</var><code> * </code><var>A</var><code> * </code><var>z</var>,
@@ -635,16 +600,16 @@ Moler and Stewart's QZ&nbsp;decomposition algorithm.
 <cite>Matrix Computations, 2nd edition</cite>. 
 </p></blockquote></div>
 
-<!-- schur src/DLD-FUNCTIONS/schur.cc -->
+<!-- schur libinterp/corefcn/schur.cc -->
    <p><a name="doc_002dschur"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>S</var> = <b>schur</b> (<var>A</var>)<var><a name="index-schur-2084"></a></var><br>
-&mdash; Loadable Function: <var>S</var> = <b>schur</b> (<var>A, "real"</var>)<var><a name="index-schur-2085"></a></var><br>
-&mdash; Loadable Function: <var>S</var> = <b>schur</b> (<var>A, "complex"</var>)<var><a name="index-schur-2086"></a></var><br>
-&mdash; Loadable Function: <var>S</var> = <b>schur</b> (<var>A, opt</var>)<var><a name="index-schur-2087"></a></var><br>
-&mdash; Loadable Function: [<var>U</var>, <var>S</var>] = <b>schur</b> (<var>A, <small class="dots">...</small></var>)<var><a name="index-schur-2088"></a></var><br>
-<blockquote><p><a name="index-Schur-decomposition-2089"></a>Compute the Schur&nbsp;decomposition of <var>A</var>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A</var>)<var><a name="index-schur-2283"></a></var><br>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, "real"</var>)<var><a name="index-schur-2284"></a></var><br>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, "complex"</var>)<var><a name="index-schur-2285"></a></var><br>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, opt</var>)<var><a name="index-schur-2286"></a></var><br>
+&mdash; Built-in Function: [<var>U</var>, <var>S</var>] = <b>schur</b> (<var>A, <small class="dots">...</small></var>)<var><a name="index-schur-2287"></a></var><br>
+<blockquote><p><a name="index-Schur-decomposition-2288"></a>Compute the Schur&nbsp;decomposition of <var>A</var>
 
      <pre class="example">          <var>S</var><code> = </code><var>U</var><code>' * </code><var>A</var><code> * </code><var>U</var>
 </pre>
@@ -677,19 +642,16 @@ subspace corresponding to the <var>k</var> leading eigenvalues of <var>S</var>.
 
         <p>The Schur&nbsp;decomposition is used to compute eigenvalues of a
 square matrix, and has applications in the solution of algebraic
-Riccati equations in control (see <code>are</code> and <code>dare</code>). 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+Riccati equations in control (see <code>are</code> and <code>dare</code>).
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002drsf2csf.html#doc_002drsf2csf">rsf2csf</a>. 
 </p></blockquote></div>
 
-<!-- rsf2csf src/DLD-FUNCTIONS/schur.cc -->
+<!-- rsf2csf libinterp/corefcn/schur.cc -->
    <p><a name="doc_002drsf2csf"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>U</var>, <var>T</var>] = <b>rsf2csf</b> (<var>UR, TR</var>)<var><a name="index-rsf2csf-2090"></a></var><br>
+&mdash; Function File: [<var>U</var>, <var>T</var>] = <b>rsf2csf</b> (<var>UR, TR</var>)<var><a name="index-rsf2csf-2289"></a></var><br>
 <blockquote><p>Convert a real, upper quasi-triangular Schur&nbsp;form <var>TR</var> to a complex,
 upper triangular Schur&nbsp;form <var>T</var>.
 
@@ -698,10 +660,7 @@ upper triangular Schur&nbsp;form <var>T</var>.
         <p><var>UR</var><code> * </code><var>TR</var><code> * </code><var>UR</var><code>' = </code><var>U</var><code> * </code><var>T</var><code> * </code><var>U</var><code>'</code> and
 <var>U</var><code>' * </code><var>U</var> is the identity matrix I.
 
-        <p>Note also that <var>U</var> and <var>T</var> are not unique. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>Note also that <var>U</var> and <var>T</var> are not unique.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dschur.html#doc_002dschur">schur</a>. 
 </p></blockquote></div>
@@ -710,19 +669,19 @@ upper triangular Schur&nbsp;form <var>T</var>.
    <p><a name="doc_002dsubspace"></a>
 
 <div class="defun">
-&mdash; Function File: <var>angle</var> = <b>subspace</b> (<var>A, B</var>)<var><a name="index-subspace-2091"></a></var><br>
+&mdash; Function File: <var>angle</var> = <b>subspace</b> (<var>A, B</var>)<var><a name="index-subspace-2290"></a></var><br>
 <blockquote><p>Determine the largest principal angle between two subspaces
 spanned by the columns of matrices <var>A</var> and <var>B</var>. 
 </p></blockquote></div>
 
-<!-- svd src/DLD-FUNCTIONS/svd.cc -->
+<!-- svd libinterp/corefcn/svd.cc -->
    <p><a name="doc_002dsvd"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>s</var> = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2092"></a></var><br>
-&mdash; Loadable Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2093"></a></var><br>
-&mdash; Loadable Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A, econ</var>)<var><a name="index-svd-2094"></a></var><br>
-<blockquote><p><a name="index-singular-value-decomposition-2095"></a>Compute the singular value decomposition of <var>A</var>
+&mdash; Built-in Function: <var>s</var> = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2291"></a></var><br>
+&mdash; Built-in Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2292"></a></var><br>
+&mdash; Built-in Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A, econ</var>)<var><a name="index-svd-2293"></a></var><br>
+<blockquote><p><a name="index-singular-value-decomposition-2294"></a>Compute the singular value decomposition of <var>A</var>
 
      <pre class="example">          A = U*S*V'
 </pre>
@@ -767,31 +726,25 @@ For example,
 </pre>
         <p>If given a second argument, <code>svd</code> returns an economy-sized
 decomposition, eliminating the unnecessary rows or columns of <var>U</var> or
-<var>V</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<var>V</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsvd_005fdriver.html#doc_002dsvd_005fdriver">svd_driver</a>, <a href="doc_002dsvds.html#doc_002dsvds">svds</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
 </p></blockquote></div>
 
-<!-- svd_driver src/DLD-FUNCTIONS/svd.cc -->
+<!-- svd_driver libinterp/corefcn/svd.cc -->
    <p><a name="doc_002dsvd_005fdriver"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>val</var> = <b>svd_driver</b> ()<var><a name="index-svd_005fdriver-2096"></a></var><br>
-&mdash; Loadable Function: <var>old_val</var> = <b>svd_driver</b> (<var>new_val</var>)<var><a name="index-svd_005fdriver-2097"></a></var><br>
-&mdash; Loadable Function:  <b>svd_driver</b> (<var>new_val, "local"</var>)<var><a name="index-svd_005fdriver-2098"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>svd_driver</b> ()<var><a name="index-svd_005fdriver-2295"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>svd_driver</b> (<var>new_val</var>)<var><a name="index-svd_005fdriver-2296"></a></var><br>
+&mdash; Built-in Function:  <b>svd_driver</b> (<var>new_val, "local"</var>)<var><a name="index-svd_005fdriver-2297"></a></var><br>
 <blockquote><p>Query or set the underlying <span class="sc">lapack</span> driver used by <code>svd</code>. 
 Currently recognized values are "gesvd" and "gesdd".  The default
 is "gesvd".
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsvd.html#doc_002dsvd">svd</a>. 
 </p></blockquote></div>
@@ -801,12 +754,12 @@ variable value is restored when exiting the function.
    <p><a name="doc_002dhoush"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>housv</var>, <var>beta</var>, <var>zer</var>] = <b>housh</b> (<var>x, j, z</var>)<var><a name="index-housh-2099"></a></var><br>
+&mdash; Function File: [<var>housv</var>, <var>beta</var>, <var>zer</var>] = <b>housh</b> (<var>x, j, z</var>)<var><a name="index-housh-2298"></a></var><br>
 <blockquote><p>Compute Householder reflection vector <var>housv</var> to reflect <var>x</var>
 to be the j-th column of identity, i.e.,
 
-     <pre class="example">          (I - beta*housv*housv')x =  norm(x)*e(j) if x(j) &lt; 0,
-          (I - beta*housv*housv')x = -norm(x)*e(j) if x(j) &gt;= 0
+     <pre class="example">          (I - beta*housv*housv')x =  norm (x)*e(j) if x(j) &lt; 0,
+          (I - beta*housv*housv')x = -norm (x)*e(j) if x(j) &gt;= 0
 </pre>
         <p class="noindent">Inputs
 
@@ -831,7 +784,7 @@ to be the j-th column of identity, i.e.,
    <p><a name="doc_002dkrylov"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>u</var>, <var>h</var>, <var>nu</var>] = <b>krylov</b> (<var>A, V, k, eps1, pflg</var>)<var><a name="index-krylov-2100"></a></var><br>
+&mdash; Function File: [<var>u</var>, <var>h</var>, <var>nu</var>] = <b>krylov</b> (<var>A, V, k, eps1, pflg</var>)<var><a name="index-krylov-2299"></a></var><br>
 <blockquote><p>Construct an orthogonal basis <var>u</var> of block Krylov subspace
 
      <pre class="example">          [v a*v a^2*v ... a^(k+1)*v]
@@ -845,7 +798,7 @@ a*u(:,k)-u*h(:,k)</code>, and <code>ek'</code> is the vector
 meaningless.
 
         <p>If <var>V</var> is a vector and <var>k</var> is greater than
-<code>length(A)-1</code>, then <var>h</var> contains the Hessenberg matrix such
+<code>length (A) - 1</code>, then <var>h</var> contains the Hessenberg matrix such
 that <code>a*u == u*h</code>.
 
         <p>The value of <var>nu</var> is the dimension of the span of the Krylov

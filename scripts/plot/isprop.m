@@ -37,7 +37,7 @@ function res = isprop (h, prop)
   endif
 
   res = false (size (h));
-  for n = 1:numel(res)
+  for n = 1:numel (res)
     res(n) = true;
     try
       v = get (h(n), prop);
@@ -47,9 +47,8 @@ function res = isprop (h, prop)
   endfor
 endfunction
 
+
 %!assert (isprop (0, "foobar"), false)
-
 %!assert (isprop (0, "screenpixelsperinch"), true)
-
 %!assert (isprop (zeros (2, 3), "visible"), true (2, 3))
 

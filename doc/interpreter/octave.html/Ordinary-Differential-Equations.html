@@ -40,16 +40,16 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Differential-Equations.html#Differentia
 </pre>
    <p class="noindent">using Hindmarsh's ODE solver <span class="sc">lsode</span>.
 
-<!-- lsode src/DLD-FUNCTIONS/lsode.cc -->
+<!-- lsode libinterp/corefcn/lsode.cc -->
    <p><a name="doc_002dlsode"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>x</var>, <var>istate</var>, <var>msg</var>] = <b>lsode</b> (<var>fcn, x_0, t</var>)<var><a name="index-lsode-2346"></a></var><br>
-&mdash; Loadable Function: [<var>x</var>, <var>istate</var>, <var>msg</var>] = <b>lsode</b> (<var>fcn, x_0, t, t_crit</var>)<var><a name="index-lsode-2347"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>istate</var>, <var>msg</var>] = <b>lsode</b> (<var>fcn, x_0, t</var>)<var><a name="index-lsode-2548"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>istate</var>, <var>msg</var>] = <b>lsode</b> (<var>fcn, x_0, t, t_crit</var>)<var><a name="index-lsode-2549"></a></var><br>
 <blockquote><p>Solve the set of differential equations
 
      <pre class="example">          dx
-          -- = f(x, t)
+          -- = f (x, t)
           dt
 </pre>
         <p class="noindent">with
@@ -111,21 +111,18 @@ discontinuity in the derivative.
 other than 2 and <var>msg</var> will contain additional information.
 
         <p>You can use the function <code>lsode_options</code> to set optional
-parameters for <code>lsode</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+parameters for <code>lsode</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddaspk.html#doc_002ddaspk">daspk</a>, <a href="doc_002ddassl.html#doc_002ddassl">dassl</a>, <a href="doc_002ddasrt.html#doc_002ddasrt">dasrt</a>. 
 </p></blockquote></div>
 
-<!-- lsode_options src/DLD-FUNCTIONS/lsode.cc -->
+<!-- lsode_options libinterp/corefcn/lsode.cc -->
    <p><a name="doc_002dlsode_005foptions"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>lsode_options</b> ()<var><a name="index-lsode_005foptions-2348"></a></var><br>
-&mdash; Loadable Function: val = <b>lsode_options</b> (<var>opt</var>)<var><a name="index-lsode_005foptions-2349"></a></var><br>
-&mdash; Loadable Function:  <b>lsode_options</b> (<var>opt, val</var>)<var><a name="index-lsode_005foptions-2350"></a></var><br>
+&mdash; Built-in Function:  <b>lsode_options</b> ()<var><a name="index-lsode_005foptions-2550"></a></var><br>
+&mdash; Built-in Function: val = <b>lsode_options</b> (<var>opt</var>)<var><a name="index-lsode_005foptions-2551"></a></var><br>
+&mdash; Built-in Function:  <b>lsode_options</b> (<var>opt, val</var>)<var><a name="index-lsode_005foptions-2552"></a></var><br>
 <blockquote><p>Query or set options for the function <code>lsode</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 
@@ -177,7 +174,7 @@ regions  (default is not specified).
    <p>Here is an example of solving a set of three differential equations using
 <code>lsode</code>.  Given the function
 
-   <p><a name="index-oregonator-2351"></a>
+   <p><a name="index-oregonator-2553"></a>
 <pre class="example">     function xdot = f (x, t)
      
        xdot = zeros (3,1);
@@ -200,8 +197,8 @@ equations can be integrated using the command
 dramatically between <var>t</var> = 0 and 5, and again around <var>t</var> = 305. 
 A more efficient set of output points might be
 
-<pre class="example">     t = [0, logspace (-1, log10(303), 150), \
-             logspace (log10(304), log10(500), 150)];
+<pre class="example">     t = [0, logspace(-1, log10(303), 150), \
+             logspace(log10(304), log10(500), 150)];
 </pre>
    <p>See Alan C. Hindmarsh, <cite>ODEPACK, A Systematized Collection of ODE
 Solvers</cite>, in Scientific Computing, R. S. Stepleman, editor, (1983) for

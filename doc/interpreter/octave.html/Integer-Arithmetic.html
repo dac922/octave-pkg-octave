@@ -47,13 +47,13 @@ result of 10 - 20 when using unsigned integers is zero.
    <p>When doing integer division Octave will round the result to the nearest
 integer.  This is different from most programming languages, where the
 result is often floored to the nearest integer.  So, the result of
-<code>int32(5) ./ int32(8)</code> is <code>1</code>.
+<code>int32 (5) ./ int32 (8)</code> is <code>1</code>.
 
 <!-- idivide scripts/general/idivide.m -->
    <p><a name="doc_002didivide"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>idivide</b> (<var>x, y, op</var>)<var><a name="index-idivide-282"></a></var><br>
+&mdash; Function File:  <b>idivide</b> (<var>x, y, op</var>)<var><a name="index-idivide-300"></a></var><br>
 <blockquote><p>Integer division with different rounding rules.
 
         <p>The standard behavior of integer division such as <var>a</var><code> ./ </code><var>b</var>
@@ -89,10 +89,7 @@ An example demonstrating these rounding rules is
           idivide (int8 ([-3, 3]), int8 (4), "ceil")
             &rArr; int8 ([0, 1])
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dldivide.html#doc_002dldivide">ldivide</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dldivide.html#doc_002dldivide">ldivide</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>. 
 </p></blockquote></div>
 
    </body></html>

@@ -49,7 +49,7 @@
 function [c, maxsize, endian] = computer (a)
 
   if (nargin == 1 && ischar (a) && strcmpi (a, "arch"))
-    tmp = strsplit (octave_config_info ("canonical_host_type"), "-");
+    tmp = strsplit (octave_config_info ("canonical_host_type"), "-", false);
     if (numel (tmp) == 4)
       c = sprintf ("%s-%s-%s", tmp{4}, tmp{3}, tmp{1});
     else
@@ -85,7 +85,10 @@ function [c, maxsize, endian] = computer (a)
 
 endfunction
 
-%!assert((ischar (computer ())
-%! && computer () == octave_config_info ("canonical_host_type")));
-%!assert(ischar (computer ("arch")));
-%!error computer (2);
+
+%!assert (ischar (computer ()))
+%!assert (computer (), octave_config_info ("canonical_host_type"))
+%!assert (ischar (computer ("arch")))
+
+%!error computer (2)
+

@@ -1,8 +1,6 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* A GNU-like <stdio.h>.
 
-   Copyright (C) 2004, 2007-2012 Free Software Foundation, Inc.
+   Copyright (C) 2004, 2007-2013 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -15,8 +13,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+   along with this program; if not, see <http://www.gnu.org/licenses/>.  */
 
 #if __GNUC__ >= 3
 @PRAGMA_SYSTEM_HEADER@
@@ -55,7 +52,8 @@
 #include <stddef.h>
 
 /* Get off_t and ssize_t.  Needed on many systems, including glibc 2.8
-   and eglibc 2.11.2.  */
+   and eglibc 2.11.2.
+   May also define off_t to a 64-bit type on native Windows.  */
 #include <sys/types.h>
 
 /* The __attribute__ feature is available in gcc versions 2.5 and later.
@@ -577,21 +575,17 @@ _GL_CXXALIAS_RPL (fwrite, size_t,
 _GL_CXXALIAS_SYS (fwrite, size_t,
                   (const void *ptr, size_t s, size_t n, FILE *stream));
 
-/* Work around glibc bug 11959
+/* Work around bug 11959 when fortifying glibc 2.4 through 2.15
    <http://sources.redhat.com/bugzilla/show_bug.cgi?id=11959>,
    which sometimes causes an unwanted diagnostic for fwrite calls.
-   This affects only function declaration attributes, so it's not
-   needed for C++.  */
-#  if !defined __cplusplus && 0 < __USE_FORTIFY_LEVEL
-static inline size_t _GL_ARG_NONNULL ((1, 4))
-rpl_fwrite (const void *ptr, size_t s, size_t n, FILE *stream)
-{
-  size_t r = fwrite (ptr, s, n, stream);
-  (void) r;
-  return r;
-}
+   This affects only function declaration attributes under certain
+   versions of gcc, and is not needed for C++.  */
+#  if (0 < __USE_FORTIFY_LEVEL                                          \
+       && __GLIBC__ == 2 && 4 <= __GLIBC_MINOR__ && __GLIBC_MINOR__ <= 15 \
+       && 3 < __GNUC__ + (4 <= __GNUC_MINOR__)                          \
+       && !defined __cplusplus)
 #   undef fwrite
-#   define fwrite rpl_fwrite
+#   define fwrite(a, b, c, d) ({size_t __r = fwrite (a, b, c, d); __r; })
 #  endif
 # endif
 _GL_CXXALIASWARN (fwrite);
@@ -770,7 +764,7 @@ _GL_CXXALIASWARN (pclose);
 #elif defined GNULIB_POSIXCHECK
 # undef pclose
 # if HAVE_RAW_DECL_PCLOSE
-_GL_WARN_ON_USE (pclose, "popen is unportable - "
+_GL_WARN_ON_USE (pclose, "pclose is unportable - "
                  "use gnulib module pclose for more portability");
 # endif
 #endif
@@ -1334,7 +1328,6 @@ _GL_WARN_ON_USE (vsprintf, "vsprintf is not always POSIX compliant - "
                  "use gnulib module vsprintf-posix for portable "
                       "POSIX compliance");
 #endif
-
 
 #endif /* _@GUARD_PREFIX@_STDIO_H */
 #endif /* _@GUARD_PREFIX@_STDIO_H */

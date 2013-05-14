@@ -74,9 +74,9 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
     endif
     fstr = formula (fun);
     if (isplot)
-      xarg = argnames(fun){1};
+      xarg = (argnames (fun)){1};
       if (nargs == 2)
-        yarg = argnames(fun){2};
+        yarg = (argnames (fun)){2};
       else
         yarg = "";
       endif
@@ -87,8 +87,8 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
       xarg = "";
       yarg = "";
     else
-      xarg = argnames(fun){1};
-      yarg = argnames(fun){2};
+      xarg = (argnames (fun)){1};
+      yarg = (argnames (fun)){2};
     endif
   elseif (strcmp (typeinfo (fun), "inline function"))
     if (isplot && length (argnames (fun)) == 2)
@@ -99,9 +99,9 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
     fun = vectorize (fun);
     fstr = formula (fun);
     if (isplot)
-      xarg = argnames(fun){1};
+      xarg = (argnames (fun)){1};
       if (nargs == 2)
-        yarg = argnames(fun){2};
+        yarg = (argnames (fun)){2};
       else
         yarg = "";
       endif
@@ -112,15 +112,15 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
       xarg = "";
       yarg = "";
     else
-      xarg = argnames(fun)(1);
-      yarg = argnames(fun)(2);
+      xarg = (argnames (fun))(1);
+      yarg = (argnames (fun))(2);
     endif
   elseif (isa (fun, "function_handle"))
     fstr = func2str (fun);
-    if (length (findstr (fstr, ")")) != 0)
-      args = regexp (substr (fstr, 3, findstr (fstr, ")")(1) - 3),
+    if (! isempty (strfind (fstr, ')')))
+      args = regexp (substr (fstr, 3, strfind (fstr, ')')(1) - 3),
                      '(\w+)', 'tokens');
-    fstr = substr (fstr, findstr (fstr, ")")(1) + 1);
+    fstr = substr (fstr, strfind (fstr, ')')(1) + 1);
     else
       args = {{"x"}};
     endif
@@ -175,10 +175,10 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
     elseif (isa (funy, "function_handle"))
       parametric = true;
       fstry = func2str (funy);
-      if (length (findstr (fstry, ")")) != 0)
-        args = regexp (substr (fstry, 3, findstr (fstry, ")")(1) - 3),
+      if (! isempty (strfind (fstry, ')')))
+        args = regexp (substr (fstry, 3, strfind (fstry, ')')(1) - 3),
                        '(\w+)', 'tokens');
-        fstry = substr (fstry, findstr (fstry, ")")(1) + 1);
+        fstry = substr (fstry, strfind (fstry, ')')(1) + 1);
       else
         args = {{"y"}};
       endif
@@ -216,12 +216,12 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
         fstrz = formula (funz);
       elseif (isa (funz, "function_handle"))
         fstrz = func2str (funz);
-        args = regexp (substr (fstrz, 3, findstr (fstrz, ")")(1) - 3),
+        args = regexp (substr (fstrz, 3, strfind (fstrz, ')')(1) - 3),
                        '(\w+)', 'tokens');
         if (length (args) != nargs)
           error ("%s: excepting a function of %d arguments", func, nargs);
         endif
-        fstrz = substr (fstrz, findstr (fstrz, ")")(1) + 1);
+        fstrz = substr (fstrz, strfind (fstrz, ')')(1) + 1);
       else
         error ("%s: parametric plots expect 3 functions", func);
       endif
@@ -392,10 +392,10 @@ function [h, needusage] = __ezplot__ (pfunc, varargin)
           yrange = [XX(1), XX(end)];
         endif
 
-        idx = 2 : length(Z);
+        idx = 2 : length (Z);
         idx = find (((Z(idx) > yrange(2) / 2) & (Z(idx-1) < yrange(1) / 2)) |
                  ((Z(idx) < yrange(1) / 2) & (Z(idx-1) > yrange (2) / 2)));
-        if (any(idx))
+        if (any (idx))
           Z(idx) = NaN;
         endif
       else
@@ -441,5 +441,5 @@ endfunction
 
 function x = __eliminate_sing__ (x)
   x (isinf (x)) = NaN;
-  x (abs (del2 (x)) > 0.2 * (max(x(:)) - min(x(:)))) = NaN;
+  x (abs (del2 (x)) > 0.2 * (max (x(:)) - min (x(:)))) = NaN;
 endfunction

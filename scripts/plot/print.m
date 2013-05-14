@@ -21,29 +21,41 @@
 ## @deftypefnx {Function File} {} print (@var{options})
 ## @deftypefnx {Function File} {} print (@var{filename}, @var{options})
 ## @deftypefnx {Function File} {} print (@var{h}, @var{filename}, @var{options})
-## Print a graph, or save it to a file
+## Print a plot, or save it to a file.  Both output formatted for 
+## printing (PDF and PostScript), and many bitmapped and vector
+## image formats are supported.
 ##
-## @var{filename} defines the file name of the output file.  If the
+## @var{filename} defines the name of the output file.  If the
 ## file name has no suffix, one is inferred from the specified
-## device and appended to the file name.  If no
-## filename is specified, the output is sent to the printer.
+## device and appended to the file name.  If no filename is
+## specified, the output is sent to the printer.
 ##
 ## @var{h} specifies the figure handle.  If no handle is specified
 ## the handle for the current figure is used.
 ##
-## @var{options}:
+## For output to a printer, PostScript file, or PDF file,
+## the paper size is specified by the figure's @code{papersize}
+## property.  The location and size of the image on the page are
+## specified by the figure's @code{paperposition} property.  The
+## orientation of the page is specified by the figure's
+## @code{paperorientation} property.
+##
+## The width and height of images are specified by the figure's
+## @code{paperpositon(3:4)} property values.
+##
+## The @code{print} command supports many @var{options}:
 ##
 ## @table @code
 ## @item -f@var{h}
 ##   Specify the handle, @var{h}, of the figure to be printed.  The
-##   default is the current figure.
+## default is the current figure.
 ##
 ## @item -P@var{printer}
-##   Set the @var{printer} name to which the graph is sent if no
-##   @var{filename} is specified.
+##   Set the @var{printer} name to which the plot is sent if no
+## @var{filename} is specified.
 ##
 ## @item -G@var{ghostscript_command}
-##   Specify the command for calling Ghostscript.  For Unix and Windows,
+##   Specify the command for calling Ghostscript.  For Unix and Windows
 ## the defaults are 'gs' and 'gswin32c', respectively.
 ##
 ## @item -color
@@ -52,7 +64,7 @@
 ##
 ## @item -solid
 ## @itemx -dashed
-##   Forces all lines to be solid or dashed, respectively.
+##   Force all lines to be solid or dashed, respectively.
 ##
 ## @item -portrait
 ## @itemx -landscape
@@ -62,15 +74,26 @@
 ## orientation specified.  This options is equivalent to changing
 ## the figure's "paperorientation" property.
 ##
+## @item -TextAlphaBits=@var{n}
+## @itemx -GraphicsAlphaBits=@var{n}
+##   Octave is able to produce output for various printers, bitmaps, and
+## vector formats by using Ghostscript.
+## For bitmap and printer output anti-aliasing is applied using
+## Ghostscript's TextAlphaBits and GraphicsAlphaBits options.
+## The default number of bits for each is 4.
+## Allowed values for @var{N} are 1, 2, or 4.
+##
 ## @item -d@var{device}
-##   Output device, where @var{device} is one of:
+##   The available output format is specified by the option @var{device},
+## and is one of:
+##
 ##   @table @code
 ##   @item ps
 ##   @itemx ps2
 ##   @itemx psc
 ##   @itemx psc2
 ##     Postscript (level 1 and 2, mono and color).  The FLTK graphics
-##     toolkit generates Postscript level 3.0.
+## toolkit generates Postscript level 3.0.
 ##
 ##   @item eps
 ##   @itemx eps2
@@ -85,7 +108,7 @@
 ##   @itemx pstex
 ##   @itemx pslatex
 ##   @itemx pdflatex
-##     Generate a @LaTeX{} (or @TeX{}) file for labels, and eps/ps/pdf
+##     Generate a @LaTeX{} (or @TeX{}) file for labels and eps/ps/pdf
 ## for graphics.  The file produced by @code{epslatexstandalone} can be
 ## processed directly by @LaTeX{}.  The other formats are intended to
 ## be included in a @LaTeX{} (or @TeX{}) document.  The @code{tex} device
@@ -93,8 +116,8 @@
 ## is only available for the FLTK graphics toolkit.
 ##
 ##   @item tikz
-##     Generate a @LaTeX{} file using PGF/TikZ@.  For the FLTK the result is
-##   PGF.
+##     Generate a @LaTeX{} file using PGF/TikZ@.  For the FLTK toolkit
+## the result is PGF.
 ##
 ##   @item ill
 ##   @itemx aifm
@@ -113,9 +136,9 @@
 ##
 ##   @item fig
 ##     XFig.  For the Gnuplot graphics toolkit, the additional options
-##     @option{-textspecial} or @option{-textnormal} can be used to control
-##     whether the special flag should be set for the text in
-##     the figure (default is @option{-textnormal}).
+## @option{-textspecial} or @option{-textnormal} can be used to control
+## whether the special flag should be set for the text in
+## the figure.  (default is @option{-textnormal})
 ##
 ##   @item hpgl
 ##     HP plotter language
@@ -184,53 +207,52 @@
 ## is sent to a file the size is determined by the plot box defined by
 ## the figure's "paperposition" property.
 ##
-## @itemx -append
-##   Appends the PS, or PDF output to a pre-existing file of the
-## same type.
+## @item -append
+##   Append Postscript or PDF output to a pre-existing file of the same type.
 ##
-## @itemx -r@var{NUM}
+## @item -r@var{NUM}
 ##   Resolution of bitmaps in pixels per inch.  For both metafiles and
-## SVG the default is the screen resolution, for other it is 150 dpi.
+## SVG the default is the screen resolution; for other formats it is 150 dpi.
 ## To specify screen resolution, use "-r0".
 ##
 ## @item -tight
-##   Forces a tight bounding box for eps-files.
+##   Force a tight bounding box for eps files.
 ##
 ## @item -@var{preview}
-##   Adds a preview to eps-files.  Supported formats are;
+##   Add a preview to eps files.  Supported formats are:
 ##
 ##   @table @code
 ##   @item -interchange
-##     Provides an interchange preview.
+##     Provide an interchange preview.
 ##
 ##   @item -metalfile
-##     Provides a metafile preview.
+##     Provide a metafile preview.
 ##
 ##   @item -pict
-##     Provides pict preview.
+##     Provide pict preview.
 ##
 ##   @item -tiff
-##     Provides a tiff preview.
+##     Provide a tiff preview.
 ##   @end table
 ##
 ## @item -S@var{xsize},@var{ysize}
-##   Plot size in pixels for EMF, GIF, JPEG, PBM, PNG and SVG@.  For
+##   Plot size in pixels for EMF, GIF, JPEG, PBM, PNG, and SVG@.  For
 ## PS, EPS, PDF, and other vector formats the plot size is in points.
 ## This option is equivalent to changing the size of the plot box
-## associated with "paperposition" property.  Using the command form of
-## the print function, you must quote the @var{xsize},@var{ysize}
-## option.  For example, by writing @w{@code{"-S640,480"}}.
+## associated with the "paperposition" property.  When using the command form
+## of the print function you must quote the @var{xsize},@var{ysize}
+## option.  For example, by writing @w{"-S640,480"}.
 ##
 ## @item -F@var{fontname}
 ## @itemx -F@var{fontname}:@var{size}
 ## @itemx -F:@var{size}
-##   Associates all text with the @var{fontname} and/or @var{fontsize}.
-## @var{fontname} is ignored for some devices; dxf, fig, hpgl, etc.
+##   Use @var{fontname} and/or @var{fontsize} for all text.
+## @var{fontname} is ignored for some devices: dxf, fig, hpgl, etc.
 ## @end table
 ##
 ## The filename and options can be given in any order.
 ##
-## Example: Print to a file, using the svg device.
+## Example: Print to a file using the svg device.
 ##
 ## @example
 ## @group
@@ -283,26 +305,34 @@ function print (varargin)
     ## Modify properties as specified by options
     props = [];
 
+    drawnow ();
+
+    ## print() requires figure units to be "pixels"
+    props(1).h = opts.figure;
+    props(1).name = "units";
+    props(1).value = {get(opts.figure, "units")};
+    set (opts.figure, "units", "pixels");
+
     ## graphics toolkit tranlates figure position to eps bbox in points
     fpos = get (opts.figure, "position");
-    props(1).h = opts.figure;
-    props(1).name = "position";
-    props(1).value = {fpos};
+    props(2).h = opts.figure;
+    props(2).name = "position";
+    props(2).value = {fpos};
     fpos(3:4) = opts.canvas_size;
     set (opts.figure, "position", fpos);
 
     ## Set figure background to none. This is done both for
     ## consistency with Matlab and to elliminate the visible
     ## box along the figure's perimeter.
-    props(2).h = opts.figure;
-    props(2).name = "color";
-    props(2).value{1} = get (props(2).h, props(2).name);
-    set (props(2).h, props(2).name, "none");
+    props(3).h = opts.figure;
+    props(3).name = "color";
+    props(3).value{1} = get (props(3).h, props(3).name);
+    set (props(3).h, "color", "none");
 
     if (opts.force_solid != 0)
       h = findall (opts.figure, "-property", "linestyle");
       m = numel (props);
-      for n = 1:numel(h)
+      for n = 1:numel (h)
         props(m+n).h = h(n);
         props(m+n).name = "linestyle";
         props(m+n).value = {get(h(n), "linestyle")};
@@ -318,12 +348,12 @@ function print (varargin)
     if (opts.use_color < 0
         && ! strcmp (get (opts.figure, "__graphics_toolkit__"), "gnuplot"))
       color_props = {"color", "facecolor", "edgecolor", "colormap"};
-      for c = 1:numel(color_props)
+      for c = 1:numel (color_props)
         h = findall (opts.figure, "-property", color_props{c});
         hnone = findall (opts.figure, color_props{c}, "none");
         h = setdiff (h, hnone);
         m = numel (props);
-        for n = 1:numel(h)
+        for n = 1:numel (h)
           if (ishandle (h(n)))
             ## Need to verify objects exist since callbacks may delete objects
             ## as the colors for others are modified.
@@ -333,7 +363,7 @@ function print (varargin)
             props(end).value = {get(h(n), color_props{c})};
             if (isnumeric (rgb))
               ## convert RGB color to RGB gray scale
-              xfer = repmat ([0.30, 0.59, 0.11], size (rgb, 1), 1);
+              xfer = repmat ([0.30, 0.59, 0.11], rows (rgb), 1);
               ggg = repmat (sum (xfer .* rgb, 2), 1, 3);
               set (h(n), color_props{c}, ggg);
             endif
@@ -345,7 +375,7 @@ function print (varargin)
     if (! isempty (opts.font) || ! isempty (opts.fontsize))
       h = findall (opts.figure, "-property", "fontname");
       m = numel (props);
-      for n = 1:numel(h)
+      for n = 1:numel (h)
         if (ishandle (h(n)))
           if (! isempty (opts.font))
             props(end+1).h = h(n);
@@ -362,7 +392,7 @@ function print (varargin)
         endif
       endfor
       if (! isempty (opts.font))
-        set (h(ishandle(h)), "fontname", opts.font);
+        set (h(ishandle (h)), "fontname", opts.font);
       endif
       if (! isempty (opts.fontsize))
         if (ischar (opts.fontsize))
@@ -370,7 +400,11 @@ function print (varargin)
         else
           fontsize = opts.fontsize;
         endif
-        set (h(ishandle(h)), "fontsize", fontsize);
+        if (! isempty (opts.scalefontsize) && ! opts.scalefontsize != 1)
+          ## This is done to work around the bbox being whole numbers.
+          fontsize = fontsize * opts.scalefontsize;
+        endif
+        set (h(ishandle (h)), "fontsize", fontsize);
       endif
     endif
 
@@ -385,7 +419,7 @@ function print (varargin)
   unwind_protect_cleanup
     ## restore modified properties
     if (isstruct (props))
-      for n = 1:numel(props)
+      for n = numel (props):-1:1
         if (ishandle (props(n).h))
           set (props(n).h, props(n).name, props(n).value{1});
         endif
@@ -393,7 +427,7 @@ function print (varargin)
     endif
 
     ## Unlink temporary files
-    for n = 1:numel(opts.unlink)
+    for n = 1:numel (opts.unlink)
       [status, output] = unlink (opts.unlink{n});
       if (status != 0)
         warning ("print.m: %s, '%s'", output, opts.unlink{n});

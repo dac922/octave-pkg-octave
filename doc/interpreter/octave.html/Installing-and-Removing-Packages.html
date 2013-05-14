@@ -30,7 +30,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Packages.html#Packages">Packages</a>
 <hr>
 </div>
 
-<h3 class="section">37.1 Installing and Removing Packages</h3>
+<h3 class="section">38.1 Installing and Removing Packages</h3>
 
 <p>Assuming a package is available in the file <samp><span class="file">image-1.0.0.tar.gz</span></samp>
 it can be installed from the Octave prompt with the command
@@ -89,8 +89,8 @@ to disable dependency checking.
    <p><a name="doc_002dpkg"></a>
 
 <div class="defun">
-&mdash; Command:  <b>pkg</b><var> command pkg_name<a name="index-pkg-3355"></a></var><br>
-&mdash; Command:  <b>pkg</b><var> command option pkg_name<a name="index-pkg-3356"></a></var><br>
+&mdash; Command:  <b>pkg</b><var> command pkg_name<a name="index-pkg-3728"></a></var><br>
+&mdash; Command:  <b>pkg</b><var> command option pkg_name<a name="index-pkg-3729"></a></var><br>
 <blockquote><p>Manage packages (groups of add-on functions) for Octave.  Different actions
 are available depending on the value of <var>command</var>.
 
@@ -173,13 +173,13 @@ and those which were installed by the system administrator.
 
           <pre class="example">               [user_packages, system_packages] = pkg ("list")
 </pre>
-          <p>The option '-forge' lists packages available at the Octave-Forge repository. 
+          <p>The option "-forge" lists packages available at the Octave-Forge repository. 
 This requires an internet connection and the cURL library.  For example:
 
           <pre class="example">               oct_forge_pkgs = pkg ("list", "-forge")
 </pre>
           <br><dt>&lsquo;<samp><span class="samp">describe</span></samp>&rsquo;<dd>Show a short description of the named installed packages, with the option
-'-verbose' also list functions provided by the package.  For example,
+"-verbose" also list functions provided by the package.  For example,
 
           <pre class="example">               pkg describe -verbose all
 </pre>

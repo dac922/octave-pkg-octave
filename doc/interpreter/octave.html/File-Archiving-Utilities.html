@@ -38,13 +38,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="System-Utilities.html#System-Utilities"
 <p><a name="doc_002dbunzip2"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>bunzip2</b> (<var>bzfile</var>)<var><a name="index-bunzip2-3206"></a></var><br>
-&mdash; Function File:  <b>bunzip2</b> (<var>bzfile, dir</var>)<var><a name="index-bunzip2-3207"></a></var><br>
+&mdash; Function File:  <b>bunzip2</b> (<var>bzfile</var>)<var><a name="index-bunzip2-3478"></a></var><br>
+&mdash; Function File:  <b>bunzip2</b> (<var>bzfile, dir</var>)<var><a name="index-bunzip2-3479"></a></var><br>
 <blockquote><p>Unpack the bzip2 archive <var>bzfile</var> to the directory <var>dir</var>.  If
-<var>dir</var> is not specified, it defaults to the current directory. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<var>dir</var> is not specified, it defaults to the current directory.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbzip2.html#doc_002dbzip2">bzip2</a>, <a href="doc_002dunpack.html#doc_002dunpack">unpack</a>, <a href="doc_002dgunzip.html#doc_002dgunzip">gunzip</a>, <a href="doc_002dunzip.html#doc_002dunzip">unzip</a>, <a href="doc_002duntar.html#doc_002duntar">untar</a>. 
 </p></blockquote></div>
@@ -53,16 +50,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="System-Utilities.html#System-Utilities"
    <p><a name="doc_002dgzip"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files</var>)<var><a name="index-gzip-3208"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files, outdir</var>)<var><a name="index-gzip-3209"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files</var>)<var><a name="index-gzip-3480"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files, outdir</var>)<var><a name="index-gzip-3481"></a></var><br>
 <blockquote><p>Compress the list of files and/or directories specified in <var>files</var>. 
-Each file is compressed separately and a new file with a '.gz' extension
+Each file is compressed separately and a new file with a ".gz" extension
 is created.  The original files are not modified.  Existing compressed
 files are silently overwritten.  If <var>outdir</var> is defined the compressed
-files are placed in this directory. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+files are placed in this directory.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dgunzip.html#doc_002dgunzip">gunzip</a>, <a href="doc_002dbzip2.html#doc_002dbzip2">bzip2</a>, <a href="doc_002dzip.html#doc_002dzip">zip</a>, <a href="doc_002dtar.html#doc_002dtar">tar</a>. 
 </p></blockquote></div>
@@ -71,14 +65,11 @@ files are placed in this directory.
    <p><a name="doc_002dgunzip"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gunzip</b> (<var>gzfile, dir</var>)<var><a name="index-gunzip-3210"></a></var><br>
+&mdash; Function File:  <b>gunzip</b> (<var>gzfile, dir</var>)<var><a name="index-gunzip-3482"></a></var><br>
 <blockquote><p>Unpack the gzip archive <var>gzfile</var> to the directory <var>dir</var>.  If
 <var>dir</var> is not specified, it defaults to the current directory.  If
 <var>gzfile</var> is a directory, all gzfiles in the directory will be
-recursively gunzipped. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+recursively gunzipped.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dgzip.html#doc_002dgzip">gzip</a>, <a href="doc_002dunpack.html#doc_002dunpack">unpack</a>, <a href="doc_002dbunzip2.html#doc_002dbunzip2">bunzip2</a>, <a href="doc_002dunzip.html#doc_002dunzip">unzip</a>, <a href="doc_002duntar.html#doc_002duntar">untar</a>. 
 </p></blockquote></div>
@@ -87,8 +78,8 @@ recursively gunzipped.
    <p><a name="doc_002dtar"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files</var>)<var><a name="index-tar-3211"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files, root</var>)<var><a name="index-tar-3212"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files</var>)<var><a name="index-tar-3483"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files, root</var>)<var><a name="index-tar-3484"></a></var><br>
 <blockquote><p>Pack <var>files</var> <var>files</var> into the TAR archive <var>tarfile</var>.  The
 list of files must be a string or a cell array of strings.
 
@@ -96,10 +87,7 @@ list of files must be a string or a cell array of strings.
 from the current directory.
 
         <p>If an output argument is requested the entries in the archive are
-returned in a cell array. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+returned in a cell array.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002duntar.html#doc_002duntar">untar</a>, <a href="doc_002dbzip2.html#doc_002dbzip2">bzip2</a>, <a href="doc_002dgzip.html#doc_002dgzip">gzip</a>, <a href="doc_002dzip.html#doc_002dzip">zip</a>. 
 </p></blockquote></div>
@@ -108,13 +96,10 @@ returned in a cell array.
    <p><a name="doc_002duntar"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>untar</b> (<var>tarfile</var>)<var><a name="index-untar-3213"></a></var><br>
-&mdash; Function File:  <b>untar</b> (<var>tarfile, dir</var>)<var><a name="index-untar-3214"></a></var><br>
+&mdash; Function File:  <b>untar</b> (<var>tarfile</var>)<var><a name="index-untar-3485"></a></var><br>
+&mdash; Function File:  <b>untar</b> (<var>tarfile, dir</var>)<var><a name="index-untar-3486"></a></var><br>
 <blockquote><p>Unpack the TAR archive <var>tarfile</var> to the directory <var>dir</var>. 
-If <var>dir</var> is not specified, it defaults to the current directory. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If <var>dir</var> is not specified, it defaults to the current directory.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dtar.html#doc_002dtar">tar</a>, <a href="doc_002dunpack.html#doc_002dunpack">unpack</a>, <a href="doc_002dbunzip2.html#doc_002dbunzip2">bunzip2</a>, <a href="doc_002dgunzip.html#doc_002dgunzip">gunzip</a>, <a href="doc_002dunzip.html#doc_002dunzip">unzip</a>. 
 </p></blockquote></div>
@@ -123,15 +108,12 @@ If <var>dir</var> is not specified, it defaults to the current directory.
    <p><a name="doc_002dzip"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files</var>)<var><a name="index-zip-3215"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files, rootdir</var>)<var><a name="index-zip-3216"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files</var>)<var><a name="index-zip-3487"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files, rootdir</var>)<var><a name="index-zip-3488"></a></var><br>
 <blockquote><p>Compress the list of files and/or directories specified in <var>files</var>
 into the archive <var>zipfile</var> in the same directory.  If <var>rootdir</var>
 is defined the <var>files</var> are located relative to <var>rootdir</var> rather
-than the current directory. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+than the current directory.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dunzip.html#doc_002dunzip">unzip</a>, <a href="doc_002dbzip2.html#doc_002dbzip2">bzip2</a>, <a href="doc_002dgzip.html#doc_002dgzip">gzip</a>, <a href="doc_002dtar.html#doc_002dtar">tar</a>. 
 </p></blockquote></div>
@@ -140,13 +122,10 @@ than the current directory.
    <p><a name="doc_002dunzip"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>unzip</b> (<var>zipfile</var>)<var><a name="index-unzip-3217"></a></var><br>
-&mdash; Function File:  <b>unzip</b> (<var>zipfile, dir</var>)<var><a name="index-unzip-3218"></a></var><br>
+&mdash; Function File:  <b>unzip</b> (<var>zipfile</var>)<var><a name="index-unzip-3489"></a></var><br>
+&mdash; Function File:  <b>unzip</b> (<var>zipfile, dir</var>)<var><a name="index-unzip-3490"></a></var><br>
 <blockquote><p>Unpack the ZIP archive <var>zipfile</var> to the directory <var>dir</var>. 
-If <var>dir</var> is not specified, it defaults to the current directory. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If <var>dir</var> is not specified, it defaults to the current directory.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dzip.html#doc_002dzip">zip</a>, <a href="doc_002dunpack.html#doc_002dunpack">unpack</a>, <a href="doc_002dbunzip2.html#doc_002dbunzip2">bunzip2</a>, <a href="doc_002dgunzip.html#doc_002dgunzip">gunzip</a>, <a href="doc_002duntar.html#doc_002duntar">untar</a>. 
 </p></blockquote></div>
@@ -155,19 +134,16 @@ If <var>dir</var> is not specified, it defaults to the current directory.
    <p><a name="doc_002dunpack"></a>
 
 <div class="defun">
-&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file</var>)<var><a name="index-unpack-3219"></a></var><br>
-&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir</var>)<var><a name="index-unpack-3220"></a></var><br>
-&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir, filetype</var>)<var><a name="index-unpack-3221"></a></var><br>
+&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file</var>)<var><a name="index-unpack-3491"></a></var><br>
+&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir</var>)<var><a name="index-unpack-3492"></a></var><br>
+&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir, filetype</var>)<var><a name="index-unpack-3493"></a></var><br>
 <blockquote><p>Unpack the archive <var>file</var> based on its extension to the directory
 <var>dir</var>.  If <var>file</var> is a list of strings, then each file is
 unpacked individually.  If <var>dir</var> is not specified, it defaults to
 the current directory.  If a directory is in the file list, then the
 <var>filetype</var> must also be specified.
 
-        <p>The optional return value is a list of <var>files</var> unpacked. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The optional return value is a list of <var>files</var> unpacked.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbzip2.html#doc_002dbzip2">bzip2</a>, <a href="doc_002dgzip.html#doc_002dgzip">gzip</a>, <a href="doc_002dzip.html#doc_002dzip">zip</a>, <a href="doc_002dtar.html#doc_002dtar">tar</a>. 
 </p></blockquote></div>
@@ -176,16 +152,13 @@ the current directory.  If a directory is in the file list, then the
    <p><a name="doc_002dbzip2"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files</var>)<var><a name="index-bzip2-3222"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files, outdir</var>)<var><a name="index-bzip2-3223"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files</var>)<var><a name="index-bzip2-3494"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files, outdir</var>)<var><a name="index-bzip2-3495"></a></var><br>
 <blockquote><p>Compress the list of files specified in <var>files</var>. 
-Each file is compressed separately and a new file with a '.bz2' extension
+Each file is compressed separately and a new file with a ".bz2" extension
 is created.  The original files are not modified.  Existing compressed files
 are silently overwritten.  If <var>outdir</var> is defined the compressed
-files are placed in this directory. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+files are placed in this directory.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbunzip2.html#doc_002dbunzip2">bunzip2</a>, <a href="doc_002dgzip.html#doc_002dgzip">gzip</a>, <a href="doc_002dzip.html#doc_002dzip">zip</a>, <a href="doc_002dtar.html#doc_002dtar">tar</a>. 
 </p></blockquote></div>

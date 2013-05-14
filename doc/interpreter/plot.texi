@@ -64,6 +64,9 @@ and @ref{Advanced Plotting}.
 * Plot Annotations::            
 * Multiple Plots on One Page::  
 * Multiple Plot Windows::       
+* Use of axis@comma{} line@comma{} and patch Functions::
+* Manipulation of Plot Windows::
+* Use of the @code{interpreter} Property::
 * Printing and Saving Plots::              
 * Interacting with Plots::      
 * Test Plotting Functions::     
@@ -535,6 +538,79 @@ colormap (summer ());
 @end deftypefn
 
 
+@c stemleaf scripts/plot/stemleaf.m
+@anchor{doc-stemleaf}
+@deftypefn  {Function File} {} stemleaf (@var{x}, @var{caption})
+@deftypefnx {Function File} {} stemleaf (@var{x}, @var{caption}, @var{stem_sz})
+@deftypefnx {Function File} {@var{plotstr} =} stemleaf (@dots{})
+Compute and display a stem and leaf plot of the vector @var{x}.
+
+The input @var{x} should be a vector of integers.  Any non-integer values
+will be converted to integer by @code{@var{x} = fix (@var{x})}.  By default
+each element of @var{x} will be plotted with the last digit of the element
+as a leaf value and the remaining digits as the stem.  For example, 123
+will be plotted with the stem @samp{12} and the leaf @samp{3}.  The second
+argument, @var{caption}, should be a character array which provides a
+description of the data.  It is included as a heading for the output.
+
+The optional input @var{stem_sz} sets the width of each stem.
+The stem width is determined by @code{10^(@var{stem_sz} + 1)}.
+The default stem width is 10.
+
+The output of @code{stemleaf} is composed of two parts: a
+"Fenced Letter Display," followed by the stem-and-leaf plot itself.
+The Fenced Letter Display is described in @cite{Exploratory Data Analysis}.
+Briefly, the entries are as shown:
+
+@example
+@group
+
+        Fenced Letter Display
+#% nx|___________________     nx = numel (x)
+M% mi|       md         |     mi median index, md median
+H% hi|hl              hu| hs  hi lower hinge index, hl,hu hinges,
+1    |x(1)         x(nx)|     hs h_spreadx(1), x(nx) first 
+           _______            and last data value.
+     ______|step |_______     step 1.5*h_spread
+    f|ifl            ifh|     inner fence, lower and higher
+     |nfl            nfh|     no.\ of data points within fences
+    F|ofl            ofh|     outer fence, lower and higher
+     |nFl            nFh|     no.\ of data points outside outer
+                              fences
+@end group
+@end example
+
+The stem-and-leaf plot shows on each line the stem value followed by the
+string made up of the leaf digits.  If the @var{stem_sz} is not 1 the
+successive leaf values are separated by ",".
+
+With no return argument, the plot is immediately displayed.  If an output
+argument is provided, the plot is returned as an array of strings. 
+
+The leaf digits are not sorted.  If sorted leaf values are desired, use
+@code{@var{xs} = sort (@var{x})} before calling @code{stemleaf (@var{xs})}.
+
+The stem and leaf plot and associated displays are described in: 
+Ch. 3, @cite{Exploratory Data Analysis} by J. W. Tukey, Addison-Wesley, 1977.
+@seealso{@ref{doc-hist,,hist}, @ref{doc-printd,,printd}}
+@end deftypefn
+
+
+@c printd scripts/plot/printd.m
+@anchor{doc-printd}
+@deftypefn  {Function File} {} printd (@var{obj}, @var{filename})
+@deftypefnx {Function File} {@var{out_file} =} printd (@dots{})
+
+Convert any object acceptable to @code{disp} into the format
+selected by the suffix of @var{filename}.  If the return argument
+@var{out_file} is given, the name of the created file is returned.
+
+This function is intended to facilitate manipulation of the output
+of functions such as @code{stemleaf}.
+@seealso{@ref{doc-stemleaf,,stemleaf}}
+@end deftypefn
+
+
 @c stairs scripts/plot/stairs.m
 @anchor{doc-stairs}
 @deftypefn  {Function File} {} stairs (@var{y})
@@ -656,7 +732,6 @@ definitions with RGB-triples are not valid!
 @anchor{doc-scatter}
 @deftypefn  {Function File} {} scatter (@var{x}, @var{y})
 @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s})
-@deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{c})
 @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s}, @var{c})
 @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s}, @var{c}, @var{style})
 @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s}, @var{c}, @var{prop}, @var{val})
@@ -687,7 +762,7 @@ The optional return value @var{h} provides a handle to the patch object
 @group
 x = randn (100, 1);
 y = randn (100, 1);
-scatter (x, y, [], sqrt(x.^2 + y.^2));
+scatter (x, y, [], sqrt (x.^2 + y.^2));
 @end group
 @end example
 
@@ -1199,7 +1274,7 @@ elements in @var{x}, with the size of the slice determined by percentage
 size of the values of @var{x}.
 
 The variable @var{explode} is a vector of the same length as @var{x} that
-if non zero 'explodes' the slice from the pie chart.
+if non zero "explodes" the slice from the pie chart.
 
 If given @var{labels} is a cell array of strings of the same length as
 @var{x}, giving the labels of each of the slices of the pie chart.
@@ -1225,7 +1300,7 @@ elements in @var{x}, with the size of the slice determined by percentage
 size of the values of @var{x}.
 
 The variable @var{explode} is a vector of the same length as @var{x} that
-if non zero 'explodes' the slice from the pie chart.
+if non zero "explodes" the slice from the pie chart.
 
 If given @var{labels} is a cell array of strings of the same length as
 @var{x}, giving the labels of each of the slices of the pie chart.
@@ -1243,7 +1318,7 @@ surface, and text objects generating the plot.
 @deftypefnx {Function File} {} quiver (@var{x}, @var{y}, @var{u}, @var{v})
 @deftypefnx {Function File} {} quiver (@dots{}, @var{s})
 @deftypefnx {Function File} {} quiver (@dots{}, @var{style})
-@deftypefnx {Function File} {} quiver (@dots{}, 'filled')
+@deftypefnx {Function File} {} quiver (@dots{}, "filled")
 @deftypefnx {Function File} {} quiver (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} quiver (@dots{})
 
@@ -1253,7 +1328,7 @@ specify @var{x} and @var{y} as vectors.
 
 If @var{x} and @var{y} are undefined they are assumed to be
 @code{(1:@var{m}, 1:@var{n})} where @code{[@var{m}, @var{n}] =
-size(@var{u})}.
+size (@var{u})}.
 
 The variable @var{s} is a scalar defining a scaling factor to use for
 the arrows of the field relative to the mesh spacing.  A value of 0
@@ -1262,7 +1337,7 @@ disables all scaling.  The default value is 1.
 The style to use for the plot can be defined with a line style @var{style}
 in a similar manner to the line styles used with the @code{plot} command.
 If a marker is specified then markers at the grid points of the vectors are
-printed rather than arrows.  If the argument 'filled' is given then the
+printed rather than arrows.  If the argument "filled" is given then the
 markers as filled.
 
 The optional return value @var{h} is a graphics handle to a quiver object.
@@ -1287,7 +1362,7 @@ set (h, "maxheadsize", 0.33);
 @deftypefnx {Function File} {} quiver3 (@var{x}, @var{y}, @var{z}, @var{u}, @var{v}, @var{w})
 @deftypefnx {Function File} {} quiver3 (@dots{}, @var{s})
 @deftypefnx {Function File} {} quiver3 (@dots{}, @var{style})
-@deftypefnx {Function File} {} quiver3 (@dots{}, 'filled')
+@deftypefnx {Function File} {} quiver3 (@dots{}, "filled")
 @deftypefnx {Function File} {} quiver3 (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} quiver3 (@dots{})
 
@@ -1297,7 +1372,7 @@ can specify @var{x}, @var{y} @var{z} as vectors.
 
 If @var{x}, @var{y} and @var{z} are undefined they are assumed to be
 @code{(1:@var{m}, 1:@var{n}, 1:@var{p})} where @code{[@var{m}, @var{n}] =
-size(@var{u})} and @code{@var{p} = max (size (@var{w}))}.
+size (@var{u})} and @code{@var{p} = max (size (@var{w}))}.
 
 The variable @var{s} is a scalar defining a scaling factor to use for
  the arrows of the field relative to the mesh spacing.  A value of 0
@@ -1306,7 +1381,7 @@ disables all scaling.  The default value is 1.
 The style to use for the plot can be defined with a line style @var{style}
 in a similar manner to the line styles used with the @code{plot} command.
 If a marker is specified then markers at the grid points of the vectors are
-printed rather than arrows.  If the argument 'filled' is given then the
+printed rather than arrows.  If the argument "filled" is given then the
 markers as filled.
 
 The optional return value @var{h} is a graphics handle to a quiver object.
@@ -1423,26 +1498,37 @@ visible.
 
 @c area scripts/plot/area.m
 @anchor{doc-area}
-@deftypefn  {Function File} {} area (@var{x}, @var{y})
-@deftypefnx {Function File} {} area (@var{x}, @var{y}, @var{lvl})
+@deftypefn  {Function File} {} area (@var{y})
+@deftypefnx {Function File} {} area (@var{x}, @var{y})
+@deftypefnx {Function File} {} area (@dots{}, @var{lvl})
 @deftypefnx {Function File} {} area (@dots{}, @var{prop}, @var{val}, @dots{})
-@deftypefnx {Function File} {} area (@var{y}, @dots{})
 @deftypefnx {Function File} {} area (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} area (@dots{})
-Area plot of cumulative sum of the columns of @var{y}.  This shows the
-contributions of a value to a sum, and is functionally similar to
+Area plot of the columns of @var{y}.  This shows the
+contributions of each column value to the row sum.  It is functionally similar to
 @code{plot (@var{x}, cumsum (@var{y}, 2))}, except that the area under
 the curve is shaded.
 
-If the @var{x} argument is omitted it is assumed to be given by
+If the @var{x} argument is omitted it defaults to 
 @code{1 : rows (@var{y})}.  A value @var{lvl} can be defined that determines
-where the base level of the shading under the curve should be defined.
+where the base level of the shading under the curve should be defined.  The
+default level is 0.
 
-Additional arguments to the @code{area} function are passed to
-@code{patch}.
+Additional arguments to the @code{area} function are passed directly to
+@code{patch}.  
 
 The optional return value @var{h} is a graphics handle to the hggroup
-object representing the area patch objects.
+object representing the area patch objects.  The "BaseValue" property
+of the hggroup can be used to adjust the level where shading begins.
+
+Example: Verify identity sin^2 + cos^2 = 1
+
+@example
+t = linspace (0, 2*pi, 100)';
+y = [sin(t).^2, cos(t).^2)];
+area (t, y);
+legend ('sin^2', 'cos^2', 'location', 'NorthEastOutside');  
+@end example
 @seealso{@ref{doc-plot,,plot}, @ref{doc-patch,,patch}}
 @end deftypefn
 
@@ -1585,6 +1671,7 @@ specified axes and off for the remainder.
 @item "nolabel"
 Turn tic labels off for all axes.
 @end table
+
 Note, if there are no tic marks for an axis, there can be no labels.
 
 @noindent
@@ -1618,8 +1705,8 @@ lower and upper limits to assign to the first and last value in the
 colormap.  Values outside this range are clamped to the first and last
 colormap entries.
 
-If @var{limits} is 'auto', then automatic colormap scaling is applied,
-whereas if @var{limits} is 'manual' the colormap scaling is set to manual.
+If @var{limits} is "auto", then automatic colormap scaling is applied,
+whereas if @var{limits} is "manual" the colormap scaling is set to manual.
 
 Called without any arguments to current color axis limits are returned.
 
@@ -1641,7 +1728,7 @@ get or set individual axis limits.  Each has the same form.
 
 @deftypefn  {Function File} {@var{xl} =} xlim ()
 @deftypefnx {Function File} {} xlim (@var{xl})
-@deftypefnx {Function File} {@var{m} =} xlim ('mode')
+@deftypefnx {Function File} {@var{m} =} xlim ("mode")
 @deftypefnx {Function File} {} xlim (@var{m})
 @deftypefnx {Function File} {} xlim (@var{h}, @dots{})
 Get or set the limits of the x-axis of the current plot.  Called without
@@ -1650,8 +1737,8 @@ If passed a two element vector @var{xl}, the limits of the x-axis are set
 to this value.
 
 The current mode for calculation of the x-axis can be returned with a
-call @code{xlim ('mode')}, and can be either 'auto' or 'manual'.  The
-current plotting mode can be set by passing either 'auto' or 'manual'
+call @code{xlim ("mode")}, and can be either "auto" or "manual".  The
+current plotting mode can be set by passing either "auto" or "manual"
 as the argument.
 
 If passed a handle as the first argument, then operate on this handle
@@ -1833,19 +1920,24 @@ ezcontourf (f, [-3, 3]);
 @deftypefn  {Function File} {} ezpolar (@var{f})
 @deftypefnx {Function File} {} ezpolar (@dots{}, @var{dom})
 @deftypefnx {Function File} {} ezpolar (@dots{}, @var{n})
-@deftypefnx {Function File} {} ezpolar (@var{h}, @dots{})
+@deftypefnx {Function File} {} ezpolar (@var{hax}, @dots{})
 @deftypefnx {Function File} {@var{h} =} ezpolar (@dots{})
 
-Plot a function in polar coordinates.  The function @var{f} is either
-a string, inline function or function handle with one arguments defining
-the function.  By default the plot is over the domain @code{0 < @var{x} <
-2*pi} with 60 points.
+Plot a function in polar coordinates.  The function @var{f} is
+a string, inline function, or function handle with a single argument.
+The expected form of the function is
+@code{@var{rho} = @var{f}(@var{theta})}.
+By default the plot is over the domain @code{0 < @var{theta} < 2*pi} with 60
+points.
 
 If @var{dom} is a two element vector, it represents the minimum and maximum
-value of both @var{t}.  @var{n} is a scalar defining the number of points to
-use.
+values of @var{theta}.  @var{n} is a scalar defining the number of points to
+use.  If the optional input @var{hax} is given then the plot is placed into
+the specified axes rather than the current axes.
 
 The optional return value @var{h} is a graphics handle to the created plot.
+
+Example:
 
 @example
 ezpolar (@@(t) 1 + sin (t));
@@ -2003,7 +2095,7 @@ columns of @var{z} correspond to different @var{x} values and rows of
 @deftypefnx {Function File} {} hidden ()
 Manipulation the mesh hidden line removal.  Called with no argument
 the hidden line removal is toggled.  The argument @var{mode} can be either
-'on' or 'off' and the set of the hidden line removal is set accordingly.
+"on" or "off" and the set of the hidden line removal is set accordingly.
 @seealso{@ref{doc-mesh,,mesh}, @ref{doc-meshc,,meshc}, @ref{doc-surf,,surf}}
 @end deftypefn
 
@@ -2053,21 +2145,21 @@ columns of @var{z} correspond to different @var{x} values and rows of
 @deftypefnx {Function File} {} surfl (@var{x}, @var{y}, @var{z}, @var{L}, @var{P})
 @deftypefnx {Function File} {} surfl (@dots{}, "light")
 Plot a lighted surface given matrices @var{x}, and @var{y} from
-@code{meshgrid} and
-a matrix @var{z} corresponding to the @var{x} and @var{y} coordinates of
-the mesh.  If @var{x} and @var{y} are vectors, then a typical vertex
-is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus, columns of @var{z}
-correspond to different @var{x} values and rows of @var{z} correspond
-to different @var{y} values.
+@code{meshgrid} and a matrix @var{z} corresponding to the @var{x} and
+@var{y} coordinates of the mesh.  If @var{x} and @var{y} are vectors, then
+a typical vertex is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus, columns
+of @var{z} correspond to different @var{x} values and rows of @var{z}
+correspond to different @var{y} values.
 
-The light direction can be specified using @var{L}.  It can be
-given as 2-element vector [azimuth, elevation] in degrees or as 3-element
-vector [lx, ly, lz].
-The default value is rotated 45° counter-clockwise from the current view.
+The light direction can be specified using @var{L}.  It can be given as a
+2-element vector [azimuth, elevation] in degrees or as a 3-element vector
+[lx, ly, lz].  The default value is rotated 45 degrees counterclockwise
+from the current view.
 
 The material properties of the surface can specified using a 4-element vector
 @var{P} = [@var{AM} @var{D} @var{SP} @var{exp}] which defaults to
 @var{p} = [0.55 0.6 0.4 10].
+
 @table @asis
 @item "AM" strength of ambient light
 
@@ -2079,10 +2171,9 @@ The material properties of the surface can specified using a 4-element vector
 @end table
 
 The default lighting mode "cdata", changes the cdata property to give the
-impression
-of a lighted surface.  Please note: the alternative "light" mode, which
-creates a light
-object to illuminate the surface is not implemented (yet).
+impression of a lighted surface.  Please note: the alternative "light"
+mode, which creates a light object to illuminate the surface is not
+implemented (yet).
 
 Example:
 
@@ -2109,8 +2200,8 @@ surface is defined by @var{x}, @var{y}, and @var{z}.  If @var{x} and
 
 @example
 @group
-[@var{x}, @var{y}] = meshgrid (1:size (@var{z}, 1),
-                   1:size (@var{z}, 2));
+[@var{x}, @var{y}] = meshgrid (1:rows (@var{z}),
+                   1:columns (@var{z}));
 @end group
 @end example
 
@@ -2397,6 +2488,54 @@ isofinish (p);
 @end deftypefn
 
 
+@c shrinkfaces scripts/plot/shrinkfaces.m
+@anchor{doc-shrinkfaces}
+@deftypefn  {Function File} {} shrinkfaces (@var{p}, @var{sf})
+@deftypefnx {Function File} {@var{nfv} =} shrinkfaces (@var{p}, @var{sf})
+@deftypefnx {Function File} {@var{nfv} =} shrinkfaces (@var{fv}, @var{sf})
+@deftypefnx {Function File} {@var{nfv} =} shrinkfaces (@var{f}, @var{v}, @var{sf})
+@deftypefnx {Function File} {[@var{nf}, @var{nv}] =} shrinkfaces (@dots{})
+
+Reduce the faces area for a given patch, structure or explicit faces
+and points matrices by a scale factor @var{sf}.  The structure
+@var{fv} must contain the fields 'faces' and 'vertices'.  If the
+factor @var{sf} is omitted then a default of 0.3 is used.
+
+Given a patch handle as the first input argument and no output
+parameters, perform the shrinking of the patch faces in place and
+redraw the patch.
+
+If called with one output argument, return a structure with fields
+'faces', 'vertices', and 'facevertexcdata' containing the data after
+shrinking which can then directly be used as an input argument for the
+@command{patch} function.
+
+Performing the shrinking on faces which are not convex can lead to
+undesired results.
+
+For example,
+
+@example
+@group
+[phi r] = meshgrid (linspace (0, 1.5*pi, 16), linspace (1, 2, 4));
+tri = delaunay (phi(:), r(:));
+v = [r(:).*sin(phi(:)) r(:).*cos(phi(:))];
+clf ()
+p = patch ("Faces", tri, "Vertices", v, "FaceColor", "none");
+fv = shrinkfaces (p);
+patch (fv)
+axis equal
+grid on
+@end group
+@end example
+
+@noindent
+draws a triangulated 3/4 circle and the corresponding shrunken
+version.
+@seealso{@ref{doc-patch,,patch}}
+@end deftypefn
+
+
 @c diffuse scripts/plot/diffuse.m
 @anchor{doc-diffuse}
 @deftypefn {Function File} {} diffuse (@var{sx}, @var{sy}, @var{sz}, @var{lv})
@@ -2447,13 +2586,13 @@ and @var{z} is assumed the same as @var{y}.
 @deftypefn  {Function File} {[@var{y1}, @var{y2}, @dots{}, @var{y}n] =} ndgrid (@var{x1}, @var{x2}, @dots{}, @var{x}n)
 @deftypefnx {Function File} {[@var{y1}, @var{y2}, @dots{}, @var{y}n] =} ndgrid (@var{x})
 Given n vectors @var{x1}, @dots{} @var{x}n, @code{ndgrid} returns
-n arrays of dimension n. The elements of the i-th output argument
+n arrays of dimension n.  The elements of the i-th output argument
 contains the elements of the vector @var{x}i repeated over all
 dimensions different from the i-th dimension.  Calling ndgrid with
 only one input argument @var{x} is equivalent of calling ndgrid with
 all n input arguments equal to @var{x}:
 
-[@var{y1}, @var{y2}, @dots{},  @var{y}n] = ndgrid (@var{x}, @dots{}, @var{x})
+[@var{y1}, @var{y2}, @dots{}, @var{y}n] = ndgrid (@var{x}, @dots{}, @var{x})
 @seealso{@ref{doc-meshgrid,,meshgrid}}
 @end deftypefn
 
@@ -2532,7 +2671,8 @@ plot3 (z, exp (2i*pi*z), ";complex sinusoid;");
 @deftypefnx {Function File} {} view (@var{azimuth}, @var{elevation})
 @deftypefnx {Function File} {} view ([@var{azimuth} @var{elevation}])
 @deftypefnx {Function File} {} view ([@var{x} @var{y} @var{z}])
-@deftypefnx {Function File} {} view (@var{dims})
+@deftypefnx {Function File} {} view (2)
+@deftypefnx {Function File} {} view (3)
 @deftypefnx {Function File} {} view (@var{ax}, @dots{})
 Query or set the viewpoint for the current axes.  The parameters
 @var{azimuth} and @var{elevation} can be given as two arguments or as
@@ -2616,7 +2756,7 @@ slice (x, y, z, v, xi, yi, zi);
 Plot a ribbon plot for the columns of @var{y} vs.  @var{x}.  The
 optional parameter @var{width} specifies the width of a single ribbon
 (default is 0.75).  If @var{x} is omitted, a vector containing the
-row numbers is assumed (1:rows(Y)).
+row numbers is assumed (1:rows (Y)).
 
 The optional return value @var{h} is a vector of graphics handles to
 the surface objects representing each ribbon.
@@ -2650,7 +2790,7 @@ of the current axis.
 @c scatter3 scripts/plot/scatter3.m
 @anchor{doc-scatter3}
 @deftypefn  {Function File} {} scatter3 (@var{x}, @var{y}, @var{z}, @var{s}, @var{c})
-@deftypefnx {Function File} {} scatter3 (@dots{}, 'filled')
+@deftypefnx {Function File} {} scatter3 (@dots{}, "filled")
 @deftypefnx {Function File} {} scatter3 (@dots{}, @var{style})
 @deftypefnx {Function File} {} scatter3 (@dots{}, @var{prop}, @var{val})
 @deftypefnx {Function File} {} scatter3 (@var{h}, @dots{})
@@ -2670,7 +2810,7 @@ the colors of each of the markers individually.
 
 The marker to use can be changed with the @var{style} argument, that is a
 string defining a marker in the same manner as the @code{plot} command.
-If the argument 'filled' is given then the markers as filled.  All
+If the argument "filled" is given then the markers as filled.  All
 additional arguments are passed to the underlying patch command.
 
 The optional return value @var{h} is a graphics handle to the hggroup
@@ -2684,6 +2824,24 @@ scatter3 (x(:), y(:), z(:), [], z(:));
 @end example
 
 @seealso{@ref{doc-plot,,plot}, @ref{doc-patch,,patch}, @ref{doc-scatter,,scatter}}
+@end deftypefn
+
+
+@c waterfall scripts/plot/waterfall.m
+@anchor{doc-waterfall}
+@deftypefn  {Function File} {} waterfall (@var{x}, @var{y}, @var{z})
+@deftypefnx {Function File} {} waterfall (@var{z})
+@deftypefnx {Function File} {@var{h} =} waterfall (@dots{})
+Plot a waterfall plot given matrices @var{x}, and @var{y} from
+@code{meshgrid} and a matrix @var{z} corresponding to the @var{x} and
+@var{y} coordinates of the mesh.  If @var{x} and @var{y} are vectors,
+then a typical vertex is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus,
+columns of @var{z} correspond to different @var{x} values and rows of
+@var{z} correspond to different @var{y} values.
+
+The optional return value @var{h} is a graphics handle to the created
+surface object.
+@seealso{@ref{doc-meshgrid,,meshgrid}, @ref{doc-meshz,,meshz}, @ref{doc-surf,,surf}}
 @end deftypefn
 
 
@@ -2703,22 +2861,27 @@ plotting.
 
 @c daspect scripts/plot/daspect.m
 @anchor{doc-daspect}
-@deftypefn {Function File} {} daspect (@var{data_aspect_ratio})
-Set the data aspect ratio of the current axes.  The aspect ratio is
-a normalized 3-element vector representing the span of the x, y, and
-z-axes limits.
-
-@deftypefnx {Function File} {@var{data_aspect_ratio} =} daspect ( )
-Return the data aspect ratio of the current axes.
-
+@deftypefn  {Function File} {@var{data_aspect_ratio} =} daspect ()
+@deftypefnx {Function File} {} daspect (@var{data_aspect_ratio})
 @deftypefnx {Function File} {} daspect (@var{mode})
-Set the data aspect ratio mode of the current axes.
-
 @deftypefnx {Function File} {@var{data_aspect_ratio_mode} =} daspect ("mode")
+@deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
+Query or set the data aspect ratio of the current axes.  The aspect 
+ratio is a normalized 3-element vector representing the span of the x, y,
+and z-axis limits.
+
+@code{(daspect (@var{mode}))}
+
+Set the data aspect ratio mode of the current axes.  @var{mode} is
+either "auto" or "manual".
+
+@code{daspect ("mode")}
+
 Return the data aspect ratio mode of the current axes.
 
-@deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
-Use the axes, with handle @var{hax}, instead of the current axes.
+@code{daspect (@var{hax}, @dots{})}
+
+Operate on the axes in handle @var{hax} instead of the current axes.
 
 @seealso{@ref{doc-axis,,axis}, @ref{doc-pbaspect,,pbaspect}, @ref{doc-xlim,,xlim}, @ref{doc-ylim,,ylim}, @ref{doc-zlim,,zlim}}
 @end deftypefn
@@ -2726,22 +2889,28 @@ Use the axes, with handle @var{hax}, instead of the current axes.
 
 @c pbaspect scripts/plot/pbaspect.m
 @anchor{doc-pbaspect}
-@deftypefn {Function File} {} pbaspect (@var{plot_box_aspect_ratio})
-Set the plot box aspect ratio of the current axes.  The aspect ratio
-is a normalized 3-element vector representing the rendered lengths of
-the x, y, and z-axes.
-
-@deftypefnx {Function File} {@var{plot_box_aspect_ratio} =} pbaspect ( )
-Return the plot box aspect ratio of the current axes.
-
+@deftypefn  {Function File} {@var{plot_box_aspect_ratio} =} pbaspect ( )
+@deftypefnx {Function File} {} pbaspect (@var{plot_box_aspect_ratio})
 @deftypefnx {Function File} {} pbaspect (@var{mode})
-Set the plot box aspect ratio mode of the current axes.
-
 @deftypefnx {Function File} {@var{plot_box_aspect_ratio_mode} =} pbaspect ("mode")
+@deftypefnx {Function File} {} pbaspect (@var{hax}, @dots{})
+
+Query or set the plot box aspect ratio of the current axes.  The aspect
+ratio is a normalized 3-element vector representing the rendered lengths of
+the x, y, and z axes.
+
+@code{pbaspect(@var{mode})}
+
+Set the plot box aspect ratio mode of the current axes.  @var{mode} is
+either "auto" or "manual".
+
+@code{pbaspect ("mode")}
+
 Return the plot box aspect ratio mode of the current axes.
 
-@deftypefnx {Function File} {} pbaspect (@var{hax}, @dots{})
-Use the axes, with handle @var{hax}, instead of the current axes.
+@code{pbaspect (@var{hax}, @dots{})}
+
+Operate on the axes in handle @var{hax} instead of the current axes.
 
 @seealso{@ref{doc-axis,,axis}, @ref{doc-daspect,,daspect}, @ref{doc-xlim,,xlim}, @ref{doc-ylim,,ylim}, @ref{doc-zlim,,zlim}}
 @end deftypefn
@@ -2788,7 +2957,7 @@ ezplot3 (fx, fy, fz, [0, 10*pi], 100);
 @deftypefnx {Function File} {} ezmesh (@var{fx}, @var{fy}, @var{fz})
 @deftypefnx {Function File} {} ezmesh (@dots{}, @var{dom})
 @deftypefnx {Function File} {} ezmesh (@dots{}, @var{n})
-@deftypefnx {Function File} {} ezmesh (@dots{}, 'circ')
+@deftypefnx {Function File} {} ezmesh (@dots{}, "circ")
 @deftypefnx {Function File} {} ezmesh (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} ezmesh (@dots{})
 
@@ -2808,7 +2977,7 @@ If three functions are passed, then plot the parametrically defined
 function @code{[@var{fx} (@var{s}, @var{t}), @var{fy} (@var{s}, @var{t}),
 @var{fz} (@var{s}, @var{t})]}.
 
-If the argument 'circ' is given, then the function is plotted over a disk
+If the argument "circ" is given, then the function is plotted over a disk
 centered on the middle of the domain @var{dom}.
 
 The optional return value @var{h} is a graphics handle to the created 
@@ -2825,9 +2994,9 @@ An example of a parametrically defined function is
 
 @example
 @group
-fx = @@(s,t) cos (s) .* cos(t);
-fy = @@(s,t) sin (s) .* cos(t);
-fz = @@(s,t) sin(t);
+fx = @@(s,t) cos (s) .* cos (t);
+fy = @@(s,t) sin (s) .* cos (t);
+fz = @@(s,t) sin (t);
 ezmesh (fx, fy, fz, [-pi, pi, -pi/2, pi/2], 20);
 @end group
 @end example
@@ -2842,7 +3011,7 @@ ezmesh (fx, fy, fz, [-pi, pi, -pi/2, pi/2], 20);
 @deftypefnx {Function File} {} ezmeshc (@var{fx}, @var{fy}, @var{fz})
 @deftypefnx {Function File} {} ezmeshc (@dots{}, @var{dom})
 @deftypefnx {Function File} {} ezmeshc (@dots{}, @var{n})
-@deftypefnx {Function File} {} ezmeshc (@dots{}, 'circ')
+@deftypefnx {Function File} {} ezmeshc (@dots{}, "circ")
 @deftypefnx {Function File} {} ezmeshc (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} ezmeshc (@dots{})
 
@@ -2862,7 +3031,7 @@ If three functions are passed, then plot the parametrically defined
 function @code{[@var{fx} (@var{s}, @var{t}), @var{fy} (@var{s}, @var{t}),
 @var{fz} (@var{s}, @var{t})]}.
 
-If the argument 'circ' is given, then the function is plotted over a disk
+If the argument "circ" is given, then the function is plotted over a disk
 centered on the middle of the domain @var{dom}.
 
 The optional return value @var{h} is a 2-element vector with a graphics
@@ -2886,7 +3055,7 @@ ezmeshc (f, [-3, 3]);
 @deftypefnx {Function File} {} ezsurf (@var{fx}, @var{fy}, @var{fz})
 @deftypefnx {Function File} {} ezsurf (@dots{}, @var{dom})
 @deftypefnx {Function File} {} ezsurf (@dots{}, @var{n})
-@deftypefnx {Function File} {} ezsurf (@dots{}, 'circ')
+@deftypefnx {Function File} {} ezsurf (@dots{}, "circ")
 @deftypefnx {Function File} {} ezsurf (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} ezsurf (@dots{})
 
@@ -2906,7 +3075,7 @@ If three functions are passed, then plot the parametrically defined
 function @code{[@var{fx} (@var{s}, @var{t}), @var{fy} (@var{s}, @var{t}),
 @var{fz} (@var{s}, @var{t})]}.
 
-If the argument 'circ' is given, then the function is plotted over a disk
+If the argument "circ" is given, then the function is plotted over a disk
 centered on the middle of the domain @var{dom}.
 
 The optional return value @var{h} is a graphics handle to the created
@@ -2940,7 +3109,7 @@ ezsurf (fx, fy, fz, [-pi, pi, -pi/2, pi/2], 20);
 @deftypefnx {Function File} {} ezsurfc (@var{fx}, @var{fy}, @var{fz})
 @deftypefnx {Function File} {} ezsurfc (@dots{}, @var{dom})
 @deftypefnx {Function File} {} ezsurfc (@dots{}, @var{n})
-@deftypefnx {Function File} {} ezsurfc (@dots{}, 'circ')
+@deftypefnx {Function File} {} ezsurfc (@dots{}, "circ")
 @deftypefnx {Function File} {} ezsurfc (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} ezsurfc (@dots{})
 
@@ -2960,7 +3129,7 @@ If three functions are passed, then plot the parametrically defined
 function @code{[@var{fx} (@var{s}, @var{t}), @var{fy} (@var{s}, @var{t}),
 @var{fz} (@var{s}, @var{t})]}.
 
-If the argument 'circ' is given, then the function is plotted over a disk
+If the argument "circ" is given, then the function is plotted over a disk
 centered on the middle of the domain @var{dom}.
 
 The optional return value @var{h} is a 2-element vector with a graphics
@@ -3080,20 +3249,21 @@ The optional return value @var{h} is a graphics handle to the created object.
 @anchor{doc-legend}
 @deftypefn  {Function File} {} legend (@var{str1}, @var{str2}, @dots{})
 @deftypefnx {Function File} {} legend (@var{matstr})
-@deftypefnx {Function File} {} legend (@var{cell})
+@deftypefnx {Function File} {} legend (@var{cellstr})
 @deftypefnx {Function File} {} legend (@dots{}, "location", @var{pos})
 @deftypefnx {Function File} {} legend (@dots{}, "orientation", @var{orient})
 @deftypefnx {Function File} {} legend (@var{hax}, @dots{})
 @deftypefnx {Function File} {} legend (@var{hobjs}, @dots{})
 @deftypefnx {Function File} {} legend (@var{hax}, @var{hobjs}, @dots{})
 @deftypefnx {Function File} {} legend ("@var{option}")
+@deftypefnx {Function File} {[@var{hleg}, @var{hleg_obj}, @var{hplot}, @var{labels}] =} legend (@dots{})
 
 Display a legend for the axes with handle @var{hax}, or the current axes,
 using the specified strings as labels.  Legend entries may be specified
 as individual character string arguments, a character array, or a cell
 array of character strings.  If the handles, @var{hobjs}, are not specified
 then the legend's strings will be associated with the axes' descendants.
-Legend works on line graphs, bar graphs, etc.
+@code{legend} works on line graphs, bar graphs, etc.
 A plot must exist before legend is called.
 
 The optional parameter @var{pos} specifies the location of the legend
@@ -3135,8 +3305,8 @@ as follows:
 @end multitable
 
 The optional parameter @var{orient} determines if the key elements
-are placed vertically or horizontally.  The allowed values are "vertical"
-or "horizontal" with the default being "vertical".
+are placed vertically or horizontally.  The allowed values are
+"vertical" (default) or "horizontal".
 
 The following customizations are available using @var{option}:
 
@@ -3147,7 +3317,7 @@ The following customizations are available using @var{option}:
 @item "hide"
   Hide legend on the plot
 
-@itemx "toggle"
+@item "toggle"
   Toggles between "hide" and "show"
 
 @item "boxon"
@@ -3157,14 +3327,35 @@ The following customizations are available using @var{option}:
   Hide the box around legend
 
 @item "left"
-  Place text to the left of the keys
+  Place label text to the left of the keys
 
 @item "right"
-  Place text to the right of the keys
+  Place label text to the right of the keys
 
-@itemx "off"
+@item  "off"
   Delete the legend object
 @end table
+
+The optional output values are
+
+@table @var
+@item hleg
+  The graphics handle of the legend object.
+
+@item hleg_obj
+  Graphics handles to the text and line objects which make up the legend.
+
+@item hplot
+  Graphics handles to the plot objects which were used in making the legend.
+
+@item labels
+  A cell array of strings of the labels in the legend.
+@end table 
+
+The legend label text is either provided in the call to @code{legend} or
+is taken from the DisplayName property of graphics objects.  If no
+labels or DisplayNames are available, then the label text is simply
+"data1", "data2", @dots{}, "dataN".
 @end deftypefn
 
 
@@ -3247,11 +3438,16 @@ clabel (c, h, -4:2:6, "fontsize", 12);
 
 @c box scripts/plot/box.m
 @anchor{doc-box}
-@deftypefn  {Function File} {} box (@var{arg})
-@deftypefnx {Function File} {} box (@var{h}, @dots{})
+@deftypefn  {Function File} {} box
+@deftypefnx {Function File} {} box ("on")
+@deftypefnx {Function File} {} box ("off")
+@deftypefnx {Function File} {} box (@var{hax}, @dots{})
 Control the display of a border around the plot.
 The argument may be either @code{"on"} or @code{"off"}.  If it is
 omitted, the current box state is toggled.
+
+If the first argument is an axis handle, @var{hax}, operate on the
+specified axis object.
 @seealso{@ref{doc-grid,,grid}}
 @end deftypefn
 
@@ -3410,8 +3606,10 @@ the second a cosine wave.  Figure numbers must be positive integers.
 
 @c figure scripts/plot/figure.m
 @anchor{doc-figure}
-@deftypefn  {Function File} {} figure (@var{n})
-@deftypefnx {Function File} {} figure (@var{n}, @var{property}, @var{value}, @dots{})
+@deftypefn  {Command} {} figure
+@deftypefnx {Command} {} figure @var{n}
+@deftypefnx {Function File} {} figure (@var{n})
+@deftypefnx {Function File} {} figure (@var{n}, "@var{property}", @var{value}, @dots{})
 Set the current plot window to plot window @var{n}.  If no arguments are
 specified, the next available window number is chosen.
 
@@ -3419,8 +3617,9 @@ Multiple property-value pairs may be specified for the figure, but they
 must appear in pairs.
 @end deftypefn
 
-@subsection Use of @code{axis},  @code{line}, and @code{patch} functions
-@cindex use of @code{axis},  @code{line}, and @code{patch} functions
+
+@node Use of axis@comma{} line@comma{} and patch Functions
+@subsection Use of axis@comma{} line@comma{} and patch Functions
 
 You can create axes, line, and patch objects directly using the
 @code{axes}, @code{line}, and @code{patch} functions.  These objects
@@ -3454,7 +3653,7 @@ must appear in pairs.
 @deftypefnx {Function File} {} patch (@var{x}, @var{y}, @var{c})
 @deftypefnx {Function File} {} patch (@var{x}, @var{y}, @var{z}, @var{c})
 @deftypefnx {Function File} {} patch (@var{fv})
-@deftypefnx {Function File} {} patch ('Faces', @var{f}, 'Vertices', @var{v}, @dots{})
+@deftypefnx {Function File} {} patch ("Faces", @var{f}, "Vertices", @var{v}, @dots{})
 @deftypefnx {Function File} {} patch (@dots{}, @var{prop}, @var{val})
 @deftypefnx {Function File} {} patch (@var{h}, @dots{})
 @deftypefnx {Function File} {@var{h} =} patch (@dots{})
@@ -3515,14 +3714,14 @@ surface object.
 @end deftypefn
 
 
-@subsection Manipulation of plot windows
-@cindex manipulation of plot windows
+@node Manipulation of Plot Windows
+@subsection Manipulation of Plot Windows
 
 By default, Octave refreshes the plot window when a prompt is printed,
 or when waiting for input.  The
 @code{drawnow} function is used to cause a plot window to be updated.
 
-@c drawnow src/graphics.cc
+@c drawnow libinterp/interpfcn/graphics.cc
 @anchor{doc-drawnow}
 @deftypefn  {Built-in Function} {} drawnow ()
 @deftypefnx {Built-in Function} {} drawnow ("expose")
@@ -3544,8 +3743,8 @@ it is not modified.
 @anchor{doc-refresh}
 @deftypefn  {Function File} {} refresh ()
 @deftypefnx {Function File} {} refresh (@var{h})
-Refresh a figure, forcing it to be redrawn.  Called without an
-argument the current figure is redrawn, otherwise the figure pointed
+Refresh a figure, forcing it to be redrawn.  When called without an
+argument the current figure is redrawn.  Otherwise, the figure pointed
 to by @var{h} is redrawn.
 @seealso{@ref{doc-drawnow,,drawnow}}
 @end deftypefn
@@ -3574,10 +3773,14 @@ plot.
 
 @c newplot scripts/plot/newplot.m
 @anchor{doc-newplot}
-@deftypefn {Function File} {} newplot ()
+@deftypefn  {Function File} {} newplot ()
+@deftypefnx {Function File} {@var{h} =} newplot ()
 Prepare graphics engine to produce a new plot.  This function is
 called at the beginning of all high-level plotting functions.
 It is not normally required in user programs.
+
+The optional return value @var{h} is a graphics handle to the created
+axes (not figure).
 @end deftypefn
 
 
@@ -3586,7 +3789,7 @@ It is not normally required in user programs.
 @deftypefn  {Command} {} hold
 @deftypefnx {Command} {} hold @var{state}
 @deftypefnx {Function File} {} hold (@var{hax}, @dots{})
-Toggle or set the 'hold' state of the plotting engine which determines
+Toggle or set the "hold" state of the plotting engine which determines
 whether new graphic objects are added to the plot or replace the existing
 objects.
 
@@ -3605,13 +3808,13 @@ Clear plot and restore default graphics settings before each new plot
 command.  (default).
 
 @item hold
-Toggle the current 'hold' state.
+Toggle the current hold state.
 @end table
 
 When given the additional argument @var{hax}, the hold state is modified
 only for the given axis handle.
 
-To query the current 'hold' state use the @code{ishold} function.
+To query the current hold state use the @code{ishold} function.
 @seealso{@ref{doc-ishold,,ishold}, @ref{doc-cla,,cla}, @ref{doc-newplot,,newplot}, @ref{doc-clf,,clf}}
 @end deftypefn
 
@@ -3710,8 +3913,8 @@ with it.
 @end deftypefn
 
 
+@node Use of the @code{interpreter} Property
 @subsection Use of the @code{interpreter} Property
-@cindex use of the @code{interpreter} property
 
 All text objects, including titles, labels, legends, and text, include
 the property 'interpreter', this property determines the manner in which
@@ -3934,11 +4137,11 @@ A complete example showing the capabilities of the extended text is
 @example
 @group
 x = 0:0.01:3;
-plot(x,erf(x));
+plot (x, erf (x));
 hold on;
-plot(x,x,"r");
-axis([0, 3, 0, 1]);
-text(0.65, 0.6175, strcat('\leftarrow x = @{2/\surd\pi',
+plot (x,x,"r");
+axis ([0, 3, 0, 1]);
+text (0.65, 0.6175, strcat ('\leftarrow x = @{2/\surd\pi',
 ' @{\fontsize@{16@}\int_@{\fontsize@{8@}0@}^@{\fontsize@{8@}x@}@}',
 ' e^@{-t^2@} dt@} = 0.6175'))
 @end group
@@ -3959,15 +4162,22 @@ The result of which can be seen in @ref{fig:extendedtext}
 @cindex printing plots
 @cindex saving plots
 
-The @code{print} command allows you to save plots in a variety of
-formats.  For example,
+The @code{print} command allows you to send plots to you printer and
+to save plots in a variety of formats.  For example,
+
+@example
+print -dpsc
+@end example
+
+@noindent
+prints the current figure to a color PostScript printer.  And,
 
 @example
 print -deps foo.eps
 @end example
 
 @noindent
-writes the current figure to an encapsulated PostScript file called
+saves the current figure to an encapsulated PostScript file called
 @file{foo.eps}.
 
 @c print scripts/plot/print.m
@@ -3976,29 +4186,41 @@ writes the current figure to an encapsulated PostScript file called
 @deftypefnx {Function File} {} print (@var{options})
 @deftypefnx {Function File} {} print (@var{filename}, @var{options})
 @deftypefnx {Function File} {} print (@var{h}, @var{filename}, @var{options})
-Print a graph, or save it to a file
+Print a plot, or save it to a file.  Both output formatted for 
+printing (PDF and PostScript), and many bitmapped and vector
+image formats are supported.
 
-@var{filename} defines the file name of the output file.  If the
+@var{filename} defines the name of the output file.  If the
 file name has no suffix, one is inferred from the specified
-device and appended to the file name.  If no
-filename is specified, the output is sent to the printer.
+device and appended to the file name.  If no filename is
+specified, the output is sent to the printer.
 
 @var{h} specifies the figure handle.  If no handle is specified
 the handle for the current figure is used.
 
-@var{options}:
+For output to a printer, PostScript file, or PDF file,
+the paper size is specified by the figure's @code{papersize}
+property.  The location and size of the image on the page are
+specified by the figure's @code{paperposition} property.  The
+orientation of the page is specified by the figure's
+@code{paperorientation} property.
+
+The width and height of images are specified by the figure's
+@code{paperpositon(3:4)} property values.
+
+The @code{print} command supports many @var{options}:
 
 @table @code
 @item -f@var{h}
   Specify the handle, @var{h}, of the figure to be printed.  The
-  default is the current figure.
+default is the current figure.
 
 @item -P@var{printer}
-  Set the @var{printer} name to which the graph is sent if no
+  Set the @var{printer} name to which the plot is sent if no
 @var{filename} is specified.
 
 @item -G@var{ghostscript_command}
-  Specify the command for calling Ghostscript.  For Unix and Windows,
+  Specify the command for calling Ghostscript.  For Unix and Windows
 the defaults are 'gs' and 'gswin32c', respectively.
 
 @item -color
@@ -4007,7 +4229,7 @@ the defaults are 'gs' and 'gswin32c', respectively.
 
 @item -solid
 @itemx -dashed
-  Forces all lines to be solid or dashed, respectively.
+  Force all lines to be solid or dashed, respectively.
 
 @item -portrait
 @itemx -landscape
@@ -4017,15 +4239,26 @@ the plot area defined by the "paperposition" property in the
 orientation specified.  This options is equivalent to changing
 the figure's "paperorientation" property.
 
+@item -TextAlphaBits=@var{n}
+@itemx -GraphicsAlphaBits=@var{n}
+  Octave is able to produce output for various printers, bitmaps, and
+vector formats by using Ghostscript.
+For bitmap and printer output anti-aliasing is applied using
+Ghostscript's TextAlphaBits and GraphicsAlphaBits options.
+The default number of bits for each is 4.
+Allowed values for @var{N} are 1, 2, or 4.
+
 @item -d@var{device}
-  Output device, where @var{device} is one of:
+  The available output format is specified by the option @var{device},
+and is one of:
+
 @table @code
 @item ps
 @itemx ps2
 @itemx psc
 @itemx psc2
     Postscript (level 1 and 2, mono and color).  The FLTK graphics
-    toolkit generates Postscript level 3.0.
+toolkit generates Postscript level 3.0.
 
 @item eps
 @itemx eps2
@@ -4040,7 +4273,7 @@ graphic toolkit generates Postscript level 3.0.
 @itemx pstex
 @itemx pslatex
 @itemx pdflatex
-    Generate a @LaTeX{} (or @TeX{}) file for labels, and eps/ps/pdf
+    Generate a @LaTeX{} (or @TeX{}) file for labels and eps/ps/pdf
 for graphics.  The file produced by @code{epslatexstandalone} can be
 processed directly by @LaTeX{}.  The other formats are intended to
 be included in a @LaTeX{} (or @TeX{}) document.  The @code{tex} device
@@ -4048,8 +4281,8 @@ is the same as the @code{epslatex} device.  The @code{pdflatex} device
 is only available for the FLTK graphics toolkit.
 
 @item tikz
-    Generate a @LaTeX{} file using PGF/TikZ@.  For the FLTK the result is
-  PGF.
+    Generate a @LaTeX{} file using PGF/TikZ@.  For the FLTK toolkit
+the result is PGF.
 
 @item ill
 @itemx aifm
@@ -4069,8 +4302,8 @@ is only available for the FLTK graphics toolkit.
 @item fig
     XFig.  For the Gnuplot graphics toolkit, the additional options
 @option{-textspecial} or @option{-textnormal} can be used to control
-    whether the special flag should be set for the text in
-    the figure (default is @option{-textnormal}).
+whether the special flag should be set for the text in
+the figure.  (default is @option{-textnormal})
 
 @item hpgl
     HP plotter language
@@ -4139,53 +4372,52 @@ by the figure's "papersize" property.  When the output
 is sent to a file the size is determined by the plot box defined by
 the figure's "paperposition" property.
 
-@itemx -append
-  Appends the PS, or PDF output to a pre-existing file of the
-same type.
+@item -append
+  Append Postscript or PDF output to a pre-existing file of the same type.
 
-@itemx -r@var{NUM}
+@item -r@var{NUM}
   Resolution of bitmaps in pixels per inch.  For both metafiles and
-SVG the default is the screen resolution, for other it is 150 dpi.
+SVG the default is the screen resolution; for other formats it is 150 dpi.
 To specify screen resolution, use "-r0".
 
 @item -tight
-  Forces a tight bounding box for eps-files.
+  Force a tight bounding box for eps files.
 
 @item -@var{preview}
-  Adds a preview to eps-files.  Supported formats are;
+  Add a preview to eps files.  Supported formats are:
 
 @table @code
 @item -interchange
-    Provides an interchange preview.
+    Provide an interchange preview.
 
 @item -metalfile
-    Provides a metafile preview.
+    Provide a metafile preview.
 
 @item -pict
-    Provides pict preview.
+    Provide pict preview.
 
 @item -tiff
-    Provides a tiff preview.
+    Provide a tiff preview.
 @end table
 
 @item -S@var{xsize},@var{ysize}
-  Plot size in pixels for EMF, GIF, JPEG, PBM, PNG and SVG@.  For
+  Plot size in pixels for EMF, GIF, JPEG, PBM, PNG, and SVG@.  For
 PS, EPS, PDF, and other vector formats the plot size is in points.
 This option is equivalent to changing the size of the plot box
-associated with "paperposition" property.  Using the command form of
-the print function, you must quote the @var{xsize},@var{ysize}
-option.  For example, by writing @w{@code{"-S640,480"}}.
+associated with the "paperposition" property.  When using the command form
+of the print function you must quote the @var{xsize},@var{ysize}
+option.  For example, by writing @w{"-S640,480"}.
 
 @item -F@var{fontname}
 @itemx -F@var{fontname}:@var{size}
 @itemx -F:@var{size}
-  Associates all text with the @var{fontname} and/or @var{fontsize}.
-@var{fontname} is ignored for some devices; dxf, fig, hpgl, etc.
+  Use @var{fontname} and/or @var{fontsize} for all text.
+@var{fontname} is ignored for some devices: dxf, fig, hpgl, etc.
 @end table
 
 The filename and options can be given in any order.
 
-Example: Print to a file, using the svg device.
+Example: Print to a file using the svg device.
 
 @example
 @group
@@ -4301,12 +4533,20 @@ pressed.
 @c gtext scripts/plot/gtext.m
 @anchor{doc-gtext}
 @deftypefn  {Function File} {} gtext (@var{s})
+@deftypefnx {Function File} {} gtext (@{@var{s1}, @var{s2}, @dots{}@})
 @deftypefnx {Function File} {} gtext (@{@var{s1}; @var{s2}; @dots{}@})
 @deftypefnx {Function File} {} gtext (@dots{}, @var{prop}, @var{val})
+@deftypefnx {Function File} {@var{h} =} gtext (@dots{})
 Place text on the current figure using the mouse.  The text is defined
-by the string @var{s}.  If @var{s} is a cell array, each element of the cell
-array is written to a separate line.  Additional arguments are passed to
-the underlying text object as properties.
+by the string @var{s}.  If @var{s} is a cell string organized as a row
+vector then each string of the cell array is written to a separate line.
+If @var{s} is organized as a column vector then one string element of the
+cell array is placed for every mouse click.  Additional inputs besides a
+string or cellstr are passed to the underlying text object as Property-value
+pairs.
+
+The optional return value @var{h} is a graphics handle to the created
+text object.
 @seealso{@ref{doc-ginput,,ginput}, @ref{doc-text,,text}}
 @end deftypefn
 
@@ -4617,7 +4857,7 @@ A three-dimensional surface.
 To determine whether a variable is a graphics object index or a figure
 index, use the functions @code{ishandle} and @code{isfigure}.
 
-@c ishandle src/graphics.cc
+@c ishandle libinterp/interpfcn/graphics.cc
 @anchor{doc-ishandle}
 @deftypefn {Built-in Function} {} ishandle (@var{h})
 Return true if @var{h} is a graphics handle and false otherwise.
@@ -4753,7 +4993,7 @@ set (gca ())
 returns a structure containing the default property values for axes
 objects.
 
-@c get src/graphics.cc
+@c get libinterp/interpfcn/graphics.cc
 @anchor{doc-get}
 @deftypefn {Built-in Function} {} get (@var{h}, @var{p})
 Return the named property @var{p} from the graphics handle @var{h}.
@@ -4763,7 +5003,7 @@ values or lists respectively.
 @end deftypefn
 
 
-@c set src/graphics.cc
+@c set libinterp/interpfcn/graphics.cc
 @anchor{doc-set}
 @deftypefn  {Built-in Function} {} set (@var{h}, @var{property}, @var{value}, @dots{})
 @deftypefnx {Built-in Function} {} set (@var{h}, @var{properties}, @var{values})
@@ -4802,7 +5042,7 @@ the dimensions of @var{pv}.
 @c ancestor scripts/plot/ancestor.m
 @anchor{doc-ancestor}
 @deftypefn  {Function File} {@var{parent} =} ancestor (@var{h}, @var{type})
-@deftypefnx {Function File} {@var{parent} =} ancestor (@var{h}, @var{type}, 'toplevel')
+@deftypefnx {Function File} {@var{parent} =} ancestor (@var{h}, @var{type}, "toplevel")
 Return the first ancestor of handle object @var{h} whose type matches
 @var{type}, where @var{type} is a character string.  If @var{type} is a
 cell array of strings, return the first parent whose type matches
@@ -4831,6 +5071,15 @@ vector of handles.
 @end deftypefn
 
 
+@c findfigs scripts/plot/findfigs.m
+@anchor{doc-findfigs}
+@deftypefn {Function File} {} findfigs ()
+Find all visible figures that are currently off the screen and move them
+onto the screen.
+@seealso{@ref{doc-allchild,,allchild}, @ref{doc-figure,,figure}, @ref{doc-get,,get}, @ref{doc-set,,set}}
+@end deftypefn
+
+
 @node Graphics Object Properties
 @subsection Graphics Object Properties
 @cindex graphics object properties
@@ -4855,6 +5104,7 @@ hierarchy.
 @cindex root figure properties
 
 The @code{root figure} properties are:
+
 @table @code
 @item __modified__  
 --- Values: "on," "off"
@@ -4927,6 +5177,7 @@ The @code{root figure} properties are:
 @cindex figure properties
 
 The @code{figure} properties are:
+
 @table @code
 @item __graphics_toolkit__  
 --- The graphics toolkit currently in use.
@@ -5010,6 +5261,7 @@ callback functions get called when a key is pressed/released
 respectively.  The functions are called with two input arguments.  The
 first argument holds the handle of the calling figure.  The second
 argument holds the event structure which has the following members:
+
 @table @code
 @item Character
 The ASCII value of the key
@@ -5031,6 +5283,7 @@ the key.  Possible values are @code{"shift"}, @code{"alt"}, and
 
 @item nextplot
 May be one of
+
 @table @code
 @item "new"
 
@@ -5126,6 +5379,7 @@ holds the current coordinates of the cursor.
 @cindex axes properties
 
 The @code{axes} properties are:
+
 @table @code
 @item __modified__
 
@@ -5255,6 +5509,7 @@ Octave.
 
 @item nextplot
 May be one of
+
 @table @code
 @item "new"
 
@@ -5471,6 +5726,7 @@ Either @code{"manual"} or @code{"auto"}.
 @cindex line properties
 
 The @code{line} properties are:
+
 @table @code
 @item __modified__
 
@@ -5582,6 +5838,7 @@ The data to be plotted.
 @cindex text properties
 
 The @code{text} properties are:
+
 @table @code
 @item __modified__
 
@@ -5699,6 +5956,7 @@ May be @code{"normalized"} or @code{"graph"}.
 @cindex image properties
 
 The @code{image} properties are:
+
 @table @code
 @item __modified__
 
@@ -5775,6 +6033,7 @@ the image.
 @cindex patch properties
 
 The @code{patch} properties are:
+
 @table @code
 @item __modified__
 
@@ -5923,6 +6182,7 @@ Data defining the patch object.
 @cindex surface properties
 
 The @code{surface} properties are:
+
 @table @code
 @item __modified__
 
@@ -6197,7 +6457,7 @@ removes the user-defined default line color setting from the current axes
 object.  To quickly remove all user-defined defaults use the @code{reset}
 function.
 
-@c reset src/graphics.cc
+@c reset libinterp/interpfcn/graphics.cc
 @anchor{doc-reset}
 @deftypefn {Built-in Function} {} reset (@var{h}, @var{property})
 Remove any defaults set for the handle @var{h}.  The default figure
@@ -6263,6 +6523,7 @@ Line styles are specified by the following properties:
 @table @code
 @item linestyle
 May be one of
+
 @table @code
 @item "-"
 Solid line.  [default]
@@ -6291,20 +6552,21 @@ of 2 is twice as wide as the default, etc.
 @cindex marker styles, graphics
 
 Marker styles are specified by the following properties:
+
 @table @code
 @item marker
 A character indicating a plot marker to be place at each data point, or
 @code{"none"}, meaning no markers should be displayed.
 
-@itemx markeredgecolor
+@item markeredgecolor
 The color of the edge around the marker, or @code{"auto"}, meaning that
 the edge color is the same as the face color.  @xref{Colors}.
 
-@itemx markerfacecolor
+@item markerfacecolor
 The color of the marker, or @code{"none"} to indicate that the marker
 should not be filled.  @xref{Colors}.
 
-@itemx markersize
+@item markersize
 A number specifying the size of the marker.  The default is 1.  A value
 of 2 is twice as large as the default, etc.
 @end table
@@ -6344,7 +6606,7 @@ with an object either at the objects creation or later with the
 @code{set} function.  For example,
 
 @example
-plot (x, "DeleteFcn", @@(s, e) disp("Window Deleted"))
+plot (x, "DeleteFcn", @@(s, e) disp ("Window Deleted"))
 @end example
 
 @noindent
@@ -6439,12 +6701,14 @@ not exist, it is created.
 
 @c getappdata scripts/miscellaneous/getappdata.m
 @anchor{doc-getappdata}
-@deftypefn {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+@deftypefn  {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+@deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
+
 Return the @var{value} for named application data for the object(s) with
 handle(s) @var{h}.
-@deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
-Return a structure, @var{appdata}, whose fields correspond to the appdata
-properties.
+
+@code{getappdata(@var{h})} returns a structure, @var{appdata}, whose fields
+correspond to the appdata properties.
 @end deftypefn
 
 
@@ -6509,7 +6773,7 @@ the same as the set of common properties for the other graphics
 objects.  Additional properties can be added with the @code{addproperty}
 function.
 
-@c addproperty src/graphics.cc
+@c addproperty libinterp/interpfcn/graphics.cc
 @anchor{doc-addproperty}
 @deftypefn  {Built-in Function} {} addproperty (@var{name}, @var{h}, @var{type})
 @deftypefnx {Built-in Function} {} addproperty (@var{name}, @var{h}, @var{type}, @var{arg}, @dots{})
@@ -6586,7 +6850,7 @@ graphics object.  Add so to control the way in which this newly added
 property is used, the @code{addlistener} function is used to define a
 callback function that is executed when the property is altered.
 
-@c addlistener src/graphics.cc
+@c addlistener libinterp/interpfcn/graphics.cc
 @anchor{doc-addlistener}
 @deftypefn {Built-in Function} {} addlistener (@var{h}, @var{prop}, @var{fcn})
 Register @var{fcn} as listener for the property @var{prop} of the graphics
@@ -6620,7 +6884,7 @@ addlistener (gcf, "position", @{@@my_listener, "my string"@})
 @end deftypefn
 
 
-@c dellistener src/graphics.cc
+@c dellistener libinterp/interpfcn/graphics.cc
 @anchor{doc-dellistener}
 @deftypefn {Built-in Function} {} dellistener (@var{h}, @var{prop}, @var{fcn})
 Remove the registration of @var{fcn} as a listener for the property
@@ -7291,19 +7555,32 @@ Data source variables.
 @c graphics_toolkit scripts/plot/graphics_toolkit.m
 @anchor{doc-graphics_toolkit}
 @deftypefn  {Function File} {@var{name} =} graphics_toolkit ()
-@deftypefnx {Function File} {@var{old_name} =} graphics_toolkit (@var{name})
+@deftypefnx {Function File} {@var{name} =} graphics_toolkit (@var{hlist})
+@deftypefnx {Function File} {} graphics_toolkit (@var{name})
 @deftypefnx {Function File} {} graphics_toolkit (@var{hlist}, @var{name})
-Query or set the default graphics toolkit to @var{name}.  If the
-toolkit is not already loaded, it is first initialized by calling the
-function @code{__init_@var{name}__}.
+Return the default graphics toolkit.  The default graphics toolkit value
+is assigned to new figures.
 
-When called with a list of figure handles, @var{hlist}, the graphics
-toolkit is changed only for the listed figures.
+@code{graphics_toolkit (@var{hlist})}
+
+Return the graphics toolkits for the figures with handles @var{hlist}.
+
+@code{graphics_toolkit (@var{name})}
+
+Set the default graphics toolkit to @var{name}.  If the toolkit is not
+already loaded, it is initialized by calling the function
+@code{__init_@var{name}__}.
+
+@code{graphics_toolkit (@var{hlist}, @var{name})}
+
+Set the graphics toolkit for the figures with handles @var{hlist} to
+@var{name}.
+
 @seealso{@ref{doc-available_graphics_toolkits,,available_graphics_toolkits}}
 @end deftypefn
 
 
-@c available_graphics_toolkits src/graphics.cc
+@c available_graphics_toolkits libinterp/interpfcn/graphics.cc
 @anchor{doc-available_graphics_toolkits}
 @deftypefn {Built-in Function} {} available_graphics_toolkits ()
 Return a cell array of registered graphics toolkits.
@@ -7311,7 +7588,7 @@ Return a cell array of registered graphics toolkits.
 @end deftypefn
 
 
-@c loaded_graphics_toolkits src/graphics.cc
+@c loaded_graphics_toolkits libinterp/interpfcn/graphics.cc
 @anchor{doc-loaded_graphics_toolkits}
 @deftypefn {Built-in Function} {} loaded_graphics_toolkits ()
 Return a cell array of the currently loaded graphics toolkits.
@@ -7319,7 +7596,7 @@ Return a cell array of the currently loaded graphics toolkits.
 @end deftypefn
 
 
-@c register_graphics_toolkit src/graphics.cc
+@c register_graphics_toolkit libinterp/interpfcn/graphics.cc
 @anchor{doc-register_graphics_toolkit}
 @deftypefn {Built-in Function} {} register_graphics_toolkit (@var{toolkit})
 List @var{toolkit} as an available graphics toolkit.
@@ -7346,17 +7623,19 @@ graphics toolkit.
 Query or set the name of the program invoked by the plot command
 when the graphics toolkit is set to "gnuplot".  Additional arguments to
 pass to the external plotting program may also be given.
-The default value is @code{"gnuplot"} without additional arguments.
+The default value is @code{"gnuplot"} with no additional arguments.
 @xref{Installation}.
+@seealso{@ref{doc-graphics_toolkit,,graphics_toolkit}}
 @end deftypefn
 
 
-@c gui_mode src/DLD-FUNCTIONS/__init_fltk__.cc
+@c gui_mode libinterp/dldfcn/__init_fltk__.cc
 @anchor{doc-gui_mode}
 @deftypefn  {Built-in Function} {@var{mode} =} gui_mode ()
 @deftypefnx {Built-in Function} {} gui_mode (@var{mode})
 Query or set the GUI mode for the current graphics toolkit.
 The @var{mode} argument can be one of the following strings:
+
 @table @asis
 @item '2d'
 Allows panning and zooming of current axes.
@@ -7373,7 +7652,7 @@ This function is currently implemented only for the FLTK graphics toolkit.
 @end deftypefn
 
 
-@c mouse_wheel_zoom src/DLD-FUNCTIONS/__init_fltk__.cc
+@c mouse_wheel_zoom libinterp/dldfcn/__init_fltk__.cc
 @anchor{doc-mouse_wheel_zoom}
 @deftypefn  {Built-in Function} {@var{speed} =} mouse_wheel_zoom ()
 @deftypefnx {Built-in Function} {} mouse_wheel_zoom (@var{speed})

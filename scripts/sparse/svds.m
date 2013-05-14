@@ -85,7 +85,7 @@
 ## @end example
 ##
 ## @code{svds} is best for finding only a few singular values from a large
-## sparse matrix.  Otherwise, @code{svd (full(@var{A}))} will likely be more
+## sparse matrix.  Otherwise, @code{svd (full (@var{A}))} will likely be more
 ## efficient.
 ## @end deftypefn
 ## @seealso{svd, eigs}
@@ -98,12 +98,12 @@ function [u, s, v, flag] = svds (A, k, sigma, opts)
     print_usage ();
   endif
 
-  if (ndims(A) > 2)
+  if (ndims (A) > 2)
     error ("svds: A must be a 2D matrix");
   endif
 
   if (nargin < 4)
-    opts.tol = 1e-10 / root2;
+    opts.tol = 0;   ## use ARPACK default
     opts.disp = 0;
     opts.maxit = 300;
   else
@@ -111,7 +111,7 @@ function [u, s, v, flag] = svds (A, k, sigma, opts)
       error ("svds: OPTS must be a structure");
     endif
     if (!isfield (opts, "tol"))
-      opts.tol = 1e-10 / root2;
+      opts.tol = 0;   ## use ARPACK default
     else
       opts.tol = opts.tol / root2;
     endif
@@ -152,7 +152,6 @@ function [u, s, v, flag] = svds (A, k, sigma, opts)
     b_opts = opts;
     ## Call to eigs is always a symmetric matrix by construction
     b_opts.issym = true;
-    b_opts.tol = opts.tol / max_a;
     b_sigma = sigma;
     if (!ischar (b_sigma))
       b_sigma = b_sigma / max_a;
@@ -194,7 +193,7 @@ function [u, s, v, flag] = svds (A, k, sigma, opts)
     ## norm since if we don't we might end up with too many singular
     ## values.
     tol = norma * opts.tol;
-    ind = find(s > tol);
+    ind = find (s > tol);
     if (length (ind) < k)
       ## Too few eigenvalues returned.  Add in any zero eigenvalues of B,
       ## including the nominally negative ones.
@@ -235,19 +234,20 @@ function [u, s, v, flag] = svds (A, k, sigma, opts)
     endif
 
     if (nargout > 3)
-      flag = norm (A*v - u*s, 1) > root2 * opts.tol * norm (A, 1);
+      flag = (flag != 0);
     endif
   endif
 
 endfunction
 
-%!shared n, k, A, u, s, v, opts, rand_state, randn_state
+
+%!shared n, k, A, u, s, v, opts, rand_state, randn_state, tol
 %! n = 100;
 %! k = 7;
 %! A = sparse ([3:n,1:n,1:(n-2)],[1:(n-2),1:n,3:n],[ones(1,n-2),0.4*n*ones(1,n),ones(1,n-2)]);
 %! [u,s,v] = svd (full (A));
 %! s = diag (s);
-%! [~, idx] = sort (abs(s));
+%! [~, idx] = sort (abs (s));
 %! s = s(idx);
 %! u = u(:, idx);
 %! v = v(:, idx);
@@ -262,22 +262,25 @@ endfunction
 %! [u2,s2,v2,flag] = svds (A,k);
 %! s2 = diag (s2);
 %! assert (flag, !1);
-%! assert (s2, s(end:-1:end-k+1), 1e-10);
+%! tol = 10 * eps() * norm(s2, 1);
+%! assert (s2, s(end:-1:end-k+1), tol);
 %!
 %!testif HAVE_ARPACK, HAVE_UMFPACK
 %! [u2,s2,v2,flag] = svds (A,k,0,opts);
 %! s2 = diag (s2);
 %! assert (flag, !1);
-%! assert (s2, s(k:-1:1), 1e-10);
+%! tol = 10 * eps() * norm(s2, 1);
+%! assert (s2, s(k:-1:1), tol);
 %!
 %!testif HAVE_ARPACK, HAVE_UMFPACK
-%! idx = floor(n/2);
+%! idx = floor (n/2);
 %! % Don't put sigma right on a singular value or there are convergence issues
 %! sigma = 0.99*s(idx) + 0.01*s(idx+1);
 %! [u2,s2,v2,flag] = svds (A,k,sigma,opts);
 %! s2 = diag (s2);
 %! assert (flag, !1);
-%! assert (s2, s((idx+floor(k/2)):-1:(idx-floor(k/2))), 1e-10);
+%! tol = 10 * eps() * norm(s2, 1);
+%! assert (s2, s((idx+floor(k/2)):-1:(idx-floor(k/2))), tol);
 %!
 %!testif HAVE_ARPACK
 %! [u2,s2,v2,flag] = svds (zeros (10), k);

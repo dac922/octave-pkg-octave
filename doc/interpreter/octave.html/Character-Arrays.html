@@ -53,15 +53,12 @@ together into a matrix.
    <p>The function <code>ischar</code> can be used to test if an object is a character
 matrix.
 
-<!-- ischar src/strfns.cc -->
+<!-- ischar libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dischar"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ischar</b> (<var>x</var>)<var><a name="index-ischar-328"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a character array. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>ischar</b> (<var>x</var>)<var><a name="index-ischar-346"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a character array.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002discellstr.html#doc_002discellstr">iscellstr</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
@@ -70,14 +67,14 @@ matrix.
 matrix) you can use the <code>ischar</code> function in combination with the
 <code>isvector</code> function as in the following example:
 
-<pre class="example">     ischar(collection)
-          &rArr; ans = 1
+<pre class="example">     ischar (collection)
+          &rArr; 1
      
-     ischar(collection) &amp;&amp; isvector(collection)
-          &rArr; ans = 0
+     ischar (collection) &amp;&amp; isvector (collection)
+          &rArr; 0
      
-     ischar("my string") &amp;&amp; isvector("my string")
-          &rArr; ans = 1
+     ischar ("my string") &amp;&amp; isvector ("my string")
+          &rArr; 1
 </pre>
    <p>One relevant question is, what happens when a character matrix is
 created from strings of different length.  The answer is that Octave
@@ -85,22 +82,22 @@ puts blank characters at the end of strings shorter than the longest
 string.  It is possible to use a different character than the
 blank character using the <code>string_fill_char</code> function.
 
-<!-- string_fill_char src/pt-mat.cc -->
+<!-- string_fill_char libinterp/parse-tree/pt-mat.cc -->
    <p><a name="doc_002dstring_005ffill_005fchar"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>string_fill_char</b> ()<var><a name="index-string_005ffill_005fchar-329"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>string_fill_char</b> (<var>new_val</var>)<var><a name="index-string_005ffill_005fchar-330"></a></var><br>
-&mdash; Built-in Function:  <b>string_fill_char</b> (<var>new_val, "local"</var>)<var><a name="index-string_005ffill_005fchar-331"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>string_fill_char</b> ()<var><a name="index-string_005ffill_005fchar-347"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>string_fill_char</b> (<var>new_val</var>)<var><a name="index-string_005ffill_005fchar-348"></a></var><br>
+&mdash; Built-in Function:  <b>string_fill_char</b> (<var>new_val, "local"</var>)<var><a name="index-string_005ffill_005fchar-349"></a></var><br>
 <blockquote><p>Query or set the internal variable used to pad all rows of a character
 matrix to the same length.  It must be a single character.  The default
 value is <code>" "</code> (a single space).  For example:
 
      <pre class="example">          string_fill_char ("X");
           [ "these"; "are"; "strings" ]
-               &rArr; "theseXX"
-                  "areXXXX"
-                  "strings"
+                &rArr;  "theseXX"
+                    "areXXXX"
+                    "strings"
 </pre>
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original

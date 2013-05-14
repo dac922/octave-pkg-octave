@@ -154,12 +154,12 @@ quadcc (f, 0, Inf)
 @end group
 @end example
 
-@c quad src/DLD-FUNCTIONS/quad.cc
+@c quad libinterp/corefcn/quad.cc
 @anchor{doc-quad}
-@deftypefn  {Loadable Function} {@var{q} =} quad (@var{f}, @var{a}, @var{b})
-@deftypefnx {Loadable Function} {@var{q} =} quad (@var{f}, @var{a}, @var{b}, @var{tol})
-@deftypefnx {Loadable Function} {@var{q} =} quad (@var{f}, @var{a}, @var{b}, @var{tol}, @var{sing})
-@deftypefnx {Loadable Function} {[@var{q}, @var{ier}, @var{nfun}, @var{err}] =} quad (@dots{})
+@deftypefn  {Built-in Function} {@var{q} =} quad (@var{f}, @var{a}, @var{b})
+@deftypefnx {Built-in Function} {@var{q} =} quad (@var{f}, @var{a}, @var{b}, @var{tol})
+@deftypefnx {Built-in Function} {@var{q} =} quad (@var{f}, @var{a}, @var{b}, @var{tol}, @var{sing})
+@deftypefnx {Built-in Function} {[@var{q}, @var{ier}, @var{nfun}, @var{err}] =} quad (@dots{})
 Numerically evaluate the integral of @var{f} from @var{a} to @var{b} using
 Fortran routines from @w{@sc{quadpack}}.  @var{f} is a function handle,
 inline function, or a string containing the name of the function to
@@ -174,7 +174,7 @@ accuracy of the result.  The first element of the vector is the desired
 absolute tolerance, and the second element is the desired relative
 tolerance.  To choose a relative test only, set the absolute
 tolerance to zero.  To choose an absolute test only, set the relative
-tolerance to zero.  Both tolerances default to @code{sqrt(eps)} or
+tolerance to zero.  Both tolerances default to @code{sqrt (eps)} or
 approximately @math{1.5e^{-8}}.
 
 The optional argument @var{sing} is a vector of values at which the
@@ -196,11 +196,11 @@ variable by routines @code{dblquad} and @code{triplequad}.
 @end deftypefn
 
 
-@c quad_options src/DLD-FUNCTIONS/quad.cc
+@c quad_options libinterp/corefcn/quad.cc
 @anchor{doc-quad_options}
-@deftypefn  {Loadable Function} {} quad_options ()
-@deftypefnx {Loadable Function} {val =} quad_options (@var{opt})
-@deftypefnx {Loadable Function} {} quad_options (@var{opt}, @var{val})
+@deftypefn  {Built-in Function} {} quad_options ()
+@deftypefnx {Built-in Function} {val =} quad_options (@var{opt})
+@deftypefnx {Built-in Function} {} quad_options (@var{opt}, @var{val})
 Query or set options for the function @code{quad}.
 When called with no arguments, the names of all available options and
 their current values are displayed.
@@ -374,7 +374,7 @@ the quadrature into 10 intervals.  Subintervals that have an
 unacceptable error are subdivided and re-evaluated.  If the number of
 subintervals exceeds 650 subintervals at any point then a poor
 convergence is signaled and the current estimate of the integral is
-returned.  The property 'MaxIntervalCount' can be used to alter the
+returned.  The property "MaxIntervalCount" can be used to alter the
 number of subintervals that can exist before exiting.
 
 @item WayPoints
@@ -421,7 +421,7 @@ integral.
 @end deftypefn
 
 
-@c quadcc src/DLD-FUNCTIONS/quadcc.cc
+@c quadcc libinterp/corefcn/quadcc.cc
 @anchor{doc-quadcc}
 @deftypefn  {Function File} {@var{q} =} quadcc (@var{f}, @var{a}, @var{b})
 @deftypefnx {Function File} {@var{q} =} quadcc (@var{f}, @var{a}, @var{b}, @var{tol})
@@ -437,7 +437,7 @@ The function @var{f} must be vectorized and must return a vector of output
 values if given a vector of input values.  For example,
 
 @example
-   f = @@(x) x .* sin (1./x) .* sqrt (abs (1 - x));
+f = @@(x) x .* sin (1./x) .* sqrt (abs (1 - x));
 @end example
 
 @noindent
@@ -445,7 +445,7 @@ which uses the element-by-element `dot' form for all operators.
 
 @var{a} and @var{b} are the lower and upper limits of integration.  Either
 or both limits may be infinite.  @code{quadcc} handles an inifinite limit
-by substituting the variable of integration with @code{x=tan(pi/2*u)}.
+by substituting the variable of integration with @code{x = tan (pi/2*u)}.
 
 The optional argument @var{tol} defines the relative tolerance used to stop
 the integration procedure.  The default value is @math{1e^{-6}}.
@@ -457,7 +457,7 @@ For the example above, which has a discontinuity at x=1, the call to
 @code{quadcc} would be as follows
 
 @example
-   int = quadcc (f, a, b, 1.0e-6, [ 1 ]);
+int = quadcc (f, a, b, 1.0e-6, [ 1 ]);
 @end example
 
 The result of the integration is returned in @var{q}.
@@ -605,9 +605,9 @@ value (deltaX).
 @node Orthogonal Collocation
 @section Orthogonal Collocation
 
-@c colloc src/DLD-FUNCTIONS/colloc.cc
+@c colloc libinterp/corefcn/colloc.cc
 @anchor{doc-colloc}
-@deftypefn {Loadable Function} {[@var{r}, @var{amat}, @var{bmat}, @var{q}] =} colloc (@var{n}, "left", "right")
+@deftypefn {Built-in Function} {[@var{r}, @var{amat}, @var{bmat}, @var{q}] =} colloc (@var{n}, "left", "right")
 Compute derivative and integral weight matrices for orthogonal
 collocation using the subroutines given in J. Villadsen and
 M. L. Michelsen, @cite{Solution of Differential Equation Models by
@@ -788,7 +788,7 @@ $$
 @ifnottex
 the sum over @code{i=1:n} and @code{j=1:n} of @code{q(i)*q(j)*f(r(i),r(j))},
 @end ifnottex
-where @math{q} and @math{r} is as returned by @code{colloc(n)}.  The
+where @math{q} and @math{r} is as returned by @code{colloc (n)}.  The
 generalization to more than two variables is straight forward.  The
 following code computes the studied integral using @math{n=8} points.
 

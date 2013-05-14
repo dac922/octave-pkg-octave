@@ -19,46 +19,7 @@
 \input texinfo
 @setfilename octave.info
 
-@c The following macro is used for the online help system, but we don't
-@c want lots of 'See also: foo, bar, and baz' strings cluttering the
-@c printed manual (that information should be in the supporting text for
-@c each group of functions and variables).
-
-@macro seealso {args}
-@iftex
-@vskip 2pt
-@end iftex
-@ifnottex
-@c Texinfo @sp should work but in practice produces ugly results for HTML.
-@c A simple blank line produces the correct behavior. 
-@c @sp 1
-
-@end ifnottex
-@noindent
-@strong{See also:} \args\.
-@end macro
-
-@c The following macro marks words that aspell should ignore during
-@c spellchecking.  Within Texinfo it has no effect as it merely replaces
-@c the macro call with the argument itself.
-
-@macro nospell {arg}
-\arg\
-@end macro
-
-@c The following macro works around a situation where the Info/plain text
-@c expansion of the @code{XXX} macro is 'XXX'.  The use of the apostrophe
-@c can be confusing if the code segment itself ends with a transpose operator.
-@ifinfo
-@macro xcode{arg}
-\arg\
-@end macro
-@end ifinfo
-@ifnotinfo
-@macro xcode{arg}
-@code{\arg\}
-@end macro
-@end ifnotinfo
+@include macros.texi
 
 @ifinfo
 @format
@@ -129,7 +90,8 @@ modified versions.
 @sp 2
 @multitable @columnfractions 0.4 0.025 0.65
 @item
-@flushright @image{octave_logo,2.1in} @end flushright
+@flushright @image{octave_logo,2.1in}
+@end flushright
 @tab
 @c this is a spacer column
 @tab
@@ -216,6 +178,7 @@ It corresponds to GNU Octave version @value{VERSION}.
 * Object Oriented Programming::            
 * GUI Development::            
 * System Utilities::            
+* Java Interface:: 
 * Packages:: 
 * Dynamically Linked Functions::
 * Test and Demo Functions::
@@ -416,16 +379,17 @@ Statements
 * The try Statement::           
 * Continuation Lines::          
 
-The @code{switch} Statement
+The switch Statement
 
 * Notes for the C Programmer::  
 
-The @code{for} Statement
+The for Statement
 
 * Looping Over Structure Elements::  
 
 Functions and Scripts
 
+* Introduction to Function and Script Files::
 * Defining Functions::          
 * Multiple Return Values::      
 * Variable-length Argument Lists::  
@@ -444,6 +408,7 @@ Function Files
 * Manipulating the Load Path::
 * Subfunctions::
 * Private Functions::
+* Nested Functions::
 * Overloading and Autoloading::
 * Function Locking::
 * Function Precedence::
@@ -535,6 +500,9 @@ High-Level Plotting
 * Plot Annotations::            
 * Multiple Plots on One Page::  
 * Multiple Plot Windows::       
+* Use of axis@comma{} line@comma{} and patch Functions::
+* Manipulation of Plot Windows::
+* Use of the @code{interpreter} Property::
 * Printing and Saving Plots::              
 * Interacting with Plots::      
 * Test Plotting Functions::     
@@ -644,7 +612,7 @@ Diagonal and Permutation Matrices
 * Basic Usage::          Creation and Manipulation of Diagonal and Permutation Matrices
 * Matrix Algebra::       Linear Algebra with Diagonal and Permutation Matrices
 * Function Support::     Functions That Are Aware of These Matrices
-* Example Codes::        Some Examples of Usage
+* Example Code::         Some Examples of Usage
 * Zeros Treatment::      The Differences in Treatment of Zero Elements
 
 Basic Usage
@@ -795,6 +763,20 @@ Networking Utilities
 * FTP Objects::
 * URL Manipulation::
 
+Java Interface
+
+* Java Interface Functions::
+* Dialog Box Functions::
+* FAQ - Frequently asked Questions::
+
+FAQ - Frequently asked Questions
+
+* How to distinguish between Octave and Matlab?::
+* How to make Java classes available?::
+* How to create an instance of a Java class?::
+* How can I handle memory limitations?::
+* Which @TeX{} symbols are implemented in the dialog functions?::
+
 Packages
 
 * Installing and Removing Packages::  
@@ -890,7 +872,7 @@ Installation
 
 Build Dependencies
 
-* Obtaining the Depencies Automatically::
+* Obtaining the Dependencies Automatically::
 * Build Tools::
 * External Packages::
 
@@ -948,6 +930,7 @@ Grammar and Parser
 @include oop.texi
 @include gui.texi
 @include system.texi
+@include java.texi
 @include package.texi
 
 @c maybe add again later, if anyone every writes any really interesting

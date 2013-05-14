@@ -125,7 +125,7 @@ looping over individual array elements which is a slow operation.
 
    <p>Consider the following example which creates a 10-element row vector
 a containing the values
-a(i) = sqrt(i).
+a(i) = sqrt (i).
 
 <pre class="example">     for i = 1:10
        a(i) = sqrt (i);
@@ -161,12 +161,12 @@ elements using indexing commands.  For example, given a matrix
    <p class="noindent">because Octave does not have to repeatedly resize the intermediate
 result.
 
-<!-- sub2ind src/DLD-FUNCTIONS/sub2ind.cc -->
+<!-- sub2ind libinterp/corefcn/sub2ind.cc -->
    <p><a name="doc_002dsub2ind"></a>
 
 <div class="defun">
-&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, i, j</var>)<var><a name="index-sub2ind-518"></a></var><br>
-&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, s1, s2, <small class="dots">...</small>, sN</var>)<var><a name="index-sub2ind-519"></a></var><br>
+&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, i, j</var>)<var><a name="index-sub2ind-548"></a></var><br>
+&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, s1, s2, <small class="dots">...</small>, sN</var>)<var><a name="index-sub2ind-549"></a></var><br>
 <blockquote><p>Convert subscripts to a linear index.
 
         <p>The following example shows how to convert the two-dimensional
@@ -177,17 +177,14 @@ all rows in each column.
      <pre class="example">          linear_index = sub2ind ([3, 3], 2, 3)
           &rArr; 8
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2sub.html#doc_002dind2sub">ind2sub</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2sub.html#doc_002dind2sub">ind2sub</a>. 
 </p></blockquote></div>
 
-<!-- ind2sub src/DLD-FUNCTIONS/sub2ind.cc -->
+<!-- ind2sub libinterp/corefcn/sub2ind.cc -->
    <p><a name="doc_002dind2sub"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>s1</var>, <var>s2</var>, <small class="dots">...</small>, <var>sN</var>] = <b>ind2sub</b> (<var>dims, ind</var>)<var><a name="index-ind2sub-520"></a></var><br>
+&mdash; Function File: [<var>s1</var>, <var>s2</var>, <small class="dots">...</small>, <var>sN</var>] = <b>ind2sub</b> (<var>dims, ind</var>)<var><a name="index-ind2sub-550"></a></var><br>
 <blockquote><p>Convert a linear index to subscripts.
 
         <p>The following example shows how to convert the linear index <code>8</code>
@@ -195,21 +192,18 @@ in a 3-by-3 matrix into a subscript.  The matrix is linearly indexed
 moving from one column to next, filling up all rows in each column.
 
      <pre class="example">          [r, c] = ind2sub ([3, 3], 8)
-          &rArr; r =  2
-             c =  3
+              &rArr; r =  2
+              &rArr; c =  3
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsub2ind.html#doc_002dsub2ind">sub2ind</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsub2ind.html#doc_002dsub2ind">sub2ind</a>. 
 </p></blockquote></div>
 
-<!-- isindex src/utils.cc -->
+<!-- isindex libinterp/interpfcn/utils.cc -->
    <p><a name="doc_002disindex"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isindex</b> (<var>ind</var>)<var><a name="index-isindex-521"></a></var><br>
-&mdash; Built-in Function:  <b>isindex</b> (<var>ind, n</var>)<var><a name="index-isindex-522"></a></var><br>
+&mdash; Built-in Function:  <b>isindex</b> (<var>ind</var>)<var><a name="index-isindex-551"></a></var><br>
+&mdash; Built-in Function:  <b>isindex</b> (<var>ind, n</var>)<var><a name="index-isindex-552"></a></var><br>
 <blockquote><p>Return true if <var>ind</var> is a valid index.  Valid indices are
 either positive integers (although possibly of real data type), or logical
 arrays.  If present, <var>n</var> specifies the maximum extent of the dimension
@@ -217,13 +211,13 @@ to be indexed.  When possible the internal result is cached so that
 subsequent indexing using <var>ind</var> will not perform the check again. 
 </p></blockquote></div>
 
-<!-- allow_noninteger_range_as_index src/ov-range.cc -->
+<!-- allow_noninteger_range_as_index libinterp/octave-value/ov-range.cc -->
    <p><a name="doc_002dallow_005fnoninteger_005frange_005fas_005findex"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>allow_noninteger_range_as_index</b> ()<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-523"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>allow_noninteger_range_as_index</b> (<var>new_val</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-524"></a></var><br>
-&mdash; Built-in Function:  <b>allow_noninteger_range_as_index</b> (<var>new_val, "local"</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-525"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>allow_noninteger_range_as_index</b> ()<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-553"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>allow_noninteger_range_as_index</b> (<var>new_val</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-554"></a></var><br>
+&mdash; Built-in Function:  <b>allow_noninteger_range_as_index</b> (<var>new_val, "local"</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-555"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether non-integer
 ranges are allowed as indices.  This might be useful for <span class="sc">matlab</span>
 compatibility; however, it is still not entirely compatible because

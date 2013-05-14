@@ -93,7 +93,7 @@ function [nn, xx] = hist (y, varargin)
   if (nargin == 1 || ischar (varargin{iarg}))
     n = 10;
     x = [0.5:n]'/n;
-    x = x * (max_val - min_val) + ones(size(x)) * min_val;
+    x = x * (max_val - min_val) + ones (size (x)) * min_val;
   else
     ## nargin is either 2 or 3
     x = varargin{iarg++};
@@ -149,7 +149,7 @@ function [nn, xx] = hist (y, varargin)
   if (nargin > 2 && ! ischar (varargin{iarg}))
     ## Normalise the histogram.
     norm = varargin{iarg++};
-    freq = freq / rows (y) * norm;
+    freq = freq / sum(! isnan (y)) * norm;
   endif
 
   if (nargout > 0)
@@ -160,7 +160,7 @@ function [nn, xx] = hist (y, varargin)
       nn = freq;
       xx = x;
     endif
-  elseif (size (freq, 2) != 1)
+  elseif (columns (freq) != 1)
     bar (x, freq, 0.8, varargin{iarg:end});
   else
     bar (x, freq, 1.0, varargin{iarg:end});
@@ -168,30 +168,35 @@ function [nn, xx] = hist (y, varargin)
 
 endfunction
 
+
 %!test
-%!  [nn,xx]=hist([1:4],3);
-%!  assert(xx, [1.5,2.5,3.5]);
-%!  assert(nn, [2,1,1]);
+%! [nn,xx] = hist ([1:4], 3);
+%! assert (xx, [1.5,2.5,3.5]);
+%! assert (nn, [2,1,1]);
 %!test
-%!  [nn,xx]=hist([1:4]',3);
-%!  assert(xx, [1.5,2.5,3.5]);
-%!  assert(nn, [2,1,1]);
+%! [nn,xx] = hist ([1:4]', 3);
+%! assert (xx, [1.5,2.5,3.5]);
+%! assert (nn, [2,1,1]);
 %!test
-%!  [nn,xx]=hist([1 1 1 NaN NaN NaN 2 2 3],[1 2 3]);
-%!  assert(xx, [1,2,3]);
-%!  assert(nn, [3,2,1]);
+%! [nn,xx] = hist ([1 1 1 NaN NaN NaN 2 2 3],[1 2 3]);
+%! assert (xx, [1,2,3]);
+%! assert (nn, [3,2,1]);
 %!test
-%!  [nn,xx]=hist([[1:4]',[1:4]'],3);
-%!  assert(xx, [1.5;2.5;3.5]);
-%!  assert(nn, [[2,1,1]',[2,1,1]']);
-%!assert(hist(1,1),1);
+%! [nn,xx] = hist ([1 1 1 NaN NaN NaN 2 2 3],[1 2 3], 6);
+%! assert (xx, [1,2,3]);
+%! assert (nn, [3,2,1]);
 %!test
-%!  for n = [10, 30, 100, 1000]
-%!    assert(sum(hist([1:n], n)), n);
-%!    assert(sum(hist([1:n], [2:n-1])), n);
-%!    assert(sum(hist([1:n], [1:n])), n);
-%!    assert(sum(hist([1:n], 29)), n);
-%!    assert(sum(hist([1:n], 30)), n);
-%!  endfor
+%! [nn,xx] = hist ([[1:4]', [1:4]'], 3);
+%! assert (xx, [1.5;2.5;3.5]);
+%! assert (nn, [[2,1,1]',[2,1,1]']);
 %!test
-%!  assert (size (hist(randn(750,240), 200)), [200,240]);
+%! for n = [10, 30, 100, 1000]
+%!   assert (sum (hist ([1:n], n)), n);
+%!   assert (sum (hist ([1:n], [2:n-1])), n);
+%!   assert (sum (hist ([1:n], [1:n])), n);
+%!   assert (sum (hist ([1:n], 29)), n);
+%!   assert (sum (hist ([1:n], 30)), n);
+%! endfor
+%!assert (hist (1,1), 1)
+%!assert (size (hist (randn (750,240), 200)), [200,240])
+

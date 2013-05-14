@@ -1,3 +1,1053 @@
+2013-02-10  John W. Eaton  <jwe@octave.org>
+
+	Added tag ss-3-7-2 for changeset faefa1bea8dd
+
+	Files: .hgtags
+
+	snapshot version 3.7.2
+
+	* configure.ac (AC_INIT): Set version to 3.7.2.
+	(OCTAVE_RELEASE_DATE): Set to 2013-02-09.
+	(OCTAVE_COPYRIGHT): Update year.
+
+	Files: configure.ac
+
+	update to new version of gnulib
+
+	Files: .hgsubstate
+
+2013-02-09  John W. Eaton  <jwe@octave.org>
+
+	distribute build-aux/find-files-with-tests.sh
+
+	* Makefile.am (EXTRA_DIST): Include build-aux/find-files-with-tests.sh
+	in the list.
+
+	Files: Makefile.am
+
+	rename all test files in the test directory from test_X.m to X.tst
+
+	* Use - instead of _ for .tst file names.  Fix all file lists in
+	module.mk and Makefile.am files.
+	* __run_test_suite__.m: Adapt to new naming convention.
+
+	Files: scripts/testfun/__run_test_suite__.m test/Makefile.am test/args.tst
+	test/bug-31371.tst test/bug-35448/bug-35448.tst
+	test/bug-35448/module.mk test/bug-35448/test_bug_35448.m
+	test/bug-36025/bug-36025.tst test/bug-36025/module.mk
+	test/bug-36025/test_bug_36025.m test/bug-38236/bug-38236.tst
+	test/bug-38236/module.mk test/bug-38236/test_bug_38236.m test/build-
+	bc-overload-tests.sh test/build-sparse-tests.sh test/class-concat
+	/class-concat.tst test/class-concat/module.mk test/class-
+	concat/test_class_concat.m test/classes/classes.tst
+	test/classes/module.mk test/classes/test_classes.m test/ctor-vs-
+	method/ctor-vs-method.tst test/ctor-vs-method/module.mk test/ctor-
+	vs-method/test_ctor_vs_method.m test/diag-perm.tst test/error.tst
+	test/eval-catch.tst test/fcn-handle-derived-resolution/fcn-handle-
+	derived-resolution.tst test/fcn-handle-derived-resolution/module.mk
+	test/fcn-handle-derived-
+	resolution/test_fcn_handle_derived_resolution.m test/for.tst
+	test/func.tst test/global.tst test/if.tst test/index.tst test/io.tst
+	test/line-continue.tst test/logical-index.tst test/nest/module.mk
+	test/nest/nest.tst test/nest/test_nest.m test/null-assign.tst
+	test/parser.tst test/prefer.tst test/range.tst test/recursion.tst
+	test/return.tst test/slice.tst test/struct.tst test/switch.tst
+	test/system.tst test/test_args.m test/test_bug_31371.m
+	test/test_diag_perm.m test/test_error.m test/test_eval-catch.m
+	test/test_for.m test/test_func.m test/test_global.m test/test_if.m
+	test/test_index.m test/test_io.m test/test_line_continue.m
+	test/test_logical_index.m test/test_null_assign.m test/test_parser.m
+	test/test_prefer.m test/test_range.m test/test_recursion.m
+	test/test_return.m test/test_slice.m test/test_struct.m
+	test/test_switch.m test/test_system.m test/test_transpose.m
+	test/test_try.m test/test_unwind.m test/test_while.m
+	test/transpose.tst test/try.tst test/unwind.tst test/while.tst
+
+	fix file names
+
+	* build-bc-overload-tests.sh: Rename from build_bc_overload_tests.sh.
+	* bc-overloads-expected: Rename from bc_overloads_expected.
+	* build-sparse-tests.sh: Rename from build_sparse_tests.sh.
+	* Makefile.am: Update.
+
+	Files: test/bc-overloads-expected test/bc_overloads_expected test/build-bc-
+	overload-tests.sh test/build-sparse-tests.sh
+	test/build_bc_overload_tests.sh test/build_sparse_tests.sh
+
+	* test/Makefile.am: Use stamp file for bc-overload-tests.
+
+	Files: test/Makefile.am
+
+2013-02-09  Ben Abbott  <bpabbott@mac.com>
+
+	backout 1e35b64ac31a
+
+	Files: scripts/plot/private/__go_draw_axes__.m
+
+2013-02-09  John W. Eaton  <jwe@octave.org>
+
+	* edit.m: Undo string escape sequences on values used in sprintf formats.
+
+	Files: scripts/miscellaneous/edit.m
+
+2013-02-09  Rik  <rik@octave.org>
+
+	Change default history size to 1000.
+	Command number in prompt will now easily match command number in history.
+
+	* libinterp/interpfcn/oct-hist.cc(default_history_size): Change size from
+	1024 to 1000.
+
+	* libinterp/interpfcn/oct-hist.cc(Fhistory_size): Change docstring to
+	say default history size is 1000.
+
+	Files: libinterp/interpfcn/oct-hist.cc
+
+2013-02-09  John W. Eaton  <jwe@octave.org>
+
+	fix rules for generated test files
+
+	* test/Makefile.am: List all generated bc_overloads files as targets.
+	(CLEANFILES): Fix typo.
+	* build_bc_overload_tests.sh: List all files on separate lines.
+
+	Files: test/Makefile.am test/build_bc_overload_tests.sh
+
+2013-02-08  John W. Eaton  <jwe@octave.org>
+
+	missing file for commit 5b2126a8c84f
+
+	Files: build-aux/find-files-with-tests.sh test/classes/module.mk
+
+2013-02-08  Rik  <rik@octave.org>
+
+	Fix off-by-1 error in run_history when called with no arguments.
+
+	* libinterp/interpfcn/oct-hist.cc(mk_tmp_hist_file): Subtract
+	2 from hist_count to account for last command and zero-based indexing.
+
+	Files: libinterp/interpfcn/oct-hist.cc
+
+	Prevent extra newline in history list when --no-line-editing option used.
+
+	* liboctave/util/cmd-hist.cc(gnu_history::do_add): Strip newline before adding
+	line to history list.
+
+	Files: liboctave/util/cmd-hist.cc
+
+2013-02-08  Ben Abbott  <bpabbott@mac.com>
+
+	Pad binary data to gnuplot with a space
+
+	* scripts/plot/private/__go_draw_axes__.m: Add a space to the end of each
+	binary record.  Fixes the "nset obj 1;\n <- line 0: invalid command".
+
+	Files: scripts/plot/private/__go_draw_axes__.m
+
+2013-02-08  John W. Eaton  <jwe@octave.org>
+
+	install tests and functions to run them
+
+	* configure.ac (octtestsdir): New variable.
+	* build-aux/common.mk (octtestsdir): New variable.
+	(do_subst_default_vals): Substitute it.
+	(test-file-commands): New macro.
+	(%.cc-tst:%.cc, %.yy-tst:%.yy, %.ll-tst:%.ll): New rules.
+	* libinterp/Makefile.am (TST_FILES_SRC, TST_FILES, libinterptestsdir,
+	nobase_libinterptests_DATA): New variables.
+	* defaults.in.h (OCTAVE_OCTTESTSDIR): New macro.
+	* liboctave/Makefile.am (LIBOCTAVE_TST_SRC, TST_FILES_SRC, TST_FILES,
+	liboctavetestsdir, nobase_liboctavetests_DATA): New variables.
+	* toplev.cc (Foctave_config_info): Include octtestsdir in the struct.
+	* fntests.m: Look in topbuilddir for C++ test files.
+	* __run_test_suite__.m: New function, extracted from
+	test/fntests.m.  Look for -tst files, not .cc files.  Don't report
+	-tst files that are missing tests (there won't be any).
+	* __prog_output_assert__.m, __printf_assert__.m: New functions,
+	extracted from __run_test_suite__.m and renamed from
+	prog_output_assert and printf_assert.  Change all uses.
+	* scripts/testfun/module.mk (testfun_FCN_FILES): Include new files in
+	the list.
+	* test/Makefile.am (GENERATED_BC_OVERLOADS_DIRS,
+	GENERATED_BC_OVERLOADS_FILES, fixedtestsdir, nobase_fixedtests_DATA):
+	New variables.
+	(CLEANFILES): Include $(GENERATED_BC_OVERRLOADS_FILES) in the list.
+	(clean-local): Use $(GENERATED_BC_OVERLOADS_DIRS).
+	* build_bc_overload_tests.sh: New options, --list-files, --list-dirs,
+	and --list-classes.
+	* test/classes/module.mk (classes_FCN_FILES): Include recently added
+	.m files in the list.
+	* test.m: Use "var" argument for exist in tests.
+
+	Files: build-aux/common.mk configure.ac libinterp/Makefile.am
+	libinterp/interpfcn/defaults.in.h libinterp/interpfcn/toplev.cc
+	liboctave/Makefile.am scripts/testfun/__printf_assert__.m
+	scripts/testfun/__prog_output_assert__.m
+	scripts/testfun/__run_test_suite__.m scripts/testfun/module.mk
+	scripts/testfun/test.m test/Makefile.am
+	test/build_bc_overload_tests.sh test/classes/module.mk
+	test/fntests.m test/test_for.m test/test_if.m test/test_io.m
+	test/test_system.m test/test_while.m
+
+2013-02-08  Torsten  <ttl@justmail.de>
+
+	gui: clearer message box with cancel button when closing an unsaved editor file
+
+	* file-editor-tab.cc (check_file_modified): buttons in message box are save,
+	  discard and cancel, save is default; removed unused parameters
+	* file-editor-tab.cc (handle_file_modified_answer): adjust button names
+	* file-editor-tab.h: removed unused parameters from check_file_modified
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor-tab.h
+
+	gui: new handling when an editor file is deleted or renamed (bug #38282)
+
+	* file-editor-tab.cc (file_has_changed): in case of deletion of opened file do
+	  not make the edit tab the parent of the dialog box, set read only instead;
+	  Add a warning if the editor contents is modified.
+	* file-editor-tab.cc (handle_file_resave_answer): if decision is to save the
+	  file again, remove read only flag; do not add the file to the watcher since
+	  this is already done while saving; when closing the file delete the modified
+	  flag in order to prevent another dialog when the closed event is posted.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc
+
+2013-02-07  Rik  <rik@octave.org>
+
+	Plug memory leak in edit_history.
+
+	* libinterp/interpfcn/oct-hist.cc(do_edit_history): delete string
+	returned from edit_history_readline.
+
+	Files: libinterp/interpfcn/oct-hist.cc
+
+	Plug memory leak in kbhit().
+
+	* libinterp/interpfcn/sysdep.cc(Fkbhit): Don't use new to get 2 bytes
+	of storage.  Use a local variable instead.
+
+	Files: libinterp/interpfcn/sysdep.cc
+
+	test_classes.m: Use Octave coding conventions.
+
+	* test/classes/test_classes.m: Use Octave coding conventions.
+
+	Files: test/classes/test_classes.m
+
+2013-02-07  Rafael Laboissiere  <rafael@laboissiere.net>
+
+	Fix typo in the documentation of function fsolve
+
+	Files: scripts/optimization/fsolve.m
+
+2013-02-07  John W. Eaton  <jwe@octave.org>
+
+	don't abort configure if makeinfo is missing
+
+	* acinclude.m4 (OCTAVE_PROG_MAKEINFO): Issue warning instead of error
+	if makeinfo is not found.
+	* configure.ac: Disable building docs if makeinfo is not found.
+
+	Files: configure.ac m4/acinclude.m4
+
+	initial large file support for 32-bit systems
+
+	* bootstrap.conf (gnulib_modules): Explicitly list largefile.
+	* c-file-ptr-stream.cc, c-file-ptr-stream.h, oct-fstrm.cc,
+	oct-fstrm.h, oct-iostrm.cc, oct-iostrm.h, oct-stdstrm.h,
+	oct-stream.cc, oct-stream.h, oct-strstrm.cc, oct-strstrm.h,
+	file-io.cc: Use off_t instead of long for seek and tell file position
+	values.
+
+	Files: bootstrap.conf libinterp/interp-core/c-file-ptr-stream.cc libinterp
+	/interp-core/c-file-ptr-stream.h libinterp/interp-core/oct-fstrm.cc
+	libinterp/interp-core/oct-fstrm.h libinterp/interp-core/oct-
+	iostrm.cc libinterp/interp-core/oct-iostrm.h libinterp/interp-core
+	/oct-stdstrm.h libinterp/interp-core/oct-stream.cc libinterp/interp-
+	core/oct-stream.h libinterp/interp-core/oct-strstrm.cc libinterp
+	/interp-core/oct-strstrm.h libinterp/interpfcn/file-io.cc
+
+	* cellfun.cc: Style fixes.
+
+	Files: libinterp/corefcn/cellfun.cc
+
+2013-02-07  Stefan Mahr  <dac922@gmx.de>
+
+	fix typo to make 'make dist' work
+
+	Files: test/bug-38236/module.mk
+
+2013-02-06  Michael Godfrey  <michaeldgodfrey@gmail.com>
+
+	Add stemleaf and printd to the manual
+
+	Files: doc/interpreter/plot.txi
+
+2013-02-06  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Merge in Michael's changes
+
+	Files: 
+
+	Style fixes on printd.m and stemleaf.m
+
+	* printd.m, stemleaf.m: Whitespace fixes, changing single-quoted
+	  strings to double-quoted, use octothorpe (#) consistently for
+	  comments instead of percentage sign (%).
+
+	Files: scripts/plot/printd.m scripts/plot/stemleaf.m
+
+2013-02-05  Michael Godfrey  <michaeldgodfrey@gmail.com>
+
+	provide stemleaf.m and printd.m
+
+	Files: scripts/plot/module.mk scripts/plot/printd.m scripts/plot/stemleaf.m
+
+2013-02-06  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Merge in Juan Pablo's changes
+
+	Files: libinterp/corefcn/cellfun.cc
+
+2013-02-05  Juan Pablo Carbajal  <ajuanpi+dev@gmail.com>
+
+	arrayfun: adding IDs to error messages in accordance with error_ids.
+
+	Files: libinterp/corefcn/cellfun.cc
+
+2013-02-05  Ben Abbott  <bpabbott@mac.com>
+
+	Fix legend bugs (#38263, #38265).
+	* scripts/plot/legend.m: Add listener for the legend hggroup "fontsize"
+	  property, and add "fontsize" to the updated properties.
+	* scripts/plot/private/__go_draw_axes__.m: Limited supprt for changing
+	  the color of the legend's text labels.
+
+	Files: scripts/plot/legend.m scripts/plot/private/__go_draw_axes__.m
+
+2013-02-06  Ben Abbott  <bpabbott@mac.com>
+
+	Fix texenhanced regression.
+
+	* scripts/private/__go_draw_axes__.m: Fix regression.
+
+	Files: scripts/plot/private/__go_draw_axes__.m
+
+2013-02-05  Stefan Mahr  <dac922@gmx.de>
+
+	fix ErrorHandler in cellfun (bug #38256)
+
+	* cellfun.cc: The ErrorHandler was not executed on some errors that
+	  throw an expection. Test added.
+
+	Files: libinterp/corefcn/cellfun.cc
+
+2013-02-05  Carlo de Falco  <cdf@users.sourceforge.net>
+
+	add files missing in previous changeset.
+
+	test/bug-38236/module.mk: new file.
+	test/bug-38236/u_vr.m: new file.
+	test/bug-38236/df_vr.m: new file.
+
+	Files: test/bug-38236/df_vr.m test/bug-38236/module.mk
+	test/bug-38236/test_bug_38236.m test/bug-38236/u_vr.m
+
+	add a test for bug #38236
+
+	test/bug-38236/test_bug_38236.m,test/bug-38236/df_vr.m,
+	test/bug-38236/u_vr.m: new files to test for bug #38236.
+
+	test/Makefile.am: add test_bug_38236 to tests to run.
+
+	Files: test/Makefile.am
+
+2013-02-04  Carnë Draug  <carandraug@octave.org>
+
+	doc: what happens when two objects have same precedence
+
+	Files: doc/interpreter/oop.txi
+
+2013-02-04  John W. Eaton  <jwe@octave.org>
+
+	use octave_local_buffer for temporary arrays in quadcc
+
+	* quadcc.cc (Fquadcc): Use OCTAVE_LOCAL_BUFFER for local arrays.
+
+	Files: libinterp/corefcn/quadcc.cc
+
+2013-02-04  Rik  <rik@octave.org>
+
+	quadcc.cc: Use heap instead of stack for large temporary variables.
+
+	* libinterp/corefcn/quadcc.cc: Use heap instead of stack for large temporary
+	variables.  Use Octave coding conventions.  Place debug code under #if.
+
+	Files: libinterp/corefcn/quadcc.cc
+
+2013-02-02  Rik  <rik@octave.org>
+
+	Temporary fix for stack overflows with quadcc
+
+	quadcc.cc: Reduce number of allowed singularities on integration path from 200
+	to 50.
+
+	Files: libinterp/corefcn/quadcc.cc
+
+2013-02-02  Torsten  <ttl@justmail.de>
+
+	gui: show menu with recently used editor files also in file menu of main window
+
+	* file-editor-interface.h: new function get_mru_menu ()
+	* file-editor.h: new function get_mru_menu (), _mru_file_menu global
+	* file-editor.cc (destructor): delete _mru_file_menu
+	* file-editor.cc (set_focus): make editor visible before setting focus here
+	* main-window.cc (focus_editor): and not here
+	* file-editor.cc (request_new_file,request_open_file): set editor focus here
+	* main-window.cc (new_file,open_file): and not here
+	* main-window.cc (construct): add the editor's mru menu to the file menu
+
+	Files: libgui/src/m-editor/file-editor-interface.h libgui/src/m-editor
+	/file-editor.cc libgui/src/m-editor/file-editor.h libgui/src/main-
+	window.cc
+
+	gui: switch to console when running an editor file or a command from history
+
+	* main-window.cc (handle_command_double_clicked): focus console window
+
+	Files: libgui/src/main-window.cc
+
+2013-02-01  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Merge in Júlio's changes
+
+	Files: 
+
+2013-01-30  Júlio Hoffimann  <julio.hoffimann@gmail.com>
+
+	Check if history edition was successful, abort operation on failure.
+
+	Files: libinterp/interpfcn/oct-hist.cc
+
+2013-01-31  Daniel J Sebald  <daniel.sebald@ieee.org>
+
+	Add access to documentation and to online html page via Help menu
+
+	* main-window.cc, main-window.h (main_window::open_online_documentation_page):
+	Add for calling online documentation page at GNU website.
+	(main_window::construct): Add "Documentation" item to Help menu with submenu
+	consisting of "On Disk" and "Online". Switch around order of "Agora" and
+	"Octave Forge".  Connect open_online_documentation_page to menu "Online"
+	trigger and focus_documentation to menu "On Disk" trigger.
+
+	Files: libgui/src/main-window.cc libgui/src/main-window.h
+
+2013-01-31  Torsten  <ttl@justmail.de>
+
+	gui: initialize search text in the find dialog with selected text in editor file
+
+	* find_dialog.h: new function init_search_text ()
+	* find_dialog.cc (init_search_text): new function, initializes the search text
+	  of the file dialog with the slected text of the related editor tab
+	* file-editor-tab.cc (find): call init_search_text after activating the find
+	  dialog
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/find-
+	dialog.cc libgui/src/m-editor/find-dialog.h
+
+2013-01-29  Torsten  <ttl@justmail.de>
+
+	gui: prevent error messages at start-up (regression from changeset 6c0fce0632a4)
+
+	* main-window.h: declaration of new function connect_visibility_changed ()
+	* main-window.cc (connect_visibility_changed): new function for connecting the
+	  signales emitted when the visibility of a widget changes; this function must
+	  be called after the main window is shown
+	* main-window.cc (construct): do not connect the signals here
+	* octave-gui.cc (octave_start_gui): call connect_visibility_changed () just
+	  before calling application.exec ()
+
+	Files: libgui/src/main-window.cc libgui/src/main-window.h libgui/src
+	/octave-gui.cc
+
+2013-01-27  Julien Bect  <julien.bect@supelec.fr>
+
+	Added tests for the legacy class system.
+
+	* double.m, eq.m, ge.m, gt.m, horzcat.m, ldivide.m, le.m, lt.m,
+	  minus.m, mldivide.m, mpower.m, mrdivide.m, mtimes.m, ne.m, plus.m,
+	  power.m, rdivide.m, times.m, uminus.m, uplus.m, vertcat.m: New
+	  overloaded class methods.
+
+	* test_classes.m: Add tests. Rewrite some tests to ensure they run in
+	  Matlab without modification.
+
+	Files: test/classes/@Snork/double.m test/classes/@Snork/eq.m
+	test/classes/@Snork/ge.m test/classes/@Snork/gt.m
+	test/classes/@Snork/horzcat.m test/classes/@Snork/ldivide.m
+	test/classes/@Snork/le.m test/classes/@Snork/lt.m
+	test/classes/@Snork/minus.m test/classes/@Snork/mldivide.m
+	test/classes/@Snork/mpower.m test/classes/@Snork/mrdivide.m
+	test/classes/@Snork/mtimes.m test/classes/@Snork/ne.m
+	test/classes/@Snork/plus.m test/classes/@Snork/power.m
+	test/classes/@Snork/rdivide.m test/classes/@Snork/times.m
+	test/classes/@Snork/uminus.m test/classes/@Snork/uplus.m
+	test/classes/@Snork/vertcat.m test/classes/test_classes.m
+
+2013-01-27  Daniel J Sebald  <daniel.sebald@ieee.org>
+
+	Add full-length-name tool tip to editor file tab when name is not full length.
+
+	* file-editor-tab.cc (file_editor_tab::update_window_title): Add and construct
+	tooltip variable then signal file_name_changed() with second input string.
+
+	* file-editor-tab.h (file_editor_tab::file_name_changed): Add second input
+	string to accommodate tool tip.
+
+	* file-editor.cc, file-editor.h (file_editor::handle_file_name_changed): Add
+	second input string and set tool tip via Qt setTabToolTip() member function.
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor-tab.h libgui/src/m-editor/file-editor.cc libgui/src/m-editor
+	/file-editor.h
+
+2013-01-28  Torsten  <ttl@justmail.de>
+
+	gui: complete changeset 6c0fce0632a4 with #ifdef HAVE_QSCINTILLA for editor
+
+	* main_window.cc (construct,handle_editor_visible): added #ifdef HAVE_QSCINTILLA
+
+	Files: libgui/src/main-window.cc
+
+2013-01-27  Torsten  <ttl@justmail.de>
+
+	gui: cleanup some string constants for translations
+
+	* file-editor.h: deleted constants for file filters and name for new files
+	* file-editor.cc (request_open_file): translate file filter in open dialog
+	* file-editor.cc (request_new_file): create new edit tab with empty title
+	  because the title is updated later
+	* file-editor-tab.cc (update_window_title): translate unnamed title
+	* file-editor-tab.cc (save_file_as): translate file filter, shorter warning
+	  message when new file name is the same as the current one
+
+	Files: libgui/src/m-editor/file-editor-tab.cc libgui/src/m-editor/file-
+	editor.cc libgui/src/m-editor/file-editor.h
+
+	gui: correct tab title for new editor file if short title setting is selected
+
+	* file-editor-tab.cc (update_window_title): display "unnamed" in tab title
+	  of a new file even if short title format is selected in the settings
+
+	Files: libgui/src/m-editor/file-editor-tab.cc
+
+2013-01-26  Torsten  <ttl@justmail.de>
+
+	gui: set keyboard focus when switching between dock widgets (bug #36957)
+
+	* main-window.cc (handle_command_window_visible, handle_command_history_visible,
+	  handle_current_directory_visible, handle_workspace_visible,
+	  handle_editor_visible, handle_documentation_visible): slots for signal
+	  visibilityChanged, emitted when widgets get visible
+	* main-window.cc (construct): connect signal visibilityChanged to slots
+	* main-window.cc (focus_editor): call editor's own function for setting focus
+	* main-window.h: declaration of new slots
+	* file-editor.cc (set_focus): new function: setting focus to actual editor tab
+	* file-editor.cc (add_file_editor_tab): connect signal fetab_set_focus to the
+	  slot set_focus of file_editor_tab
+	* file-editor.h: new function set_focus and new signal fetab_set_focus
+	* file-editor-interface.h: new virtual function set_focus
+	* file-editor-tab.cc (set_focus): new slot for singal fetab_set_focus from
+	  file_editor, setting the focus to edit area
+	* file-edtortab.h: new slot set_focus
+
+	Files: libgui/src/m-editor/file-editor-interface.h libgui/src/m-editor
+	/file-editor-tab.cc libgui/src/m-editor/file-editor-tab.h
+	libgui/src/m-editor/file-editor.cc libgui/src/m-editor/file-editor.h
+	libgui/src/main-window.cc libgui/src/main-window.h
+
+2013-01-24  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Update description of qterminal directory
+
+	Files: etc/HACKING
+
+	maint: whitespace cleanup
+
+	Files: libinterp/octave-value/ov-fcn-inline.cc
+
+	Always give inline functions a default argument (bug #38164)
+
+	* ov-fc-inline.cc (Finline): Append "x" as an input argument if none
+	  exists. Document this behaviour. Add tests.
+
+	Files: libinterp/octave-value/ov-fcn-inline.cc
+
+2013-01-22  Mike Miller  <mtmiller@ieee.org>
+
+	* octave-main-thread.cc: Include <clocale> for setlocale.
+
+	Files: libgui/src/octave-adapter/octave-main-thread.cc
+
+2013-01-22  John W. Eaton  <jwe@octave.org>
+
+	maint: periodic merge of stable to default
+
+	Files: scripts/plot/private/__scatter__.m scripts/plot/scatter.m
+
+2013-01-19  Torsten  <ttl@justmail.de>
+
+	gui: selectable language in settings dialog
+
+	* octave-gui.cc(octave_start_gu): install translators for gui and qt strings
+	* resource-manager.cc(get_gui_translation_dir): new function returning the
+	directory of the translator files
+	* resource-manager.cc(config_translators): new function replacing
+	find_trnaslator_file and configuring the translators for gui and qt strings
+	* resource-manager.h: declaration of new function in resource-manager.cc
+	* settings-dialog.ui: new combo box for selecting the desired language
+	* settings-dialog.cc(settings_dialog): look for available translator files and
+	the actual language setting and fill the language combo box
+	* settings-dialog.cc(write_changed_settings): get the selected element from
+	the language combo box and write the selection into the settings file
+
+	Files: libgui/src/octave-gui.cc libgui/src/resource-manager.cc libgui/src
+	/resource-manager.h libgui/src/settings-dialog.cc libgui/src
+	/settings-dialog.ui
+
+	gui: install translation files into $(datadir)/octave/$(version)/locale
+
+	* build-aux/common.mk: define octlocaledir
+	* configure.ac: default for octlocaledir is '$(datadir)/octave/$(version)/locale
+	* libgui/Makefile.am: octlocale_DATA is the list of translation files
+	* libinterp/interpfcn/defaults.cc: define Voct_locale_dir
+	* libinterp/interpfcn/defaults.cc(set_default_oct_locale_dir): new function;
+	* libinterp/interpfcn/defaults.cc(install_defaults):
+	call set_default_oct_locale_dir ()
+	* libinterp/interpfcn/defaults.in.h: define OCTAVE_OCTLOCALEDIR,
+	declare Voct_locale_dir
+	* run-octave.in: set OCTAVE_LOCALE_DIR to $top_srcdir/libgui/languages
+	* libgui/languages/generic.*: renamed into en_US.*
+	* libgui/languages/translators: updated comment related to generic file
+
+	Files: build-aux/common.mk configure.ac libgui/Makefile.am
+	libgui/languages/en_US.qm libgui/languages/en_US.ts
+	libgui/languages/generic.qm libgui/languages/generic.ts
+	libgui/languages/translators libinterp/interpfcn/defaults.cc
+	libinterp/interpfcn/defaults.in.h run-octave.in
+
+2013-01-21  Mike Miller  <mtmiller@ieee.org>
+
+	Use C-style comments in C code.
+
+	* xgl2ps.c, randmtzig.c: Use C-style comments for consistency and to
+	compile with gcc -std=c90.
+
+	Files: libinterp/interp-core/xgl2ps.c liboctave/numeric/randmtzig.c
+
+	build: Improve detection of FFTW multi-threading
+
+	* build-aux/common.mk: Remove FFTW3_THREADS_LIBS and FFTW3F_THREADS_LIB.
+	* m4/acinclude.m4 (OCTAVE_CHECK_FFTW_THREADS): New macro to encapsulate
+	checking for multi-threading support in the FFTW library.
+	* configure.ac: Call it.
+
+	Files: build-aux/common.mk configure.ac m4/acinclude.m4
+
+2013-01-18  John W. Eaton  <jwe@octave.org>
+
+	maint: periodic merge of stable to default
+
+	Files: scripts/pkg/pkg.m scripts/pkg/private/get_forge_pkg.m
+	scripts/pkg/private/list_forge_packages.m
+
+2013-01-18  Rik  <rik@octave.org>
+
+	Backed out changeset e9f6c773332c.  Need different solution for long line lengths.
+
+	Files: build-aux/common.mk build-aux/config_vals.pl
+
+2013-01-17  Rik  <rik@octave.org>
+
+	Fix build exceeding shell input line length.
+
+	* build-aux/common.mk(do_subst_config_val): Put patterns for replacement
+	in separate Perl file.
+
+	* build-aux/config_vals.pl: New Perl file to substitute configuration values
+	with values from the Make environment.
+
+	Files: build-aux/common.mk build-aux/config_vals.pl
+
+2013-01-14  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	added FFTW multithreaded library support
+
+	build-aux/common.mk: added FFTW3_THREADS_LIBS and FFTW3F_THREADS_LIB
+	configure.ac: added checks for threaded fftw libs and --disable-fftw-threads switch
+	libinterp/dldfcn/fftw.cc: added fftw ("threads", ...) getter and setter
+	liboctave/numeric/oct-fftw.cc: added use of multithreaded FFT
+	liboctave/numeric/oct-fftw.h: added nthreads getter and setter
+
+	Files: build-aux/common.mk configure.ac libinterp/dldfcn/fftw.cc
+	liboctave/numeric/oct-fftw.cc liboctave/numeric/oct-fftw.h
+
+2013-01-14  John W. Eaton  <jwe@octave.org>
+
+	maint: periodic merge of stable to default
+
+	Files: doc/interpreter/mkoctfile.1 scripts/pkg/pkg.m
+
+	maint: periodic merge of stable to default
+
+	Files: build-aux/common.mk configure.ac scripts/pkg/pkg.m
+	src/mkoctfile.in.cc src/mkoctfile.in.sh
+
+	use mkoctfile, not octave_config_info to get default pkg compiler tools
+
+	* common.mk (MKOCTFILE_AR, MKOCTFILE_RANLIB): New variables.
+	(do_subst_config_vals): Include MKOCTFILE_AR and MKOCTFILE_RANLIB in
+	the list of substitutions.
+	* configure.ac (MKOCTFILE_AR, MKOCTFILE_RANLIB): Additional mkoctfile
+	values that receive special treatment when cross compiling.
+	* pkg/private/configure_make.m: Use mkoctfile, not octave_config_info
+	to get values for CC, CXX, AR, and RANLIB.
+	* mkoctfile.in.cc, mkoctfile.in.sh (AR, RANLIB): New variables.
+	Update usage message.
+
+	Files: build-aux/common.mk configure.ac
+	scripts/pkg/private/configure_make.m src/mkoctfile.in.cc
+	src/mkoctfile.in.sh
+
+2013-01-14  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Check for sparse before diagonal class in kron (bug #38082)
+
+	* kron.cc (Fkron): Move the check for sparseness to before for
+	  diagonal matrices.
+
+	Files: libinterp/corefcn/kron.cc
+
+2013-01-13  Pantxo Diribarne  <pantxo.diribarne@gmail.com>
+
+	struct2hdl.m: send error when the requested object type is not implemented.
+
+	* scripts/plot/struct2hdl.m: send error when the requested object type is not
+	implemented.
+
+	Files: scripts/plot/struct2hdl.m
+
+2013-01-13  Rik  <rik@octave.org>
+
+	doc: Add Kyle Guinn to list of contributors
+
+	* doc/interpreter/contributors.in: Add Kyle Guinn to list of contributors
+
+	Files: doc/interpreter/contributors.in
+
+	maint: Periodic merge of stable to default.
+
+	Files: configure.ac
+
+2013-01-12  John W. Eaton  <jwe@octave.org>
+
+	maint: remove duplicate lines introduced by merge from stable
+
+	Files: build-aux/common.mk configure.ac
+
+2013-01-12  Rik  <rik@octave.org>
+
+	maint: Periodic merge of stable to default.
+
+	Files: build-aux/common.mk configure.ac liboctave/util/lo-cutils.h
+	src/mkoctfile.in.cc src/mkoctfile.in.sh
+
+2013-01-11  John W. Eaton  <jwe@octave.org>
+
+	* lo-cutils.h: Move sys/types include statement outside of extern C block.
+
+	Files: liboctave/util/lo-cutils.h
+
+	strip cross tool prefix from CC, CXX, etc. definitions used in mkoctfile
+
+	* configure.ac, build-aux/common.mk (CROSS_TOOL_PREFIX, MKOCTFILE_CC,
+	MKOCTFILE_CXX, MKOCTFILE_DL_LD, MKOCTFILE_DL_LDFLAGS, MKOCTFILE_F77,
+	MKOCTFILE_LD_CXX): New variables.
+	(do_subst_config_vals): Include MKOCTFILE_CC, MKOCTFILE_CXX,
+	MKOCTFILE_DL_LD, MKOCTFILE_F77, and MKOCTFILE_LD_CXX in the list of
+	substitutions.
+	* mkoctfile.in.cc, mkoctfile.in.sh (CC, CXX, DL_LD, F77, LD_CXX):
+	Define from corresponding MKOCTFILE_ variables.
+
+	Files: build-aux/common.mk configure.ac src/mkoctfile.in.cc
+	src/mkoctfile.in.sh
+
+	* lo-cutils.h: Include sys/types.h.
+
+	Files: liboctave/util/lo-cutils.h
+
+2013-01-11  Torsten  <ttl@justmail.de>
+
+	gui: updated and renamed translation files, added belarusian from Mihas Varantsou
+
+	* be_BY.ts, be_BY.qm: added belarusian translation from Mihas Vrantsou
+	and updated to new strings in sources
+	* xx-yy.ts,.qm: renamed into xx_YY.ts,.qm and updated to new strings in sources
+	* generic.ts,.qm: updated to new strings in sources
+	* transloators: added translator for belarusian translation
+	* ressource-manager.cc(find-translator-file): change search path for testing
+	the translation files
+
+	Files: libgui/languages/be_BY.qm libgui/languages/be_BY.ts libgui/languages
+	/de-de.qm libgui/languages/de-de.ts libgui/languages/de_DE.qm
+	libgui/languages/de_DE.ts libgui/languages/es-es.qm libgui/languages
+	/es-es.ts libgui/languages/es_ES.qm libgui/languages/es_ES.ts
+	libgui/languages/generic.ts libgui/languages/pt-br.qm
+	libgui/languages/pt-br.ts libgui/languages/pt_BR.qm
+	libgui/languages/pt_BR.ts libgui/languages/ru-ru.qm libgui/languages
+	/ru-ru.ts libgui/languages/ru_RU.qm libgui/languages/ru_RU.ts
+	libgui/languages/translators libgui/languages/uk-ua.qm
+	libgui/languages/uk-ua.ts libgui/languages/uk_UA.qm
+	libgui/languages/uk_UA.ts libgui/src/resource-manager.cc
+
+2013-01-11  Rik  <rik@octave.org>
+
+	configure.ac: Clarify warning about disabling static AND shared libraries.
+
+	*configure.ac: Clarify warning about disabling static AND shared libraries.
+
+	Files: configure.ac
+
+	maint: merge stable to default.  Do not pick up stable-only changeset 59128350e011.
+
+	Files: libinterp/Makefile.am src/Makefile.am
+
+2013-01-10  Torsten  <ttl@justmail.de>
+
+	gui: locale back to en_US.UTF-8 for correct character repres. in file dialogs
+
+	*octave-main-thread.cc(run): set locale back to en_US.UTF-8
+
+	Files: libgui/src/octave-adapter/octave-main-thread.cc
+
+2013-01-10  John W. Eaton  <jwe@octave.org>
+
+	* etc/HACKING: Update with new gnulib info.
+
+	Files: etc/HACKING
+
+	use hook functions for gnulib's bootrap script instead of our wrapper script
+
+	* bootstrap: Rename from build-aux/bootstrap_gnulib, replacing our
+	bootstrap wrapper script.
+	* bootstrap.conf: Rename from build-aux/bootstrap_gnulib.conf.
+	(AUTOMAKE): Define here instead of in top-level bootstrap wrapper
+	script.
+	(bootstrap_epilogue, bootstrap_post_import_hook): New functions to
+	perform pre- and post- autoreconf bootstrap actions.
+	* Makefile.am (EXTRA_DIST): Distribute bootstrap.conf.  Remove
+	build-aux/bootstrap_gnulib and build-aux/bootstrap_gnulib.conf from
+	the list.
+
+	Files: Makefile.am bootstrap bootstrap.conf build-aux/bootstrap_gnulib
+	build-aux/bootstrap_gnulib.conf
+
+2013-01-09  Ben Abbott  <bpabbott@mac.com>
+
+	Fix typo from 18d1bd2596bf (LFLAGS -> LDFLAGS)
+
+	Files: configure.ac
+
+	Sneak the MacOS X "-framework JavaVM" into mkoctfile via LDFLAGS
+
+	Files: configure.ac
+
+2013-01-08  John W. Eaton  <jwe@octave.org>
+
+	maint: periodic merge of stable to default
+
+	Files: libinterp/Makefile.am src/Makefile.am
+
+2013-01-08  Torsten  <ttl@justmail.de>
+
+	gui: reorganized handling of different icons for dock widgets
+
+	* main-window.cc(notice-settings): icon set is stored with its short name
+	instead of a number; if no valid value is read from the settings, no special
+	icons are set for the widgets
+	* settings-dialog.cc(settings_dialog): changes for short names of icons;
+	set radio buttom of no special icon per default (if settings value is not value)
+	if value from settings file is invalid;
+	* settings-dialog.cc(write_changes settings): changes for short names of icons
+	* resource-manager.h: remove enum declaration for icon sets
+
+	Files: libgui/src/main-window.cc libgui/src/resource-manager.h libgui/src
+	/settings-dialog.cc
+
+2013-01-06  Rik  <rik@octave.org>
+
+	doc: Change object type of dbwhere, dbstack to "Command" in docstring.
+
+	* libinterp/interpfcn/debug.cc(Fdbwhere): Change object type to "Command" in
+	docstring.
+
+	* libinterp/interpfcn/debug.cc(Fdbstack): Change object type to "Command" in
+	docstring.
+
+	Files: libinterp/interpfcn/debug.cc
+
+2013-01-06  Carnë Draug  <carandraug+dev@gmail.com>
+
+	doc: add while and do-until example to help text (bug #7915)
+
+	Files: libinterp/interpfcn/help.cc
+
+2013-01-05  Rik  <rik@octave.org>
+
+	maint: Merge stable to default to pick up Perl doc-building fix.
+
+	Files: 
+
+2013-01-05  John W. Eaton  <jwe@octave.org>
+
+	maint: merge stable to default
+
+	Files: .hgsubstate .hgtags configure.ac libinterp/Makefile.am
+	libinterp/gendoc.pl src/Makefile.am
+
+2013-01-05  Torsten  <ttl@justmail.de>
+
+	gui: new error message when saving a file as one already opened in the editor
+
+	* file-editor.cc(check_conflict_save): new error message
+
+	Files: libgui/src/m-editor/file-editor.cc
+
+	gui: set locale to C before starting the interpreter
+
+	* octave-main-thread.cc(run): set locale to C instead of en_US.UTF-8.
+	* octave-qt-event-listener.cc(current_directory_has_changed): use the correct
+	charset for emitting the signal with a new directory.
+	* main-window.cc(change_current_working_directory,set_current_working_directory)
+	use the correct charset when sending a new directory from the gui to octave.
+	* history-dockwidget.cc(update_history_callback): use the correct chareset for
+	displaying the history.
+	* symbol-information.h: correct charset for displaying value in workspace view.
+
+	Files: libgui/src/history-dockwidget.cc libgui/src/main-window.cc
+	libgui/src/octave-adapter/octave-main-thread.cc libgui/src/octave-
+	qt-event-listener.cc libgui/src/symbol-information.h
+
+2013-01-04  Rik  <rik@octave.org>
+
+	perms.m: Match documentation variable names to function variable names.
+
+	* perms.m: Match documentation variable names to function variable names.
+
+	Files: scripts/specfun/perms.m
+
+	Document that break and continue statements work for do-until loops.
+
+	* doc/interpreter/stmt.txi: Document that break and continue statements work
+	for do-until loops.
+
+	Files: doc/interpreter/stmt.txi
+
+2013-01-03  John W. Eaton  <jwe@octave.org>
+
+	eliminate some compiler warnings for GUI code
+
+	* QTerminalInterface.h (QTerminalInterface::QTerminalInterface):
+	Eliminate shadow variable warning.
+	* QTerminal.h (QTerminal::Qterminal): Likewise.
+	* history-dockwidget.cc (history_dock_widget::ctxMenu): Likewise.
+	(history_dock_widget::handle_contextmenu_copy,
+	history_dock_widget::handle_contextmenu_evaluate): Eliminate unused
+	variable warning.
+	* file-editor-tab.cc (file_editor_tab::check_file_modified): Eliminate
+	unsed variable warning.
+	(file_editor_tab::nmotice_settings) Eliminate shadow variable
+	warnings.
+	* file-editor.cc (file_editor::construct): Comment out unsed variable.
+
+	* main-window.cc (main_window::notice_settings): Move definition of
+	WIDGET_ICON_SET_PREFIX here.
+	* resource-manager.h: From here.
+
+	Files: libgui/qterminal/libqterminal/QTerminal.h
+	libgui/qterminal/libqterminal/QTerminalInterface.h libgui/src
+	/history-dockwidget.cc libgui/src/m-editor/file-editor-tab.cc
+	libgui/src/m-editor/file-editor.cc libgui/src/main-window.cc
+	libgui/src/resource-manager.h
+
+2013-01-03  Max Brister  <max@2bass.com>
+
+	Do not use vectorized llvm commands for complex numbers
+
+	* jit-typeinfo.cc (octave_jit_complex_mul): New function.
+	(jit_typeinfo::jit_typeinfo): Implement complex numbers using an llvm array and
+	use create_internal/create_external.
+	(jit_typeinfo::complex_real, jit_typeinfo::complex_imag,
+	jit_typeinfo::pack_complex, jit_typeinfo::unpack_complex): Implement complex
+	numbers using an llvm array.
+	(jit_typeinfo::add_binary_op, jit_typeinfo::add_binary_icmp,
+	jit_typeinfo::add_binary_fcmp, jit_typeinfo::create_identity,
+	jit_typeinfo::register_intrinsic, jit_typeinfo::register_generic,
+	jit_typeinfo::mirror_binary): Use create_internal/create_external.
+	(jit_typeinfo::type_of): Correctly determine complex type.
+	* jit-typeinfo.h (jit_typeinfo::create_complex,
+	jit_typeinfo::create_internal, jit_typeinfo::create_external): New function.
+
+	* pt-jit.cc (jit_convert_llvm::visit): Create an array for complex constants.
+
+	Files: libinterp/interp-core/jit-typeinfo.cc libinterp/interp-core/jit-
+	typeinfo.h libinterp/interp-core/pt-jit.cc
+
+2013-01-03  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	maint: merge in gnulib changes from stable
+
+	Files: .hgsub .hgsubstate build-aux/bootstrap_gnulib
+
+2013-01-03  Rik  <rik@octave.org>
+
+	maint: Merge stable to default to pick up fix for bug #37988.
+
+	Files: libinterp/corefcn/svd.cc liboctave/numeric/CmplxSVD.cc
+	liboctave/numeric/dbleSVD.cc liboctave/numeric/fCmplxSVD.cc
+	liboctave/numeric/floatSVD.cc
+
+2013-01-03  John W. Eaton  <jwe@octave.org>
+
+	maint: periodic merge of stable to default
+
+	Files: libinterp/dldfcn/convhulln.cc
+
+	do system-specific initialization before installing default variable values
+
+	* octave.cc (octave_main): Call sysdep_init before install_defaults.
+	* main.cc (main): Likewise.
+	* main-cli.cc (main): Likewise.
+	* src/Makefile.am (AM_CPPFLAGS): Add -I$(top_srcdir)/liboctave/system
+	and -I$(top_srcdir)/libinterp/interpfcn to the list.
+
+	Files: libinterp/octave.cc src/Makefile.am src/main-cli.cc src/main.cc
+
+	maint: bump version number to 3.7.1+
+
+	* configure.ac (AC_INIT): Set version to 3.7.1+.
+
+	Files: configure.ac
+
+	maint: merge snapshot changes
+
+	Files: configure.ac
+
+	Added tag ss-3-7-1 for changeset df1aceb8f0bc
+
+	Files: .hgtags
+
 2013-01-02  John W. Eaton  <jwe@octave.org>
 
 	snapshot version 3.7.1
@@ -13,6 +1063,40 @@
 	definitions outside of HAVE_JAVA conditional.
 
 	Files: libinterp/octave-value/ov-java.cc
+
+2013-01-02  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	doc: orderfields.m bug #38009
+
+	Files: scripts/miscellaneous/orderfields.m
+
+	fix bug #38010 struct2cell documentation error
+
+	Files: libinterp/octave-value/ov-cell.cc
+
+2013-01-02  Rik  <rik@octave.org>
+
+	configure.ac: Replace uses of 'true' as a command.
+
+	* configure.ac: Replace uses of 'true' as a command.
+
+	Files: configure.ac
+
+	configure.ac: Simplify test for math library.
+
+	configure.ac: AC_CHECK_LIB test for math lib no longer requires
+	explicitly including libc as it did on 1/20/1999 when this
+	part of configure.ac was written.
+
+	Files: configure.ac
+
+	configure.ac: Remove some no longer accurate comments.
+
+	* configure.ac: Remove some no longer accurate comments.
+
+	Files: configure.ac
+
+2013-01-02  John W. Eaton  <jwe@octave.org>
 
 	allow build to proceed if either Qt or QScintilla is missing
 
@@ -397,6 +1481,11 @@
 
 	Files: 
 
+	periodic merge of stable to default
+
+	Files: configure.ac doc/interpreter/Makefile.am
+	doc/interpreter/mk_doc_cache.m m4/acinclude.m4 scripts/Makefile.am
+
 2012-12-21  Philip Nienhuis  <prnienhuis@users.sf.net>
 
 	javamem.m: adapt to 'boxing' Java doubles
@@ -406,13 +1495,6 @@
 	ov-java.cc: tests added for javaObject and javaMethod
 
 	Files: libinterp/octave-value/ov-java.cc
-
-2012-12-21  John W. Eaton  <jwe@octave.org>
-
-	periodic merge of stable to default
-
-	Files: configure.ac doc/interpreter/Makefile.am
-	doc/interpreter/mk_doc_cache.m m4/acinclude.m4 scripts/Makefile.am
 
 2012-12-21  Rik  <rik@octave.org>
 

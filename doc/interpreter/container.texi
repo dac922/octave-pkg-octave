@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.
+@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -770,7 +770,7 @@ t1 = orderfields (s)
         @}
 @end group
 @group
-t = struct ("d", @{@}, "c", @{@}, "b", "a", @{@});
+t = struct ("d", @{@}, "c", @{@}, "b", @{@}, "a", @{@});
 t2 = orderfields (s, t)
      @result{} t2 =
         @{
@@ -781,7 +781,7 @@ t2 = orderfields (s, t)
         @}
 @end group
 @group
-t3 = orderfields (s, [3, 2, 4, 1]);
+t3 = orderfields (s, [3, 2, 4, 1])
      @result{} t3 =
         @{
           a =  1
@@ -863,7 +863,7 @@ cell array will have a dimension vector corresponding to
 s = struct ("name", @{"Peter", "Hannah", "Robert"@},
            "age", @{23, 16, 3@});
 c = struct2cell (s)
-   @result{} c = @{1x1x3 Cell Array@}
+   @result{} c = @{2x1x3 Cell Array@}
 c(1,1,:)(:)
    @result{}
       @{

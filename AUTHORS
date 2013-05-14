@@ -29,79 +29,79 @@ Eduardo Gallestey        Walter Gautschi          Klaus Gebhardt
 Driss Ghaddab            Nicolo Giorgetti         Michael D. Godfrey
 Michael Goffioul         Glenn Golden             Tomislav Goles
 Keith Goodman            Brian Gough              Steffen Groot
-Etienne Grossmann        David Grundberg          Peter Gustafson
-Kai Habel                Patrick Häcker           William P. Y.
-                                                  Hadisoeseno
-Jaroslav Hajek           Benjamin Hall            Kim Hansen
-Søren Hauberg            Dave Hawthorne           Daniel Heiserer
-Martin Helm              Stefan Hepp              Martin Hepperle
-Jordi Gutiérrez Hermoso  Yozo Hida                Ryan Hinton
-Roman Hodek              A. Scottedward Hodel     Júlio Hoffimann
-Richard Allan Holcombe   Tom Holroyd              David Hoover
-Kurt Hornik              Christopher Hulbert      Cyril Humbert
-John Hunt                Teemu Ikonen             Alan W. Irwin
-Geoff Jacobsen           Mats Jansson             Cai Jianming
-Steven G. Johnson        Heikki Junes             Matthias Jüschke
-Atsushi Kajita           Jarkko Kaleva            Mohamed Kamoun
-Lute Kamstra             Fotios Kasolis           Thomas Kasper
-Joel Keay                Mumit Khan               Paul Kienzle
-Aaron A. King            Arno J. Klaassen         Alexander Klein
-Geoffrey Knauth          Heine Kolltveit          Ken Kouno
-Kacper Kowalik           Daniel Kraft             Aravindh Krishnamoorthy
-Oyvind Kristiansen       Piotr Krzyzanowski       Volker Kuhlmann
-Tetsuro Kurita           Miroslaw Kwasniak        Rafael Laboissiere
-Kai Labusch              Claude Lacoursiere       Walter Landry
-Bill Lash                Dirk Laurie              Maurice LeBrun
-Friedrich Leisch         Jyh-miin Lin             Timo Lindfors
-Benjamin Lindner         Ross Lippert             David Livings
-Sebastien Loisel         Erik de Castro Lopo      Massimo Lorenzin
-Emil Lucretiu            Hoxide Ma                James Macnicol
-Jens-Uwe Mager           Colin Macdonald          Rob Mahurin
-Ricardo Marranita        Orestes Mas              Axel Mathéi
-Makoto Matsumoto         Tatsuro Matsuoka         Laurent Mazet
-G. D. McBain             Alexander Mamonov        Christoph Mayer
-Júlio Hoffimann Mendes   Ronald van der Meer      Thorsten Meyer
-Petr Mikulik             Mike Miller              Stefan Monnier
-Antoine Moreau           Kai P. Mueller           Hannes Müller
-Victor Munoz             Iain Murray              Carmen Navarrete
-Todd Neal                Philip Nienhuis          Al Niessner
-Rick Niles               Takuji Nishimura         Kai Noda
-Eric Norum               Krzesimir Nowak          Michael O'Brien
-Peter O'Gorman           Thorsten Ohl             Arno Onken
-Valentin Ortega-Clavero  Luis F. Ortiz            Scott Pakin
-Gabriele Pannocchia      Sylvain Pelissier        Per Persson
-Primozz Peterlin         Jim Peterson             Danilo Piazzalunga
-Nicholas Piper           Elias Pipping            Robert Platt
-Hans Ekkehard Plesser    Tom Poage                Orion Poplawski
-Ondrej Popp              Jef Poskanzer            Francesco Potortì
-Konstantinos Poulios     Jarno Rajahalme          James B. Rawlings
-Eric S. Raymond          Balint Reczey            Joshua Redstone
-Lukas Reichlin           Michael Reifenberger     Anthony Richardson
-Jason Riedy              E. Joshua Rigler         Petter Risholm
-Matthew W. Roberts       Andrew Ross              Fabio Rossi
-Mark van Rossum          Joe Rothweiler           Kevin Ruland
-Kristian Rumberg         Ryan Rusaw               Olli Saarela
-Toni Saarela             Juhani Saastamoinen      Radek Salac
-Ben Sapp                 Aleksej Saushev          Alois Schlögl
-Michel D. Schmid         Julian Schnidder         Nicol N. Schraudolph
-Sebastian Schubert       Ludwig Schwardt          Thomas L. Scofield
-Daniel J. Sebald         Dmitri A. Sergatskov     Vanya Sergeev
-Baylis Shanks            Andriy Shinkarchuck      Robert T. Short
-Joseph P. Skudlarek      John Smith               Julius Smith
-Shan G. Smith            Peter L. Sondergaard     Joerg Specht
-Quentin H. Spencer       Christoph Spiel          Richard Stallman
-Russell Standish         Brett Stewart            Doug Stewart
-Jonathan Stickel         Judd Storrs              Thomas Stuart
-Ivan Sutoris             John Swensen             Daisuke Takago
-Ariel Tankus             Matthew Tenny            Georg Thimm
-Duncan Temple Lang       Kris Thielemans          Olaf Till
-Christophe Tournery      Thomas Treichl           Karsten Trulsen
-Frederick Umminger       Utkarsh Upadhyay         Daniel Wagenaar
-Stefan van der Walt      Peter Van Wieren         James R. Van Zandt
-Gregory Vanuxem          Ivana Varekova           Thomas Walter
-Andreas Weber            Olaf Weber               Thomas Weber
-Rik Wehbring             Bob Weigel               Andreas Weingessel
-Martin Weiser            Michael Weitzel          David Wells
-Fook Fah Yap             Sean Young               Michael Zeising
-Federico Zenith          Alex Zvoleff             
+Etienne Grossmann        David Grundberg          Kyle Guinn
+Peter Gustafson          Kai Habel                Patrick Häcker
+William P. Y.            Jaroslav Hajek           Benjamin Hall
+Hadisoeseno                                       
+Kim Hansen               Søren Hauberg            Dave Hawthorne
+Daniel Heiserer          Martin Helm              Stefan Hepp
+Martin Hepperle          Jordi Gutiérrez Hermoso  Yozo Hida
+Ryan Hinton              Roman Hodek              A. Scottedward Hodel
+Júlio Hoffimann          Richard Allan Holcombe   Tom Holroyd
+David Hoover             Kurt Hornik              Christopher Hulbert
+Cyril Humbert            John Hunt                Teemu Ikonen
+Alan W. Irwin            Geoff Jacobsen           Mats Jansson
+Cai Jianming             Steven G. Johnson        Heikki Junes
+Matthias Jüschke         Atsushi Kajita           Jarkko Kaleva
+Mohamed Kamoun           Lute Kamstra             Fotios Kasolis
+Thomas Kasper            Joel Keay                Mumit Khan
+Paul Kienzle             Aaron A. King            Arno J. Klaassen
+Alexander Klein          Geoffrey Knauth          Heine Kolltveit
+Ken Kouno                Kacper Kowalik           Daniel Kraft
+Aravindh Krishnamoorthy  Oyvind Kristiansen       Piotr Krzyzanowski
+Volker Kuhlmann          Tetsuro Kurita           Miroslaw Kwasniak
+Rafael Laboissiere       Kai Labusch              Claude Lacoursiere
+Walter Landry            Bill Lash                Dirk Laurie
+Maurice LeBrun           Friedrich Leisch         Jyh-miin Lin
+Timo Lindfors            Benjamin Lindner         Ross Lippert
+David Livings            Sebastien Loisel         Erik de Castro Lopo
+Massimo Lorenzin         Emil Lucretiu            Hoxide Ma
+James Macnicol           Jens-Uwe Mager           Colin Macdonald
+Rob Mahurin              Ricardo Marranita        Orestes Mas
+Axel Mathéi              Makoto Matsumoto         Tatsuro Matsuoka
+Laurent Mazet            G. D. McBain             Alexander Mamonov
+Christoph Mayer          Júlio Hoffimann Mendes   Ronald van der Meer
+Thorsten Meyer           Petr Mikulik             Mike Miller
+Stefan Monnier           Antoine Moreau           Kai P. Mueller
+Hannes Müller            Victor Munoz             Iain Murray
+Carmen Navarrete         Todd Neal                Philip Nienhuis
+Al Niessner              Rick Niles               Takuji Nishimura
+Kai Noda                 Eric Norum               Krzesimir Nowak
+Michael O'Brien          Peter O'Gorman           Thorsten Ohl
+Arno Onken               Valentin Ortega-Clavero  Luis F. Ortiz
+Scott Pakin              Gabriele Pannocchia      Sylvain Pelissier
+Per Persson              Primozz Peterlin         Jim Peterson
+Danilo Piazzalunga       Nicholas Piper           Elias Pipping
+Robert Platt             Hans Ekkehard Plesser    Tom Poage
+Orion Poplawski          Ondrej Popp              Jef Poskanzer
+Francesco Potortì        Konstantinos Poulios     Jarno Rajahalme
+James B. Rawlings        Eric S. Raymond          Balint Reczey
+Joshua Redstone          Lukas Reichlin           Michael Reifenberger
+Anthony Richardson       Jason Riedy              E. Joshua Rigler
+Petter Risholm           Matthew W. Roberts       Andrew Ross
+Fabio Rossi              Mark van Rossum          Joe Rothweiler
+Kevin Ruland             Kristian Rumberg         Ryan Rusaw
+Olli Saarela             Toni Saarela             Juhani Saastamoinen
+Radek Salac              Ben Sapp                 Aleksej Saushev
+Alois Schlögl            Michel D. Schmid         Julian Schnidder
+Nicol N. Schraudolph     Sebastian Schubert       Ludwig Schwardt
+Thomas L. Scofield       Daniel J. Sebald         Dmitri A. Sergatskov
+Vanya Sergeev            Baylis Shanks            Andriy Shinkarchuck
+Robert T. Short          Joseph P. Skudlarek      John Smith
+Julius Smith             Shan G. Smith            Peter L. Sondergaard
+Joerg Specht             Quentin H. Spencer       Christoph Spiel
+Richard Stallman         Russell Standish         Brett Stewart
+Doug Stewart             Jonathan Stickel         Judd Storrs
+Thomas Stuart            Ivan Sutoris             John Swensen
+Daisuke Takago           Ariel Tankus             Matthew Tenny
+Georg Thimm              Duncan Temple Lang       Kris Thielemans
+Olaf Till                Christophe Tournery      Thomas Treichl
+Karsten Trulsen          Frederick Umminger       Utkarsh Upadhyay
+Daniel Wagenaar          Stefan van der Walt      Peter Van Wieren
+James R. Van Zandt       Gregory Vanuxem          Ivana Varekova
+Thomas Walter            Andreas Weber            Olaf Weber
+Thomas Weber             Rik Wehbring             Bob Weigel
+Andreas Weingessel       Martin Weiser            Michael Weitzel
+David Wells              Fook Fah Yap             Sean Young
+Michael Zeising          Federico Zenith          Alex Zvoleff
 

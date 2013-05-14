@@ -1,8 +1,8 @@
-# doc-cache created by Octave 3.7.0+, Thu Dec 27 16:54:06 2012 EST
+# doc-cache created by Octave 3.7.1+, Sat Feb 09 15:02:50 2013 EST
 # name: cache
 # type: cell
 # rows: 3
-# columns: 1497
+# columns: 1499
 # name: <cell-element>
 # type: sq_string
 # elements: 1
@@ -9920,7 +9920,7 @@ orderfields
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1803
+# length: 1806
  -- Function File: [T, P] = orderfields (S1)
  -- Function File: [T, P] = orderfields (S1, S2)
      Return a copy of S1 with fields arranged alphabetically or as specified by S2.
@@ -9942,7 +9942,7 @@ orderfields
                     c =  3
                     d =  4
                   }
-          t = struct ("d", {}, "c", {}, "b", "a", {});
+          t = struct ("d", {}, "c", {}, "b", {}, "a", {});
           t2 = orderfields (s, t)
                => t2 =
                   {
@@ -9951,7 +9951,7 @@ orderfields
                     b =  2
                     a =  1
                   }
-          t3 = orderfields (s, [3, 2, 4, 1]);
+          t3 = orderfields (s, [3, 2, 4, 1])
                => t3 =
                   {
                     a =  1
@@ -11151,7 +11151,7 @@ fsolve
 
      Note: If you only have a single nonlinear equation of one variable, using `fzero' is usually a much better idea.
 
-     Note about user-supplied Jacobians: As an inherent property of the algorithm, Jacobian is always requested for a solution vector whose residual vector is already known, and it is the last accepted successful step.  Often this will be one of the last two calls, but not always.  If the savings by reusing intermediate results from residual calculation in Jacobian calculation are significant, the best strategy is to employ OutputFcn: After a vector is evaluated for residuals, if OutputFcn is called with that vector, then the intermediate results should be saved for future Jacobian evaluation, and should be kept until a Jacobian evaluation is requested or until outputfcn is called with a different vector, in which case they should be dropped in favor of this most recent vector.  A short example how this can be achieved follows:
+     Note about user-supplied Jacobians: As an inherent property of the algorithm, Jacobian is always requested for a solution vector whose residual vector is already known, and it is the last accepted successful step.  Often this will be one of the last two calls, but not always.  If the savings by reusing intermediate results from residual calculation in Jacobian calculation are significant, the best strategy is to employ OutputFcn: After a vector is evaluated for residuals, if OutputFcn is called with that vector, then the intermediate results should be saved for future Jacobian evaluation, and should be kept until a Jacobian evaluation is requested or until OutputFcn is called with a different vector, in which case they should be dropped in favor of this most recent vector.  A short example how this can be achieved follows:
 
           function [fvec, fjac] = user_func (x, optimvalues, state)
           persistent sav = [], sav0 = [];
@@ -16928,6 +16928,34 @@ Print a plot, or save it to a file.
 # type: sq_string
 # elements: 1
 # length: 6
+printd
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 277
+ -- Function File:  printd (OBJ, FILENAME)
+     Convert any object acceptable to `disp' into the format selected by the suffix of FILENAME.
+
+     This function is intended to facilitate manipulation of the output of functions such as `stemleaf'.
+
+     *See also:* stemleaf.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 91
+Convert any object acceptable to `disp' into the format selected by the suffix of FILENAME.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
 quiver
 
 
@@ -17836,6 +17864,35 @@ stem3
 # elements: 1
 # length: 137
 Plot a three-dimensional stem graph and return the handles of the line and marker objects used to draw the stems as "stem series" object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+stemleaf
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 776
+ -- Function File:  stemleaf (X)
+ -- Function File: PLOT = stemleaf (X, OPT)
+     Compute and display a stem and leaf plot of the vector X.
+
+     The X vector is converted to integer by X = `fix' (X).  If an output argument is provided, the plot is returned as an array of strings.  The first element is the heading followed by an element for each stem.  The default stem step is 10.  The X vector should be integers.  It will be treated so that the last digit is the leaf value and the other digits are the stems.  The leaf digits are not sorted.  If sorted leaf values are wanted, use `sort' (X) before calling `stemleaf' (X).  The stem and leaf plot is described in: Ch. 3, Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
+
+     *See also:* hist, printd.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 57
+Compute and display a stem and leaf plot of the vector X.
 
 
 
@@ -30057,7 +30114,7 @@ struct2cell
           s = struct ("name", {"Peter", "Hannah", "Robert"},
                      "age", {23, 16, 3});
           c = struct2cell (s)
-             => c = {1x1x3 Cell Array}
+             => c = {2x1x3 Cell Array}
           c(1,1,:)(:)
              =>
                 {
@@ -30322,11 +30379,11 @@ inline
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 858
+# length: 948
  -- Built-in Function:  inline (STR)
  -- Built-in Function:  inline (STR, ARG1, ...)
  -- Built-in Function:  inline (STR, N)
-     Create an inline function from the character string STR.  If called with a single argument, the arguments of the generated function are extracted from the function itself.  The generated function arguments will then be in alphabetical order.  It should be noted that i, and j are ignored as arguments due to the ambiguity between their use as a variable or their use as an inbuilt constant.  All arguments followed by a parenthesis are considered to be functions.
+     Create an inline function from the character string STR.  If called with a single argument, the arguments of the generated function are extracted from the function itself.  The generated function arguments will then be in alphabetical order.  It should be noted that i, and j are ignored as arguments due to the ambiguity between their use as a variable or their use as an inbuilt constant.  All arguments followed by a parenthesis are considered to be functions. If no arguments are found, a function taking a single argument named `x' will be created.
 
      If the second and subsequent arguments are character strings, they are the names of the arguments of the function.
 
@@ -34939,8 +34996,8 @@ dbwhere
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 180
- -- Built-in Function:  dbwhere ()
+# length: 167
+ -- Command:  dbwhere
      In debugging mode, report the current file and line number where execution is stopped.
 
      *See also:* dbstatus, dbcont, dbstep, dbup.
@@ -35002,9 +35059,9 @@ dbstack
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 852
- -- Built-in Function:  dbstack ()
- -- Built-in Function:  dbstack (N)
+# length: 827
+ -- Command:  dbstack
+ -- Command:  dbstack N
  -- Built-in Function: [STACK, IDX] = dbstack (...)
      Display or return current debugging function stack information.  With optional argument N, omit the N innermost stack frames.
 
@@ -39203,7 +39260,7 @@ history_size
 # length: 386
  -- Built-in Function: VAL = history_size ()
  -- Built-in Function: OLD_VAL = history_size (NEW_VAL)
-     Query or set the internal variable that specifies how many entries to store in the history file.  The default value is `1024', but may be overridden by the environment variable `OCTAVE_HISTSIZE'.
+     Query or set the internal variable that specifies how many entries to store in the history file.  The default value is `1000', but may be overridden by the environment variable `OCTAVE_HISTSIZE'.
 
      *See also:* history_file, history_timestamp_format_string, saving_history.
    
@@ -50738,11 +50795,13 @@ fftw
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 2727
+# length: 3140
  -- Loadable Function: METHOD = fftw ("planner")
  -- Loadable Function:  fftw ("planner", METHOD)
  -- Loadable Function: WISDOM = fftw ("dwisdom")
  -- Loadable Function:  fftw ("dwisdom", WISDOM)
+ -- Loadable Function:  fftw ("threads", NTHREADS)
+ -- Loadable Function: NTHREADS = fftw ("threads")
      Manage FFTW wisdom data.  Wisdom data can be used to significantly accelerate the calculation of the FFTs, but implies an initial cost in its calculation.  When the FFTW libraries are initialized, they read a system wide wisdom file (typically in `/etc/fftw/wisdom'), allowing wisdom to be shared between applications other than Octave.  Alternatively, the `fftw' function can be used to import wisdom.  For example,
 
           WISDOM = fftw ("dwisdom")
@@ -50751,7 +50810,7 @@ fftw
 
           fftw ("dwisdom", WISDOM)
 
-     If WISDOM is an empty matrix, then the wisdom used is cleared.
+     If WISDOM is an empty string, then the wisdom used is cleared.
 
      During the calculation of Fourier transforms further wisdom is generated.  The fashion in which this wisdom is generated is also controlled by the `fftw' function.  There are five different manners in which the wisdom can be treated:
 
@@ -50779,6 +50838,12 @@ fftw
           fftw ("planner", METHOD)
 
      Note that calculated wisdom will be lost when restarting Octave.  However, the wisdom data can be reloaded if it is saved to a file as described above.  Saved wisdom files should not be used on different platforms since they will not be efficient and the point of calculating the wisdom is lost.
+
+     The number of threads used for computing the plans and executing the transforms can be set with
+
+          fftw ("threads", NTHREADS)
+
+     Note that octave must be compiled with multi-threaded FFTW support for this feature.  The number of processors available to the current process is used per default.
 
      *See also:* fft, ifft, fft2, ifft2, fftn, ifftn.
    

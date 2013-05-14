@@ -45,9 +45,9 @@ pretty much the same way.  As an example, assume that <code>x</code> and
    <p><a name="doc_002dismember"></a>
 
 <div class="defun">
-&mdash; Function File: <var>tf</var> = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2756"></a></var><br>
-&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2757"></a></var><br>
-&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s, "rows"</var>)<var><a name="index-ismember-2758"></a></var><br>
+&mdash; Function File: <var>tf</var> = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2759"></a></var><br>
+&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2760"></a></var><br>
+&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s, "rows"</var>)<var><a name="index-ismember-2761"></a></var><br>
 <blockquote><p>Return a logical matrix <var>tf</var> with the same shape as <var>A</var> which is
 true (1) if <code>A(i,j)</code> is in <var>s</var> and false (0) if it is not.  If a
 second output argument is requested, the index into <var>s</var> of each of the
@@ -84,8 +84,8 @@ matching elements is also returned.
    <p><a name="doc_002dunion"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>union</b> (<var>a, b</var>)<var><a name="index-union-2759"></a></var><br>
-&mdash; Function File:  <b>union</b> (<var>a, b, "rows"</var>)<var><a name="index-union-2760"></a></var><br>
+&mdash; Function File:  <b>union</b> (<var>a, b</var>)<var><a name="index-union-2762"></a></var><br>
+&mdash; Function File:  <b>union</b> (<var>a, b, "rows"</var>)<var><a name="index-union-2763"></a></var><br>
 <blockquote><p>Return the set of elements that are in either of the sets <var>a</var> and
 <var>b</var>.  <var>a</var>, <var>b</var> may be cell arrays of string(s). 
 For example:
@@ -102,7 +102,7 @@ For example:
                  2   3
                  3   4
 </pre>
-        &mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>union</b> (<var>a, b</var>)<var><a name="index-union-2761"></a></var><br>
+        &mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>union</b> (<var>a, b</var>)<var><a name="index-union-2764"></a></var><br>
 <blockquote>
         <p>Return index vectors <var>ia</var> and <var>ib</var> such that <code>a(ia)</code> and
 <code>b(ib)</code> are disjoint sets whose union is <var>c</var>.
@@ -114,8 +114,8 @@ For example:
    <p><a name="doc_002dintersect"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2762"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2763"></a></var><br>
+&mdash; Function File:  <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2765"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2766"></a></var><br>
 <blockquote>
         <p>Return the elements in both <var>a</var> and <var>b</var>, sorted in ascending
 order.  If <var>a</var> and <var>b</var> are both column vectors return a column
@@ -133,9 +133,9 @@ vector, otherwise return a row vector.
    <p><a name="doc_002dsetdiff"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2764"></a></var><br>
-&mdash; Function File:  <b>setdiff</b> (<var>a, b, "rows"</var>)<var><a name="index-setdiff-2765"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>i</var>] = <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2766"></a></var><br>
+&mdash; Function File:  <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2767"></a></var><br>
+&mdash; Function File:  <b>setdiff</b> (<var>a, b, "rows"</var>)<var><a name="index-setdiff-2768"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>i</var>] = <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2769"></a></var><br>
 <blockquote><p>Return the elements in <var>a</var> that are not in <var>b</var>, sorted in
 ascending order.  If <var>a</var> and <var>b</var> are both column vectors
 return a column vector, otherwise return a row vector. 
@@ -153,9 +153,9 @@ return a column vector, otherwise return a row vector.
    <p><a name="doc_002dsetxor"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2767"></a></var><br>
-&mdash; Function File:  <b>setxor</b> (<var>a, b, "rows"</var>)<var><a name="index-setxor-2768"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2769"></a></var><br>
+&mdash; Function File:  <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2770"></a></var><br>
+&mdash; Function File:  <b>setxor</b> (<var>a, b, "rows"</var>)<var><a name="index-setxor-2771"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2772"></a></var><br>
 <blockquote>
         <p>Return the elements exclusive to <var>a</var> or <var>b</var>, sorted in ascending
 order.  If <var>a</var> and <var>b</var> are both column vectors return a column
@@ -173,8 +173,8 @@ is <var>c</var>.
    <p><a name="doc_002dpowerset"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>powerset</b> (<var>a</var>)<var><a name="index-powerset-2770"></a></var><br>
-&mdash; Function File:  <b>powerset</b> (<var>a, "rows"</var>)<var><a name="index-powerset-2771"></a></var><br>
+&mdash; Function File:  <b>powerset</b> (<var>a</var>)<var><a name="index-powerset-2773"></a></var><br>
+&mdash; Function File:  <b>powerset</b> (<var>a, "rows"</var>)<var><a name="index-powerset-2774"></a></var><br>
 <blockquote><p>Compute the powerset (all subsets) of the set <var>a</var>.
 
         <p>The set <var>a</var> must be a numerical matrix or a cell array of strings.  The
@@ -187,7 +187,7 @@ numerical 2D matrix.
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
 </p></blockquote></div>
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

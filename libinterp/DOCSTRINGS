@@ -138,7 +138,7 @@ cell array will have a dimension vector corresponding to
 s = struct ("name", @{"Peter", "Hannah", "Robert"@},
            "age", @{23, 16, 3@});
 c = struct2cell (s)
-   @result{} c = @{1x1x3 Cell Array@}
+   @result{} c = @{2x1x3 Cell Array@}
 c(1,1,:)(:)
    @result{}
       @{
@@ -268,7 +268,8 @@ function arguments will then be in alphabetical order.  It should
 be noted that i, and j are ignored as arguments due to the
 ambiguity between their use as a variable or their use as an inbuilt
 constant.  All arguments followed by a parenthesis are considered
-to be functions.
+to be functions. If no arguments are found, a function taking a single
+argument named @code{x} will be created.
 
 If the second and subsequent arguments are character strings,
 they are the names of the arguments of the function.
@@ -3003,7 +3004,7 @@ A line number, or vector of line numbers, with a breakpoint.
 dbwhere
 @c dbwhere libinterp/interpfcn/debug.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {} dbwhere ()
+@deftypefn {Command} {} dbwhere
 In debugging mode, report the current file and line number where
 execution is stopped.
 @seealso{dbstatus, dbcont, dbstep, dbup}
@@ -3033,8 +3034,8 @@ numbers.
 dbstack
 @c dbstack libinterp/interpfcn/debug.cc
 -*- texinfo -*-
-@deftypefn  {Built-in Function} {} dbstack ()
-@deftypefnx {Built-in Function} {} dbstack (@var{n})
+@deftypefn  {Command} {} dbstack
+@deftypefnx {Command} {} dbstack @var{n}
 @deftypefnx {Built-in Function} {[@var{stack}, @var{idx}] =} dbstack (@dots{})
 Display or return current debugging function stack information.
 With optional argument @var{n}, omit the @var{n} innermost stack frames.
@@ -5854,7 +5855,7 @@ the history list, subject to the value of @code{saving_history}.
 @deftypefn  {Built-in Function} {@var{val} =} history_size ()
 @deftypefnx {Built-in Function} {@var{old_val} =} history_size (@var{new_val})
 Query or set the internal variable that specifies how many entries
-to store in the history file.  The default value is @code{1024},
+to store in the history file.  The default value is @code{1000},
 but may be overridden by the environment variable @w{@env{OCTAVE_HISTSIZE}}.
 @seealso{history_file, history_timestamp_format_string, saving_history}
 @end deftypefn
@@ -14417,6 +14418,8 @@ K. Maschhoff, D. Sorensen, and C. Yang.  For more information see
 @deftypefnx {Loadable Function} {} fftw ("planner", @var{method})
 @deftypefnx {Loadable Function} {@var{wisdom} =} fftw ("dwisdom")
 @deftypefnx {Loadable Function} {} fftw ("dwisdom", @var{wisdom})
+@deftypefnx {Loadable Function} {} fftw ("threads", @var{nthreads})
+@deftypefnx {Loadable Function} {@var{nthreads} =} fftw ("threads")
 
 Manage @sc{fftw} wisdom data.  Wisdom data can be used to significantly
 accelerate the calculation of the FFTs, but implies an initial cost
@@ -14439,7 +14442,7 @@ reimported as follows
 fftw ("dwisdom", @var{wisdom})
 @end example
 
-If @var{wisdom} is an empty matrix, then the wisdom used is cleared.
+If @var{wisdom} is an empty string, then the wisdom used is cleared.
 
 During the calculation of Fourier transforms further wisdom is generated.
 The fashion in which this wisdom is generated is also controlled by
@@ -14489,6 +14492,17 @@ Note that calculated wisdom will be lost when restarting Octave.  However,
 the wisdom data can be reloaded if it is saved to a file as described
 above.  Saved wisdom files should not be used on different platforms since
 they will not be efficient and the point of calculating the wisdom is lost.
+
+The number of threads used for computing the plans and executing the
+transforms can be set with
+
+@example
+fftw ("threads", @var{NTHREADS})
+@end example
+
+Note that octave must be compiled with multi-threaded FFTW support for this feature.
+The number of processors available to the current process is used per default.
+
 @seealso{fft, ifft, fft2, ifft2, fftn, ifftn}
 @end deftypefn
 qr

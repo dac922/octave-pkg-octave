@@ -1,5 +1,5 @@
 # DO NOT EDIT! GENERATED AUTOMATICALLY!
-# Copyright (C) 2002-2012 Free Software Foundation, Inc.
+# Copyright (C) 2002-2013 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -168,6 +168,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module same:
   # Code from module same-inode:
   # Code from module save-cwd:
+  # Code from module secure_getenv:
   # Code from module select:
   # Code from module sigaction:
   # Code from module signal:
@@ -417,7 +418,6 @@ AC_SUBST([LTALLOCA])
   if test $HAVE_FSTATAT = 0 || test $REPLACE_FSTATAT = 1; then
     AC_LIBOBJ([fstatat])
   fi
-  gl_MODULE_INDICATOR([fstatat]) dnl for lib/openat.h
   gl_SYS_STAT_MODULE_INDICATOR([fstatat])
   gl_FUNC_FTELL
   if test $REPLACE_FTELL = 1; then
@@ -700,6 +700,12 @@ AC_SUBST([LTALLOCA])
   gl_MATH_MODULE_INDICATOR([roundf])
   gl_SAME
   gl_SAVE_CWD
+  gl_FUNC_SECURE_GETENV
+  if test $HAVE_SECURE_GETENV = 0; then
+    AC_LIBOBJ([secure_getenv])
+    gl_PREREQ_SECURE_GETENV
+  fi
+  gl_STDLIB_MODULE_INDICATOR([secure_getenv])
   gl_FUNC_SELECT
   if test $REPLACE_SELECT = 1; then
     AC_LIBOBJ([select])
@@ -1175,6 +1181,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/same.h
   lib/save-cwd.c
   lib/save-cwd.h
+  lib/secure_getenv.c
   lib/select.c
   lib/sig-handler.c
   lib/sig-handler.h
@@ -1189,13 +1196,11 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/sockets.c
   lib/sockets.h
   lib/stat.c
-  lib/statat.c
   lib/stdalign.in.h
   lib/stdbool.in.h
   lib/stddef.in.h
   lib/stdint.in.h
   lib/stdio-impl.h
-  lib/stdio.c
   lib/stdio.in.h
   lib/stdlib.in.h
   lib/strcasecmp.c
@@ -1380,6 +1385,7 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/roundf.m4
   m4/same.m4
   m4/save-cwd.m4
+  m4/secure_getenv.m4
   m4/select.m4
   m4/sigaction.m4
   m4/signal_h.m4

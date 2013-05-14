@@ -6553,7 +6553,7 @@ t1 = orderfields (s)
         @}
 @end group
 @group
-t = struct ("d", @{@}, "c", @{@}, "b", "a", @{@});
+t = struct ("d", @{@}, "c", @{@}, "b", @{@}, "a", @{@});
 t2 = orderfields (s, t)
      @result{} t2 =
         @{
@@ -6564,7 +6564,7 @@ t2 = orderfields (s, t)
         @}
 @end group
 @group
-t3 = orderfields (s, [3, 2, 4, 1]);
+t3 = orderfields (s, [3, 2, 4, 1])
      @result{} t3 =
         @{
           a =  1
@@ -7555,7 +7555,7 @@ calculation in Jacobian calculation are significant, the best strategy is to
 employ OutputFcn: After a vector is evaluated for residuals, if OutputFcn is
 called with that vector, then the intermediate results should be saved for
 future Jacobian evaluation, and should be kept until a Jacobian evaluation
-is requested or until outputfcn is called with a different vector, in which
+is requested or until OutputFcn is called with a different vector, in which
 case they should be dropped in favor of this most recent vector.  A short
 example how this can be achieved follows:
 
@@ -12128,6 +12128,18 @@ print -dcdj550
 
 @seealso{figure, orient, saveas}
 @end deftypefn
+printd
+@c printd scripts/plot/printd.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} printd (@var{obj}, @var{filename})
+
+Convert any object acceptable to @code{disp} into the format
+selected by the suffix of @var{filename}.
+
+This function is intended to facilitate manipulation of the output
+of functions such as @code{stemleaf}.
+@seealso{stemleaf}
+@end deftypefn
 quiver
 @c quiver scripts/plot/quiver.m
 -*- texinfo -*-
@@ -12833,6 +12845,28 @@ stem3 (cos (theta), sin (theta), theta)
 plots 31 stems with heights from 0 to 6 lying on a circle.  Color
 definitions with RGB-triples are not valid!
 @seealso{bar, barh, stem, plot}
+@end deftypefn
+stemleaf
+@c stemleaf scripts/plot/stemleaf.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} stemleaf (@var{x})
+@deftypefnx {Function File} {@var{plot} =} stemleaf (@var{x}, @var{opt})
+
+Compute and display a stem and leaf plot of the vector @var{x}.
+
+The @var{x} vector is converted to integer by @var{x} = @code{fix} (@var{x}). 
+If an output argument is provided, the plot is returned as
+an array of strings.  The first element is the heading
+followed by an element for each stem.
+The default stem step is 10.  
+The @var{x} vector should be integers.  It will be treated so that
+the last digit is the leaf value and the other digits are
+the stems.
+The leaf digits are not sorted.  If sorted leaf values
+are wanted, use @code{sort} (@var{x}) before calling @code{stemleaf} (@var{x}).
+The stem and leaf plot is described in: Ch. 3,
+Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
+@seealso{hist, printd}
 @end deftypefn
 struct2hdl
 @c struct2hdl scripts/plot/struct2hdl.m
@@ -20683,6 +20717,24 @@ validatestring ("b", @{"red", "green", "blue", "black"@})
 @end smallexample
 
 @seealso{strcmp, strcmpi}
+@end deftypefn
+__printf_assert__
+@c __printf_assert__ scripts/testfun/__printf_assert__.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} __printf_assert__ (@dots{})
+Undocumented internal function.
+@end deftypefn
+__prog_output_assert__
+@c __prog_output_assert__ scripts/testfun/__prog_output_assert__.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} __prog_output_assert__ (@var{str})
+Undocumented internal function.
+@end deftypefn
+__run_test_suite__
+@c __run_test_suite__ scripts/testfun/__run_test_suite__.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} __run_test_suite__ (@var{fcndirs}, @var{fixedtestdirs})
+Undocumented internal function.
 @end deftypefn
 assert
 @c assert scripts/testfun/assert.m

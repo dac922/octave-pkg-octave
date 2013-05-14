@@ -40,8 +40,8 @@ connection.  All FTP functions take an FTP object as the first argument.
    <p><a name="doc_002d_0040_0040ftp_002fftp"></a>
 
 <div class="defun">
-&mdash; Function File: <var>f</var> = <b>ftp</b> (<var>host</var>)<var><a name="index-ftp-3350"></a></var><br>
-&mdash; Function File: <var>f</var> = <b>ftp</b> (<var>host, username, password</var>)<var><a name="index-ftp-3351"></a></var><br>
+&mdash; Function File: <var>f</var> = <b>ftp</b> (<var>host</var>)<var><a name="index-ftp-3355"></a></var><br>
+&mdash; Function File: <var>f</var> = <b>ftp</b> (<var>host, username, password</var>)<var><a name="index-ftp-3356"></a></var><br>
 <blockquote><p>Connect to the FTP server <var>host</var> with <var>username</var> and <var>password</var>. 
 If <var>username</var> and <var>password</var> are not specified, user "anonymous"
 with no password is used.  The returned FTP object <var>f</var> represents the
@@ -70,7 +70,7 @@ require an FTP object as the first argument.
    <p><a name="doc_002d_0040_0040ftp_002fclose"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>close</b> (<var>f</var>)<var><a name="index-close-3352"></a></var><br>
+&mdash; Function File:  <b>close</b> (<var>f</var>)<var><a name="index-close-3357"></a></var><br>
 <blockquote><p>Close the FTP connection represented by the FTP object <var>f</var>.
 
         <p><var>f</var> is an FTP object returned by the <code>ftp</code> function. 
@@ -80,9 +80,9 @@ require an FTP object as the first argument.
    <p><a name="doc_002d_0040_0040ftp_002fmget"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mget</b> (<var>f, file</var>)<var><a name="index-mget-3353"></a></var><br>
-&mdash; Function File:  <b>mget</b> (<var>f, dir</var>)<var><a name="index-mget-3354"></a></var><br>
-&mdash; Function File:  <b>mget</b> (<var>f, remote_name, target</var>)<var><a name="index-mget-3355"></a></var><br>
+&mdash; Function File:  <b>mget</b> (<var>f, file</var>)<var><a name="index-mget-3358"></a></var><br>
+&mdash; Function File:  <b>mget</b> (<var>f, dir</var>)<var><a name="index-mget-3359"></a></var><br>
+&mdash; Function File:  <b>mget</b> (<var>f, remote_name, target</var>)<var><a name="index-mget-3360"></a></var><br>
 <blockquote><p>Download a remote file <var>file</var> or directory <var>dir</var> to the local
 directory on the FTP connection <var>f</var>.  <var>f</var> is an FTP object
 returned by the <code>ftp</code> function.
@@ -99,7 +99,7 @@ will be changed to <var>target</var>.
    <p><a name="doc_002d_0040_0040ftp_002fmput"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mput</b> (<var>f, file</var>)<var><a name="index-mput-3356"></a></var><br>
+&mdash; Function File:  <b>mput</b> (<var>f, file</var>)<var><a name="index-mput-3361"></a></var><br>
 <blockquote><p>Upload the local file <var>file</var> into the current remote directory on
 the FTP connection <var>f</var>.  <var>f</var> is an FTP object returned by the
 ftp function.
@@ -112,7 +112,7 @@ files that match the wildcards in <var>file</var> will be uploaded.
    <p><a name="doc_002d_0040_0040ftp_002fcd"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cd</b> (<var>f, path</var>)<var><a name="index-cd-3357"></a></var><br>
+&mdash; Function File:  <b>cd</b> (<var>f, path</var>)<var><a name="index-cd-3362"></a></var><br>
 <blockquote><p>Set the remote directory to <var>path</var> on the FTP connection <var>f</var>.
 
         <p><var>f</var> is an FTP object returned by the <code>ftp</code> function. 
@@ -122,7 +122,7 @@ files that match the wildcards in <var>file</var> will be uploaded.
    <p><a name="doc_002d_0040_0040ftp_002fdir"></a>
 
 <div class="defun">
-&mdash; Function File: <var>lst</var> = <b>dir</b> (<var>f</var>)<var><a name="index-dir-3358"></a></var><br>
+&mdash; Function File: <var>lst</var> = <b>dir</b> (<var>f</var>)<var><a name="index-dir-3363"></a></var><br>
 <blockquote><p>List the current directory in verbose form for the FTP connection
 <var>f</var>.
 
@@ -133,7 +133,7 @@ files that match the wildcards in <var>file</var> will be uploaded.
    <p><a name="doc_002d_0040_0040ftp_002fascii"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ascii</b> (<var>f</var>)<var><a name="index-ascii-3359"></a></var><br>
+&mdash; Function File:  <b>ascii</b> (<var>f</var>)<var><a name="index-ascii-3364"></a></var><br>
 <blockquote><p>Set the FTP connection <var>f</var> to use ASCII mode for transfers. 
 ASCII mode is only appropriate for text files as it will convert
 the remote host's newline representation to the local host's newline
@@ -146,7 +146,7 @@ representation.
    <p><a name="doc_002d_0040_0040ftp_002fbinary"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>binary</b> (<var>f</var>)<var><a name="index-binary-3360"></a></var><br>
+&mdash; Function File:  <b>binary</b> (<var>f</var>)<var><a name="index-binary-3365"></a></var><br>
 <blockquote><p>Set the FTP connection <var>f</var> to use binary mode for transfers. 
 In binary mode there is no conversion of newlines from the remote
 representation to the local representation.
@@ -158,7 +158,7 @@ representation to the local representation.
    <p><a name="doc_002d_0040_0040ftp_002fdelete"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>delete</b> (<var>f, file</var>)<var><a name="index-delete-3361"></a></var><br>
+&mdash; Function File:  <b>delete</b> (<var>f, file</var>)<var><a name="index-delete-3366"></a></var><br>
 <blockquote><p>Delete the remote file <var>file</var> over the FTP connection <var>f</var>.
 
         <p><var>f</var> is an FTP object returned by the <code>ftp</code> function. 
@@ -168,7 +168,7 @@ representation to the local representation.
    <p><a name="doc_002d_0040_0040ftp_002frename"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rename</b> (<var>f, oldname, newname</var>)<var><a name="index-rename-3362"></a></var><br>
+&mdash; Function File:  <b>rename</b> (<var>f, oldname, newname</var>)<var><a name="index-rename-3367"></a></var><br>
 <blockquote><p>Rename or move the remote file or directory <var>oldname</var> to <var>newname</var>,
 over the FTP connection <var>f</var>.
 
@@ -179,7 +179,7 @@ over the FTP connection <var>f</var>.
    <p><a name="doc_002d_0040_0040ftp_002fmkdir"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mkdir</b> (<var>f, path</var>)<var><a name="index-mkdir-3363"></a></var><br>
+&mdash; Function File:  <b>mkdir</b> (<var>f, path</var>)<var><a name="index-mkdir-3368"></a></var><br>
 <blockquote><p>Create the remote directory <var>path</var>, over the FTP connection <var>f</var>.
 
         <p><var>f</var> is an FTP object returned by the <code>ftp</code> function. 
@@ -189,7 +189,7 @@ over the FTP connection <var>f</var>.
    <p><a name="doc_002d_0040_0040ftp_002frmdir"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rmdir</b> (<var>f, path</var>)<var><a name="index-rmdir-3364"></a></var><br>
+&mdash; Function File:  <b>rmdir</b> (<var>f, path</var>)<var><a name="index-rmdir-3369"></a></var><br>
 <blockquote><p>Remove the remote directory <var>path</var>, over the FTP connection <var>f</var>.
 
         <p><var>f</var> is an FTP object returned by the <code>ftp</code> function. 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1999, 2001-2002, 2006, 2009-2012 Free Software Foundation,
+/* Copyright (C) 1999, 2001-2002, 2006, 2009-2013 Free Software Foundation,
    Inc.
    This file is part of the GNU C Library.
 
@@ -53,11 +53,8 @@
 # define struct_stat64 struct stat64
 #else
 # define struct_stat64 struct stat
+# define __secure_getenv secure_getenv
 # define __xstat64(version, path, buf) stat (path, buf)
-#endif
-
-#if ! (HAVE___SECURE_GETENV || _LIBC)
-# define __secure_getenv getenv
 #endif
 
 /* Pathname support.

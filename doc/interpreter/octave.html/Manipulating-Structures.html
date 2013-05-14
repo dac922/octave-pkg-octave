@@ -199,7 +199,7 @@ which converts the original name order into the new name order.
                     c =  3
                     d =  4
                   }
-          t = struct ("d", {}, "c", {}, "b", "a", {});
+          t = struct ("d", {}, "c", {}, "b", {}, "a", {});
           t2 = orderfields (s, t)
                &rArr; t2 =
                   {
@@ -208,7 +208,7 @@ which converts the original name order into the new name order.
                     b =  2
                     a =  1
                   }
-          t3 = orderfields (s, [3, 2, 4, 1]);
+          t3 = orderfields (s, [3, 2, 4, 1])
                &rArr; t3 =
                   {
                     a =  1

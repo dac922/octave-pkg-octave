@@ -62,7 +62,7 @@ between 0 and 1.
    <p><a name="doc_002discolormap"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>iscolormap</b> (<var>cmap</var>)<var><a name="index-iscolormap-3003"></a></var><br>
+&mdash; Function File:  <b>iscolormap</b> (<var>cmap</var>)<var><a name="index-iscolormap-3008"></a></var><br>
 <blockquote><p>Return true if <var>cmap</var> is a colormap.
 
         <p>A colormap is a real matrix with <var>n</var> rows and 3 columns. 
@@ -77,11 +77,11 @@ inclusive.
    <p><a name="doc_002dgray2ind"></a>
 
 <div class="defun">
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I</var>)<var><a name="index-gray2ind-3004"></a></var><br>
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I, n</var>)<var><a name="index-gray2ind-3005"></a></var><br>
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW</var>)<var><a name="index-gray2ind-3006"></a></var><br>
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW, n</var>)<var><a name="index-gray2ind-3007"></a></var><br>
-&mdash; Function File: [<var>img</var>, <var>map</var>] = <b>gray2ind</b> (<var><small class="dots">...</small></var>)<var><a name="index-gray2ind-3008"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I</var>)<var><a name="index-gray2ind-3009"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I, n</var>)<var><a name="index-gray2ind-3010"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW</var>)<var><a name="index-gray2ind-3011"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW, n</var>)<var><a name="index-gray2ind-3012"></a></var><br>
+&mdash; Function File: [<var>img</var>, <var>map</var>] = <b>gray2ind</b> (<var><small class="dots">...</small></var>)<var><a name="index-gray2ind-3013"></a></var><br>
 <blockquote><p>Convert a grayscale or binary intensity image to an indexed image.
 
         <p>The indexed image will consist of <var>n</var> different intensity values. 
@@ -98,7 +98,7 @@ equal to 256; Otherwise the return class is uint16.
    <p><a name="doc_002dind2gray"></a>
 
 <div class="defun">
-&mdash; Function File: <var>I</var> = <b>ind2gray</b> (<var>x, map</var>)<var><a name="index-ind2gray-3009"></a></var><br>
+&mdash; Function File: <var>I</var> = <b>ind2gray</b> (<var>x, map</var>)<var><a name="index-ind2gray-3014"></a></var><br>
 <blockquote><p>Convert a color indexed image to a grayscale intensity image.
 
         <p>The image <var>x</var> must be an indexed image which will be converted using the
@@ -122,8 +122,8 @@ using a single color channel from <code>ind2rgb</code>.
    <p><a name="doc_002drgb2ind"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb</var>)<var><a name="index-rgb2ind-3010"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B</var>)<var><a name="index-rgb2ind-3011"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb</var>)<var><a name="index-rgb2ind-3015"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B</var>)<var><a name="index-rgb2ind-3016"></a></var><br>
 <blockquote><p>Convert an image in red-green-blue (RGB) color space to an indexed image.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2rgb.html#doc_002dind2rgb">ind2rgb</a>, <a href="doc_002drgb2hsv.html#doc_002drgb2hsv">rgb2hsv</a>, <a href="doc_002drgb2ntsc.html#doc_002drgb2ntsc">rgb2ntsc</a>. 
@@ -133,8 +133,8 @@ using a single color channel from <code>ind2rgb</code>.
    <p><a name="doc_002dind2rgb"></a>
 
 <div class="defun">
-&mdash; Function File: <var>rgb</var> = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3012"></a></var><br>
-&mdash; Function File: [<var>R</var>, <var>G</var>, <var>B</var>] = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3013"></a></var><br>
+&mdash; Function File: <var>rgb</var> = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3017"></a></var><br>
+&mdash; Function File: [<var>R</var>, <var>G</var>, <var>B</var>] = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3018"></a></var><br>
 <blockquote><p>Convert an indexed image to red, green, and blue color components.
 
         <p>The image <var>x</var> must be an indexed image which will be converted using the
@@ -154,12 +154,12 @@ of size MxN may be returned.
    <p><a name="doc_002dcolormap"></a>
 
 <div class="defun">
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> ()<var><a name="index-colormap-3014"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>map</var>)<var><a name="index-colormap-3015"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"default"</var>)<var><a name="index-colormap-3016"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"list"</var>)<var><a name="index-colormap-3017"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"register", "name"</var>)<var><a name="index-colormap-3018"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"unregister", "name"</var>)<var><a name="index-colormap-3019"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> ()<var><a name="index-colormap-3019"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>map</var>)<var><a name="index-colormap-3020"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"default"</var>)<var><a name="index-colormap-3021"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"list"</var>)<var><a name="index-colormap-3022"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"register", "name"</var>)<var><a name="index-colormap-3023"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"unregister", "name"</var>)<var><a name="index-colormap-3024"></a></var><br>
 <blockquote><p>Query or set the current colormap.
 
         <p><code>colormap (</code><var>map</var><code>)</code> sets the current colormap to <var>map</var>.  The
@@ -183,9 +183,9 @@ colormap <var>name</var> to it.
    <p><a name="doc_002drgbplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rgbplot</b> (<var>cmap</var>)<var><a name="index-rgbplot-3020"></a></var><br>
-&mdash; Function File:  <b>rgbplot</b> (<var>cmap, style</var>)<var><a name="index-rgbplot-3021"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>rgbplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-rgbplot-3022"></a></var><br>
+&mdash; Function File:  <b>rgbplot</b> (<var>cmap</var>)<var><a name="index-rgbplot-3025"></a></var><br>
+&mdash; Function File:  <b>rgbplot</b> (<var>cmap, style</var>)<var><a name="index-rgbplot-3026"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>rgbplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-rgbplot-3027"></a></var><br>
 <blockquote><p>Plot the components of a colormap.
 
         <p>Two different <var>style</var>s are available for displaying the <var>cmap</var>:
@@ -212,8 +212,8 @@ option.
    <p><a name="doc_002dautumn"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>autumn</b> ()<var><a name="index-autumn-3023"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>autumn</b> (<var>n</var>)<var><a name="index-autumn-3024"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>autumn</b> ()<var><a name="index-autumn-3028"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>autumn</b> (<var>n</var>)<var><a name="index-autumn-3029"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from red through orange
 to yellow. 
 The argument <var>n</var> must be a scalar. 
@@ -226,8 +226,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dbone"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>bone</b> ()<var><a name="index-bone-3025"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>bone</b> (<var>n</var>)<var><a name="index-bone-3026"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>bone</b> ()<var><a name="index-bone-3030"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>bone</b> (<var>n</var>)<var><a name="index-bone-3031"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with
 gray-blue shades. 
 The argument <var>n</var> must be a scalar. 
@@ -240,8 +240,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcolorcube"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>colorcube</b> ()<var><a name="index-colorcube-3027"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>colorcube</b> (<var>n</var>)<var><a name="index-colorcube-3028"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>colorcube</b> ()<var><a name="index-colorcube-3032"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>colorcube</b> (<var>n</var>)<var><a name="index-colorcube-3033"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is composed of as many equally
 spaced colors (not grays) in the RGB color space as possible.  If there
 are not a perfect number <var>n</var> of regularly spaced colors then the
@@ -257,8 +257,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcool"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>cool</b> ()<var><a name="index-cool-3029"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>cool</b> (<var>n</var>)<var><a name="index-cool-3030"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>cool</b> ()<var><a name="index-cool-3034"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>cool</b> (<var>n</var>)<var><a name="index-cool-3035"></a></var><br>
 <blockquote><p>Create color colormap.  The colormap varies from cyan to magenta. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
@@ -270,8 +270,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcopper"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>copper</b> ()<var><a name="index-copper-3031"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>copper</b> (<var>n</var>)<var><a name="index-copper-3032"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>copper</b> ()<var><a name="index-copper-3036"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>copper</b> (<var>n</var>)<var><a name="index-copper-3037"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to
 a light copper tone. 
 The argument <var>n</var> must be a scalar. 
@@ -284,8 +284,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dflag"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>flag</b> ()<var><a name="index-flag-3033"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>flag</b> (<var>n</var>)<var><a name="index-flag-3034"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>flag</b> ()<var><a name="index-flag-3038"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>flag</b> (<var>n</var>)<var><a name="index-flag-3039"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap cycles through red, white, blue,
 and black with each index change. 
 The argument <var>n</var> must be a scalar. 
@@ -298,8 +298,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dgray"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>gray</b> ()<var><a name="index-gray-3035"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>gray</b> (<var>n</var>)<var><a name="index-gray-3036"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gray</b> ()<var><a name="index-gray-3040"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gray</b> (<var>n</var>)<var><a name="index-gray-3041"></a></var><br>
 <blockquote><p>Create gray colormap.  This colormap varies from black to white with
 shades of gray. 
 The argument <var>n</var> must be a scalar. 
@@ -312,8 +312,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dhot"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>hot</b> ()<var><a name="index-hot-3037"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>hot</b> (<var>n</var>)<var><a name="index-hot-3038"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>hot</b> ()<var><a name="index-hot-3042"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>hot</b> (<var>n</var>)<var><a name="index-hot-3043"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from black through dark red,
 red, orange, yellow, to white. 
 The argument <var>n</var> must be a scalar. 
@@ -326,7 +326,7 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dhsv"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hsv</b> (<var>n</var>)<var><a name="index-hsv-3039"></a></var><br>
+&mdash; Function File:  <b>hsv</b> (<var>n</var>)<var><a name="index-hsv-3044"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap begins with red, changes through
 yellow, green, cyan, blue, and magenta, before returning to red. 
 It is useful for displaying periodic functions.  The map is obtained by
@@ -344,8 +344,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002djet"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>jet</b> ()<var><a name="index-jet-3040"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>jet</b> (<var>n</var>)<var><a name="index-jet-3041"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>jet</b> ()<var><a name="index-jet-3045"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>jet</b> (<var>n</var>)<var><a name="index-jet-3046"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from dark blue through blue,
 cyan, green, yellow, red, to dark red. 
 The argument <var>n</var> must be a scalar. 
@@ -358,8 +358,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dlines"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>lines</b> ()<var><a name="index-lines-3042"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>lines</b> (<var>n</var>)<var><a name="index-lines-3043"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>lines</b> ()<var><a name="index-lines-3047"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>lines</b> (<var>n</var>)<var><a name="index-lines-3048"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is composed of the list of colors
 in the current axes "ColorOrder" property.  The default is blue,
 green, red, cyan, pink, yellow, and gray. 
@@ -373,8 +373,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002docean"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>ocean</b> ()<var><a name="index-ocean-3044"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>ocean</b> (<var>n</var>)<var><a name="index-ocean-3045"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>ocean</b> ()<var><a name="index-ocean-3049"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>ocean</b> (<var>n</var>)<var><a name="index-ocean-3050"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with shades
 of blue. 
 The argument <var>n</var> must be a scalar. 
@@ -387,8 +387,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dpink"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>pink</b> ()<var><a name="index-pink-3046"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>pink</b> (<var>n</var>)<var><a name="index-pink-3047"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>pink</b> ()<var><a name="index-pink-3051"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>pink</b> (<var>n</var>)<var><a name="index-pink-3052"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with
 shades of gray-pink.  It gives a sepia tone when used on grayscale images. 
 The argument <var>n</var> must be a scalar. 
@@ -401,8 +401,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dprism"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>prism</b> ()<var><a name="index-prism-3048"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>prism</b> (<var>n</var>)<var><a name="index-prism-3049"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>prism</b> ()<var><a name="index-prism-3053"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>prism</b> (<var>n</var>)<var><a name="index-prism-3054"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap cycles through red, orange, yellow,
 green, blue and violet with each index change. 
 The argument <var>n</var> must be a scalar. 
@@ -415,8 +415,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002drainbow"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>rainbow</b> ()<var><a name="index-rainbow-3050"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>rainbow</b> (<var>n</var>)<var><a name="index-rainbow-3051"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>rainbow</b> ()<var><a name="index-rainbow-3055"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>rainbow</b> (<var>n</var>)<var><a name="index-rainbow-3056"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from red through orange,
 yellow, green, blue, to violet. 
 The argument <var>n</var> must be a scalar. 
@@ -429,8 +429,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dspring"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>spring</b> ()<var><a name="index-spring-3052"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>spring</b> (<var>n</var>)<var><a name="index-spring-3053"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>spring</b> ()<var><a name="index-spring-3057"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>spring</b> (<var>n</var>)<var><a name="index-spring-3058"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from magenta to yellow. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
@@ -442,8 +442,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dsummer"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>summer</b> ()<var><a name="index-summer-3054"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>summer</b> (<var>n</var>)<var><a name="index-summer-3055"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>summer</b> ()<var><a name="index-summer-3059"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>summer</b> (<var>n</var>)<var><a name="index-summer-3060"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from green to yellow. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
@@ -455,8 +455,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dwhite"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>white</b> ()<var><a name="index-white-3056"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>white</b> (<var>n</var>)<var><a name="index-white-3057"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>white</b> ()<var><a name="index-white-3061"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>white</b> (<var>n</var>)<var><a name="index-white-3062"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is completely white. 
 The argument <var>n</var> should be a scalar.  If it
 is omitted, the length of the current colormap or 64 is assumed.
@@ -468,8 +468,8 @@ is omitted, the length of the current colormap or 64 is assumed.
    <p><a name="doc_002dwinter"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>winter</b> ()<var><a name="index-winter-3058"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>winter</b> (<var>n</var>)<var><a name="index-winter-3059"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>winter</b> ()<var><a name="index-winter-3063"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>winter</b> (<var>n</var>)<var><a name="index-winter-3064"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from blue to green. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
@@ -481,8 +481,8 @@ If unspecified, the length of the current colormap, or 64, is used.
    <p><a name="doc_002dcontrast"></a>
 
 <div class="defun">
-&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x</var>)<var><a name="index-contrast-3060"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x, n</var>)<var><a name="index-contrast-3061"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x</var>)<var><a name="index-contrast-3065"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x, n</var>)<var><a name="index-contrast-3066"></a></var><br>
 <blockquote><p>Return a gray colormap that maximizes the contrast in an image.  The
 returned colormap will have <var>n</var> rows.  If <var>n</var> is not defined
 then the size of the current colormap is used.
@@ -501,8 +501,8 @@ and <var>contour</var> functions.
    <p><a name="doc_002dgmap40"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>gmap40</b> ()<var><a name="index-gmap40-3062"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>gmap40</b> (<var>n</var>)<var><a name="index-gmap40-3063"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gmap40</b> ()<var><a name="index-gmap40-3067"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gmap40</b> (<var>n</var>)<var><a name="index-gmap40-3068"></a></var><br>
 <blockquote><p>Create color colormap.  The colormap consists of red, green, blue, yellow,
 magenta and cyan.  This colormap is specifically designed for users of
 gnuplot 4.0 where these 6 colors are the allowable ones for patch objects. 
@@ -520,9 +520,9 @@ replace it.
    <p><a name="doc_002dbrighten"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>map, beta</var>)<var><a name="index-brighten-3064"></a></var><br>
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>beta</var>)<var><a name="index-brighten-3065"></a></var><br>
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>h, beta</var>)<var><a name="index-brighten-3066"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>map, beta</var>)<var><a name="index-brighten-3069"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>beta</var>)<var><a name="index-brighten-3070"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>h, beta</var>)<var><a name="index-brighten-3071"></a></var><br>
 <blockquote><p>Brighten or darken a colormap.  If the <var>map</var> argument is omitted, the
 function is applied to the current colormap.  The first argument can also be
 a valid graphics handle <var>h</var>, in which case <code>brighten</code> is applied to
@@ -540,10 +540,10 @@ negative value darkens and a positive value brightens the colormap.
    <p><a name="doc_002dspinmap"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>spinmap</b> ()<var><a name="index-spinmap-3067"></a></var><br>
-&mdash; Function File:  <b>spinmap</b> (<var>t</var>)<var><a name="index-spinmap-3068"></a></var><br>
-&mdash; Function File:  <b>spinmap</b> (<var>t, inc</var>)<var><a name="index-spinmap-3069"></a></var><br>
-&mdash; Function File:  <b>spinmap</b> (<var>"inf"</var>)<var><a name="index-spinmap-3070"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> ()<var><a name="index-spinmap-3072"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>t</var>)<var><a name="index-spinmap-3073"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>t, inc</var>)<var><a name="index-spinmap-3074"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>"inf"</var>)<var><a name="index-spinmap-3075"></a></var><br>
 <blockquote><p>Cycle the colormap for <var>t</var> seconds with a color increment of <var>inc</var>. 
 Both parameters are optional.  The default cycle time is 5 seconds and the
 default increment is 2.  If the option "inf" is given then cycle
@@ -560,12 +560,12 @@ value of <var>inc</var> will cause faster cycling through the colormap.
    <p><a name="doc_002dwhitebg"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>whitebg</b> ()<var><a name="index-whitebg-3071"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>color</var>)<var><a name="index-whitebg-3072"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>"none"</var>)<var><a name="index-whitebg-3073"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig</var>)<var><a name="index-whitebg-3074"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig, color</var>)<var><a name="index-whitebg-3075"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig, "none"</var>)<var><a name="index-whitebg-3076"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> ()<var><a name="index-whitebg-3076"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>color</var>)<var><a name="index-whitebg-3077"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>"none"</var>)<var><a name="index-whitebg-3078"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>fig</var>)<var><a name="index-whitebg-3079"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>fig, color</var>)<var><a name="index-whitebg-3080"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>fig, "none"</var>)<var><a name="index-whitebg-3081"></a></var><br>
 <blockquote><p>Invert the colors in the current color scheme.  The root properties are
 also inverted such that all subsequent plot use the new color scheme.
 
@@ -586,9 +586,9 @@ string argument "none" restores the plot to the default colors.
    <p><a name="doc_002dcmunique"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>X, map</var>)<var><a name="index-cmunique-3077"></a></var><br>
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>RGB</var>)<var><a name="index-cmunique-3078"></a></var><br>
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>I</var>)<var><a name="index-cmunique-3079"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>X, map</var>)<var><a name="index-cmunique-3082"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>RGB</var>)<var><a name="index-cmunique-3083"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>I</var>)<var><a name="index-cmunique-3084"></a></var><br>
 <blockquote><p>Convert an input image <var>X</var> to an ouput indexed image <var>Y</var> which uses
 the smallest colormap possible <var>newmap</var>.
 
@@ -623,8 +623,8 @@ less than or equal to 256.  Otherwise, the output image is of class double.
    <p><a name="doc_002dcmpermute"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map</var>)<var><a name="index-cmpermute-3080"></a></var><br>
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map, index</var>)<var><a name="index-cmpermute-3081"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map</var>)<var><a name="index-cmpermute-3085"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map, index</var>)<var><a name="index-cmpermute-3086"></a></var><br>
 <blockquote><p>Reorder colors in a colormap.
 
         <p>When called with only two arguments, <code>cmpermute</code> randomly rearranges

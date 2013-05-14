@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.
+@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -532,6 +532,42 @@ colormap (summer ());
 @end example
 
 @seealso{@ref{doc-bar,,bar}}
+@end deftypefn
+
+
+@c stemleaf scripts/plot/stemleaf.m
+@anchor{doc-stemleaf}
+@deftypefn  {Function File} {} stemleaf (@var{x})
+@deftypefnx {Function File} {@var{plot} =} stemleaf (@var{x}, @var{opt})
+
+Compute and display a stem and leaf plot of the vector @var{x}.
+
+The @var{x} vector is converted to integer by @var{x} = @code{fix} (@var{x}). 
+If an output argument is provided, the plot is returned as
+an array of strings.  The first element is the heading
+followed by an element for each stem.
+The default stem step is 10.  
+The @var{x} vector should be integers.  It will be treated so that
+the last digit is the leaf value and the other digits are
+the stems.
+The leaf digits are not sorted.  If sorted leaf values
+are wanted, use @code{sort} (@var{x}) before calling @code{stemleaf} (@var{x}).
+The stem and leaf plot is described in: Ch. 3,
+Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
+@seealso{@ref{doc-hist,,hist}, @ref{doc-printd,,printd}}
+@end deftypefn
+
+
+@c printd scripts/plot/printd.m
+@anchor{doc-printd}
+@deftypefn  {Function File} {} printd (@var{obj}, @var{filename})
+
+Convert any object acceptable to @code{disp} into the format
+selected by the suffix of @var{filename}.
+
+This function is intended to facilitate manipulation of the output
+of functions such as @code{stemleaf}.
+@seealso{@ref{doc-stemleaf,,stemleaf}}
 @end deftypefn
 
 

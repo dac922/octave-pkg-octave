@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Vectorization-and-Faster-Code-Execution
 
 <h3 class="section">19.5 Miscellaneous Techniques</h3>
 
-<p><a name="index-execution-speed-2223"></a><a name="index-speedups-2224"></a><a name="index-optimization-2225"></a>
+<p><a name="index-execution-speed-2226"></a><a name="index-speedups-2227"></a><a name="index-optimization-2228"></a>
 Here are some other ways of improving the execution speed of Octave
 programs.
 
@@ -46,7 +46,7 @@ a matrix variable is used multiple times as an index, checking the
 indices (and internal conversion to integers) is only done once.
 
      <li>Be aware of lazy copies (copy-on-write). 
-<a name="index-copy_002don_002dwrite-2226"></a><a name="index-COW-2227"></a><a name="index-memory-management-2228"></a>When a copy of an object is created, the data is not immediately copied, but
+<a name="index-copy_002don_002dwrite-2229"></a><a name="index-COW-2230"></a><a name="index-memory-management-2231"></a>When a copy of an object is created, the data is not immediately copied, but
 rather shared.  The actual copying is postponed until the copied data needs to
 be modified.  For example:
 

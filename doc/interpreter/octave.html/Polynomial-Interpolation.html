@@ -47,9 +47,9 @@ is what the <code>polyfit</code> function does.
    <p><a name="doc_002dpolyfit"></a>
 
 <div class="defun">
-&mdash; Function File: <var>p</var> = <b>polyfit</b> (<var>x, y, n</var>)<var><a name="index-polyfit-2803"></a></var><br>
-&mdash; Function File: [<var>p</var>, <var>s</var>] = <b>polyfit</b> (<var>x, y, n</var>)<var><a name="index-polyfit-2804"></a></var><br>
-&mdash; Function File: [<var>p</var>, <var>s</var>, <var>mu</var>] = <b>polyfit</b> (<var>x, y, n</var>)<var><a name="index-polyfit-2805"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>polyfit</b> (<var>x, y, n</var>)<var><a name="index-polyfit-2806"></a></var><br>
+&mdash; Function File: [<var>p</var>, <var>s</var>] = <b>polyfit</b> (<var>x, y, n</var>)<var><a name="index-polyfit-2807"></a></var><br>
+&mdash; Function File: [<var>p</var>, <var>s</var>, <var>mu</var>] = <b>polyfit</b> (<var>x, y, n</var>)<var><a name="index-polyfit-2808"></a></var><br>
 <blockquote><p>Return the coefficients of a polynomial <var>p</var>(<var>x</var>) of degree
 <var>n</var> that minimizes the least-squares-error of the fit to the points
 <code>[</code><var>x</var><code>, </code><var>y</var><code>]</code>.  If <var>n</var> is a logical vector, it is used
@@ -100,7 +100,7 @@ data.
    <p><a name="doc_002dsplinefit"></a>
 
 <div class="defun">
-&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var>x, y, breaks</var>)<var><a name="index-splinefit-2806"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var>x, y, breaks</var>)<var><a name="index-splinefit-2809"></a></var><br>
 <blockquote><p>Fit a piecewise cubic spline with breaks (knots) <var>breaks</var> to the
 noisy data, <var>x</var> and <var>y</var>.  <var>x</var> is a vector, and <var>y</var>
 a vector or N-D array.  If <var>y</var> is an N-D array, then <var>x</var>(j)
@@ -109,16 +109,16 @@ is matched to <var>y</var>(:,<small class="dots">...</small>,:,j).
         <p>The fitted spline is returned as a piecewise polynomial, <var>pp</var>, and
 may be evaluated using <code>ppval</code>.
 
-   &mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var>x, y, p</var>)<var><a name="index-splinefit-2807"></a></var><br>
+   &mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var>x, y, p</var>)<var><a name="index-splinefit-2810"></a></var><br>
 <blockquote><p><var>p</var> is a positive integer defining the number of intervals along <var>x</var>,
 and <var>p</var>+1 is the number of breaks.  The number of points in each interval
 differ by no more than 1.
 
-   &mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "periodic", periodic</var>)<var><a name="index-splinefit-2808"></a></var><br>
-&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "robust", robust</var>)<var><a name="index-splinefit-2809"></a></var><br>
-&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "beta", beta</var>)<var><a name="index-splinefit-2810"></a></var><br>
-&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "order", order</var>)<var><a name="index-splinefit-2811"></a></var><br>
-&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "constraints", constraints</var>)<var><a name="index-splinefit-2812"></a></var><br>
+   &mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "periodic", periodic</var>)<var><a name="index-splinefit-2811"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "robust", robust</var>)<var><a name="index-splinefit-2812"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "beta", beta</var>)<var><a name="index-splinefit-2813"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "order", order</var>)<var><a name="index-splinefit-2814"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>splinefit</b> (<var><small class="dots">...</small>, "constraints", constraints</var>)<var><a name="index-splinefit-2815"></a></var><br>
 <blockquote>
         <p>The optional property <var>periodic</var> is a logical value which specifies
 whether a periodic boundary condition is applied to the spline.  The
@@ -350,8 +350,8 @@ on adjoined intervals.
    <p><a name="doc_002dmkpp"></a>
 
 <div class="defun">
-&mdash; Function File: <var>pp</var> = <b>mkpp</b> (<var>breaks, coefs</var>)<var><a name="index-mkpp-2813"></a></var><br>
-&mdash; Function File: <var>pp</var> = <b>mkpp</b> (<var>breaks, coefs, d</var>)<var><a name="index-mkpp-2814"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>mkpp</b> (<var>breaks, coefs</var>)<var><a name="index-mkpp-2816"></a></var><br>
+&mdash; Function File: <var>pp</var> = <b>mkpp</b> (<var>breaks, coefs, d</var>)<var><a name="index-mkpp-2817"></a></var><br>
 <blockquote>
         <p>Construct a piecewise polynomial (pp) structure from sample points
 <var>breaks</var> and coefficients <var>coefs</var>.  <var>breaks</var> must be a vector of
@@ -380,7 +380,7 @@ size <code>[</code><var>ni</var><code>*prod(</code><var>d</var> <var>m</var><cod
    <p><a name="doc_002dunmkpp"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>p</var>, <var>n</var>, <var>k</var>, <var>d</var>] = <b>unmkpp</b> (<var>pp</var>)<var><a name="index-unmkpp-2815"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>p</var>, <var>n</var>, <var>k</var>, <var>d</var>] = <b>unmkpp</b> (<var>pp</var>)<var><a name="index-unmkpp-2818"></a></var><br>
 <blockquote>
         <p>Extract the components of a piecewise polynomial structure <var>pp</var>. 
 The components are:
@@ -408,7 +408,7 @@ the r-th polynomial defined on interval <var>i</var>.
    <p><a name="doc_002dppval"></a>
 
 <div class="defun">
-&mdash; Function File: <var>yi</var> = <b>ppval</b> (<var>pp, xi</var>)<var><a name="index-ppval-2816"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>ppval</b> (<var>pp, xi</var>)<var><a name="index-ppval-2819"></a></var><br>
 <blockquote><p>Evaluate the piecewise polynomial structure <var>pp</var> at the points <var>xi</var>. 
 If <var>pp</var> describes a scalar polynomial function, the result is an
 array of the same shape as <var>xi</var>. 
@@ -423,8 +423,8 @@ multi-dimensional array.
    <p><a name="doc_002dppder"></a>
 
 <div class="defun">
-&mdash; Function File: ppd = <b>ppder</b> (<var>pp</var>)<var><a name="index-ppder-2817"></a></var><br>
-&mdash; Function File: ppd = <b>ppder</b> (<var>pp, m</var>)<var><a name="index-ppder-2818"></a></var><br>
+&mdash; Function File: ppd = <b>ppder</b> (<var>pp</var>)<var><a name="index-ppder-2820"></a></var><br>
+&mdash; Function File: ppd = <b>ppder</b> (<var>pp, m</var>)<var><a name="index-ppder-2821"></a></var><br>
 <blockquote><p>Compute the piecewise <var>m</var>-th derivative of a piecewise polynomial
 struct <var>pp</var>.  If <var>m</var> is omitted the first derivative is calculated.
 
@@ -435,8 +435,8 @@ struct <var>pp</var>.  If <var>m</var> is omitted the first derivative is calcul
    <p><a name="doc_002dppint"></a>
 
 <div class="defun">
-&mdash; Function File: <var>ppi</var> = <b>ppint</b> (<var>pp</var>)<var><a name="index-ppint-2819"></a></var><br>
-&mdash; Function File: <var>ppi</var> = <b>ppint</b> (<var>pp, c</var>)<var><a name="index-ppint-2820"></a></var><br>
+&mdash; Function File: <var>ppi</var> = <b>ppint</b> (<var>pp</var>)<var><a name="index-ppint-2822"></a></var><br>
+&mdash; Function File: <var>ppi</var> = <b>ppint</b> (<var>pp, c</var>)<var><a name="index-ppint-2823"></a></var><br>
 <blockquote><p>Compute the integral of the piecewise polynomial struct <var>pp</var>. 
 <var>c</var>, if given, is the constant of integration.
 
@@ -447,7 +447,7 @@ struct <var>pp</var>.  If <var>m</var> is omitted the first derivative is calcul
    <p><a name="doc_002dppjumps"></a>
 
 <div class="defun">
-&mdash; Function File: <var>jumps</var> = <b>ppjumps</b> (<var>pp</var>)<var><a name="index-ppjumps-2821"></a></var><br>
+&mdash; Function File: <var>jumps</var> = <b>ppjumps</b> (<var>pp</var>)<var><a name="index-ppjumps-2824"></a></var><br>
 <blockquote><p>Evaluate the boundary jumps of a piecewise polynomial. 
 If there are n intervals, and the dimensionality of <var>pp</var> is
 d, the resulting array has dimensions <code>[d, n-1]</code>.

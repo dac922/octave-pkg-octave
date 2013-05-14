@@ -176,8 +176,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/rewinddir.m4 $(top_srcdir)/m4/rmdir.m4 \
 	$(top_srcdir)/m4/round.m4 $(top_srcdir)/m4/roundf.m4 \
 	$(top_srcdir)/m4/same.m4 $(top_srcdir)/m4/save-cwd.m4 \
-	$(top_srcdir)/m4/select.m4 $(top_srcdir)/m4/sigaction.m4 \
-	$(top_srcdir)/m4/signal_h.m4 \
+	$(top_srcdir)/m4/secure_getenv.m4 $(top_srcdir)/m4/select.m4 \
+	$(top_srcdir)/m4/sigaction.m4 $(top_srcdir)/m4/signal_h.m4 \
 	$(top_srcdir)/m4/signalblocking.m4 $(top_srcdir)/m4/signbit.m4 \
 	$(top_srcdir)/m4/size_max.m4 $(top_srcdir)/m4/sleep.m4 \
 	$(top_srcdir)/m4/socketlib.m4 $(top_srcdir)/m4/sockets.m4 \
@@ -241,7 +241,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(octlibdir)" "$(DESTDIR)$(octetcdir)"
+am__installdirs = "$(DESTDIR)$(octlibdir)" "$(DESTDIR)$(octetcdir)" \
+	"$(DESTDIR)$(octlocaledir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(octlib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
@@ -436,7 +437,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(octetc_DATA)
+DATA = $(octetc_DATA) $(octlocale_DATA)
 HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -497,6 +498,7 @@ COPYSIGN_LIBM = @COPYSIGN_LIBM@
 CPICFLAG = @CPICFLAG@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CROSS_TOOL_PREFIX = @CROSS_TOOL_PREFIX@
 CRUFT_DLL_DEFS = @CRUFT_DLL_DEFS@
 CURL_CPPFLAGS = @CURL_CPPFLAGS@
 CURL_LDFLAGS = @CURL_LDFLAGS@
@@ -834,6 +836,7 @@ GNULIB_ROUNDL = @GNULIB_ROUNDL@
 GNULIB_RPMATCH = @GNULIB_RPMATCH@
 GNULIB_SCANDIR = @GNULIB_SCANDIR@
 GNULIB_SCANF = @GNULIB_SCANF@
+GNULIB_SECURE_GETENV = @GNULIB_SECURE_GETENV@
 GNULIB_SELECT = @GNULIB_SELECT@
 GNULIB_SEND = @GNULIB_SEND@
 GNULIB_SENDTO = @GNULIB_SENDTO@
@@ -1176,6 +1179,7 @@ HAVE_RPMATCH = @HAVE_RPMATCH@
 HAVE_SAME_LONG_DOUBLE_AS_DOUBLE = @HAVE_SAME_LONG_DOUBLE_AS_DOUBLE@
 HAVE_SA_FAMILY_T = @HAVE_SA_FAMILY_T@
 HAVE_SCANDIR = @HAVE_SCANDIR@
+HAVE_SECURE_GETENV = @HAVE_SECURE_GETENV@
 HAVE_SETENV = @HAVE_SETENV@
 HAVE_SETHOSTNAME = @HAVE_SETHOSTNAME@
 HAVE_SIGACTION = @HAVE_SIGACTION@
@@ -1341,7 +1345,14 @@ MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINFO = @MKINFO@
+MKOCTFILE_AR = @MKOCTFILE_AR@
+MKOCTFILE_CC = @MKOCTFILE_CC@
+MKOCTFILE_CXX = @MKOCTFILE_CXX@
+MKOCTFILE_DL_LD = @MKOCTFILE_DL_LD@
 MKOCTFILE_DL_LDFLAGS = @MKOCTFILE_DL_LDFLAGS@
+MKOCTFILE_F77 = @MKOCTFILE_F77@
+MKOCTFILE_LD_CXX = @MKOCTFILE_LD_CXX@
+MKOCTFILE_RANLIB = @MKOCTFILE_RANLIB@
 MOC = @MOC@
 NEXT_AS_FIRST_DIRECTIVE_DIRENT_H = @NEXT_AS_FIRST_DIRECTIVE_DIRENT_H@
 NEXT_AS_FIRST_DIRECTIVE_ERRNO_H = @NEXT_AS_FIRST_DIRECTIVE_ERRNO_H@
@@ -1862,6 +1873,12 @@ octincludedir = @octincludedir@
 # Where to install and expect libraries like liboctave.a, liboctinterp.a,
 # and other architecture-dependent data.
 octlibdir = @octlibdir@
+
+# Where to install and expect the language files for the gui.
+octlocaledir = @octlocaledir@
+
+# Where to install test files.
+octtestsdir = @octtestsdir@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
 
@@ -1938,8 +1955,18 @@ null =
 AUTOMAKE_OPTIONS = subdir-objects
 MOC_CPPFLAGS = $(am__append_3)
 octlib_LTLIBRARIES = liboctgui.la
-EXTRA_DIST = default-qt-settings src/module.mk src/resource.qrc \
-	$(octave_gui_UI) $(octave_gui_ICONS) qterminal-module.mk
+locales = \
+  languages/be_BY.qm \
+  languages/de_DE.qm \
+  languages/en_US.qm \
+  languages/es_ES.qm \
+  languages/pt_BR.qm \
+  languages/ru_RU.qm \
+  languages/uk_UA.qm
+
+EXTRA_DIST = default-qt-settings $(locales) src/module.mk \
+	src/resource.qrc $(octave_gui_UI) $(octave_gui_ICONS) \
+	qterminal-module.mk
 CLEANFILES = $(octave_gui_MOC) $(octave_gui_UI_H) $(octave_gui_RC) \
 	$(qterminal_libqterminal_la_MOC)
 BUILT_SOURCES = $(octave_gui_UI_H)
@@ -2231,6 +2258,7 @@ liboctgui_la_LDFLAGS = \
   $(LIBOCTGUI_LINK_OPTS)
 
 octetc_DATA = default-qt-settings
+octlocale_DATA = $(locales)
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -3308,6 +3336,27 @@ uninstall-octetcDATA:
 	@list='$(octetc_DATA)'; test -n "$(octetcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(octetcdir)'; $(am__uninstall_files_from_dir)
+install-octlocaleDATA: $(octlocale_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(octlocale_DATA)'; test -n "$(octlocaledir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(octlocaledir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(octlocaledir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(octlocaledir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(octlocaledir)" || exit $$?; \
+	done
+
+uninstall-octlocaleDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(octlocale_DATA)'; test -n "$(octlocaledir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(octlocaledir)'; $(am__uninstall_files_from_dir)
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -3396,7 +3445,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(octlibdir)" "$(DESTDIR)$(octetcdir)"; do \
+	for dir in "$(DESTDIR)$(octlibdir)" "$(DESTDIR)$(octetcdir)" "$(DESTDIR)$(octlocaledir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -3470,7 +3519,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-octetcDATA install-octlibLTLIBRARIES
+install-data-am: install-octetcDATA install-octlibLTLIBRARIES \
+	install-octlocaleDATA
 
 install-dvi: install-dvi-am
 
@@ -3516,7 +3566,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-octetcDATA uninstall-octlibLTLIBRARIES
+uninstall-am: uninstall-octetcDATA uninstall-octlibLTLIBRARIES \
+	uninstall-octlocaleDATA
 
 .MAKE: all check install install-am install-strip
 
@@ -3528,13 +3579,13 @@ uninstall-am: uninstall-octetcDATA uninstall-octlibLTLIBRARIES
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-man install-octetcDATA \
-	install-octlibLTLIBRARIES install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-octlibLTLIBRARIES install-octlocaleDATA install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-octetcDATA \
-	uninstall-octlibLTLIBRARIES
+	uninstall-octlibLTLIBRARIES uninstall-octlocaleDATA
 
 export AWK
 export SED
@@ -3671,7 +3722,14 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_MAGICK_CPPFLAGS%|\"${MAGICK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_MAGICK_LDFLAGS%|\"${MAGICK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_MAGICK_LIBS%|\"${MAGICK_LIBS}\"|" \
-  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LDFLAGS%|\"@MKOCTFILE_DL_LDFLAGS@\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_AR%|\"${MKOCTFILE_AR}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_CC%|\"${MKOCTFILE_CC}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_CXX%|\"${MKOCTFILE_CXX}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LD%|\"${MKOCTFILE_DL_LD}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LDFLAGS%|\"${MKOCTFILE_DL_LDFLAGS}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_F77%|\"${MKOCTFILE_F77}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_LD_CXX%|\"${MKOCTFILE_LD_CXX}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_RANLIB%|\"${MKOCTFILE_RANLIB}\"|' \
   -e "s|%OCTAVE_CONF_OCTAVE_LINK_DEPS%|\"${OCTAVE_LINK_DEPS}\"|" \
   -e "s|%OCTAVE_CONF_OCTAVE_LINK_OPTS%|\"${OCTAVE_LINK_OPTS}\"|" \
   -e "s|%OCTAVE_CONF_OCTINCLUDEDIR%|\"${octincludedir}\"|" \
@@ -3763,6 +3821,8 @@ $(SED) < $< > $@-t \
   -e "s|%OCTAVE_OCTETCDIR%|\"${octetcdir}\"|" \
   -e "s|%OCTAVE_OCTINCLUDEDIR%|\"${octincludedir}\"|" \
   -e "s|%OCTAVE_OCTLIBDIR%|\"${octlibdir}\"|" \
+  -e "s|%OCTAVE_OCTLOCALEDIR%|\"${octlocaledir}\"|" \
+  -e "s|%OCTAVE_OCTTESTSDIR%|\"${octtestsdir}\"|" \
   -e "s|%OCTAVE_STARTUPFILEDIR%|\"${startupfiledir}\"|" \
   -e "s|%OCTAVE_PREFIX%|\"${prefix}\"|" \
   -e "s|%OCTAVE_API_VERSION%|\"${api_version}\"|" \
@@ -3811,6 +3871,20 @@ done
 rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
 -rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
 endef
+
+define test-file-commands
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+mv $@-t $@
+endef
+
+%.cc-tst : %.cc
+	$(test-file-commands)
+
+%.yy-tst : %.yy
+	$(test-file-commands)
+
+%.ll-tst : %.ll
+	$(test-file-commands)
 
 moc-%.cc: %.h
 	@MOC@ -o$@ $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(MOC_CPPFLAGS) $(liboctgui_la_CPPFLAGS) $<

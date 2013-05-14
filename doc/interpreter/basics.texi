@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.
+@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -1209,7 +1209,7 @@ variable @w{@env{OCTAVE_HISTFILE}}.
 @deftypefn  {Built-in Function} {@var{val} =} history_size ()
 @deftypefnx {Built-in Function} {@var{old_val} =} history_size (@var{new_val})
 Query or set the internal variable that specifies how many entries
-to store in the history file.  The default value is @code{1024},
+to store in the history file.  The default value is @code{1000},
 but may be overridden by the environment variable @w{@env{OCTAVE_HISTSIZE}}.
 @seealso{@ref{doc-history_file,,history_file}, @ref{doc-history_timestamp_format_string,,history_timestamp_format_string}, @ref{doc-saving_history,,saving_history}}
 @end deftypefn

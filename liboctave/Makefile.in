@@ -36,6 +36,7 @@
 # <http://www.gnu.org/licenses/>.
 
 
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -156,8 +157,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/rewinddir.m4 $(top_srcdir)/m4/rmdir.m4 \
 	$(top_srcdir)/m4/round.m4 $(top_srcdir)/m4/roundf.m4 \
 	$(top_srcdir)/m4/same.m4 $(top_srcdir)/m4/save-cwd.m4 \
-	$(top_srcdir)/m4/select.m4 $(top_srcdir)/m4/sigaction.m4 \
-	$(top_srcdir)/m4/signal_h.m4 \
+	$(top_srcdir)/m4/secure_getenv.m4 $(top_srcdir)/m4/select.m4 \
+	$(top_srcdir)/m4/sigaction.m4 $(top_srcdir)/m4/signal_h.m4 \
 	$(top_srcdir)/m4/signalblocking.m4 $(top_srcdir)/m4/signbit.m4 \
 	$(top_srcdir)/m4/size_max.m4 $(top_srcdir)/m4/sleep.m4 \
 	$(top_srcdir)/m4/socketlib.m4 $(top_srcdir)/m4/sockets.m4 \
@@ -222,7 +223,8 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(octlibdir)" \
-	"$(DESTDIR)$(octincludedir)" "$(DESTDIR)$(octincludedir)"
+	"$(DESTDIR)$(liboctavetestsdir)" "$(DESTDIR)$(octincludedir)" \
+	"$(DESTDIR)$(octincludedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(octlib_LTLIBRARIES)
 array_libarray_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -845,6 +847,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+DATA = $(nobase_liboctavetests_DATA)
 HEADERS = $(nodist_octinclude_HEADERS) $(octinclude_HEADERS)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
@@ -936,6 +939,7 @@ COPYSIGN_LIBM = @COPYSIGN_LIBM@
 CPICFLAG = @CPICFLAG@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CROSS_TOOL_PREFIX = @CROSS_TOOL_PREFIX@
 CRUFT_DLL_DEFS = @CRUFT_DLL_DEFS@
 CURL_CPPFLAGS = @CURL_CPPFLAGS@
 CURL_LDFLAGS = @CURL_LDFLAGS@
@@ -1273,6 +1277,7 @@ GNULIB_ROUNDL = @GNULIB_ROUNDL@
 GNULIB_RPMATCH = @GNULIB_RPMATCH@
 GNULIB_SCANDIR = @GNULIB_SCANDIR@
 GNULIB_SCANF = @GNULIB_SCANF@
+GNULIB_SECURE_GETENV = @GNULIB_SECURE_GETENV@
 GNULIB_SELECT = @GNULIB_SELECT@
 GNULIB_SEND = @GNULIB_SEND@
 GNULIB_SENDTO = @GNULIB_SENDTO@
@@ -1615,6 +1620,7 @@ HAVE_RPMATCH = @HAVE_RPMATCH@
 HAVE_SAME_LONG_DOUBLE_AS_DOUBLE = @HAVE_SAME_LONG_DOUBLE_AS_DOUBLE@
 HAVE_SA_FAMILY_T = @HAVE_SA_FAMILY_T@
 HAVE_SCANDIR = @HAVE_SCANDIR@
+HAVE_SECURE_GETENV = @HAVE_SECURE_GETENV@
 HAVE_SETENV = @HAVE_SETENV@
 HAVE_SETHOSTNAME = @HAVE_SETHOSTNAME@
 HAVE_SIGACTION = @HAVE_SIGACTION@
@@ -1780,7 +1786,14 @@ MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINFO = @MKINFO@
+MKOCTFILE_AR = @MKOCTFILE_AR@
+MKOCTFILE_CC = @MKOCTFILE_CC@
+MKOCTFILE_CXX = @MKOCTFILE_CXX@
+MKOCTFILE_DL_LD = @MKOCTFILE_DL_LD@
 MKOCTFILE_DL_LDFLAGS = @MKOCTFILE_DL_LDFLAGS@
+MKOCTFILE_F77 = @MKOCTFILE_F77@
+MKOCTFILE_LD_CXX = @MKOCTFILE_LD_CXX@
+MKOCTFILE_RANLIB = @MKOCTFILE_RANLIB@
 MOC = @MOC@
 NEXT_AS_FIRST_DIRECTIVE_DIRENT_H = @NEXT_AS_FIRST_DIRECTIVE_DIRENT_H@
 NEXT_AS_FIRST_DIRECTIVE_ERRNO_H = @NEXT_AS_FIRST_DIRECTIVE_ERRNO_H@
@@ -2301,6 +2314,12 @@ octincludedir = @octincludedir@
 # Where to install and expect libraries like liboctave.a, liboctinterp.a,
 # and other architecture-dependent data.
 octlibdir = @octlibdir@
+
+# Where to install and expect the language files for the gui.
+octlocaledir = @octlocaledir@
+
+# Where to install test files.
+octtestsdir = @octtestsdir@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
 
@@ -3244,6 +3263,16 @@ liboctave_la_LDFLAGS = \
   -bindir $(bindir) \
   $(LIBOCTAVE_LINK_OPTS)
 
+LIBOCTAVE_TST_SRC = \
+  $(array_libarray_la_SOURCES) \
+  $(numeric_libnumeric_la_SOURCES) \
+  $(system_libsystem_la_SOURCES) \
+  $(util_libutil_la_SOURCES)
+
+TST_FILES_SRC := $(shell $(top_srcdir)/build-aux/find-files-with-tests.sh "$(srcdir)" $(LIBOCTAVE_TST_SRC))
+TST_FILES := $(addsuffix -tst,$(TST_FILES_SRC))
+liboctavetestsdir := $(octtestsdir)/liboctave
+nobase_liboctavetests_DATA = $(TST_FILES)
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -9761,6 +9790,30 @@ clean-libtool:
 	-rm -rf operators/.libs operators/_libs
 	-rm -rf system/.libs system/_libs
 	-rm -rf util/.libs util/_libs
+install-nobase_liboctavetestsDATA: $(nobase_liboctavetests_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(nobase_liboctavetests_DATA)'; test -n "$(liboctavetestsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(liboctavetestsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(liboctavetestsdir)" || exit 1; \
+	fi; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo " $(MKDIR_P) '$(DESTDIR)$(liboctavetestsdir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(liboctavetestsdir)/$$dir"; }; \
+	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(liboctavetestsdir)/$$dir'"; \
+	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(liboctavetestsdir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_liboctavetestsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_liboctavetests_DATA)'; test -n "$(liboctavetestsdir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	dir='$(DESTDIR)$(liboctavetestsdir)'; $(am__uninstall_files_from_dir)
 install-nodist_octincludeHEADERS: $(nodist_octinclude_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(nodist_octinclude_HEADERS)'; test -n "$(octincludedir)" || list=; \
@@ -9997,10 +10050,10 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-recursive
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(octlibdir)" "$(DESTDIR)$(octincludedir)" "$(DESTDIR)$(octincludedir)"; do \
+	for dir in "$(DESTDIR)$(octlibdir)" "$(DESTDIR)$(liboctavetestsdir)" "$(DESTDIR)$(octincludedir)" "$(DESTDIR)$(octincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -10069,8 +10122,9 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-nodist_octincludeHEADERS \
-	install-octincludeHEADERS install-octlibLTLIBRARIES
+install-data-am: install-nobase_liboctavetestsDATA \
+	install-nodist_octincludeHEADERS install-octincludeHEADERS \
+	install-octlibLTLIBRARIES
 
 install-dvi: install-dvi-recursive
 
@@ -10116,8 +10170,9 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-nodist_octincludeHEADERS \
-	uninstall-octincludeHEADERS uninstall-octlibLTLIBRARIES
+uninstall-am: uninstall-nobase_liboctavetestsDATA \
+	uninstall-nodist_octincludeHEADERS uninstall-octincludeHEADERS \
+	uninstall-octlibLTLIBRARIES
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) all check \
 	ctags-recursive install install-am install-strip \
@@ -10131,15 +10186,17 @@ uninstall-am: uninstall-nodist_octincludeHEADERS \
 	html-am info info-am install install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-nodist_octincludeHEADERS \
-	install-octincludeHEADERS install-octlibLTLIBRARIES \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
-	uninstall uninstall-am uninstall-nodist_octincludeHEADERS \
-	uninstall-octincludeHEADERS uninstall-octlibLTLIBRARIES
+	install-info-am install-man install-nobase_liboctavetestsDATA \
+	install-nodist_octincludeHEADERS install-octincludeHEADERS \
+	install-octlibLTLIBRARIES install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
+	uninstall-nobase_liboctavetestsDATA \
+	uninstall-nodist_octincludeHEADERS uninstall-octincludeHEADERS \
+	uninstall-octlibLTLIBRARIES
 
 export AWK
 export SED
@@ -10276,7 +10333,14 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_MAGICK_CPPFLAGS%|\"${MAGICK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_MAGICK_LDFLAGS%|\"${MAGICK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_MAGICK_LIBS%|\"${MAGICK_LIBS}\"|" \
-  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LDFLAGS%|\"@MKOCTFILE_DL_LDFLAGS@\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_AR%|\"${MKOCTFILE_AR}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_CC%|\"${MKOCTFILE_CC}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_CXX%|\"${MKOCTFILE_CXX}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LD%|\"${MKOCTFILE_DL_LD}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LDFLAGS%|\"${MKOCTFILE_DL_LDFLAGS}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_F77%|\"${MKOCTFILE_F77}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_LD_CXX%|\"${MKOCTFILE_LD_CXX}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_RANLIB%|\"${MKOCTFILE_RANLIB}\"|' \
   -e "s|%OCTAVE_CONF_OCTAVE_LINK_DEPS%|\"${OCTAVE_LINK_DEPS}\"|" \
   -e "s|%OCTAVE_CONF_OCTAVE_LINK_OPTS%|\"${OCTAVE_LINK_OPTS}\"|" \
   -e "s|%OCTAVE_CONF_OCTINCLUDEDIR%|\"${octincludedir}\"|" \
@@ -10368,6 +10432,8 @@ $(SED) < $< > $@-t \
   -e "s|%OCTAVE_OCTETCDIR%|\"${octetcdir}\"|" \
   -e "s|%OCTAVE_OCTINCLUDEDIR%|\"${octincludedir}\"|" \
   -e "s|%OCTAVE_OCTLIBDIR%|\"${octlibdir}\"|" \
+  -e "s|%OCTAVE_OCTLOCALEDIR%|\"${octlocaledir}\"|" \
+  -e "s|%OCTAVE_OCTTESTSDIR%|\"${octtestsdir}\"|" \
   -e "s|%OCTAVE_STARTUPFILEDIR%|\"${startupfiledir}\"|" \
   -e "s|%OCTAVE_PREFIX%|\"${prefix}\"|" \
   -e "s|%OCTAVE_API_VERSION%|\"${api_version}\"|" \
@@ -10416,6 +10482,20 @@ done
 rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
 -rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
 endef
+
+define test-file-commands
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+mv $@-t $@
+endef
+
+%.cc-tst : %.cc
+	$(test-file-commands)
+
+%.yy-tst : %.yy
+	$(test-file-commands)
+
+%.ll-tst : %.ll
+	$(test-file-commands)
 
 $(OPT_INC) : %.h : %.in $(top_srcdir)/build-aux/mk-opts.pl
 	@echo making $@ from $<

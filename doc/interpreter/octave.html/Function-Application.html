@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Vectorization-and-Faster-Code-Execution
 
 <h3 class="section">19.3 Function Application</h3>
 
-<p><a name="index-map-2198"></a><a name="index-apply-2199"></a><a name="index-function-application-2200"></a>
+<p><a name="index-map-2201"></a><a name="index-apply-2202"></a><a name="index-function-application-2203"></a>
 As a general rule, functions should already be written with matrix
 arguments in mind and should consider whole matrix operations in a
 vectorized manner.  Sometimes, writing functions in this way appears
@@ -46,12 +46,12 @@ array, cell, or struct.
    <p><a name="doc_002darrayfun"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>arrayfun</b> (<var>func, A</var>)<var><a name="index-arrayfun-2201"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>arrayfun</b> (<var>func, A</var>)<var><a name="index-arrayfun-2202"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>arrayfun</b> (<var>func, A, b, <small class="dots">...</small></var>)<var><a name="index-arrayfun-2203"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>, <small class="dots">...</small>] = <b>arrayfun</b> (<var>func, A, <small class="dots">...</small></var>)<var><a name="index-arrayfun-2204"></a></var><br>
-&mdash; Function File:  <b>arrayfun</b> (<var><small class="dots">...</small>, "UniformOutput", val</var>)<var><a name="index-arrayfun-2205"></a></var><br>
-&mdash; Function File:  <b>arrayfun</b> (<var><small class="dots">...</small>, "ErrorHandler", errfunc</var>)<var><a name="index-arrayfun-2206"></a></var><br>
+&mdash; Function File:  <b>arrayfun</b> (<var>func, A</var>)<var><a name="index-arrayfun-2204"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>arrayfun</b> (<var>func, A</var>)<var><a name="index-arrayfun-2205"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>arrayfun</b> (<var>func, A, b, <small class="dots">...</small></var>)<var><a name="index-arrayfun-2206"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <small class="dots">...</small>] = <b>arrayfun</b> (<var>func, A, <small class="dots">...</small></var>)<var><a name="index-arrayfun-2207"></a></var><br>
+&mdash; Function File:  <b>arrayfun</b> (<var><small class="dots">...</small>, "UniformOutput", val</var>)<var><a name="index-arrayfun-2208"></a></var><br>
+&mdash; Function File:  <b>arrayfun</b> (<var><small class="dots">...</small>, "ErrorHandler", errfunc</var>)<var><a name="index-arrayfun-2209"></a></var><br>
 <blockquote>
         <p>Execute a function on each element of an array.  This is useful for
 functions that do not accept array arguments.  If the function does
@@ -142,7 +142,7 @@ example:
    <p><a name="doc_002dspfun"></a>
 
 <div class="defun">
-&mdash; Function File: <var>y</var> = <b>spfun</b> (<var>f, S</var>)<var><a name="index-spfun-2207"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>spfun</b> (<var>f, S</var>)<var><a name="index-spfun-2210"></a></var><br>
 <blockquote><p>Compute <code>f(</code><var>S</var><code>)</code> for the non-zero values of <var>S</var>. 
 This results in a sparse matrix with the same structure as
 <var>S</var>.  The function <var>f</var> can be passed as a string, a
@@ -155,14 +155,14 @@ function handle, or an inline function.
    <p><a name="doc_002dcellfun"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>cellfun</b> (<var>name, C</var>)<var><a name="index-cellfun-2208"></a></var><br>
-&mdash; Built-in Function:  <b>cellfun</b> (<var>"size", C, k</var>)<var><a name="index-cellfun-2209"></a></var><br>
-&mdash; Built-in Function:  <b>cellfun</b> (<var>"isclass", C, class</var>)<var><a name="index-cellfun-2210"></a></var><br>
-&mdash; Built-in Function:  <b>cellfun</b> (<var>func, C</var>)<var><a name="index-cellfun-2211"></a></var><br>
-&mdash; Built-in Function:  <b>cellfun</b> (<var>func, C, D</var>)<var><a name="index-cellfun-2212"></a></var><br>
-&mdash; Built-in Function: [<var>a</var>, <small class="dots">...</small>] = <b>cellfun</b> (<var><small class="dots">...</small></var>)<var><a name="index-cellfun-2213"></a></var><br>
-&mdash; Built-in Function:  <b>cellfun</b> (<var><small class="dots">...</small>, "ErrorHandler", errfunc</var>)<var><a name="index-cellfun-2214"></a></var><br>
-&mdash; Built-in Function:  <b>cellfun</b> (<var><small class="dots">...</small>, "UniformOutput", val</var>)<var><a name="index-cellfun-2215"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var>name, C</var>)<var><a name="index-cellfun-2211"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var>"size", C, k</var>)<var><a name="index-cellfun-2212"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var>"isclass", C, class</var>)<var><a name="index-cellfun-2213"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var>func, C</var>)<var><a name="index-cellfun-2214"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var>func, C, D</var>)<var><a name="index-cellfun-2215"></a></var><br>
+&mdash; Built-in Function: [<var>a</var>, <small class="dots">...</small>] = <b>cellfun</b> (<var><small class="dots">...</small></var>)<var><a name="index-cellfun-2216"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var><small class="dots">...</small>, "ErrorHandler", errfunc</var>)<var><a name="index-cellfun-2217"></a></var><br>
+&mdash; Built-in Function:  <b>cellfun</b> (<var><small class="dots">...</small>, "UniformOutput", val</var>)<var><a name="index-cellfun-2218"></a></var><br>
 <blockquote>
         <p>Evaluate the function named <var>name</var> on the elements of the cell array
 <var>C</var>.  Elements in <var>C</var> are passed on to the named function
@@ -259,10 +259,10 @@ interpreter is not involved in the internal loop.  For example:
    <p><a name="doc_002dstructfun"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>structfun</b> (<var>func, S</var>)<var><a name="index-structfun-2216"></a></var><br>
-&mdash; Function File: [<var>A</var>, <small class="dots">...</small>] = <b>structfun</b> (<var><small class="dots">...</small></var>)<var><a name="index-structfun-2217"></a></var><br>
-&mdash; Function File:  <b>structfun</b> (<var><small class="dots">...</small>, "ErrorHandler", errfunc</var>)<var><a name="index-structfun-2218"></a></var><br>
-&mdash; Function File:  <b>structfun</b> (<var><small class="dots">...</small>, "UniformOutput", val</var>)<var><a name="index-structfun-2219"></a></var><br>
+&mdash; Function File:  <b>structfun</b> (<var>func, S</var>)<var><a name="index-structfun-2219"></a></var><br>
+&mdash; Function File: [<var>A</var>, <small class="dots">...</small>] = <b>structfun</b> (<var><small class="dots">...</small></var>)<var><a name="index-structfun-2220"></a></var><br>
+&mdash; Function File:  <b>structfun</b> (<var><small class="dots">...</small>, "ErrorHandler", errfunc</var>)<var><a name="index-structfun-2221"></a></var><br>
+&mdash; Function File:  <b>structfun</b> (<var><small class="dots">...</small>, "UniformOutput", val</var>)<var><a name="index-structfun-2222"></a></var><br>
 <blockquote>
         <p>Evaluate the function named <var>name</var> on the fields of the structure
 <var>S</var>.  The fields of <var>S</var> are passed to the function <var>func</var>

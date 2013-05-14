@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.
+@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -319,7 +319,7 @@ Octave entered debug mode.
 
 @c dbwhere libinterp/interpfcn/debug.cc
 @anchor{doc-dbwhere}
-@deftypefn {Built-in Function} {} dbwhere ()
+@deftypefn {Command} {} dbwhere
 In debugging mode, report the current file and line number where
 execution is stopped.
 @seealso{@ref{doc-dbstatus,,dbstatus}, @ref{doc-dbcont,,dbcont}, @ref{doc-dbstep,,dbstep}, @ref{doc-dbup,,dbup}}
@@ -389,8 +389,8 @@ execution to continue until the current function returns.
 
 @c dbstack libinterp/interpfcn/debug.cc
 @anchor{doc-dbstack}
-@deftypefn  {Built-in Function} {} dbstack ()
-@deftypefnx {Built-in Function} {} dbstack (@var{n})
+@deftypefn  {Command} {} dbstack
+@deftypefnx {Command} {} dbstack @var{n}
 @deftypefnx {Built-in Function} {[@var{stack}, @var{idx}] =} dbstack (@dots{})
 Display or return current debugging function stack information.
 With optional argument @var{n}, omit the @var{n} innermost stack frames.

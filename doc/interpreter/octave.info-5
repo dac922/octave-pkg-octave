@@ -3075,6 +3075,8 @@ system-wide wisdom file.
  -- Loadable Function:  fftw ("planner", METHOD)
  -- Loadable Function: WISDOM = fftw ("dwisdom")
  -- Loadable Function:  fftw ("dwisdom", WISDOM)
+ -- Loadable Function:  fftw ("threads", NTHREADS)
+ -- Loadable Function: NTHREADS = fftw ("threads")
      Manage FFTW wisdom data.  Wisdom data can be used to significantly
      accelerate the calculation of the FFTs, but implies an initial cost
      in its calculation.  When the FFTW libraries are initialized, they
@@ -3092,7 +3094,7 @@ system-wide wisdom file.
 
           fftw ("dwisdom", WISDOM)
 
-     If WISDOM is an empty matrix, then the wisdom used is cleared.
+     If WISDOM is an empty string, then the wisdom used is cleared.
 
      During the calculation of Fourier transforms further wisdom is
      generated.  The fashion in which this wisdom is generated is also
@@ -3140,6 +3142,15 @@ system-wide wisdom file.
      as described above.  Saved wisdom files should not be used on
      different platforms since they will not be efficient and the point
      of calculating the wisdom is lost.
+
+     The number of threads used for computing the plans and executing
+     the transforms can be set with
+
+          fftw ("threads", NTHREADS)
+
+     Note that octave must be compiled with multi-threaded FFTW support
+     for this feature.  The number of processors available to the
+     current process is used per default.
 
      *See also:* *note fft: doc-fft, *note ifft: doc-ifft, *note fft2:
      doc-fft2, *note ifft2: doc-ifft2, *note fftn: doc-fftn, *note
@@ -5489,6 +5500,10 @@ constructor would be modified to be
    Note that user classes always have higher precedence than built-in
 Octave types.  So in fact marking our polynomial class higher than the
 "double" class is in fact not necessary.
+
+   When faced with two objects that have the same precedence, Octave
+will use the method of the object that appears first on the list of
+arguments.
 
 
 File: octave.info,  Node: Inheritance and Aggregation,  Prev: Overloading Objects,  Up: Object Oriented Programming

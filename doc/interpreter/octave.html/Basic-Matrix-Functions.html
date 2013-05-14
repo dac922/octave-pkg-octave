@@ -38,11 +38,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Lin
 <p><a name="doc_002dbalance"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A</var>)<var><a name="index-balance-2067"></a></var><br>
-&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2068"></a></var><br>
-&mdash; Built-in Function: [<var>DD</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2069"></a></var><br>
-&mdash; Built-in Function: [<var>D</var>, <var>P</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2070"></a></var><br>
-&mdash; Built-in Function: [<var>CC</var>, <var>DD</var>, <var>AA</var>, <var>BB</var>] = <b>balance</b> (<var>A, B, opt</var>)<var><a name="index-balance-2071"></a></var><br>
+&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A</var>)<var><a name="index-balance-2070"></a></var><br>
+&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2071"></a></var><br>
+&mdash; Built-in Function: [<var>DD</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2072"></a></var><br>
+&mdash; Built-in Function: [<var>D</var>, <var>P</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2073"></a></var><br>
+&mdash; Built-in Function: [<var>CC</var>, <var>DD</var>, <var>AA</var>, <var>BB</var>] = <b>balance</b> (<var>A, B, opt</var>)<var><a name="index-balance-2074"></a></var><br>
 <blockquote>
         <p>Compute <var>AA</var><code> = </code><var>DD</var><code> \ </code><var>A</var><code> * </code><var>DD</var> in which <var>AA</var>
 is a matrix whose row and column norms are roughly equal in magnitude, and
@@ -80,8 +80,8 @@ in <var>DD</var> for the algebraic eigenvalue problem.
    <p><a name="doc_002dcond"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cond</b> (<var>A</var>)<var><a name="index-cond-2072"></a></var><br>
-&mdash; Function File:  <b>cond</b> (<var>A, p</var>)<var><a name="index-cond-2073"></a></var><br>
+&mdash; Function File:  <b>cond</b> (<var>A</var>)<var><a name="index-cond-2075"></a></var><br>
+&mdash; Function File:  <b>cond</b> (<var>A, p</var>)<var><a name="index-cond-2076"></a></var><br>
 <blockquote><p>Compute the <var>p</var>-norm condition number of a matrix.
 
         <p><code>cond (</code><var>A</var><code>)</code> is ## defined as
@@ -99,8 +99,8 @@ singular value decomposition.  Other possible selections are
    <p><a name="doc_002ddet"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>det</b> (<var>A</var>)<var><a name="index-det-2074"></a></var><br>
-&mdash; Built-in Function: [<var>d</var>, <var>rcond</var>] = <b>det</b> (<var>A</var>)<var><a name="index-det-2075"></a></var><br>
+&mdash; Built-in Function:  <b>det</b> (<var>A</var>)<var><a name="index-det-2077"></a></var><br>
+&mdash; Built-in Function: [<var>d</var>, <var>rcond</var>] = <b>det</b> (<var>A</var>)<var><a name="index-det-2078"></a></var><br>
 <blockquote><p>Compute the determinant of <var>A</var>.
 
         <p>Return an estimate of the reciprocal condition number if requested.
@@ -119,10 +119,10 @@ For that, use any of the condition number functions: <code>cond</code>,
    <p><a name="doc_002deig"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2076"></a></var><br>
-&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2077"></a></var><br>
-&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2078"></a></var><br>
-&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2079"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2079"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2080"></a></var><br>
+&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2081"></a></var><br>
+&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2082"></a></var><br>
 <blockquote><p>Compute the eigenvalues (and optionally the eigenvectors) of a matrix
 or a pair of matrices
 
@@ -139,8 +139,8 @@ matrices, if they are real or complex and if they are symmetric
    <p><a name="doc_002dgivens"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>g</var> = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2080"></a></var><br>
-&mdash; Built-in Function: [<var>c</var>, <var>s</var>] = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2081"></a></var><br>
+&mdash; Built-in Function: <var>g</var> = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2083"></a></var><br>
+&mdash; Built-in Function: [<var>c</var>, <var>s</var>] = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2084"></a></var><br>
 <blockquote><p>Return a 2 by 2 orthogonal matrix
 <var>g</var><code> = [</code><var>c</var> <var>s</var><code>; -</code><var>s</var><code>' </code><var>c</var><code>]</code> such that
 <var>g</var><code> [</code><var>x</var><code>; </code><var>y</var><code>] = [*; 0]</code> with <var>x</var> and <var>y</var> scalars.
@@ -157,7 +157,7 @@ matrices, if they are real or complex and if they are symmetric
    <p><a name="doc_002dplanerot"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>g</var>, <var>y</var>] = <b>planerot</b> (<var>x</var>)<var><a name="index-planerot-2082"></a></var><br>
+&mdash; Function File: [<var>g</var>, <var>y</var>] = <b>planerot</b> (<var>x</var>)<var><a name="index-planerot-2085"></a></var><br>
 <blockquote><p>Given a two-element column vector, returns the
 2 by 2 orthogonal matrix
 <var>G</var> such that
@@ -170,8 +170,8 @@ matrices, if they are real or complex and if they are symmetric
    <p><a name="doc_002dinv"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>x</var> = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2083"></a></var><br>
-&mdash; Built-in Function: [<var>x</var>, <var>rcond</var>] = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2084"></a></var><br>
+&mdash; Built-in Function: <var>x</var> = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2086"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>rcond</var>] = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2087"></a></var><br>
 <blockquote><p>Compute the inverse of the square matrix <var>A</var>.  Return an estimate
 of the reciprocal condition number if requested, otherwise warn of an
 ill-conditioned matrix if the reciprocal condition number is small.
@@ -193,12 +193,12 @@ of a sparse matrix if possible.
    <p><a name="doc_002dmatrix_005ftype"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A</var>)<var><a name="index-matrix_005ftype-2085"></a></var><br>
-&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A, "nocompute"</var>)<var><a name="index-matrix_005ftype-2086"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, type</var>)<var><a name="index-matrix_005ftype-2087"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "upper", perm</var>)<var><a name="index-matrix_005ftype-2088"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "lower", perm</var>)<var><a name="index-matrix_005ftype-2089"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "banded", nl, nu</var>)<var><a name="index-matrix_005ftype-2090"></a></var><br>
+&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A</var>)<var><a name="index-matrix_005ftype-2088"></a></var><br>
+&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A, "nocompute"</var>)<var><a name="index-matrix_005ftype-2089"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, type</var>)<var><a name="index-matrix_005ftype-2090"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "upper", perm</var>)<var><a name="index-matrix_005ftype-2091"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "lower", perm</var>)<var><a name="index-matrix_005ftype-2092"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "banded", nl, nu</var>)<var><a name="index-matrix_005ftype-2093"></a></var><br>
 <blockquote><p>Identify the matrix type or mark a matrix as a particular type.  This allows
 more rapid solutions of linear equations involving <var>A</var> to be performed. 
 Called with a single argument, <code>matrix_type</code> returns the type of the
@@ -262,9 +262,9 @@ LU&nbsp;factorization.  Once the matrix has been factorized,
    <p><a name="doc_002dnorm"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>norm</b> (<var>A</var>)<var><a name="index-norm-2091"></a></var><br>
-&mdash; Built-in Function:  <b>norm</b> (<var>A, p</var>)<var><a name="index-norm-2092"></a></var><br>
-&mdash; Built-in Function:  <b>norm</b> (<var>A, p, opt</var>)<var><a name="index-norm-2093"></a></var><br>
+&mdash; Built-in Function:  <b>norm</b> (<var>A</var>)<var><a name="index-norm-2094"></a></var><br>
+&mdash; Built-in Function:  <b>norm</b> (<var>A, p</var>)<var><a name="index-norm-2095"></a></var><br>
+&mdash; Built-in Function:  <b>norm</b> (<var>A, p, opt</var>)<var><a name="index-norm-2096"></a></var><br>
 <blockquote><p>Compute the p-norm of the matrix <var>A</var>.  If the second argument is
 missing, <code>p = 2</code> is assumed.
 
@@ -275,11 +275,11 @@ missing, <code>p = 2</code> is assumed.
 
           <br><dt><var>p</var> = <code>2</code><dd>Largest singular value of <var>A</var>.
 
-          <br><dt><var>p</var> = <code>Inf</code> or <code>"inf"</code><dd><a name="index-infinity-norm-2094"></a>Infinity norm, the largest row sum of the absolute values of <var>A</var>.
+          <br><dt><var>p</var> = <code>Inf</code> or <code>"inf"</code><dd><a name="index-infinity-norm-2097"></a>Infinity norm, the largest row sum of the absolute values of <var>A</var>.
 
-          <br><dt><var>p</var> = <code>"fro"</code><dd><a name="index-Frobenius-norm-2095"></a>Frobenius norm of <var>A</var>, <code>sqrt (sum (diag (</code><var>A</var><code>' * </code><var>A</var><code>)))</code>.
+          <br><dt><var>p</var> = <code>"fro"</code><dd><a name="index-Frobenius-norm-2098"></a>Frobenius norm of <var>A</var>, <code>sqrt (sum (diag (</code><var>A</var><code>' * </code><var>A</var><code>)))</code>.
 
-          <br><dt>other <var>p</var>, <var>p</var><code> &gt; 1</code><dd><a name="index-general-p_002dnorm-2096"></a>maximum <code>norm (A*x, p)</code> such that <code>norm (x, p) == 1</code>
+          <br><dt>other <var>p</var>, <var>p</var><code> &gt; 1</code><dd><a name="index-general-p_002dnorm-2099"></a>maximum <code>norm (A*x, p)</code> such that <code>norm (x, p) == 1</code>
 </dl>
 
         <p>If <var>A</var> is a vector or a scalar:
@@ -310,8 +310,8 @@ the norms of each column and return a row vector.
    <p><a name="doc_002dnull"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>null</b> (<var>A</var>)<var><a name="index-null-2097"></a></var><br>
-&mdash; Function File:  <b>null</b> (<var>A, tol</var>)<var><a name="index-null-2098"></a></var><br>
+&mdash; Function File:  <b>null</b> (<var>A</var>)<var><a name="index-null-2100"></a></var><br>
+&mdash; Function File:  <b>null</b> (<var>A, tol</var>)<var><a name="index-null-2101"></a></var><br>
 <blockquote><p>Return an orthonormal basis of the null space of <var>A</var>.
 
         <p>The dimension of the null space is taken as the number of singular
@@ -327,8 +327,8 @@ is missing, it is computed as
    <p><a name="doc_002dorth"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>orth</b> (<var>A</var>)<var><a name="index-orth-2099"></a></var><br>
-&mdash; Function File:  <b>orth</b> (<var>A, tol</var>)<var><a name="index-orth-2100"></a></var><br>
+&mdash; Function File:  <b>orth</b> (<var>A</var>)<var><a name="index-orth-2102"></a></var><br>
+&mdash; Function File:  <b>orth</b> (<var>A, tol</var>)<var><a name="index-orth-2103"></a></var><br>
 <blockquote><p>Return an orthonormal basis of the range space of <var>A</var>.
 
         <p>The dimension of the range space is taken as the number of singular
@@ -344,7 +344,7 @@ missing, it is computed as
    <p><a name="doc_002dmgorth"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>y</var>, <var>h</var>] = <b>mgorth</b> (<var>x, v</var>)<var><a name="index-mgorth-2101"></a></var><br>
+&mdash; Built-in Function: [<var>y</var>, <var>h</var>] = <b>mgorth</b> (<var>x, v</var>)<var><a name="index-mgorth-2104"></a></var><br>
 <blockquote><p>Orthogonalize a given column vector <var>x</var> with respect to a set of
 orthonormal vectors comprising the columns of <var>v</var>
 using the modified Gram-Schmidt method. 
@@ -360,8 +360,8 @@ On exit, <var>y</var> is a unit vector such that:
    <p><a name="doc_002dpinv"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>pinv</b> (<var>x</var>)<var><a name="index-pinv-2102"></a></var><br>
-&mdash; Built-in Function:  <b>pinv</b> (<var>x, tol</var>)<var><a name="index-pinv-2103"></a></var><br>
+&mdash; Built-in Function:  <b>pinv</b> (<var>x</var>)<var><a name="index-pinv-2105"></a></var><br>
+&mdash; Built-in Function:  <b>pinv</b> (<var>x, tol</var>)<var><a name="index-pinv-2106"></a></var><br>
 <blockquote><p>Return the pseudoinverse of <var>x</var>.  Singular values less than
 <var>tol</var> are ignored.
 
@@ -376,8 +376,8 @@ On exit, <var>y</var> is a unit vector such that:
    <p><a name="doc_002drank"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rank</b> (<var>A</var>)<var><a name="index-rank-2104"></a></var><br>
-&mdash; Function File:  <b>rank</b> (<var>A, tol</var>)<var><a name="index-rank-2105"></a></var><br>
+&mdash; Function File:  <b>rank</b> (<var>A</var>)<var><a name="index-rank-2107"></a></var><br>
+&mdash; Function File:  <b>rank</b> (<var>A, tol</var>)<var><a name="index-rank-2108"></a></var><br>
 <blockquote><p>Compute the rank of <var>A</var>, using the singular value decomposition. 
 The rank is taken to be the number of singular values of <var>A</var> that
 are greater than the specified tolerance <var>tol</var>.  If the second
@@ -393,7 +393,7 @@ singular value of <var>A</var>.
    <p><a name="doc_002drcond"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>c</var> = <b>rcond</b> (<var>A</var>)<var><a name="index-rcond-2106"></a></var><br>
+&mdash; Built-in Function: <var>c</var> = <b>rcond</b> (<var>A</var>)<var><a name="index-rcond-2109"></a></var><br>
 <blockquote><p>Compute the 1-norm estimate of the reciprocal condition number as returned
 by <span class="sc">lapack</span>.  If the matrix is well-conditioned then <var>c</var> will be near
 1 and if the matrix is poorly conditioned it will be close to zero.
@@ -409,7 +409,7 @@ instead.
    <p><a name="doc_002dtrace"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>trace</b> (<var>A</var>)<var><a name="index-trace-2107"></a></var><br>
+&mdash; Function File:  <b>trace</b> (<var>A</var>)<var><a name="index-trace-2110"></a></var><br>
 <blockquote><p>Compute the trace of <var>A</var>, <code>sum (diag (</code><var>A</var><code>))</code>. 
 </p></blockquote></div>
 
@@ -417,9 +417,9 @@ instead.
    <p><a name="doc_002drref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rref</b> (<var>A</var>)<var><a name="index-rref-2108"></a></var><br>
-&mdash; Function File:  <b>rref</b> (<var>A, tol</var>)<var><a name="index-rref-2109"></a></var><br>
-&mdash; Function File: [<var>r</var>, <var>k</var>] = <b>rref</b> (<var><small class="dots">...</small></var>)<var><a name="index-rref-2110"></a></var><br>
+&mdash; Function File:  <b>rref</b> (<var>A</var>)<var><a name="index-rref-2111"></a></var><br>
+&mdash; Function File:  <b>rref</b> (<var>A, tol</var>)<var><a name="index-rref-2112"></a></var><br>
+&mdash; Function File: [<var>r</var>, <var>k</var>] = <b>rref</b> (<var><small class="dots">...</small></var>)<var><a name="index-rref-2113"></a></var><br>
 <blockquote><p>Return the reduced row echelon form of <var>A</var>.  <var>tol</var> defaults
 to <code>eps * max (size (</code><var>A</var><code>)) * norm (</code><var>A</var><code>, inf)</code>.
 

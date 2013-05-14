@@ -34,6 +34,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Octave; see the file COPYING.  If not, see
 # <http://www.gnu.org/licenses/>.
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -71,8 +72,8 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk \
-	$(srcdir)/class-concat/module.mk $(srcdir)/classes/module.mk \
-	$(srcdir)/ctor-vs-method/module.mk \
+	$(srcdir)/bug-38236/module.mk $(srcdir)/class-concat/module.mk \
+	$(srcdir)/classes/module.mk $(srcdir)/ctor-vs-method/module.mk \
 	$(srcdir)/fcn-handle-derived-resolution/module.mk \
 	$(srcdir)/nest/module.mk $(top_srcdir)/build-aux/common.mk
 subdir = test
@@ -150,8 +151,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/rewinddir.m4 $(top_srcdir)/m4/rmdir.m4 \
 	$(top_srcdir)/m4/round.m4 $(top_srcdir)/m4/roundf.m4 \
 	$(top_srcdir)/m4/same.m4 $(top_srcdir)/m4/save-cwd.m4 \
-	$(top_srcdir)/m4/select.m4 $(top_srcdir)/m4/sigaction.m4 \
-	$(top_srcdir)/m4/signal_h.m4 \
+	$(top_srcdir)/m4/secure_getenv.m4 $(top_srcdir)/m4/select.m4 \
+	$(top_srcdir)/m4/sigaction.m4 $(top_srcdir)/m4/signal_h.m4 \
 	$(top_srcdir)/m4/signalblocking.m4 $(top_srcdir)/m4/signbit.m4 \
 	$(top_srcdir)/m4/size_max.m4 $(top_srcdir)/m4/sleep.m4 \
 	$(top_srcdir)/m4/socketlib.m4 $(top_srcdir)/m4/sockets.m4 \
@@ -195,6 +196,35 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
+am__install_max = 40
+am__nobase_strip_setup = \
+  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
+am__nobase_strip = \
+  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
+am__nobase_list = $(am__nobase_strip_setup); \
+  for p in $$list; do echo "$$p $$p"; done | \
+  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
+  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
+    if (++n[$$2] == $(am__install_max)) \
+      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
+    END { for (dir in files) print dir, files[dir] }'
+am__base_list = \
+  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
+  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
+am__uninstall_files_from_dir = { \
+  test -z "$$files" \
+    || { test ! -d "$$dir" && test ! -f "$$dir" && test ! -r "$$dir"; } \
+    || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
+         $(am__cd) "$$dir" && rm -f $$files; }; \
+  }
+am__installdirs = "$(DESTDIR)$(fixedtestsdir)"
+DATA = $(nobase_fixedtests_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 pkglibexecdir = @pkglibexecdir@
 ACLOCAL = @ACLOCAL@
@@ -252,6 +282,7 @@ COPYSIGN_LIBM = @COPYSIGN_LIBM@
 CPICFLAG = @CPICFLAG@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CROSS_TOOL_PREFIX = @CROSS_TOOL_PREFIX@
 CRUFT_DLL_DEFS = @CRUFT_DLL_DEFS@
 CURL_CPPFLAGS = @CURL_CPPFLAGS@
 CURL_LDFLAGS = @CURL_LDFLAGS@
@@ -589,6 +620,7 @@ GNULIB_ROUNDL = @GNULIB_ROUNDL@
 GNULIB_RPMATCH = @GNULIB_RPMATCH@
 GNULIB_SCANDIR = @GNULIB_SCANDIR@
 GNULIB_SCANF = @GNULIB_SCANF@
+GNULIB_SECURE_GETENV = @GNULIB_SECURE_GETENV@
 GNULIB_SELECT = @GNULIB_SELECT@
 GNULIB_SEND = @GNULIB_SEND@
 GNULIB_SENDTO = @GNULIB_SENDTO@
@@ -931,6 +963,7 @@ HAVE_RPMATCH = @HAVE_RPMATCH@
 HAVE_SAME_LONG_DOUBLE_AS_DOUBLE = @HAVE_SAME_LONG_DOUBLE_AS_DOUBLE@
 HAVE_SA_FAMILY_T = @HAVE_SA_FAMILY_T@
 HAVE_SCANDIR = @HAVE_SCANDIR@
+HAVE_SECURE_GETENV = @HAVE_SECURE_GETENV@
 HAVE_SETENV = @HAVE_SETENV@
 HAVE_SETHOSTNAME = @HAVE_SETHOSTNAME@
 HAVE_SIGACTION = @HAVE_SIGACTION@
@@ -1096,7 +1129,14 @@ MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINFO = @MKINFO@
+MKOCTFILE_AR = @MKOCTFILE_AR@
+MKOCTFILE_CC = @MKOCTFILE_CC@
+MKOCTFILE_CXX = @MKOCTFILE_CXX@
+MKOCTFILE_DL_LD = @MKOCTFILE_DL_LD@
 MKOCTFILE_DL_LDFLAGS = @MKOCTFILE_DL_LDFLAGS@
+MKOCTFILE_F77 = @MKOCTFILE_F77@
+MKOCTFILE_LD_CXX = @MKOCTFILE_LD_CXX@
+MKOCTFILE_RANLIB = @MKOCTFILE_RANLIB@
 MOC = @MOC@
 NEXT_AS_FIRST_DIRECTIVE_DIRENT_H = @NEXT_AS_FIRST_DIRECTIVE_DIRENT_H@
 NEXT_AS_FIRST_DIRECTIVE_ERRNO_H = @NEXT_AS_FIRST_DIRECTIVE_ERRNO_H@
@@ -1617,6 +1657,12 @@ octincludedir = @octincludedir@
 # Where to install and expect libraries like liboctave.a, liboctinterp.a,
 # and other architecture-dependent data.
 octlibdir = @octlibdir@
+
+# Where to install and expect the language files for the gui.
+octlocaledir = @octlocaledir@
+
+# Where to install test files.
+octtestsdir = @octtestsdir@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
 
@@ -1690,14 +1736,13 @@ localstartupfiledir = ${localfcnfiledir}/startup
 # The separator used for elements of the LD_PRELOAD variable (might be
 # a space, so protect with $(null))
 null = 
-FCN_FILES = fntests.m test_args.m test_bug_31371.m test_diag_perm.m \
-	test_error.m test_eval-catch.m test_for.m test_func.m \
-	test_global.m test_if.m test_index.m test_io.m \
-	test_line_continue.m test_logical_index.m test_null_assign.m \
-	test_parser.m test_prefer.m test_range.m test_recursion.m \
-	test_return.m test_slice.m test_struct.m test_switch.m \
-	test_system.m test_transpose.m test_try.m test_unwind.m \
-	test_while.m $(bug_35448_FCN_FILES) $(bug_36025_FCN_FILES) \
+FCN_FILES = fntests.m args.tst bug-31371.tst diag-perm.tst error.tst \
+	eval-catch.tst for.tst func.tst global.tst if.tst index.tst \
+	io.tst line-continue.tst logical-index.tst null-assign.tst \
+	parser.tst prefer.tst range.tst recursion.tst return.tst \
+	slice.tst struct.tst switch.tst system.tst transpose.tst \
+	try.tst unwind.tst while.tst $(bug_35448_FCN_FILES) \
+	$(bug_36025_FCN_FILES) $(bug_38236_FCN_FILES) \
 	$(classes_FCN_FILES) $(class_concat_FCN_FILES) \
 	$(ctor_vs_method_FCN_FILES) \
 	$(fcn_handle_derived_resolution_FCN_FILES) $(nest_FCN_FILES)
@@ -1705,13 +1750,18 @@ bug_35448_FCN_FILES = \
   bug-35448/fA.m \
   bug-35448/fB.m \
   bug-35448/fC.m \
-  bug-35448/test_bug_35448.m
+  bug-35448/bug-35448.tst
 
 bug_36025_FCN_FILES = \
   bug-36025/@testclass/one.m \
   bug-36025/@testclass/testclass.m \
   bug-36025/@testclass/two.m \
-  bug-36025/test_bug_36025.m
+  bug-36025/bug-36025.tst
+
+bug_38236_FCN_FILES = \
+  bug-38236/df_vr.m \
+  bug-38236/u_vr.m \
+  bug-38236/bug-38236.tst
 
 classes_FCN_FILES = \
   classes/@Blork/Blork.m \
@@ -1752,17 +1802,38 @@ classes_FCN_FILES = \
   classes/@Snork/Snork.m \
   classes/@Snork/cack.m \
   classes/@Snork/display.m \
+  classes/@Snork/double.m \
   classes/@Snork/end.m \
+  classes/@Snork/eq.m \
+  classes/@Snork/ge.m \
   classes/@Snork/get.m \
   classes/@Snork/getStash.m \
   classes/@Snork/gick.m \
+  classes/@Snork/gt.m \
+  classes/@Snork/horzcat.m \
+  classes/@Snork/ldivide.m \
+  classes/@Snork/le.m \
   classes/@Snork/loadobj.m \
+  classes/@Snork/lt.m \
+  classes/@Snork/minus.m \
+  classes/@Snork/mldivide.m \
+  classes/@Snork/mpower.m \
+  classes/@Snork/mrdivide.m \
+  classes/@Snork/mtimes.m \
+  classes/@Snork/ne.m \
+  classes/@Snork/plus.m \
+  classes/@Snork/power.m \
   classes/@Snork/private/myStash.m \
+  classes/@Snork/rdivide.m \
   classes/@Snork/saveobj.m \
   classes/@Snork/set.m \
   classes/@Snork/subsasgn.m \
   classes/@Snork/subsindex.m \
   classes/@Snork/subsref.m \
+  classes/@Snork/times.m \
+  classes/@Snork/uminus.m \
+  classes/@Snork/uplus.m \
+  classes/@Snork/vertcat.m \
   classes/@Spork/Spork.m \
   classes/@Spork/cack.m \
   classes/@Spork/display.m \
@@ -1773,11 +1844,11 @@ classes_FCN_FILES = \
   classes/@Spork/private/myStash.m \
   classes/@Spork/saveobj.m \
   classes/@Spork/set.m \
-  classes/test_classes.m
+  classes/classes.tst
 
 class_concat_FCN_FILES = \
   class-concat/@foo/foo.m \
-  class-concat/test_class_concat.m
+  class-concat/class-concat.tst
 
 ctor_vs_method_FCN_FILES = \
   ctor-vs-method/@derived/derived.m \
@@ -1787,7 +1858,7 @@ ctor_vs_method_FCN_FILES = \
   ctor-vs-method/@parent/method.m \
   ctor-vs-method/@parent/parent.m \
   ctor-vs-method/__trace__.m \
-  ctor-vs-method/test_ctor_vs_method.m
+  ctor-vs-method/ctor-vs-method.tst
 
 fcn_handle_derived_resolution_FCN_FILES = \
   fcn-handle-derived-resolution/@derived/derived.m \
@@ -1797,9 +1868,9 @@ fcn_handle_derived_resolution_FCN_FILES = \
   fcn-handle-derived-resolution/@other/other.m \
   fcn-handle-derived-resolution/@parent/numel.m \
   fcn-handle-derived-resolution/@parent/parent.m \
-  fcn-handle-derived-resolution/test_fcn_handle_derived_resolution.m
+  fcn-handle-derived-resolution/fcn-handle-derived-resolution.tst
 
-nest_FCN_FILES = \
+nest_fcn_files = \
   nest/arg_nest.m \
   nest/arg_ret.m \
   nest/nest_eval.m \
@@ -1814,29 +1885,43 @@ nest_FCN_FILES = \
   nest/scope3.m \
   nest/script_nest.m \
   nest/script_nest_script.m \
-  nest/test_nest.m \
+  nest/nest.tst \
   nest/varg_nest.m \
   nest/varg_nest2.m
 
+GENERATED_BC_OVERLOADS_DIRS := \
+  $(shell $(srcdir)/build-bc-overload-tests.sh --list-dirs)
+
+GENERATED_BC_OVERLOADS_FILES := \
+  $(shell $(srcdir)/build-bc-overload-tests.sh --list-files)
+
+BUILT_SOURCES = bc-overload-tests.stamp
 EXTRA_DIST = \
-  build_sparse_tests.sh \
-  build_bc_overload_tests.sh \
-  bc_overloads_expected \
+  build-sparse-tests.sh \
+  build-bc-overload-tests.sh \
+  bc-overloads-expected \
   build_bc_overloads_expected.m \
   $(FCN_FILES)
 
 CLEANFILES = \
-  test_sparse.m \
-  test_bc_overloads.m \
-  tbcover.m
+  sparse.tst \
+  bc-overload-tests.stamp \
+  $(GENERATED_BC_OVERLOADS_FILES)
 
 DISTCLEANFILES = \
   fntests.log
 
-all: all-am
+fixedtestsdir := $(octtestsdir)/fixed
+nobase_fixedtests_DATA = \
+  sparse.tst \
+  $(GENERATED_BC_OVERLOADS_FILES) \
+  $(filter-out fntests.m, $(FCN_FILES))
+
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/bug-38236/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1857,7 +1942,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk:
+$(top_srcdir)/build-aux/common.mk $(srcdir)/bug-35448/module.mk $(srcdir)/bug-36025/module.mk $(srcdir)/bug-38236/module.mk $(srcdir)/classes/module.mk $(srcdir)/class-concat/module.mk $(srcdir)/ctor-vs-method/module.mk $(srcdir)/fcn-handle-derived-resolution/module.mk $(srcdir)/nest/module.mk:
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -1873,6 +1958,30 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-nobase_fixedtestsDATA: $(nobase_fixedtests_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(nobase_fixedtests_DATA)'; test -n "$(fixedtestsdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(fixedtestsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(fixedtestsdir)" || exit 1; \
+	fi; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo " $(MKDIR_P) '$(DESTDIR)$(fixedtestsdir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(fixedtestsdir)/$$dir"; }; \
+	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(fixedtestsdir)/$$dir'"; \
+	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(fixedtestsdir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_fixedtestsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_fixedtests_DATA)'; test -n "$(fixedtestsdir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	dir='$(DESTDIR)$(fixedtestsdir)'; $(am__uninstall_files_from_dir)
 tags: TAGS
 TAGS:
 
@@ -1911,10 +2020,15 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-am
-all-am: Makefile
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
+all-am: Makefile $(DATA)
 installdirs:
-install: install-am
+	for dir in "$(DESTDIR)$(fixedtestsdir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -1946,6 +2060,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local mostlyclean-am
@@ -1966,7 +2081,7 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-nobase_fixedtestsDATA
 
 install-dvi: install-dvi-am
 
@@ -2010,9 +2125,9 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-nobase_fixedtestsDATA
 
-.MAKE: install-am install-strip
+.MAKE: all check install install-am install-strip
 
 .PHONY: all all-am check check-am clean clean-generic clean-libtool \
 	clean-local distclean distclean-generic distclean-libtool \
@@ -2020,11 +2135,12 @@ uninstall-am:
 	install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	uninstall uninstall-am
+	install-nobase_fixedtestsDATA install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-nobase_fixedtestsDATA
 
 export AWK
 export SED
@@ -2161,7 +2277,14 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_MAGICK_CPPFLAGS%|\"${MAGICK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_MAGICK_LDFLAGS%|\"${MAGICK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_MAGICK_LIBS%|\"${MAGICK_LIBS}\"|" \
-  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LDFLAGS%|\"@MKOCTFILE_DL_LDFLAGS@\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_AR%|\"${MKOCTFILE_AR}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_CC%|\"${MKOCTFILE_CC}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_CXX%|\"${MKOCTFILE_CXX}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LD%|\"${MKOCTFILE_DL_LD}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_DL_LDFLAGS%|\"${MKOCTFILE_DL_LDFLAGS}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_F77%|\"${MKOCTFILE_F77}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_LD_CXX%|\"${MKOCTFILE_LD_CXX}\"|' \
+  -e 's|%OCTAVE_CONF_MKOCTFILE_RANLIB%|\"${MKOCTFILE_RANLIB}\"|' \
   -e "s|%OCTAVE_CONF_OCTAVE_LINK_DEPS%|\"${OCTAVE_LINK_DEPS}\"|" \
   -e "s|%OCTAVE_CONF_OCTAVE_LINK_OPTS%|\"${OCTAVE_LINK_OPTS}\"|" \
   -e "s|%OCTAVE_CONF_OCTINCLUDEDIR%|\"${octincludedir}\"|" \
@@ -2253,6 +2376,8 @@ $(SED) < $< > $@-t \
   -e "s|%OCTAVE_OCTETCDIR%|\"${octetcdir}\"|" \
   -e "s|%OCTAVE_OCTINCLUDEDIR%|\"${octincludedir}\"|" \
   -e "s|%OCTAVE_OCTLIBDIR%|\"${octlibdir}\"|" \
+  -e "s|%OCTAVE_OCTLOCALEDIR%|\"${octlocaledir}\"|" \
+  -e "s|%OCTAVE_OCTTESTSDIR%|\"${octtestsdir}\"|" \
   -e "s|%OCTAVE_STARTUPFILEDIR%|\"${startupfiledir}\"|" \
   -e "s|%OCTAVE_PREFIX%|\"${prefix}\"|" \
   -e "s|%OCTAVE_API_VERSION%|\"${api_version}\"|" \
@@ -2302,18 +2427,32 @@ rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
 -rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
 endef
 
-check: test_sparse.m test_bc_overloads.m
+define test-file-commands
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+mv $@-t $@
+endef
+
+%.cc-tst : %.cc
+	$(test-file-commands)
+
+%.yy-tst : %.yy
+	$(test-file-commands)
+
+%.ll-tst : %.ll
+	$(test-file-commands)
+
+check: sparse.tst bc-overload-tests.stamp
 	$(top_builddir)/run-octave --norc --silent --no-history $(srcdir)/fntests.m $(srcdir)
 
-test_sparse.m: build_sparse_tests.sh
-	$(srcdir)/build_sparse_tests.sh
+sparse.tst: build-sparse-tests.sh
+	$(srcdir)/build-sparse-tests.sh
 
-test_bc_overloads.m: build_bc_overload_tests.sh bc_overloads_expected
-	$(srcdir)/build_bc_overload_tests.sh $(srcdir)/bc_overloads_expected
+bc-overload-tests.stamp: build-bc-overload-tests.sh bc-overloads-expected
+	$(srcdir)/build-bc-overload-tests.sh $(srcdir)/bc-overloads-expected
+	touch $@
 
 clean-local:
-	-rm -rf @double @logical @int8 @uint64 @int64 @cell @single @int32 \
-	@uint8 @uint16 @uint32 @struct @int16 @function_handle @char
+	-rm -rf $(GENERATED_BC_OVERLOADS_DIRS)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

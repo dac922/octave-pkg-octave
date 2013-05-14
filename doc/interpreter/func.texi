@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.
+@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -2081,7 +2081,8 @@ function arguments will then be in alphabetical order.  It should
 be noted that i, and j are ignored as arguments due to the
 ambiguity between their use as a variable or their use as an inbuilt
 constant.  All arguments followed by a parenthesis are considered
-to be functions.
+to be functions. If no arguments are found, a function taking a single
+argument named @code{x} will be created.
 
 If the second and subsequent arguments are character strings,
 they are the names of the arguments of the function.

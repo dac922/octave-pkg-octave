@@ -27,19 +27,7 @@ along with Octave; see the file COPYING.  If not, see
 #include <QIcon>
 #include <QMap>
 #include <QSettings>
-
-// constants for the widget's icons
-enum widget_icon_set
-  {
-    NO_ICON_SET = 0,
-    GRAPHIC_ICON_SET,
-    LETTER_ICON_SET
-  };
-static const char* WIDGET_ICON_SET_PREFIX[] =
-    {":/actions/icons/logo.png",
-     ":/actions/icons/graphic_logo_",
-     ":/actions/icons/letter_logo_"};
-
+#include <QTranslator>
 
 class resource_manager
 {
@@ -73,7 +61,9 @@ public:
       instance->do_set_settings (file);
   }
 
-  static QString find_translator_file (const QString& language);
+  static QString get_gui_translation_dir (void);
+
+  static void config_translators (QTranslator*, QTranslator*);
 
   static void update_network_settings (void)
   {
@@ -119,6 +109,7 @@ private:
   void do_update_network_settings (void);
 
   bool do_is_first_run (void);
+
 };
 
 #endif // RESOURCEMANAGER_H

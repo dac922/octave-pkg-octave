@@ -1705,10 +1705,10 @@ File: octave.info,  Node: The break Statement,  Next: The continue Statement,  P
 10.6 The break Statement
 ========================
 
-The `break' statement jumps out of the innermost `for' or `while' loop
-that encloses it.  The `break' statement may only be used within the
-body of a loop.  The following example finds the smallest divisor of a
-given integer, and also identifies prime numbers:
+The `break' statement jumps out of the innermost `while', `do-until',
+or `for' loop that encloses it.  The `break' statement may only be used
+within the body of a loop.  The following example finds the smallest
+divisor of a given integer, and also identifies prime numbers:
 
      num = 103;
      div = 2;
@@ -1754,10 +1754,11 @@ File: octave.info,  Node: The continue Statement,  Next: The unwind_protect Stat
 10.7 The continue Statement
 ===========================
 
-The `continue' statement, like `break', is used only inside `for' or
-`while' loops.  It skips over the rest of the loop body, causing the
-next cycle around the loop to begin immediately.  Contrast this with
-`break', which jumps out of the loop altogether.  Here is an example:
+The `continue' statement, like `break', is used only inside `while',
+`do-until', or `for' loops.  It skips over the rest of the loop body,
+causing the next cycle around the loop to begin immediately.  Contrast
+this with `break', which jumps out of the loop altogether.  Here is an
+example:
 
      # print elements of a vector of random
      # integers that are even.
@@ -3588,7 +3589,8 @@ After this it is possible to evaluate f at any x by writing `f(x)'.
      be noted that i, and j are ignored as arguments due to the
      ambiguity between their use as a variable or their use as an
      inbuilt constant.  All arguments followed by a parenthesis are
-     considered to be functions.
+     considered to be functions. If no arguments are found, a function
+     taking a single argument named `x' will be created.
 
      If the second and subsequent arguments are character strings, they
      are the names of the arguments of the function.
@@ -4873,7 +4875,7 @@ interrogate where in the execution of a script Octave entered the debug
 mode and to print the code in the script surrounding the point where
 Octave entered debug mode.
 
- -- Built-in Function:  dbwhere ()
+ -- Command:  dbwhere
      In debugging mode, report the current file and line number where
      execution is stopped.
 
@@ -4939,8 +4941,8 @@ File: octave.info,  Node: Call Stack,  Next: Profiling,  Prev: Debug Mode,  Up: 
 13.5 Call Stack
 ===============
 
- -- Built-in Function:  dbstack ()
- -- Built-in Function:  dbstack (N)
+ -- Command:  dbstack
+ -- Command:  dbstack N
  -- Built-in Function: [STACK, IDX] = dbstack (...)
      Display or return current debugging function stack information.
      With optional argument N, omit the N innermost stack frames.
@@ -8169,6 +8171,32 @@ Figure 15.2: Histogram.
           colormap (summer ());
 
      *See also:* *note bar: doc-bar.
+
+ -- Function File:  stemleaf (X)
+ -- Function File: PLOT = stemleaf (X, OPT)
+     Compute and display a stem and leaf plot of the vector X.
+
+     The X vector is converted to integer by X = `fix' (X).  If an
+     output argument is provided, the plot is returned as an array of
+     strings.  The first element is the heading followed by an element
+     for each stem.  The default stem step is 10.  The X vector should
+     be integers.  It will be treated so that the last digit is the
+     leaf value and the other digits are the stems.  The leaf digits
+     are not sorted.  If sorted leaf values are wanted, use `sort' (X)
+     before calling `stemleaf' (X).  The stem and leaf plot is
+     described in: Ch. 3, Exploratory Data Analysis by J. W. Tukey,
+     Addison-Wesley, 1977.
+
+     *See also:* *note hist: doc-hist, *note printd: doc-printd.
+
+ -- Function File:  printd (OBJ, FILENAME)
+     Convert any object acceptable to `disp' into the format selected
+     by the suffix of FILENAME.
+
+     This function is intended to facilitate manipulation of the output
+     of functions such as `stemleaf'.
+
+     *See also:* *note stemleaf: doc-stemleaf.
 
  -- Function File:  stairs (Y)
  -- Function File:  stairs (X, Y)

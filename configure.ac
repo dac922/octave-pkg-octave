@@ -19,14 +19,14 @@ dnl Copyright (C) 1993-2012 John W. Eaton
 ### <http://www.gnu.org/licenses/>.
 
 AC_PREREQ([2.62])
-AC_INIT([GNU Octave], [3.7.1], [http://octave.org/bugs.html], [octave])
+AC_INIT([GNU Octave], [3.7.2], [http://octave.org/bugs.html], [octave])
 
 dnl PACKAGE_VERSION is set by the AC_INIT VERSION arg
 OCTAVE_VERSION="$PACKAGE_VERSION"
 OCTAVE_API_VERSION_NUMBER="48"
 OCTAVE_API_VERSION="api-v$OCTAVE_API_VERSION_NUMBER+"
-OCTAVE_RELEASE_DATE="2013-01-02"
-OCTAVE_COPYRIGHT="Copyright (C) 2012 John W. Eaton and others."
+OCTAVE_RELEASE_DATE="2013-02-09"
+OCTAVE_COPYRIGHT="Copyright (C) 2013 John W. Eaton and others."
 AC_SUBST(OCTAVE_VERSION)
 AC_SUBST(OCTAVE_API_VERSION_NUMBER)
 AC_SUBST(OCTAVE_API_VERSION)
@@ -80,7 +80,9 @@ OCTAVE_SET_DEFAULT([localapifcnfiledir],
   '$(datadir)/octave/site/$(api_version)/m')
 OCTAVE_SET_DEFAULT([localverfcnfiledir], '$(datadir)/octave/$(version)/site/m')
 OCTAVE_SET_DEFAULT([octetcdir], '$(datadir)/octave/$(version)/etc')
+OCTAVE_SET_DEFAULT([octlocaledir], '$(datadir)/octave/$(version)/locale')
 OCTAVE_SET_DEFAULT([doc_cache_file], '$(octetcdir)/doc-cache')
+OCTAVE_SET_DEFAULT([octtestsdir], '$(octetcdir)/tests')
 OCTAVE_SET_DEFAULT([texi_macros_file], '$(octetcdir)/macros.texi')
 OCTAVE_SET_DEFAULT([imagedir], '$(datadir)/octave/$(version)/imagelib')
 OCTAVE_SET_DEFAULT([man1dir], '$(mandir)/man1')
@@ -516,20 +518,12 @@ AC_ARG_VAR([BUILD_LDFLAGS],
 AC_ARG_VAR([BUILD_EXEEXT],
   [build system executable extension (used if cross compiling)])
 
-dnl This is bogus.  We shouldn't have to explicitly add libc too!
-dnl Keep this check before the check for the Fortran compiler,
-dnl in case -lm is needed to compile Fortran programs.
 
 ### Look for math library.  If found, this will add -lm to LIBS.
 
-case $host_os in
-  linux*)
-    AC_CHECK_LIB(m, sin, , , -lc)
-  ;;
-  *)
-    AC_CHECK_LIB(m, sin)
-  ;;
-esac
+dnl Keep this check before the check for the Fortran compiler,
+dnl in case -lm is needed to compile Fortran programs.
+AC_CHECK_LIB(m, sin)
 
 ### Determine the Fortran compiler and how to invoke it
 
@@ -819,6 +813,22 @@ OCTAVE_CHECK_LIB(fftw3, FFTW3,
 OCTAVE_CHECK_LIB(fftw3f, FFTW3F,
   [FFTW3F library not found.  The slower FFTPACK library will be used instead.],
   [fftw3.h], [fftwf_plan_dft_1d])
+
+## Check for the multithreaded FFTW library.
+## Fallback to singlethreaded if not found or disabled
+build_fftw_threads=true
+AC_ARG_ENABLE([fftw-threads],
+  [AS_HELP_STRING([--disable-fftw-threads],
+    [disable Multi-threaded FFTW])],
+  [if test "$enableval" = no; then
+     build_fftw_threads=false
+   fi],
+  [])
+
+if test $build_fftw_threads = true; then
+  OCTAVE_CHECK_FFTW_THREADS(fftw3, fftw_plan_with_nthreads)
+  OCTAVE_CHECK_FFTW_THREADS(fftw3f, fftwf_plan_with_nthreads)
+fi
 
 AM_CONDITIONAL([AMCOND_HAVE_FFTW],
   [test -n "$FFTW3_LIBS" && test -n "$FFTW3F_LIBS"])
@@ -1285,7 +1295,7 @@ OCTAVE_CHECK_LIB(amd, AMD,
 
 OCTAVE_CHECK_LIB(camd, CAMD,
   [CAMD library not found.  This will result in some lack of functionality for sparse matrices.],
-  [suitesparse/camd.h ufsparse/camd.h amd/camd.h camd.h],
+  [suitesparse/camd.h ufsparse/camd.h camd/camd.h camd.h],
   [camd_postorder],
   [], [don't use CAMD library, disable some sparse matrix functionality])
 
@@ -1293,7 +1303,7 @@ OCTAVE_CHECK_LIB(camd, CAMD,
 
 OCTAVE_CHECK_LIB(colamd, COLAMD,
   [COLAMD library not found.  This will result in some lack of functionality for sparse matrices.],
-  [suitesparse/colamd.h ufsparse/colamd.h amd/colamd.h colamd.h],
+  [suitesparse/colamd.h ufsparse/colamd.h colamd/colamd.h colamd.h],
   [colamd],
   [], [don't use COLAMD library, disable some sparse matrix functionality])
 
@@ -1301,7 +1311,7 @@ OCTAVE_CHECK_LIB(colamd, COLAMD,
 
 OCTAVE_CHECK_LIB(ccolamd, CCOLAMD,
   [CCOLAMD library not found.  This will result in some lack of functionality for sparse matrices.],
-  [suitesparse/ccolamd.h ufsparse/ccolamd.h amd/ccolamd.h ccolamd.h],
+  [suitesparse/ccolamd.h ufsparse/ccolamd.h ccolamd/ccolamd.h ccolamd.h],
   [ccolamd],
   [], [don't use CCOLAMD library, disable some sparse matrix functionality])
 
@@ -1322,7 +1332,7 @@ LIBS="$save_LIBS"
 
 OCTAVE_CHECK_LIB(cxsparse, CXSparse,
   [CXSparse library not found.  This will result in some lack of functionality for sparse matrices.],
-  [suitesparse/cs.h ufsparse/cs.h amd/cs.h cs.h],
+  [suitesparse/cs.h ufsparse/cs.h cxsparse/cs.h cs.h],
   [cs_di_sqr],
   [C++], [don't use CXSparse library, disable some sparse matrix functionality])
 
@@ -1428,10 +1438,8 @@ AC_ARG_ENABLE([dl],
    esac],
   [ENABLE_DYNAMIC_LINKING=true])
 
-if $STATIC_LIBS || $SHARED_LIBS; then
-  true
-else
-  AC_MSG_ERROR([You can't disable building static AND shared libraries!])
+if ! $STATIC_LIBS && ! $SHARED_LIBS; then
+  AC_MSG_ERROR([You can't disable building both static AND shared libraries!])
 fi
 
 CPICFLAG=-fPIC
@@ -1794,7 +1802,7 @@ if $SHARED_LIBS || $ENABLE_DYNAMIC_LINKING; then
 
   ## Disable dynamic linking if capability is not present.
   if $dlopen_api || $shl_load_api || $loadlibrary_api || $dyld_api; then
-    true
+    :  # some form of dynamic linking present
   else
     ENABLE_DYNAMIC_LINKING=false
   fi
@@ -1820,6 +1828,42 @@ AC_SUBST(RDYNAMIC_FLAG)
 AC_SUBST(ENABLE_DYNAMIC_LINKING)
 AC_SUBST(LIBOCTINTERP)
 AC_SUBST(LIBOCTAVE)
+
+
+if test "$cross_compiling" = yes && test -n "$ac_tool_prefix"; then
+  CROSS_TOOL_PREFIX="$ac_tool_prefix"
+  MKOCTFILE_AR='$(shell echo $(AR) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+  MKOCTFILE_CC='$(shell echo $(CC) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+  MKOCTFILE_CXX='$(shell echo $(CXX) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+  MKOCTFILE_DL_LD='$(shell echo $(DL_LD) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+  MKOCTFILE_F77='$(shell echo $(F77) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+  MKOCTFILE_LD_CXX='$(shell echo $(LD_CXX) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+  MKOCTFILE_RANLIB='$(shell echo $(RANLIB) | sed "s,$(CROSS_TOOL_PREFIX),,")'
+else
+  MKOCTFILE_AR="$AR"
+  MKOCTFILE_CC="$CC"
+  MKOCTFILE_CXX="$CXX"
+  MKOCTFILE_DL_LD="$DL_LD"
+  MKOCTFILE_F77="$F77"
+  MKOCTFILE_LD_CXX="$LD_CXX"
+  MKOCTFILE_RANLIB="$RANLIB"
+fi
+AC_MSG_NOTICE([defining CROSS_TOOL_PREFIX to be $CROSS_TOOL_PREFIX])
+AC_MSG_NOTICE([defining MKOCTFILE_AR to be $MKOCTFILE_AR])
+AC_MSG_NOTICE([defining MKOCTFILE_CC to be $MKOCTFILE_CC])
+AC_MSG_NOTICE([defining MKOCTFILE_CXX to be $MKOCTFILE_CXX])
+AC_MSG_NOTICE([defining MKOCTFILE_DL_LD to be $MKOCTFILE_DL_LD])
+AC_MSG_NOTICE([defining MKOCTFILE_F77 to be $MKOCTFILE_F77])
+AC_MSG_NOTICE([defining MKOCTFILE_LD_CXX to be $MKOCTFILE_LD_CXX])
+AC_MSG_NOTICE([defining MKOCTFILE_RANLIB to be $MKOCTFILE_RANLIB])
+AC_SUBST(CROSS_TOOL_PREFIX)
+AC_SUBST(MKOCTFILE_AR)
+AC_SUBST(MKOCTFILE_CC)
+AC_SUBST(MKOCTFILE_CXX)
+AC_SUBST(MKOCTFILE_DL_LD)
+AC_SUBST(MKOCTFILE_F77)
+AC_SUBST(MKOCTFILE_LD_CXX)
+AC_SUBST(MKOCTFILE_RANLIB)
 
 ### Check for existence of various libraries
 
@@ -2012,21 +2056,11 @@ OCTAVE_CHECK_FUNC_CMATH(isnan)
 OCTAVE_CHECK_FUNC_CMATH(isinf)
 OCTAVE_CHECK_FUNC_CMATH(isfinite)
 
-dnl Would like to get rid of this crap, and just have
-dnl
-dnl   AC_CHECK_FUNCS([finite isnan isinf])
-dnl
-dnl instead, but that used to fail on some systems...
-dnl
-dnl Also just using AC_CHECK_FUNCS doesn't seem to work to find isinf
-dnl and isnan on Linux systems, so we use AC_CHECK_FUNC, and if that
-dnl fails, we try again by including math.h and invoking the function
-dnl with an argument. 
-
-### I am told that Inf and NaN don't work on m68k HP sytems.
+## Check for Inf and NaN functions
 
 case $canonical_host_type in
   m68k-hp-hpux*)
+    ## I am told that Inf and NaN don't work on m68k HP sytems.
   ;;
   *)
     AC_CHECK_FUNCS([finite isnan isinf signbit])
@@ -2152,13 +2186,21 @@ AC_CHECK_DECLS([sys_siglist], [], [],
 #endif
 ]])
 
-### Need to disable building documentation if gnuplot was not found,
-### unless it was already disabled previously.
+### Need to disable building documentation if either gnuplot or
+### makeinfo are missing.  Skip this warning if building docs was
+### disabled with a configure option.
 
-if test -n "$DOCDIR" && test -n "$warn_gnuplot"; then
-  DOCDIR=
-  warn_docs="building documentation disabled because gnuplot was not found; make dist will fail"
-  OCTAVE_CONFIGURE_WARNING([warn_docs])
+if test -n "$DOCDIR"; then
+  if test -n "$warn_gnuplot"; then
+    DOCDIR=
+    warn_docs_gnuplot="building documentation disabled because gnuplot was not found; make dist will fail"
+    OCTAVE_CONFIGURE_WARNING([warn_docs_gnuplot])
+  fi
+  if test -n "$warn_makeinfo"; then
+    DOCDIR=
+    warn_docs_makeinfo="building documentation disabled because makeinfo was not found; make dist will fail"
+    OCTAVE_CONFIGURE_WARNING([warn_docs_makeinfo])
+  fi
 fi
 AM_CONDITIONAL([AMCOND_BUILD_DOCS], [test -n "$DOCDIR"])
 
@@ -2436,8 +2478,8 @@ do
   ## Java and JVM found.  Set up flags.
   case $host_os in
     darwin*)
-      ## Sneak the -framework flag into mkoctfile via LFLAGS
-      LFLAGS="$LFLAGS -framework JavaVM"
+      ## Sneak the -framework flag into mkoctfile via LDFLAGS
+      LDFLAGS="$LDFLAGS -framework JavaVM"
       ## According to: http://developer.apple.com/unix/crossplatform.html
       ## one must explicitly set the include path.
       ## Unfortunately, the include path keeps moving around.

@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -90,9 +90,9 @@ Time zone.
 In the descriptions of the following functions, this structure is
 referred to as a @var{tm_struct}.
 
-@c time src/DLD-FUNCTIONS/time.cc
+@c time libinterp/corefcn/time.cc
 @anchor{doc-time}
-@deftypefn {Loadable Function} {@var{seconds} =} time ()
+@deftypefn {Built-in Function} {@var{seconds} =} time ()
 Return the current time as the number of seconds since the epoch.  The
 epoch is referenced to 00:00:00 CUT (Coordinated Universal Time) 1 Jan
 1970.  For example, on Monday February 17, 1997 at 07:15:06 CUT, the
@@ -134,9 +134,9 @@ ctime (time ())
 @end deftypefn
 
 
-@c gmtime src/DLD-FUNCTIONS/time.cc
+@c gmtime libinterp/corefcn/time.cc
 @anchor{doc-gmtime}
-@deftypefn {Loadable Function} {@var{tm_struct} =} gmtime (@var{t})
+@deftypefn {Built-in Function} {@var{tm_struct} =} gmtime (@var{t})
 Given a value returned from @code{time}, or any non-negative integer,
 return a time structure corresponding to CUT (Coordinated Universal Time).
 For example:
@@ -156,16 +156,16 @@ gmtime (time ())
            yday = 47
            isdst = 0
            zone = CST
-         @}
+        @}
 @end group
 @end example
 @seealso{@ref{doc-strftime,,strftime}, @ref{doc-strptime,,strptime}, @ref{doc-localtime,,localtime}, @ref{doc-mktime,,mktime}, @ref{doc-time,,time}, @ref{doc-now,,now}, @ref{doc-date,,date}, @ref{doc-clock,,clock}, @ref{doc-datenum,,datenum}, @ref{doc-datestr,,datestr}, @ref{doc-datevec,,datevec}, @ref{doc-calendar,,calendar}, @ref{doc-weekday,,weekday}}
 @end deftypefn
 
 
-@c localtime src/DLD-FUNCTIONS/time.cc
+@c localtime libinterp/corefcn/time.cc
 @anchor{doc-localtime}
-@deftypefn {Loadable Function} {@var{tm_struct} =} localtime (@var{t})
+@deftypefn {Built-in Function} {@var{tm_struct} =} localtime (@var{t})
 Given a value returned from @code{time}, or any non-negative integer,
 return a time structure corresponding to the local time zone.
 
@@ -184,16 +184,16 @@ localtime (time ())
            yday = 47
            isdst = 0
            zone = CST
-         @}
+        @}
 @end group
 @end example
 @seealso{@ref{doc-strftime,,strftime}, @ref{doc-strptime,,strptime}, @ref{doc-gmtime,,gmtime}, @ref{doc-mktime,,mktime}, @ref{doc-time,,time}, @ref{doc-now,,now}, @ref{doc-date,,date}, @ref{doc-clock,,clock}, @ref{doc-datenum,,datenum}, @ref{doc-datestr,,datestr}, @ref{doc-datevec,,datevec}, @ref{doc-calendar,,calendar}, @ref{doc-weekday,,weekday}}
 @end deftypefn
 
 
-@c mktime src/DLD-FUNCTIONS/time.cc
+@c mktime libinterp/corefcn/time.cc
 @anchor{doc-mktime}
-@deftypefn {Loadable Function} {@var{seconds} =} mktime (@var{tm_struct})
+@deftypefn {Built-in Function} {@var{seconds} =} mktime (@var{tm_struct})
 Convert a time structure corresponding to the local time to the number
 of seconds since the epoch.  For example:
 
@@ -225,9 +225,9 @@ This is equivalent to @code{ctime (time ())}.
 @end deftypefn
 
 
-@c strftime src/DLD-FUNCTIONS/time.cc
+@c strftime libinterp/corefcn/time.cc
 @anchor{doc-strftime}
-@deftypefn {Loadable Function} {} strftime (@var{fmt}, @var{tm_struct})
+@deftypefn {Built-in Function} {} strftime (@var{fmt}, @var{tm_struct})
 Format the time structure @var{tm_struct} in a flexible way using the
 format string @var{fmt} that contains @samp{%} substitutions
 similar to those in @code{printf}.  Except where noted, substituted
@@ -241,7 +241,7 @@ output without change.  For example:
 @example
 @group
 strftime ("%r (%Z) %A %e %B %Y", localtime (time ()))
-     @result{} "01:15:06 AM (CST) Monday 17 February 1997"
+      @result{} "01:15:06 AM (CST) Monday 17 February 1997"
 @end group
 @end example
 
@@ -379,9 +379,9 @@ Year (1970-).
 @end deftypefn
 
 
-@c strptime src/DLD-FUNCTIONS/time.cc
+@c strptime libinterp/corefcn/time.cc
 @anchor{doc-strptime}
-@deftypefn {Loadable Function} {[@var{tm_struct}, @var{nchars}] =} strptime (@var{str}, @var{fmt})
+@deftypefn {Built-in Function} {[@var{tm_struct}, @var{nchars}] =} strptime (@var{str}, @var{fmt})
 Convert the string @var{str} to the time structure @var{tm_struct} under
 the control of the format string @var{fmt}.
 
@@ -458,7 +458,7 @@ the variable @code{t0} was set.
 @end deftypefn
 
 
-@c cputime src/data.cc
+@c cputime libinterp/interpfcn/data.cc
 @anchor{doc-cputime}
 @deftypefn {Built-in Function} {[@var{total}, @var{user}, @var{system}] =} cputime ();
 Return the CPU time used by your Octave session.  The first output is
@@ -470,6 +470,7 @@ CPU time usage, @code{cputime} returns 0 for each of its output values.
 Note that because Octave used some CPU time to start, it is reasonable
 to check to see if @code{cputime} works by checking to see if the total
 CPU time used is nonzero.
+@seealso{@ref{doc-tic,,tic}, @ref{doc-toc,,toc}}
 @end deftypefn
 
 
@@ -492,13 +493,17 @@ is_leap_year (2000)
 
 
 @anchor{doc-toc}
-@c tic src/data.cc
+@c tic libinterp/interpfcn/data.cc
 @anchor{doc-tic}
 @deftypefn  {Built-in Function} {} tic ()
+@deftypefnx {Built-in Function} {@var{id} =} tic ()
 @deftypefnx {Built-in Function} {} toc ()
+@deftypefnx {Built-in Function} {} toc (@var{id})
+@deftypefnx {Built-in Function} {@var{val} =} toc (@dots{})
 Set or check a wall-clock timer.  Calling @code{tic} without an
-output argument sets the timer.  Subsequent calls to @code{toc}
-return the number of seconds since the timer was set.  For example,
+output argument sets the internal timer state.  Subsequent calls
+to @code{toc} return the number of seconds since the timer was set.
+For example,
 
 @example
 @group
@@ -512,42 +517,28 @@ elapsed_time = toc ();
 will set the variable @code{elapsed_time} to the number of seconds since
 the most recent call to the function @code{tic}.
 
-If called with one output argument then this function returns a scalar
-of type @code{uint64} and the wall-clock timer is not started.
+If called with one output argument, @code{tic} returns a scalar
+of type @code{uint64} that may be later passed to @code{toc}.
 
 @example
 @group
-t = tic; sleep (5); (double (tic ()) - double (t)) * 1e-6
-     @result{} 5
+id = tic; sleep (5); toc (id)
+      @result{} 5.0010
 @end group
 @end example
 
-Nested timing with @code{tic} and @code{toc} is not supported.
-Therefore @code{toc} will always return the elapsed time from the most
-recent call to @code{tic}.
+Calling @code{tic} and @code{toc} this way allows nested timing calls.
 
 If you are more interested in the CPU time that your process used, you
 should use the @code{cputime} function instead.  The @code{tic} and
 @code{toc} functions report the actual wall clock time that elapsed
 between the calls.  This may include time spent processing other jobs or
-doing nothing at all.  For example:
-
-@example
-@group
-tic (); sleep (5); toc ()
-     @result{} 5
-t = cputime (); sleep (5); cputime () - t
-     @result{} 0
-@end group
-@end example
-
-@noindent
-(This example also illustrates that the CPU timer may have a fairly
-coarse resolution.)
+doing nothing at all.
+@seealso{@ref{doc-toc,,toc}, @ref{doc-cputime,,cputime}}
 @end deftypefn
 
 
-@c pause src/sysdep.cc
+@c pause libinterp/interpfcn/sysdep.cc
 @anchor{doc-pause}
 @deftypefn {Built-in Function} {} pause (@var{seconds})
 Suspend the execution of the program.  If invoked without any arguments,
@@ -566,14 +557,14 @@ clc;
 @end deftypefn
 
 
-@c sleep src/sysdep.cc
+@c sleep libinterp/interpfcn/sysdep.cc
 @anchor{doc-sleep}
 @deftypefn {Built-in Function} {} sleep (@var{seconds})
 Suspend the execution of the program for the given number of seconds.
 @end deftypefn
 
 
-@c usleep src/sysdep.cc
+@c usleep libinterp/interpfcn/sysdep.cc
 @anchor{doc-usleep}
 @deftypefn {Built-in Function} {} usleep (@var{microseconds})
 Suspend the execution of the program for the given number of
@@ -635,7 +626,7 @@ Days can be fractional.
 @end itemize
 
 @strong{Caution:} this function does not attempt to handle Julian
-calendars so dates before Octave 15, 1582 are wrong by as much
+calendars so dates before October 15, 1582 are wrong by as much
 as eleven days.  Also, be aware that only Roman Catholic countries
 adopted the calendar in 1582.  It took until 1924 for it to be
 adopted everywhere.  See the Wikipedia entry on the Gregorian
@@ -688,19 +679,19 @@ formatted as follows:
 @item 16 @tab HH:MM PM               @tab 03:38 PM
 @item 17 @tab QQ-YY                  @tab Q3-00
 @item 18 @tab QQ                     @tab Q3
-@item 19 @tab dd/mm                  @tab 13/03
-@item 20 @tab dd/mm/yy               @tab 13/03/95
-@item 21 @tab mmm.dd.yyyy HH:MM:SS   @tab Mar.03.1962 13:53:06
-@item 22 @tab mmm.dd.yyyy            @tab Mar.03.1962
-@item 23 @tab mm/dd/yyyy             @tab 03/13/1962
-@item 24 @tab dd/mm/yyyy             @tab 12/03/1962
-@item 25 @tab yy/mm/dd               @tab 95/03/13
-@item 26 @tab yyyy/mm/dd             @tab 1995/03/13
-@item 27 @tab QQ-YYYY                @tab Q4-2132
-@item 28 @tab mmmyyyy                @tab Mar2047
-@item 29 @tab yyyymmdd               @tab 20470313
-@item 30 @tab yyyymmddTHHMMSS        @tab 20470313T132603
-@item 31 @tab yyyy-mm-dd HH:MM:SS    @tab 1047-03-13 13:26:03
+@item 19 @tab dd/mm                  @tab 07/09
+@item 20 @tab dd/mm/yy               @tab 07/09/00
+@item 21 @tab mmm.dd,yyyy HH:MM:SS   @tab Sep.07,2000 15:38:08
+@item 22 @tab mmm.dd,yyyy            @tab Sep.07,2000
+@item 23 @tab mm/dd/yyyy             @tab 09/07/2000
+@item 24 @tab dd/mm/yyyy             @tab 07/09/2000
+@item 25 @tab yy/mm/dd               @tab 00/09/07
+@item 26 @tab yyyy/mm/dd             @tab 2000/09/07
+@item 27 @tab QQ-YYYY                @tab Q3-2000
+@item 28 @tab mmmyyyy                @tab Sep2000
+@item 29 @tab yyyy-mm-dd             @tab 2000-09-07
+@item 30 @tab yyyymmddTHHMMSS        @tab 20000907T153808
+@item 31 @tab yyyy-mm-dd HH:MM:SS    @tab 2000-09-07 15:38:08
 @end multitable
 
 If @var{f} is a format string, the following symbols are recognized:
@@ -708,7 +699,7 @@ If @var{f} is a format string, the following symbols are recognized:
 @multitable @columnfractions 0.1 0.7 0.2
 @headitem Symbol @tab Meaning @tab Example
 @item yyyy @tab Full year                                    @tab 2005
-@item yy   @tab Two-digit year                               @tab 2005
+@item yy   @tab Two-digit year                               @tab 05
 @item mmmm @tab Full month name                              @tab December
 @item mmm  @tab Abbreviated month name                       @tab Dec
 @item mm   @tab Numeric month number (padded with zeros)     @tab 01, 08, 12
@@ -753,7 +744,12 @@ A date vector is a row vector with six members, representing the year,
 month, day, hour, minute, and seconds respectively.
 
 @var{f} is the format string used to interpret date strings
-(see @code{datestr}).
+(see @code{datestr}).  If @var{date} is a string, but no format is
+specified, then a relatively slow search is performed through various
+formats.  It is always preferable to specify the format string @var{f}
+if it is known.  Formats which do not specify a particular time component
+will have the value set to zero.  Formats which do not specify a date will
+default to January 1st of the current year.
 
 @var{p} is the year at the start of the century to which two-digit years
 will be referenced.  If not specified, it defaults to the current year
@@ -874,7 +870,7 @@ message identifier.
 @end deftypefn
 
 
-@c rename src/dirfns.cc
+@c rename libinterp/interpfcn/dirfns.cc
 @anchor{doc-rename}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} rename (@var{old}, @var{new})
 Change the name of file @var{old} to @var{new}.
@@ -903,7 +899,7 @@ message identifier.
 @end deftypefn
 
 
-@c unlink src/syscalls.cc
+@c unlink libinterp/corefcn/syscalls.cc
 @anchor{doc-unlink}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} unlink (@var{file})
 Delete the file named @var{file}.
@@ -914,7 +910,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c link src/dirfns.cc
+@c link libinterp/interpfcn/dirfns.cc
 @anchor{doc-link}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} link (@var{old}, @var{new})
 Create a new link (also known as a hard link) to an existing file.
@@ -926,7 +922,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c symlink src/dirfns.cc
+@c symlink libinterp/interpfcn/dirfns.cc
 @anchor{doc-symlink}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} symlink (@var{old}, @var{new})
 Create a symbolic link @var{new} which contains the string @var{old}.
@@ -938,7 +934,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c readlink src/dirfns.cc
+@c readlink libinterp/interpfcn/dirfns.cc
 @anchor{doc-readlink}
 @deftypefn {Built-in Function} {[@var{result}, @var{err}, @var{msg}] =} readlink (@var{symlink})
 Read the value of the symbolic link @var{symlink}.
@@ -951,7 +947,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c mkdir src/dirfns.cc
+@c mkdir libinterp/interpfcn/dirfns.cc
 @anchor{doc-mkdir}
 @deftypefn  {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@var{dir})
 @deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@var{parent}, @var{dir})
@@ -965,7 +961,7 @@ message identifier.
 @end deftypefn
 
 
-@c rmdir src/dirfns.cc
+@c rmdir libinterp/interpfcn/dirfns.cc
 @anchor{doc-rmdir}
 @deftypefn  {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@var{dir})
 @deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@var{dir}, "s")
@@ -982,7 +978,7 @@ recursively remove all subdirectories as well.
 @end deftypefn
 
 
-@c confirm_recursive_rmdir src/dirfns.cc
+@c confirm_recursive_rmdir libinterp/interpfcn/dirfns.cc
 @anchor{doc-confirm_recursive_rmdir}
 @deftypefn  {Built-in Function} {@var{val} =} confirm_recursive_rmdir ()
 @deftypefnx {Built-in Function} {@var{old_val} =} confirm_recursive_rmdir (@var{new_val})
@@ -996,7 +992,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c mkfifo src/syscalls.cc
+@c mkfifo libinterp/corefcn/syscalls.cc
 @anchor{doc-mkfifo}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} mkfifo (@var{name}, @var{mode})
 Create a @var{fifo} special file named @var{name} with file mode @var{mode}
@@ -1007,7 +1003,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c umask src/file-io.cc
+@c umask libinterp/interpfcn/file-io.cc
 @anchor{doc-umask}
 @deftypefn {Built-in Function} {} umask (@var{mask})
 Set the permission mask for file creation.  The parameter @var{mask}
@@ -1018,7 +1014,7 @@ interpreted as an octal number); otherwise an error message is printed.
 
 
 @anchor{doc-lstat}
-@c stat src/syscalls.cc
+@c stat libinterp/corefcn/syscalls.cc
 @anchor{doc-stat}
 @deftypefn  {Built-in Function} {[@var{info}, @var{err}, @var{msg}] =} stat (@var{file})
 @deftypefnx {Built-in Function} {[@var{info}, @var{err}, @var{msg}] =} stat (@var{fid})
@@ -1079,7 +1075,7 @@ Number of blocks allocated for file.
 @end table
 
 If the call is successful @var{err} is 0 and @var{msg} is an empty
-string.  If the file does not exist, or some other error occurs, @var{s}
+string.  If the file does not exist, or some other error occurs, @var{info}
 is an empty matrix, @var{err} is @minus{}1, and @var{msg} contains the
 corresponding system error message.
 
@@ -1090,31 +1086,31 @@ if you want information about the symbolic link itself.
 For example:
 
 @example
-[s, err, msg] = stat ("/vmlinuz")
-      @result{} s =
-        @{
-          atime = 855399756
-          rdev = 0
-          ctime = 847219094
-          uid = 0
-          size = 389218
-          blksize = 4096
-          mtime = 847219094
-          gid = 6
-          nlink = 1
-          blocks = 768
-          mode = -rw-r--r--
-          modestr = -rw-r--r--
-          ino = 9316
-          dev = 2049
-        @}
-     @result{} err = 0
-     @result{} msg =
+[info, err, msg] = stat ("/vmlinuz")
+  @result{} info =
+     @{
+       atime = 855399756
+       rdev = 0
+       ctime = 847219094
+       uid = 0
+       size = 389218
+       blksize = 4096
+       mtime = 847219094
+       gid = 6
+       nlink = 1
+       blocks = 768
+       mode = -rw-r--r--
+       modestr = -rw-r--r--
+       ino = 9316
+       dev = 2049
+     @}
+  @result{} err = 0
+  @result{} msg =
 @end example
 @end deftypefn
 
 
-@c S_ISBLK src/syscalls.cc
+@c S_ISBLK libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISBLK}
 @deftypefn {Built-in Function} {} S_ISBLK (@var{mode})
 Return true if @var{mode} corresponds to a block device.  The value
@@ -1123,7 +1119,7 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @end deftypefn
 
 
-@c S_ISCHR src/syscalls.cc
+@c S_ISCHR libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISCHR}
 @deftypefn {Built-in Function} {} S_ISCHR (@var{mode})
 Return true if @var{mode} corresponds to a character device.  The value
@@ -1132,7 +1128,7 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @end deftypefn
 
 
-@c S_ISDIR src/syscalls.cc
+@c S_ISDIR libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISDIR}
 @deftypefn {Built-in Function} {} S_ISDIR (@var{mode})
 Return true if @var{mode} corresponds to a directory.  The value
@@ -1141,7 +1137,7 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @end deftypefn
 
 
-@c S_ISFIFO src/syscalls.cc
+@c S_ISFIFO libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISFIFO}
 @deftypefn {Built-in Function} {} S_ISFIFO (@var{mode})
 Return true if @var{mode} corresponds to a fifo.  The value
@@ -1150,7 +1146,7 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @end deftypefn
 
 
-@c S_ISLNK src/syscalls.cc
+@c S_ISLNK libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISLNK}
 @deftypefn {Built-in Function} {} S_ISLNK (@var{mode})
 Return true if @var{mode} corresponds to a symbolic link.  The value
@@ -1159,7 +1155,7 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @end deftypefn
 
 
-@c S_ISREG src/syscalls.cc
+@c S_ISREG libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISREG}
 @deftypefn {Built-in Function} {} S_ISREG (@var{mode})
 Return true if @var{mode} corresponds to a regular file.  The value
@@ -1168,7 +1164,7 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @end deftypefn
 
 
-@c S_ISSOCK src/syscalls.cc
+@c S_ISSOCK libinterp/corefcn/syscalls.cc
 @anchor{doc-S_ISSOCK}
 @deftypefn {Built-in Function} {} S_ISSOCK (@var{mode})
 Return true if @var{mode} corresponds to a socket.  The value
@@ -1219,6 +1215,7 @@ True if the user (group; other users) has write permission for
 True if the user (group; other users) has execute permission for
 @var{file}.
 @end table
+
 If an attribute does not apply (i.e., archive on a Unix system) then
 the field is set to NaN.
 
@@ -1239,7 +1236,7 @@ Return true if @var{f} is a directory.
 @end deftypefn
 
 
-@c readdir src/dirfns.cc
+@c readdir libinterp/interpfcn/dirfns.cc
 @anchor{doc-readdir}
 @deftypefn {Built-in Function} {[@var{files}, @var{err}, @var{msg}] =} readdir (@var{dir})
 Return names of the files in the directory @var{dir} as a cell array of
@@ -1252,7 +1249,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c glob src/dirfns.cc
+@c glob libinterp/interpfcn/dirfns.cc
 @anchor{doc-glob}
 @deftypefn {Built-in Function} {} glob (@var{pattern})
 Given an array of pattern strings (as a char array or a cell array) in
@@ -1260,6 +1257,7 @@ Given an array of pattern strings (as a char array or a cell array) in
 them, or an empty cell array if no patterns match.  The pattern strings are
 interpreted as filename globbing patterns (as they are used by Unix shells).
 Within a pattern
+
 @table @code
 @itemx *
 matches any string, including the null string,
@@ -1276,31 +1274,31 @@ names.  For example:
 
 @example
 ls
-     @result{}
-        file1  file2  file3  myfile1 myfile1b
+   @result{}
+      file1  file2  file3  myfile1 myfile1b
 glob ("*file1")
-     @result{}
-        @{
-          [1,1] = file1
-          [2,1] = myfile1
-        @}
+   @result{}
+      @{
+        [1,1] = file1
+        [2,1] = myfile1
+      @}
 glob ("myfile?")
-     @result{}
-        @{
-          [1,1] = myfile1
-        @}
+   @result{}
+      @{
+        [1,1] = myfile1
+      @}
 glob ("file[12]")
-     @result{}
-        @{
-          [1,1] = file1
-          [2,1] = file2
-        @}
+   @result{}
+      @{
+        [1,1] = file1
+        [2,1] = file2
+      @}
 @end example
 @seealso{@ref{doc-ls,,ls}, @ref{doc-dir,,dir}, @ref{doc-readdir,,readdir}}
 @end deftypefn
 
 
-@c fnmatch src/dirfns.cc
+@c fnmatch libinterp/interpfcn/dirfns.cc
 @anchor{doc-fnmatch}
 @deftypefn {Built-in Function} {} fnmatch (@var{pattern}, @var{string})
 Return 1 or zero for each element of @var{string} that matches any of
@@ -1316,7 +1314,7 @@ fnmatch ("a*b", @{"ab"; "axyzb"; "xyzab"@})
 @end deftypefn
 
 
-@c file_in_path src/utils.cc
+@c file_in_path libinterp/interpfcn/utils.cc
 @anchor{doc-file_in_path}
 @deftypefn  {Built-in Function} {} file_in_path (@var{path}, @var{file})
 @deftypefnx {Built-in Function} {} file_in_path (@var{path}, @var{file}, "all")
@@ -1343,13 +1341,13 @@ name in the path.  If no files are found, return an empty cell array.
 @end deftypefn
 
 
-@c filesep src/dirfns.cc
+@c filesep libinterp/interpfcn/dirfns.cc
 @anchor{doc-filesep}
 @deftypefn  {Built-in Function} {} filesep ()
-@deftypefnx {Built-in Function} {} filesep ('all')
+@deftypefnx {Built-in Function} {} filesep ("all")
 Return the system-dependent character used to separate directory names.
 
-If 'all' is given, the function returns all valid file separators in
+If "all" is given, the function returns all valid file separators in
 the form of a string.  The list of file separators is system-dependent.
 It is @samp{/} (forward slash) under UNIX or @w{Mac OS X}, @samp{/} and
 @samp{\} (forward and backward slashes) under Windows.
@@ -1357,7 +1355,7 @@ It is @samp{/} (forward slash) under UNIX or @w{Mac OS X}, @samp{/} and
 @end deftypefn
 
 
-@c filemarker src/input.cc
+@c filemarker libinterp/interpfcn/input.cc
 @anchor{doc-filemarker}
 @deftypefn  {Built-in Function} {@var{val} =} filemarker ()
 @deftypefnx {Built-in Function} {} filemarker (@var{new_val})
@@ -1371,9 +1369,9 @@ help (["myfunc", filemarker, "mysubfunc"])
 @end example
 
 @noindent
-returns the help string associated with the sub-function @code{mysubfunc}
+returns the help string associated with the subfunction @code{mysubfunc}
 of the function @code{myfunc}.  Another use of @code{filemarker} is when
-debugging it allows easier placement of breakpoints within sub-functions.
+debugging it allows easier placement of breakpoints within subfunctions.
 For example,
 
 @example
@@ -1406,7 +1404,7 @@ Return a complete filename constructed from the given components.
 @end deftypefn
 
 
-@c tilde_expand src/sysdep.cc
+@c tilde_expand libinterp/interpfcn/sysdep.cc
 @anchor{doc-tilde_expand}
 @deftypefn {Built-in Function} {} tilde_expand (@var{string})
 Perform tilde expansion on @var{string}.  If @var{string} begins with a
@@ -1428,22 +1426,25 @@ tilde_expand ("~/bin")
 @end deftypefn
 
 
-@c canonicalize_file_name src/syscalls.cc
+@c canonicalize_file_name libinterp/corefcn/syscalls.cc
 @anchor{doc-canonicalize_file_name}
-@deftypefn {Built-in Function} {[@var{cname}, @var{status}, @var{msg}]} canonicalize_file_name (@var{name})
-Return the canonical name of file @var{name}.
+@deftypefn {Built-in Function} {[@var{cname}, @var{status}, @var{msg}] =} canonicalize_file_name (@var{fname})
+Return the canonical name of file @var{fname}.  If the file does not exist
+the empty string ("") is returned.
+@seealso{@ref{doc-make_absolute_filename,,make_absolute_filename}, @ref{doc-is_absolute_filename,,is_absolute_filename}, @ref{doc-is_rooted_relative_filename,,is_rooted_relative_filename}}
 @end deftypefn
 
 
-@c make_absolute_filename src/utils.cc
+@c make_absolute_filename libinterp/interpfcn/utils.cc
 @anchor{doc-make_absolute_filename}
 @deftypefn {Built-in Function} {} make_absolute_filename (@var{file})
-Return the full name of @var{file}, relative to the current directory.
-@seealso{@ref{doc-is_absolute_filename,,is_absolute_filename}, @ref{doc-is_rooted_relative_filename,,is_rooted_relative_filename}, @ref{doc-isdir,,isdir}}
+Return the full name of @var{file} beginning from the root of the file
+system.  No check is done for the existence of @var{file}.
+@seealso{@ref{doc-canonicalize_file_name,,canonicalize_file_name}, @ref{doc-is_absolute_filename,,is_absolute_filename}, @ref{doc-is_rooted_relative_filename,,is_rooted_relative_filename}, @ref{doc-isdir,,isdir}}
 @end deftypefn
 
 
-@c is_absolute_filename src/utils.cc
+@c is_absolute_filename libinterp/interpfcn/utils.cc
 @anchor{doc-is_absolute_filename}
 @deftypefn {Built-in Function} {} is_absolute_filename (@var{file})
 Return true if @var{file} is an absolute filename.
@@ -1451,7 +1452,7 @@ Return true if @var{file} is an absolute filename.
 @end deftypefn
 
 
-@c is_rooted_relative_filename src/utils.cc
+@c is_rooted_relative_filename libinterp/interpfcn/utils.cc
 @anchor{doc-is_rooted_relative_filename}
 @deftypefn {Built-in Function} {} is_rooted_relative_filename (@var{file})
 Return true if @var{file} is a rooted-relative filename.
@@ -1459,7 +1460,7 @@ Return true if @var{file} is a rooted-relative filename.
 @end deftypefn
 
 
-@c P_tmpdir src/file-io.cc
+@c P_tmpdir libinterp/interpfcn/file-io.cc
 @anchor{doc-P_tmpdir}
 @deftypefn {Built-in Function} {} P_tmpdir ()
 Return the default name of the directory for temporary files on
@@ -1486,13 +1487,13 @@ This function is an alias for @code{tmpnam}.
 
 @c recycle scripts/miscellaneous/recycle.m
 @anchor{doc-recycle}
-@deftypefn  {Function File} {@var{current_state}} recycle ()
-@deftypefnx {Function File} {@var{old_state}} recycle (@var{new_state})
+@deftypefn  {Function File} {@var{current_state} =} recycle ()
+@deftypefnx {Function File} {@var{old_state} =} recycle (@var{new_state})
 Query or set the preference for recycling deleted files.
 
-Recycling files instead of permanently deleting them is currently not
-implemented in Octave.  To help avoid accidental data loss it
-is an error to attempt enable file recycling.
+Recycling files, instead of permanently deleting them, is not currently
+implemented in Octave.  To help avoid accidental data loss an error
+will be raised if an attempt is made to enable file recycling.
 @seealso{@ref{doc-delete,,delete}}
 @end deftypefn
 
@@ -1515,7 +1516,7 @@ Unpack the bzip2 archive @var{bzfile} to the directory @var{dir}.  If
 @deftypefn  {Function File} {@var{entries} =} gzip (@var{files})
 @deftypefnx {Function File} {@var{entries} =} gzip (@var{files}, @var{outdir})
 Compress the list of files and/or directories specified in @var{files}.
-Each file is compressed separately and a new file with a '.gz' extension
+Each file is compressed separately and a new file with a ".gz" extension
 is created.  The original files are not modified.  Existing compressed
 files are silently overwritten.  If @var{outdir} is defined the compressed
 files are placed in this directory.
@@ -1603,7 +1604,7 @@ The optional return value is a list of @var{files} unpacked.
 @deftypefn  {Function File} {@var{entries} =} bzip2 (@var{files})
 @deftypefnx {Function File} {@var{entries} =} bzip2 (@var{files}, @var{outdir})
 Compress the list of files specified in @var{files}.
-Each file is compressed separately and a new file with a '.bz2' extension
+Each file is compressed separately and a new file with a ".bz2" extension
 is created.  The original files are not modified.  Existing compressed files
 are silently overwritten.  If @var{outdir} is defined the compressed
 files are placed in this directory.
@@ -1619,7 +1620,7 @@ files are placed in this directory.
 * URL Manipulation::
 @end menu
 
-@c gethostname src/syscalls.cc
+@c gethostname libinterp/corefcn/syscalls.cc
 @anchor{doc-gethostname}
 @deftypefn {Built-in Function} {} gethostname ()
 Return the hostname of the system where Octave is running.
@@ -1629,6 +1630,10 @@ Return the hostname of the system where Octave is running.
 @node FTP Objects
 @subsection FTP Objects
 
+Octave supports the FTP protocol through an object-oriented interface.
+Use the function @code{ftp} to create an FTP object which represents the
+connection.  All FTP functions take an FTP object as the first argument.
+
 @c @ftp/ftp scripts/@ftp/ftp.m
 @anchor{doc-@@ftp/ftp}
 @deftypefn  {Function File} {@var{f} =} ftp (@var{host})
@@ -1637,6 +1642,34 @@ Connect to the FTP server @var{host} with @var{username} and @var{password}.
 If @var{username} and @var{password} are not specified, user "anonymous"
 with no password is used.  The returned FTP object @var{f} represents the
 established FTP connection.
+
+The list of actions for an FTP object are shown below.  All functions
+require an FTP object as the first argument.
+
+@multitable @columnfractions 0.15 0.8
+@headitem Method @tab Description
+@item ascii @tab Set transfer type to ascii
+@item binary @tab Set transfer type to binary
+@item cd @tab Change remote working directory 
+@item close @tab Close FTP connection
+@item delete @tab Delete remote file 
+@item dir @tab List remote directory contents 
+@item mget @tab Download remote files
+@item mkdir @tab Create remote directory
+@item mput @tab Upload local files
+@item rename @tab Rename remote file or directory
+@item rmdir @tab Remove remote directory
+@end multitable
+
+@end deftypefn
+
+
+@c @ftp/close scripts/@ftp/close.m
+@anchor{doc-@@ftp/close}
+@deftypefn {Function File} {} close (@var{f})
+Close the FTP connection represented by the FTP object @var{f}.
+
+@var{f} is an FTP object returned by the @code{ftp} function.
 @end deftypefn
 
 
@@ -1644,7 +1677,7 @@ established FTP connection.
 @anchor{doc-@@ftp/mget}
 @deftypefn  {Function File} {} mget (@var{f}, @var{file})
 @deftypefnx {Function File} {} mget (@var{f}, @var{dir})
-@deftypefnx {Function File} {} mget (@dots{}, @var{target})
+@deftypefnx {Function File} {} mget (@var{f}, @var{remote_name}, @var{target})
 Download a remote file @var{file} or directory @var{dir} to the local
 directory on the FTP connection @var{f}.  @var{f} is an FTP object
 returned by the @code{ftp} function.
@@ -1653,8 +1686,8 @@ The arguments @var{file} and @var{dir} can include wildcards and any
 files or directories on the remote server that match will be downloaded.
 
 If a third argument @var{target} is given, then a single file or
-directory will be downloaded with the name @var{target} to the local
-directory.
+directory will be downloaded to the local directory and the local name
+will be changed to @var{target}.
 @end deftypefn
 
 
@@ -1665,15 +1698,38 @@ Upload the local file @var{file} into the current remote directory on
 the FTP connection @var{f}.  @var{f} is an FTP object returned by the
 ftp function.
 
-The argument @var{file} is passed by the @dfn{glob} function and any
+The argument @var{file} is passed through the @code{glob} function and any
 files that match the wildcards in @var{file} will be uploaded.
+@end deftypefn
+
+
+@c @ftp/cd scripts/@ftp/cd.m
+@anchor{doc-@@ftp/cd}
+@deftypefn {Function File} {} cd (@var{f}, @var{path})
+Set the remote directory to @var{path} on the FTP connection @var{f}.
+
+@var{f} is an FTP object returned by the @code{ftp} function.
+@end deftypefn
+
+
+@c @ftp/dir scripts/@ftp/dir.m
+@anchor{doc-@@ftp/dir}
+@deftypefn {Function File} {@var{lst} =} dir (@var{f})
+List the current directory in verbose form for the FTP connection
+@var{f}.
+
+@var{f} is an FTP object returned by the @code{ftp} function.
 @end deftypefn
 
 
 @c @ftp/ascii scripts/@ftp/ascii.m
 @anchor{doc-@@ftp/ascii}
 @deftypefn {Function File} {} ascii (@var{f})
-Put the FTP connection @var{f} into ascii mode.
+Set the FTP connection @var{f} to use ASCII mode for transfers.
+ASCII mode is only appropriate for text files as it will convert
+the remote host's newline representation to the local host's newline
+representation.
+
 @var{f} is an FTP object returned by the @code{ftp} function.
 @end deftypefn
 
@@ -1681,7 +1737,47 @@ Put the FTP connection @var{f} into ascii mode.
 @c @ftp/binary scripts/@ftp/binary.m
 @anchor{doc-@@ftp/binary}
 @deftypefn {Function File} {} binary (@var{f})
-Put the FTP connection @var{f} into binary mode.
+Set the FTP connection @var{f} to use binary mode for transfers.
+In binary mode there is no conversion of newlines from the remote
+representation to the local representation.
+
+@var{f} is an FTP object returned by the @code{ftp} function.
+@end deftypefn
+
+
+@c @ftp/delete scripts/@ftp/delete.m
+@anchor{doc-@@ftp/delete}
+@deftypefn {Function File} {} delete (@var{f}, @var{file})
+Delete the remote file @var{file} over the FTP connection @var{f}.
+
+@var{f} is an FTP object returned by the @code{ftp} function.
+@end deftypefn
+
+
+@c @ftp/rename scripts/@ftp/rename.m
+@anchor{doc-@@ftp/rename}
+@deftypefn {Function File} {} rename (@var{f}, @var{oldname}, @var{newname})
+Rename or move the remote file or directory @var{oldname} to @var{newname},
+over the FTP connection @var{f}.
+
+@var{f} is an FTP object returned by the ftp function.
+@end deftypefn
+
+
+@c @ftp/mkdir scripts/@ftp/mkdir.m
+@anchor{doc-@@ftp/mkdir}
+@deftypefn {Function File} {} mkdir (@var{f}, @var{path})
+Create the remote directory @var{path}, over the FTP connection @var{f}.
+
+@var{f} is an FTP object returned by the @code{ftp} function.
+@end deftypefn
+
+
+@c @ftp/rmdir scripts/@ftp/rmdir.m
+@anchor{doc-@@ftp/rmdir}
+@deftypefn {Function File} {} rmdir (@var{f}, @var{path})
+Remove the remote directory @var{path}, over the FTP connection @var{f}.
+
 @var{f} is an FTP object returned by the @code{ftp} function.
 @end deftypefn
 
@@ -1689,7 +1785,7 @@ Put the FTP connection @var{f} into binary mode.
 @node URL Manipulation
 @subsection URL Manipulation
 
-@c urlread src/DLD-FUNCTIONS/urlwrite.cc
+@c urlread libinterp/dldfcn/urlwrite.cc
 @anchor{doc-urlread}
 @deftypefn  {Loadable Function} {@var{s} =} urlread (@var{url})
 @deftypefnx {Loadable Function} {[@var{s}, @var{success}] =} urlread (@var{url})
@@ -1723,14 +1819,14 @@ For example:
 @example
 @group
 s = urlread ("http://www.google.com/search", "get",
-             @{"query", "octave"@});
+            @{"query", "octave"@});
 @end group
 @end example
 @seealso{@ref{doc-urlwrite,,urlwrite}}
 @end deftypefn
 
 
-@c urlwrite src/DLD-FUNCTIONS/urlwrite.cc
+@c urlwrite libinterp/dldfcn/urlwrite.cc
 @anchor{doc-urlwrite}
 @deftypefn  {Loadable Function} {} urlwrite (@var{url}, @var{localfile})
 @deftypefnx {Loadable Function} {@var{f} =} urlwrite (@var{url}, @var{localfile})
@@ -1791,7 +1887,7 @@ can also be used for starting subprocesses, but you should probably only
 use them if you can't find any way to do what you need with the
 higher-level functions.
 
-@c system src/toplev.cc
+@c system libinterp/interpfcn/toplev.cc
 @anchor{doc-system}
 @deftypefn  {Built-in Function} {} system ("@var{string}")
 @deftypefnx {Built-in Function} {} system ("@var{string}", @var{return_output})
@@ -1875,29 +1971,31 @@ given, then @var{text} is also sent to standard output.
 
 @c perl scripts/miscellaneous/perl.m
 @anchor{doc-perl}
-@deftypefn  {Function File} {[@var{output}, @var{status}] =} perl (@var{scriptfile})
-@deftypefnx {Function File} {[@var{output}, @var{status}] =} perl (@var{scriptfile}, @var{argument1}, @var{argument2}, @dots{})
-Invoke Perl script @var{scriptfile} with possibly a list of
-command line arguments.
-Returns output in @var{output} and status
-in @var{status}.
-@seealso{@ref{doc-system,,system}}
+@deftypefn  {Function File} {@var{output} =} perl (@var{scriptfile})
+@deftypefnx {Function File} {@var{output} =} perl (@var{scriptfile}, @var{argument1}, @var{argument2}, @dots{})
+@deftypefnx {Function File} {[@var{output}, @var{status}] =} perl (@dots{})
+Invoke Perl script @var{scriptfile}, possibly with a list of command line
+arguments.  Return output in @var{output} and optional status in
+@var{status}.  If @var{scriptfile} is not an absolute file name it is
+is searched for in the current directory and then in the Octave loadpath.
+@seealso{@ref{doc-system,,system}, @ref{doc-python,,python}}
 @end deftypefn
 
 
 @c python scripts/miscellaneous/python.m
 @anchor{doc-python}
-@deftypefn  {Function File} {[@var{output}, @var{status}] =} python (@var{scriptfile})
-@deftypefnx {Function File} {[@var{output}, @var{status}] =} python (@var{scriptfile}, @var{argument1}, @var{argument2}, @dots{})
-Invoke python script @var{scriptfile} with possibly a list of
-command line arguments.
-Returns output in @var{output} and status
-in @var{status}.
-@seealso{@ref{doc-system,,system}}
+@deftypefn  {Function File} {@var{output} =} python (@var{scriptfile})
+@deftypefnx {Function File} {@var{output} =} python (@var{scriptfile}, @var{argument1}, @var{argument2}, @dots{})
+@deftypefnx {Function File} {[@var{output}, @var{status}] =} python (@dots{})
+Invoke Python script @var{scriptfile}, possibly with a list of command line
+arguments.  Return output in @var{output} and optional status in
+@var{status}.  If @var{scriptfile} is not an absolute file name it is
+is searched for in the current directory and then in the Octave loadpath.
+@seealso{@ref{doc-system,,system}, @ref{doc-perl,,perl}}
 @end deftypefn
 
 
-@c popen src/file-io.cc
+@c popen libinterp/interpfcn/file-io.cc
 @anchor{doc-popen}
 @deftypefn {Built-in Function} {@var{fid} =} popen (@var{command}, @var{mode})
 Start a process and create a pipe.  The name of the command to run is
@@ -1923,15 +2021,16 @@ fid = popen ("ls -ltr / | tail -3", "r");
 while (ischar (s = fgets (fid)))
   fputs (stdout, s);
 endwhile
-     @print{} drwxr-xr-x  33 root  root  3072 Feb 15 13:28 etc
-     @print{} drwxr-xr-x   3 root  root  1024 Feb 15 13:28 lib
-     @print{} drwxrwxrwt  15 root  root  2048 Feb 17 14:53 tmp
+
+   @print{} drwxr-xr-x  33 root  root  3072 Feb 15 13:28 etc
+   @print{} drwxr-xr-x   3 root  root  1024 Feb 15 13:28 lib
+   @print{} drwxrwxrwt  15 root  root  2048 Feb 17 14:53 tmp
 @end group
 @end example
 @end deftypefn
 
 
-@c pclose src/file-io.cc
+@c pclose libinterp/interpfcn/file-io.cc
 @anchor{doc-pclose}
 @deftypefn {Built-in Function} {} pclose (@var{fid})
 Close a file identifier that was opened by @code{popen}.  You may also
@@ -1939,7 +2038,7 @@ use @code{fclose} for the same purpose.
 @end deftypefn
 
 
-@c popen2 src/syscalls.cc
+@c popen2 libinterp/corefcn/syscalls.cc
 @anchor{doc-popen2}
 @deftypefn {Built-in Function} {[@var{in}, @var{out}, @var{pid}] =} popen2 (@var{command}, @var{args})
 Start a subprocess with two-way communication.  The name of the process
@@ -1971,10 +2070,11 @@ do
 until (done)
 fclose (out);
 waitpid (pid);
-     @print{} these
-     @print{} strings
-     @print{} some
-     @print{} are
+
+   @print{} these
+   @print{} strings
+   @print{} some
+   @print{} are
 @end example
 
 Note that @code{popen2}, unlike @code{popen}, will not "reap" the
@@ -1983,7 +2083,7 @@ exit status, it will linger until Octave exits.
 @end deftypefn
 
 
-@c EXEC_PATH src/defaults.cc
+@c EXEC_PATH libinterp/interpfcn/defaults.cc
 @anchor{doc-EXEC_PATH}
 @deftypefn  {Built-in Function} {@var{val} =} EXEC_PATH ()
 @deftypefnx {Built-in Function} {@var{old_val} =} EXEC_PATH (@var{new_val})
@@ -2004,7 +2104,7 @@ In most cases, the following functions simply decode their arguments and
 make the corresponding Unix system calls.  For a complete example of how
 they can be used, look at the definition of the function @code{popen2}.
 
-@c fork src/syscalls.cc
+@c fork libinterp/corefcn/syscalls.cc
 @anchor{doc-fork}
 @deftypefn {Built-in Function} {[@var{pid}, @var{msg}] =} fork ()
 Create a copy of the current process.
@@ -2028,7 +2128,7 @@ action.  A system dependent error message will be waiting in @var{msg}.
 @end deftypefn
 
 
-@c exec src/syscalls.cc
+@c exec libinterp/corefcn/syscalls.cc
 @anchor{doc-exec}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} exec (@var{file}, @var{args})
 Replace current process with a new process.  Calling @code{exec} without
@@ -2048,7 +2148,7 @@ error message.
 @end deftypefn
 
 
-@c pipe src/syscalls.cc
+@c pipe libinterp/corefcn/syscalls.cc
 @anchor{doc-pipe}
 @deftypefn {Built-in Function} {[@var{read_fd}, @var{write_fd}, @var{err}, @var{msg}] =} pipe ()
 Create a pipe and return the reading and writing ends of the pipe
@@ -2060,7 +2160,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c dup2 src/syscalls.cc
+@c dup2 libinterp/corefcn/syscalls.cc
 @anchor{doc-dup2}
 @deftypefn {Built-in Function} {[@var{fid}, @var{msg}] =} dup2 (@var{old}, @var{new})
 Duplicate a file descriptor.
@@ -2071,7 +2171,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c waitpid src/syscalls.cc
+@c waitpid libinterp/corefcn/syscalls.cc
 @anchor{doc-waitpid}
 @deftypefn {Built-in Function} {[@var{pid}, @var{status}, @var{msg}] =} waitpid (@var{pid}, @var{options})
 Wait for process @var{pid} to terminate.  The @var{pid} argument can be:
@@ -2117,7 +2217,7 @@ information about the subprocess that exited.
 @end deftypefn
 
 
-@c WCONTINUE src/syscalls.cc
+@c WCONTINUE libinterp/corefcn/syscalls.cc
 @anchor{doc-WCONTINUE}
 @deftypefn {Built-in Function} {} WCONTINUE ()
 Return the numerical value of the option argument that may be
@@ -2128,7 +2228,7 @@ signal.
 @end deftypefn
 
 
-@c WCOREDUMP src/syscalls.cc
+@c WCOREDUMP libinterp/corefcn/syscalls.cc
 @anchor{doc-WCOREDUMP}
 @deftypefn {Built-in Function} {} WCOREDUMP (@var{status})
 Given @var{status} from a call to @code{waitpid}, return true if the
@@ -2140,7 +2240,7 @@ Unix implementations (e.g., AIX, SunOS).
 @end deftypefn
 
 
-@c WEXITSTATUS src/syscalls.cc
+@c WEXITSTATUS libinterp/corefcn/syscalls.cc
 @anchor{doc-WEXITSTATUS}
 @deftypefn {Built-in Function} {} WEXITSTATUS (@var{status})
 Given @var{status} from a call to @code{waitpid}, return the exit
@@ -2150,7 +2250,7 @@ status of the child.  This function should only be employed if
 @end deftypefn
 
 
-@c WIFCONTINUED src/syscalls.cc
+@c WIFCONTINUED libinterp/corefcn/syscalls.cc
 @anchor{doc-WIFCONTINUED}
 @deftypefn {Built-in Function} {} WIFCONTINUED (@var{status})
 Given @var{status} from a call to @code{waitpid}, return true if the
@@ -2159,7 +2259,7 @@ child process was resumed by delivery of @code{SIGCONT}.
 @end deftypefn
 
  
-@c WIFSIGNALED src/syscalls.cc
+@c WIFSIGNALED libinterp/corefcn/syscalls.cc
 @anchor{doc-WIFSIGNALED}
 @deftypefn {Built-in Function} {} WIFSIGNALED (@var{status})
 Given @var{status} from a call to @code{waitpid}, return true if the
@@ -2168,7 +2268,7 @@ child process was terminated by a signal.
 @end deftypefn
 
 
-@c WIFSTOPPED src/syscalls.cc
+@c WIFSTOPPED libinterp/corefcn/syscalls.cc
 @anchor{doc-WIFSTOPPED}
 @deftypefn {Built-in Function} {} WIFSTOPPED (@var{status})
 Given @var{status} from a call to @code{waitpid}, return true if the
@@ -2179,7 +2279,7 @@ is being traced (see ptrace(2)).
 @end deftypefn
 
 
-@c WIFEXITED src/syscalls.cc
+@c WIFEXITED libinterp/corefcn/syscalls.cc
 @anchor{doc-WIFEXITED}
 @deftypefn {Built-in Function} {} WIFEXITED (@var{status})
 Given @var{status} from a call to @code{waitpid}, return true if the
@@ -2188,7 +2288,7 @@ child terminated normally.
 @end deftypefn
 
 
-@c WNOHANG src/syscalls.cc
+@c WNOHANG libinterp/corefcn/syscalls.cc
 @anchor{doc-WNOHANG}
 @deftypefn {Built-in Function} {} WNOHANG ()
 Return the numerical value of the option argument that may be
@@ -2198,7 +2298,7 @@ status immediately instead of waiting for a process to exit.
 @end deftypefn
 
 
-@c WSTOPSIG src/syscalls.cc
+@c WSTOPSIG libinterp/corefcn/syscalls.cc
 @anchor{doc-WSTOPSIG}
 @deftypefn {Built-in Function} {} WSTOPSIG (@var{status})
 Given @var{status} from a call to @code{waitpid}, return the number of
@@ -2208,7 +2308,7 @@ be employed if @code{WIFSTOPPED} returned true.
 @end deftypefn
 
  
-@c WTERMSIG src/syscalls.cc
+@c WTERMSIG libinterp/corefcn/syscalls.cc
 @anchor{doc-WTERMSIG}
 @deftypefn {Built-in Function} {} WTERMSIG (@var{status})
 Given @var{status} from a call to @code{waitpid}, return the number of
@@ -2218,7 +2318,7 @@ should only be employed if @code{WIFSIGNALED} returned true.
 @end deftypefn
 
 
-@c WUNTRACED src/syscalls.cc
+@c WUNTRACED libinterp/corefcn/syscalls.cc
 @anchor{doc-WUNTRACED}
 @deftypefn {Built-in Function} {} WUNTRACED ()
 Return the numerical value of the option argument that may be
@@ -2229,7 +2329,7 @@ if the child process has stopped but is not traced via the
 @end deftypefn
 
 
-@c fcntl src/syscalls.cc
+@c fcntl libinterp/corefcn/syscalls.cc
 @anchor{doc-fcntl}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} fcntl (@var{fid}, @var{request}, @var{arg})
 Change the properties of the open file @var{fid}.  The following values
@@ -2287,7 +2387,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c kill src/syscalls.cc
+@c kill libinterp/corefcn/syscalls.cc
 @anchor{doc-kill}
 @deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} kill (@var{pid}, @var{sig})
 Send signal @var{sig} to process @var{pid}.
@@ -2310,7 +2410,7 @@ Return 0 if successful, otherwise return -1.
 @end deftypefn
 
 
-@c SIG src/sighandlers.cc
+@c SIG libinterp/interpfcn/sighandlers.cc
 @anchor{doc-SIG}
 @deftypefn {Built-in Function} {} SIG ()
 Return a structure containing Unix signal names and their defined values.
@@ -2320,49 +2420,49 @@ Return a structure containing Unix signal names and their defined values.
 @node Process ID Information
 @section Process, Group, and User IDs
 
-@c getpgrp src/syscalls.cc
+@c getpgrp libinterp/corefcn/syscalls.cc
 @anchor{doc-getpgrp}
 @deftypefn {Built-in Function} {pgid =} getpgrp ()
 Return the process group id of the current process.
 @end deftypefn
 
 
-@c getpid src/syscalls.cc
+@c getpid libinterp/corefcn/syscalls.cc
 @anchor{doc-getpid}
 @deftypefn {Built-in Function} {pid =} getpid ()
 Return the process id of the current process.
 @end deftypefn
 
 
-@c getppid src/syscalls.cc
+@c getppid libinterp/corefcn/syscalls.cc
 @anchor{doc-getppid}
 @deftypefn {Built-in Function} {pid =} getppid ()
 Return the process id of the parent process.
 @end deftypefn
 
 
-@c geteuid src/syscalls.cc
+@c geteuid libinterp/corefcn/syscalls.cc
 @anchor{doc-geteuid}
 @deftypefn {Built-in Function} {euid =} geteuid ()
 Return the effective user id of the current process.
 @end deftypefn
 
 
-@c getuid src/syscalls.cc
+@c getuid libinterp/corefcn/syscalls.cc
 @anchor{doc-getuid}
 @deftypefn {Built-in Function} {uid =} getuid ()
 Return the real user id of the current process.
 @end deftypefn
 
 
-@c getegid src/syscalls.cc
+@c getegid libinterp/corefcn/syscalls.cc
 @anchor{doc-getegid}
 @deftypefn {Built-in Function} {egid =} getegid ()
 Return the effective group id of the current process.
 @end deftypefn
 
 
-@c getgid src/syscalls.cc
+@c getgid libinterp/corefcn/syscalls.cc
 @anchor{doc-getgid}
 @deftypefn {Built-in Function} {gid =} getgid ()
 Return the real group id of the current process.
@@ -2372,7 +2472,7 @@ Return the real group id of the current process.
 @node Environment Variables
 @section Environment Variables
 
-@c getenv src/sysdep.cc
+@c getenv libinterp/interpfcn/sysdep.cc
 @anchor{doc-getenv}
 @deftypefn {Built-in Function} {} getenv (@var{var})
 Return the value of the environment variable @var{var}.  For example,
@@ -2386,7 +2486,7 @@ returns a string containing the value of your path.
 @end deftypefn
 
 
-@c putenv src/sysdep.cc
+@c putenv libinterp/interpfcn/sysdep.cc
 @anchor{doc-putenv}
 @deftypefn  {Built-in Function} {} putenv (@var{var}, @var{value})
 @deftypefnx {Built-in Function} {} setenv (@var{var}, @var{value})
@@ -2397,7 +2497,7 @@ Set the value of the environment variable @var{var} to @var{value}.
 @node Current Working Directory
 @section Current Working Directory
 
-@c cd src/dirfns.cc
+@c cd libinterp/interpfcn/dirfns.cc
 @anchor{doc-cd}
 @deftypefn  {Command} {} cd dir
 @deftypefnx {Command} {} chdir dir
@@ -2480,7 +2580,7 @@ information about the link.
 @end deftypefn
 
 
-@c pwd src/dirfns.cc
+@c pwd libinterp/interpfcn/dirfns.cc
 @anchor{doc-pwd}
 @deftypefn {Built-in Function} {} pwd ()
 Return the current working directory.
@@ -2520,43 +2620,43 @@ The initial shell.
 In the descriptions of the following functions, this data structure is
 referred to as a @var{pw_struct}.
 
-@c getpwent src/DLD-FUNCTIONS/getpwent.cc
+@c getpwent libinterp/corefcn/getpwent.cc
 @anchor{doc-getpwent}
-@deftypefn {Loadable Function} {@var{pw_struct} =} getpwent ()
+@deftypefn {Built-in Function} {@var{pw_struct} =} getpwent ()
 Return a structure containing an entry from the password database,
 opening it if necessary.  Once the end of the data has been reached,
 @code{getpwent} returns 0.
 @end deftypefn
 
 
-@c getpwuid src/DLD-FUNCTIONS/getpwent.cc
+@c getpwuid libinterp/corefcn/getpwent.cc
 @anchor{doc-getpwuid}
-@deftypefn {Loadable Function} {@var{pw_struct} =} getpwuid (@var{uid}).
+@deftypefn {Built-in Function} {@var{pw_struct} =} getpwuid (@var{uid}).
 Return a structure containing the first entry from the password database
 with the user ID @var{uid}.  If the user ID does not exist in the
 database, @code{getpwuid} returns 0.
 @end deftypefn
 
 
-@c getpwnam src/DLD-FUNCTIONS/getpwent.cc
+@c getpwnam libinterp/corefcn/getpwent.cc
 @anchor{doc-getpwnam}
-@deftypefn {Loadable Function} {@var{pw_struct} =} getpwnam (@var{name})
+@deftypefn {Built-in Function} {@var{pw_struct} =} getpwnam (@var{name})
 Return a structure containing the first entry from the password database
 with the user name @var{name}.  If the user name does not exist in the
 database, @code{getpwname} returns 0.
 @end deftypefn
 
 
-@c setpwent src/DLD-FUNCTIONS/getpwent.cc
+@c setpwent libinterp/corefcn/getpwent.cc
 @anchor{doc-setpwent}
-@deftypefn {Loadable Function} {} setpwent ()
+@deftypefn {Built-in Function} {} setpwent ()
 Return the internal pointer to the beginning of the password database.
 @end deftypefn
 
 
-@c endpwent src/DLD-FUNCTIONS/getpwent.cc
+@c endpwent libinterp/corefcn/getpwent.cc
 @anchor{doc-endpwent}
-@deftypefn {Loadable Function} {} endpwent ()
+@deftypefn {Built-in Function} {} endpwent ()
 Close the password database.
 @end deftypefn
 
@@ -2584,42 +2684,42 @@ The members of the group.
 In the descriptions of the following functions, this data structure is
 referred to as a @var{grp_struct}.
 
-@c getgrent src/DLD-FUNCTIONS/getgrent.cc
+@c getgrent libinterp/corefcn/getgrent.cc
 @anchor{doc-getgrent}
-@deftypefn {Loadable Function} {@var{grp_struct} =} getgrent ()
+@deftypefn {Built-in Function} {@var{grp_struct} =} getgrent ()
 Return an entry from the group database, opening it if necessary.
 Once the end of data has been reached, @code{getgrent} returns 0.
 @end deftypefn
 
 
-@c getgrgid src/DLD-FUNCTIONS/getgrent.cc
+@c getgrgid libinterp/corefcn/getgrent.cc
 @anchor{doc-getgrgid}
-@deftypefn {Loadable Function} {@var{grp_struct} =} getgrgid (@var{gid}).
+@deftypefn {Built-in Function} {@var{grp_struct} =} getgrgid (@var{gid}).
 Return the first entry from the group database with the group ID
 @var{gid}.  If the group ID does not exist in the database,
 @code{getgrgid} returns 0.
 @end deftypefn
 
          
-@c getgrnam src/DLD-FUNCTIONS/getgrent.cc
+@c getgrnam libinterp/corefcn/getgrent.cc
 @anchor{doc-getgrnam}
-@deftypefn {Loadable Function} {@var{grp_struct} =} getgrnam (@var{name})
+@deftypefn {Built-in Function} {@var{grp_struct} =} getgrnam (@var{name})
 Return the first entry from the group database with the group name
 @var{name}.  If the group name does not exist in the database,
 @code{getgrnam} returns 0.
 @end deftypefn
 
 
-@c setgrent src/DLD-FUNCTIONS/getgrent.cc
+@c setgrent libinterp/corefcn/getgrent.cc
 @anchor{doc-setgrent}
-@deftypefn {Loadable Function} {} setgrent ()
+@deftypefn {Built-in Function} {} setgrent ()
 Return the internal pointer to the beginning of the group database.
 @end deftypefn
 
 
-@c endgrent src/DLD-FUNCTIONS/getgrent.cc
+@c endgrent libinterp/corefcn/getgrent.cc
 @anchor{doc-endgrent}
-@deftypefn {Loadable Function} {} endgrent ()
+@deftypefn {Built-in Function} {} endgrent ()
 Close the group database.
 @end deftypefn
 
@@ -2659,7 +2759,7 @@ running.
 @end deftypefn
 
 
-@c uname src/syscalls.cc
+@c uname libinterp/corefcn/syscalls.cc
 @anchor{doc-uname}
 @deftypefn {Built-in Function} {[@var{uts}, @var{err}, @var{msg}] =} uname ()
 Return system information in the structure.  For example:
@@ -2667,13 +2767,13 @@ Return system information in the structure.  For example:
 @example
 @group
 uname ()
-     @result{} @{
-           sysname = x86_64
-           nodename = segfault
-           release = 2.6.15-1-amd64-k8-smp
-           version = Linux
-           machine = #2 SMP Thu Feb 23 04:57:49 UTC 2006
-         @}
+   @result{} @{
+         sysname = x86_64
+         nodename = segfault
+         release = 2.6.15-1-amd64-k8-smp
+         version = Linux
+         machine = #2 SMP Thu Feb 23 04:57:49 UTC 2006
+      @}
 @end group
 @end example
 
@@ -2683,14 +2783,15 @@ system-dependent error message.
 @end deftypefn
 
 
-@c nproc src/DLD-FUNCTIONS/nproc.cc
+@c nproc libinterp/corefcn/nproc.cc
 @anchor{doc-nproc}
-@deftypefn  {Loadable Function} {} nproc ()
-@deftypefnx {Loadable Function} {} nproc (@var{query})
+@deftypefn  {Built-in Function} {} nproc ()
+@deftypefnx {Built-in Function} {} nproc (@var{query})
 Return the current number of available processors.
 
 If called with the optional argument @var{query}, modify how processors
 are counted as follows:
+
 @table @code
 @item all
 total number of processors.
@@ -2729,7 +2830,7 @@ Return true if Octave is running on a Mac OS X system and false otherwise.
 @end deftypefn
 
 
-@c isieee src/sysdep.cc
+@c isieee libinterp/interpfcn/sysdep.cc
 @anchor{doc-isieee}
 @deftypefn {Built-in Function} {} isieee ()
 Return true if your computer @emph{claims} to conform to the IEEE standard
@@ -2747,7 +2848,7 @@ false in Octave.
 @end deftypefn
 
 
-@c OCTAVE_HOME src/defaults.cc
+@c OCTAVE_HOME libinterp/interpfcn/defaults.cc
 @anchor{doc-OCTAVE_HOME}
 @deftypefn {Built-in Function} {} OCTAVE_HOME ()
 Return the name of the top-level Octave installation directory.
@@ -2765,7 +2866,7 @@ for compatibility.
 @end deftypefn
 
 
-@c OCTAVE_VERSION src/defaults.cc
+@c OCTAVE_VERSION libinterp/interpfcn/defaults.cc
 @anchor{doc-OCTAVE_VERSION}
 @deftypefn {Built-in Function} {} OCTAVE_VERSION ()
 Return the version number of Octave, as a string.
@@ -2869,8 +2970,8 @@ not equal
 Note that version "1.1-test2" will compare as greater than
 "1.1-test10".  Also, since the numeric part is compared first, "a"
 compares less than "1a" because the second string starts with a
-numeric part even though @code{double("a")} is greater than
-@code{double("1").}
+numeric part even though @code{double ("a")} is greater than
+@code{double ("1").}
 @end deftypefn
 
 
@@ -2912,7 +3013,7 @@ This function is provided for compatibility with @sc{matlab}.
 @end deftypefn
 
 
-@c octave_config_info src/toplev.cc
+@c octave_config_info libinterp/interpfcn/toplev.cc
 @anchor{doc-octave_config_info}
 @deftypefn  {Built-in Function} {} octave_config_info ()
 @deftypefnx {Built-in Function} {} octave_config_info (@var{option})
@@ -2925,37 +3026,9 @@ specified option.
 @end deftypefn
 
 
-@c usejava scripts/miscellaneous/usejava.m
-@anchor{doc-usejava}
-@deftypefn {Function File} {} usejava (@var{feature})
-Return true if the specific Sun Java element @var{feature} is available.
-
-Possible features are:
-
-@table @asis
-@item "awt"
-Abstract Window Toolkit for GUIs.
-
-@item "desktop"
-Interactive desktop is running.
-
-@item "jvm"
-Java Virtual Machine.
-
-@item "swing"
-Swing components for lightweight GUIs.
-@end table
-
-This function is provided for compatibility with @sc{matlab} scripts which
-may alter their behavior based on the availability of Java.  Octave does
-not implement an interface to Java and this function always returns
-@code{false}.
-@end deftypefn
-
-
-@c getrusage src/DLD-FUNCTIONS/getrusage.cc
+@c getrusage libinterp/corefcn/getrusage.cc
 @anchor{doc-getrusage}
-@deftypefn {Loadable Function} {} getrusage ()
+@deftypefn {Built-in Function} {} getrusage ()
 Return a structure containing a number of statistics about the current
 Octave process.  Not all fields are available on all systems.  If it is
 not possible to get CPU time statistics, the CPU time slots are set to
@@ -3045,10 +3118,10 @@ endif
 @end group
 @end example
 
-@c md5sum src/DLD-FUNCTIONS/md5sum.cc
+@c md5sum libinterp/corefcn/md5sum.cc
 @anchor{doc-md5sum}
-@deftypefn  {Loadable Function} {} md5sum (@var{file})
-@deftypefnx {Loadable Function} {} md5sum (@var{str}, @var{opt})
+@deftypefn  {Built-in Function} {} md5sum (@var{file})
+@deftypefnx {Built-in Function} {} md5sum (@var{str}, @var{opt})
 Calculate the MD5 sum of the file @var{file}.  If the second parameter
 @var{opt} exists and is true, then calculate the MD5 sum of the
 string @var{str}.

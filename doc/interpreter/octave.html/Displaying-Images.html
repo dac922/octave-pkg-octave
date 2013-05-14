@@ -42,15 +42,15 @@ shows the image given in the first input argument.
    <p><a name="doc_002dimshow"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>imshow</b> (<var>im</var>)<var><a name="index-imshow-2897"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>im, limits</var>)<var><a name="index-imshow-2898"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>im, map</var>)<var><a name="index-imshow-2899"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>rgb, <small class="dots">...</small></var>)<var><a name="index-imshow-2900"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>filename</var>)<var><a name="index-imshow-2901"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var><small class="dots">...</small>, string_param1, value1, <small class="dots">...</small></var>)<var><a name="index-imshow-2902"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>imshow</b> (<var><small class="dots">...</small></var>)<var><a name="index-imshow-2903"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>im</var>)<var><a name="index-imshow-2987"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>im, limits</var>)<var><a name="index-imshow-2988"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>im, map</var>)<var><a name="index-imshow-2989"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>rgb, <small class="dots">...</small></var>)<var><a name="index-imshow-2990"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>filename</var>)<var><a name="index-imshow-2991"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var><small class="dots">...</small>, string_param1, value1, <small class="dots">...</small></var>)<var><a name="index-imshow-2992"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>imshow</b> (<var><small class="dots">...</small></var>)<var><a name="index-imshow-2993"></a></var><br>
 <blockquote><p>Display the image <var>im</var>, where <var>im</var> can be a 2-dimensional
-(gray-scale image) or a 3-dimensional (RGB image) matrix.
+(grayscale image) or a 3-dimensional (RGB image) matrix.
 
         <p>If <var>limits</var> is a 2-element vector <code>[</code><var>low</var><code>, </code><var>high</var><code>]</code>,
 the image is shown using a display range between <var>low</var> and
@@ -66,14 +66,12 @@ shown.
 
         <p>If given, the parameter <var>string_param1</var> has value
 <var>value1</var>.  <var>string_param1</var> can be any of the following:
+
           <dl>
 <dt>"displayrange"<dd><var>value1</var> is the display range as described above. 
 </dl>
 
-        <p>The optional return value <var>h</var> is a graphics handle to the image. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The optional return value <var>h</var> is a graphics handle to the image.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dimage.html#doc_002dimage">image</a>, <a href="doc_002dimagesc.html#doc_002dimagesc">imagesc</a>, <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>, <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>. 
 </p></blockquote></div>
@@ -82,30 +80,32 @@ shown.
    <p><a name="doc_002dimage"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>image</b> (<var>img</var>)<var><a name="index-image-2904"></a></var><br>
-&mdash; Function File:  <b>image</b> (<var>x, y, img</var>)<var><a name="index-image-2905"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>image</b> (<var><small class="dots">...</small></var>)<var><a name="index-image-2906"></a></var><br>
-<blockquote><p>Display a matrix as a color image.  The elements of <var>img</var> are indices
-into the current colormap, and the colormap will be scaled so that the
-extremes of <var>img</var> are mapped to the extremes of the colormap.
+&mdash; Function File:  <b>image</b> (<var>img</var>)<var><a name="index-image-2994"></a></var><br>
+&mdash; Function File:  <b>image</b> (<var>x, y, img</var>)<var><a name="index-image-2995"></a></var><br>
+&mdash; Function File:  <b>image</b> (<var><small class="dots">...</small>, "property", value, <small class="dots">...</small></var>)<var><a name="index-image-2996"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>image</b> (<var><small class="dots">...</small></var>)<var><a name="index-image-2997"></a></var><br>
+<blockquote><p>Display a matrix as an indexed color image.
 
-        <p>The axis values corresponding to the matrix elements are specified in
-<var>x</var> and <var>y</var>.  If you're not using gnuplot 4.2 or later, these
-variables are ignored.
+        <p>The elements of <var>img</var> are indices into the current colormap. 
+<var>x</var> and <var>y</var> are optional 2-element vectors, <code>[min,&nbsp;max]</code><!-- /@w -->,
+which specify the range for the axis labels.  If a range is specified as
+<code>[max,&nbsp;min]</code><!-- /@w --> then the image will be reversed along that axis.  For
+convenience, <var>x</var> and <var>y</var> may be specified as N-element vectors
+matching the length of the data in <var>img</var>.  However, only the first and
+last elements will be used to determine the axis limits. 
+<strong>Warning:</strong> <var>x</var> and <var>y</var> are ignored when using gnuplot 4.0
+or earlier.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the image.
 
         <p>Implementation Note: The origin (0, 0) for images is located in the
 upper left.  For ordinary plots, the origin is located in the lower
 left.  Octave handles this inversion by plotting the data normally,
 and then reversing the direction of the y-axis by setting the
-<code>ydir</code> property to <code>"reverse"</code>.  This has implications whenever
+<code>ydir</code> property to "reverse".  This has implications whenever
 an image and an ordinary plot need to be overlaid.  The recommended
 solution is to display the image and then plot the reversed ydata
-using, for example, <code>flipud (ydata,1)</code>.
-
-        <p>The optional return value <var>h</var> is a graphics handle to the image. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+using, for example, <code>flipud (ydata)</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dimshow.html#doc_002dimshow">imshow</a>, <a href="doc_002dimagesc.html#doc_002dimagesc">imagesc</a>, <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
 </p></blockquote></div>
@@ -114,25 +114,22 @@ using, for example, <code>flipud (ydata,1)</code>.
    <p><a name="doc_002dimagesc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>imagesc</b> (<var>A</var>)<var><a name="index-imagesc-2907"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var>x, y, A</var>)<var><a name="index-imagesc-2908"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var><small class="dots">...</small>, limits</var>)<var><a name="index-imagesc-2909"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-imagesc-2910"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>imagesc</b> (<var><small class="dots">...</small></var>)<var><a name="index-imagesc-2911"></a></var><br>
-<blockquote><p>Display a scaled version of the matrix <var>A</var> as a color image.  The
+&mdash; Function File:  <b>imagesc</b> (<var>img</var>)<var><a name="index-imagesc-2998"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var>x, y, img</var>)<var><a name="index-imagesc-2999"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var><small class="dots">...</small>, climits</var>)<var><a name="index-imagesc-3000"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-imagesc-3001"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>imagesc</b> (<var><small class="dots">...</small></var>)<var><a name="index-imagesc-3002"></a></var><br>
+<blockquote><p>Display a scaled version of the matrix <var>img</var> as a color image.  The
 colormap is scaled so that the entries of the matrix occupy the entire
-colormap.  If <var>limits</var> = [<var>lo</var>, <var>hi</var>] are given, then that
-range is set to the 'clim' of the current axes.
+colormap.  If <var>climits</var><code> = [</code><var>lo</var><code>, </code><var>hi</var><code>]</code> is given, then that
+range is set to the "clim" of the current axes.
 
         <p>The axis values corresponding to the matrix elements are specified in
 <var>x</var> and <var>y</var>, either as pairs giving the minimum and maximum
 values for the respective axes, or as values for each row and column
-of the matrix <var>A</var>.
+of the matrix <var>img</var>.
 
-        <p>The optional return value <var>h</var> is a graphics handle to the image. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The optional return value <var>h</var> is a graphics handle to the image.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dimage.html#doc_002dimage">image</a>, <a href="doc_002dimshow.html#doc_002dimshow">imshow</a>, <a href="doc_002dcaxis.html#doc_002dcaxis">caxis</a>. 
 </p></blockquote></div>

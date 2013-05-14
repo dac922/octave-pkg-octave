@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Duplicate an open file descriptor.
 
    Copyright (C) 2011-2012 Free Software Foundation, Inc.
@@ -29,7 +27,7 @@
 #undef dup
 
 #if HAVE_MSVC_INVALID_PARAMETER_HANDLER
-static inline int
+static int
 dup_nothrow (int fd)
 {
   int result;

@@ -29,9 +29,9 @@
 ##
 ## When specified, @var{timeout} defines the number of seconds to wait
 ## for the figure deletion or the @code{uiresume} call.  The timeout value
-## must be at least 1. If a smaller value is specified, a warning is issued
+## must be at least 1.  If a smaller value is specified, a warning is issued
 ## and a timeout value of 1 is used instead.  If a non-integer value is
-## specified, it is truncated towards 0. If @var{timeout} is not specified,
+## specified, it is truncated towards 0.  If @var{timeout} is not specified,
 ## the program execution is suspended indefinitely.
 ## @seealso{uiresume, waitfor}
 ## @end deftypefn
@@ -47,8 +47,8 @@ function uiwait (varargin)
     h = get (0, "currentfigure");
   else
     h = varargin{1};
-    if (! ishandle (h) || ! strcmp (get (h, "type"), "figure"))
-      error ("uiwait: invalid figure handle");
+    if (! isfigure (h))
+      error ("uiwait: invalid figure handle H");
     endif
     if (nargin > 1)
       timeout = varargin{2};
@@ -63,7 +63,7 @@ function uiwait (varargin)
         if (! strcmp (get (h, "__uiwait_state__"), "none"))
           error ("uiwait: an active uiwait call for this figure already exists");
         endif
-	set (h, "__uiwait_state__", "active");
+        set (h, "__uiwait_state__", "active");
       end_try_catch
       waitfor_args = {h, "__uiwait_state__", "triggered"};
       if (! isempty (timeout))

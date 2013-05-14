@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* dirfd.c -- return the file descriptor associated with an open DIR*
 
    Copyright (C) 2001, 2006, 2008-2012 Free Software Foundation, Inc.

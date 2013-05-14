@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* declarations for strftime.c
 
    Copyright (C) 2002, 2004, 2008-2012 Free Software Foundation, Inc.

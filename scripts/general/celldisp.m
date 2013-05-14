@@ -71,17 +71,19 @@ function s = indices (dv, i)
   if (sum (dv != 1) > 1)
     c = cell (size (dv));
     [c{:}] = ind2sub (dv, i);
-    s = sprintf("%i,", c{:});
+    s = sprintf ("%i,", c{:});
     s(end) = [];
   else
-    s = sprintf("%i", i);
+    s = sprintf ("%i", i);
   endif
 endfunction
 
+
 %!demo
 %! c = {1, 2, {31, 32}};
-%! celldisp(c, "b")
+%! celldisp (c, "b")
 
-%!error celldisp ();
-%!error celldisp ({}, "name", 1);
-%!error celldisp (1);
+%!error celldisp ()
+%!error celldisp ({}, "name", 1)
+%!error celldisp (1)
+

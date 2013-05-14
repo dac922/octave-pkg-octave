@@ -21,7 +21,7 @@
 ## @deftypefnx {Function File} {} ezmeshc (@var{fx}, @var{fy}, @var{fz})
 ## @deftypefnx {Function File} {} ezmeshc (@dots{}, @var{dom})
 ## @deftypefnx {Function File} {} ezmeshc (@dots{}, @var{n})
-## @deftypefnx {Function File} {} ezmeshc (@dots{}, 'circ')
+## @deftypefnx {Function File} {} ezmeshc (@dots{}, "circ")
 ## @deftypefnx {Function File} {} ezmeshc (@var{h}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} ezmeshc (@dots{})
 ##
@@ -41,7 +41,7 @@
 ## function @code{[@var{fx} (@var{s}, @var{t}), @var{fy} (@var{s}, @var{t}),
 ## @var{fz} (@var{s}, @var{t})]}.
 ##
-## If the argument 'circ' is given, then the function is plotted over a disk
+## If the argument "circ" is given, then the function is plotted over a disk
 ## centered on the middle of the domain @var{dom}.
 ##
 ## The optional return value @var{h} is a 2-element vector with a graphics
@@ -69,11 +69,13 @@ function retval = ezmeshc (varargin)
   if (nargout > 0)
     retval = h;
   endif
+
 endfunction
 
 
 %!demo
-%! clf
-%! f = @(x,y) sqrt(abs(x .* y)) ./ (1 + x.^2 + y.^2);
+%! clf;
+%! colormap ('default');
+%! f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
 %! ezmeshc (f, [-3, 3]);
 

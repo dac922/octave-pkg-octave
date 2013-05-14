@@ -41,11 +41,11 @@ with the same names.  They are able to automatically swap the byte order
 of integer data and convert among the supported floating point formats
 as the data are read.
 
-<!-- fread src/file-io.cc -->
+<!-- fread libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dfread"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>] = <b>fread</b> (<var>fid, size, precision, skip, arch</var>)<var><a name="index-fread-1007"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>] = <b>fread</b> (<var>fid, size, precision, skip, arch</var>)<var><a name="index-fread-1043"></a></var><br>
 <blockquote><p>Read binary data of type <var>precision</var> from the specified file ID
 <var>fid</var>.
 
@@ -165,18 +165,15 @@ for the file.  Valid values are
 
         <p>The data read from the file is returned in <var>val</var>, and the number of
 values read is returned in <code>count</code>
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>, <a href="doc_002dfclose.html#doc_002dfclose">fclose</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>, <a href="doc_002dfgets.html#doc_002dfgets">fgets</a>, <a href="doc_002dfgetl.html#doc_002dfgetl">fgetl</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
 </p></blockquote></div>
 
-<!-- fwrite src/file-io.cc -->
+<!-- fwrite libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dfwrite"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>count</var> = <b>fwrite</b> (<var>fid, data, precision, skip, arch</var>)<var><a name="index-fwrite-1008"></a></var><br>
+&mdash; Built-in Function: <var>count</var> = <b>fwrite</b> (<var>fid, data, precision, skip, arch</var>)<var><a name="index-fwrite-1044"></a></var><br>
 <blockquote><p>Write data in binary form of type <var>precision</var> to the specified file
 ID <var>fid</var>, returning the number of values successfully written to the
 file.
@@ -188,12 +185,9 @@ the file.  The values are extracted in column-major order.
 optional, and are interpreted as described for <code>fread</code>.
 
         <p>The behavior of <code>fwrite</code> is undefined if the values in <var>data</var>
-are too large to fit in the specified precision. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+are too large to fit in the specified precision.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>, <a href="doc_002dfclose.html#doc_002dfclose">fclose</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfputs.html#doc_002dfputs">fputs</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
 </p></blockquote></div>
 
    </body></html>

@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* closexec.c - set or clear the close-on-exec descriptor flag
 
    Copyright (C) 2004, 2009-2012 Free Software Foundation, Inc.

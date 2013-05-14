@@ -44,7 +44,7 @@ number of elements in the matrix, including the non-zero elements, they
 should use <code>numel</code> rather than <code>nelem</code>.  Note that for very
 large matrices, where the product of the two dimensions is larger than
 the representation of an unsigned int, then <code>numel</code> can overflow. 
-An example is <code>speye(1e6)</code> which will create a matrix with a million
+An example is <code>speye (1e6)</code> which will create a matrix with a million
 rows and columns, but only a million non-zero elements.  Therefore the
 number of rows by the number of columns in this case is more than two
 hundred times the maximum value that can be represented by an unsigned int. 

@@ -32,7 +32,7 @@
 ##         4  5  6
 ##
 ## whos s
-##      @result{} s =
+##      @result{}
 ##       Attr Name        Size                     Bytes  Class
 ##       ==== ====        ====                     =====  =====
 ##            s           2x7                         14  char
@@ -57,8 +57,8 @@ function retval = int2str (n)
     return;
   endif
 
-  n = round (real(n));
-  sz = size(n);
+  n = round (real (n));
+  sz = size (n);
   nd = ndims (n);
   nc = columns (n);
   if (nc > 1)
@@ -113,10 +113,12 @@ function fmt = get_fmt (x, sep)
 
 endfunction
 
-%!assert (strcmp (int2str (-123), "-123") && strcmp (int2str (1.2), "1"));
-%!assert (all (int2str ([1, 2, 3; 4, 5, 6]) == ["1  2  3";"4  5  6"]));
-%!assert (int2str([]), "");
 
-%!error int2str ();
-%!error int2str (1, 2);
+%!assert (int2str (-123), "-123")
+%!assert (int2str (1.2), "1")
+%!assert (int2str ([1, 2, 3; 4, 5, 6]), ["1  2  3";"4  5  6"])
+%!assert (int2str ([]), "")
+
+%!error int2str ()
+%!error int2str (1, 2)
 

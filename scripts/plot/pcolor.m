@@ -55,7 +55,7 @@ function h = pcolor (x, y, c)
 
   if (nargin == 1)
     c = x;
-    [nr, nc] = size(c);
+    [nr, nc] = size (c);
     z = zeros (nr, nc);
     [x, y] = meshgrid (1:nc, 1:nr);
   elseif (nargin == 3)
@@ -81,14 +81,18 @@ function h = pcolor (x, y, c)
 
 endfunction
 
-%!demo
-%! clf
-%! [~,~,Z]=peaks;
-%! pcolor(Z);
 
 %!demo
-%! clf
-%! [X,Y,Z]=sombrero;
-%! [Fx,Fy] = gradient(Z);
-%! pcolor(X,Y,Fx+Fy);
+%! clf;
+%! colormap ('default');
+%! [~,~,Z] = peaks ();
+%! pcolor (Z);
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! [X,Y,Z] = sombrero ();
+%! [Fx,Fy] = gradient (Z);
+%! pcolor (X,Y,Fx+Fy);
 %! shading interp;
+

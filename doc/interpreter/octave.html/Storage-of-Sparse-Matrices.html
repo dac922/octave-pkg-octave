@@ -69,7 +69,7 @@ for the first or last columns.  A short example, demonstrating this in
 C is.
 
 <pre class="example">       for (j = 0; j &lt; nc; j++)
-         for (i = cidx (j); i &lt; cidx(j+1); i++)
+         for (i = cidx(j); i &lt; cidx(j+1); i++)
             printf ("non-zero element (%i,%i) is %d\n",
                 ridx(i), j, data(i));
 </pre>

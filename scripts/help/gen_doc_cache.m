@@ -34,23 +34,30 @@
 function gen_doc_cache (out_file = "doc-cache", directory = [])
 
   ## Check input
-  if (!ischar (out_file))
+  if (! ischar (out_file))
     print_usage ();
   endif
 
   ## Generate cache
   if (isempty (directory))
     cache = gen_builtin_cache ();
+  elseif (iscell (directory))
+    if (all (cellfun (@ischar, directory)))
+      cache = gen_doc_cache_in_dir (directory);
+    else
+      error ("gen_doc_cache: cell must contain only strings");
+    endif
   elseif (ischar (directory))
-    cache = gen_doc_cache_in_dir (directory);
+     cache = gen_doc_cache_in_dir (directory);
   else
-    error ("gen_doc_cache: second input argument must be a string");
+     error ("gen_doc_cache: second input argument must be a string or a cell of strings");
   endif
 
   ## Save cache
   if (! isempty (cache))
-    save ("-text", out_file, "cache");
+     save ("-text", out_file, "cache");
   endif
+
 endfunction
 
 function [text, first_sentence, status] = handle_function (f, text, format)
@@ -108,31 +115,33 @@ function cache = create_cache (list)
 endfunction
 
 function cache = gen_doc_cache_in_dir (directory)
+
   ## If 'directory' is not in the current path, add it so we search it
-  dir_in_path = false;
-  p = path ();
-  idx = find (p == pathsep ());
-  prev_idx = 1;
-  for n = 1:length (idx)
-    f = p (prev_idx:idx (n)-1);
-    if (strcmp (f, directory))
-      dir_in_path = true;
-      break;
-    endif
-    prev_idx = idx (n) + 1;
-  endfor
+  dir_in_path = ismember (directory, strsplit (path (), pathsep ()));
 
-  if (!dir_in_path)
-    addpath (directory);
+  # dirs not in path
+  if (! iscell (directory))
+    directory = {directory};
+  endif
+  dirs_notpath = {directory{!dir_in_path}};
+
+  # add them
+  if (! isempty (dirs_notpath))
+    cellfun (@addpath, dirs_notpath);
   endif
 
-  ## Get list of functions in directory and create cache
-  list = __list_functions__ (directory);
-  cache = create_cache (list);
+  # create cache
+  func = @(s_) create_cache (__list_functions__ (s_));
+  cache = cellfun (func, directory, 'UniformOutput', false);
 
-  if (!dir_in_path)
-    rmpath (directory);
+  # concatenate results
+  cache = [cache{:}];
+
+  #remove dirs form path
+  if (! isempty (dirs_notpath))
+    cellfun (@rmpath, dirs_notpath);
   endif
+
 endfunction
 
 function cache = gen_builtin_cache ()
@@ -148,4 +157,3 @@ endfunction
 %% No true tests desirable for this function.
 %% Test input validation
 %!error gen_doc_cache (1)
-

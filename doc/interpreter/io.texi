@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -66,7 +66,7 @@ value of a variable without printing its name, use the function
 The @code{format} command offers some control over the way Octave prints
 values with @code{disp} and through the normal echoing mechanism.
 
-@c disp src/pr-output.cc
+@c disp libinterp/interpfcn/pr-output.cc
 @anchor{doc-disp}
 @deftypefn {Built-in Function} {} disp (@var{x})
 Display the value of @var{x}.  For example:
@@ -89,13 +89,15 @@ returns the formatted output in a string.
 @end deftypefn
 
 
-@c list_in_columns src/strfns.cc
+@c list_in_columns libinterp/corefcn/strfns.cc
 @anchor{doc-list_in_columns}
-@deftypefn {Built-in Function} {} list_in_columns (@var{arg}, @var{width})
+@deftypefn {Built-in Function} {} list_in_columns (@var{arg}, @var{width}, @var{prefix})
 Return a string containing the elements of @var{arg} listed in
-columns with an overall maximum width of @var{width}.  The argument
-@var{arg} must be a cell array of character strings or a character array.
-If @var{width} is not specified, the width of the terminal screen is used.
+columns with an overall maximum width of @var{width} and optional
+prefix @var{prefix}.  The argument @var{arg} must be a cell array
+of character strings or a character array.  If @var{width} is not
+specified or is an empty matrix, or less than or equal to zero,
+the width of the terminal screen is used.
 Newline characters are used to break the lines in the output string.
 For example:
 @c Set example in small font to prevent overfull line
@@ -103,9 +105,9 @@ For example:
 @smallexample
 @group
 list_in_columns (@{"abc", "def", "ghijkl", "mnop", "qrs", "tuv"@}, 20)
-     @result{} ans = abc     mnop
-            def     qrs
-            ghijkl  tuv
+     @result{} abc     mnop
+        def     qrs
+        ghijkl  tuv
 
 whos ans
      @result{}
@@ -123,7 +125,7 @@ whos ans
 @end deftypefn
 
 
-@c terminal_size src/pager.cc
+@c terminal_size libinterp/interpfcn/pager.cc
 @anchor{doc-terminal_size}
 @deftypefn {Built-in Function} {} terminal_size ()
 Return a two-element row vector containing the current size of the
@@ -132,7 +134,7 @@ terminal window in characters (rows and columns).
 @end deftypefn
 
 
-@c format src/pr-output.cc
+@c format libinterp/interpfcn/pr-output.cc
 @anchor{doc-format}
 @deftypefn  {Command} {} format
 @deftypefnx {Command} {} format options
@@ -330,7 +332,7 @@ You can select the program to run as the pager using the @env{PAGER}
 function, and you can turn paging off by using the function
 @code{more}.
 
-@c more src/pager.cc
+@c more libinterp/interpfcn/pager.cc
 @anchor{doc-more}
 @deftypefn  {Command} {} more
 @deftypefnx {Command} {} more on
@@ -338,10 +340,11 @@ function, and you can turn paging off by using the function
 Turn output pagination on or off.  Without an argument, @code{more}
 toggles the current state.
 The current state can be determined via @code{page_screen_output}.
+@seealso{@ref{doc-page_screen_output,,page_screen_output}, @ref{doc-page_output_immediately,,page_output_immediately}, @ref{doc-PAGER,,PAGER}, @ref{doc-PAGER_FLAGS,,PAGER_FLAGS}}
 @end deftypefn
 
 
-@c PAGER src/pager.cc
+@c PAGER libinterp/interpfcn/pager.cc
 @anchor{doc-PAGER}
 @deftypefn  {Built-in Function} {@var{val} =} PAGER ()
 @deftypefnx {Built-in Function} {@var{old_val} =} PAGER (@var{new_val})
@@ -355,11 +358,11 @@ normally @code{"less"}, @code{"more"}, or
 When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
-@seealso{@ref{doc-more,,more}, @ref{doc-page_screen_output,,page_screen_output}, @ref{doc-page_output_immediately,,page_output_immediately}, @ref{doc-PAGER_FLAGS,,PAGER_FLAGS}}
+@seealso{@ref{doc-PAGER_FLAGS,,PAGER_FLAGS}, @ref{doc-page_output_immediately,,page_output_immediately}, @ref{doc-more,,more}, @ref{doc-page_screen_output,,page_screen_output}}
 @end deftypefn
 
 
-@c PAGER_FLAGS src/pager.cc
+@c PAGER_FLAGS libinterp/interpfcn/pager.cc
 @anchor{doc-PAGER_FLAGS}
 @deftypefn  {Built-in Function} {@var{val} =} PAGER_FLAGS ()
 @deftypefnx {Built-in Function} {@var{old_val} =} PAGER_FLAGS (@var{new_val})
@@ -370,11 +373,11 @@ to the pager.
 When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
-@seealso{@ref{doc-PAGER,,PAGER}}
+@seealso{@ref{doc-PAGER,,PAGER}, @ref{doc-more,,more}, @ref{doc-page_screen_output,,page_screen_output}, @ref{doc-page_output_immediately,,page_output_immediately}}
 @end deftypefn
 
 
-@c page_screen_output src/pager.cc
+@c page_screen_output libinterp/interpfcn/pager.cc
 @anchor{doc-page_screen_output}
 @deftypefn  {Built-in Function} {@var{val} =} page_screen_output ()
 @deftypefnx {Built-in Function} {@var{old_val} =} page_screen_output (@var{new_val})
@@ -388,10 +391,11 @@ backward on the output.
 When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
+@seealso{@ref{doc-more,,more}, @ref{doc-page_output_immediately,,page_output_immediately}, @ref{doc-PAGER,,PAGER}, @ref{doc-PAGER_FLAGS,,PAGER_FLAGS}}
 @end deftypefn
 
 
-@c page_output_immediately src/pager.cc
+@c page_output_immediately libinterp/interpfcn/pager.cc
 @anchor{doc-page_output_immediately}
 @deftypefn  {Built-in Function} {@var{val} =} page_output_immediately ()
 @deftypefnx {Built-in Function} {@var{old_val} =} page_output_immediately (@var{new_val})
@@ -404,10 +408,11 @@ flush it to the pager.
 When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
+@seealso{@ref{doc-page_screen_output,,page_screen_output}, @ref{doc-more,,more}, @ref{doc-PAGER,,PAGER}, @ref{doc-PAGER_FLAGS,,PAGER_FLAGS}}
 @end deftypefn
 
 
-@c fflush src/file-io.cc
+@c fflush libinterp/interpfcn/file-io.cc
 @anchor{doc-fflush}
 @deftypefn {Built-in Function} {} fflush (@var{fid})
 Flush output to @var{fid}.  This is useful for ensuring that all
@@ -436,7 +441,7 @@ input.  The @code{input} and @code{menu} functions are normally
 used for managing an interactive dialog with a user, and the
 @code{keyboard} function is normally used for doing simple debugging.
 
-@c input src/input.cc
+@c input libinterp/interpfcn/input.cc
 @anchor{doc-input}
 @deftypefn  {Built-in Function} {} input (@var{prompt})
 @deftypefnx {Built-in Function} {} input (@var{prompt}, "s")
@@ -486,7 +491,7 @@ screen.
 @end deftypefn
 
 
-@c yes_or_no src/input.cc
+@c yes_or_no libinterp/interpfcn/input.cc
 @anchor{doc-yes_or_no}
 @deftypefn {Built-in Function} {} yes_or_no (@var{prompt})
 Ask the user a yes-or-no question.  Return 1 if the answer is yes.
@@ -504,7 +509,7 @@ Octave also has a function that makes it possible to get a single
 character from the keyboard without requiring the user to type a
 carriage return.
 
-@c kbhit src/sysdep.cc
+@c kbhit libinterp/interpfcn/sysdep.cc
 @anchor{doc-kbhit}
 @deftypefn {Built-in Function} {} kbhit ()
 Read a single keystroke from the keyboard.  If called with one
@@ -563,7 +568,7 @@ A
 @end group
 @end example
 
-@c save src/load-save.cc
+@c save libinterp/interpfcn/load-save.cc
 @anchor{doc-save}
 @deftypefn  {Command} {} save file
 @deftypefnx {Command} {} save options file
@@ -651,6 +656,7 @@ libraries.
 
 The list of variables to save may use wildcard patterns containing
 the following special characters:
+
 @table @code
 @item ?
 Match any single character.
@@ -688,7 +694,7 @@ the file @file{data} in Octave's binary format.
 @end deftypefn
 
 
-@c load src/load-save.cc
+@c load libinterp/interpfcn/load-save.cc
 @anchor{doc-load}
 @deftypefn  {Command} {} load file
 @deftypefnx {Command} {} load options file
@@ -796,7 +802,7 @@ Read the contents of @var{filename} and return it as a string.
 
 There are three functions that modify the behavior of @code{save}.
 
-@c default_save_options src/load-save.cc
+@c default_save_options libinterp/interpfcn/load-save.cc
 @anchor{doc-default_save_options}
 @deftypefn  {Built-in Function} {@var{val} =} default_save_options ()
 @deftypefnx {Built-in Function} {@var{old_val} =} default_save_options (@var{new_val})
@@ -813,7 +819,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c save_precision src/ls-oct-ascii.cc
+@c save_precision libinterp/interpfcn/ls-oct-ascii.cc
 @anchor{doc-save_precision}
 @deftypefn  {Built-in Function} {@var{val} =} save_precision ()
 @deftypefnx {Built-in Function} {@var{old_val} =} save_precision (@var{new_val})
@@ -827,7 +833,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c save_header_format_string src/load-save.cc
+@c save_header_format_string libinterp/interpfcn/load-save.cc
 @anchor{doc-save_header_format_string}
 @deftypefn  {Built-in Function} {@var{val} =} save_header_format_string ()
 @deftypefnx {Built-in Function} {@var{old_val} =} save_header_format_string (@var{new_val})
@@ -853,7 +859,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c native_float_format src/sysdep.cc
+@c native_float_format libinterp/interpfcn/sysdep.cc
 @anchor{doc-native_float_format}
 @deftypefn {Built-in Function} {} native_float_format ()
 Return the native floating point format as a string
@@ -879,7 +885,7 @@ fclose (fid);
 @xref{Opening and Closing Files}, for details on how to use @code{fopen}
 and @code{fclose}.
 
-@c fdisp src/pr-output.cc
+@c fdisp libinterp/interpfcn/pr-output.cc
 @anchor{doc-fdisp}
 @deftypefn {Built-in Function} {} fdisp (@var{fid}, @var{x})
 Display the value of @var{x} on the stream @var{fid}.  For example:
@@ -964,13 +970,13 @@ dlmwrite ("file.tex", a, "delimiter", "&", "newline", "\\n")
 @end deftypefn
 
 
-@c dlmread src/DLD-FUNCTIONS/dlmread.cc
+@c dlmread libinterp/corefcn/dlmread.cc
 @anchor{doc-dlmread}
-@deftypefn  {Loadable Function} {@var{data} =} dlmread (@var{file})
-@deftypefnx {Loadable Function} {@var{data} =} dlmread (@var{file}, @var{sep})
-@deftypefnx {Loadable Function} {@var{data} =} dlmread (@var{file}, @var{sep}, @var{r0}, @var{c0})
-@deftypefnx {Loadable Function} {@var{data} =} dlmread (@var{file}, @var{sep}, @var{range})
-@deftypefnx {Loadable Function} {@var{data} =} dlmread (@dots{}, "emptyvalue", @var{EMPTYVAL})
+@deftypefn  {Built-in Function} {@var{data} =} dlmread (@var{file})
+@deftypefnx {Built-in Function} {@var{data} =} dlmread (@var{file}, @var{sep})
+@deftypefnx {Built-in Function} {@var{data} =} dlmread (@var{file}, @var{sep}, @var{r0}, @var{c0})
+@deftypefnx {Built-in Function} {@var{data} =} dlmread (@var{file}, @var{sep}, @var{range})
+@deftypefnx {Built-in Function} {@var{data} =} dlmread (@dots{}, "emptyvalue", @var{EMPTYVAL})
 Read the matrix @var{data} from a text file.  If not defined the separator
 between fields is determined from the file itself.  Otherwise the
 separation character is defined by @var{sep}.
@@ -982,7 +988,7 @@ such that the first row corresponds to an index of zero.
 The @var{range} parameter may be a 4-element vector containing the upper
 left and lower right corner @code{[@var{R0},@var{C0},@var{R1},@var{C1}]}
 where the lowest index value is zero.  Alternatively, a spreadsheet style
-range such as 'A2..Q15' or 'T1:AA5' can be used.  The lowest alphabetical
+range such as "A2..Q15" or "T1:AA5" can be used.  The lowest alphabetical
 index 'A' refers to the first column.  The lowest row index is 1.
 
 @var{file} should be a file name or file id given by @code{fopen}.  In the
@@ -1055,8 +1061,8 @@ inferred from the file.  If set to "" (empty string) EOLs are ignored as
 delimiters.
 @end itemize
 
-The optional input @var{n} specifes the number of times to use
-@var{format} when parsing, i.e., the format repeat count.
+The optional input @var{n} specifies the number of data lines to read; in
+this sense it differs slightly from the format repeat count in strread.
 
 @seealso{@ref{doc-strread,,strread}, @ref{doc-load,,load}, @ref{doc-dlmread,,dlmread}, @ref{doc-fscanf,,fscanf}, @ref{doc-textscan,,textscan}}
 @end deftypefn
@@ -1072,13 +1078,13 @@ The optional input @var{n} specifes the number of times to use
 @deftypefnx {Function File} {[@var{C}, @var{position}] =} textscan (@var{fid}, @dots{})
 Read data from a text file or string.
 
-The file associated with @var{fid} is read and parsed according to
-@var{format}.  The function behaves like @code{strread} except it works by
-parsing a file instead of a string.  See the documentation of
-@code{strread} for details.
+The string @var{str} or file associated with @var{fid} is read from and
+parsed according to @var{format}.  The function behaves like @code{strread}
+except it can also read from file instead of a string.  See the documentation
+of @code{strread} for details.
 
-In addition to the options supported by
-@code{strread}, this function supports a few more:
+In addition to the options supported by @code{strread}, this function
+supports a few more:
 
 @itemize
 @item "collectoutput":
@@ -1097,18 +1103,72 @@ The first @var{value} number of lines of @var{fid} are skipped.
 @item "returnonerror":
 If set to numerical 1 or true (default), return normally when read errors
 have been encountered.  If set to 0 or false, return an error and no data.
+As the string or file is read by columns rather than by rows, and because
+textscan is fairly forgiving as regards read errors, setting this option
+may have little or no actual effect.
 @end itemize
 
-The optional input @var{n} specifes the number of times to use
-@var{format} when parsing, i.e., the format repeat count.
+When reading from a character string, optional input argument @var{n}
+specifies the number of times @var{format} should be used (i.e., to limit
+the amount of data read).
+When reading from file, @var{n} specifies the number of data lines to read;
+in this sense it differs slightly from the format repeat count in strread.
 
-The output @var{C} is a cell array whose length is given by the number
-of format specifiers.
+The output @var{C} is a cell array whose second dimension is determined
+by the number of format specifiers.
 
 The second output, @var{position}, provides the position, in characters,
 from the beginning of the file.
 
 @seealso{@ref{doc-dlmread,,dlmread}, @ref{doc-fscanf,,fscanf}, @ref{doc-load,,load}, @ref{doc-strread,,strread}, @ref{doc-textread,,textread}}
+@end deftypefn
+
+
+The @code{importdata} function has the ability to work with a wide
+variety of data.
+
+@c importdata scripts/io/importdata.m
+@anchor{doc-importdata}
+@deftypefn  {Function File} {@var{A} =} importdata (@var{fname})
+@deftypefnx {Function File} {@var{A} =} importdata (@var{fname}, @var{delimiter})
+@deftypefnx {Function File} {@var{A} =} importdata (@var{fname}, @var{delimiter}, @var{header_rows})
+@deftypefnx {Function File} {[@var{A}, @var{delimiter}] =} importdata (@dots{})
+@deftypefnx {Function File} {[@var{A}, @var{delimiter}, @var{header_rows}] =} importdata (@dots{})
+Importing data from file.
+
+Importing the contents of file @var{fname} into workspace.
+
+Input parameters:
+@itemize
+@item @var{fname}
+The file name for the file to import.
+
+@item @var{delimiter}
+The character separating columns of data. Use @code{\t} for tab.
+(Only valid for ascii files)
+
+@item @var{header_rows}
+Number of header rows before the data begins. (Only valid for ascii files)
+@end itemize
+
+Different file types are supported:
+@itemize
+@item Ascii table
+
+Importing ascii table using the specified number of header rows and
+the specified delimiter.
+
+@item Image file
+
+@item @sc{Matlab} file
+
+@item Spreadsheet files (depending on external software)
+
+@item Wav file
+
+@end itemize
+
+@seealso{@ref{doc-textscan,,textscan}, @ref{doc-dlmread,,dlmread}, @ref{doc-csvread,,csvread}, @ref{doc-load,,load}}
 @end deftypefn
 
 
@@ -1121,18 +1181,18 @@ from the beginning of the file.
 
 If Octave for some reason exits unexpectedly it will by default save the
 variables available in the workspace to a file in the current directory.
-By default this file is named @samp{octave-core} and can be loaded
+By default this file is named @samp{octave-workspace} and can be loaded
 into memory with the @code{load} command.  While the default behavior
 most often is reasonable it can be changed through the following
 functions.
 
-@c crash_dumps_octave_core src/load-save.cc
+@c crash_dumps_octave_core libinterp/interpfcn/load-save.cc
 @anchor{doc-crash_dumps_octave_core}
 @deftypefn  {Built-in Function} {@var{val} =} crash_dumps_octave_core ()
 @deftypefnx {Built-in Function} {@var{old_val} =} crash_dumps_octave_core (@var{new_val})
 @deftypefnx {Built-in Function} {} crash_dumps_octave_core (@var{new_val}, "local")
 Query or set the internal variable that controls whether Octave tries
-to save all current variables to the file "octave-core" if it
+to save all current variables to the file "octave-workspace" if it
 crashes or receives a hangup, terminate or similar signal.
 
 When called from inside a function with the "local" option, the variable is
@@ -1142,13 +1202,13 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c sighup_dumps_octave_core src/sighandlers.cc
+@c sighup_dumps_octave_core libinterp/interpfcn/sighandlers.cc
 @anchor{doc-sighup_dumps_octave_core}
 @deftypefn  {Built-in Function} {@var{val} =} sighup_dumps_octave_core ()
 @deftypefnx {Built-in Function} {@var{old_val} =} sighup_dumps_octave_core (@var{new_val})
 @deftypefnx {Built-in Function} {} sighup_dumps_octave_core (@var{new_val}, "local")
 Query or set the internal variable that controls whether Octave tries
-to save all current variables to the file "octave-core" if it receives
+to save all current variables to the file "octave-workspace" if it receives
 a hangup signal.
 
 When called from inside a function with the "local" option, the variable is
@@ -1157,13 +1217,13 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c sigterm_dumps_octave_core src/sighandlers.cc
+@c sigterm_dumps_octave_core libinterp/interpfcn/sighandlers.cc
 @anchor{doc-sigterm_dumps_octave_core}
 @deftypefn  {Built-in Function} {@var{val} =} sigterm_dumps_octave_core ()
 @deftypefnx {Built-in Function} {@var{old_val} =} sigterm_dumps_octave_core (@var{new_val})
 @deftypefnx {Built-in Function} {} sigterm_dumps_octave_core (@var{new_val}, "local")
 Query or set the internal variable that controls whether Octave tries
-to save all current variables to the file "octave-core" if it receives
+to save all current variables to the file "octave-workspace" if it receives
 a terminate signal.
 
 When called from inside a function with the "local" option, the variable is
@@ -1172,7 +1232,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c octave_core_file_options src/load-save.cc
+@c octave_core_file_options libinterp/interpfcn/load-save.cc
 @anchor{doc-octave_core_file_options}
 @deftypefn  {Built-in Function} {@var{val} =} octave_core_file_options ()
 @deftypefnx {Built-in Function} {@var{old_val} =} octave_core_file_options (@var{new_val})
@@ -1190,7 +1250,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c octave_core_file_limit src/load-save.cc
+@c octave_core_file_limit libinterp/interpfcn/load-save.cc
 @anchor{doc-octave_core_file_limit}
 @deftypefn  {Built-in Function} {@var{val} =} octave_core_file_limit ()
 @deftypefnx {Built-in Function} {@var{old_val} =} octave_core_file_limit (@var{new_val})
@@ -1211,14 +1271,14 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c octave_core_file_name src/load-save.cc
+@c octave_core_file_name libinterp/interpfcn/load-save.cc
 @anchor{doc-octave_core_file_name}
 @deftypefn  {Built-in Function} {@var{val} =} octave_core_file_name ()
 @deftypefnx {Built-in Function} {@var{old_val} =} octave_core_file_name (@var{new_val})
 @deftypefnx {Built-in Function} {} octave_core_file_name (@var{new_val}, "local")
 Query or set the internal variable that specifies the name of the file
 used for saving data from the top-level workspace if Octave aborts.
-The default value is @code{"octave-core"}
+The default value is @code{"octave-workspace"}
 
 When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
@@ -1243,7 +1303,7 @@ can be accessed using their corresponding numeric file ids, you should
 always use the symbolic names given in the table below, since it will
 make your programs easier to understand.
 
-@c stdin src/file-io.cc
+@c stdin libinterp/interpfcn/file-io.cc
 @anchor{doc-stdin}
 @deftypefn {Built-in Function} {} stdin ()
 Return the numeric value corresponding to the standard input stream.
@@ -1253,7 +1313,7 @@ line editing functions.
 @end deftypefn
 
 
-@c stdout src/file-io.cc
+@c stdout libinterp/interpfcn/file-io.cc
 @anchor{doc-stdout}
 @deftypefn {Built-in Function} {} stdout ()
 Return the numeric value corresponding to the standard output stream.
@@ -1262,7 +1322,7 @@ Data written to the standard output is normally filtered through the pager.
 @end deftypefn
 
 
-@c stderr src/file-io.cc
+@c stderr libinterp/interpfcn/file-io.cc
 @anchor{doc-stderr}
 @deftypefn {Built-in Function} {} stderr ()
 Return the numeric value corresponding to the standard error stream.
@@ -1314,7 +1374,7 @@ fclose (fid);
 @end group
 @end example
 
-@c fopen src/file-io.cc
+@c fopen libinterp/interpfcn/file-io.cc
 @anchor{doc-fopen}
 @deftypefn  {Built-in Function} {[@var{fid}, @var{msg}] =} fopen (@var{name}, @var{mode}, @var{arch})
 @deftypefnx {Built-in Function} {@var{fid_list} =} fopen ("all")
@@ -1413,18 +1473,18 @@ Cray floating format.
 @noindent
 however, conversions are currently only supported for @samp{native}
 @samp{ieee-be}, and @samp{ieee-le} formats.
-@seealso{@ref{doc-fclose,,fclose}, @ref{doc-fgets,,fgets}, @ref{doc-fputs,,fputs}, @ref{doc-fread,,fread}, @ref{doc-fseek,,fseek}, @ref{doc-ferror,,ferror}, @ref{doc-fprintf,,fprintf}, @ref{doc-fscanf,,fscanf}, @ref{doc-ftell,,ftell}, @ref{doc-fwrite,,fwrite}}
+@seealso{@ref{doc-fclose,,fclose}, @ref{doc-fgets,,fgets}, @ref{doc-fgetl,,fgetl}, @ref{doc-fscanf,,fscanf}, @ref{doc-fread,,fread}, @ref{doc-fputs,,fputs}, @ref{doc-fdisp,,fdisp}, @ref{doc-fprintf,,fprintf}, @ref{doc-fwrite,,fwrite}, @ref{doc-fskipl,,fskipl}, @ref{doc-fseek,,fseek}, @ref{doc-frewind,,frewind}, @ref{doc-ftell,,ftell}, @ref{doc-feof,,feof}, @ref{doc-ferror,,ferror}, @ref{doc-fclear,,fclear}, @ref{doc-fflush,,fflush}, @ref{doc-freport,,freport}}
 @end deftypefn
 
 
-@c fclose src/file-io.cc
+@c fclose libinterp/interpfcn/file-io.cc
 @anchor{doc-fclose}
 @deftypefn  {Built-in Function} {} fclose (@var{fid})
 @deftypefnx {Built-in Function} {} fclose ("all")
 Close the specified file.  If successful, @code{fclose} returns 0,
 otherwise, it returns -1.  The second form of the @code{fclose} call closes
 all open files except @code{stdout}, @code{stderr}, and @code{stdin}.
-@seealso{@ref{doc-fopen,,fopen}, @ref{doc-fseek,,fseek}, @ref{doc-ftell,,ftell}}
+@seealso{@ref{doc-fopen,,fopen}, @ref{doc-freport,,freport}}
 @end deftypefn
 
 
@@ -1453,13 +1513,13 @@ fclose (fid);
 @end group
 @end example
 
-@c fputs src/file-io.cc
+@c fputs libinterp/interpfcn/file-io.cc
 @anchor{doc-fputs}
 @deftypefn {Built-in Function} {} fputs (@var{fid}, @var{string})
 Write a string to a file with no formatting.
 
 Return a non-negative number on success and EOF on error.
-@seealso{@ref{doc-scanf,,scanf}, @ref{doc-sscanf,,sscanf}, @ref{doc-fread,,fread}, @ref{doc-fprintf,,fprintf}, @ref{doc-fgets,,fgets}, @ref{doc-fscanf,,fscanf}}
+@seealso{@ref{doc-fdisp,,fdisp}, @ref{doc-fprintf,,fprintf}, @ref{doc-fwrite,,fwrite}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
@@ -1467,12 +1527,13 @@ A function much similar to @code{fputs} is available for writing data
 to the screen.  The @code{puts} function works just like @code{fputs}
 except it doesn't take a file pointer as its input.
 
-@c puts src/file-io.cc
+@c puts libinterp/interpfcn/file-io.cc
 @anchor{doc-puts}
 @deftypefn {Built-in Function} {} puts (@var{string})
 Write a string to the standard output with no formatting.
 
 Return a non-negative number on success and EOF on error.
+@seealso{@ref{doc-fputs,,fputs}, @ref{doc-disp,,disp}}
 @end deftypefn
 
 
@@ -1496,9 +1557,10 @@ fclose (fid);
 This of course assumes that the file @samp{free.txt} exists and contains
 the line @samp{Free Software is needed for Free Science}.
 
-@c fgetl src/file-io.cc
+@c fgetl libinterp/interpfcn/file-io.cc
 @anchor{doc-fgetl}
-@deftypefn {Built-in Function} {} fgetl (@var{fid}, @var{len})
+@deftypefn  {Built-in Function} {@var{str} =} fgetl (@var{fid})
+@deftypefnx {Built-in Function} {@var{str} =} fgetl (@var{fid}, @var{len})
 Read characters from a file, stopping after a newline, or EOF,
 or @var{len} characters have been read.  The characters read, excluding
 the possible trailing newline, are returned as a string.
@@ -1507,14 +1569,16 @@ If @var{len} is omitted, @code{fgetl} reads until the next newline
 character.
 
 If there are no more characters to read, @code{fgetl} returns @minus{}1.
-@seealso{@ref{doc-fread,,fread}, @ref{doc-fscanf,,fscanf}}
+
+To read a line and return the terminating newline see @code{fgets}.
+@seealso{@ref{doc-fgets,,fgets}, @ref{doc-fscanf,,fscanf}, @ref{doc-fread,,fread}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c fgets src/file-io.cc
+@c fgets libinterp/interpfcn/file-io.cc
 @anchor{doc-fgets}
-@deftypefn  {Built-in Function} {} fgets (@var{fid})
-@deftypefnx {Built-in Function} {} fgets (@var{fid}, @var{len})
+@deftypefn  {Built-in Function} {@var{str} =} fgets (@var{fid})
+@deftypefnx {Built-in Function} {@var{str} =} fgets (@var{fid}, @var{len})
 Read characters from a file, stopping after a newline, or EOF,
 or @var{len} characters have been read.  The characters read, including
 the possible trailing newline, are returned as a string.
@@ -1523,20 +1587,27 @@ If @var{len} is omitted, @code{fgets} reads until the next newline
 character.
 
 If there are no more characters to read, @code{fgets} returns @minus{}1.
-@seealso{@ref{doc-fputs,,fputs}, @ref{doc-fopen,,fopen}, @ref{doc-fread,,fread}, @ref{doc-fscanf,,fscanf}}
+
+To read a line and discard the terminating newline see @code{fgetl}.
+@seealso{@ref{doc-fputs,,fputs}, @ref{doc-fgetl,,fgetl}, @ref{doc-fscanf,,fscanf}, @ref{doc-fread,,fread}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c fskipl src/file-io.cc
+@c fskipl libinterp/interpfcn/file-io.cc
 @anchor{doc-fskipl}
-@deftypefn {Built-in Function} {} fskipl (@var{fid}, @var{count})
-Skip a given number of lines, i.e., discards characters until an end-of-line
-is met exactly @var{count}-times, or end-of-file occurs.
+@deftypefn  {Built-in Function} {@var{nlines} =} fskipl (@var{fid})
+@deftypefnx {Built-in Function} {@var{nlines} =} fskipl (@var{fid}, @var{count})
+@deftypefnx {Built-in Function} {@var{nlines} =} fskipl (@var{fid}, Inf)
+Read and skip @var{count} lines from the file descriptor @var{fid}.
+@code{fskipl} discards characters until an end-of-line is encountered exactly
+@var{count}-times, or until the end-of-file marker is found.
+
+If @var{count} is omitted, it defaults to 1.  @var{count} may also be
+@code{Inf}, in which case lines are skipped until the end of the file.
+This form is suitable for counting the number of lines in a file.
+
 Returns the number of lines skipped (end-of-line sequences encountered).
-If @var{count} is omitted, it defaults to 1. @var{count} may also be
-@code{Inf}, in which case lines are skipped to the end of file.
-This form is suitable for counting lines in a file.
-@seealso{@ref{doc-fgetl,,fgetl}, @ref{doc-fgets,,fgets}}
+@seealso{@ref{doc-fgetl,,fgetl}, @ref{doc-fgets,,fgets}, @ref{doc-fscanf,,fscanf}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
@@ -1550,7 +1621,7 @@ modelled after the C language functions of the same name, but they
 interpret the format template differently in order to improve the
 performance of printing vector and matrix values.
 
-@c printf src/file-io.cc
+@c printf libinterp/interpfcn/file-io.cc
 @anchor{doc-printf}
 @deftypefn {Built-in Function} {} printf (@var{template}, @dots{})
 Print optional arguments under the control of the template string
@@ -1565,17 +1636,17 @@ complete description of the syntax of the template string.
 @end deftypefn
 
 
-@c fprintf src/file-io.cc
+@c fprintf libinterp/interpfcn/file-io.cc
 @anchor{doc-fprintf}
 @deftypefn {Built-in Function} {} fprintf (@var{fid}, @var{template}, @dots{})
 This function is just like @code{printf}, except that the output is
 written to the stream @var{fid} instead of @code{stdout}.
 If @var{fid} is omitted, the output is written to @code{stdout}.
-@seealso{@ref{doc-printf,,printf}, @ref{doc-sprintf,,sprintf}, @ref{doc-fread,,fread}, @ref{doc-fscanf,,fscanf}, @ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
+@seealso{@ref{doc-fputs,,fputs}, @ref{doc-fdisp,,fdisp}, @ref{doc-fwrite,,fwrite}, @ref{doc-fscanf,,fscanf}, @ref{doc-printf,,printf}, @ref{doc-sprintf,,sprintf}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c sprintf src/file-io.cc
+@c sprintf libinterp/interpfcn/file-io.cc
 @anchor{doc-sprintf}
 @deftypefn {Built-in Function} {} sprintf (@var{template}, @dots{})
 This is like @code{printf}, except that the output is returned as a
@@ -1970,10 +2041,10 @@ functions to read formatted input.  There are two forms of each of these
 functions.  One can be used to extract vectors of data from a file, and
 the other is more `C-like'.
 
-@c fscanf src/file-io.cc
+@c fscanf libinterp/interpfcn/file-io.cc
 @anchor{doc-fscanf}
 @deftypefn  {Built-in Function} {[@var{val}, @var{count}, @var{errmsg}] =} fscanf (@var{fid}, @var{template}, @var{size})
-@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}, @var{errmsg}] =} fscanf (@var{fid}, @var{template}, "C")
+@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}] =} fscanf (@var{fid}, @var{template}, @var{locale})
 In the first form, read from @var{fid} according to @var{template},
 returning the result in the matrix @var{val}.
 
@@ -2012,20 +2083,23 @@ In the second form, read from @var{fid} according to @var{template},
 with each conversion specifier in @var{template} corresponding to a
 single scalar return value.  This form is more `C-like', and also
 compatible with previous versions of Octave.  The number of successful
-conversions is returned in @var{count}
+conversions is returned in @var{count}.  It permits to explicitly
+specify a locale to take into account language specific features, 
+such as decimal separator.  This operation restores the previous locales
+setting at the end of the conversion.
 @ifclear OCTAVE_MANUAL
 
 See the Formatted Input section of the GNU Octave manual for a
 complete description of the syntax of the template string.
 @end ifclear
-@seealso{@ref{doc-scanf,,scanf}, @ref{doc-sscanf,,sscanf}, @ref{doc-fread,,fread}, @ref{doc-fprintf,,fprintf}, @ref{doc-fgets,,fgets}, @ref{doc-fputs,,fputs}}
+@seealso{@ref{doc-fgets,,fgets}, @ref{doc-fgetl,,fgetl}, @ref{doc-fread,,fread}, @ref{doc-scanf,,scanf}, @ref{doc-sscanf,,sscanf}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c scanf src/file-io.cc
+@c scanf libinterp/interpfcn/file-io.cc
 @anchor{doc-scanf}
 @deftypefn  {Built-in Function} {[@var{val}, @var{count}, @var{errmsg}] =} scanf (@var{template}, @var{size})
-@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}, @var{errmsg}]] =} scanf (@var{template}, "C")
+@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}] =} scanf (@var{template}, @var{locale})
 This is equivalent to calling @code{fscanf} with @var{fid} = @code{stdin}.
 
 It is currently not useful to call @code{scanf} in interactive
@@ -2034,10 +2108,10 @@ programs.
 @end deftypefn
 
 
-@c sscanf src/file-io.cc
+@c sscanf libinterp/interpfcn/file-io.cc
 @anchor{doc-sscanf}
 @deftypefn  {Built-in Function} {[@var{val}, @var{count}, @var{errmsg}, @var{pos}] =} sscanf (@var{string}, @var{template}, @var{size})
-@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}, @var{errmsg}] =} sscanf (@var{string}, @var{template}, "C")
+@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}] =} sscanf (@var{string}, @var{template}, @var{locale})
 This is like @code{fscanf}, except that the characters are taken from the
 string @var{string} instead of from a stream.  Reaching the end of the
 string is treated as an end-of-file condition.  In addition to the values
@@ -2250,7 +2324,7 @@ with the same names.  They are able to automatically swap the byte order
 of integer data and convert among the supported floating point formats
 as the data are read.
 
-@c fread src/file-io.cc
+@c fread libinterp/interpfcn/file-io.cc
 @anchor{doc-fread}
 @deftypefn {Built-in Function} {[@var{val}, @var{count}] =} fread (@var{fid}, @var{size}, @var{precision}, @var{skip}, @var{arch})
 Read binary data of type @var{precision} from the specified file ID
@@ -2422,11 +2496,11 @@ Conversions are currently only supported for @code{"ieee-be"} and
 
 The data read from the file is returned in @var{val}, and the number of
 values read is returned in @code{count}
-@seealso{@ref{doc-fwrite,,fwrite}, @ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
+@seealso{@ref{doc-fwrite,,fwrite}, @ref{doc-fgets,,fgets}, @ref{doc-fgetl,,fgetl}, @ref{doc-fscanf,,fscanf}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c fwrite src/file-io.cc
+@c fwrite libinterp/interpfcn/file-io.cc
 @anchor{doc-fwrite}
 @deftypefn {Built-in Function} {@var{count} =} fwrite (@var{fid}, @var{data}, @var{precision}, @var{skip}, @var{arch})
 Write data in binary form of type @var{precision} to the specified file
@@ -2441,7 +2515,7 @@ optional, and are interpreted as described for @code{fread}.
 
 The behavior of @code{fwrite} is undefined if the values in @var{data}
 are too large to fit in the specified precision.
-@seealso{@ref{doc-fread,,fread}, @ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
+@seealso{@ref{doc-fread,,fread}, @ref{doc-fputs,,fputs}, @ref{doc-fprintf,,fprintf}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
@@ -2453,7 +2527,7 @@ This is most commonly used when an external program launched from
 within Octave needs to access data.  When Octave exits all temporary
 files will be deleted, so this step need not be executed manually.
 
-@c mkstemp src/file-io.cc
+@c mkstemp libinterp/interpfcn/file-io.cc
 @anchor{doc-mkstemp}
 @deftypefn {Built-in Function} {[@var{fid}, @var{name}, @var{msg}] =} mkstemp (@var{template}, @var{delete})
 Return the file ID corresponding to a new temporary file with a unique
@@ -2465,8 +2539,7 @@ will be 0600 for versions of glibc 2.0.7 and later).  The file is opened
 in binary mode and with the @w{@code{O_EXCL}} flag.
 
 If the optional argument @var{delete} is supplied and is true,
-the file will be deleted automatically when Octave exits, or when
-the function @code{purge_tmp_files} is called.
+the file will be deleted automatically when Octave exits.
 
 If successful, @var{fid} is a valid file ID, @var{name} is the name of
 the file, and @var{msg} is an empty string.  Otherwise, @var{fid}
@@ -2476,7 +2549,7 @@ error message.
 @end deftypefn
 
 
-@c tmpfile src/file-io.cc
+@c tmpfile libinterp/interpfcn/file-io.cc
 @anchor{doc-tmpfile}
 @deftypefn {Built-in Function} {[@var{fid}, @var{msg}] =} tmpfile ()
 Return the file ID corresponding to a new temporary file with a unique
@@ -2491,7 +2564,7 @@ system-dependent error message.
 @end deftypefn
 
 
-@c tmpnam src/file-io.cc
+@c tmpnam libinterp/interpfcn/file-io.cc
 @anchor{doc-tmpnam}
 @c List other forms of function in documentation index
 @findex octave_tmp_file_name
@@ -2537,20 +2610,21 @@ contents of a file and then process it, than it is to read it line by
 line.  This has the potential advantage of removing the loop in the
 above code.
 
-@c feof src/file-io.cc
+@c feof libinterp/interpfcn/file-io.cc
 @anchor{doc-feof}
 @deftypefn {Built-in Function} {} feof (@var{fid})
 Return 1 if an end-of-file condition has been encountered for a given
 file and 0 otherwise.  Note that it will only return 1 if the end of the
 file has already been encountered, not if the next read operation will
 result in an end-of-file condition.
-@seealso{@ref{doc-fread,,fread}, @ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
+@seealso{@ref{doc-fread,,fread}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c ferror src/file-io.cc
+@c ferror libinterp/interpfcn/file-io.cc
 @anchor{doc-ferror}
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} ferror (@var{fid}, "clear")
+@deftypefn  {Built-in Function} {[@var{err}, @var{msg}] =} ferror (@var{fid})
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} ferror (@var{fid}, "clear")
 Return 1 if an error condition has been encountered for the file ID
 @var{fid} and 0 otherwise.  Note that it will only return 1 if an error
 has already been encountered, not if the next operation will result in
@@ -2558,17 +2632,19 @@ an error condition.
 
 The second argument is optional.  If it is supplied, also clear the
 error condition.
+@seealso{@ref{doc-fclear,,fclear}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c fclear src/file-io.cc
+@c fclear libinterp/interpfcn/file-io.cc
 @anchor{doc-fclear}
 @deftypefn {Built-in Function} {} fclear (@var{fid})
 Clear the stream state for the specified file.
+@seealso{@ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c freport src/file-io.cc
+@c freport libinterp/interpfcn/file-io.cc
 @anchor{doc-freport}
 @deftypefn {Built-in Function} {} freport ()
 Print a list of which files have been opened, and whether they are open
@@ -2586,6 +2662,7 @@ freport ()
      @print{}       3     r  myfile
 @end group
 @end example
+@seealso{@ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
 @end deftypefn
 
 
@@ -2595,39 +2672,41 @@ freport ()
 Three functions are available for setting and determining the position of
 the file pointer for a given file.
 
-@c ftell src/file-io.cc
+@c ftell libinterp/interpfcn/file-io.cc
 @anchor{doc-ftell}
 @deftypefn {Built-in Function} {} ftell (@var{fid})
 Return the position of the file pointer as the number of characters
 from the beginning of the file @var{fid}.
-@seealso{@ref{doc-fseek,,fseek}, @ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
+@seealso{@ref{doc-fseek,,fseek}, @ref{doc-feof,,feof}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c fseek src/file-io.cc
+@c fseek libinterp/interpfcn/file-io.cc
 @anchor{doc-fseek}
-@deftypefn {Built-in Function} {} fseek (@var{fid}, @var{offset}, @var{origin})
+@deftypefn  {Built-in Function} {} fseek (@var{fid}, @var{offset})
+@deftypefnx {Built-in Function} {} fseek (@var{fid}, @var{offset}, @var{origin})
+@deftypefnx {Built-in Function} {@var{status} =} fseek (@dots{})
 Set the file pointer to any location within the file @var{fid}.
 
 The pointer is positioned @var{offset} characters from the @var{origin},
 which may be one of the predefined variables @w{@code{SEEK_CUR}} (current
 position), @w{@code{SEEK_SET}} (beginning), or @w{@code{SEEK_END}} (end of
 file) or strings "cof", "bof" or "eof".  If @var{origin} is omitted,
-@w{@code{SEEK_SET}} is assumed.  The offset must be zero, or a value returned
-by @code{ftell} (in which case @var{origin} must be @w{@code{SEEK_SET}}).
+@w{@code{SEEK_SET}} is assumed.  @var{offset} may be positive, negative, or zero but not all combinations of @var{origin} and @var{offset} can be realized.
 
 Return 0 on success and -1 on error.
-@seealso{@ref{doc-ftell,,ftell}, @ref{doc-fopen,,fopen}, @ref{doc-fclose,,fclose}}
+@seealso{@ref{doc-fskipl,,fskipl}, @ref{doc-frewind,,frewind}, @ref{doc-ftell,,ftell}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 
-@c SEEK_SET src/file-io.cc
+@c SEEK_SET libinterp/interpfcn/file-io.cc
 @anchor{doc-SEEK_SET}
 @deftypefn  {Built-in Function} {} SEEK_SET ()
 @deftypefnx {Built-in Function} {} SEEK_CUR ()
 @deftypefnx {Built-in Function} {} SEEK_END ()
 Return the numerical value to pass to @code{fseek} to perform
 one of the following actions:
+
 @table @code
 @item SEEK_SET
 Position file relative to the beginning.
@@ -2642,12 +2721,13 @@ Position file relative to the end.
 @end deftypefn
 
 
-@c frewind src/file-io.cc
+@c frewind libinterp/interpfcn/file-io.cc
 @anchor{doc-frewind}
 @deftypefn {Built-in Function} {} frewind (@var{fid})
 Move the file pointer to the beginning of the file @var{fid}, returning
 0 for success, and -1 if an error was encountered.  It is equivalent to
 @code{fseek (@var{fid}, 0, SEEK_SET)}.
+@seealso{@ref{doc-fseek,,fseek}, @ref{doc-ftell,,ftell}, @ref{doc-fopen,,fopen}}
 @end deftypefn
 
 

@@ -45,7 +45,7 @@ the <code>OCTAVE_QUIT</code><!-- /@w --> macro is supplied.  For example:
 <pre class="example">     for (octave_idx_type i = 0; i &lt; a.nelem (); i++)
        {
          OCTAVE_QUIT;
-         b.elem(i) = 2. * a.elem(i);
+         b.elem (i) = 2. * a.elem (i);
        }
 </pre>
    <p>The presence of the <code>OCTAVE_QUIT</code><!-- /@w --> macro in the inner loop allows
@@ -89,7 +89,7 @@ example of the use of this mechanism is
      
      DEFUN_DLD (unwinddemo, args, nargout, "Unwind Demo")
      {
-       int nargin = args.length();
+       int nargin = args.length ();
        octave_value retval;
        if (nargin &lt; 2)
          print_usage ();
@@ -102,7 +102,7 @@ example of the use of this mechanism is
              {
                unwind_protect::begin_frame ("Funwinddemo");
                unwind_protect_ptr (current_liboctave_warning_handler);
-               set_liboctave_warning_handler(err_hand);
+               set_liboctave_warning_handler (err_hand);
                retval = octave_value (quotient (a, b));
                unwind_protect::run_frame ("Funwinddemo");
              }

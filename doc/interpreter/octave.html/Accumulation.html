@@ -42,8 +42,8 @@ useful.
    <p><a name="doc_002daccumarray"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, sz, func, fillval, issparse</var>)<var><a name="index-accumarray-2154"></a></var><br>
-&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, <small class="dots">...</small></var>)<var><a name="index-accumarray-2155"></a></var><br>
+&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, sz, func, fillval, issparse</var>)<var><a name="index-accumarray-2220"></a></var><br>
+&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, <small class="dots">...</small></var>)<var><a name="index-accumarray-2221"></a></var><br>
 <blockquote>
         <p>Create an array by accumulating the elements of a vector into the
 positions defined by their subscripts.  The subscripts are defined by
@@ -108,7 +108,7 @@ the default value (zero) appears in the output:
           &rArr; ans(:,:,2) = [0, 0, 0; 206, 0, 208]
 </pre>
         <p>The sparse option can be used as an alternative to the <code>sparse</code>
-constructor (see <a href="doc_002dsparse.html#doc_002dsparse">doc-sparse</a>). Thus
+constructor (see <a href="doc_002dsparse.html#doc_002dsparse">doc-sparse</a>).  Thus
 
      <pre class="example">          sparse (<var>i</var>, <var>j</var>, <var>sv</var>)
 </pre>
@@ -116,7 +116,7 @@ constructor (see <a href="doc_002dsparse.html#doc_002dsparse">doc-sparse</a>). T
 
      <pre class="example">          accumarray ([<var>i</var>, <var>j</var>], <var>sv</var>', [], [], 0, true)
 </pre>
-        <p class="noindent">For repeated indices, <code>sparse</code> adds the corresponding value. To
+        <p class="noindent">For repeated indices, <code>sparse</code> adds the corresponding value.  To
 take the minimum instead, use <code>min</code> as an accumulator function:
 
      <pre class="example">          accumarray ([<var>i</var>, <var>j</var>], <var>sv</var>', [], @min, 0, true)
@@ -130,9 +130,6 @@ Note that for general reduction function the interpreter overhead can
 play a major part and it may be more efficient to do multiple
 accumarray calls and compute the results in a vectorized manner.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002daccumdim.html#doc_002daccumdim">accumdim</a>, <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>. 
 </p></blockquote></div>
 
@@ -140,7 +137,7 @@ accumarray calls and compute the results in a vectorized manner.
    <p><a name="doc_002daccumdim"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>accumdim</b> (<var>subs, vals, dim, n, func, fillval</var>)<var><a name="index-accumdim-2156"></a></var><br>
+&mdash; Function File:  <b>accumdim</b> (<var>subs, vals, dim, n, func, fillval</var>)<var><a name="index-accumdim-2222"></a></var><br>
 <blockquote><p>Create an array by accumulating the slices of an array into the
 positions defined by their subscripts along a specified dimension. 
 The subscripts are defined by the index vector <var>subs</var>. 
@@ -173,10 +170,7 @@ value allows these values to be defined.
                                       -5,  -3, -13])
           &rArr; [-10,-11,-1;-15,-3,5]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daccumarray.html#doc_002daccumarray">accumarray</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002daccumarray.html#doc_002daccumarray">accumarray</a>. 
 </p></blockquote></div>
 
    </body></html>

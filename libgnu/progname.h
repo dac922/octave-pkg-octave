@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Program name management.
    Copyright (C) 2001-2004, 2006, 2009-2012 Free Software Foundation, Inc.
    Written by Bruno Haible <bruno@clisp.org>, 2001.

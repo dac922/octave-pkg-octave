@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Provide a replacement for the POSIX nanosleep function.
 
    Copyright (C) 1999-2000, 2002, 2004-2012 Free Software Foundation, Inc.

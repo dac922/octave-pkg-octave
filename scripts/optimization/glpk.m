@@ -106,6 +106,7 @@
 ## An array of characters containing the sense of each constraint in the
 ## constraint matrix.  Each element of the array may be one of the
 ## following values
+##
 ## @table @asis
 ## @item "F"
 ## A free (unbounded) constraint (the constraint is ignored).
@@ -126,6 +127,7 @@
 ##
 ## @item vartype
 ## A column array containing the types of the variables.
+##
 ## @table @asis
 ## @item "C"
 ## A continuous variable.
@@ -149,6 +151,7 @@
 ## @table @code
 ## @item msglev (@w{@code{LPX_K_MSGLEV}}, default: 1)
 ## Level of messages output by solver routines:
+##
 ## @table @asis
 ## @item 0
 ## No output.
@@ -165,6 +168,7 @@
 ##
 ## @item scale (@w{@code{LPX_K_SCALE}}, default: 1)
 ## Scaling option:
+##
 ## @table @asis
 ## @item 0
 ## No scaling.
@@ -178,6 +182,7 @@
 ##
 ## @item dual    (@w{@code{LPX_K_DUAL}}, default: 0)
 ## Dual simplex option:
+##
 ## @table @asis
 ## @item 0
 ## Do not use the dual simplex.
@@ -188,6 +193,7 @@
 ##
 ## @item price   (@w{@code{LPX_K_PRICE}}, default: 1)
 ## Pricing option (for both primal and dual simplex):
+##
 ## @table @asis
 ## @item 0
 ## Textbook pricing.
@@ -198,6 +204,7 @@
 ##
 ## @item round   (@w{@code{LPX_K_ROUND}}, default: 0)
 ## Solution rounding option:
+##
 ## @table @asis
 ## @item 0
 ## Report all primal and dual values "as is".
@@ -219,6 +226,7 @@
 ##
 ## @item branch (@w{@code{LPX_K_BRANCH}}, default: 2)
 ## Branching heuristic option (for MIP only):
+##
 ## @table @asis
 ## @item 0
 ## Branch on the first variable.
@@ -232,6 +240,7 @@
 ##
 ## @item btrack (@w{@code{LPX_K_BTRACK}}, default: 2)
 ## Backtracking heuristic option (for MIP only):
+##
 ## @table @asis
 ## @item 0
 ## Depth first search.
@@ -250,6 +259,7 @@
 ## @item lpsolver (default: 1)
 ## Select which solver to use.  If the problem is a MIP problem this flag
 ## will be ignored.
+##
 ## @table @asis
 ## @item 1
 ## Revised simplex method.
@@ -339,6 +349,7 @@
 ## Status of the optimization.
 ##
 ## Simplex Method:
+##
 ## @table @asis
 ## @item 180 (@w{@code{LPX_OPT}})
 ## Solution is optimal.
@@ -358,7 +369,9 @@
 ## @item 185 (@w{@code{LPX_UNDEF}})
 ## Solution status is undefined.
 ## @end table
+##
 ## Interior Point Method:
+##
 ## @table @asis
 ## @item 150 (@w{@code{LPX_T_UNDEF}})
 ## The interior point method is undefined.
@@ -366,7 +379,9 @@
 ## @item 151 (@w{@code{LPX_T_OPT}})
 ## The interior point method is optimal.
 ## @end table
+##
 ## Mixed Integer Method:
+##
 ## @table @asis
 ## @item 170 (@w{@code{LPX_I_UNDEF}})
 ## The status is undefined.
@@ -380,6 +395,7 @@
 ## @item 173 (@w{@code{LPX_I_NOFEAS}})
 ## No integer feasible solution.
 ## @end table
+##
 ## @noindent
 ## If an error occurs, @var{status} will contain one of the following
 ## codes:
@@ -421,6 +437,7 @@
 ##
 ## @item extra
 ## A data structure containing the following fields:
+##
 ## @table @code
 ## @item lambda
 ## Dual variables.
@@ -486,7 +503,7 @@ function [xopt, fmin, status, extra] = glpk (c, A, b, lb, ub, ctype, vartype, se
     error ("glpk: A cannot be an empty matrix");
     return;
   endif
-  [nc, nxa] = size(A);
+  [nc, nxa] = size (A);
   if (! isreal (A) || nxa != nx)
     error ("glpk: A must be a real valued %d by %d matrix", nc, nx);
     return;

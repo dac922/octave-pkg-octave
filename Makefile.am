@@ -1,4 +1,4 @@
-# Makefile for octave
+# Makefile for Octave
 #
 # Copyright (C) 1993-2012 John W. Eaton
 #
@@ -37,12 +37,13 @@ EXTRA_DIST = \
   INSTALL.OCTAVE \
   NEWS \
   README \
-  autogen.sh \
-  build-aux/bootstrap \
-  build-aux/bootstrap.conf \
+  bootstrap \
+  build-aux/bootstrap_gnulib \
+  build-aux/bootstrap_gnulib.conf \
   build-aux/mk-opts.pl \
   build-aux/mkinstalldirs \
   build-aux/move-if-change \
+  build-aux/OctJavaQry.class \
   etc/NEWS.1 \
   etc/NEWS.2 \
   etc/NEWS.3 \
@@ -68,10 +69,9 @@ EXTRA_DIST = \
 include m4/module.mk
 
 # Subdirectories in which to run `make all'.
-SUBDIRS = libgnu libcruft liboctave src scripts @DOCDIR@ examples test
+SUBDIRS = libgnu liboctave libinterp @GUIDIR@ src scripts @DOCDIR@ examples test
 
-if AMCOND_BUILD_DOCS
-else
+if ! AMCOND_BUILD_DOCS
 dist-hook:
 	echo "Documentation disabled.  Cannot package distribution!" ; exit 1;
 endif
@@ -87,7 +87,9 @@ INFO_FILES = \
 
 CLEANFILES = $(BUILT_SOURCES)
 
-DISTCLEANFILES = .gdbinit 
+DISTCLEANFILES = \
+  .gdbinit \
+  ChangeLog
 
 MAINTAINERCLEANFILES = $(BUILT_DISTFILES)
 
@@ -119,8 +121,10 @@ run-octave: run-octave.in Makefile
 	  cp $< $@; \
 	fi
 
+if AMCOND_BUILD_DOCS
 AUTHORS BUGS INSTALL.OCTAVE:
 	$(MAKE) -C doc/interpreter ../../$@
+endif
 .PHONY: AUTHORS BUGS INSTALL.OCTAVE
 
 ChangeLog:

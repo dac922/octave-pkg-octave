@@ -91,14 +91,14 @@ endfunction
 
 
 %!demo
-%! clf
+%! clf;
 %! surfl (peaks);
-%! colormap (copper);
-%! shading ("interp");
-%! f = uimenu ("label", "&File", "accelerator", "f");
-%! e = uimenu ("label", "&Edit", "accelerator", "e");
-%! uimenu (f, "label", "Close", "accelerator", "q", "callback", "close (gcf)");
-%! uimenu (e, "label", "Toggle &Grid", "accelerator", "g", "callback", "grid (gca)");
+%! colormap (copper (64));
+%! shading ('interp');
+%! f = uimenu ('label', '&File', 'accelerator', 'f');
+%! e = uimenu ('label', '&Edit', 'accelerator', 'e');
+%! uimenu (f, 'label', 'Close', 'accelerator', 'q', 'callback', 'close (gcf)');
+%! uimenu (e, 'label', 'Toggle &Grid', 'accelerator', 'g', 'callback', 'grid (gca)');
 
 %!testif HAVE_FLTK
 %! toolkit = graphics_toolkit ();
@@ -124,11 +124,11 @@ endfunction
 %! hf = figure ("visible", "off");
 %! unwind_protect
 %!   uif = findall (hf, "label", "&file");
-%!   assert (ishghandle (uif))
+%!   assert (ishghandle (uif));
 %!   uie = findall (hf, "label", "&edit");
-%!   assert (ishghandle (uie))
+%!   assert (ishghandle (uie));
 %!   uih = findall (hf, "label", "&help");
-%!   assert (ishghandle (uih))
+%!   assert (ishghandle (uih));
 %! unwind_protect_cleanup
 %!   close (hf);
 %!   graphics_toolkit (toolkit);
@@ -141,7 +141,7 @@ endfunction
 %! unwind_protect
 %!   uie = findall (hf, "label", "&edit");
 %!   myui = uimenu (uie, "label", "mylabel");
-%!   assert (ancestor (myui, "uimenu", "toplevel"), uie)
+%!   assert (ancestor (myui, "uimenu", "toplevel"), uie);
 %! unwind_protect_cleanup
 %!   close (hf);
 %!   graphics_toolkit (toolkit);

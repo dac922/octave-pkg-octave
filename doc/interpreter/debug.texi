@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -52,7 +52,7 @@ Octave supports three means to stop execution based on the values set in
 the functions @code{debug_on_interrupt}, @code{debug_on_warning} and
 @code{debug_on_error}.
 
-@c debug_on_interrupt src/sighandlers.cc
+@c debug_on_interrupt libinterp/interpfcn/sighandlers.cc
 @anchor{doc-debug_on_interrupt}
 @deftypefn  {Built-in Function} {@var{val} =} debug_on_interrupt ()
 @deftypefnx {Built-in Function} {@var{old_val} =} debug_on_interrupt (@var{new_val})
@@ -69,7 +69,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c debug_on_warning src/error.cc
+@c debug_on_warning libinterp/interpfcn/error.cc
 @anchor{doc-debug_on_warning}
 @deftypefn  {Built-in Function} {@var{val} =} debug_on_warning ()
 @deftypefnx {Built-in Function} {@var{old_val} =} debug_on_warning (@var{new_val})
@@ -84,7 +84,7 @@ variable value is restored when exiting the function.
 @end deftypefn
 
 
-@c debug_on_error src/error.cc
+@c debug_on_error libinterp/interpfcn/error.cc
 @anchor{doc-debug_on_error}
 @deftypefn  {Built-in Function} {@var{val} =} debug_on_error ()
 @deftypefnx {Built-in Function} {@var{old_val} =} debug_on_error (@var{new_val})
@@ -107,7 +107,7 @@ variable value is restored when exiting the function.
 To leave the debug mode, use either @code{dbcont} 
 or @code{return}.
 
-@c dbcont src/debug.cc
+@c dbcont libinterp/interpfcn/debug.cc
 @anchor{doc-dbcont}
 @deftypefn {Command} {} dbcont
 Leave command-line debugging mode and continue code execution normally.
@@ -118,7 +118,7 @@ Leave command-line debugging mode and continue code execution normally.
 To quit debug mode and return directly to the prompt @code{dbquit}
 should be used instead
 
-@c dbquit src/debug.cc
+@c dbquit libinterp/interpfcn/debug.cc
 @anchor{doc-dbquit}
 @deftypefn {Command} {} dbquit
 Quit debugging mode immediately without further code execution and
@@ -136,10 +136,10 @@ result in Octave terminating normally.
 Breakpoints can be set in any Octave function, using the @code{dbstop}
 function.
 
-@c dbstop src/debug.cc
+@c dbstop libinterp/interpfcn/debug.cc
 @anchor{doc-dbstop}
-@deftypefn  {Loadable Function} {@var{rline} =} dbstop ("@var{func}")
-@deftypefnx {Loadable Function} {@var{rline} =} dbstop ("@var{func}", @var{line}, @dots{})
+@deftypefn  {Built-in Function} {@var{rline} =} dbstop ("@var{func}")
+@deftypefnx {Built-in Function} {@var{rline} =} dbstop ("@var{func}", @var{line}, @dots{})
 Set a breakpoint in function @var{func}.
 
 Arguments are
@@ -186,11 +186,11 @@ Note that the return value of @code{27} means that the breakpoint was
 effectively set to line 27.  The status of breakpoints in a function can
 be queried with the @code{dbstatus} function.
 
-@c dbstatus src/debug.cc
+@c dbstatus libinterp/interpfcn/debug.cc
 @anchor{doc-dbstatus}
-@deftypefn  {Loadable Function} {} dbstatus ()
-@deftypefnx {Loadable Function} {@var{brk_list} =} dbstatus ()
-@deftypefnx {Loadable Function} {@var{brk_list} =} dbstatus ("@var{func}")
+@deftypefn  {Built-in Function} {} dbstatus ()
+@deftypefnx {Built-in Function} {@var{brk_list} =} dbstatus ()
+@deftypefnx {Built-in Function} {@var{brk_list} =} dbstatus ("@var{func}")
 Report the location of active breakpoints.
 
 When called with no input or output arguments, print the list of
@@ -221,10 +221,10 @@ A line number, or vector of line numbers, with a breakpoint.
 Taking the above as an example, @code{dbstatus ("asind")} should return
 28.  The breakpoints can then be cleared with the @code{dbclear} function
 
-@c dbclear src/debug.cc
+@c dbclear libinterp/interpfcn/debug.cc
 @anchor{doc-dbclear}
-@deftypefn  {Loadable Function} {} dbclear ("@var{func}")
-@deftypefnx {Loadable Function} {} dbclear ("@var{func}", @var{line}, @dots{})
+@deftypefn  {Built-in Function} {} dbclear ("@var{func}")
+@deftypefnx {Built-in Function} {} dbclear ("@var{func}", @var{line}, @dots{})
 Delete a breakpoint in the function @var{func}.
 
 Arguments are
@@ -286,7 +286,7 @@ subfunctions from the file containing them.
 Another simple way of setting a breakpoint in an Octave script is the
 use of the @code{keyboard} function.
 
-@c keyboard src/input.cc
+@c keyboard libinterp/interpfcn/input.cc
 @anchor{doc-keyboard}
 @deftypefn  {Built-in Function} {} keyboard ()
 @deftypefnx {Built-in Function} {} keyboard (@var{prompt})
@@ -317,37 +317,44 @@ interrogate where in the execution of a script Octave entered the debug
 mode and to print the code in the script surrounding the point where
 Octave entered debug mode.
 
-@c dbwhere src/debug.cc
+@c dbwhere libinterp/interpfcn/debug.cc
 @anchor{doc-dbwhere}
-@deftypefn {Loadable Function} {} dbwhere ()
+@deftypefn {Built-in Function} {} dbwhere ()
 In debugging mode, report the current file and line number where
 execution is stopped.
 @seealso{@ref{doc-dbstatus,,dbstatus}, @ref{doc-dbcont,,dbcont}, @ref{doc-dbstep,,dbstep}, @ref{doc-dbup,,dbup}}
 @end deftypefn
 
 
-@c dbtype src/debug.cc
+@c dbtype libinterp/interpfcn/debug.cc
 @anchor{doc-dbtype}
-@deftypefn  {Loadable Function} {} dbtype ()
-@deftypefnx {Loadable Function} {} dbtype ("startl:endl")
-@deftypefnx {Loadable Function} {} dbtype ("@var{func}")
-@deftypefnx {Loadable Function} {} dbtype ("@var{func}", "startl:endl")
-When in debugging mode and called with no arguments, list the script file
-being debugged with line numbers.  An optional range specification,
-specified as a string, can be used to list only a portion of the file.
+@deftypefn  {Command} {} dbtype
+@deftypefnx {Command} {} dbtype @var{lineno}
+@deftypefnx {Command} {} dbtype @var{startl:endl}
+@deftypefnx {Command} {} dbtype @var{startl:end}
+@deftypefnx {Command} {} dbtype @var{func}
+@deftypefnx {Command} {} dbtype @var{func} @var{lineno}
+@deftypefnx {Command} {} dbtype @var{func} @var{startl:endl}
+@deftypefnx {Command} {} dbtype @var{func} @var{startl:end}
+Display a script file with line numbers.
 
-When called with the name of a function, list that script file
-with line numbers.
-@seealso{@ref{doc-dbstatus,,dbstatus}, @ref{doc-dbstop,,dbstop}}
+When called with no arguments in debugging mode, display the script file
+currently being debugged.  An optional range specification can be used to
+list only a portion of the file.  The special keyword "end" is a valid
+line number specification for the last line of the file.
+
+When called with the name of a function, list that script file with line
+numbers.
+@seealso{@ref{doc-dbwhere,,dbwhere}, @ref{doc-dbstatus,,dbstatus}, @ref{doc-dbstop,,dbstop}}
 @end deftypefn
 
 
 You may also use @code{isdebugmode} to determine whether the debugger is
 currently active.
 
-@c isdebugmode src/debug.cc
+@c isdebugmode libinterp/interpfcn/debug.cc
 @anchor{doc-isdebugmode}
-@deftypefn {Loadable Function} {} isdebugmode ()
+@deftypefn {Built-in Function} {} isdebugmode ()
 Return true if in debugging mode, otherwise false.
 @seealso{@ref{doc-dbwhere,,dbwhere}, @ref{doc-dbstack,,dbstack}, @ref{doc-dbstatus,,dbstatus}}
 @end deftypefn
@@ -356,7 +363,7 @@ Return true if in debugging mode, otherwise false.
 Debug mode also allows single line stepping through a function using
 the commands @code{dbstep}.
 
-@c dbstep src/debug.cc
+@c dbstep libinterp/interpfcn/debug.cc
 @anchor{doc-dbstep}
 @deftypefn  {Command} {} dbstep
 @deftypefnx {Command} {} dbstep @var{n}
@@ -380,11 +387,11 @@ execution to continue until the current function returns.
 @node Call Stack
 @section Call Stack
 
-@c dbstack src/debug.cc
+@c dbstack libinterp/interpfcn/debug.cc
 @anchor{doc-dbstack}
-@deftypefn  {Loadable Function} {} dbstack ()
-@deftypefnx {Loadable Function} {} dbstack (@var{n})
-@deftypefnx {Loadable Function} {[@var{stack}, @var{idx}] =} dbstack (@dots{})
+@deftypefn  {Built-in Function} {} dbstack ()
+@deftypefnx {Built-in Function} {} dbstack (@var{n})
+@deftypefnx {Built-in Function} {[@var{stack}, @var{idx}] =} dbstack (@dots{})
 Display or return current debugging function stack information.
 With optional argument @var{n}, omit the @var{n} innermost stack frames.
 
@@ -417,20 +424,20 @@ struct array is currently active.
 @end deftypefn
 
 
-@c dbup src/debug.cc
+@c dbup libinterp/interpfcn/debug.cc
 @anchor{doc-dbup}
-@deftypefn  {Loadable Function} {} dbup
-@deftypefnx {Loadable Function} {} dbup (@var{n})
+@deftypefn  {Built-in Function} {} dbup
+@deftypefnx {Built-in Function} {} dbup (@var{n})
 In debugging mode, move up the execution stack @var{n} frames.
 If @var{n} is omitted, move up one frame.
 @seealso{@ref{doc-dbstack,,dbstack}, @ref{doc-dbdown,,dbdown}}
 @end deftypefn
 
 
-@c dbdown src/debug.cc
+@c dbdown libinterp/interpfcn/debug.cc
 @anchor{doc-dbdown}
-@deftypefn  {Loadable Function} {} dbdown
-@deftypefnx {Loadable Function} {} dbdown (@var{n})
+@deftypefn  {Built-in Function} {} dbdown
+@deftypefnx {Built-in Function} {} dbdown (@var{n})
 In debugging mode, move down the execution stack @var{n} frames.
 If @var{n} is omitted, move down one frame.
 @seealso{@ref{doc-dbstack,,dbstack}, @ref{doc-dbup,,dbup}}
@@ -462,8 +469,8 @@ examined or further processed by other routines or tools.
 @deftypefnx {Command} {} profile off
 @deftypefnx {Command} {} profile resume
 @deftypefnx {Command} {} profile clear
-@deftypefnx {Function File} {@var{S} =} profile ('status')
-@deftypefnx {Function File} {@var{T} =} profile ('info')
+@deftypefnx {Function File} {@var{S} =} profile ("status")
+@deftypefnx {Function File} {@var{T} =} profile ("info")
 Control the built-in profiler.
 
 @table @code
@@ -473,7 +480,7 @@ is any.
 
 @item profile off
 Stop profiling.  The collected data can later be retrieved and examined
-with calls like @code{S = profile ('info')}.
+with calls like @code{S = profile ("info")}.
 
 @item profile clear
 Clear all collected profiler data.
@@ -482,12 +489,12 @@ Clear all collected profiler data.
 Restart profiling without cleaning up the old data and instead
 all newly collected statistics are added to the already existing ones.
 
-@item @var{S} = profile ('status')
+@item @var{S} = profile ("status")
 Return a structure filled with certain information about the current status
 of the profiler.  At the moment, the only field is @code{ProfilerStatus}
-which is either 'on' or 'off'.
+which is either "on" or "off".
 
-@item @var{T} = profile ('info')
+@item @var{T} = profile ("info")
 Return the collected profiling statistics in the structure @var{T}.
 The flat profile is returned in the field @code{FunctionTable} which is an
 array of structures, each entry corresponding to a function which was called
@@ -528,7 +535,7 @@ and the profiler also records that it is recursive.
 Show flat profiler results.
 
 This command prints out profiler data as a flat profile.  @var{data} is the
-structure returned by @code{profile ('info')}.  If @var{n} is given, it
+structure returned by @code{profile ("info")}.  If @var{n} is given, it
 specifies the number of functions to show in the profile; functions are
 sorted in descending order by total time spent in them.  If there are more
 than @var{n} included in the profile, those will not be shown.  @var{n}
@@ -546,7 +553,7 @@ otherwise.
 Interactively explore hierarchical profiler output.
 
 Assuming @var{data} is the structure with profile data returned by
-@code{profile ('info')}, this command opens an interactive prompt
+@code{profile ("info")}, this command opens an interactive prompt
 that can be used to explore the call-tree.  Type @kbd{help} to get a list
 of possible commands.
 @seealso{@ref{doc-profile,,profile}, @ref{doc-profshow,,profshow}}

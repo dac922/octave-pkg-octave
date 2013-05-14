@@ -32,8 +32,8 @@ function val = getappdata (h, name)
     ## FIXME - Is there a better way to handle non-existent appdata
     ## and missing fields?
     val = cell (numel (h), 1);
-    appdata = struct();
-    for nh = 1:numel(h)
+    appdata = struct ();
+    for nh = 1:numel (h)
       try
         appdata = get (h(nh), "__appdata__");
       end_try_catch

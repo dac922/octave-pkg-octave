@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Report a save- or restore-cwd failure in our openat replacement and then exit.
 
    Copyright (C) 2005-2006, 2008-2012 Free Software Foundation, Inc.

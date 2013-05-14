@@ -37,7 +37,7 @@ membership determination.  The functions for set operations all work in
 pretty much the same way.  As an example, assume that <code>x</code> and
 <code>y</code> contains two sets, then
 
-<pre class="example">     union(x, y)
+<pre class="example">     union (x, y)
 </pre>
    <p class="noindent">computes the union of the two sets.
 
@@ -45,9 +45,9 @@ pretty much the same way.  As an example, assume that <code>x</code> and
    <p><a name="doc_002dismember"></a>
 
 <div class="defun">
-&mdash; Function File: <var>tf</var> = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2684"></a></var><br>
-&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2685"></a></var><br>
-&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s, "rows"</var>)<var><a name="index-ismember-2686"></a></var><br>
+&mdash; Function File: <var>tf</var> = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2756"></a></var><br>
+&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2757"></a></var><br>
+&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s, "rows"</var>)<var><a name="index-ismember-2758"></a></var><br>
 <blockquote><p>Return a logical matrix <var>tf</var> with the same shape as <var>A</var> which is
 true (1) if <code>A(i,j)</code> is in <var>s</var> and false (0) if it is not.  If a
 second output argument is requested, the index into <var>s</var> of each of the
@@ -61,8 +61,8 @@ matching elements is also returned.
 </pre>
         <p>The inputs, <var>A</var> and <var>s</var>, may also be cell arrays.
 
-     <pre class="example">          a = {'abc'};
-          s = {'abc', 'def'};
+     <pre class="example">          a = {"abc"};
+          s = {"abc", "def"};
           [tf, s_idx] = ismember (a, s)
                &rArr; tf = [1, 0]
                &rArr; s_idx = [1, 0]
@@ -73,22 +73,19 @@ matching elements is also returned.
 
      <pre class="example">          a = [1:3; 5:7; 4:6];
           s = [0:2; 1:3; 2:4; 3:5; 4:6];
-          [tf, s_idx] = ismember(a, s, "rows")
+          [tf, s_idx] = ismember (a, s, "rows")
                &rArr; tf = logical ([1; 0; 1])
                &rArr; s_idx = [2; 0; 5];
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>. 
 </p></blockquote></div>
 
 <!-- union scripts/set/union.m -->
    <p><a name="doc_002dunion"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>union</b> (<var>a, b</var>)<var><a name="index-union-2687"></a></var><br>
-&mdash; Function File:  <b>union</b> (<var>a, b, "rows"</var>)<var><a name="index-union-2688"></a></var><br>
+&mdash; Function File:  <b>union</b> (<var>a, b</var>)<var><a name="index-union-2759"></a></var><br>
+&mdash; Function File:  <b>union</b> (<var>a, b, "rows"</var>)<var><a name="index-union-2760"></a></var><br>
 <blockquote><p>Return the set of elements that are in either of the sets <var>a</var> and
 <var>b</var>.  <var>a</var>, <var>b</var> may be cell arrays of string(s). 
 For example:
@@ -105,14 +102,11 @@ For example:
                  2   3
                  3   4
 </pre>
-        &mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>union</b> (<var>a, b</var>)<var><a name="index-union-2689"></a></var><br>
+        &mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>union</b> (<var>a, b</var>)<var><a name="index-union-2761"></a></var><br>
 <blockquote>
         <p>Return index vectors <var>ia</var> and <var>ib</var> such that <code>a(ia)</code> and
 <code>b(ib)</code> are disjoint sets whose union is <var>c</var>.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dunique.html#doc_002dunique">unique</a>. 
 </p></blockquote></div>
 
@@ -120,8 +114,8 @@ For example:
    <p><a name="doc_002dintersect"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2690"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2691"></a></var><br>
+&mdash; Function File:  <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2762"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2763"></a></var><br>
 <blockquote>
         <p>Return the elements in both <var>a</var> and <var>b</var>, sorted in ascending
 order.  If <var>a</var> and <var>b</var> are both column vectors return a column
@@ -132,9 +126,6 @@ vector, otherwise return a row vector.
 <code>b(ib)==c</code>.
 
         </blockquote></div>
-   <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
 <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>.
 
@@ -142,9 +133,9 @@ vector, otherwise return a row vector.
    <p><a name="doc_002dsetdiff"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2692"></a></var><br>
-&mdash; Function File:  <b>setdiff</b> (<var>a, b, "rows"</var>)<var><a name="index-setdiff-2693"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>i</var>] = <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2694"></a></var><br>
+&mdash; Function File:  <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2764"></a></var><br>
+&mdash; Function File:  <b>setdiff</b> (<var>a, b, "rows"</var>)<var><a name="index-setdiff-2765"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>i</var>] = <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2766"></a></var><br>
 <blockquote><p>Return the elements in <var>a</var> that are not in <var>b</var>, sorted in
 ascending order.  If <var>a</var> and <var>b</var> are both column vectors
 return a column vector, otherwise return a row vector. 
@@ -153,10 +144,7 @@ return a column vector, otherwise return a row vector.
         <p>Given the optional third argument &lsquo;<samp><span class="samp">"rows"</span></samp>&rsquo;, return the rows in
 <var>a</var> that are not in <var>b</var>, sorted in ascending order by rows.
 
-        <p>If requested, return <var>i</var> such that <code>c = a(i)</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If requested, return <var>i</var> such that <code>c = a(i)</code>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
 </p></blockquote></div>
@@ -165,9 +153,9 @@ return a column vector, otherwise return a row vector.
    <p><a name="doc_002dsetxor"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2695"></a></var><br>
-&mdash; Function File:  <b>setxor</b> (<var>a, b, 'rows'</var>)<var><a name="index-setxor-2696"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2697"></a></var><br>
+&mdash; Function File:  <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2767"></a></var><br>
+&mdash; Function File:  <b>setxor</b> (<var>a, b, "rows"</var>)<var><a name="index-setxor-2768"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2769"></a></var><br>
 <blockquote>
         <p>Return the elements exclusive to <var>a</var> or <var>b</var>, sorted in ascending
 order.  If <var>a</var> and <var>b</var> are both column vectors return a column
@@ -178,9 +166,6 @@ vector, otherwise return a row vector.
 such that <code>a(ia)</code> and <code>b(ib)</code> are disjoint sets whose union
 is <var>c</var>.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
 </p></blockquote></div>
 
@@ -188,19 +173,21 @@ is <var>c</var>.
    <p><a name="doc_002dpowerset"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>powerset</b> (<var>a</var>)<var><a name="index-powerset-2698"></a></var><br>
-&mdash; Function File:  <b>powerset</b> (<var>a, "rows"</var>)<var><a name="index-powerset-2699"></a></var><br>
-<blockquote>
-        <p>Return a cell array containing all subsets of the set <var>a</var>.
+&mdash; Function File:  <b>powerset</b> (<var>a</var>)<var><a name="index-powerset-2770"></a></var><br>
+&mdash; Function File:  <b>powerset</b> (<var>a, "rows"</var>)<var><a name="index-powerset-2771"></a></var><br>
+<blockquote><p>Compute the powerset (all subsets) of the set <var>a</var>.
 
-        </blockquote></div>
-   <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>The set <var>a</var> must be a numerical matrix or a cell array of strings.  The
+output will always be a cell array of either vectors or strings.
 
-<p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>.
+        <p>With the optional second argument <code>"rows"</code>, each row of the set <var>a</var>
+is considered one element of the set.  As a result, <var>a</var> must then be a
+numerical 2D matrix.
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
+</p></blockquote></div>
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

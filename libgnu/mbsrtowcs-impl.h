@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Convert string to wide string.
    Copyright (C) 2008-2012 Free Software Foundation, Inc.
    Written by Bruno Haible <bruno@clisp.org>, 2008.

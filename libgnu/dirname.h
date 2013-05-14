@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /*  Take file names apart into directory and base names.
 
     Copyright (C) 1998, 2001, 2003-2006, 2009-2012 Free Software Foundation,

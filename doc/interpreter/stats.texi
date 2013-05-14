@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -311,6 +311,9 @@ variance [default]
   normalizes with @math{N}, this provides the second moment around the mean
 @end table
 
+If @math{N==1} the value of @var{opt} is ignored and normalization 
+by @math{N} is used.
+
 If the optional argument @var{dim} is given, operate along this dimension.
 @seealso{@ref{doc-cov,,cov}, @ref{doc-std,,std}, @ref{doc-skewness,,skewness}, @ref{doc-kurtosis,,kurtosis}, @ref{doc-moment,,moment}}
 @end deftypefn
@@ -357,7 +360,11 @@ where $\bar{x}$ is the mean value of $x$.
 @ifnottex
 
 @example
-kurtosis (x) = 1/N std(x)^(-4) sum ((x - mean(x)).^4) - 3
+@group
+                1    sum ((x - mean(x)).^4)
+kurtosis (x) = --- * ----------------------  -  3
+                N           std(x)^4
+@end group
 @end example
 
 @end ifnottex
@@ -464,7 +471,8 @@ If both @var{type} and @var{dim} are given they may appear in any order.
 
 @c quantile scripts/statistics/base/quantile.m
 @anchor{doc-quantile}
-@deftypefn  {Function File} {@var{q} =} quantile (@var{x}, @var{p})
+@deftypefn  {Function File} {@var{q} =} quantile (@var{x})
+@deftypefnx {Function File} {@var{q} =} quantile (@var{x}, @var{p})
 @deftypefnx {Function File} {@var{q} =} quantile (@var{x}, @var{p}, @var{dim})
 @deftypefnx {Function File} {@var{q} =} quantile (@var{x}, @var{p}, @var{dim}, @var{method})
 For a sample, @var{x}, calculate the quantiles, @var{q}, corresponding to
@@ -475,6 +483,8 @@ If @var{x} is a matrix, compute the quantiles for each column and
 return them in a matrix, such that the i-th row of @var{q} contains
 the @var{p}(i)th quantiles of each column of @var{x}.
 
+If @var{p} is unspecified, return the quantiles for
+@code{[0.00 0.25 0.50 0.75 1.00]}.
 The optional argument @var{dim} determines the dimension along which
 the quantiles are calculated.  If @var{dim} is omitted, and @var{x} is
 a vector or matrix, it defaults to 1 (column-wise quantiles).  If
@@ -498,10 +508,10 @@ Continuous sample quantile methods 4 through 9, where p(k) is the linear
 interpolation function respecting each methods' representative cdf.
 
 @enumerate 4
-@item Method 4: p(k) = k / n. That is, linear interpolation of the
+@item Method 4: p(k) = k / n.  That is, linear interpolation of the
 empirical cdf.
 
-@item Method 5: p(k) = (k - 0.5) / n. That is a piecewise linear function
+@item Method 5: p(k) = (k - 0.5) / n.  That is a piecewise linear function
 where the knots are the values midway through the steps of the empirical
 cdf.
 
@@ -610,15 +620,23 @@ If the optional argument @var{dim} is given, operate along this dimension.
 
 @c zscore scripts/statistics/base/zscore.m
 @anchor{doc-zscore}
-@deftypefn  {Function File} {} zscore (@var{x})
-@deftypefnx {Function File} {} zscore (@var{x}, @var{dim})
+@deftypefn  {Function File} {[@var{z}, @var{mu}, @var{sigma}] =} zscore (@var{x})
+@deftypefnx {Function File} {[@var{z}, @var{mu}, @var{sigma}] =} zscore (@var{x}, @var{opt})
+@deftypefnx {Function File} {[@var{z}, @var{mu}, @var{sigma}] =} zscore (@var{x}, @var{opt}, @var{dim})
 If @var{x} is a vector, subtract its mean and divide by its standard
-deviation.
+deviation.  If the standard deviation is zero, divide by 1 instead.
+The optional parameter @var{opt} determines the normalization to use
+when computing the standard deviation and is the same as the
+corresponding parameter for @code{std}.
 
 If @var{x} is a matrix, do the above along the first non-singleton
-dimension.
-If the optional argument @var{dim} is given, operate along this dimension.
-@seealso{@ref{doc-center,,center}}
+dimension.  If the third optional argument @var{dim} is given, operate
+along this dimension.
+
+The mean and standard deviation along @var{dim} are given in @var{mu}
+and @var{sigma} respectively.
+
+@seealso{@ref{doc-mean,,mean}, @ref{doc-std,,std}, @ref{doc-center,,center}}
 @end deftypefn
 
 
@@ -728,7 +746,7 @@ Generate all permutations of @var{v}, one row per permutation.  The
 result has size @code{factorial (@var{n}) * @var{n}}, where @var{n}
 is the length of @var{v}.
 
-As an example, @code{perms([1, 2, 3])} returns the matrix
+As an example, @code{perms ([1, 2, 3])} returns the matrix
 
 @example
 @group
@@ -2291,7 +2309,7 @@ The optional argument @var{params} contains a list of parameters of
 a uniform distribution on [2,4], use
 
 @example
-kolmogorov_smirnov_test(x, "unif", 2, 4)
+kolmogorov_smirnov_test (x, "unif", 2, 4)
 @end example
 
 @noindent

@@ -50,90 +50,72 @@ length of the input if it is a complex number.
    <p>The following functions are available for determining the type of a
 variable.
 
-<!-- isnumeric src/data.cc -->
+<!-- isnumeric libinterp/interpfcn/data.cc -->
    <p><a name="doc_002disnumeric"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isnumeric</b> (<var>x</var>)<var><a name="index-isnumeric-302"></a></var><br>
+&mdash; Built-in Function:  <b>isnumeric</b> (<var>x</var>)<var><a name="index-isnumeric-314"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a numeric object, i.e., an integer, real, or
 complex array.  Logical and character arrays are not considered to be
-numeric. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+numeric.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disreal.html#doc_002disreal">isreal</a>, <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002discell.html#doc_002discell">iscell</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disreal.html#doc_002disreal">isreal</a>, <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002discell.html#doc_002discell">iscell</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
 
-<!-- isfloat src/data.cc -->
+<!-- isfloat libinterp/interpfcn/data.cc -->
    <p><a name="doc_002disfloat"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isfloat</b> (<var>x</var>)<var><a name="index-isfloat-303"></a></var><br>
+&mdash; Built-in Function:  <b>isfloat</b> (<var>x</var>)<var><a name="index-isfloat-315"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a floating-point numeric object. 
-Objects of class double or single are floating-point objects. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+Objects of class double or single are floating-point objects.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
 
-<!-- isreal src/data.cc -->
+<!-- isreal libinterp/interpfcn/data.cc -->
    <p><a name="doc_002disreal"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isreal</b> (<var>x</var>)<var><a name="index-isreal-304"></a></var><br>
+&mdash; Built-in Function:  <b>isreal</b> (<var>x</var>)<var><a name="index-isreal-316"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a non-complex matrix or scalar. 
 For compatibility with <span class="sc">matlab</span>, this includes logical and character
-matrices. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+matrices.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
 
-<!-- iscomplex src/data.cc -->
+<!-- iscomplex libinterp/interpfcn/data.cc -->
    <p><a name="doc_002discomplex"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>iscomplex</b> (<var>x</var>)<var><a name="index-iscomplex-305"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a complex-valued numeric object. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>iscomplex</b> (<var>x</var>)<var><a name="index-iscomplex-317"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a complex-valued numeric object.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disreal.html#doc_002disreal">isreal</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002disreal.html#doc_002disreal">isreal</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
 
-<!-- ismatrix src/data.cc -->
+<!-- ismatrix libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dismatrix"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ismatrix</b> (<var>a</var>)<var><a name="index-ismatrix-306"></a></var><br>
+&mdash; Built-in Function:  <b>ismatrix</b> (<var>a</var>)<var><a name="index-ismatrix-318"></a></var><br>
 <blockquote><p>Return true if <var>a</var> is a numeric, logical, or character matrix. 
 Scalars (1x1 matrices) and vectors (1xN or Nx1 matrices)
 are subsets of the more general N-dimensional matrix and <code>ismatrix</code>
-will return true for these objects as well. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+will return true for these objects as well.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002discell.html#doc_002discell">iscell</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dissparse.html#doc_002dissparse">issparse</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002discell.html#doc_002discell">iscell</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dissparse.html#doc_002dissparse">issparse</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
 
 <!-- isvector scripts/general/isvector.m -->
    <p><a name="doc_002disvector"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isvector</b> (<var>x</var>)<var><a name="index-isvector-307"></a></var><br>
+&mdash; Function File:  <b>isvector</b> (<var>x</var>)<var><a name="index-isvector-319"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a vector.  A vector is a 2-D array
 where one of the dimensions is equal to 1.  As a consequence a
-1x1 array, or scalar, is also a vector. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+1x1 array, or scalar, is also a vector.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002drows.html#doc_002drows">rows</a>, <a href="doc_002dcolumns.html#doc_002dcolumns">columns</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>. 
 </p></blockquote></div>
@@ -142,11 +124,8 @@ where one of the dimensions is equal to 1.  As a consequence a
    <p><a name="doc_002disrow"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isrow</b> (<var>x</var>)<var><a name="index-isrow-308"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a row vector. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File:  <b>isrow</b> (<var>x</var>)<var><a name="index-isrow-320"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a row vector.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002discolumn.html#doc_002discolumn">iscolumn</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
 </p></blockquote></div>
@@ -155,11 +134,8 @@ where one of the dimensions is equal to 1.  As a consequence a
    <p><a name="doc_002discolumn"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>iscolumn</b> (<var>x</var>)<var><a name="index-iscolumn-309"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a column vector. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File:  <b>iscolumn</b> (<var>x</var>)<var><a name="index-iscolumn-321"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a column vector.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disrow.html#doc_002disrow">isrow</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
 </p></blockquote></div>
@@ -168,11 +144,8 @@ where one of the dimensions is equal to 1.  As a consequence a
    <p><a name="doc_002disscalar"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isscalar</b> (<var>x</var>)<var><a name="index-isscalar-310"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a scalar. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File:  <b>isscalar</b> (<var>x</var>)<var><a name="index-isscalar-322"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a scalar.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
 </p></blockquote></div>
@@ -181,11 +154,8 @@ where one of the dimensions is equal to 1.  As a consequence a
    <p><a name="doc_002dissquare"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>issquare</b> (<var>x</var>)<var><a name="index-issquare-311"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a square matrix. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Function File:  <b>issquare</b> (<var>x</var>)<var><a name="index-issquare-323"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a square matrix.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>. 
 </p></blockquote></div>
@@ -194,15 +164,12 @@ where one of the dimensions is equal to 1.  As a consequence a
    <p><a name="doc_002dissymmetric"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>issymmetric</b> (<var>x</var>)<var><a name="index-issymmetric-312"></a></var><br>
-&mdash; Function File:  <b>issymmetric</b> (<var>x, tol</var>)<var><a name="index-issymmetric-313"></a></var><br>
+&mdash; Function File:  <b>issymmetric</b> (<var>x</var>)<var><a name="index-issymmetric-324"></a></var><br>
+&mdash; Function File:  <b>issymmetric</b> (<var>x, tol</var>)<var><a name="index-issymmetric-325"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a symmetric matrix within the tolerance specified
 by <var>tol</var>.  The default tolerance is zero (uses faster code). 
 Matrix <var>x</var> is considered symmetric if
-<code>norm (</code><var>x</var><code> - </code><var>x</var><code>.', Inf) / norm (</code><var>x</var><code>, Inf) &lt; </code><var>tol</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<code>norm (</code><var>x</var><code> - </code><var>x</var><code>.', Inf) / norm (</code><var>x</var><code>, Inf) &lt; </code><var>tol</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dishermitian.html#doc_002dishermitian">ishermitian</a>, <a href="doc_002disdefinite.html#doc_002disdefinite">isdefinite</a>. 
 </p></blockquote></div>
@@ -211,16 +178,13 @@ Matrix <var>x</var> is considered symmetric if
    <p><a name="doc_002dishermitian"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ishermitian</b> (<var>x</var>)<var><a name="index-ishermitian-314"></a></var><br>
-&mdash; Function File:  <b>ishermitian</b> (<var>x, tol</var>)<var><a name="index-ishermitian-315"></a></var><br>
+&mdash; Function File:  <b>ishermitian</b> (<var>x</var>)<var><a name="index-ishermitian-326"></a></var><br>
+&mdash; Function File:  <b>ishermitian</b> (<var>x, tol</var>)<var><a name="index-ishermitian-327"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is Hermitian within the tolerance specified by
 <var>tol</var>. 
 The default tolerance is zero (uses faster code). 
 Matrix <var>x</var> is considered symmetric if
-<code>norm (</code><var>x</var><code> - </code><var>x</var><code>', Inf) / norm (</code><var>x</var><code>, Inf) &lt; </code><var>tol</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<code>norm (</code><var>x</var><code> - </code><var>x</var><code>', Inf) / norm (</code><var>x</var><code>, Inf) &lt; </code><var>tol</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dissymmetric.html#doc_002dissymmetric">issymmetric</a>, <a href="doc_002disdefinite.html#doc_002disdefinite">isdefinite</a>. 
 </p></blockquote></div>
@@ -229,30 +193,24 @@ Matrix <var>x</var> is considered symmetric if
    <p><a name="doc_002disdefinite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isdefinite</b> (<var>x</var>)<var><a name="index-isdefinite-316"></a></var><br>
-&mdash; Function File:  <b>isdefinite</b> (<var>x, tol</var>)<var><a name="index-isdefinite-317"></a></var><br>
+&mdash; Function File:  <b>isdefinite</b> (<var>x</var>)<var><a name="index-isdefinite-328"></a></var><br>
+&mdash; Function File:  <b>isdefinite</b> (<var>x, tol</var>)<var><a name="index-isdefinite-329"></a></var><br>
 <blockquote><p>Return 1 if <var>x</var> is symmetric positive definite within the
 tolerance specified by <var>tol</var> or 0 if <var>x</var> is symmetric
 positive semidefinite.  Otherwise, return -1.  If <var>tol</var>
 is omitted, use a tolerance of
 <code>100 * eps * norm (</code><var>x</var><code>, "fro")</code>
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dissymmetric.html#doc_002dissymmetric">issymmetric</a>, <a href="doc_002dishermitian.html#doc_002dishermitian">ishermitian</a>. 
 </p></blockquote></div>
 
-<!-- islogical src/data.cc -->
+<!-- islogical libinterp/interpfcn/data.cc -->
    <p><a name="doc_002dislogical"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>islogical</b> (<var>x</var>)<var><a name="index-islogical-318"></a></var><br>
-&mdash; Built-in Function:  <b>isbool</b> (<var>x</var>)<var><a name="index-isbool-319"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a logical object. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>islogical</b> (<var>x</var>)<var><a name="index-islogical-330"></a></var><br>
+&mdash; Built-in Function:  <b>isbool</b> (<var>x</var>)<var><a name="index-isbool-331"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a logical object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>
@@ -261,7 +219,7 @@ is omitted, use a tolerance of
    <p><a name="doc_002disprime"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isprime</b> (<var>x</var>)<var><a name="index-isprime-320"></a></var><br>
+&mdash; Function File:  <b>isprime</b> (<var>x</var>)<var><a name="index-isprime-332"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>x</var> are
 prime numbers and false where they are not.
 
@@ -271,17 +229,14 @@ special purpose factorization code.
      <pre class="example">          isprime (1:6)
               &rArr; [0, 1, 1, 0, 1, 0]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dprimes.html#doc_002dprimes">primes</a>, <a href="doc_002dfactor.html#doc_002dfactor">factor</a>, <a href="doc_002dgcd.html#doc_002dgcd">gcd</a>, <a href="doc_002dlcm.html#doc_002dlcm">lcm</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dprimes.html#doc_002dprimes">primes</a>, <a href="doc_002dfactor.html#doc_002dfactor">factor</a>, <a href="doc_002dgcd.html#doc_002dgcd">gcd</a>, <a href="doc_002dlcm.html#doc_002dlcm">lcm</a>. 
 </p></blockquote></div>
 
    <p>If instead of knowing properties of variables, you wish to know which
 variables are defined and to gather other information about the
 workspace itself, see <a href="Status-of-Variables.html#Status-of-Variables">Status of Variables</a>.
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

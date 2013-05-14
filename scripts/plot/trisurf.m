@@ -64,40 +64,44 @@ function h = trisurf (tri, x, y, z, varargin)
     endif
 
     if (! ishold ())
-      set (gca(), "view", [-37.5, 30],
+      set (gca (), "view", [-37.5, 30],
            "xgrid", "on", "ygrid", "on", "zgrid", "on");
     endif
   endif
 
 endfunction
 
+
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! N = 31;
 %! [x, y] = meshgrid (1:N);
 %! tri = delaunay (x, y);
 %! z = peaks (N);
-%! h = trisurf (tri, x, y, z, "facecolor", "interp");
-%! axis tight
-%! zlim auto
-%! title (sprintf ("facecolor = %s", get (h, "facecolor")))
+%! h = trisurf (tri, x, y, z, 'facecolor', 'interp');
+%! axis tight;
+%! zlim auto;
+%! title (sprintf ('facecolor = %s', get (h, 'facecolor')));
 
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! N = 31;
 %! [x, y] = meshgrid (1:N);
 %! tri = delaunay (x, y);
 %! z = peaks (N);
-%! h = trisurf (tri, x, y, z, "facecolor", "flat");
-%! axis tight
-%! zlim auto
-%! title (sprintf ("facecolor = %s", get (h, "facecolor")))
+%! h = trisurf (tri, x, y, z, 'facecolor', 'flat');
+%! axis tight;
+%! zlim auto;
+%! title (sprintf ('facecolor = %s', get (h, 'facecolor')));
 
 %!demo
-%! clf
-%! old_state = rand ("state");
-%! restore_state = onCleanup (@() rand ("state", old_state));
-%! rand ("state", 10);
+%! clf;
+%! colormap ('default');
+%! old_state = rand ('state');
+%! restore_state = onCleanup (@() rand ('state', old_state));
+%! rand ('state', 10);
 %! N = 10;
 %! x = 3 - 6 * rand (N, N);
 %! y = 3 - 6 * rand (N, N);
@@ -106,7 +110,8 @@ endfunction
 %! trisurf (tri, x(:), y(:), z(:));
 
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! x = rand (100, 1);
 %! y = rand (100, 1);
 %! z = x.^2 + y.^2;
@@ -114,18 +119,20 @@ endfunction
 %! trisurf (tri, x, y, z);
 
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! x = rand (100, 1);
 %! y = rand (100, 1);
 %! z = x.^2 + y.^2;
 %! tri = delaunay (x, y);
-%! trisurf (tri, x, y, z, "facecolor", "interp");
+%! trisurf (tri, x, y, z, 'facecolor', 'interp');
 
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! x = rand (100, 1);
 %! y = rand (100, 1);
 %! z = x.^2 + y.^2;
 %! tri = delaunay (x, y);
-%! trisurf (tri, x, y, z, "facecolor", "interp", "edgecolor", "k");
+%! trisurf (tri, x, y, z, 'facecolor', 'interp', 'edgecolor', 'k');
 

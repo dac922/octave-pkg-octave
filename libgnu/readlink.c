@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Stub for readlink().
    Copyright (C) 2003-2007, 2009-2012 Free Software Foundation, Inc.
 

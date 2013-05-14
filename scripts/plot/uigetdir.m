@@ -23,7 +23,7 @@
 ## Open a GUI dialog for selecting a directory.  If @var{init_path} is not
 ## given the current working directory is used.  @var{dialog_name} may be
 ## used to customize the dialog title.
-## @seealso{uigetfile}
+## @seealso{uigetfile, uiputfile}
 ## @end deftypefn
 
 ## Author: Kai Habel
@@ -58,9 +58,10 @@ function dirname = uigetdir (init_path = pwd, dialog_name = "Select Directory to
 
 endfunction
 
+
 %!demo
-%! uigetdir(pwd, "Select Directory")
+%! uigetdir (pwd, 'Select Directory');
 
 ## Remove from test statistics.  No real tests possible.
-%!test
-%! assert (1);
+%!assert (1)
+

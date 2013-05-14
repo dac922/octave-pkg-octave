@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Getting-Started.html#Getting-Started">G
 
 <h3 class="section">2.3 Commands for Getting Help</h3>
 
-<p><a name="index-online-help-87"></a><a name="index-help_002c-online-88"></a>
+<p><a name="index-online-help-93"></a><a name="index-help_002c-online-94"></a>
 The entire text of this manual is available from the Octave prompt
 via the command <kbd>doc</kbd>.  In addition, the documentation for
 individual user-written functions and variables is also available via
@@ -47,8 +47,9 @@ about how to document the functions you write.
    <p><a name="doc_002dhelp"></a>
 
 <div class="defun">
-&mdash; Command:  <b>help</b><var> name<a name="index-help-89"></a></var><br>
-&mdash; Command:  <b>help</b> <code>--list</code><var><a name="index-help-90"></a></var><br>
+&mdash; Command:  <b>help</b><var> name<a name="index-help-95"></a></var><br>
+&mdash; Command:  <b>help</b> <code>--list</code><var><a name="index-help-96"></a></var><br>
+&mdash; Command:  <b>help</b> <code>.</code><var><a name="index-help-97"></a></var><br>
 <blockquote><p>Display the help text for <var>name</var>.   For example, the command
 <kbd>help help</kbd> prints a short message describing the <code>help</code>
 command.
@@ -57,15 +58,15 @@ command.
 keywords, built-in functions, and loadable functions available
 in the current session of Octave.
 
+        <p>Given the single argument <code>.</code>, list all operators available
+in the current session of Octave.
+
         <p>If invoked without any arguments, <code>help</code> display instructions
 on how to access help from the command line.
 
         <p>The help command can give you information about operators, but not the
 comma and semicolons that are used as command separators.  To get help
-for those, you must type <kbd>help comma</kbd> or <kbd>help semicolon</kbd>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+for those, you must type <kbd>help comma</kbd> or <kbd>help semicolon</kbd>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dlookfor.html#doc_002dlookfor">lookfor</a>, <a href="doc_002dwhich.html#doc_002dwhich">which</a>. 
 </p></blockquote></div>
@@ -74,7 +75,7 @@ for those, you must type <kbd>help comma</kbd> or <kbd>help semicolon</kbd>.
    <p><a name="doc_002ddoc"></a>
 
 <div class="defun">
-&mdash; Command:  <b>doc</b><var> function_name<a name="index-doc-91"></a></var><br>
+&mdash; Command:  <b>doc</b><var> function_name<a name="index-doc-98"></a></var><br>
 <blockquote><p>Display documentation for the function <var>function_name</var>
 directly from an online version of
 the printed manual, using the GNU Info browser.  If invoked without
@@ -84,10 +85,7 @@ any arguments, the manual is shown from the beginning.
 at the <code>rand</code> node in the online version of the manual.
 
         <p>Once the GNU Info browser is running, help for using it is available
-using the command <kbd>C-h</kbd>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+using the command <kbd>C-h</kbd>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelp.html#doc_002dhelp">help</a>. 
 </p></blockquote></div>
@@ -96,14 +94,14 @@ using the command <kbd>C-h</kbd>.
    <p><a name="doc_002dlookfor"></a>
 
 <div class="defun">
-&mdash; Command:  <b>lookfor</b><var> str<a name="index-lookfor-92"></a></var><br>
-&mdash; Command:  <b>lookfor</b><var> -all str<a name="index-lookfor-93"></a></var><br>
-&mdash; Function File: [<var>func</var>, <var>helpstring</var>] = <b>lookfor</b> (<var>str</var>)<var><a name="index-lookfor-94"></a></var><br>
-&mdash; Function File: [<var>func</var>, <var>helpstring</var>] = <b>lookfor</b> (<var>'-all', str</var>)<var><a name="index-lookfor-95"></a></var><br>
+&mdash; Command:  <b>lookfor</b><var> str<a name="index-lookfor-99"></a></var><br>
+&mdash; Command:  <b>lookfor</b><var> -all str<a name="index-lookfor-100"></a></var><br>
+&mdash; Function File: [<var>func</var>, <var>helpstring</var>] = <b>lookfor</b> (<var>str</var>)<var><a name="index-lookfor-101"></a></var><br>
+&mdash; Function File: [<var>func</var>, <var>helpstring</var>] = <b>lookfor</b> (<var>"-all", str</var>)<var><a name="index-lookfor-102"></a></var><br>
 <blockquote><p>Search for the string <var>str</var> in all functions found in the current
 function search path.  By default, <code>lookfor</code> searches for <var>str</var>
 in the first sentence of the help string of each function found.  The entire
-help text of each function can be searched if the '-all' argument is
+help text of each function can be searched if the "-all" argument is
 supplied.  All searches are case insensitive.
 
         <p>Called with no output arguments, <code>lookfor</code> prints the list of
@@ -115,11 +113,8 @@ first sentence of each of their help strings.
 sentence of the help text is dependent on the format of the
 function's help.  All Octave core functions are correctly
 formatted, but the same can not be guaranteed for external packages and
-user-supplied functions.  Therefore, the use of the '-all' argument may
-be necessary to find related functions that are not a part of Octave. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+user-supplied functions.  Therefore, the use of the "-all" argument may
+be necessary to find related functions that are not a part of Octave.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelp.html#doc_002dhelp">help</a>, <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dwhich.html#doc_002dwhich">which</a>. 
 </p></blockquote></div>
@@ -131,26 +126,28 @@ function.
    <p><a name="doc_002dnews"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>news</b> (<var>package</var>)<var><a name="index-news-96"></a></var><br>
-<blockquote><p>Display the current NEWS file for Octave or installed package.
+&mdash; Function File:  <b>news</b><var><a name="index-news-103"></a></var><br>
+&mdash; Function File:  <b>news</b> (<var>package</var>)<var><a name="index-news-104"></a></var><br>
+<blockquote><p>Display the current NEWS file for Octave or an installed package.
 
-        <p>If <var>package</var> is the name of an installed package, display the current
-NEWS file for that package. 
+        <p>When called without an argument, display the NEWS file for Octave. 
+When given a package name <var>package</var>, display the current NEWS file for
+that package. 
 </p></blockquote></div>
 
 <!-- info scripts/miscellaneous/info.m -->
    <p><a name="doc_002dinfo"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>info</b> ()<var><a name="index-info-97"></a></var><br>
+&mdash; Function File:  <b>info</b> ()<var><a name="index-info-105"></a></var><br>
 <blockquote><p>Display contact information for the GNU Octave community. 
 </p></blockquote></div>
 
-<!-- warranty src/toplev.cc -->
+<!-- warranty libinterp/interpfcn/toplev.cc -->
    <p><a name="doc_002dwarranty"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>warranty</b> ()<var><a name="index-warranty-98"></a></var><br>
+&mdash; Built-in Function:  <b>warranty</b> ()<var><a name="index-warranty-106"></a></var><br>
 <blockquote><p>Describe the conditions for copying and distributing Octave. 
 </p></blockquote></div>
 
@@ -158,13 +155,13 @@ NEWS file for that package.
 for displaying the documentation, and where the documentation can be
 found.
 
-<!-- info_file src/help.cc -->
+<!-- info_file libinterp/interpfcn/help.cc -->
    <p><a name="doc_002dinfo_005ffile"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>info_file</b> ()<var><a name="index-info_005ffile-99"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>info_file</b> (<var>new_val</var>)<var><a name="index-info_005ffile-100"></a></var><br>
-&mdash; Built-in Function:  <b>info_file</b> (<var>new_val, "local"</var>)<var><a name="index-info_005ffile-101"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>info_file</b> ()<var><a name="index-info_005ffile-107"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>info_file</b> (<var>new_val</var>)<var><a name="index-info_005ffile-108"></a></var><br>
+&mdash; Built-in Function:  <b>info_file</b> (<var>new_val, "local"</var>)<var><a name="index-info_005ffile-109"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the name of the
 Octave info file.  The default value is
 <samp><var>octave-home</var><span class="file">/info/octave.info</span></samp>, in
@@ -175,21 +172,18 @@ The default value may be overridden by the environment variable
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinfo_005fprogram.html#doc_002dinfo_005fprogram">info_program</a>, <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dhelp.html#doc_002dhelp">help</a>, <a href="doc_002dmakeinfo_005fprogram.html#doc_002dmakeinfo_005fprogram">makeinfo_program</a>. 
 </p></blockquote></div>
 
-<!-- info_program src/help.cc -->
+<!-- info_program libinterp/interpfcn/help.cc -->
    <p><a name="doc_002dinfo_005fprogram"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>info_program</b> ()<var><a name="index-info_005fprogram-102"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>info_program</b> (<var>new_val</var>)<var><a name="index-info_005fprogram-103"></a></var><br>
-&mdash; Built-in Function:  <b>info_program</b> (<var>new_val, "local"</var>)<var><a name="index-info_005fprogram-104"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>info_program</b> ()<var><a name="index-info_005fprogram-110"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>info_program</b> (<var>new_val</var>)<var><a name="index-info_005fprogram-111"></a></var><br>
+&mdash; Built-in Function:  <b>info_program</b> (<var>new_val, "local"</var>)<var><a name="index-info_005fprogram-112"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the name of the
 info program to run.  The default value is
 <samp><var>octave-home</var><span class="file">/libexec/octave/</span><var>version</var><span class="file">/exec/</span><var>arch</var><span class="file">/info</span></samp>
@@ -202,42 +196,60 @@ default value may be overridden by the environment variable
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dinfo_005ffile.html#doc_002dinfo_005ffile">info_file</a>, <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dhelp.html#doc_002dhelp">help</a>, <a href="doc_002dmakeinfo_005fprogram.html#doc_002dmakeinfo_005fprogram">makeinfo_program</a>. 
 </p></blockquote></div>
 
-<!-- makeinfo_program src/help.cc -->
+<!-- makeinfo_program libinterp/interpfcn/help.cc -->
    <p><a name="doc_002dmakeinfo_005fprogram"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>makeinfo_program</b> ()<var><a name="index-makeinfo_005fprogram-105"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>makeinfo_program</b> (<var>new_val</var>)<var><a name="index-makeinfo_005fprogram-106"></a></var><br>
-&mdash; Built-in Function:  <b>makeinfo_program</b> (<var>new_val, "local"</var>)<var><a name="index-makeinfo_005fprogram-107"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>makeinfo_program</b> ()<var><a name="index-makeinfo_005fprogram-113"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>makeinfo_program</b> (<var>new_val</var>)<var><a name="index-makeinfo_005fprogram-114"></a></var><br>
+&mdash; Built-in Function:  <b>makeinfo_program</b> (<var>new_val, "local"</var>)<var><a name="index-makeinfo_005fprogram-115"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the name of the
 program that Octave runs to format help text containing
 Texinfo markup commands.  The default value is <code>makeinfo</code>.
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinfo_005ffile.html#doc_002dinfo_005ffile">info_file</a>, <a href="doc_002dinfo_005fprogram.html#doc_002dinfo_005fprogram">info_program</a>, <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dhelp.html#doc_002dhelp">help</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtexi_005fmacros_005ffile.html#doc_002dtexi_005fmacros_005ffile">texi_macros_file</a>, <a href="doc_002dinfo_005ffile.html#doc_002dinfo_005ffile">info_file</a>, <a href="doc_002dinfo_005fprogram.html#doc_002dinfo_005fprogram">info_program</a>, <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dhelp.html#doc_002dhelp">help</a>. 
 </p></blockquote></div>
 
-<!-- doc_cache_file src/help.cc -->
+<!-- texi_macros_file libinterp/interpfcn/help.cc -->
+   <p><a name="doc_002dtexi_005fmacros_005ffile"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>texi_macros_file</b> ()<var><a name="index-texi_005fmacros_005ffile-116"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>texi_macros_file</b> (<var>new_val</var>)<var><a name="index-texi_005fmacros_005ffile-117"></a></var><br>
+&mdash; Built-in Function:  <b>texi_macros_file</b> (<var>new_val, "local"</var>)<var><a name="index-texi_005fmacros_005ffile-118"></a></var><br>
+<blockquote><p>Query or set the internal variable that specifies the name of the
+file containing Texinfo macros that are prepended to documentation strings
+before they are passed to makeinfo.  The default value is
+<samp><var>octave-home</var><span class="file">/share/octave/</span><var>version</var><span class="file">/etc/macros.texi</span></samp>,
+in which <var>octave-home</var> is the root directory of the Octave installation,
+and <var>version</var> is the Octave version number. 
+The default value may be overridden by the environment variable
+<samp><span class="env">OCTAVE_TEXI_MACROS_FILE</span></samp><!-- /@w -->, or the command line argument
+&lsquo;<samp><span class="samp">--texi-macros-file NAME</span></samp>&rsquo;.
+
+        <p>When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmakeinfo_005fprogram.html#doc_002dmakeinfo_005fprogram">makeinfo_program</a>. 
+</p></blockquote></div>
+
+<!-- doc_cache_file libinterp/interpfcn/help.cc -->
    <p><a name="doc_002ddoc_005fcache_005ffile"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>doc_cache_file</b> ()<var><a name="index-doc_005fcache_005ffile-108"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>doc_cache_file</b> (<var>new_val</var>)<var><a name="index-doc_005fcache_005ffile-109"></a></var><br>
-&mdash; Built-in Function:  <b>doc_cache_file</b> (<var>new_val, "local"</var>)<var><a name="index-doc_005fcache_005ffile-110"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>doc_cache_file</b> ()<var><a name="index-doc_005fcache_005ffile-119"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>doc_cache_file</b> (<var>new_val</var>)<var><a name="index-doc_005fcache_005ffile-120"></a></var><br>
+&mdash; Built-in Function:  <b>doc_cache_file</b> (<var>new_val, "local"</var>)<var><a name="index-doc_005fcache_005ffile-121"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the name of the
 Octave documentation cache file.  A cache file significantly improves
 the performance of the <code>lookfor</code> command.  The default value is
@@ -250,21 +262,18 @@ The default value may be overridden by the environment variable
 
         <p>When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+variable value is restored when exiting the function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlookfor.html#doc_002dlookfor">lookfor</a>, <a href="doc_002dinfo_005fprogram.html#doc_002dinfo_005fprogram">info_program</a>, <a href="doc_002ddoc.html#doc_002ddoc">doc</a>, <a href="doc_002dhelp.html#doc_002dhelp">help</a>, <a href="doc_002dmakeinfo_005fprogram.html#doc_002dmakeinfo_005fprogram">makeinfo_program</a>. 
 </p></blockquote></div>
 
-<!-- suppress_verbose_help_message src/help.cc -->
+<!-- suppress_verbose_help_message libinterp/interpfcn/help.cc -->
    <p><a name="doc_002dsuppress_005fverbose_005fhelp_005fmessage"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>suppress_verbose_help_message</b> ()<var><a name="index-suppress_005fverbose_005fhelp_005fmessage-111"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>suppress_verbose_help_message</b> (<var>new_val</var>)<var><a name="index-suppress_005fverbose_005fhelp_005fmessage-112"></a></var><br>
-&mdash; Built-in Function:  <b>suppress_verbose_help_message</b> (<var>new_val, "local"</var>)<var><a name="index-suppress_005fverbose_005fhelp_005fmessage-113"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>suppress_verbose_help_message</b> ()<var><a name="index-suppress_005fverbose_005fhelp_005fmessage-122"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>suppress_verbose_help_message</b> (<var>new_val</var>)<var><a name="index-suppress_005fverbose_005fhelp_005fmessage-123"></a></var><br>
+&mdash; Built-in Function:  <b>suppress_verbose_help_message</b> (<var>new_val, "local"</var>)<var><a name="index-suppress_005fverbose_005fhelp_005fmessage-124"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether Octave
 will add additional help information to the end of the output from
 the <code>help</code> command and usage messages for built-in commands.
@@ -282,7 +291,7 @@ and because they may occasionally be useful for users.
    <p><a name="doc_002dgen_005fdoc_005fcache"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gen_doc_cache</b> (<var>out_file, directory</var>)<var><a name="index-gen_005fdoc_005fcache-114"></a></var><br>
+&mdash; Function File:  <b>gen_doc_cache</b> (<var>out_file, directory</var>)<var><a name="index-gen_005fdoc_005fcache-125"></a></var><br>
 <blockquote><p>Generate documentation caches for all functions in a given directory.
 
         <p>A documentation cache is generated for all functions in <var>directory</var>. 
@@ -293,17 +302,14 @@ The cache is used to speed up <code>lookfor</code>.
         <p>If no directory is given (or it is the empty matrix), a cache for builtin
 operators, etc. is generated.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlookfor.html#doc_002dlookfor">lookfor</a>, <a href="doc_002dpath.html#doc_002dpath">path</a>. 
 </p></blockquote></div>
 
-<!-- get_help_text src/help.cc -->
+<!-- get_help_text libinterp/interpfcn/help.cc -->
    <p><a name="doc_002dget_005fhelp_005ftext"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>text</var>, <var>format</var>] = <b>get_help_text</b> (<var>name</var>)<var><a name="index-get_005fhelp_005ftext-115"></a></var><br>
+&mdash; Built-in Function: [<var>text</var>, <var>format</var>] = <b>get_help_text</b> (<var>name</var>)<var><a name="index-get_005fhelp_005ftext-126"></a></var><br>
 <blockquote><p>Return the raw help text of function <var>name</var>.
 
         <p>The raw help text is returned in <var>text</var> and the format in <var>format</var>
@@ -311,11 +317,11 @@ The format is a string which is one of <tt>"texinfo"</tt>, <tt>"html"</tt>, or
 <tt>"plain text"</tt>. 
 </p></blockquote></div>
 
-<!-- get_help_text_from_file src/help.cc -->
+<!-- get_help_text_from_file libinterp/interpfcn/help.cc -->
    <p><a name="doc_002dget_005fhelp_005ftext_005ffrom_005ffile"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>text</var>, <var>format</var>] = <b>get_help_text_from_file</b> (<var>fname</var>)<var><a name="index-get_005fhelp_005ftext_005ffrom_005ffile-116"></a></var><br>
+&mdash; Built-in Function: [<var>text</var>, <var>format</var>] = <b>get_help_text_from_file</b> (<var>fname</var>)<var><a name="index-get_005fhelp_005ftext_005ffrom_005ffile-127"></a></var><br>
 <blockquote><p>Return the raw help text from the file <var>fname</var>.
 
         <p>The raw help text is returned in <var>text</var> and the format in <var>format</var>
@@ -327,8 +333,8 @@ The format is a string which is one of <tt>"texinfo"</tt>, <tt>"html"</tt>, or
    <p><a name="doc_002dget_005ffirst_005fhelp_005fsentence"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>text</var>, <var>status</var>] = <b>get_first_help_sentence</b> (<var>name</var>)<var><a name="index-get_005ffirst_005fhelp_005fsentence-117"></a></var><br>
-&mdash; Function File: [<var>text</var>, <var>status</var>] = <b>get_first_help_sentence</b> (<var>name, max_len</var>)<var><a name="index-get_005ffirst_005fhelp_005fsentence-118"></a></var><br>
+&mdash; Function File: [<var>text</var>, <var>status</var>] = <b>get_first_help_sentence</b> (<var>name</var>)<var><a name="index-get_005ffirst_005fhelp_005fsentence-128"></a></var><br>
+&mdash; Function File: [<var>text</var>, <var>status</var>] = <b>get_first_help_sentence</b> (<var>name, max_len</var>)<var><a name="index-get_005ffirst_005fhelp_005fsentence-129"></a></var><br>
 <blockquote><p>Return the first sentence of a function's help text.
 
         <p>The first sentence is defined as the text after the function

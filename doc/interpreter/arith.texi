@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -49,7 +49,7 @@ sin ([1, 2; 3, 4])
 @node Exponents and Logarithms
 @section Exponents and Logarithms
 
-@c exp src/mappers.cc
+@c exp libinterp/corefcn/mappers.cc
 @anchor{doc-exp}
 @deftypefn {Mapping Function} {} exp (@var{x})
 Compute
@@ -65,7 +65,7 @@ exponential, see @ref{Linear Algebra}.
 @end deftypefn
 
 
-@c expm1 src/mappers.cc
+@c expm1 libinterp/corefcn/mappers.cc
 @anchor{doc-expm1}
 @deftypefn {Mapping Function} {} expm1 (@var{x})
 Compute
@@ -80,7 +80,7 @@ accurately in the neighborhood of zero.
 @end deftypefn
 
 
-@c log src/mappers.cc
+@c log libinterp/corefcn/mappers.cc
 @anchor{doc-log}
 @deftypefn {Mapping Function} {} log (@var{x})
 Compute the natural logarithm,
@@ -105,7 +105,7 @@ an error if any element results in a complex return value.
 @end deftypefn
 
 
-@c log1p src/mappers.cc
+@c log1p libinterp/corefcn/mappers.cc
 @anchor{doc-log1p}
 @deftypefn {Mapping Function} {} log1p (@var{x})
 Compute
@@ -120,7 +120,7 @@ accurately in the neighborhood of zero.
 @end deftypefn
 
 
-@c log10 src/mappers.cc
+@c log10 libinterp/corefcn/mappers.cc
 @anchor{doc-log10}
 @deftypefn {Mapping Function} {} log10 (@var{x})
 Compute the base-10 logarithm of each element of @var{x}.
@@ -128,7 +128,7 @@ Compute the base-10 logarithm of each element of @var{x}.
 @end deftypefn
 
 
-@c log2 src/data.cc
+@c log2 libinterp/interpfcn/data.cc
 @anchor{doc-log2}
 @deftypefn  {Mapping Function} {} log2 (@var{x})
 @deftypefnx {Mapping Function} {[@var{f}, @var{e}] =} log2 (@var{x})
@@ -203,7 +203,7 @@ reports an error if any return value is complex.
 @end deftypefn
 
 
-@c sqrt src/mappers.cc
+@c sqrt libinterp/corefcn/mappers.cc
 @anchor{doc-sqrt}
 @deftypefn {Mapping Function} {} sqrt (@var{x})
 Compute the square root of each element of @var{x}.  If @var{x} is negative,
@@ -222,7 +222,7 @@ error if any element results in a complex return value.
 @end deftypefn
 
 
-@c cbrt src/mappers.cc
+@c cbrt libinterp/corefcn/mappers.cc
 @anchor{doc-cbrt}
 @deftypefn {Mapping Function} {} cbrt (@var{x})
 Compute the real cube root of each element of @var{x}.
@@ -268,7 +268,7 @@ $\sqrt{-1}$.
 defined as @code{sqrt (-1)}.
 @end ifnottex
 
-@c abs src/mappers.cc
+@c abs libinterp/corefcn/mappers.cc
 @anchor{doc-abs}
 @deftypefn {Mapping Function} {} abs (@var{z})
 Compute the magnitude of @var{z}, defined as
@@ -290,7 +290,7 @@ abs (3 + 4i)
 @end deftypefn
 
 
-@c arg src/mappers.cc
+@c arg libinterp/corefcn/mappers.cc
 @anchor{doc-arg}
 @deftypefn  {Mapping Function} {} arg (@var{z})
 @deftypefnx {Mapping Function} {} angle (@var{z})
@@ -314,7 +314,7 @@ arg (3 + 4i)
 @end deftypefn
 
 
-@c conj src/mappers.cc
+@c conj libinterp/corefcn/mappers.cc
 @anchor{doc-conj}
 @deftypefn {Mapping Function} {} conj (@var{z})
 Return the complex conjugate of @var{z}, defined as
@@ -357,7 +357,7 @@ cplxpair (exp(2i*pi*[0:4]'/5)) == exp(2i*pi*[3; 2; 4; 1; 0]/5)
 @end deftypefn
 
 
-@c imag src/mappers.cc
+@c imag libinterp/corefcn/mappers.cc
 @anchor{doc-imag}
 @deftypefn {Mapping Function} {} imag (@var{z})
 Return the imaginary part of @var{z} as a real number.
@@ -365,7 +365,7 @@ Return the imaginary part of @var{z} as a real number.
 @end deftypefn
 
 
-@c real src/mappers.cc
+@c real libinterp/corefcn/mappers.cc
 @anchor{doc-real}
 @deftypefn {Mapping Function} {} real (@var{z})
 Return the real part of @var{z}.
@@ -391,21 +391,39 @@ are named after the base trigonometric function with a @samp{d} suffix.  For
 example, @code{sin} expects an angle in radians while @code{sind} expects an
 angle in degrees.
 
-@c sin src/mappers.cc
+Octave uses the C library trigonometric functions.  It is expected that these
+functions are defined by the ISO/IEC 9899 Standard.  This Standard is available
+at: @url{http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf}.
+Section F.9.1 deals with the trigonometric functions.  The behavior of most of
+the functions is relatively straightforward.  However, there are some
+exceptions to the standard behavior.  Many of the exceptions involve the
+behavior for -0.  The most complex case is atan2.  Octave exactly implements
+the behavior given in the Standard.  Including
+@tex
+$atan2(\pm0, -0)$ returns $\pm \pi$.
+@end tex
+@ifnottex
+@code{atan2(+- 0, 0)} returns @code{+- pi}.
+@end ifnottex
+
+It should be noted that @sc{matlab} uses different definitions which apparently
+do not distinguish -0.
+
+@c sin libinterp/corefcn/mappers.cc
 @anchor{doc-sin}
 @deftypefn {Mapping Function} {} sin (@var{x})
 Compute the sine for each element of @var{x} in radians.
 @seealso{@ref{doc-asin,,asin}, @ref{doc-sind,,sind}, @ref{doc-sinh,,sinh}}
 @end deftypefn
 
-@c cos src/mappers.cc
+@c cos libinterp/corefcn/mappers.cc
 @anchor{doc-cos}
 @deftypefn {Mapping Function} {} cos (@var{x})
 Compute the cosine for each element of @var{x} in radians.
 @seealso{@ref{doc-acos,,acos}, @ref{doc-cosd,,cosd}, @ref{doc-cosh,,cosh}}
 @end deftypefn
 
-@c tan src/mappers.cc
+@c tan libinterp/corefcn/mappers.cc
 @anchor{doc-tan}
 @deftypefn {Mapping Function} {} tan (@var{z})
 Compute the tangent for each element of @var{x} in radians.
@@ -434,21 +452,21 @@ Compute the cotangent for each element of @var{x} in radians.
 @end deftypefn
 
 
-@c asin src/mappers.cc
+@c asin libinterp/corefcn/mappers.cc
 @anchor{doc-asin}
 @deftypefn {Mapping Function} {} asin (@var{x})
 Compute the inverse sine in radians for each element of @var{x}.
 @seealso{@ref{doc-sin,,sin}, @ref{doc-asind,,asind}}
 @end deftypefn
 
-@c acos src/mappers.cc
+@c acos libinterp/corefcn/mappers.cc
 @anchor{doc-acos}
 @deftypefn {Mapping Function} {} acos (@var{x})
 Compute the inverse cosine in radians for each element of @var{x}.
 @seealso{@ref{doc-cos,,cos}, @ref{doc-acosd,,acosd}}
 @end deftypefn
 
-@c atan src/mappers.cc
+@c atan libinterp/corefcn/mappers.cc
 @anchor{doc-atan}
 @deftypefn {Mapping Function} {} atan (@var{x})
 Compute the inverse tangent in radians for each element of @var{x}.
@@ -477,21 +495,21 @@ Compute the inverse cotangent in radians for each element of @var{x}.
 @end deftypefn
 
 
-@c sinh src/mappers.cc
+@c sinh libinterp/corefcn/mappers.cc
 @anchor{doc-sinh}
 @deftypefn {Mapping Function} {} sinh (@var{x})
 Compute the hyperbolic sine for each element of @var{x}.
 @seealso{@ref{doc-asinh,,asinh}, @ref{doc-cosh,,cosh}, @ref{doc-tanh,,tanh}}
 @end deftypefn
 
-@c cosh src/mappers.cc
+@c cosh libinterp/corefcn/mappers.cc
 @anchor{doc-cosh}
 @deftypefn {Mapping Function} {} cosh (@var{x})
 Compute the hyperbolic cosine for each element of @var{x}.
 @seealso{@ref{doc-acosh,,acosh}, @ref{doc-sinh,,sinh}, @ref{doc-tanh,,tanh}}
 @end deftypefn
 
-@c tanh src/mappers.cc
+@c tanh libinterp/corefcn/mappers.cc
 @anchor{doc-tanh}
 @deftypefn {Mapping Function} {} tanh (@var{x})
 Compute hyperbolic tangent for each element of @var{x}.
@@ -520,21 +538,21 @@ Compute the hyperbolic cotangent of each element of @var{x}.
 @end deftypefn
 
 
-@c asinh src/mappers.cc
+@c asinh libinterp/corefcn/mappers.cc
 @anchor{doc-asinh}
 @deftypefn {Mapping Function} {} asinh (@var{x})
 Compute the inverse hyperbolic sine for each element of @var{x}.
 @seealso{@ref{doc-sinh,,sinh}}
 @end deftypefn
 
-@c acosh src/mappers.cc
+@c acosh libinterp/corefcn/mappers.cc
 @anchor{doc-acosh}
 @deftypefn {Mapping Function} {} acosh (@var{x})
 Compute the inverse hyperbolic cosine for each element of @var{x}.
 @seealso{@ref{doc-cosh,,cosh}}
 @end deftypefn
 
-@c atanh src/mappers.cc
+@c atanh libinterp/corefcn/mappers.cc
 @anchor{doc-atanh}
 @deftypefn {Mapping Function} {} atanh (@var{x})
 Compute the inverse hyperbolic tangent for each element of @var{x}.
@@ -563,12 +581,13 @@ Compute the inverse hyperbolic cotangent of each element of @var{x}.
 @end deftypefn
 
 
-@c atan2 src/data.cc
+@c atan2 libinterp/interpfcn/data.cc
 @anchor{doc-atan2}
 @deftypefn {Mapping Function} {} atan2 (@var{y}, @var{x})
 Compute atan (@var{y} / @var{x}) for corresponding elements of @var{y}
 and @var{x}.  Signal an error if @var{y} and @var{x} do not match in size
 and orientation.
+@seealso{@ref{doc-tan,,tan}, @ref{doc-tand,,tand}, @ref{doc-tanh,,tanh}, @ref{doc-atanh,,atanh}}
 @end deftypefn
 
 
@@ -679,40 +698,41 @@ Compute the inverse cotangent in degrees for each element of @var{x}.
 @node Sums and Products
 @section Sums and Products
 
-@c sum src/data.cc
+@c sum libinterp/interpfcn/data.cc
 @anchor{doc-sum}
 @deftypefn  {Built-in Function} {} sum (@var{x})
 @deftypefnx {Built-in Function} {} sum (@var{x}, @var{dim})
-@deftypefnx {Built-in Function} {} sum (@dots{}, 'native')
-@deftypefnx {Built-in Function} {} sum (@dots{}, 'double')
-@deftypefnx {Built-in Function} {} sum (@dots{}, 'extra')
+@deftypefnx {Built-in Function} {} sum (@dots{}, "native")
+@deftypefnx {Built-in Function} {} sum (@dots{}, "double")
+@deftypefnx {Built-in Function} {} sum (@dots{}, "extra")
 Sum of elements along dimension @var{dim}.  If @var{dim} is
 omitted, it defaults to the first non-singleton dimension.
 
-If the optional argument 'native' is given, then the sum is performed
+If the optional argument "native" is given, then the sum is performed
 in the same type as the original argument, rather than in the default
 double type.  For example:
 
 @example
 @group
 sum ([true, true])
-  @result{} 2
-sum ([true, true], 'native')
-  @result{} true
+   @result{} 2
+sum ([true, true], "native")
+   @result{} true
 @end group
 @end example
 
-On the contrary, if 'double' is given, the sum is performed in double
+On the contrary, if "double" is given, the sum is performed in double
 precision even for single precision inputs.
 
-For double precision inputs, 'extra' indicates that a more accurate algorithm
-than straightforward summation is to be used.  For single precision inputs,
-'extra' is the same as 'double'.  Otherwise, 'extra' has no effect.
+For double precision inputs, "extra" indicates that a more accurate
+algorithm than straightforward summation is to be used.  For single precision
+inputs, "extra" is the same as "double".  Otherwise, "extra" has no
+effect.
 @seealso{@ref{doc-cumsum,,cumsum}, @ref{doc-sumsq,,sumsq}, @ref{doc-prod,,prod}}
 @end deftypefn
 
 
-@c prod src/data.cc
+@c prod libinterp/interpfcn/data.cc
 @anchor{doc-prod}
 @deftypefn  {Built-in Function} {} prod (@var{x})
 @deftypefnx {Built-in Function} {} prod (@var{x}, @var{dim})
@@ -722,23 +742,23 @@ omitted, it defaults to the first non-singleton dimension.
 @end deftypefn
 
 
-@c cumsum src/data.cc
+@c cumsum libinterp/interpfcn/data.cc
 @anchor{doc-cumsum}
 @deftypefn  {Built-in Function} {} cumsum (@var{x})
 @deftypefnx {Built-in Function} {} cumsum (@var{x}, @var{dim})
-@deftypefnx {Built-in Function} {} cumsum (@dots{}, 'native')
-@deftypefnx {Built-in Function} {} cumsum (@dots{}, 'double')
-@deftypefnx {Built-in Function} {} cumsum (@dots{}, 'extra')
+@deftypefnx {Built-in Function} {} cumsum (@dots{}, "native")
+@deftypefnx {Built-in Function} {} cumsum (@dots{}, "double")
+@deftypefnx {Built-in Function} {} cumsum (@dots{}, "extra")
 Cumulative sum of elements along dimension @var{dim}.  If @var{dim}
 is omitted, it defaults to the first non-singleton dimension.
 
-See @code{sum} for an explanation of the optional parameters 'native',
-'double', and 'extra'.
+See @code{sum} for an explanation of the optional parameters "native",
+"double", and "extra".
 @seealso{@ref{doc-sum,,sum}, @ref{doc-cumprod,,cumprod}}
 @end deftypefn
 
 
-@c cumprod src/data.cc
+@c cumprod libinterp/interpfcn/data.cc
 @anchor{doc-cumprod}
 @deftypefn  {Built-in Function} {} cumprod (@var{x})
 @deftypefnx {Built-in Function} {} cumprod (@var{x}, @var{dim})
@@ -749,7 +769,7 @@ Cumulative product of elements along dimension @var{dim}.  If
 @end deftypefn
 
 
-@c sumsq src/data.cc
+@c sumsq libinterp/interpfcn/data.cc
 @anchor{doc-sumsq}
 @deftypefn  {Built-in Function} {} sumsq (@var{x})
 @deftypefnx {Built-in Function} {} sumsq (@var{x}, @var{dim})
@@ -764,14 +784,14 @@ sum (x .* conj (x), dim)
 
 @noindent
 but it uses less memory and avoids calling @code{conj} if @var{x} is real.
-@seealso{@ref{doc-sum,,sum}}
+@seealso{@ref{doc-sum,,sum}, @ref{doc-prod,,prod}}
 @end deftypefn
 
 
 @node Utility Functions
 @section Utility Functions
 
-@c ceil src/mappers.cc
+@c ceil libinterp/corefcn/mappers.cc
 @anchor{doc-ceil}
 @deftypefn {Mapping Function} {} ceil (@var{x})
 Return the smallest integer not less than @var{x}.  This is equivalent to
@@ -781,14 +801,14 @@ complex, return @code{ceil (real (@var{x})) + ceil (imag (@var{x})) * I}.
 @example
 @group
 ceil ([-2.7, 2.7])
-   @result{}  -2   3
+    @result{} -2    3
 @end group
 @end example
 @seealso{@ref{doc-floor,,floor}, @ref{doc-round,,round}, @ref{doc-fix,,fix}}
 @end deftypefn
 
 
-@c fix src/mappers.cc
+@c fix libinterp/corefcn/mappers.cc
 @anchor{doc-fix}
 @deftypefn {Mapping Function} {} fix (@var{x})
 Truncate fractional portion of @var{x} and return the integer portion.  This
@@ -798,14 +818,14 @@ is equivalent to rounding towards zero.  If @var{x} is complex, return
 @example
 @group
 fix ([-2.7, 2.7])
-   @result{} -2   2
+   @result{} -2    2
 @end group
 @end example
 @seealso{@ref{doc-ceil,,ceil}, @ref{doc-floor,,floor}, @ref{doc-round,,round}}
 @end deftypefn
 
 
-@c floor src/mappers.cc
+@c floor libinterp/corefcn/mappers.cc
 @anchor{doc-floor}
 @deftypefn {Mapping Function} {} floor (@var{x})
 Return the largest integer not greater than @var{x}.  This is equivalent to
@@ -815,14 +835,14 @@ complex, return @code{floor (real (@var{x})) + floor (imag (@var{x})) * I}.
 @example
 @group
 floor ([-2.7, 2.7])
-     @result{} -3   2
+     @result{} -3    2
 @end group
 @end example
 @seealso{@ref{doc-ceil,,ceil}, @ref{doc-round,,round}, @ref{doc-fix,,fix}}
 @end deftypefn
 
 
-@c round src/mappers.cc
+@c round libinterp/corefcn/mappers.cc
 @anchor{doc-round}
 @deftypefn {Mapping Function} {} round (@var{x})
 Return the integer nearest to @var{x}.  If @var{x} is complex, return
@@ -832,14 +852,14 @@ are two nearest integers, return the one further away from zero.
 @example
 @group
 round ([-2.7, 2.7])
-     @result{} -3   3
+     @result{} -3    3
 @end group
 @end example
 @seealso{@ref{doc-ceil,,ceil}, @ref{doc-floor,,floor}, @ref{doc-fix,,fix}, @ref{doc-roundb,,roundb}}
 @end deftypefn
 
 
-@c roundb src/mappers.cc
+@c roundb libinterp/corefcn/mappers.cc
 @anchor{doc-roundb}
 @deftypefn {Mapping Function} {} roundb (@var{x})
 Return the integer nearest to @var{x}.  If there are two nearest
@@ -849,13 +869,13 @@ return @code{roundb (real (@var{x})) + roundb (imag (@var{x})) * I}.
 @end deftypefn
 
 
-@c max src/DLD-FUNCTIONS/max.cc
+@c max libinterp/corefcn/max.cc
 @anchor{doc-max}
-@deftypefn  {Loadable Function} {} max (@var{x})
-@deftypefnx {Loadable Function} {} max (@var{x}, @var{y})
-@deftypefnx {Loadable Function} {} max (@var{x}, [], @var{dim})
-@deftypefnx {Loadable Function} {} max (@var{x}, @var{y}, @var{dim})
-@deftypefnx {Loadable Function} {[@var{w}, @var{iw}] =} max (@var{x})
+@deftypefn  {Built-in Function} {} max (@var{x})
+@deftypefnx {Built-in Function} {} max (@var{x}, @var{y})
+@deftypefnx {Built-in Function} {} max (@var{x}, [], @var{dim})
+@deftypefnx {Built-in Function} {} max (@var{x}, @var{y}, @var{dim})
+@deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} max (@var{x})
 For a vector argument, return the maximum value.  For a matrix
 argument, return the maximum value from each column, as a row
 vector, or over the dimension @var{dim} if defined, in which case @var{y} 
@@ -899,13 +919,13 @@ maximum value(s).  Thus,
 @end deftypefn
 
 
-@c min src/DLD-FUNCTIONS/max.cc
+@c min libinterp/corefcn/max.cc
 @anchor{doc-min}
-@deftypefn  {Loadable Function} {} min (@var{x})
-@deftypefnx {Loadable Function} {} min (@var{x}, @var{y})
-@deftypefnx {Loadable Function} {} min (@var{x}, [], @var{dim})
-@deftypefnx {Loadable Function} {} min (@var{x}, @var{y}, @var{dim})
-@deftypefnx {Loadable Function} {[@var{w}, @var{iw}] =} min (@var{x})
+@deftypefn  {Built-in Function} {} min (@var{x})
+@deftypefnx {Built-in Function} {} min (@var{x}, @var{y})
+@deftypefnx {Built-in Function} {} min (@var{x}, [], @var{dim})
+@deftypefnx {Built-in Function} {} min (@var{x}, @var{y}, @var{dim})
+@deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} min (@var{x})
 For a vector argument, return the minimum value.  For a matrix
 argument, return the minimum value from each column, as a row
 vector, or over the dimension @var{dim} if defined, in which case @var{y} 
@@ -949,18 +969,18 @@ minimum value(s).  Thus,
 @end deftypefn
 
 
-@c cummax src/DLD-FUNCTIONS/max.cc
+@c cummax libinterp/corefcn/max.cc
 @anchor{doc-cummax}
-@deftypefn  {Loadable Function} {} cummax (@var{x})
-@deftypefnx {Loadable Function} {} cummax (@var{x}, @var{dim})
-@deftypefnx {Loadable Function} {[@var{w}, @var{iw}] =} cummax (@var{x})
+@deftypefn  {Built-in Function} {} cummax (@var{x})
+@deftypefnx {Built-in Function} {} cummax (@var{x}, @var{dim})
+@deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} cummax (@var{x})
 Return the cumulative maximum values along dimension @var{dim}.  If @var{dim}
 is unspecified it defaults to column-wise operation.  For example:
 
 @example
 @group
 cummax ([1 3 2 6 4 5])
-    @result{}  1  3  3  6  6  6
+   @result{}  1  3  3  6  6  6
 @end group
 @end example
 
@@ -988,18 +1008,18 @@ but computed in a much faster manner.
 @end deftypefn
 
 
-@c cummin src/DLD-FUNCTIONS/max.cc
+@c cummin libinterp/corefcn/max.cc
 @anchor{doc-cummin}
-@deftypefn  {Loadable Function} {} cummin (@var{x})
-@deftypefnx {Loadable Function} {} cummin (@var{x}, @var{dim})
-@deftypefnx {Loadable Function} {[@var{w}, @var{iw}] =} cummin (@var{x})
+@deftypefn  {Built-in Function} {} cummin (@var{x})
+@deftypefnx {Built-in Function} {} cummin (@var{x}, @var{dim})
+@deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} cummin (@var{x})
 Return the cumulative minimum values along dimension @var{dim}.  If @var{dim}
 is unspecified it defaults to column-wise operation.  For example:
 
 @example
 @group
 cummin ([5 4 6 2 3 1])
-    @result{}  5  4  4  2  2  1
+   @result{}  5  4  4  2  2  1
 @end group
 @end example
 
@@ -1028,7 +1048,7 @@ but computed in a much faster manner.
 @end deftypefn
 
 
-@c hypot src/data.cc
+@c hypot libinterp/interpfcn/data.cc
 @anchor{doc-hypot}
 @deftypefn  {Built-in Function} {} hypot (@var{x}, @var{y})
 @deftypefnx {Built-in Function} {} hypot (@var{x}, @var{y}, @var{z}, @dots{})
@@ -1041,8 +1061,8 @@ the arguments are accumulated from left to right:
 
 @example
 @group
-  hypot (hypot (@var{x}, @var{y}), @var{z})
-  hypot (hypot (hypot (@var{x}, @var{y}), @var{z}), @var{w}), etc.
+hypot (hypot (@var{x}, @var{y}), @var{z})
+hypot (hypot (hypot (@var{x}, @var{y}), @var{z}), @var{w}), etc.
 @end group
 @end example
 @end deftypefn
@@ -1095,9 +1115,9 @@ gradient is estimated can be set via the @var{s} or @var{dx},
 @end deftypefn
 
 
-@c dot src/DLD-FUNCTIONS/dot.cc
+@c dot libinterp/corefcn/dot.cc
 @anchor{doc-dot}
-@deftypefn {Loadable Function} {} dot (@var{x}, @var{y}, @var{dim})
+@deftypefn {Built-in Function} {} dot (@var{x}, @var{y}, @var{dim})
 Compute the dot product of two vectors.  If @var{x} and @var{y}
 are matrices, calculate the dot products along the first
 non-singleton dimension.  If the optional argument @var{dim} is
@@ -1272,10 +1292,10 @@ their multiplicities.  That is, @code{prod (@var{p} .^ @var{n}) ==
 @end deftypefn
 
 
-@c gcd src/DLD-FUNCTIONS/gcd.cc
+@c gcd libinterp/corefcn/gcd.cc
 @anchor{doc-gcd}
-@deftypefn  {Loadable Function} {@var{g} =} gcd (@var{a1}, @var{a2}, @dots{})
-@deftypefnx {Loadable Function} {[@var{g}, @var{v1}, @dots{}] =} gcd (@var{a1}, @var{a2}, @dots{})
+@deftypefn  {Built-in Function} {@var{g} =} gcd (@var{a1}, @var{a2}, @dots{})
+@deftypefnx {Built-in Function} {[@var{g}, @var{v1}, @dots{}] =} gcd (@var{a1}, @var{a2}, @dots{})
 
 Compute the greatest common divisor of @var{a1}, @var{a2}, @dots{}.  If more
 than one argument is given all arguments must be the same size or scalar.
@@ -1283,15 +1303,14 @@ In this case the greatest common divisor is calculated for each element
 individually.  All elements must be ordinary or Gaussian (complex)
 integers.  Note that for Gaussian integers, the gcd is not unique up to
 units (multiplication by 1, -1, @var{i} or -@var{i}), so an arbitrary
-greatest common divisor amongst four possible is returned.  For example,
+greatest common divisor amongst four possible is returned.
 
-@noindent
-and
+Example code:
 
 @example
 @group
 gcd ([15, 9], [20, 18])
-    @result{}  5  9
+   @result{}  5  9
 @end group
 @end example
 
@@ -1342,7 +1361,7 @@ chop (-pi, 5, 5)
 @end deftypefn
 
 
-@c rem src/data.cc
+@c rem libinterp/interpfcn/data.cc
 @anchor{doc-rem}
 @deftypefn  {Mapping Function} {} rem (@var{x}, @var{y})
 @deftypefnx {Mapping Function} {} fmod (@var{x}, @var{y})
@@ -1359,7 +1378,7 @@ agree, or if either of the arguments is complex.
 @end deftypefn
 
 
-@c mod src/data.cc
+@c mod libinterp/interpfcn/data.cc
 @anchor{doc-mod}
 @deftypefn {Mapping Function} {} mod (@var{x}, @var{y})
 Compute the modulo of @var{x} and @var{y}.  Conceptually this is given by
@@ -1396,7 +1415,7 @@ that there are about @math{k} primes less than
 $k \log (5 k)$.
 @end tex
 @ifnottex
-k*log(5*k).
+k*log (5*k).
 @end ifnottex
 @seealso{@ref{doc-list_primes,,list_primes}, @ref{doc-isprime,,isprime}}
 @end deftypefn
@@ -1414,7 +1433,7 @@ The algorithm used is from page 218 of the @TeX{}book.
 @end deftypefn
 
 
-@c sign src/mappers.cc
+@c sign libinterp/corefcn/mappers.cc
 @anchor{doc-sign}
 @deftypefn {Mapping Function} {} sign (@var{x})
 Compute the @dfn{signum} function, which is defined as
@@ -1436,15 +1455,33 @@ sign (x) =  0, x = 0;
 @end ifnottex
 
 For complex arguments, @code{sign} returns @code{x ./ abs (@var{x})}.
+
+Note that @code{sign (-0.0)} is 0.
+Although IEEE 754 floating point
+allows zero to be signed, 0.0 and -0.0 compare equal.  If you must test
+whether zero is signed, use the @code{signbit} function.
+@seealso{@ref{doc-signbit,,signbit}}
+@end deftypefn
+
+
+@c signbit libinterp/corefcn/mappers.cc
+@anchor{doc-signbit}
+@deftypefn {Mapping Function} {} signbit (@var{x})
+Return a nonzero value if the value of @var{x} has its sign bit set.
+
+This is not the same as @code{x < 0.0}, because IEEE 754 floating point
+allows zero to be signed.  The comparison @code{-0.0 < 0.0} is false,
+but @code{signbit (-0.0)} will return a nonzero value.
+@seealso{@ref{doc-sign,,sign}}
 @end deftypefn
 
 
 @node Special Functions
 @section Special Functions
 
-@c airy src/DLD-FUNCTIONS/besselj.cc
+@c airy libinterp/corefcn/besselj.cc
 @anchor{doc-airy}
-@deftypefn {Loadable Function} {[@var{a}, @var{ierr}] =} airy (@var{k}, @var{z}, @var{opt})
+@deftypefn {Built-in Function} {[@var{a}, @var{ierr}] =} airy (@var{k}, @var{z}, @var{opt})
 Compute Airy functions of the first and second kind, and their
 derivatives.
 
@@ -1454,8 +1491,8 @@ derivatives.
 ---  --------   ---------------------------------------
  0   Ai (Z)     exp ((2/3) * Z * sqrt (Z))
  1   dAi(Z)/dZ  exp ((2/3) * Z * sqrt (Z))
- 2   Bi (Z)     exp (-abs (real ((2/3) * Z *sqrt (Z))))
- 3   dBi(Z)/dZ  exp (-abs (real ((2/3) * Z *sqrt (Z))))
+ 2   Bi (Z)     exp (-abs (real ((2/3) * Z * sqrt (Z))))
+ 3   dBi(Z)/dZ  exp (-abs (real ((2/3) * Z * sqrt (Z))))
 @end group
 @end example
 
@@ -1491,33 +1528,33 @@ return @code{NaN}.
 @end deftypefn
 
 
-@c besselj src/DLD-FUNCTIONS/besselj.cc
+@c besselj libinterp/corefcn/besselj.cc
 @anchor{doc-besselj}
-@deftypefn  {Loadable Function} {[@var{j}, @var{ierr}] =} besselj (@var{alpha}, @var{x}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{y}, @var{ierr}] =} bessely (@var{alpha}, @var{x}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{i}, @var{ierr}] =} besseli (@var{alpha}, @var{x}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{k}, @var{ierr}] =} besselk (@var{alpha}, @var{x}, @var{opt})
-@deftypefnx {Loadable Function} {[@var{h}, @var{ierr}] =} besselh (@var{alpha}, @var{k}, @var{x}, @var{opt})
+@deftypefn  {Built-in Function} {[@var{j}, @var{ierr}] =} besselj (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{y}, @var{ierr}] =} bessely (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{i}, @var{ierr}] =} besseli (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{k}, @var{ierr}] =} besselk (@var{alpha}, @var{x}, @var{opt})
+@deftypefnx {Built-in Function} {[@var{h}, @var{ierr}] =} besselh (@var{alpha}, @var{k}, @var{x}, @var{opt})
 Compute Bessel or Hankel functions of various kinds:
 
 @table @code
 @item besselj
 Bessel functions of the first kind.  If the argument @var{opt} is supplied,
-the result is multiplied by @code{exp(-abs(imag(@var{x})))}.
+the result is multiplied by @code{exp (-abs (imag (@var{x})))}.
 
 @item bessely
 Bessel functions of the second kind.  If the argument @var{opt} is supplied,
-the result is multiplied by @code{exp(-abs(imag(@var{x})))}.
+the result is multiplied by @code{exp (-abs (imag (@var{x})))}.
 
 @item besseli
 
 Modified Bessel functions of the first kind.  If the argument @var{opt} is
-supplied, the result is multiplied by @code{exp(-abs(real(@var{x})))}.
+supplied, the result is multiplied by @code{exp (-abs (real (@var{x})))}.
 
 @item besselk
 
 Modified Bessel functions of the second kind.  If the argument @var{opt} is
-supplied, the result is multiplied by @code{exp(@var{x})}.
+supplied, the result is multiplied by @code{exp (@var{x})}.
 
 @item besselh
 Compute Hankel functions of the first (@var{k} = 1) or second (@var{k}
@@ -1579,10 +1616,11 @@ beta (a, b) = gamma (a) * gamma (b) / gamma (a + b).
 @end example
 
 @end ifnottex
+@seealso{@ref{doc-betaln,,betaln}, @ref{doc-betainc,,betainc}}
 @end deftypefn
 
 
-@c betainc src/DLD-FUNCTIONS/betainc.cc
+@c betainc libinterp/corefcn/betainc.cc
 @anchor{doc-betainc}
 @deftypefn {Mapping Function} {} betainc (@var{x}, @var{a}, @var{b})
 Return the regularized incomplete Beta function,
@@ -1596,12 +1634,11 @@ $$
 
 @smallexample
 @group
-@c spacing appears odd here, but is correct after Makeinfo
-                                     x
-                          1         /
-betainc (x, a, b) = -----------    | t^(a-1) (1-t)^(b-1) dt.
-                     beta (a, b)    /
-                                 t=0
+                                   x
+                          1       /
+betainc (x, a, b) = -----------   | t^(a-1) (1-t)^(b-1) dt.
+                    beta (a, b)   /
+                               t=0
 @end group
 @end smallexample
 
@@ -1610,6 +1647,19 @@ betainc (x, a, b) = -----------    | t^(a-1) (1-t)^(b-1) dt.
 If @var{x} has more than one component, both @var{a} and @var{b} must be
 scalars.  If @var{x} is a scalar, @var{a} and @var{b} must be of
 compatible dimensions.
+@seealso{@ref{doc-betaincinv,,betaincinv}, @ref{doc-beta,,beta}, @ref{doc-betaln,,betaln}}
+@end deftypefn
+
+
+@c betaincinv libinterp/corefcn/betainc.cc
+@anchor{doc-betaincinv}
+@deftypefn {Mapping Function} {} betaincinv (@var{y}, @var{a}, @var{b})
+Compute the inverse of the incomplete Beta function, i.e., @var{x} such that
+
+@example
+@var{y} == betainc (@var{x}, @var{a}, @var{b}) 
+@end example
+@seealso{@ref{doc-betainc,,betainc}, @ref{doc-beta,,beta}, @ref{doc-betaln,,betaln}}
 @end deftypefn
 
 
@@ -1770,7 +1820,27 @@ applications in statistics and econometrics.
 @end deftypefn
 
 
-@c erf src/mappers.cc
+@c dawson libinterp/corefcn/mappers.cc
+@anchor{doc-dawson}
+@deftypefn {Mapping Function} {} dawson (@var{z})
+Compute the Dawson (scaled imaginary error) function,
+@tex
+$$
+ {\sqrt{\pi} \over 2} e^{-z^2} {\rm erfi} (z) \equiv -i {\sqrt{\pi} \over 2} e^{-z^2} {\rm erf} (iz)
+$$
+@end tex
+@ifnottex
+
+@example
+(sqrt (pi) / 2) * exp (-z^2) * erfi (z)
+@end example
+
+@end ifnottex
+@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erf,,erf}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfi,,erfi}, @ref{doc-erfinv,,erfinv}, @ref{doc-erfcinv,,erfcinv}}
+@end deftypefn
+
+
+@c erf libinterp/corefcn/mappers.cc
 @anchor{doc-erf}
 @deftypefn {Mapping Function} {} erf (@var{z})
 Compute the error function,
@@ -1783,21 +1853,20 @@ $$
 
 @example
 @group
-@c spacing appears odd here, but is correct after Makeinfo
-                          z
-                         /
-erf (z) = (2/sqrt (pi)) | e^(-t^2) dt
-                         /
-                      t=0
+                        z
+              2        /
+erf (z) = --------- *  | e^(-t^2) dt
+          sqrt (pi)    /
+                    t=0
 @end group
 @end example
 
 @end ifnottex
-@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfinv,,erfinv}}
+@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfi,,erfi}, @ref{doc-dawson,,dawson}, @ref{doc-erfinv,,erfinv}, @ref{doc-erfcinv,,erfcinv}}
 @end deftypefn
 
 
-@c erfc src/mappers.cc
+@c erfc libinterp/corefcn/mappers.cc
 @anchor{doc-erfc}
 @deftypefn {Mapping Function} {} erfc (@var{z})
 Compute the complementary error function,
@@ -1807,11 +1876,11 @@ $1 - {\rm erf} (z)$.
 @ifnottex
 @w{@code{1 - erf (@var{z})}}.
 @end ifnottex
-@seealso{@ref{doc-erfcx,,erfcx}, @ref{doc-erf,,erf}, @ref{doc-erfinv,,erfinv}}
+@seealso{@ref{doc-erfcinv,,erfcinv}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfi,,erfi}, @ref{doc-dawson,,dawson}, @ref{doc-erf,,erf}, @ref{doc-erfinv,,erfinv}}
 @end deftypefn
 
 
-@c erfcx src/mappers.cc
+@c erfcx libinterp/corefcn/mappers.cc
 @anchor{doc-erfcx}
 @deftypefn {Mapping Function} {} erfcx (@var{z})
 Compute the scaled complementary error function,
@@ -1823,27 +1892,59 @@ $$
 @ifnottex
 
 @example
-exp (z^2) * erfc (x)
+exp (z^2) * erfc (z)
 @end example
 
 @end ifnottex
-@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erf,,erf}, @ref{doc-erfinv,,erfinv}}
+@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erf,,erf}, @ref{doc-erfi,,erfi}, @ref{doc-dawson,,dawson}, @ref{doc-erfinv,,erfinv}, @ref{doc-erfcinv,,erfcinv}}
 @end deftypefn
 
 
-@c erfinv src/mappers.cc
+@c erfi libinterp/corefcn/mappers.cc
+@anchor{doc-erfi}
+@deftypefn {Mapping Function} {} erfi (@var{z})
+Compute the imaginary error function,
+@tex
+$$
+ -i {\rm erf} (iz) 
+$$
+@end tex
+@ifnottex
+
+@example
+-i * erf (i*z)
+@end example
+
+@end ifnottex
+@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erf,,erf}, @ref{doc-erfcx,,erfcx}, @ref{doc-dawson,,dawson}, @ref{doc-erfinv,,erfinv}, @ref{doc-erfcinv,,erfcinv}}
+@end deftypefn
+
+
+@c erfinv libinterp/corefcn/mappers.cc
 @anchor{doc-erfinv}
 @deftypefn {Mapping Function} {} erfinv (@var{x})
 Compute the inverse error function, i.e., @var{y} such that
 
 @example
-  erf (@var{y}) == @var{x}
+erf (@var{y}) == @var{x}
 @end example
-@seealso{@ref{doc-erf,,erf}, @ref{doc-erfc,,erfc}, @ref{doc-erfcx,,erfcx}}
+@seealso{@ref{doc-erf,,erf}, @ref{doc-erfc,,erfc}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfi,,erfi}, @ref{doc-dawson,,dawson}, @ref{doc-erfcinv,,erfcinv}}
 @end deftypefn
 
 
-@c gamma src/mappers.cc
+@c erfcinv libinterp/corefcn/mappers.cc
+@anchor{doc-erfcinv}
+@deftypefn {Mapping Function} {} erfcinv (@var{x})
+Compute the inverse complementary error function, i.e., @var{y} such that
+
+@example
+erfc (@var{y}) == @var{x}
+@end example
+@seealso{@ref{doc-erfc,,erfc}, @ref{doc-erf,,erf}, @ref{doc-erfcx,,erfcx}, @ref{doc-erfi,,erfi}, @ref{doc-dawson,,dawson}, @ref{doc-erfinv,,erfinv}}
+@end deftypefn
+
+
+@c gamma libinterp/corefcn/mappers.cc
 @anchor{doc-gamma}
 @deftypefn {Mapping Function} {} gamma (@var{z})
 Compute the Gamma function,
@@ -1856,12 +1957,11 @@ $$
 
 @example
 @group
-@c spacing appears odd here, but is correct after Makeinfo
-              infinity
-             /
+             infinity
+            /
 gamma (z) = | t^(z-1) exp (-t) dt.
-             /
-          t=0
+            /
+         t=0
 @end group
 @end example
 
@@ -1870,7 +1970,7 @@ gamma (z) = | t^(z-1) exp (-t) dt.
 @end deftypefn
 
 
-@c gammainc src/DLD-FUNCTIONS/gammainc.cc
+@c gammainc libinterp/corefcn/gammainc.cc
 @anchor{doc-gammainc}
 @deftypefn  {Mapping Function} {} gammainc (@var{x}, @var{a})
 @deftypefnx {Mapping Function} {} gammainc (@var{x}, @var{a}, "lower")
@@ -1885,11 +1985,11 @@ $$
 
 @example
 @group
-                                 x
-                       1        /
+                                x
+                       1       /
 gammainc (x, a) = ---------    | exp (-t) t^(a-1) dt
-                   gamma (a)    /
-                             t=0
+                  gamma (a)    /
+                            t=0
 @end group
 @end example
 
@@ -2052,7 +2152,7 @@ NP(x) = P(x) * (-1)  * [-------------]
 
 
 @anchor{doc-gammaln}
-@c lgamma src/mappers.cc
+@c lgamma libinterp/corefcn/mappers.cc
 @anchor{doc-lgamma}
 @deftypefn  {Mapping Function} {} lgamma (@var{x})
 @deftypefnx {Mapping Function} {} gammaln (@var{x})
@@ -2086,7 +2186,7 @@ as two matrices.
 @end deftypefn
 
 
-@c rats src/pr-output.cc
+@c rats libinterp/interpfcn/pr-output.cc
 @anchor{doc-rats}
 @deftypefn {Built-in Function} {} rats (@var{x}, @var{len})
 Convert @var{x} into a rational approximation represented as a string.
@@ -2094,8 +2194,8 @@ You can convert the string back into a matrix as follows:
 
 @example
 @group
-   r = rats(hilb(4));
-   x = str2num(r)
+r = rats (hilb (4));
+x = str2num (r)
 @end group
 @end example
 
@@ -2198,7 +2298,7 @@ If only a single return argument is requested then return a matrix
 @node Mathematical Constants
 @section Mathematical Constants
 
-@c e src/data.cc
+@c e libinterp/interpfcn/data.cc
 @anchor{doc-e}
 @deftypefn  {Built-in Function} {} e
 @deftypefnx {Built-in Function} {} e (@var{n})
@@ -2221,10 +2321,11 @@ arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
+@seealso{@ref{doc-log,,log}, @ref{doc-exp,,exp}, @ref{doc-pi,,pi}, @ref{doc-I,,I}}
 @end deftypefn
 
 
-@c pi src/data.cc
+@c pi libinterp/interpfcn/data.cc
 @anchor{doc-pi}
 @deftypefn  {Built-in Function} {} pi
 @deftypefnx {Built-in Function} {} pi (@var{n})
@@ -2254,10 +2355,11 @@ arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
+@seealso{@ref{doc-e,,e}, @ref{doc-I,,I}}
 @end deftypefn
 
 
-@c I src/data.cc
+@c I libinterp/interpfcn/data.cc
 @anchor{doc-I}
 @c List other forms of function in documentation index
 @findex i
@@ -2277,7 +2379,8 @@ $\sqrt{-1}$.
 @ifnottex
 @code{sqrt (-1)}.
 @end ifnottex
- I, and its equivalents i, J, and j, are functions so any of the names may
+
+I, and its equivalents i, j, and J, are functions so any of the names may
 be reused for other purposes (such as i for a counter variable).
 
 When called with no arguments, return a scalar with the value @math{i}.  When
@@ -2287,10 +2390,11 @@ arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
+@seealso{@ref{doc-e,,e}, @ref{doc-pi,,pi}, @ref{doc-log,,log}, @ref{doc-exp,,exp}}
 @end deftypefn
 
 
-@c Inf src/data.cc
+@c Inf libinterp/interpfcn/data.cc
 @anchor{doc-Inf}
 @c List other form of function in documentation index
 @findex inf
@@ -2309,9 +2413,8 @@ produce infinity are division by zero and overflow.
 
 @example
 @group
-[1/0 e^800]
-@result{}
-Inf   Inf
+[ 1/0 e^800 ]
+@result{} Inf   Inf
 @end group
 @end example
 
@@ -2322,11 +2425,11 @@ arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
-@seealso{@ref{doc-isinf,,isinf}}
+@seealso{@ref{doc-isinf,,isinf}, @ref{doc-NaN,,NaN}}
 @end deftypefn
 
 
-@c NaN src/data.cc
+@c NaN libinterp/interpfcn/data.cc
 @anchor{doc-NaN}
 @c List other form of function in documentation index
 @findex nan
@@ -2359,11 +2462,11 @@ arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
-@seealso{@ref{doc-isnan,,isnan}}
+@seealso{@ref{doc-isnan,,isnan}, @ref{doc-Inf,,Inf}}
 @end deftypefn
 
 
-@c eps src/data.cc
+@c eps libinterp/interpfcn/data.cc
 @anchor{doc-eps}
 @deftypefn  {Built-in Function} {} eps
 @deftypefnx {Built-in Function} {} eps (@var{x})
@@ -2384,7 +2487,7 @@ $2.2204\times10^{-16}$ for double precision and $1.1921\times10^{-7}$
 for single precision.
 
 When called with no arguments, return a scalar with the value
-@code{eps(1.0)}.
+@code{eps (1.0)}.
 Given a single argument @var{x}, return the distance between @var{x} and
 the next largest value.
 When called with more than one argument the first two arguments are taken as
@@ -2392,10 +2495,11 @@ the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
+@seealso{@ref{doc-realmax,,realmax}, @ref{doc-realmin,,realmin}, @ref{doc-intmax,,intmax}, @ref{doc-bitmax,,bitmax}}
 @end deftypefn
 
 
-@c realmax src/data.cc
+@c realmax libinterp/interpfcn/data.cc
 @anchor{doc-realmax}
 @deftypefn  {Built-in Function} {} realmax
 @deftypefnx {Built-in Function} {} realmax (@var{n})
@@ -2415,18 +2519,18 @@ $1.7977\times10^{308}$ for double precision and $3.4028\times10^{38}$
 for single precision.
 
 When called with no arguments, return a scalar with the value
-@code{realmax("double")}.
+@code{realmax ("double")}.
 When called with a single argument, return a square matrix with the dimension
 specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
-@seealso{@ref{doc-realmin,,realmin}, @ref{doc-intmax,,intmax}, @ref{doc-bitmax,,bitmax}}
+@seealso{@ref{doc-realmin,,realmin}, @ref{doc-intmax,,intmax}, @ref{doc-bitmax,,bitmax}, @ref{doc-eps,,eps}}
 @end deftypefn
 
 
-@c realmin src/data.cc
+@c realmin libinterp/interpfcn/data.cc
 @anchor{doc-realmin}
 @deftypefn  {Built-in Function} {} realmin
 @deftypefnx {Built-in Function} {} realmin (@var{n})
@@ -2446,13 +2550,13 @@ $2.2251\times10^{-308}$ for double precision and $1.1755\times10^{-38}$
 for single precision.
 
 When called with no arguments, return a scalar with the value
-@code{realmin("double")}.
+@code{realmin ("double")}.
 When called with a single argument, return a square matrix with the dimension
 specified.  When called with more than one scalar argument the first two
 arguments are taken as the number of rows and columns and any further
 arguments specify additional matrix dimensions.
 The optional argument @var{class} specifies the return type and may be
 either "double" or "single".
-@seealso{@ref{doc-realmax,,realmax}, @ref{doc-intmin,,intmin}}
+@seealso{@ref{doc-realmax,,realmax}, @ref{doc-intmin,,intmin}, @ref{doc-eps,,eps}}
 @end deftypefn
 

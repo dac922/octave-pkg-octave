@@ -34,13 +34,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Debugging.html#Debugging">Debugging</a>
 
 <h3 class="section">13.5 Call Stack</h3>
 
-<!-- dbstack src/debug.cc -->
+<!-- dbstack libinterp/interpfcn/debug.cc -->
 <p><a name="doc_002ddbstack"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dbstack</b> ()<var><a name="index-dbstack-861"></a></var><br>
-&mdash; Loadable Function:  <b>dbstack</b> (<var>n</var>)<var><a name="index-dbstack-862"></a></var><br>
-&mdash; Loadable Function: [<var>stack</var>, <var>idx</var>] = <b>dbstack</b> (<var><small class="dots">...</small></var>)<var><a name="index-dbstack-863"></a></var><br>
+&mdash; Built-in Function:  <b>dbstack</b> ()<var><a name="index-dbstack-889"></a></var><br>
+&mdash; Built-in Function:  <b>dbstack</b> (<var>n</var>)<var><a name="index-dbstack-890"></a></var><br>
+&mdash; Built-in Function: [<var>stack</var>, <var>idx</var>] = <b>dbstack</b> (<var><small class="dots">...</small></var>)<var><a name="index-dbstack-891"></a></var><br>
 <blockquote><p>Display or return current debugging function stack information. 
 With optional argument <var>n</var>, omit the <var>n</var> innermost stack frames.
 
@@ -62,40 +62,31 @@ following fields:
 </dl>
 
         <p>The return argument <var>idx</var> specifies which element of the <var>stack</var>
-struct array is currently active. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+struct array is currently active.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbup.html#doc_002ddbup">dbup</a>, <a href="doc_002ddbdown.html#doc_002ddbdown">dbdown</a>, <a href="doc_002ddbwhere.html#doc_002ddbwhere">dbwhere</a>, <a href="doc_002ddbstatus.html#doc_002ddbstatus">dbstatus</a>. 
 </p></blockquote></div>
 
-<!-- dbup src/debug.cc -->
+<!-- dbup libinterp/interpfcn/debug.cc -->
    <p><a name="doc_002ddbup"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dbup</b><var><a name="index-dbup-864"></a></var><br>
-&mdash; Loadable Function:  <b>dbup</b> (<var>n</var>)<var><a name="index-dbup-865"></a></var><br>
+&mdash; Built-in Function:  <b>dbup</b><var><a name="index-dbup-892"></a></var><br>
+&mdash; Built-in Function:  <b>dbup</b> (<var>n</var>)<var><a name="index-dbup-893"></a></var><br>
 <blockquote><p>In debugging mode, move up the execution stack <var>n</var> frames. 
-If <var>n</var> is omitted, move up one frame. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If <var>n</var> is omitted, move up one frame.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbstack.html#doc_002ddbstack">dbstack</a>, <a href="doc_002ddbdown.html#doc_002ddbdown">dbdown</a>. 
 </p></blockquote></div>
 
-<!-- dbdown src/debug.cc -->
+<!-- dbdown libinterp/interpfcn/debug.cc -->
    <p><a name="doc_002ddbdown"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>dbdown</b><var><a name="index-dbdown-866"></a></var><br>
-&mdash; Loadable Function:  <b>dbdown</b> (<var>n</var>)<var><a name="index-dbdown-867"></a></var><br>
+&mdash; Built-in Function:  <b>dbdown</b><var><a name="index-dbdown-894"></a></var><br>
+&mdash; Built-in Function:  <b>dbdown</b> (<var>n</var>)<var><a name="index-dbdown-895"></a></var><br>
 <blockquote><p>In debugging mode, move down the execution stack <var>n</var> frames. 
-If <var>n</var> is omitted, move down one frame. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If <var>n</var> is omitted, move down one frame.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbstack.html#doc_002ddbstack">dbstack</a>, <a href="doc_002ddbup.html#doc_002ddbup">dbup</a>. 
 </p></blockquote></div>

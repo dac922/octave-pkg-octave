@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* C++ compatible function declaration macros.
    Copyright (C) 2010-2012 Free Software Foundation, Inc.
 

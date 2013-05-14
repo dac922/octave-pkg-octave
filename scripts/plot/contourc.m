@@ -101,8 +101,8 @@ function [cout, lev] = contourc (varargin)
     c = __contourc__ (x(:)', y(:)', z, vv);
   else
     ## Indexes x,y for the purpose of __contourc__.
-    ii = 1:size (z,2);
-    jj = 1:size (z,1);
+    ii = 1:columns (z);
+    jj = 1:rows (z);
 
     ## Now call __contourc__ for the real work...
     c = __contourc__ (ii, jj, z, vv);
@@ -111,7 +111,7 @@ function [cout, lev] = contourc (varargin)
     ## to the original grid (x,y)
     i = 1;
 
-    while (i < size (c,2))
+    while (i < columns (c))
       clen = c(2, i);
       ind = i + [1 : clen];
 
@@ -123,8 +123,8 @@ function [cout, lev] = contourc (varargin)
       ## return NA for those values.
       ## The permitted range is enforced here:
 
-      ci = max (ci, 1); ci = min (ci, size (z, 2));
-      cj = max (cj, 1); cj = min (cj, size (z, 1));
+      ci = max (ci, 1); ci = min (ci, columns (z));
+      cj = max (cj, 1); cj = min (cj, rows (z));
 
       c(1, ind) = interp2 (ii, jj, x, ci, cj);
       c(2, ind) = interp2 (ii, jj, y, ci, cj);
@@ -140,6 +140,7 @@ function [cout, lev] = contourc (varargin)
 
 endfunction
 
+
 %!test
 %! x = 0:2;
 %! y = x;
@@ -147,7 +148,6 @@ endfunction
 %! [c_actual, lev_actual]= contourc (x, y, z, 2:3);
 %! c_expected = [2, 1, 1, 2, 2, 3, 1.5, 2; 4, 2, 2, 1, 1, 2, 2, 1.5];
 %! lev_expected = [2 3];
-%! assert (c_actual, c_expected, eps)
-%! assert (lev_actual, lev_expected, eps)
-
+%! assert (c_actual, c_expected, eps);
+%! assert (lev_actual, lev_expected, eps);
 

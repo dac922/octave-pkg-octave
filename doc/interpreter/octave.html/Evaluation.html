@@ -41,12 +41,12 @@ a file.
 been computed and stored in a string, which is exactly what the
 <code>eval</code> function lets you do.
 
-<!-- eval src/oct-parse.cc -->
+<!-- eval libinterp/parse-tree/oct-parse.cc -->
    <p><a name="doc_002deval"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>eval</b> (<var>try</var>)<var><a name="index-eval-680"></a></var><br>
-&mdash; Built-in Function:  <b>eval</b> (<var>try, catch</var>)<var><a name="index-eval-681"></a></var><br>
+&mdash; Built-in Function:  <b>eval</b> (<var>try</var>)<var><a name="index-eval-698"></a></var><br>
+&mdash; Built-in Function:  <b>eval</b> (<var>try, catch</var>)<var><a name="index-eval-699"></a></var><br>
 <blockquote><p>Parse the string <var>try</var> and evaluate it as if it were an Octave
 program.  If that fails, evaluate the optional string <var>catch</var>. 
 The string <var>try</var> is evaluated in the current context,
@@ -55,7 +55,7 @@ so any results remain available after <code>eval</code> returns.
         <p>The following example makes the variable <var>a</var> with the approximate
 value 3.1416 available.
 
-     <pre class="example">          eval("a = acos(-1);");
+     <pre class="example">          eval ("a = acos(-1);");
 </pre>
         <p>If an error occurs during the evaluation of <var>try</var> the <var>catch</var>
 string is evaluated, as the following example shows:
@@ -67,10 +67,7 @@ string is evaluated, as the following example shows:
 </pre>
         <p>Consider using try/catch blocks instead if you are only using <code>eval</code>
 as an error-capturing mechanism rather than for the execution of arbitrary
-code strings. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+code strings.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002devalin.html#doc_002devalin">evalin</a>. 
 </p></blockquote></div>

@@ -31,13 +31,16 @@
 ## this colormap is not part of matlab, it is like the prism
 ## colormap map but with a continuous map
 
+## PKG_ADD: colormap ("register", "rainbow");
+## PKG_DEL: colormap ("unregister", "rainbow");
+
 function map = rainbow (n)
 
   if (nargin == 0)
     n = rows (colormap);
   elseif (nargin == 1)
     if (! isscalar (n))
-      error ("rainbow: argument must be a scalar");
+      error ("rainbow: N must be a scalar");
     endif
   else
     print_usage ();
@@ -47,21 +50,28 @@ function map = rainbow (n)
     map = [1, 0, 0];
   elseif (n > 1)
     x = linspace (0, 1, n)';
-    r = (x < 2/5) + (x >= 2/5 & x < 3/5) .* (-5 * x + 3)\
-      + (x >= 4/5) .* (10/3 * x - 8/3);
-    g = (x < 2/5) .* (5/2 * x) + (x >= 2/5 & x < 3/5)\
-      + (x >= 3/5 & x < 4/5) .* (-5 * x + 4);
+
+    r = ((x < 2/5)
+         + (x >= 2/5 & x < 3/5) .* (-5 * x + 3)
+         + (x >= 4/5) .* (10/3 * x - 8/3));
+
+    g = ((x < 2/5) .* (5/2 * x)
+         + (x >= 2/5 & x < 3/5)
+         + (x >= 3/5 & x < 4/5) .* (-5 * x + 4));
+
     b = (x >= 3/5 & x < 4/5) .* (5 * x - 3) + (x >= 4/5);
+
     map = [r, g, b];
   else
-    map = [];
+    map = zeros (0, 3);
   endif
 
 endfunction
 
+
 %!demo
 %! ## Show the 'rainbow' colormap as an image
-%! image (1:64, linspace (0, 1, 64), repmat (1:64, 64, 1)')
-%! axis ([1, 64, 0, 1], "ticy", "xy")
-%! colormap (rainbow (64))
+%! image (1:64, linspace (0, 1, 64), repmat ((1:64)', 1, 64));
+%! axis ([1, 64, 0, 1], "ticy", "xy");
+%! colormap (rainbow (64));
 

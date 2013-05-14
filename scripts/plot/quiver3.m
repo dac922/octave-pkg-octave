@@ -21,7 +21,7 @@
 ## @deftypefnx {Function File} {} quiver3 (@var{x}, @var{y}, @var{z}, @var{u}, @var{v}, @var{w})
 ## @deftypefnx {Function File} {} quiver3 (@dots{}, @var{s})
 ## @deftypefnx {Function File} {} quiver3 (@dots{}, @var{style})
-## @deftypefnx {Function File} {} quiver3 (@dots{}, 'filled')
+## @deftypefnx {Function File} {} quiver3 (@dots{}, "filled")
 ## @deftypefnx {Function File} {} quiver3 (@var{h}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} quiver3 (@dots{})
 ##
@@ -31,7 +31,7 @@
 ##
 ## If @var{x}, @var{y} and @var{z} are undefined they are assumed to be
 ## @code{(1:@var{m}, 1:@var{n}, 1:@var{p})} where @code{[@var{m}, @var{n}] =
-## size(@var{u})} and @code{@var{p} = max (size (@var{w}))}.
+## size (@var{u})} and @code{@var{p} = max (size (@var{w}))}.
 ##
 ## The variable @var{s} is a scalar defining a scaling factor to use for
 ##  the arrows of the field relative to the mesh spacing.  A value of 0
@@ -40,7 +40,7 @@
 ## The style to use for the plot can be defined with a line style @var{style}
 ## in a similar manner to the line styles used with the @code{plot} command.
 ## If a marker is specified then markers at the grid points of the vectors are
-## printed rather than arrows.  If the argument 'filled' is given then the
+## printed rather than arrows.  If the argument "filled" is given then the
 ## markers as filled.
 ##
 ## The optional return value @var{h} is a graphics handle to a quiver object.
@@ -84,35 +84,38 @@ function retval = quiver3 (varargin)
 
 endfunction
 
+
 %!demo
-%! clf
-%! colormap (jet (64));
+%! clf;
+%! colormap ('default');
 %! [x,y] = meshgrid (-1:0.1:1);
-%! z = sin (2*pi * sqrt (x.^2+y.^2));
-%! theta = 2*pi * sqrt (x.^2+y.^2) + pi/2;
+%! z = sin (2*pi * sqrt (x.^2 + y.^2));
+%! theta = 2*pi * sqrt (x.^2 + y.^2) + pi/2;
 %! quiver3 (x, y, z, sin (theta), cos (theta), ones (size (z)));
 %! hold on;
-%! mesh (x,y,z);
+%! mesh (x, y, z);
 %! hold off;
 
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! [x, y, z] = peaks (25);
 %! surf (x, y, z);
 %! hold on;
 %! [u, v, w] = surfnorm (x, y, z / 10);
 %! h = quiver3 (x, y, z, u, v, w);
-%! set (h, "maxheadsize", 0.33);
+%! set (h, 'maxheadsize', 0.33);
 %! hold off;
 
 %!demo
-%! clf
+%! clf;
+%! colormap ('default');
 %! [x, y, z] = peaks (25);
 %! surf (x, y, z);
 %! hold on;
 %! [u, v, w] = surfnorm (x, y, z / 10);
 %! h = quiver3 (x, y, z, u, v, w);
-%! set (h, "maxheadsize", 0.33);
+%! set (h, 'maxheadsize', 0.33);
 %! hold off;
-%! shading interp
+%! shading interp;
 

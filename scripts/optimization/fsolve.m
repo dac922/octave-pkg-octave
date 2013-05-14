@@ -327,7 +327,7 @@ function [x, fvec, info, output, fjac] = fsolve (fcn, x0, options = struct ())
       endif
 
       ## Update delta.
-      if (ratio < min(max(0.1, 0.8*lastratio), 0.9))
+      if (ratio < min (max (0.1, 0.8*lastratio), 0.9))
         nsuc = 0;
         nfail ++;
         delta *= decfac;
@@ -446,10 +446,12 @@ function [fx, jx] = guarded_eval (fun, x, complexeqn)
 
   if (! complexeqn && ! (isreal (fx) && isreal (jx)))
     error ("fsolve:notreal", "fsolve: non-real value encountered");
-  elseif (complexeqn && ! (isnumeric (fx) && isnumeric(jx)))
+  elseif (complexeqn && ! (isnumeric (fx) && isnumeric (jx)))
     error ("fsolve:notnum", "fsolve: non-numeric value encountered");
   elseif (any (isnan (fx(:))))
     error ("fsolve:isnan", "fsolve: NaN value encountered");
+  elseif (any (isinf (fx(:))))
+    error ("fsolve:isinf", "fsolve: Inf value encountered");
   endif
 endfunction
 
@@ -465,14 +467,14 @@ endfunction
 %!  y = p(2);
 %!  z = p(3);
 %!  retval = zeros (3, 1);
-%!  retval(1) = sin(x) + y**2 + log(z) - 7;
-%!  retval(2) = 3*x + 2**y -z**3 + 1;
+%!  retval(1) = sin (x) + y^2 + log (z) - 7;
+%!  retval(2) = 3*x + 2^y -z^3 + 1;
 %!  retval(3) = x + y + z - 5;
 %!endfunction
 %!test
 %! x_opt = [ 0.599054;
-%! 2.395931;
-%! 2.005014 ];
+%!           2.395931;
+%!           2.005014 ];
 %! tol = 1.0e-5;
 %! [x, fval, info] = fsolve (@__f, [ 0.5; 2.0; 2.5 ]);
 %! assert (info > 0);
@@ -491,7 +493,8 @@ endfunction
 %!  retval(4) = x^2 + 2*y^3 + z - w - 4;
 %!endfunction
 %!test
-%! x_opt = [ -0.767297326653401, 0.590671081117440, 1.47190018629642, -1.52719341133957 ];
+%! x_opt = [ -0.767297326653401, 0.590671081117440, ...
+%!            1.47190018629642, -1.52719341133957 ];
 %! tol = 1.0e-5;
 %! [x, fval, info] = fsolve (@__f, [-1, 1, 2, -1]);
 %! assert (info > 0);
@@ -503,15 +506,15 @@ endfunction
 %!  y = p(2);
 %!  z = p(3);
 %!  retval = zeros (3, 1);
-%!  retval(1) = sin(x) + y**2 + log(z) - 7;
-%!  retval(2) = 3*x + 2**y -z**3 + 1;
+%!  retval(1) = sin (x) + y^2 + log (z) - 7;
+%!  retval(2) = 3*x + 2^y -z^3 + 1;
 %!  retval(3) = x + y + z - 5;
-%!  retval(4) = x*x + y - z*log(z) - 1.36;
+%!  retval(4) = x*x + y - z*log (z) - 1.36;
 %!endfunction
 %!test
 %! x_opt = [ 0.599054;
-%! 2.395931;
-%! 2.005014 ];
+%!           2.395931;
+%!           2.005014 ];
 %! tol = 1.0e-5;
 %! [x, fval, info] = fsolve (@__f, [ 0.5; 2.0; 2.5 ]);
 %! assert (info > 0);
@@ -523,14 +526,14 @@ endfunction
 %!  y = p(2);
 %!  z = p(3);
 %!  retval = zeros (3, 1);
-%!  retval(1) = sin(x) + y**2 + log(z) - 7;
-%!  retval(2) = 3*x + 2**y -z**3 + 1;
+%!  retval(1) = sin (x) + y^2 + log (z) - 7;
+%!  retval(2) = 3*x + 2^y -z^3 + 1;
 %!  retval(3) = x + y + z - 5;
 %!endfunction
 %!test
 %! x_opt = [ 0.599054;
-%! 2.395931;
-%! 2.005014 ];
+%!           2.395931;
+%!           2.005014 ];
 %! tol = 1.0e-5;
 %! opt = optimset ("Updating", "qrp");
 %! [x, fval, info] = fsolve (@__f, [ 0.5; 2.0; 2.5 ], opt);
@@ -551,7 +554,6 @@ endfunction
 %! assert (info > 0);
 %! assert (norm (c - c_opt, Inf) < tol);
 %! assert (norm (fval) < norm (noise));
-
 
 %!function y = cfun (x)
 %!  y(1) = (1+i)*x(1)^2 - (1-i)*x(2) - 2;

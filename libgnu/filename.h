@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Basic filename support macros.
    Copyright (C) 2001-2004, 2007-2012 Free Software Foundation, Inc.
 

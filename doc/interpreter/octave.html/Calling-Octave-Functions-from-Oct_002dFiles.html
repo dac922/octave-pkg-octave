@@ -62,7 +62,7 @@ passing a function to an oct-file.
      
      DEFUN_DLD (funcdemo, args, nargout, "Function Demo")
      {
-       int nargin = args.length();
+       int nargin = args.length ();
        octave_value_list retval;
      
        if (nargin &lt; 2)
@@ -99,9 +99,9 @@ and the following arguments are all passed to the user function.
 
 <pre class="example">     funcdemo (@sin,1)
      &rArr; 0.84147
-     funcdemo (@(x) sin(x), 1)
+     funcdemo (@(x) sin (x), 1)
      &rArr; 0.84147
-     funcdemo (inline ("sin(x)"), 1)
+     funcdemo (inline ("sin (x)"), 1)
      &rArr; 0.84147
      funcdemo ("sin",1)
      &rArr; 0.84147

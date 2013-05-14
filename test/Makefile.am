@@ -1,4 +1,4 @@
-# Makefile for octave's test directory
+# Makefile for Octave's test directory
 #
 # Copyright (C) 1994-2012 John W. Eaton
 #
@@ -23,6 +23,7 @@ include $(top_srcdir)/build-aux/common.mk
 FCN_FILES = \
   fntests.m \
   test_args.m \
+  test_bug_31371.m \
   test_diag_perm.m \
   test_error.m \
   test_eval-catch.m \
@@ -49,10 +50,13 @@ FCN_FILES = \
   test_unwind.m \
   test_while.m
 
+include bug-35448/module.mk
+include bug-36025/module.mk
 include classes/module.mk
 include class-concat/module.mk
 include ctor-vs-method/module.mk
 include fcn-handle-derived-resolution/module.mk
+include nest/module.mk
 
 check: test_sparse.m test_bc_overloads.m
 	$(top_builddir)/run-octave --norc --silent --no-history $(srcdir)/fntests.m $(srcdir)

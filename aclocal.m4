@@ -1102,6 +1102,41 @@ AC_MSG_RESULT([$_am_result])
 rm -f confinc confmf
 ])
 
+# Copyright (C) 1999, 2000, 2001, 2003, 2004, 2005, 2008
+# Free Software Foundation, Inc.
+#
+# This file is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# serial 6
+
+# AM_PROG_CC_C_O
+# --------------
+# Like AC_PROG_CC_C_O, but changed for automake.
+AC_DEFUN([AM_PROG_CC_C_O],
+[AC_REQUIRE([AC_PROG_CC_C_O])dnl
+AC_REQUIRE([AM_AUX_DIR_EXPAND])dnl
+AC_REQUIRE_AUX_FILE([compile])dnl
+# FIXME: we rely on the cache variable name because
+# there is no other way.
+set dummy $CC
+am_cc=`echo $[2] | sed ['s/[^a-zA-Z0-9_]/_/g;s/^[0-9]/_/']`
+eval am_t=\$ac_cv_prog_cc_${am_cc}_c_o
+if test "$am_t" != yes; then
+   # Losing compiler, so override with the script.
+   # FIXME: It is wrong to rewrite CC.
+   # But if we don't then we get into trouble of one sort or another.
+   # A longer-term fix would be to have automake use am__CC in this case,
+   # and then we could set am__CC="\$(top_srcdir)/compile \$(CC)"
+   CC="$am_aux_dir/compile $CC"
+fi
+dnl Make sure AC_PROG_CC is never called again, or it will override our
+dnl setting of CC.
+m4_define([AC_PROG_CC],
+          [m4_fatal([AC_PROG_CC cannot be called after AM_PROG_CC_C_O])])
+])
+
 # Fake the existence of programs that GNU maintainers use.  -*- Autoconf -*-
 
 # Copyright (C) 1997, 1999, 2000, 2001, 2003, 2004, 2005, 2008
@@ -1441,6 +1476,12 @@ AC_SUBST([am__untar])
 m4_include([m4/00gnulib.m4])
 m4_include([m4/acinclude.m4])
 m4_include([m4/alloca.m4])
+m4_include([m4/ax_blas.m4])
+m4_include([m4/ax_blas_f77_func.m4])
+m4_include([m4/ax_compare_version.m4])
+m4_include([m4/ax_lapack.m4])
+m4_include([m4/ax_pthread.m4])
+m4_include([m4/base64.m4])
 m4_include([m4/canonicalize.m4])
 m4_include([m4/ceil.m4])
 m4_include([m4/ceilf.m4])
@@ -1461,12 +1502,14 @@ m4_include([m4/double-slash-root.m4])
 m4_include([m4/dup.m4])
 m4_include([m4/dup2.m4])
 m4_include([m4/eealloc.m4])
+m4_include([m4/environ.m4])
 m4_include([m4/errno_h.m4])
 m4_include([m4/error.m4])
 m4_include([m4/exponentd.m4])
 m4_include([m4/exponentf.m4])
 m4_include([m4/exponentl.m4])
 m4_include([m4/extensions.m4])
+m4_include([m4/extern-inline.m4])
 m4_include([m4/fchdir.m4])
 m4_include([m4/fclose.m4])
 m4_include([m4/fcntl-o.m4])
@@ -1509,6 +1552,7 @@ m4_include([m4/isatty.m4])
 m4_include([m4/isnand.m4])
 m4_include([m4/isnanf.m4])
 m4_include([m4/isnanl.m4])
+m4_include([m4/largefile.m4])
 m4_include([m4/libtool.m4])
 m4_include([m4/link.m4])
 m4_include([m4/localcharset.m4])
@@ -1537,7 +1581,6 @@ m4_include([m4/memrchr.m4])
 m4_include([m4/mkdir.m4])
 m4_include([m4/mkfifo.m4])
 m4_include([m4/mkostemp.m4])
-m4_include([m4/mkstemp.m4])
 m4_include([m4/mktime.m4])
 m4_include([m4/mmap-anon.m4])
 m4_include([m4/mode_t.m4])
@@ -1547,11 +1590,14 @@ m4_include([m4/multiarch.m4])
 m4_include([m4/nanosleep.m4])
 m4_include([m4/nocrash.m4])
 m4_include([m4/nproc.m4])
+m4_include([m4/off_t.m4])
 m4_include([m4/open.m4])
 m4_include([m4/openat.m4])
 m4_include([m4/opendir.m4])
 m4_include([m4/pathmax.m4])
+m4_include([m4/pkg.m4])
 m4_include([m4/printf.m4])
+m4_include([m4/putenv.m4])
 m4_include([m4/raise.m4])
 m4_include([m4/readdir.m4])
 m4_include([m4/readlink.m4])
@@ -1561,6 +1607,7 @@ m4_include([m4/rewinddir.m4])
 m4_include([m4/rmdir.m4])
 m4_include([m4/round.m4])
 m4_include([m4/roundf.m4])
+m4_include([m4/same.m4])
 m4_include([m4/save-cwd.m4])
 m4_include([m4/select.m4])
 m4_include([m4/sigaction.m4])
@@ -1588,6 +1635,8 @@ m4_include([m4/strerror.m4])
 m4_include([m4/strftime.m4])
 m4_include([m4/string_h.m4])
 m4_include([m4/strings_h.m4])
+m4_include([m4/strndup.m4])
+m4_include([m4/strnlen.m4])
 m4_include([m4/strptime.m4])
 m4_include([m4/symlink.m4])
 m4_include([m4/sys_select_h.m4])
@@ -1616,4 +1665,7 @@ m4_include([m4/wchar_h.m4])
 m4_include([m4/wchar_t.m4])
 m4_include([m4/wctype_h.m4])
 m4_include([m4/wint_t.m4])
+m4_include([m4/xalloc.m4])
+m4_include([m4/xgetcwd.m4])
 m4_include([m4/xsize.m4])
+m4_include([m4/xstrndup.m4])

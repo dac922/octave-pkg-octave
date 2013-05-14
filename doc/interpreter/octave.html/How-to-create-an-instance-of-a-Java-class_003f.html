@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+<title>How to create an instance of a Java class? - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions" title="FAQ - Frequently asked Questions">
+<link rel="prev" href="How-to-make-Java-classes-available_003f.html#How-to-make-Java-classes-available_003f" title="How to make Java classes available?">
+<link rel="next" href="How-can-I-handle-memory-limitations_003f.html#How-can-I-handle-memory-limitations_003f" title="How can I handle memory limitations?">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="How-to-create-an-instance-of-a-Java-class%3f"></a>
+<a name="How-to-create-an-instance-of-a-Java-class_003f"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="How-can-I-handle-memory-limitations_003f.html#How-can-I-handle-memory-limitations_003f">How can I handle memory limitations?</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="How-to-make-Java-classes-available_003f.html#How-to-make-Java-classes-available_003f">How to make Java classes available?</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions">FAQ - Frequently asked Questions</a>
+<hr>
+</div>
+
+<h4 class="subsection">37.3.3 How to create an instance of a Java class?</h4>
+
+<!--  index - -->
+<p><a name="index-object_002c-how-to-create-3573"></a><a name="index-instance_002c-how-to-create-3574"></a><!--  index - -->
+
+   <p>If your code shall work under Octave as well as <span class="sc">matlab</span> you should use the
+function <code>javaObject</code> to create Java objects.  The function
+<code>java_new</code> is Octave specific and does not exist in the <span class="sc">matlab</span>
+environment.
+
+   <p>Example 1, suitable for Octave but not for <span class="sc">matlab</span>:
+
+<pre class="example">        Passenger = java_new('package.FirstClass', row, seat);
+</pre>
+   <p>Example 2, which works in Octave as well as in <span class="sc">matlab</span>:
+
+<pre class="example">        Passenger = javaObject('package.FirstClass', row, seat);
+</pre>
+   <!--  -->
+   </body></html>
+

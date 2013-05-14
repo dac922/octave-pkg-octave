@@ -94,8 +94,8 @@ function [h, ax, bigax, p, pax] = plotmatrix (varargin)
 endfunction
 
 %!demo
-%! clf
-%! plotmatrix (randn (100, 3), 'g+')
+%! clf;
+%! plotmatrix (randn (100, 3), 'g+');
 
 function plotmatrixdelete (h, d, ax)
   for i = 1 : numel (ax)
@@ -145,7 +145,7 @@ function [h, ax, p, pax, need_usage] = __plotmatrix__ (bigax, varargin)
     returm;
   endif
 
-  if (rows(X) != rows(Y))
+  if (rows (X) != rows (Y))
     error ("plotmatrix: dimension mismatch in the arguments");
   endif
 

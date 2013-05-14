@@ -43,10 +43,10 @@ N-dimensional sets of points.
    <p><a name="doc_002dconvhull"></a>
 
 <div class="defun">
-&mdash; Function File: <var>H</var> = <b>convhull</b> (<var>x, y</var>)<var><a name="index-convhull-2809"></a></var><br>
-&mdash; Function File: <var>H</var> = <b>convhull</b> (<var>x, y, options</var>)<var><a name="index-convhull-2810"></a></var><br>
+&mdash; Function File: <var>H</var> = <b>convhull</b> (<var>x, y</var>)<var><a name="index-convhull-2894"></a></var><br>
+&mdash; Function File: <var>H</var> = <b>convhull</b> (<var>x, y, options</var>)<var><a name="index-convhull-2895"></a></var><br>
 <blockquote><p>Compute the convex hull of the set of points defined by the
-vectors <var>x</var> and <var>y</var>.  The hull <var>H</var> is an index vector into
+arrays <var>x</var> and <var>y</var>.  The hull <var>H</var> is an index vector into
 the set of points and specifies which points form the enclosing hull.
 
         <p>An optional third argument, which must be a string or cell array of strings,
@@ -60,19 +60,16 @@ used.  Otherwise, <var>options</var> replaces the default argument list.
 To append user options to the defaults it is necessary to repeat the
 default arguments in <var>options</var>.  Use a null string to pass no arguments.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dconvhulln.html#doc_002dconvhulln">convhulln</a>, <a href="doc_002ddelaunay.html#doc_002ddelaunay">delaunay</a>, <a href="doc_002dvoronoi.html#doc_002dvoronoi">voronoi</a>. 
 </p></blockquote></div>
 
-<!-- convhulln src/DLD-FUNCTIONS/convhulln.cc -->
+<!-- convhulln libinterp/dldfcn/convhulln.cc -->
    <p><a name="doc_002dconvhulln"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>h</var> = <b>convhulln</b> (<var>pts</var>)<var><a name="index-convhulln-2811"></a></var><br>
-&mdash; Loadable Function: <var>h</var> = <b>convhulln</b> (<var>pts, options</var>)<var><a name="index-convhulln-2812"></a></var><br>
-&mdash; Loadable Function: [<var>h</var>, <var>v</var>] = <b>convhulln</b> (<var><small class="dots">...</small></var>)<var><a name="index-convhulln-2813"></a></var><br>
+&mdash; Loadable Function: <var>h</var> = <b>convhulln</b> (<var>pts</var>)<var><a name="index-convhulln-2896"></a></var><br>
+&mdash; Loadable Function: <var>h</var> = <b>convhulln</b> (<var>pts, options</var>)<var><a name="index-convhulln-2897"></a></var><br>
+&mdash; Loadable Function: [<var>h</var>, <var>v</var>] = <b>convhulln</b> (<var><small class="dots">...</small></var>)<var><a name="index-convhulln-2898"></a></var><br>
 <blockquote><p>Compute the convex hull of the set of points <var>pts</var> which is a matrix
 of size [n, dim] containing n points in a space of dimension dim. 
 The hull <var>h</var> is an index vector into the set of points and specifies
@@ -98,9 +95,6 @@ default arguments in <var>options</var>.  Use a null string to pass no arguments
         <p>If the second output <var>v</var> is requested the volume of the enclosing
 convex hull is calculated.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dconvhull.html#doc_002dconvhull">convhull</a>, <a href="doc_002ddelaunayn.html#doc_002ddelaunayn">delaunayn</a>, <a href="doc_002dvoronoin.html#doc_002dvoronoin">voronoin</a>. 
 </p></blockquote></div>
 

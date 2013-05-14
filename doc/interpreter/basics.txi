@@ -101,6 +101,10 @@ specified on the command line will override any value of
 in the system or user startup files that set the built-in variable
 @w{@env{EXEC_PATH}}.
 
+@item --force-gui
+@cindex @code{--force-gui}
+Force the graphical user interface (GUI) to start.
+
 @item  --help
 @itemx -h
 @itemx -?
@@ -141,9 +145,18 @@ Force interactive behavior.  This can be useful for running Octave via a
 remote shell command or inside an Emacs shell buffer.  For another way
 to run Octave within Emacs, see @ref{Emacs Octave Support}.
 
+@item --jit-debug
+@cindex @code{--jit-debug}
+Enable JIT compiler debugging and tracing.
+
 @item --line-editing
 @cindex @code{--line-editing}
 Force readline use for command-line editing.
+
+@item --no-gui
+@cindex @code{--no-gui}
+Disable the graphical user interface (GUI) and use the command line
+interface (CLI) instead.
 
 @item  --no-history
 @itemx -H
@@ -160,6 +173,10 @@ Don't read the initialization files @file{~/.octaverc} and @file{.octaverc}.
 Don't initialize the search path for function files to include default 
 locations.
 
+@item --no-jit-compiler
+@cindex @code{--no-jit-compiler}
+Disable the JIT compiler used for accelerating loops.
+
 @item --no-line-editing
 @cindex @code{--no-line-editing}
 Disable command-line editing.
@@ -167,6 +184,11 @@ Disable command-line editing.
 @item --no-site-file
 @cindex @code{--no-site-file}
 Don't read the site-wide @file{octaverc} initialization files.
+
+@item --no-window-system
+@cindex @code{--no-window-system}
+Disable use of a windowing system including graphics.  This forces a
+strictly terminal-only environment.
 
 @item  --norc
 @itemx -f
@@ -198,6 +220,10 @@ named on the command line.
 @cindex @code{--quiet}
 @cindex @code{-q}
 Don't print the usual greeting and version message at startup.
+
+@item --texi-macros-file @var{filename}
+@cindex @code{--texi-macros-file @var{filename}}
+Specify the name of the file containing Texinfo macros for use by makeinfo.
 
 @item  --traditional
 @itemx --braindead
@@ -234,6 +260,12 @@ Octave:function-name-clash
 Octave:load-file-in-path
 @end group
 @end example
+
+@noindent
+Note that this does not enable the @code{Octave:matlab-incompatible}
+warning, which you might want if you want to be told about writing code
+that works in Octave but not Matlab (@pxref{doc-warning},
+@pxref{doc-warning_ids}).
 
 @item  --verbose
 @itemx -V
@@ -388,6 +420,8 @@ found.
 @DOCSTRING(info_program)
 
 @DOCSTRING(makeinfo_program)
+
+@DOCSTRING(texi_macros_file)
 
 @DOCSTRING(doc_cache_file)
 
@@ -1021,10 +1055,10 @@ shows whole line and partial line comments.
 @group
 function countdown
   # Count down for main rocket engines 
-  disp(3);
-  disp(2);
-  disp(1);
-  disp("Blast Off!");  # Rocket leaves pad
+  disp (3);
+  disp (2);
+  disp (1);
+  disp ("Blast Off!");  # Rocket leaves pad
 endfunction
 @end group
 @end example
@@ -1044,19 +1078,19 @@ For example,
 @group
 function quick_countdown
   # Count down for main rocket engines 
-  disp(3);
+  disp (3);
  #@{
-  disp(2);
-  disp(1);
+  disp (2);
+  disp (1);
  #@}
-  disp("Blast Off!");  # Rocket leaves pad
+  disp ("Blast Off!");  # Rocket leaves pad
 endfunction
 @end group
 @end example
 
 @noindent
 will produce a very quick countdown from '3' to 'Blast Off' as the
-lines "@code{disp(2);}" and "@code{disp(1);}" won't be executed.
+lines "@code{disp (2);}" and "@code{disp (1);}" won't be executed.
 
 The block comment markers must appear alone as the only characters on a line
 (excepting whitespace) in order to be parsed correctly.

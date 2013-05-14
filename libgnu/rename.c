@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Work around rename bugs in some systems.
 
    Copyright (C) 2001-2003, 2005-2006, 2009-2012 Free Software Foundation, Inc.

@@ -45,7 +45,7 @@ the <code>gls</code> is needed.
    <p><a name="doc_002dols"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-2392"></a></var><br>
+&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-2461"></a></var><br>
 <blockquote><p>Ordinary least squares estimation for the multivariate model
 y&nbsp;=&nbsp;x*b&nbsp;+&nbsp;e<!-- /@w --> with
 mean (e) = 0 and cov (vec (e)) = kron (s, I). 
@@ -75,9 +75,6 @@ Otherwise, <var>beta</var><code> = pinv (</code><var>x</var><code>) * </code><va
 </pre>
           <br><dt><var>r</var><dd>The matrix of OLS residuals, <var>r</var><code> = </code><var>y</var><code> - </code><var>x</var><code>*</code><var>beta</var>. 
 </dl>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dgls.html#doc_002dgls">gls</a>, <a href="doc_002dpinv.html#doc_002dpinv">pinv</a>. 
 </p></blockquote></div>
@@ -86,7 +83,7 @@ Otherwise, <var>beta</var><code> = pinv (</code><var>x</var><code>) * </code><va
    <p><a name="doc_002dgls"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-2393"></a></var><br>
+&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-2462"></a></var><br>
 <blockquote><p>Generalized least squares estimation for the multivariate model
 y&nbsp;=&nbsp;x*b&nbsp;+&nbsp;e<!-- /@w --> with mean (e) = 0 and
 cov (vec (e)) = (s^2) o,
@@ -107,9 +104,6 @@ defined as follows.
 
           <br><dt><var>r</var><dd>The matrix of GLS residuals, r = y - x*beta. 
 </dl>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dols.html#doc_002dols">ols</a>. 
 </p></blockquote></div>
@@ -118,22 +112,27 @@ defined as follows.
    <p><a name="doc_002dlsqnonneg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d</var>)<var><a name="index-lsqnonneg-2394"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0</var>)<var><a name="index-lsqnonneg-2395"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2396"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2397"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2398"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2399"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>, <var>lambda</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2400"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d</var>)<var><a name="index-lsqnonneg-2463"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0</var>)<var><a name="index-lsqnonneg-2464"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0, options</var>)<var><a name="index-lsqnonneg-2465"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2466"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2467"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2468"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2469"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>, <var>lambda</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2470"></a></var><br>
 <blockquote><p>Minimize <code>norm (</code><var>c</var><code>*</code><var>x</var><code> - d)</code> subject to
 <var>x</var><code> &gt;= 0</code>.  <var>c</var> and <var>d</var> must be real.  <var>x0</var> is an
-optional initial guess for <var>x</var>.
+optional initial guess for <var>x</var>. 
+Currently, <code>lsqnonneg</code>
+recognizes these options: <code>"MaxIter"</code>, <code>"TolX"</code>. 
+For a description of these options, see <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>.
 
         <p>Outputs:
+
           <ul>
 <li>resnorm
 
-          <p>The squared 2-norm of the residual: norm(<var>c</var>*<var>x</var>-<var>d</var>)^2
+          <p>The squared 2-norm of the residual: norm (<var>c</var>*<var>x</var>-<var>d</var>)^2
 
           <li>residual
 
@@ -149,6 +148,7 @@ converge given enough iterations.)
           <li>output
 
           <p>A structure with two fields:
+
                <ul>
 <li>"algorithm": The algorithm used ("nnls")
 
@@ -159,9 +159,6 @@ converge given enough iterations.)
 
           <p>Not implemented. 
 </ul>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>, <a href="doc_002dpqpnonneg.html#doc_002dpqpnonneg">pqpnonneg</a>. 
 </p></blockquote></div>
@@ -170,77 +167,81 @@ converge given enough iterations.)
    <p><a name="doc_002doptimset"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>optimset</b> ()<var><a name="index-optimset-2401"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2402"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>old, par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2403"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>old, new</var>)<var><a name="index-optimset-2404"></a></var><br>
+&mdash; Function File:  <b>optimset</b> ()<var><a name="index-optimset-2471"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2472"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>old, par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2473"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>old, new</var>)<var><a name="index-optimset-2474"></a></var><br>
 <blockquote><p>Create options struct for optimization functions.
 
         <p>Valid parameters are:
-          <ul>
-<li>AutoScaling
 
-          <li>ComplexEqn
+          <dl>
+<dt>AutoScaling
+<br><dt>ComplexEqn
+<br><dt>Display<dd>Request verbose display of results from optimizations.  Values are:
 
-          <li>FinDiffType
+               <dl>
+<dt>"off" [default]<dd>No display.
 
-          <li>FunValCheck
-When enabled, display an error if the objective function returns a complex
-value or NaN.  Must be set to "on" or "off" [default].
+               <br><dt>"iter"<dd>Display intermediate results for every loop iteration.
 
-          <li>GradObj
-When set to "on", the function to be minimized must return a second argument
+               <br><dt>"final"<dd>Display the result of the final loop iteration.
+
+               <br><dt>"notify"<dd>Display the result of the final loop iteration if the function has
+failed to converge. 
+</dl>
+
+          <br><dt>FinDiffType
+<br><dt>FunValCheck<dd>When enabled, display an error if the objective function returns an invalid
+value (a complex number, NaN, or Inf).  Must be set to "on" or "off"
+[default].  Note: the functions <code>fzero</code> and <code>fminbnd</code> correctly
+handle Inf values and only complex values or NaN will cause an error in this
+case.
+
+          <br><dt>GradObj<dd>When set to "on", the function to be minimized must return a second argument
 which is the gradient, or first derivative, of the function at the point
 <var>x</var>.  If set to "off" [default], the gradient is computed via finite
 differences.
 
-          <li>Jacobian
-When set to "on", the function to be minimized must return a second argument
+          <br><dt>Jacobian<dd>When set to "on", the function to be minimized must return a second argument
 which is the Jacobian, or first derivative, of the function at the point
 <var>x</var>.  If set to "off" [default], the Jacobian is computed via finite
 differences.
 
-          <li>MaxFunEvals
-Maximum number of function evaluations before optimization stops. 
+          <br><dt>MaxFunEvals<dd>Maximum number of function evaluations before optimization stops. 
 Must be a positive integer.
 
-          <li>MaxIter
-Maximum number of algorithm iterations before optimization stops. 
+          <br><dt>MaxIter<dd>Maximum number of algorithm iterations before optimization stops. 
 Must be a positive integer.
 
-          <li>OutputFcn
-A user-defined function executed once per algorithm iteration.
+          <br><dt>OutputFcn<dd>A user-defined function executed once per algorithm iteration.
 
-          <li>TolFun
-Termination criterion for the function output.  If the difference in the
+          <br><dt>TolFun<dd>Termination criterion for the function output.  If the difference in the
 calculated objective function between one algorithm iteration and the next
 is less than <code>TolFun</code> the optimization stops.  Must be a positive
 scalar.
 
-          <li>TolX
-Termination criterion for the function input.  If the difference in <var>x</var>,
+          <br><dt>TolX<dd>Termination criterion for the function input.  If the difference in <var>x</var>,
 the current search point, between one algorithm iteration and the next is
 less than <code>TolX</code> the optimization stops.  Must be a positive scalar.
 
-          <li>TypicalX
-
-          <li>Updating
-</ul>
+          <br><dt>TypicalX
+<br><dt>Updating<dd></dl>
         </p></blockquote></div>
 
 <!-- optimget scripts/optimization/optimget.m -->
    <p><a name="doc_002doptimget"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>optimget</b> (<var>options, parname</var>)<var><a name="index-optimget-2405"></a></var><br>
-&mdash; Function File:  <b>optimget</b> (<var>options, parname, default</var>)<var><a name="index-optimget-2406"></a></var><br>
+&mdash; Function File:  <b>optimget</b> (<var>options, parname</var>)<var><a name="index-optimget-2475"></a></var><br>
+&mdash; Function File:  <b>optimget</b> (<var>options, parname, default</var>)<var><a name="index-optimget-2476"></a></var><br>
 <blockquote><p>Return a specific option from a structure created by
 <code>optimset</code>.  If <var>parname</var> is not a field of the <var>options</var>
 structure, return <var>default</var> if supplied, otherwise return an
 empty matrix. 
 </p></blockquote></div>
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

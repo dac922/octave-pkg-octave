@@ -80,7 +80,7 @@ function fplot (fn, limits, n, fmt)
     error ("fplot: first input argument must be a function handle, inline function or string");
   endif
 
-  if (floor(n) != n)
+  if (floor (n) != n)
     tol = n;
     x0 = linspace (limits(1), limits(2), 5)';
     y0 = feval (fn, x0);
@@ -127,10 +127,12 @@ function fplot (fn, limits, n, fmt)
   endif
 endfunction
 
-%!demo
-%! clf
-%! fplot ("cos", [0, 2*pi])
 
 %!demo
-%! clf
-%! fplot ("[cos(x), sin(x)]", [0, 2*pi])
+%! clf;
+%! fplot ('cos', [0, 2*pi]);
+
+%!demo
+%! clf;
+%! fplot ('[cos(x), sin(x)]', [0, 2*pi]);
+

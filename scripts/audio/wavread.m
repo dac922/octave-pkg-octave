@@ -76,6 +76,7 @@ function [y, samples_per_sec, bits_per_sample] = wavread (filename, param)
     if (riff_size == -1)
       error ("wavread: file contains no RIFF chunk");
     endif
+    riff_size = min (riff_size, file_size - riff_pos);
 
     riff_type = char (fread (fid, 4))';
     if (! strcmp (riff_type, "WAVE"))
@@ -87,7 +88,7 @@ function [y, samples_per_sec, bits_per_sample] = wavread (filename, param)
     ## Find format chunk inside the RIFF chunk.
     fseek (fid, riff_pos, "bof");
     fmt_size = find_chunk (fid, "fmt ", riff_size);
-    fmt_pos = ftell(fid);
+    fmt_pos = ftell (fid);
     if (fmt_size == -1)
       error ("wavread: file contains no format chunk");
     endif
@@ -100,6 +101,7 @@ function [y, samples_per_sec, bits_per_sample] = wavread (filename, param)
     if (data_size == -1)
       error ("wavread: file contains no data chunk");
     endif
+    data_size = min (data_size, file_size - data_pos);
 
     ### Read format chunk.
     fseek (fid, fmt_pos, "bof");
@@ -196,7 +198,7 @@ function [y, samples_per_sec, bits_per_sample] = wavread (filename, param)
   endif
 
   if (bits_per_sample == 24)
-    yi = reshape (yi, 3, rows(yi)/3)';
+    yi = reshape (yi, 3, rows (yi) / 3)';
     yi(yi(:,3) >= 128, 3) -= 256;
     yi = yi * [1; 256; 65536];
   endif
@@ -244,6 +246,7 @@ function chunk_size = find_chunk (fid, chunk_id, size)
   endif
 endfunction
 
-## Mark file as being tested.  Tests for wavread/wavwrite pair are in
-## wavwrite.m
-%!assert(1)
+
+## Mark file as tested.  Tests for wavread/wavwrite pair are in wavwrite.m.
+%!assert (1)
+

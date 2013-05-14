@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* On some systems, mkdir ("foo/", 0700) fails because of the trailing
    slash.  On those systems, this wrapper removes the trailing slash.
 

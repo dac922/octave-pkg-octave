@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* provide a replacement fdopendir function
    Copyright (C) 2004-2012 Free Software Foundation, Inc.
 

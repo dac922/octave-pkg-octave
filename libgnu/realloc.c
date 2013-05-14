@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* realloc() function that is glibc compatible.
 
    Copyright (C) 1997, 2003-2004, 2006-2007, 2009-2012 Free Software

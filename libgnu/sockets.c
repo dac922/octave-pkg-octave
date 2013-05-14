@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* sockets.c --- wrappers for Windows socket functions
 
    Copyright (C) 2008-2012 Free Software Foundation, Inc.

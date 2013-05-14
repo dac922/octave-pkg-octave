@@ -46,8 +46,9 @@ interpolation are <code>griddata</code>, <code>griddata3</code> and
    <p><a name="doc_002dgriddata"></a>
 
 <div class="defun">
-&mdash; Function File: <var>zi</var> = <b>griddata</b> (<var>x, y, z, xi, yi, method</var>)<var><a name="index-griddata-2814"></a></var><br>
-&mdash; Function File: [<var>xi</var>, <var>yi</var>, <var>zi</var>] = <b>griddata</b> (<var>x, y, z, xi, yi, method</var>)<var><a name="index-griddata-2815"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>griddata</b> (<var>x, y, z, xi, yi</var>)<var><a name="index-griddata-2899"></a></var><br>
+&mdash; Function File: <var>zi</var> = <b>griddata</b> (<var>x, y, z, xi, yi, method</var>)<var><a name="index-griddata-2900"></a></var><br>
+&mdash; Function File: [<var>xi</var>, <var>yi</var>, <var>zi</var>] = <b>griddata</b> (<var><small class="dots">...</small></var>)<var><a name="index-griddata-2901"></a></var><br>
 <blockquote>
         <p>Generate a regular mesh from irregular data using interpolation. 
 The function is defined by <var>z</var><code> = f (</code><var>x</var><code>, </code><var>y</var><code>)</code>. 
@@ -58,29 +59,30 @@ or <var>x</var><code>, </code><var>y</var> are vectors and <var>z</var> is matri
 <var>xi</var>, <var>yi</var> are vectors then they are made into a 2-D mesh.
 
         <p>The interpolation method can be <code>"nearest"</code>, <code>"cubic"</code> or
-<code>"linear"</code>.  If method is omitted it defaults to <code>"linear"</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<code>"linear"</code>.  If method is omitted it defaults to <code>"linear"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddelaunay.html#doc_002ddelaunay">delaunay</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgriddata3.html#doc_002dgriddata3">griddata3</a>, <a href="doc_002dgriddatan.html#doc_002dgriddatan">griddatan</a>, <a href="doc_002ddelaunay.html#doc_002ddelaunay">delaunay</a>. 
 </p></blockquote></div>
 
 <!-- griddata3 scripts/geometry/griddata3.m -->
    <p><a name="doc_002dgriddata3"></a>
 
 <div class="defun">
-&mdash; Function File: <var>vi</var> = <b>griddata3</b> (<var>x, y, z, v, xi, yi, zi, method, options</var>)<var><a name="index-griddata3-2816"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>griddata3</b> (<var>x, y, z, v, xi, yi, zi</var>)<var><a name="index-griddata3-2902"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>griddata3</b> (<var>x, y, z, v, xi, yi, zi, method</var>)<var><a name="index-griddata3-2903"></a></var><br>
+&mdash; Function File: <var>vi</var> = <b>griddata3</b> (<var>x, y, z, v, xi, yi, zi, method, options</var>)<var><a name="index-griddata3-2904"></a></var><br>
 <blockquote>
         <p>Generate a regular mesh from irregular data using interpolation. 
 The function is defined by <var>v</var><code> = f (</code><var>x</var><code>, </code><var>y</var><code>, </code><var>z</var><code>)</code>. 
 The interpolation points are specified by <var>xi</var>, <var>yi</var>, <var>zi</var>.
 
         <p>The interpolation method can be <code>"nearest"</code> or <code>"linear"</code>. 
-If method is omitted it defaults to <code>"linear"</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If method is omitted it defaults to <code>"linear"</code>.
+
+        <p>The optional argument <var>options</var> is passed directly to Qhull when
+computing the Delaunay triangulation used for interpolation.  See
+<code>delaunayn</code> for information on the defaults and how to pass different
+values.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dgriddata.html#doc_002dgriddata">griddata</a>, <a href="doc_002dgriddatan.html#doc_002dgriddatan">griddatan</a>, <a href="doc_002ddelaunayn.html#doc_002ddelaunayn">delaunayn</a>. 
 </p></blockquote></div>
@@ -89,29 +91,33 @@ If method is omitted it defaults to <code>"linear"</code>.
    <p><a name="doc_002dgriddatan"></a>
 
 <div class="defun">
-&mdash; Function File: <var>yi</var> = <b>griddatan</b> (<var>x, y, xi, method, options</var>)<var><a name="index-griddatan-2817"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>griddatan</b> (<var>x, y, xi</var>)<var><a name="index-griddatan-2905"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>griddatan</b> (<var>x, y, xi, method</var>)<var><a name="index-griddatan-2906"></a></var><br>
+&mdash; Function File: <var>yi</var> = <b>griddatan</b> (<var>x, y, xi, method, options</var>)<var><a name="index-griddatan-2907"></a></var><br>
 <blockquote>
         <p>Generate a regular mesh from irregular data using interpolation. 
 The function is defined by <var>y</var><code> = f (</code><var>x</var><code>)</code>. 
 The interpolation points are all <var>xi</var>.
 
         <p>The interpolation method can be <code>"nearest"</code> or <code>"linear"</code>. 
-If method is omitted it defaults to <code>"linear"</code>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+If method is omitted it defaults to <code>"linear"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgriddata.html#doc_002dgriddata">griddata</a>, <a href="doc_002ddelaunayn.html#doc_002ddelaunayn">delaunayn</a>. 
+        <p>The optional argument <var>options</var> is passed directly to Qhull when
+computing the Delaunay triangulation used for interpolation.  See
+<code>delaunayn</code> for information on the defaults and how to pass different
+values.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgriddata.html#doc_002dgriddata">griddata</a>, <a href="doc_002dgriddata3.html#doc_002dgriddata3">griddata3</a>, <a href="doc_002ddelaunayn.html#doc_002ddelaunayn">delaunayn</a>. 
 </p></blockquote></div>
 
    <p>An example of the use of the <code>griddata</code> function is
 
-<pre class="example">     rand("state",1);
-     x=2*rand(1000,1)-1;
-     y=2*rand(size(x))-1;
-     z=sin(2*(x.^2+y.^2));
-     [xx,yy]=meshgrid(linspace(-1,1,32));
-     griddata(x,y,z,xx,yy);
+<pre class="example">     rand ("state", 1);
+     x = 2*rand (1000,1) - 1;
+     y = 2*rand (size (x)) - 1;
+     z = sin (2*(x.^2+y.^2));
+     [xx,yy] = meshgrid (linspace (-1,1,32));
+     griddata (x,y,z,xx,yy);
 </pre>
    <p class="noindent">that interpolates from a random scattering of points, to a uniform
 grid. 
@@ -121,7 +127,7 @@ The output of the above can be seen in <a href="fig_003agriddata.html#fig_003agr
 <a name="fig_003agriddata"></a><div align="center"><img src="griddata.png" alt="griddata.png"></div>
    <p><strong class="float-caption">Figure 30.6: Interpolation from a scattered data to a regular grid</strong></p></div>
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

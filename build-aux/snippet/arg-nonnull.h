@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* A C macro for declaring that specific arguments must not be NULL.
    Copyright (C) 2009-2012 Free Software Foundation, Inc.
 

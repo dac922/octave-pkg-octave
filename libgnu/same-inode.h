@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Determine whether two stat buffers refer to the same file.
 
    Copyright (C) 2006, 2009-2012 Free Software Foundation, Inc.

@@ -59,17 +59,14 @@ files holding data in mu-law encoding end in <samp><span class="file">au</span><
    <p><a name="doc_002dlin2mu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>lin2mu</b> (<var>x, n</var>)<var><a name="index-lin2mu-2970"></a></var><br>
+&mdash; Function File:  <b>lin2mu</b> (<var>x, n</var>)<var><a name="index-lin2mu-3090"></a></var><br>
 <blockquote><p>Convert audio data from linear to mu-law.  Mu-law values use 8-bit
 unsigned integers.  Linear values use <var>n</var>-bit signed integers or
 floating point values in the range -1 &le; <var>x</var> &le; 1 if
 <var>n</var> is 0.
 
         <p>If <var>n</var> is not specified it defaults to 0, 8, or 16 depending on
-the range of values in <var>x</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+the range of values in <var>x</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>. 
 </p></blockquote></div>
@@ -78,16 +75,13 @@ the range of values in <var>x</var>.
    <p><a name="doc_002dmu2lin"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mu2lin</b> (<var>x, n</var>)<var><a name="index-mu2lin-2971"></a></var><br>
+&mdash; Function File:  <b>mu2lin</b> (<var>x, n</var>)<var><a name="index-mu2lin-3091"></a></var><br>
 <blockquote><p>Convert audio data from mu-law to linear.  Mu-law values are 8-bit
 unsigned integers.  Linear values use <var>n</var>-bit signed integers
 or floating point values in the range -1&le;y&le;1 if <var>n</var>
 is 0.
 
-        <p>If <var>n</var> is not specified it defaults to 0. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>If <var>n</var> is not specified it defaults to 0.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>. 
 </p></blockquote></div>
@@ -96,7 +90,7 @@ is 0.
    <p><a name="doc_002dloadaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>loadaudio</b> (<var>name, ext, bps</var>)<var><a name="index-loadaudio-2972"></a></var><br>
+&mdash; Function File:  <b>loadaudio</b> (<var>name, ext, bps</var>)<var><a name="index-loadaudio-3092"></a></var><br>
 <blockquote><p>Load audio data from the file <samp><var>name</var><span class="file">.</span><var>ext</var></samp> into the
 vector <var>x</var>.
 
@@ -106,10 +100,7 @@ correspond to linear, the extensions <samp><span class="file">au</span></samp>, 
 to mu-law encoding.
 
         <p>The argument <var>bps</var> can be either 8 (default) or 16, and specifies
-the number of bits per sample used in the audio file. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+the number of bits per sample used in the audio file.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>, <a href="doc_002dplayaudio.html#doc_002dplayaudio">playaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>, <a href="doc_002drecord.html#doc_002drecord">record</a>. 
 </p></blockquote></div>
@@ -118,15 +109,12 @@ the number of bits per sample used in the audio file.
    <p><a name="doc_002dsaveaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>saveaudio</b> (<var>name, x, ext, bps</var>)<var><a name="index-saveaudio-2973"></a></var><br>
+&mdash; Function File:  <b>saveaudio</b> (<var>name, x, ext, bps</var>)<var><a name="index-saveaudio-3093"></a></var><br>
 <blockquote><p>Save a vector <var>x</var> of audio data to the file
 <samp><var>name</var><span class="file">.</span><var>ext</var></samp>.  The optional parameters <var>ext</var> and
 <var>bps</var> determine the encoding and the number of bits per sample used
 in the audio file (see <code>loadaudio</code>); defaults are <samp><span class="file">lin</span></samp> and
-8, respectively. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+8, respectively.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dplayaudio.html#doc_002dplayaudio">playaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>, <a href="doc_002drecord.html#doc_002drecord">record</a>. 
 </p></blockquote></div>
@@ -143,13 +131,10 @@ hardware are welcome.
    <p><a name="doc_002dplayaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>playaudio</b> (<var>name, ext</var>)<var><a name="index-playaudio-2974"></a></var><br>
-&mdash; Function File:  <b>playaudio</b> (<var>x</var>)<var><a name="index-playaudio-2975"></a></var><br>
+&mdash; Function File:  <b>playaudio</b> (<var>name, ext</var>)<var><a name="index-playaudio-3094"></a></var><br>
+&mdash; Function File:  <b>playaudio</b> (<var>x</var>)<var><a name="index-playaudio-3095"></a></var><br>
 <blockquote><p>Play the audio file <samp><var>name</var><span class="file">.</span><var>ext</var></samp> or the audio data
-stored in the vector <var>x</var>. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+stored in the vector <var>x</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>, <a href="doc_002drecord.html#doc_002drecord">record</a>. 
 </p></blockquote></div>
@@ -158,14 +143,11 @@ stored in the vector <var>x</var>.
    <p><a name="doc_002drecord"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>record</b> (<var>sec, sampling_rate</var>)<var><a name="index-record-2976"></a></var><br>
+&mdash; Function File:  <b>record</b> (<var>sec, sampling_rate</var>)<var><a name="index-record-3096"></a></var><br>
 <blockquote><p>Record <var>sec</var> seconds of audio input into the vector <var>x</var>.  The
 default value for <var>sampling_rate</var> is 8000 samples per second, or
 8kHz.  The program waits until the user types &lt;RET&gt; and then
-immediately starts to record. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+immediately starts to record.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>, <a href="doc_002dplayaudio.html#doc_002dplayaudio">playaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>. 
 </p></blockquote></div>
@@ -174,9 +156,9 @@ immediately starts to record.
    <p><a name="doc_002dsetaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setaudio</b> ()<var><a name="index-setaudio-2977"></a></var><br>
-&mdash; Function File:  <b>setaudio</b> (<var>w_type</var>)<var><a name="index-setaudio-2978"></a></var><br>
-&mdash; Function File:  <b>setaudio</b> (<var>w_type, value</var>)<var><a name="index-setaudio-2979"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> ()<var><a name="index-setaudio-3097"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> (<var>w_type</var>)<var><a name="index-setaudio-3098"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> (<var>w_type, value</var>)<var><a name="index-setaudio-3099"></a></var><br>
 <blockquote><p>Execute the shell command &lsquo;<samp><span class="samp">mixer</span></samp>&rsquo;, possibly with optional
 arguments <var>w_type</var> and <var>value</var>. 
 </p></blockquote></div>
@@ -185,27 +167,24 @@ arguments <var>w_type</var> and <var>value</var>.
    <p><a name="doc_002dwavread"></a>
 
 <div class="defun">
-&mdash; Function File: <var>y</var> = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-2980"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3100"></a></var><br>
 <blockquote><p>Load the RIFF/WAVE sound file <var>filename</var>, and return the samples
 in vector <var>y</var>.  If the file contains multichannel data, then
 <var>y</var> is a matrix with the channels represented as columns.
 
-   &mdash; Function File: [<var>y</var>, <var>Fs</var>, <var>bps</var>] = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-2981"></a></var><br>
+   &mdash; Function File: [<var>y</var>, <var>Fs</var>, <var>bps</var>] = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3101"></a></var><br>
 <blockquote><p>Additionally return the sample rate (<var>fs</var>) in Hz and the number of bits
 per sample (<var>bps</var>).
 
-   &mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n</var>)<var><a name="index-wavread-2982"></a></var><br>
+   &mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n</var>)<var><a name="index-wavread-3102"></a></var><br>
 <blockquote><p>Read only the first <var>n</var> samples from each channel.
 
-   &mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n1 n2</var>)<var><a name="index-wavread-2983"></a></var><br>
+   &mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n1 n2</var>)<var><a name="index-wavread-3103"></a></var><br>
 <blockquote><p>Read only samples <var>n1</var> through <var>n2</var> from each channel.
 
-   &mdash; Function File: [<var>samples</var>, <var>channels</var>] = <b>wavread</b> (<var>filename, "size"</var>)<var><a name="index-wavread-2984"></a></var><br>
+   &mdash; Function File: [<var>samples</var>, <var>channels</var>] = <b>wavread</b> (<var>filename, "size"</var>)<var><a name="index-wavread-3104"></a></var><br>
 <blockquote><p>Return the number of samples (<var>n</var>) and channels (<var>ch</var>)
-instead of the audio data. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+instead of the audio data.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dwavwrite.html#doc_002dwavwrite">wavwrite</a>. 
 </p></blockquote></div>
@@ -214,21 +193,19 @@ instead of the audio data.
    <p><a name="doc_002dwavwrite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>wavwrite</b> (<var>y, filename</var>)<var><a name="index-wavwrite-2985"></a></var><br>
-&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, filename</var>)<var><a name="index-wavwrite-2986"></a></var><br>
-&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, bps, filename</var>)<var><a name="index-wavwrite-2987"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, filename</var>)<var><a name="index-wavwrite-3105"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, filename</var>)<var><a name="index-wavwrite-3106"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, bps, filename</var>)<var><a name="index-wavwrite-3107"></a></var><br>
 <blockquote><p>Write <var>y</var> to the canonical RIFF/WAVE sound file <var>filename</var>
 with sample rate <var>Fs</var> and bits per sample <var>bps</var>.  The
 default sample rate is 8000 Hz with 16-bits per sample.  Each column
-of the data represents a separate channel. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+of the data represents a separate channel.  If <var>y</var> is either a
+row vector or a column vector, it is written as a single channel.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dwavread.html#doc_002dwavread">wavread</a>. 
 </p></blockquote></div>
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 2008-2012 David Bateman -->
 <!-- Copyright (C) 2009 VZLU Prague -->
 <!-- This file is part of Octave. -->

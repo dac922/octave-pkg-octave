@@ -35,9 +35,10 @@
 
 function r = colon (varargin)
   if (nargin != 0)
-    error ("colon: not defined for class \"%s\"", class(varargin{1}));
+    error ('colon: not defined for class "%s"', class (varargin{1}));
   endif
 endfunction
+
 
 %!error colon (1)
 

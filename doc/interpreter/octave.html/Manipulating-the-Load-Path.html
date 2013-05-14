@@ -30,7 +30,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Function-Files.html#Function-Files">Fun
 <hr>
 </div>
 
-<h4 class="subsection">11.8.1 Manipulating the Load Path</h4>
+<h4 class="subsection">11.9.1 Manipulating the Load Path</h4>
 
 <p>When a function is called, Octave searches a list of directories for
 a file that contains the function declaration.  This list of directories
@@ -43,16 +43,16 @@ function without any input or output arguments.
 using <code>addpath</code> and <code>rmpath</code>.  As an example, the following
 code adds &lsquo;<samp><span class="samp">~/Octave</span></samp>&rsquo; to the load path.
 
-<pre class="example">     addpath("~/Octave")
+<pre class="example">     addpath ("~/Octave")
 </pre>
    <p class="noindent">After this the directory &lsquo;<samp><span class="samp">~/Octave</span></samp>&rsquo; will be searched for functions.
 
-<!-- addpath src/load-path.cc -->
+<!-- addpath libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002daddpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-addpath-762"></a></var><br>
-&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small>, option</var>)<var><a name="index-addpath-763"></a></var><br>
+&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-addpath-780"></a></var><br>
+&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small>, option</var>)<var><a name="index-addpath-781"></a></var><br>
 <blockquote><p>Add <var>dir1</var>, <small class="dots">...</small> to the current function search path.  If
 <var>option</var> is "-begin" or 0 (the default), prepend the
 directory name to the current path.  If <var>option</var> is "-end"
@@ -62,64 +62,57 @@ Directories added to the path must exist.
         <p>In addition to accepting individual directory arguments, lists of
 directory names separated by <code>pathsep</code> are also accepted.  For example:
 
-     <pre class="example">          addpath ("dir1:/dir2:~/dir3");
+     <pre class="example">          addpath ("dir1:/dir2:~/dir3")
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
 </p></blockquote></div>
 
-<!-- genpath src/load-path.cc -->
+<!-- genpath libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002dgenpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>genpath</b> (<var>dir</var>)<var><a name="index-genpath-764"></a></var><br>
-&mdash; Built-in Function:  <b>genpath</b> (<var>dir, skip, <small class="dots">...</small></var>)<var><a name="index-genpath-765"></a></var><br>
+&mdash; Built-in Function:  <b>genpath</b> (<var>dir</var>)<var><a name="index-genpath-782"></a></var><br>
+&mdash; Built-in Function:  <b>genpath</b> (<var>dir, skip, <small class="dots">...</small></var>)<var><a name="index-genpath-783"></a></var><br>
 <blockquote><p>Return a path constructed from <var>dir</var> and all its subdirectories. 
 If additional string parameters are given, the resulting path will
 exclude directories with those names. 
 </p></blockquote></div>
 
-<!-- rmpath src/load-path.cc -->
+<!-- rmpath libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002drmpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rmpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-rmpath-766"></a></var><br>
+&mdash; Built-in Function:  <b>rmpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-rmpath-784"></a></var><br>
 <blockquote><p>Remove <var>dir1</var>, <small class="dots">...</small> from the current function search path.
 
         <p>In addition to accepting individual directory arguments, lists of
 directory names separated by <code>pathsep</code> are also accepted.  For example:
 
-     <pre class="example">          rmpath ("dir1:/dir2:~/dir3");
+     <pre class="example">          rmpath ("dir1:/dir2:~/dir3")
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
 </p></blockquote></div>
 
 <!-- savepath scripts/path/savepath.m -->
    <p><a name="doc_002dsavepath"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>savepath</b> (<var>file</var>)<var><a name="index-savepath-767"></a></var><br>
-<blockquote><p>Save the portion of the current function search path, that is
-not set during Octave's initialization process, to <var>file</var>. 
+&mdash; Function File:  <b>savepath</b> ()<var><a name="index-savepath-785"></a></var><br>
+&mdash; Function File:  <b>savepath</b> (<var>file</var>)<var><a name="index-savepath-786"></a></var><br>
+&mdash; Function File: <var>status</var> = <b>savepath</b> (<var><small class="dots">...</small></var>)<var><a name="index-savepath-787"></a></var><br>
+<blockquote><p>Save the unique portion of the current function search path that is
+not set during Octave's initialization process to <var>file</var>. 
 If <var>file</var> is omitted, <samp><span class="file">~/.octaverc</span></samp> is used.  If successful,
-<code>savepath</code> returns 0. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+<code>savepath</code> returns 0.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>. 
 </p></blockquote></div>
 
-<!-- path src/load-path.cc -->
+<!-- path libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002dpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>path</b> (<var><small class="dots">...</small></var>)<var><a name="index-path-768"></a></var><br>
+&mdash; Built-in Function:  <b>path</b> (<var><small class="dots">...</small></var>)<var><a name="index-path-788"></a></var><br>
 <blockquote><p>Modify or display Octave's load path.
 
         <p>If <var>nargin</var> and <var>nargout</var> are zero, display the elements of
@@ -132,10 +125,7 @@ current load path.
 separating them with <code>pathsep</code>.  Set the internal search path
 to the result and return it.
 
-        <p>No checks are made for duplicate elements. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>No checks are made for duplicate elements.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
 </p></blockquote></div>
@@ -144,10 +134,10 @@ to the result and return it.
    <p><a name="doc_002dpathdef"></a>
 
 <div class="defun">
-&mdash; Function File: <var>val</var> = <b>pathdef</b> ()<var><a name="index-pathdef-769"></a></var><br>
+&mdash; Function File: <var>val</var> = <b>pathdef</b> ()<var><a name="index-pathdef-789"></a></var><br>
 <blockquote><p>Return the default path for Octave. 
 The path information is extracted from one of three sources. 
-In order of preference, those are;
+The possible sources, in order of preference, are:
 
           <ol type=1 start=1>
 <li><samp><span class="file">~/.octaverc</span></samp>
@@ -156,41 +146,35 @@ In order of preference, those are;
 
           <li>Octave's path prior to changes by any octaverc.
              </ol>
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>. 
 </p></blockquote></div>
 
-<!-- pathsep src/dirfns.cc -->
+<!-- pathsep libinterp/interpfcn/dirfns.cc -->
    <p><a name="doc_002dpathsep"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>pathsep</b> ()<var><a name="index-pathsep-770"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>pathsep</b> (<var>new_val</var>)<var><a name="index-pathsep-771"></a></var><br>
-<blockquote><p>Query or set the character used to separate directories in a path. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function: <var>val</var> = <b>pathsep</b> ()<var><a name="index-pathsep-790"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>pathsep</b> (<var>new_val</var>)<var><a name="index-pathsep-791"></a></var><br>
+<blockquote><p>Query or set the character used to separate directories in a path.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dfilesep.html#doc_002dfilesep">filesep</a>. 
 </p></blockquote></div>
 
-<!-- rehash src/load-path.cc -->
+<!-- rehash libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002drehash"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rehash</b> ()<var><a name="index-rehash-772"></a></var><br>
+&mdash; Built-in Function:  <b>rehash</b> ()<var><a name="index-rehash-792"></a></var><br>
 <blockquote><p>Reinitialize Octave's load path directory cache. 
 </p></blockquote></div>
 
-<!-- file_in_loadpath src/utils.cc -->
+<!-- file_in_loadpath libinterp/interpfcn/utils.cc -->
    <p><a name="doc_002dfile_005fin_005floadpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file</var>)<var><a name="index-file_005fin_005floadpath-773"></a></var><br>
-&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file, "all"</var>)<var><a name="index-file_005fin_005floadpath-774"></a></var><br>
+&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file</var>)<var><a name="index-file_005fin_005floadpath-793"></a></var><br>
+&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file, "all"</var>)<var><a name="index-file_005fin_005floadpath-794"></a></var><br>
 <blockquote>
         <p>Return the absolute name of <var>file</var> if it can be found in
 the list of directories specified by <code>path</code>. 
@@ -202,46 +186,37 @@ the first that matches.
 
         <p>If the second optional argument <code>"all"</code> is supplied, return
 a cell array containing the list of all files that have the same
-name in the path.  If no files are found, return an empty cell array. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+name in the path.  If no files are found, return an empty cell array.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dfile_005fin_005fpath.html#doc_002dfile_005fin_005fpath">file_in_path</a>, <a href="doc_002dpath.html#doc_002dpath">path</a>. 
 </p></blockquote></div>
 
-<!-- restoredefaultpath src/load-path.cc -->
+<!-- restoredefaultpath libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002drestoredefaultpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>restoredefaultpath</b> (<var><small class="dots">...</small></var>)<var><a name="index-restoredefaultpath-775"></a></var><br>
+&mdash; Built-in Function:  <b>restoredefaultpath</b> (<var><small class="dots">...</small></var>)<var><a name="index-restoredefaultpath-795"></a></var><br>
 <blockquote><p>Restore Octave's path to its initial state at startup.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
 </p></blockquote></div>
 
-<!-- command_line_path src/load-path.cc -->
+<!-- command_line_path libinterp/interpfcn/load-path.cc -->
    <p><a name="doc_002dcommand_005fline_005fpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>command_line_path</b> (<var><small class="dots">...</small></var>)<var><a name="index-command_005fline_005fpath-776"></a></var><br>
+&mdash; Built-in Function:  <b>command_line_path</b> (<var><small class="dots">...</small></var>)<var><a name="index-command_005fline_005fpath-796"></a></var><br>
 <blockquote><p>Return the command line path variable.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
 </p></blockquote></div>
 
-<!-- find_dir_in_path src/utils.cc -->
+<!-- find_dir_in_path libinterp/interpfcn/utils.cc -->
    <p><a name="doc_002dfind_005fdir_005fin_005fpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir</var>)<var><a name="index-find_005fdir_005fin_005fpath-777"></a></var><br>
-&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir, "all"</var>)<var><a name="index-find_005fdir_005fin_005fpath-778"></a></var><br>
+&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir</var>)<var><a name="index-find_005fdir_005fin_005fpath-797"></a></var><br>
+&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir, "all"</var>)<var><a name="index-find_005fdir_005fin_005fpath-798"></a></var><br>
 <blockquote><p>Return the full name of the path element matching <var>dir</var>.  The
 match is performed at the end of each path element.  For example, if
 <var>dir</var> is <code>"foo/bar"</code>, it matches the path element

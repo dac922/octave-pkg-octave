@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Work around rmdir bugs.
 
    Copyright (C) 1988, 1990, 1999, 2003-2006, 2009-2012 Free Software

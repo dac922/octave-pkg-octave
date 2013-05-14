@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Like unistd.h, but redefine some names to avoid glitches.
 
    Copyright (C) 2005, 2009-2012 Free Software Foundation, Inc.

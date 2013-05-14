@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Duplicate an open file descriptor to a specified file descriptor.
 
    Copyright (C) 1999, 2004-2007, 2009-2012 Free Software Foundation, Inc.

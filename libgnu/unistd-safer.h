@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Invoke unistd-like functions, but avoid some glitches.
 
    Copyright (C) 2001, 2003, 2005, 2009-2012 Free Software Foundation, Inc.

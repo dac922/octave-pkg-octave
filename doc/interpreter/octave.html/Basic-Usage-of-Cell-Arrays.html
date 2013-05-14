@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Cell-Arrays.html#Cell-Arrays">Cell Arra
 
 <h4 class="subsection">6.2.1 Basic Usage of Cell Arrays</h4>
 
-<p><a name="index-g_t_0040_007b-455"></a><a name="index-g_t_0040_007d-456"></a>As an example, the following code creates a cell array containing a
+<p><a name="index-g_t_0040_007b-473"></a><a name="index-g_t_0040_007d-474"></a>As an example, the following code creates a cell array containing a
 string and a 2-by-2 random matrix
 
 <pre class="example">     c = {"a string", rand(2, 2)};
@@ -82,7 +82,7 @@ function.
    <p><a name="doc_002dcelldisp"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>celldisp</b> (<var>c, name</var>)<var><a name="index-celldisp-457"></a></var><br>
+&mdash; Function File:  <b>celldisp</b> (<var>c, name</var>)<var><a name="index-celldisp-475"></a></var><br>
 <blockquote><p>Recursively display the contents of a cell array.  By default the values
 are displayed with the name of the variable <var>c</var>.  However, this name
 can be replaced with the variable <var>name</var>.  For example:
@@ -99,30 +99,24 @@ can be replaced with the variable <var>name</var>.  For example:
                 b{3}{2} =
                  32
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddisp.html#doc_002ddisp">disp</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002ddisp.html#doc_002ddisp">disp</a>. 
 </p></blockquote></div>
 
    <p>To test if an object is a cell array, use the <code>iscell</code>
 function.  For example:
 
-<pre class="example">     iscell(c)
+<pre class="example">     iscell (c)
           &rArr; ans = 1
      
-     iscell(3)
+     iscell (3)
           &rArr; ans = 0
 </pre>
-   <!-- iscell src/ov-cell.cc -->
+   <!-- iscell libinterp/octave-value/ov-cell.cc -->
    <p><a name="doc_002discell"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>iscell</b> (<var>x</var>)<var><a name="index-iscell-458"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a cell array object. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>iscell</b> (<var>x</var>)<var><a name="index-iscell-476"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a cell array object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002discellstr.html#doc_002discellstr">iscellstr</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
 </p></blockquote></div>

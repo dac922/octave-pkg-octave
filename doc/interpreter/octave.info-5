@@ -1,4 +1,4 @@
-This is octave.info, produced by makeinfo version 4.13 from octave.texi.
+This is /home/jwe/src/octave/doc/interpreter/octave.info, produced by makeinfo version 4.13 from /home/jwe/src/octave/doc/interpreter/octave.texi.
 
 START-INFO-DIR-ENTRY
 * Octave: (octave).           Interactive language for numerical computations.
@@ -222,7 +222,7 @@ hypothesis is accepted if the p-value exceeds 0.05.
      DIST.  For example, to test whether a sample X comes from a
      uniform distribution on [2,4], use
 
-          kolmogorov_smirnov_test(x, "unif", 2, 4)
+          kolmogorov_smirnov_test (x, "unif", 2, 4)
 
      DIST can be any string for which a function DIST_CDF that
      calculates the CDF of distribution DIST exists.
@@ -1010,7 +1010,7 @@ determination.  The functions for set operations all work in pretty
 much the same way.  As an example, assume that `x' and `y' contains two
 sets, then
 
-     union(x, y)
+     union (x, y)
 
 computes the union of the two sets.
 
@@ -1030,8 +1030,8 @@ computes the union of the two sets.
 
      The inputs, A and S, may also be cell arrays.
 
-          a = {'abc'};
-          s = {'abc', 'def'};
+          a = {"abc"};
+          s = {"abc", "def"};
           [tf, s_idx] = ismember (a, s)
                => tf = [1, 0]
                => s_idx = [1, 0]
@@ -1042,7 +1042,7 @@ computes the union of the two sets.
 
           a = [1:3; 5:7; 4:6];
           s = [0:2; 1:3; 2:4; 3:5; 4:6];
-          [tf, s_idx] = ismember(a, s, "rows")
+          [tf, s_idx] = ismember (a, s, "rows")
                => tf = logical ([1; 0; 1])
                => s_idx = [2; 0; 5];
 
@@ -1106,7 +1106,7 @@ doc-ismember.
      ismember: doc-ismember.
 
  -- Function File:  setxor (A, B)
- -- Function File:  setxor (A, B, 'rows')
+ -- Function File:  setxor (A, B, "rows")
  -- Function File: [C, IA, IB] = setxor (A, B)
      Return the elements exclusive to A or B, sorted in ascending
      order.  If A and B are both column vectors return a column vector,
@@ -1122,12 +1122,19 @@ doc-ismember.
 
  -- Function File:  powerset (A)
  -- Function File:  powerset (A, "rows")
-     Return a cell array containing all subsets of the set A.
+     Compute the powerset (all subsets) of the set A.
 
+     The set A must be a numerical matrix or a cell array of strings.
+     The output will always be a cell array of either vectors or
+     strings.
 
-*See also:* *note unique: doc-unique, *note union: doc-union, *note
-setxor: doc-setxor, *note setdiff: doc-setdiff, *note ismember:
-doc-ismember.
+     With the optional second argument `"rows"', each row of the set A
+     is considered one element of the set.  As a result, A must then be
+     a numerical 2D matrix.
+
+     *See also:* *note unique: doc-unique, *note union: doc-union,
+     *note setxor: doc-setxor, *note setdiff: doc-setdiff, *note
+     ismember: doc-ismember.
 
 
 File: octave.info,  Node: Polynomial Manipulations,  Next: Interpolation,  Prev: Sets,  Up: Top
@@ -1159,8 +1166,8 @@ File: octave.info,  Node: Evaluating Polynomials,  Next: Finding Roots,  Up: Pol
 The value of a polynomial represented by the vector C can be evaluated
 at the point X very easily, as the following example shows:
 
-     N = length(c)-1;
-     val = dot( x.^(N:-1:0), c );
+     N = length (c) - 1;
+     val = dot (x.^(N:-1:0), c);
 
 While the above example shows how easy it is to compute the value of a
 polynomial, it isn't the most stable algorithm.  With larger polynomials
@@ -1235,6 +1242,19 @@ function for a definition), and then finding its eigenvalues.
 
      *See also:* *note poly: doc-poly, *note compan: doc-compan, *note
      fzero: doc-fzero.
+
+ -- Function File: Z = polyeig (C0, C1, ..., CL)
+ -- Function File: [V, Z] = polyeig (C0, C1, ..., CL)
+     Solve the polynomial eigenvalue problem of degree L.
+
+     Given an N*N matrix polynomial `C(s) = C0 + C1 s + ... + CL s^l'
+     polyeig solves the eigenvalue problem `(C0 + C1 + ... + CL)v = 0'.
+     Note that the eigenvalues Z are the zeros of the matrix polynomial.
+     Z is an LXN vector and V is an (N x N)l matrix with columns that
+     correspond to the eigenvectors.
+
+     *See also:* *note eig: doc-eig, *note eigs: doc-eigs, *note
+     compan: doc-compan.
 
  -- Function File:  compan (C)
      Compute the companion matrix corresponding to polynomial
@@ -1312,8 +1332,8 @@ File: octave.info,  Node: Products of Polynomials,  Next: Derivatives / Integral
      *See also:* *note deconv: doc-deconv, *note conv2: doc-conv2,
      *note convn: doc-convn, *note fftconv: doc-fftconv.
 
- -- Loadable Function: C = convn (A, B)
- -- Loadable Function: C = convn (A, B, SHAPE)
+ -- Built-in Function: C = convn (A, B)
+ -- Built-in Function: C = convn (A, B, SHAPE)
      Return the n-D convolution of A and B.  The size of the result is
      determined by the optional SHAPE argument which takes the following
      values
@@ -1344,9 +1364,9 @@ File: octave.info,  Node: Products of Polynomials,  Next: Derivatives / Integral
 
      *See also:* *note conv: doc-conv, *note residue: doc-residue.
 
- -- Loadable Function:  conv2 (A, B)
- -- Loadable Function:  conv2 (V1, V2, M)
- -- Loadable Function:  conv2 (..., SHAPE)
+ -- Built-in Function:  conv2 (A, B)
+ -- Built-in Function:  conv2 (V1, V2, M)
+ -- Built-in Function:  conv2 (..., SHAPE)
      Return the 2-D convolution of A and B.  The size of the result is
      determined by the optional SHAPE argument which takes the following
      values
@@ -1374,7 +1394,7 @@ File: octave.info,  Node: Products of Polynomials,  Next: Derivatives / Integral
      Find the greatest common divisor of two polynomials.  This is
      equivalent to the polynomial found by multiplying together all the
      common roots.  Together with deconv, you can reduce a ratio of two
-     polynomials.  The tolerance TOL defaults to `sqrt(eps)'.
+     polynomials.  The tolerance TOL defaults to `sqrt (eps)'.
 
      *Caution:* This is a numerically unstable algorithm and should not
      be used on large polynomials.
@@ -1383,7 +1403,7 @@ File: octave.info,  Node: Products of Polynomials,  Next: Derivatives / Integral
 
           polygcd (poly (1:8), poly (3:12)) - poly (3:8)
           => [ 0, 0, 0, 0, 0, 0, 0 ]
-          deconv (poly (1:8), polygcd (poly (1:8), poly (3:12))) - poly(1:2)
+          deconv (poly (1:8), polygcd (poly (1:8), poly (3:12))) - poly (1:2)
           => [ 0, 0, 0 ]
 
      *See also:* *note poly: doc-poly, *note roots: doc-roots, *note
@@ -1473,8 +1493,8 @@ return new polynomials describing the result.  As an example we'll
 compute the definite integral of p(x) = x^2 + 1 from 0 to 3.
 
      c = [1, 0, 1];
-     integral = polyint(c);
-     area = polyval(integral, 3) - polyval(integral, 0)
+     integral = polyint (c);
+     area = polyval (integral, 3) - polyval (integral, 0)
      => 12
 
  -- Function File:  polyder (P)
@@ -1516,18 +1536,20 @@ File: octave.info,  Node: Polynomial Interpolation,  Next: Miscellaneous Functio
 Octave comes with good support for various kinds of interpolation, most
 of which are described in *note Interpolation::.  One simple alternative
 to the functions described in the aforementioned chapter, is to fit a
-single polynomial to some given data points.  To avoid a highly
-fluctuating polynomial, one most often wants to fit a low-order
-polynomial to data.  This usually means that it is necessary to fit the
-polynomial in a least-squares sense, which just is what the `polyfit'
-function does.
+single polynomial, or a piecewise polynomial (spline) to some given
+data points.  To avoid a highly fluctuating polynomial, one most often
+wants to fit a low-order polynomial to data.  This usually means that it
+is necessary to fit the polynomial in a least-squares sense, which just
+is what the `polyfit' function does.
 
  -- Function File: P = polyfit (X, Y, N)
  -- Function File: [P, S] = polyfit (X, Y, N)
  -- Function File: [P, S, MU] = polyfit (X, Y, N)
      Return the coefficients of a polynomial P(X) of degree N that
      minimizes the least-squares-error of the fit to the points `[X,
-     Y]'.
+     Y]'.  If N is a logical vector, it is used as a mask to
+     selectively force the corresponding polynomial coefficients to be
+     used or ignored.
 
      The polynomial coefficients are returned in a row vector.
 
@@ -1541,6 +1563,11 @@ function does.
           The Vandermonde matrix used to compute the polynomial
           coefficients.
 
+    `C'
+          The unscaled covariance matrix, formally equal to the inverse
+          of X'*X, but computed in a way minimizing roundoff error
+          propagation.
+
     `df'
           The degrees of freedom.
 
@@ -1551,7 +1578,9 @@ function does.
           The values of the polynomial for each value of X.
 
      The second output may be used by `polyval' to calculate the
-     statistical error limits of the predicted values.
+     statistical error limits of the predicted values.  In particular,
+     the standard deviation of P coefficients is given by
+     `sqrt (diag (s.C)/s.df)*s.normr'.
 
      When the third output, MU, is present the coefficients, P, are
      associated with a polynomial in XHAT = (X-MU(1))/MU(2).  Where
@@ -1563,9 +1592,204 @@ function does.
      *note zscore: doc-zscore.
 
    In situations where a single polynomial isn't good enough, a solution
-is to use several polynomials pieced together.  The function `mkpp'
-creates a piecewise polynomial, `ppval' evaluates the function created
-by `mkpp', and `unmkpp' returns detailed information about the function.
+is to use several polynomials pieced together.  The function
+`splinefit' fits a peicewise polynomial (spline) to a set of data.
+
+ -- Function File: PP = splinefit (X, Y, BREAKS)
+     Fit a piecewise cubic spline with breaks (knots) BREAKS to the
+     noisy data, X and Y.  X is a vector, and Y a vector or N-D array.
+     If Y is an N-D array, then X(j) is matched to Y(:,...,:,j).
+
+     The fitted spline is returned as a piecewise polynomial, PP, and
+     may be evaluated using `ppval'.
+
+ -- Function File: PP = splinefit (X, Y, P)
+     P is a positive integer defining the number of intervals along X,
+     and P+1 is the number of breaks.  The number of points in each
+     interval differ by no more than 1.
+
+ -- Function File: PP = splinefit (..., "periodic", PERIODIC)
+ -- Function File: PP = splinefit (..., "robust", ROBUST)
+ -- Function File: PP = splinefit (..., "beta", BETA)
+ -- Function File: PP = splinefit (..., "order", ORDER)
+ -- Function File: PP = splinefit (..., "constraints", CONSTRAINTS)
+     The optional property PERIODIC is a logical value which specifies
+     whether a periodic boundary condition is applied to the spline.
+     The length of the period is `max (BREAKS) - min (BREAKS)'.  The
+     default value is `false'.
+
+     The optional property ROBUST is a logical value which specifies if
+     robust fitting is to be applied to reduce the influence of outlying
+     data points.  Three iterations of weighted least squares are
+     performed.  Weights are computed from previous residuals.  The
+     sensitivity of outlier identification is controlled by the
+     property BETA.  The value of BETA is stricted to the range, 0 <
+     BETA < 1.  The default value is BETA = 1/2.  Values close to 0
+     give all data equal weighting.  Increasing values of BETA reduce
+     the influence of outlying data.  Values close to unity may cause
+     instability or rank deficiency.
+
+     The splines are constructed of polynomials with degree ORDER.  The
+     default is a cubic, ORDER=3.  A spline with P pieces has P+ORDER
+     degrees of freedom.  With periodic boundary conditions the degrees
+     of freedom are reduced to P.
+
+     The optional property, CONSTAINTS, is a structure specifying
+     linear constraints on the fit.  The structure has three fields,
+     "xc", "yc", and "cc".
+
+    "xc"
+          Vector of the x-locations of the constraints.
+
+    "yc"
+          Constraining values at the locations, XC.  The default is an
+          array of zeros.
+
+    "cc"
+          Coefficients (matrix).  The default is an array of ones.  The
+          number of rows is limited to the order of the piecewise
+          polynomials, ORDER.
+
+     Constraints are linear combinations of derivatives of order 0 to
+     ORDER-1 according to
+
+          cc(1,j) * y(xc(j)) + cc(2,j) * y'(xc(j)) + ... = yc(:,...,:,j).
+
+     *See also:* *note interp1: doc-interp1, *note unmkpp: doc-unmkpp,
+     *note ppval: doc-ppval, *note spline: doc-spline, *note pchip:
+     doc-pchip, *note ppder: doc-ppder, *note ppint: doc-ppint, *note
+     ppjumps: doc-ppjumps.
+
+   The number of BREAKS (or knots) used to construct the piecewise
+polynomial is a significant factor in suppressing the noise present in
+the input data, X and Y.  This is demonstrated by the example below.
+
+     x = 2 * pi * rand (1, 200);
+     y = sin (x) + sin (2 * x) + 0.2 * randn (size (x));
+     ## Uniform breaks
+     breaks = linspace (0, 2 * pi, 41); % 41 breaks, 40 pieces
+     pp1 = splinefit (x, y, breaks);
+     ## Breaks interpolated from data
+     pp2 = splinefit (x, y, 10);  % 11 breaks, 10 pieces
+     ## Plot
+     xx = linspace (0, 2 * pi, 400);
+     y1 = ppval (pp1, xx);
+     y2 = ppval (pp2, xx);
+     plot (x, y, ".", xx, [y1; y2])
+     axis tight
+     ylim auto
+     legend ({"data", "41 breaks, 40 pieces", "11 breaks, 10 pieces"})
+
+   The piecewise polynomial fit, provided by `splinefit', has
+continuous derivatives up to the ORDER-1.  For example, a cubic fit has
+continuous first and second derivatives.  This is demonstrated by the
+code
+
+     ## Data (200 points)
+     x = 2 * pi * rand (1, 200);
+     y = sin (x) + sin (2 * x) + 0.1 * randn (size (x));
+     ## Piecewise constant
+     pp1 = splinefit (x, y, 8, "order", 0);
+     ## Piecewise linear
+     pp2 = splinefit (x, y, 8, "order", 1);
+     ## Piecewise quadratic
+     pp3 = splinefit (x, y, 8, "order", 2);
+     ## Piecewise cubic
+     pp4 = splinefit (x, y, 8, "order", 3);
+     ## Piecewise quartic
+     pp5 = splinefit (x, y, 8, "order", 4);
+     ## Plot
+     xx = linspace (0, 2 * pi, 400);
+     y1 = ppval (pp1, xx);
+     y2 = ppval (pp2, xx);
+     y3 = ppval (pp3, xx);
+     y4 = ppval (pp4, xx);
+     y5 = ppval (pp5, xx);
+     plot (x, y, ".", xx, [y1; y2; y3; y4; y5])
+     axis tight
+     ylim auto
+     legend ({"data", "order 0", "order 1", "order 2", "order 3", "order 4"})
+
+   When the underlying function to provide a fit to is periodic,
+`splinefit' is able to apply the boundary conditions needed to manifest
+a periodic fit.  This is demonstrated by the code below.
+
+     ## Data (100 points)
+     x = 2 * pi * [0, (rand (1, 98)), 1];
+     y = sin (x) - cos (2 * x) + 0.2 * randn (size (x));
+     ## No constraints
+     pp1 = splinefit (x, y, 10, "order", 5);
+     ## Periodic boundaries
+     pp2 = splinefit (x, y, 10, "order", 5, "periodic", true);
+     ## Plot
+     xx = linspace (0, 2 * pi, 400);
+     y1 = ppval (pp1, xx);
+     y2 = ppval (pp2, xx);
+     plot (x, y, ".", xx, [y1; y2])
+     axis tight
+     ylim auto
+     legend ({"data", "no constraints", "periodic"})
+
+   More complex constraints may be added as well.  For example, the
+code below illustrates a periodic fit with values that have been
+clamped at the endpoints, and a second periodic fit which is hinged at
+the endpoints.
+
+     ## Data (200 points)
+     x = 2 * pi * rand (1, 200);
+     y = sin (2 * x) + 0.1 * randn (size (x));
+     ## Breaks
+     breaks = linspace (0, 2 * pi, 10);
+     ## Clamped endpoints, y = y' = 0
+     xc = [0, 0, 2*pi, 2*pi];
+     cc = [(eye (2)), (eye (2))];
+     con = struct ("xc", xc, "cc", cc);
+     pp1 = splinefit (x, y, breaks, "constraints", con);
+     ## Hinged periodic endpoints, y = 0
+     con = struct ("xc", 0);
+     pp2 = splinefit (x, y, breaks, "constraints", con, "periodic", true);
+     ## Plot
+     xx = linspace (0, 2 * pi, 400);
+     y1 = ppval (pp1, xx);
+     y2 = ppval (pp2, xx);
+     plot (x, y, ".", xx, [y1; y2])
+     axis tight
+     ylim auto
+     legend ({"data", "clamped", "hinged periodic"})
+
+   The `splinefit' function also provides the convenience of a ROBUST
+fitting, where the effect of outlying data is reduced.  In the example
+below, three different fits are provided.  Two with differing levels of
+outlier suppression and a third illustrating the non-robust solution.
+
+     ## Data
+     x = linspace (0, 2*pi, 200);
+     y = sin (x) + sin (2 * x) + 0.05 * randn (size (x));
+     ## Add outliers
+     x = [x, linspace(0,2*pi,60)];
+     y = [y, -ones(1,60)];
+     ## Fit splines with hinged conditions
+     con = struct ("xc", [0, 2*pi]);
+     ## Robust fitting, beta = 0.25
+     pp1 = splinefit (x, y, 8, "constraints", con, "beta", 0.25);
+     ## Robust fitting, beta = 0.75
+     pp2 = splinefit (x, y, 8, "constraints", con, "beta", 0.75);
+     ## No robust fitting
+     pp3 = splinefit (x, y, 8, "constraints", con);
+     ## Plot
+     xx = linspace (0, 2*pi, 400);
+     y1 = ppval (pp1, xx);
+     y2 = ppval (pp2, xx);
+     y3 = ppval (pp3, xx);
+     plot (x, y, ".", xx, [y1; y2; y3])
+     legend ({"data with outliers","robust, beta = 0.25", ...
+              "robust, beta = 0.75", "no robust fitting"})
+     axis tight
+     ylim auto
+
+   The function, `ppval', evaluates the piecewise polynomials, created
+by `mkpp' or other means, and `unmkpp' returns detailed information
+about the piecewise polynomial.
 
    The following example shows how to combine two linear functions and a
 quadratic into one function.  Each of these functions is expressed on
@@ -1575,10 +1799,10 @@ adjoined intervals.
      p = [ 0,  1, 0;
            1, -2, 1;
            0, -1, 1 ];
-     pp = mkpp(x, p);
-     xi = linspace(-2, 2, 50);
-     yi = ppval(pp, xi);
-     plot(xi, yi);
+     pp = mkpp (x, p);
+     xi = linspace (-2, 2, 50);
+     yi = ppval (pp, xi);
+     plot (xi, yi);
 
  -- Function File: PP = mkpp (BREAKS, COEFS)
  -- Function File: PP = mkpp (BREAKS, COEFS, D)
@@ -1736,51 +1960,55 @@ further methods.
  -- Function File: YI = interp1 (Y, XI)
  -- Function File: YI = interp1 (..., METHOD)
  -- Function File: YI = interp1 (..., EXTRAP)
- -- Function File: PP = interp1 (..., 'pp')
-     One-dimensional interpolation.  Interpolate Y, defined at the
-     points X, at the points XI.  The sample points X must be
-     monotonic.  If not specified, X is taken to be the indices of Y.
-     If Y is an array, treat the columns of Y separately.
+ -- Function File: PP = interp1 (..., "pp")
+     One-dimensional interpolation.  Interpolates to determine the
+     value of YI at the points, XI.  If not specified, X is taken to be
+     the indices of Y.  If Y is an array, treat the columns of Y
+     separately.
 
      Method is one of:
 
-    'nearest'
+    "nearest"
           Return the nearest neighbor.
 
-    'linear'
+    "linear"
           Linear interpolation from nearest neighbors
 
-    'pchip'
+    "pchip"
           Piecewise cubic Hermite interpolating polynomial
 
-    'cubic'
+    "cubic"
           Cubic interpolation (same as `pchip')
 
-    'spline'
+    "spline"
           Cubic spline interpolation--smooth first and second
           derivatives throughout the curve
 
      Appending '*' to the start of the above method forces `interp1' to
-     assume that X is uniformly spaced, and only `X (1)' and `X (2)'
-     are referenced.  This is usually faster, and is never slower.  The
-     default method is 'linear'.
+     assume that X is uniformly spaced, and only `X(1)' and `X(2)' are
+     referenced.  This is usually faster, and is never slower.  The
+     default method is "linear".
 
-     If EXTRAP is the string 'extrap', then extrapolate values beyond
+     If EXTRAP is the string "extrap", then extrapolate values beyond
      the endpoints.  If EXTRAP is a number, replace values beyond the
      endpoints with that number.  If EXTRAP is missing, assume NA.
 
-     If the string argument 'pp' is specified, then XI should not be
+     If the string argument "pp" is specified, then XI should not be
      supplied and `interp1' returns the piecewise polynomial that can
      later be used with `ppval' to evaluate the interpolation.  There
-     is an equivalence, such that `ppval (interp1 (X, Y, METHOD, 'pp'),
-     XI) == interp1 (X, Y, XI, METHOD, 'extrap')'.
+     is an equivalence, such that `ppval (interp1 (X, Y, METHOD, "pp"),
+     XI) == interp1 (X, Y, XI, METHOD, "extrap")'.
 
      Duplicate points in X specify a discontinuous interpolant.  There
-     should be at most 2 consecutive points with the same value.  The
-     discontinuous interpolant is right-continuous if X is increasing,
-     left-continuous if it is decreasing.  Discontinuities are
-     (currently) only allowed for "nearest" and "linear" methods; in
-     all other cases, X must be strictly monotonic.
+     may be at most 2 consecutive points with the same value.  If X is
+     increasing, the default discontinuous interpolant is
+     right-continuous. If X is decreasing, the default discontinuous
+     interpolant is left-continuous.  The continuity condition of the
+     interpolant may be specified by using the options, "-left" or
+     "-right", to select a left-continuous or right-continuous
+     interpolant, respectively.  Discontinuous interpolation is only
+     allowed for "nearest" and "linear" methods; in all other cases,
+     the X-values must be unique.
 
      An example of the use of `interp1' is
 
@@ -1814,17 +2042,17 @@ results.
      dt = 1;
      ti =-2:0.025:2;
      dti = 0.025;
-     y = sign(t);
-     ys = interp1(t,y,ti,'spline');
-     yp = interp1(t,y,ti,'pchip');
-     ddys = diff(diff(ys)./dti)./dti;
-     ddyp = diff(diff(yp)./dti)./dti;
-     figure(1);
-     plot (ti, ys,'r-', ti, yp,'g-');
-     legend('spline','pchip',4);
-     figure(2);
-     plot (ti, ddys,'r+', ti, ddyp,'g*');
-     legend('spline','pchip');
+     y = sign (t);
+     ys = interp1 (t,y,ti,'spline');
+     yp = interp1 (t,y,ti,'pchip');
+     ddys = diff (diff (ys)./dti) ./ dti;
+     ddyp = diff (diff (yp)./dti) ./ dti;
+     figure (1);
+     plot (ti,ys,'r-', ti,yp,'g-');
+     legend ('spline', 'pchip', 4);
+     figure (2);
+     plot (ti,ddys,'r+', ti,ddyp,'g*');
+     legend ('spline', 'pchip');
 
    A simplified version of `interp1' that performs only linear
 interpolation is available in `interp1q'.  This argument is slightly
@@ -1874,9 +2102,9 @@ sampled at equispaced points.  An example of the use of `interpft' is
      ti = t(1) + [0 : k-1]*dt*n/k;
      y = sin (4*t + 0.3) .* cos (3*t - 0.1);
      yp = sin (4*ti + 0.3) .* cos (3*ti - 0.1);
-     plot (ti, yp, 'g', ti, interp1(t, y, ti, 'spline'), 'b', ...
+     plot (ti, yp, 'g', ti, interp1 (t, y, ti, 'spline'), 'b', ...
            ti, interpft (y, k), 'c', t, y, 'r+');
-     legend ('sin(4t+0.3)cos(3t-0.1','spline','interpft','data');
+     legend ('sin(4t+0.3)cos(3t-0.1', 'spline', 'interpft', 'data');
 
 which demonstrates the poor behavior of Fourier interpolation for
 non-periodic functions.
@@ -1938,8 +2166,8 @@ described in *note Interpolation on Scattered Data::.
           matrices XI, YI.
 
           If the last argument is a string, the interpolation method can
-          be specified.  The method can be 'linear', 'nearest' or
-          'cubic'.  If it is omitted 'linear' interpolation is assumed.
+          be specified.  The method can be "linear", "nearest" or
+          "cubic".  If it is omitted "linear" interpolation is assumed.
 
     `interp2 (Z, XI, YI)'
           Assumes `X = 1:rows (Z)' and `Y = 1:columns (Z)'
@@ -1951,19 +2179,19 @@ described in *note Interpolation on Scattered Data::.
      The variable METHOD defines the method to use for the
      interpolation.  It can take one of the following values
 
-    'nearest'
+    "nearest"
           Return the nearest neighbor.
 
-    'linear'
+    "linear"
           Linear interpolation from nearest neighbors.
 
-    'pchip'
+    "pchip"
           Piecewise cubic Hermite interpolating polynomial.
 
-    'cubic'
+    "cubic"
           Cubic interpolation from four nearest neighbors.
 
-    'spline'
+    "spline"
           Cubic spline interpolation--smooth first and second
           derivatives throughout the curve.
 
@@ -1984,7 +2212,7 @@ described in *note Interpolation on Scattered Data::.
      3-dimensional array V represents a value at a location given by
      the parameters X, Y, and Z.  The parameters X, X, and Z are either
      3-dimensional arrays of the same size as the array V in the
-     'meshgrid' format or vectors.  The parameters XI, etc.  respect a
+     "meshgrid" format or vectors.  The parameters XI, etc.  respect a
      similar format to X, etc., and they represent the points at which
      the array VI is interpolated.
 
@@ -1996,23 +2224,23 @@ described in *note Interpolation on Scattered Data::.
 
      Method is one of:
 
-    'nearest'
+    "nearest"
           Return the nearest neighbor.
 
-    'linear'
+    "linear"
           Linear interpolation from nearest neighbors.
 
-    'cubic'
+    "cubic"
           Cubic interpolation from four nearest neighbors (not
           implemented yet).
 
-    'spline'
+    "spline"
           Cubic spline interpolation--smooth first and second
           derivatives throughout the curve.
 
-     The default method is 'linear'.
+     The default method is "linear".
 
-     If EXTRAP is the string 'extrap', then extrapolate values beyond
+     If EXTRAP is the string "extrap", then extrapolate values beyond
      the endpoints.  If EXTRAP is a number, replace values beyond the
      endpoints with that number.  If EXTRAP is missing, assume NA.
 
@@ -2030,7 +2258,7 @@ described in *note Interpolation on Scattered Data::.
      Each element of the N-dimensional array V represents a value at a
      location given by the parameters X1, X2, ..., XN.  The parameters
      X1, X2, ..., XN are either N-dimensional arrays of the same size
-     as the array V in the 'ndgrid' format or vectors.  The parameters
+     as the array V in the "ndgrid" format or vectors.  The parameters
      Y1, etc. respect a similar format to X1, etc., and they represent
      the points at which the array VI is interpolated.
 
@@ -2042,21 +2270,21 @@ described in *note Interpolation on Scattered Data::.
 
      Method is one of:
 
-    'nearest'
+    "nearest"
           Return the nearest neighbor.
 
-    'linear'
+    "linear"
           Linear interpolation from nearest neighbors.
 
-    'cubic'
+    "cubic"
           Cubic interpolation from four nearest neighbors (not
           implemented yet).
 
-    'spline'
+    "spline"
           Cubic spline interpolation--smooth first and second
           derivatives throughout the curve.
 
-     The default method is 'linear'.
+     The default method is "linear".
 
      If EXTRAPVAL is the scalar value, use it to replace the values
      beyond the endpoints with that number.  If EXTRAPVAL is missing,
@@ -2080,9 +2308,9 @@ the example,
      v = f (xx,yy,zz);
      xi = yi = zi = -1:0.1:1;
      [xxi, yyi, zzi] = meshgrid (xi, yi, zi);
-     vi = interp3(x, y, z, v, xxi, yyi, zzi, 'spline');
+     vi = interp3 (x, y, z, v, xxi, yyi, zzi, 'spline');
      [xxi, yyi, zzi] = ndgrid (xi, yi, zi);
-     vi2 = interpn(x, y, z, v, xxi, yyi, zzi, 'spline');
+     vi2 = interpn (x, y, z, v, xxi, yyi, zzi, 'spline');
      mesh (zi, yi, squeeze (vi2(1,:,:)));
 
 where `vi' and `vi2' are identical.  The reversal of the dimensions is
@@ -2180,7 +2408,8 @@ In this case the Delaunay triangulation is not unique.
 
      *See also:* *note delaunay3: doc-delaunay3, *note delaunayn:
      doc-delaunayn, *note convhull: doc-convhull, *note voronoi:
-     doc-voronoi.
+     doc-voronoi, *note triplot: doc-triplot, *note trimesh:
+     doc-trimesh, *note trisurf: doc-trisurf.
 
    The 3- and N-dimensional extension of the Delaunay triangulation are
 given by `delaunay3' and `delaunayn' respectively.  `delaunay3' returns
@@ -2216,7 +2445,7 @@ triangulation is called a tessellation.
 
      *See also:* *note delaunay: doc-delaunay, *note delaunayn:
      doc-delaunayn, *note convhull: doc-convhull, *note voronoi:
-     doc-voronoi.
+     doc-voronoi, *note tetramesh: doc-tetramesh.
 
  -- Function File: T = delaunayn (PTS)
  -- Function File: T = delaunayn (PTS, OPTIONS)
@@ -2250,7 +2479,8 @@ triangulation is called a tessellation.
 
      *See also:* *note delaunay: doc-delaunay, *note delaunay3:
      doc-delaunay3, *note convhulln: doc-convhulln, *note voronoin:
-     doc-voronoin.
+     doc-voronoin, *note trimesh: doc-trimesh, *note tetramesh:
+     doc-tetramesh.
 
    An example of a Delaunay triangulation of a set of points is
 
@@ -2261,7 +2491,7 @@ triangulation is called a tessellation.
      X = [ x(T(:,1)); x(T(:,2)); x(T(:,3)); x(T(:,1)) ];
      Y = [ y(T(:,1)); y(T(:,2)); y(T(:,3)); y(T(:,1)) ];
      axis ([0, 1, 0, 1]);
-     plot(X, Y, "b", x, y, "r*");
+     plot (X, Y, "b", x, y, "r*");
 
 * Menu:
 
@@ -2276,6 +2506,8 @@ File: octave.info,  Node: Plotting the Triangulation,  Next: Identifying Points 
 
 Octave has the functions `triplot', `trimesh', and `trisurf' to plot
 the Delaunay triangulation of a 2-dimensional set of points.
+`tetramesh' will plot the triangulation of a 3-dimensional set of
+points.
 
  -- Function File:  triplot (TRI, X, Y)
  -- Function File:  triplot (TRI, X, Y, LINESPEC)
@@ -2313,6 +2545,37 @@ the Delaunay triangulation of a 2-dimensional set of points.
 
      *See also:* *note triplot: doc-triplot, *note trimesh:
      doc-trimesh, *note delaunay3: doc-delaunay3.
+
+ -- Function File:  tetramesh (T, X)
+ -- Function File:  tetramesh (T, X, C)
+ -- Function File:  tetramesh (..., PROPERTY, VAL, ...)
+ -- Function File: H = tetramesh (...)
+     Display the tetrahedrons defined in the m-by-4 matrix T as 3-D
+     patches.  T is typically the output of a Delaunay triangulation of
+     a 3-D set of points.  Every row of T contains four indices into
+     the n-by-3 matrix X of the vertices of a tetrahedron.  Every row in
+     X represents one point in 3-D space.
+
+     The vector C specifies the color of each tetrahedron as an index
+     into the current colormap.  The default value is 1:m where m is
+     the number of tetrahedrons; the indices are scaled to map to the
+     full range of the colormap.  If there are more tetrahedrons than
+     colors in the colormap then the values in C are cyclically
+     repeated.
+
+     Calling `tetramesh (..., "property", "value", ...)' passes all
+     property/value pairs directly to the patch function as additional
+     arguments.
+
+     The optional return value H is a vector of patch handles where each
+     handle represents one tetrahedron in the order given by T.  A
+     typical use case for H is to turn the respective patch "visible"
+     property "on" or "off".
+
+     Type `demo tetramesh' to see examples on using `tetramesh'.
+
+     *See also:* *note delaunay3: doc-delaunay3, *note delaunayn:
+     doc-delaunayn, *note trimesh: doc-trimesh, *note patch: doc-patch.
 
    The difference between `triplot', and `trimesh' or `triplot', is
 that the former only plots the 2-dimensional triangulation itself,
@@ -2361,13 +2624,13 @@ unique solution for the values of `BETA(I)' an additional criteria of
 is imposed, and we can therefore write the above as
 
      P - T(end, :) = BETA(1:end-1) * (T(1:end-1, :)
-           - ones(N, 1) * T(end, :)
+           - ones (N, 1) * T(end, :)
 
 Solving for BETA we can then write
 
      BETA(1:end-1) = (P - T(end, :)) / (T(1:end-1, :)
-           - ones(N, 1) * T(end, :))
-     BETA(end) = sum(BETA(1:end-1))
+           - ones (N, 1) * T(end, :))
+     BETA(end) = sum (BETA(1:end-1))
 
 which gives the formula for the conversion of the Cartesian coordinates
 of the point P to the Barycentric coordinates BETA.  An important
@@ -2499,7 +2762,7 @@ tessellation.
 
      If a single output argument is requested then the Voronoi diagram
      will be plotted and a graphics handle H to the plot is returned.
-     [VX, VY] = voronoi(...) returns the Voronoi vertices instead of
+     [VX, VY] = voronoi (...) returns the Voronoi vertices instead of
      plotting the diagram.
 
           x = rand (10, 1);
@@ -2529,9 +2792,9 @@ tessellation.
 
    An example of the use of `voronoi' is
 
-     rand("state",9);
-     x = rand(10,1);
-     y = rand(10,1);
+     rand ("state",9);
+     x = rand (10,1);
+     y = rand (10,1);
      tri = delaunay (x, y);
      [vx, vy] = voronoi (x, y, tri);
      triplot (tri, x, y, "b");
@@ -2560,7 +2823,7 @@ with the `polyarea' and `inpolygon' functions respectively.
      x = rand (10, 1);
      y = rand (10, 1);
      [c, f] = voronoin ([x, y]);
-     af = zeros (size(f));
+     af = zeros (size (f));
      for i = 1 : length (f)
        af(i) = polyarea (c (f {i, :}, 1), c (f {i, :}, 2));
      endfor
@@ -2595,7 +2858,7 @@ with `rectint'
      vx = cos (pi * [-1 : 0.1: 1]);
      vy = sin (pi * [-1 : 0.1 : 1]);
      in = inpolygon (x, y, vx, vy);
-     plot(vx, vy, x(in), y(in), "r+", x(!in), y(!in), "bo");
+     plot (vx, vy, x(in), y(in), "r+", x(!in), y(!in), "bo");
      axis ([-2, 2, -2, 2]);
 
 
@@ -2611,9 +2874,9 @@ N-dimensional sets of points.
 
  -- Function File: H = convhull (X, Y)
  -- Function File: H = convhull (X, Y, OPTIONS)
-     Compute the convex hull of the set of points defined by the
-     vectors X and Y.  The hull H is an index vector into the set of
-     points and specifies which points form the enclosing hull.
+     Compute the convex hull of the set of points defined by the arrays
+     X and Y.  The hull H is an index vector into the set of points and
+     specifies which points form the enclosing hull.
 
      An optional third argument, which must be a string or cell array
      of strings, contains options passed to the underlying qhull
@@ -2683,8 +2946,9 @@ the simplices are used to interpolate to the desired points.  The
 functions that perform this interpolation are `griddata', `griddata3'
 and `griddatan'.
 
+ -- Function File: ZI = griddata (X, Y, Z, XI, YI)
  -- Function File: ZI = griddata (X, Y, Z, XI, YI, METHOD)
- -- Function File: [XI, YI, ZI] = griddata (X, Y, Z, XI, YI, METHOD)
+ -- Function File: [XI, YI, ZI] = griddata (...)
      Generate a regular mesh from irregular data using interpolation.
      The function is defined by `Z = f (X, Y)'.  Inputs `X, Y, Z' are
      vectors of the same length or `X, Y' are vectors and `Z' is matrix.
@@ -2695,8 +2959,11 @@ and `griddatan'.
      The interpolation method can be `"nearest"', `"cubic"' or
      `"linear"'.  If method is omitted it defaults to `"linear"'.
 
-     *See also:* *note delaunay: doc-delaunay.
+     *See also:* *note griddata3: doc-griddata3, *note griddatan:
+     doc-griddatan, *note delaunay: doc-delaunay.
 
+ -- Function File: VI = griddata3 (X, Y, Z, V, XI, YI, ZI)
+ -- Function File: VI = griddata3 (X, Y, Z, V, XI, YI, ZI, METHOD)
  -- Function File: VI = griddata3 (X, Y, Z, V, XI, YI, ZI, METHOD,
           OPTIONS)
      Generate a regular mesh from irregular data using interpolation.
@@ -2706,9 +2973,16 @@ and `griddatan'.
      The interpolation method can be `"nearest"' or `"linear"'.  If
      method is omitted it defaults to `"linear"'.
 
+     The optional argument OPTIONS is passed directly to Qhull when
+     computing the Delaunay triangulation used for interpolation.  See
+     `delaunayn' for information on the defaults and how to pass
+     different values.
+
      *See also:* *note griddata: doc-griddata, *note griddatan:
      doc-griddatan, *note delaunayn: doc-delaunayn.
 
+ -- Function File: YI = griddatan (X, Y, XI)
+ -- Function File: YI = griddatan (X, Y, XI, METHOD)
  -- Function File: YI = griddatan (X, Y, XI, METHOD, OPTIONS)
      Generate a regular mesh from irregular data using interpolation.
      The function is defined by `Y = f (X)'.  The interpolation points
@@ -2717,17 +2991,22 @@ and `griddatan'.
      The interpolation method can be `"nearest"' or `"linear"'.  If
      method is omitted it defaults to `"linear"'.
 
-     *See also:* *note griddata: doc-griddata, *note delaunayn:
-     doc-delaunayn.
+     The optional argument OPTIONS is passed directly to Qhull when
+     computing the Delaunay triangulation used for interpolation.  See
+     `delaunayn' for information on the defaults and how to pass
+     different values.
+
+     *See also:* *note griddata: doc-griddata, *note griddata3:
+     doc-griddata3, *note delaunayn: doc-delaunayn.
 
    An example of the use of the `griddata' function is
 
-     rand("state",1);
-     x=2*rand(1000,1)-1;
-     y=2*rand(size(x))-1;
-     z=sin(2*(x.^2+y.^2));
-     [xx,yy]=meshgrid(linspace(-1,1,32));
-     griddata(x,y,z,xx,yy);
+     rand ("state", 1);
+     x = 2*rand (1000,1) - 1;
+     y = 2*rand (size (x)) - 1;
+     z = sin (2*(x.^2+y.^2));
+     [xx,yy] = meshgrid (linspace (-1,1,32));
+     griddata (x,y,z,xx,yy);
 
 that interpolates from a random scattering of points, to a uniform grid.
 
@@ -2757,9 +3036,9 @@ with the FFTW or FFTPACK libraries depending on how Octave is built.
 
      *See also:* *note polyfit: doc-polyfit.
 
- -- Loadable Function:  fft (X)
- -- Loadable Function:  fft (X, N)
- -- Loadable Function:  fft (X, N, DIM)
+ -- Built-in Function:  fft (X)
+ -- Built-in Function:  fft (X, N)
+ -- Built-in Function:  fft (X, N, DIM)
      Compute the discrete Fourier transform of A using a Fast Fourier
      Transform (FFT) algorithm.
 
@@ -2792,10 +3071,10 @@ utilities provided together with the FFTW libraries (`fftw-wisdom' on
 Unix systems), you can even add wisdom generated by Octave to the
 system-wide wisdom file.
 
- -- Loadable Function: METHOD = fftw ('planner')
- -- Loadable Function:  fftw ('planner', METHOD)
- -- Loadable Function: WISDOM = fftw ('dwisdom')
- -- Loadable Function:  fftw ('dwisdom', WISDOM)
+ -- Loadable Function: METHOD = fftw ("planner")
+ -- Loadable Function:  fftw ("planner", METHOD)
+ -- Loadable Function: WISDOM = fftw ("dwisdom")
+ -- Loadable Function:  fftw ("dwisdom", WISDOM)
      Manage FFTW wisdom data.  Wisdom data can be used to significantly
      accelerate the calculation of the FFTs, but implies an initial cost
      in its calculation.  When the FFTW libraries are initialized, they
@@ -2804,14 +3083,14 @@ system-wide wisdom file.
      Octave.  Alternatively, the `fftw' function can be used to import
      wisdom.  For example,
 
-          WISDOM = fftw ('dwisdom')
+          WISDOM = fftw ("dwisdom")
 
      will save the existing wisdom used by Octave to the string WISDOM.
      This string can then be saved to a file and restored using the
      `save' and `load' commands respectively.  This existing wisdom can
      be reimported as follows
 
-          fftw ('dwisdom', WISDOM)
+          fftw ("dwisdom", WISDOM)
 
      If WISDOM is an empty matrix, then the wisdom used is cleared.
 
@@ -2820,7 +3099,7 @@ system-wide wisdom file.
      controlled by the `fftw' function.  There are five different
      manners in which the wisdom can be treated:
 
-    'estimate'
+    "estimate"
           Specifies that no run-time measurement of the optimal means of
           calculating a particular is performed, and a simple heuristic
           is used to pick a (probably sub-optimal) plan.  The advantage
@@ -2828,33 +3107,33 @@ system-wide wisdom file.
           generation of the plan, which is appropriate for a Fourier
           transform that will be calculated once.
 
-    'measure'
+    "measure"
           In this case a range of algorithms to perform the transform
           is considered and the best is selected based on their
           execution time.
 
-    'patient'
-          Similar to 'measure', but a wider range of algorithms is
+    "patient"
+          Similar to "measure", but a wider range of algorithms is
           considered.
 
-    'exhaustive'
-          Like 'measure', but all possible algorithms that may be used
+    "exhaustive"
+          Like "measure", but all possible algorithms that may be used
           to treat the transform are considered.
 
-    'hybrid'
+    "hybrid"
           As run-time measurement of the algorithm can be expensive,
-          this is a compromise where 'measure' is used for transforms
-          up to the size of 8192 and beyond that the 'estimate' method
+          this is a compromise where "measure" is used for transforms
+          up to the size of 8192 and beyond that the "estimate" method
           is used.
 
-     The default method is 'estimate'.  The current method can be
+     The default method is "estimate".  The current method can be
      queried with
 
-          METHOD = fftw ('planner')
+          METHOD = fftw ("planner")
 
      or set by using
 
-          fftw ('planner', METHOD)
+          fftw ("planner", METHOD)
 
      Note that calculated wisdom will be lost when restarting Octave.
      However, the wisdom data can be reloaded if it is saved to a file
@@ -2866,9 +3145,9 @@ system-wide wisdom file.
      doc-fft2, *note ifft2: doc-ifft2, *note fftn: doc-fftn, *note
      ifftn: doc-ifftn.
 
- -- Loadable Function:  ifft (X)
- -- Loadable Function:  ifft (X, N)
- -- Loadable Function:  ifft (X, N, DIM)
+ -- Built-in Function:  ifft (X)
+ -- Built-in Function:  ifft (X, N)
+ -- Built-in Function:  ifft (X, N, DIM)
      Compute the inverse discrete Fourier transform of A using a Fast
      Fourier Transform (FFT) algorithm.
 
@@ -2890,8 +3169,8 @@ system-wide wisdom file.
      *See also:* *note fft: doc-fft, *note ifft2: doc-ifft2, *note
      ifftn: doc-ifftn, *note fftw: doc-fftw.
 
- -- Loadable Function:  fft2 (A)
- -- Loadable Function:  fft2 (A, M, N)
+ -- Built-in Function:  fft2 (A)
+ -- Built-in Function:  fft2 (A, M, N)
      Compute the two-dimensional discrete Fourier transform of A using
      a Fast Fourier Transform (FFT) algorithm.
 
@@ -2904,8 +3183,8 @@ system-wide wisdom file.
 
      *See also:* ifft2, fft, fftn, fftw.
 
- -- Loadable Function:  ifft2 (A)
- -- Loadable Function:  ifft2 (A, M, N)
+ -- Built-in Function:  ifft2 (A)
+ -- Built-in Function:  ifft2 (A, M, N)
      Compute the inverse two-dimensional discrete Fourier transform of A
      using a Fast Fourier Transform (FFT) algorithm.
 
@@ -2918,8 +3197,8 @@ system-wide wisdom file.
 
      *See also:* fft2, ifft, ifftn, fftw.
 
- -- Loadable Function:  fftn (A)
- -- Loadable Function:  fftn (A, SIZE)
+ -- Built-in Function:  fftn (A)
+ -- Built-in Function:  fftn (A, SIZE)
      Compute the N-dimensional discrete Fourier transform of A using a
      Fast Fourier Transform (FFT) algorithm.
 
@@ -2933,8 +3212,8 @@ system-wide wisdom file.
      *See also:* *note ifftn: doc-ifftn, *note fft: doc-fft, *note
      fft2: doc-fft2, *note fftw: doc-fftw.
 
- -- Loadable Function:  ifftn (A)
- -- Loadable Function:  ifftn (A, SIZE)
+ -- Built-in Function:  ifftn (A)
+ -- Built-in Function:  ifftn (A, SIZE)
      Compute the inverse N-dimensional discrete Fourier transform of A
      using a Fast Fourier Transform (FFT) algorithm.
 
@@ -2974,24 +3253,26 @@ system-wide wisdom file.
 
      *See also:* *note filter: doc-filter, *note filter2: doc-filter2.
 
- -- Loadable Function: y = filter (B, A, X)
- -- Loadable Function: [Y, SF] = filter (B, A, X, SI)
- -- Loadable Function: [Y, SF] = filter (B, A, X, [], DIM)
- -- Loadable Function: [Y, SF] = filter (B, A, X, SI, DIM)
+ -- Built-in Function: y = filter (B, A, X)
+ -- Built-in Function: [Y, SF] = filter (B, A, X, SI)
+ -- Built-in Function: [Y, SF] = filter (B, A, X, [], DIM)
+ -- Built-in Function: [Y, SF] = filter (B, A, X, SI, DIM)
      Return the solution to the following linear, time-invariant
      difference equation:
 
-             N                   M
-            SUM a(k+1) y(n-k) = SUM b(k+1) x(n-k)      for 1<=n<=length(x)
-            k=0                 k=0
+           N                   M
+          SUM a(k+1) y(n-k) = SUM b(k+1) x(n-k)    for 1<=n<=length(x)
+          k=0                 k=0
 
-     where  N=length(a)-1 and M=length(b)-1.  over the first
-     non-singleton dimension of X or over DIM if supplied.  An
-     equivalent form of this equation is:
+     where N=length(a)-1 and M=length(b)-1.  The result is calculated
+     over the first non-singleton dimension of X or over DIM if
+     supplied.
 
-                      N                   M
-            y(n) = - SUM c(k+1) y(n-k) + SUM d(k+1) x(n-k)  for 1<=n<=length(x)
-                     k=1                 k=0
+     An equivalent form of the equation is:
+
+                    N                   M
+          y(n) = - SUM c(k+1) y(n-k) + SUM d(k+1) x(n-k)  for 1<=n<=length(x)
+                   k=1                 k=0
 
      where  c = a/a(1) and d = b/a(1).
 
@@ -3005,13 +3286,13 @@ system-wide wisdom file.
      discrete- time signal x through a system characterized by the
      following rational system function:
 
-                       M
-                      SUM d(k+1) z^(-k)
-                      k=0
-            H(z) = ----------------------
-                         N
-                    1 + SUM c(k+1) z^(-k)
-                        k=1
+                    M
+                   SUM d(k+1) z^(-k)
+                   k=0
+          H(z) = ---------------------
+                      N
+                 1 + SUM c(k+1) z^(-k)
+                     k=1
 
      *See also:* *note filter2: doc-filter2, *note fftfilt:
      doc-fftfilt, *note freqz: doc-freqz.
@@ -3022,13 +3303,13 @@ system-wide wisdom file.
      specified, return an array of the desired shape.  Possible values
      are:
 
-    'full'
+    "full"
           pad X with zeros on all sides before filtering.
 
-    'same'
+    "same"
           unpadded X (default)
 
-    'valid'
+    "valid"
           trim X after filtering so edge effects are no included.
 
      Note this is just a variation on convolution, with the parameters
@@ -3073,7 +3354,7 @@ system-wide wisdom file.
      Plot the pass band, stop band and phase response of H.
 
  -- Function File:  sinc (X)
-     Return  sin(pi*x)/(pi*x).
+     Return  sin (pi*x) / (pi*x).
 
  -- Function File: B = unwrap (X)
  -- Function File: B = unwrap (X, TOL)
@@ -3296,8 +3577,8 @@ system-wide wisdom file.
         * win: weight data with window, x.*win is used for further
           computation, if window is empty, a rectangular window is used.
 
-        * nfft: number of frequency bins, default max(256,
-          2.^ceil(log2(length(x)))).
+        * nfft: number of frequency bins, default max (256, 2.^ceil
+          (log2 (length (x)))).
 
         * Fs: sampling rate, default 1.
 
@@ -3454,7 +3735,7 @@ this code
 
      I = imread ("my_input_image.img");
      J = process_my_image (I);
-     imwrite ("my_output_image.img", J);
+     imwrite (J, "my_output_image.img");
 
  -- Function File: [IMG, MAP, ALPHA] = imread (FILENAME)
      Read images from various file formats.
@@ -3578,7 +3859,7 @@ stored in the header of the image file.
           loop extension) for.
 
     `ByteOrder'
-          Endian option for formats that support it.  Is either
+          Endian option for formats that support it.  Value is
           `"little-endian"', `"big-endian"', or `"undefined"'.
 
     `Gamma'
@@ -3600,17 +3881,18 @@ stored in the header of the image file.
           Preferred number of colors in the image.
 
     `ResolutionUnits'
-          Units of image resolution.  Is either `"pixels per inch"',
+          Units of image resolution.  Value is `"pixels per inch"',
           `"pixels per centimeter"', or `"undefined"'.
 
     `ColorType'
-          Image type.  Is either `"grayscale"', `"indexed"',
+          Image type.  Value is `"grayscale"', `"indexed"',
           `"truecolor"', or `"undefined"'.
 
     `View'
           FlashPix viewing parameters.
 
-     *See also:* *note imread: doc-imread, *note imwrite: doc-imwrite.
+     *See also:* *note imread: doc-imread, *note imwrite: doc-imwrite,
+     *note imshow: doc-imshow.
 
 
 File: octave.info,  Node: Displaying Images,  Next: Representing Images,  Prev: Loading and Saving Images,  Up: Image Processing
@@ -3629,7 +3911,7 @@ image given in the first input argument.
  -- Function File:  imshow (FILENAME)
  -- Function File:  imshow (..., STRING_PARAM1, VALUE1, ...)
  -- Function File: H = imshow (...)
-     Display the image IM, where IM can be a 2-dimensional (gray-scale
+     Display the image IM, where IM can be a 2-dimensional (grayscale
      image) or a 3-dimensional (RGB image) matrix.
 
      If LIMITS is a 2-element vector `[LOW, HIGH]', the image is shown
@@ -3645,6 +3927,7 @@ image given in the first input argument.
 
      If given, the parameter STRING_PARAM1 has value VALUE1.
      STRING_PARAM1 can be any of the following:
+
     "displayrange"
           VALUE1 is the display range as described above.
 
@@ -3656,43 +3939,47 @@ image given in the first input argument.
 
  -- Function File:  image (IMG)
  -- Function File:  image (X, Y, IMG)
+ -- Function File:  image (..., "PROPERTY", VALUE, ...)
  -- Function File: H = image (...)
-     Display a matrix as a color image.  The elements of IMG are indices
-     into the current colormap, and the colormap will be scaled so that
-     the extremes of IMG are mapped to the extremes of the colormap.
+     Display a matrix as an indexed color image.
 
-     The axis values corresponding to the matrix elements are specified
-     in X and Y.  If you're not using gnuplot 4.2 or later, these
-     variables are ignored.
+     The elements of IMG are indices into the current colormap.  X and
+     Y are optional 2-element vectors, `[min, max]', which specify the
+     range for the axis labels.  If a range is specified as
+     `[max, min]' then the image will be reversed along that axis.  For
+     convenience, X and Y may be specified as N-element vectors
+     matching the length of the data in IMG.  However, only the first
+     and last elements will be used to determine the axis limits.
+     *Warning:* X and Y are ignored when using gnuplot 4.0 or earlier.
+
+     The optional return value H is a graphics handle to the image.
 
      Implementation Note: The origin (0, 0) for images is located in the
      upper left.  For ordinary plots, the origin is located in the lower
      left.  Octave handles this inversion by plotting the data normally,
      and then reversing the direction of the y-axis by setting the
-     `ydir' property to `"reverse"'.  This has implications whenever an
+     `ydir' property to "reverse".  This has implications whenever an
      image and an ordinary plot need to be overlaid.  The recommended
      solution is to display the image and then plot the reversed ydata
-     using, for example, `flipud (ydata,1)'.
-
-     The optional return value H is a graphics handle to the image.
+     using, for example, `flipud (ydata)'.
 
      *See also:* *note imshow: doc-imshow, *note imagesc: doc-imagesc,
      *note colormap: doc-colormap.
 
- -- Function File:  imagesc (A)
- -- Function File:  imagesc (X, Y, A)
- -- Function File:  imagesc (..., LIMITS)
+ -- Function File:  imagesc (IMG)
+ -- Function File:  imagesc (X, Y, IMG)
+ -- Function File:  imagesc (..., CLIMITS)
  -- Function File:  imagesc (H, ...)
  -- Function File: H = imagesc (...)
-     Display a scaled version of the matrix A as a color image.  The
+     Display a scaled version of the matrix IMG as a color image.  The
      colormap is scaled so that the entries of the matrix occupy the
-     entire colormap.  If LIMITS = [LO, HI] are given, then that range
-     is set to the 'clim' of the current axes.
+     entire colormap.  If `CLIMITS = [LO, HI]' is given, then that
+     range is set to the "clim" of the current axes.
 
      The axis values corresponding to the matrix elements are specified
      in X and Y, either as pairs giving the minimum and maximum values
      for the respective axes, or as values for each row and column of
-     the matrix A.
+     the matrix IMG.
 
      The optional return value H is a graphics handle to the image.
 
@@ -3705,14 +3992,14 @@ File: octave.info,  Node: Representing Images,  Next: Plotting on top of Images,
 32.3 Representing Images
 ========================
 
-In general Octave supports four different kinds of images, gray-scale
-images, RGB images, binary images, and indexed images.  A gray-scale
+In general Octave supports four different kinds of images, grayscale
+images, RGB images, binary images, and indexed images.  A grayscale
 image is represented with an M-by-N matrix in which each element
 corresponds to the intensity of a pixel.  An RGB image is represented
 with an M-by-N-by-3 array where each 3-vector corresponds to the red,
 green, and blue intensities of each pixel.
 
-   The actual meaning of the value of a pixel in a gray-scale or RGB
+   The actual meaning of the value of a pixel in a grayscale or RGB
 image depends on the class of the matrix.  If the matrix is of class
 `double' pixel intensities are between 0 and 1, if it is of class
 `uint8' intensities are between 0 and 255, and if it is of class
@@ -3726,52 +4013,130 @@ C-by-3 color map.  Each integer corresponds to an index in the color
 map, and each row in the color map corresponds to an RGB color.  The
 color map must be of class `double' with values between 0 and 1.
 
- -- Function File: [IMG, MAP] = gray2ind (I, N)
-     Convert a gray scale intensity image to an Octave indexed image.
+ -- Function File:  iscolormap (CMAP)
+     Return true if CMAP is a colormap.
+
+     A colormap is a real matrix with N rows and 3 columns.  Each row
+     represents a single color.  The columns contain red, green, and
+     blue intensities respectively.  All entries must be between 0 and 1
+     inclusive.
+
+     *See also:* *note colormap: doc-colormap, *note rgbplot:
+     doc-rgbplot.
+
+ -- Function File: IMG = gray2ind (I)
+ -- Function File: IMG = gray2ind (I, N)
+ -- Function File: IMG = gray2ind (BW)
+ -- Function File: IMG = gray2ind (BW, N)
+ -- Function File: [IMG, MAP] = gray2ind (...)
+     Convert a grayscale or binary intensity image to an indexed image.
+
      The indexed image will consist of N different intensity values.
-     If not given N will default to 64.
+     If not given N defaults to 64 for grayscale images or 2 for binary
+     black and white images.
 
- -- Function File:  ind2gray (X, MAP)
-     Convert an Octave indexed image to a gray scale intensity image.
-     If MAP is omitted, the current colormap is used to determine the
-     intensities.
+     The output IMG is of class uint8 if N is less than or equal to
+     256; Otherwise the return class is uint16.
 
-     *See also:* *note gray2ind: doc-gray2ind, *note rgb2ntsc:
-     doc-rgb2ntsc, *note image: doc-image, *note colormap: doc-colormap.
+     *See also:* *note ind2gray: doc-ind2gray, *note rgb2ind:
+     doc-rgb2ind.
+
+ -- Function File: I = ind2gray (X, MAP)
+     Convert a color indexed image to a grayscale intensity image.
+
+     The image X must be an indexed image which will be converted using
+     the colormap CMAP.  If CMAP does not contain enough colors for the
+     image, pixels in X outside the range are mapped to the last color
+     in the map before conversion to grayscale.
+
+     The output I is of the same class as the input X and may be one of
+     `uint8', `uint16', `single', or `double'.
+
+     Implementation Note: There are several ways of converting colors to
+     grayscale intensities.  This functions uses the luminance value
+     obtained from `rgb2ntsc' which is `I = 0.299*R + 0.587*G +
+     0.114*B'.  Other possibilities include the value component from
+     `rgb2hsv' or using a single color channel from `ind2rgb'.
+
+     *See also:* *note gray2ind: doc-gray2ind, *note ind2rgb:
+     doc-ind2rgb.
 
  -- Function File: [X, MAP] = rgb2ind (RGB)
  -- Function File: [X, MAP] = rgb2ind (R, G, B)
-     Convert an RGB image to an Octave indexed image.
+     Convert an image in red-green-blue (RGB) color space to an indexed
+     image.
 
-     *See also:* *note ind2rgb: doc-ind2rgb, *note rgb2ntsc:
-     doc-rgb2ntsc.
+     *See also:* *note ind2rgb: doc-ind2rgb, *note rgb2hsv:
+     doc-rgb2hsv, *note rgb2ntsc: doc-rgb2ntsc.
 
  -- Function File: RGB = ind2rgb (X, MAP)
- -- Function File: [R, R, R] = ind2rgb (X, MAP)
+ -- Function File: [R, G, B] = ind2rgb (X, MAP)
      Convert an indexed image to red, green, and blue color components.
-     If the colormap doesn't contain enough colors, pad it with the
-     last color in the map.  If MAP is omitted, the current colormap is
-     used for the conversion.
 
-     *See also:* *note rgb2ind: doc-rgb2ind, *note image: doc-image,
-     *note imshow: doc-imshow, *note ind2gray: doc-ind2gray, *note
-     gray2ind: doc-gray2ind.
+     The image X must be an indexed image which will be converted using
+     the colormap MAP.  If MAP does not contain enough colors for the
+     image, pixels in X outside the range are mapped to the last color
+     in the map.
 
- -- Function File:  colormap (MAP)
- -- Function File:  colormap ("default")
-     Set the current colormap.
+     The output may be a single RGB image (MxNx3 matrix where M and N
+     are the original image X dimensions, one for each of the red,
+     green and blue channels).  Alternatively, the individual red,
+     green, and blue color matrices of size MxN may be returned.
 
-     `colormap (MAP)' sets the current colormap to MAP.  The color map
+     *See also:* *note rgb2ind: doc-rgb2ind, *note ind2gray:
+     doc-ind2gray, *note hsv2rgb: doc-hsv2rgb, *note ntsc2rgb:
+     doc-ntsc2rgb.
+
+ -- Function File: CMAP = colormap ()
+ -- Function File: CMAP = colormap (MAP)
+ -- Function File: CMAP = colormap ("default")
+ -- Function File: CMAP = colormap ("list")
+ -- Function File: CMAP = colormap ("register", "NAME")
+ -- Function File: CMAP = colormap ("unregister", "NAME")
+     Query or set the current colormap.
+
+     `colormap (MAP)' sets the current colormap to MAP.  The colormap
      should be an N row by 3 column matrix.  The columns contain red,
-     green, and blue intensities respectively.  All entries should be
+     green, and blue intensities respectively.  All entries must be
      between 0 and 1 inclusive.  The new colormap is returned.
 
      `colormap ("default")' restores the default colormap (the `jet'
      map with 64 entries).  The default colormap is returned.
 
+     `colormap ("list")' returns a cell array with all the available
+     colormaps.  The options `register' and `unregister' will add or
+     remove the colormap NAME to it.
+
      With no arguments, `colormap' returns the current color map.
 
      *See also:* *note jet: doc-jet.
+
+ -- Function File:  rgbplot (CMAP)
+ -- Function File:  rgbplot (CMAP, STYLE)
+ -- Function File: H = rgbplot (...)
+     Plot the components of a colormap.
+
+     Two different STYLEs are available for displaying the CMAP:
+
+    profile (default)
+          Plot the RGB line profile of the colormap for each of the
+          channels (red, green and blue) with the plot lines colored
+          appropriately.  Each line represents the intensity of each
+          RGB components across the colormap.
+
+    composite
+          Draw the colormap across the X-axis so that the actual index
+          colors are visible rather than the individual color
+          components.
+
+
+     The optional return value H is a graphics handle to the created
+     plot.
+
+     Run `demo rgbplot' to see an example of `rgbplot' and each style
+     option.
+
+     *See also:* *note colormap: doc-colormap.
 
  -- Function File: MAP = autumn ()
  -- Function File: MAP = autumn (N)
@@ -3786,6 +4151,17 @@ color map must be of class `double' with values between 0 and 1.
      Create color colormap.  This colormap varies from black to white
      with gray-blue shades.  The argument N must be a scalar.  If
      unspecified, the length of the current colormap, or 64, is used.
+
+     *See also:* *note colormap: doc-colormap.
+
+ -- Function File: MAP = colorcube ()
+ -- Function File: MAP = colorcube (N)
+     Create color colormap.  This colormap is composed of as many
+     equally spaced colors (not grays) in the RGB color space as
+     possible.  If there are not a perfect number N of regularly spaced
+     colors then the remaining entries in the colormap are gradients of
+     pure red, green, blue, and gray.  The argument N must be a scalar.
+     If unspecified, the length of the current colormap, or 64, is used.
 
      *See also:* *note colormap: doc-colormap.
 
@@ -3808,7 +4184,7 @@ color map must be of class `double' with values between 0 and 1.
  -- Function File: MAP = flag ()
  -- Function File: MAP = flag (N)
      Create color colormap.  This colormap cycles through red, white,
-     blue and black with each index change.  The argument N must be a
+     blue, and black with each index change.  The argument N must be a
      scalar.  If unspecified, the length of the current colormap, or
      64, is used.
 
@@ -3819,6 +4195,8 @@ color map must be of class `double' with values between 0 and 1.
      Create gray colormap.  This colormap varies from black to white
      with shades of gray.  The argument N must be a scalar.  If
      unspecified, the length of the current colormap, or 64, is used.
+
+     *See also:* *note colormap: doc-colormap.
 
  -- Function File: MAP = hot ()
  -- Function File: MAP = hot (N)
@@ -3832,10 +4210,10 @@ color map must be of class `double' with values between 0 and 1.
  -- Function File:  hsv (N)
      Create color colormap.  This colormap begins with red, changes
      through yellow, green, cyan, blue, and magenta, before returning
-     to red.  It is useful for displaying periodic functions.  It is
-     obtained by linearly varying the hue through all possible values
-     while keeping constant maximum saturation and value and is
-     equivalent to `hsv2rgb ([linspace(0,1,N)', ones(N,2)])'.
+     to red.  It is useful for displaying periodic functions.  The map
+     is obtained by linearly varying the hue through all possible
+     values while keeping constant maximum saturation and value.  The
+     equivalent code is `hsv2rgb ([linspace(0,1,N)', ones(N,2)])'.
 
      The argument N must be a scalar.  If unspecified, the length of
      the current colormap, or 64, is used.
@@ -3851,11 +4229,23 @@ color map must be of class `double' with values between 0 and 1.
 
      *See also:* *note colormap: doc-colormap.
 
+ -- Function File: MAP = lines ()
+ -- Function File: MAP = lines (N)
+     Create color colormap.  This colormap is composed of the list of
+     colors in the current axes "ColorOrder" property.  The default is
+     blue, green, red, cyan, pink, yellow, and gray.  The argument N
+     must be a scalar.  If unspecified, the length of the current
+     colormap, or 64, is used.
+
+     *See also:* *note colormap: doc-colormap.
+
  -- Function File: MAP = ocean ()
  -- Function File: MAP = ocean (N)
      Create color colormap.  This colormap varies from black to white
      with shades of blue.  The argument N must be a scalar.  If
      unspecified, the length of the current colormap, or 64, is used.
+
+     *See also:* *note colormap: doc-colormap.
 
  -- Function File: MAP = pink ()
  -- Function File: MAP = pink (N)
@@ -3916,19 +4306,21 @@ color map must be of class `double' with values between 0 and 1.
 
      *See also:* *note colormap: doc-colormap.
 
- -- Function File:  contrast (X, N)
+ -- Function File: CMAP = contrast (X)
+ -- Function File: CMAP = contrast (X, N)
      Return a gray colormap that maximizes the contrast in an image.
      The returned colormap will have N rows.  If N is not defined then
-     the size of the current colormap is used instead.
+     the size of the current colormap is used.
 
-     *See also:* *note colormap: doc-colormap.
+     *See also:* *note colormap: doc-colormap, *note brighten:
+     doc-brighten.
 
    An additional colormap is `gmap40'.  This code map contains only
 colors with integer values of the red, green and blue components.  This
 is a workaround for a limitation of gnuplot 4.0, that does not allow
-the color of line or patch objects to be set, and so `gmap40' is useful
-for gnuplot 4.0 users, and in particular in conjunction with the BAR,
-BARH or CONTOUR functions.
+the color of line or patch objects to be set.  `gmap40' is chiefly
+useful to gnuplot 4.0 users, and particularly in conjunction with the
+BAR, SURF, and CONTOUR functions.
 
  -- Function File: MAP = gmap40 ()
  -- Function File: MAP = gmap40 (N)
@@ -3945,29 +4337,36 @@ BARH or CONTOUR functions.
 than replace it.
 
  -- Function File: MAP_OUT = brighten (MAP, BETA)
- -- Function File: MAP_OUT = brighten (H, BETA)
  -- Function File: MAP_OUT = brighten (BETA)
-     Darken or brighten the given colormap.  If the MAP argument is
-     omitted, the function is applied to the current colormap.  The
-     first argument can also be a valid graphics handle H, in which case
-     `brighten' is applied to the colormap associated with this handle.
+ -- Function File: MAP_OUT = brighten (H, BETA)
+     Brighten or darken a colormap.  If the MAP argument is omitted, the
+     function is applied to the current colormap.  The first argument
+     can also be a valid graphics handle H, in which case `brighten' is
+     applied to the colormap associated with this handle.
 
-     Should the resulting colormap MAP_OUT not be assigned, it will be
-     written to the current colormap.
-
-     The argument BETA should be a scalar between -1 and 1, where a
+     The argument BETA must be a scalar between -1 and 1, where a
      negative value darkens and a positive value brightens the colormap.
 
-     *See also:* *note colormap: doc-colormap.
+     If no output is specified then the result is written to the
+     current colormap.
 
+     *See also:* *note colormap: doc-colormap, *note contrast:
+     doc-contrast.
+
+ -- Function File:  spinmap ()
+ -- Function File:  spinmap (T)
  -- Function File:  spinmap (T, INC)
-     Cycle the colormap for T seconds with an increment of INC.  Both
-     parameters are optional.  The default cycle time is 5 seconds and
-     the default increment is 2.
+ -- Function File:  spinmap ("inf")
+     Cycle the colormap for T seconds with a color increment of INC.
+     Both parameters are optional.  The default cycle time is 5 seconds
+     and the default increment is 2.  If the option "inf" is given then
+     cycle continuously until `Control-C' is pressed.
 
-     A higher value of INC causes a faster cycle through the colormap.
+     When rotating the original color 1 becomes color 2, color 2 becomes
+     color 3, etc.  A positive or negative increment is allowed and a
+     higher value of INC will cause faster cycling through the colormap.
 
-     *See also:* *note gca: doc-gca, *note colorbar: doc-colorbar.
+     *See also:* *note colormap: doc-colormap.
 
  -- Function File:  whitebg ()
  -- Function File:  whitebg (COLOR)
@@ -3990,6 +4389,58 @@ than replace it.
      colors.
 
      *See also:* *note reset: doc-reset.
+
+   The following functions can be used to manipulate colormaps.
+
+ -- Function File: [Y, NEWMAP] = cmunique (X, MAP)
+ -- Function File: [Y, NEWMAP] = cmunique (RGB)
+ -- Function File: [Y, NEWMAP] = cmunique (I)
+     Convert an input image X to an ouput indexed image Y which uses
+     the smallest colormap possible NEWMAP.
+
+     When the input is an indexed image (X with colormap MAP) the
+     output is a colormap NEWMAP from which any repeated rows have been
+     eliminated.  The output image, Y, is the original input image with
+     the indices adjusted to match the new, possibly smaller, colormap.
+
+     When the input is an RGB image (an MxNx3 array), the output
+     colormap will contain one entry for every unique color in the
+     original image.  In the worst case the new map could have as many
+     rows as the number of pixels in the original image.
+
+     When the input is a grayscale image I, the output colormap will
+     contain one entry for every unique intensity value in the original
+     image.  In the worst case the new map could have as many rows as
+     the number of pixels in the original image.
+
+     Implementation Details:
+
+     NEWMAP is always an Mx3 matrix, even if the input image is an
+     intensity grayscale image I (all three RGB planes are assigned the
+     same value).
+
+     The output image is of class uint8 if the size of the new colormap
+     is less than or equal to 256.  Otherwise, the output image is of
+     class double.
+
+     *See also:* *note rgb2ind: doc-rgb2ind, *note gray2ind:
+     doc-gray2ind.
+
+ -- Function File: [Y, NEWMAP] = cmpermute (X, MAP)
+ -- Function File: [Y, NEWMAP] = cmpermute (X, MAP, INDEX)
+     Reorder colors in a colormap.
+
+     When called with only two arguments, `cmpermute' randomly
+     rearranges the colormap MAP and returns a new colormap NEWMAP.  It
+     also returns the indexed image Y which is the equivalent of the
+     original input image X when displayed using NEWMAP.
+
+     When called with an optional third argument the order of colors in
+     the new colormap is defined by INDEX.
+
+     *Caution:* `index' should not have repeated elements or the
+     function will fail.
+
 
 
 File: octave.info,  Node: Plotting on top of Images,  Next: Color Conversion,  Prev: Representing Images,  Up: Image Processing
@@ -4026,32 +4477,72 @@ Octave supports conversion from the RGB color system to NTSC and HSV
 and vice versa.
 
  -- Function File: HSV_MAP = rgb2hsv (RGB)
-     Transform a colormap or image from the RGB space to the HSV space.
+ -- Function File: HSV_MAP = rgb2hsv (RGB)
+     Transform a colormap or image from red-green-blue (RGB) space to
+     hue-saturation-value (HSV) space.
 
-     A color in the RGB space consists of the red, green and blue
+     A color in the RGB space consists of red, green, and blue
      intensities.
 
-     In the HSV space each color is represented by their hue, saturation
-     and value (brightness).  Value gives the amount of light in the
+     A color in HSV space is represented by hue, saturation, and value
+     (brightness) levels.  Value gives the amount of light in the
      color.  Hue describes the dominant wavelength.  Saturation is the
      amount of hue mixed into the color.
 
-     *See also:* *note hsv2rgb: doc-hsv2rgb.
+     *See also:* *note hsv2rgb: doc-hsv2rgb, *note rgb2ind:
+     doc-rgb2ind, *note rgb2ntsc: doc-rgb2ntsc.
 
  -- Function File: RGB_MAP = hsv2rgb (HSV_MAP)
-     Transform a colormap or image from the HSV space to the RGB space.
+ -- Function File: RGB_IMG = hsv2rgb (HSV_IMG)
+     Transform a colormap or image from hue-saturation-value (HSV)
+     space to red-green-blue (RGB) space.
 
-     *See also:* *note rgb2hsv: doc-rgb2hsv.
+     A color in HSV space is represented by hue, saturation and value
+     (brightness) levels.  Value gives the amount of light in the
+     color.  Hue describes the dominant wavelength.  Saturation is the
+     amount of hue mixed into the color.
 
- -- Function File:  rgb2ntsc (RGB)
-     Transform a colormap or image from RGB to NTSC.
+     A color in the RGB space consists of red, green, and blue
+     intensities.
 
-     *See also:* *note ntsc2rgb: doc-ntsc2rgb.
+     *See also:* *note rgb2hsv: doc-rgb2hsv, *note ind2rgb:
+     doc-ind2rgb, *note ntsc2rgb: doc-ntsc2rgb.
 
- -- Function File:  ntsc2rgb (YIQ)
-     Transform a colormap or image from NTSC to RGB.
+ -- Function File: YIQ_MAP = rgb2ntsc (RGB_MAP)
+ -- Function File: YIQ_IMG = rgb2ntsc (RGB_IMG)
+     Transform a colormap or image from red-green-blue (RGB) color
+     space to luminance-chrominance (NTSC) space.  The input may be of
+     class uint8, uint16, single, or double.  The output is of class
+     double.
 
-     *See also:* *note rgb2ntsc: doc-rgb2ntsc.
+     Implementation Note: The reference matrix for the transformation is
+
+          /Y\     0.299  0.587  0.114  /R\
+          |I|  =  0.596 -0.274 -0.322  |G|
+          \Q/     0.211 -0.523  0.312  \B/
+
+     as documented in `http://en.wikipedia.org/wiki/YIQ' and truncated
+     to 3 significant figures.  Note: The FCC version of NTSC uses only
+     2 significant digits and is slightly different.
+
+     *See also:* *note ntsc2rgb: doc-ntsc2rgb, *note rgb2hsv:
+     doc-rgb2hsv, *note rgb2ind: doc-rgb2ind.
+
+ -- Function File: RGB_MAP = ntsc2rgb (YIQ_MAP)
+ -- Function File: RGB_IMG = ntsc2rgb (YIQ_IMG)
+     Transform a colormap or image from luminance-chrominance (NTSC)
+     space to red-green-blue (RGB) color space.
+
+     Implementation Note: The conversion matrix is chosen to be the
+     inverse of the matrix used for rgb2ntsc such that
+
+          x == ntsc2rgb (rgb2ntsc (x))
+
+     MATLAB uses a slightly different matrix where rounding means the
+     equality above does not hold.
+
+     *See also:* *note rgb2ntsc: doc-rgb2ntsc, *note hsv2rgb:
+     doc-hsv2rgb, *note ind2rgb: doc-ind2rgb.
 
 
 File: octave.info,  Node: Audio Processing,  Next: Object Oriented Programming,  Prev: Image Processing,  Up: Top
@@ -4185,7 +4676,8 @@ hardware are welcome.
      Write Y to the canonical RIFF/WAVE sound file FILENAME with sample
      rate FS and bits per sample BPS.  The default sample rate is 8000
      Hz with 16-bits per sample.  Each column of the data represents a
-     separate channel.
+     separate channel.  If Y is either a row vector or a column vector,
+     it is written as a single channel.
 
      *See also:* *note wavread: doc-wavread.
 
@@ -4319,10 +4811,14 @@ functions can be used.  For example:
 The available methods of a class can be displayed with the `methods'
 function.
 
- -- Built-in Function:  methods (X)
- -- Built-in Function:  methods ("classname")
+ -- Function File:  methods (OBJ)
+ -- Function File:  methods ("CLASSNAME")
+ -- Function File: MTDS = methods (...)
      Return a cell array containing the names of the methods for the
-     object X or the named class.
+     object OBJ or the named class CLASSNAME.  OBJ may be an Octave
+     class object or a Java object.
+
+     *See also:* *note fieldnames: doc-fieldnames.
 
 To inquire whether a particular method is available to a user class, the
 `ismethod' function can be used.
@@ -4369,7 +4865,7 @@ An example of a display method for the polynomial class might be
      function display (p)
        a = p.poly;
        first = true;
-       fprintf("%s =", inputname(1));
+       fprintf ("%s =", inputname (1));
        for i = 1 : length (a);
          if (a(i) != 0)
            if (first)
@@ -4394,14 +4890,14 @@ An example of a display method for the polynomial class might be
          endif
        endfor
        if (first)
-         fprintf(" 0");
+         fprintf (" 0");
        endif
-       fprintf("\n");
+       fprintf ("\n");
      endfunction
 
 Note that in the display method, it makes sense to start the method
-with the line `fprintf("%s =", inputname(1))' to be consistent with the
-rest of Octave and print the variable name to be displayed when
+with the line `fprintf ("%s =", inputname (1))' to be consistent with
+the rest of Octave and print the variable name to be displayed when
 displaying the class.
 
    To be consistent with the Octave graphic handle classes, a class
@@ -4551,13 +5047,13 @@ determined by the `subsref' method.
      The following example shows how to extract the two first columns of
      a matrix
 
-          val = magic(3)
-               => val = [ 8   1   6
-                          3   5   7
-                          4   9   2 ]
+          val = magic (3)
+              => val = [ 8   1   6
+                         3   5   7
+                         4   9   2 ]
           idx.type = "()";
           idx.subs = {":", 1:2};
-          subsref(val, idx)
+          subsref (val, idx)
                => [ 8   1
                     3   5
                     4   9 ]
@@ -4628,13 +5124,13 @@ might look like
      The following example shows how to set the two first columns of a
      3-by-3 matrix to zero.
 
-          val = magic(3);
+          val = magic (3);
           idx.type = "()";
           idx.subs = {":", 1:2};
           subsasgn (val, idx, 0)
-               => [ 0   0   6
-                    0   0   7
-                    0   0   2 ]
+               =>  [ 0   0   6
+                     0   0   7
+                     0   0   2 ]
 
      Note that this is the same as writing `val(:,1:2) = 0'.
 
@@ -4682,7 +5178,7 @@ which is a fairly generic `end' method that has a behavior similar to
 the `end' keyword for Octave Array classes.  It can then be used as
 follows:
 
-     p = polynomial([1,2,3,4]);
+     p = polynomial ([1,2,3,4]);
      p(end-1)
        => 3
 
@@ -4749,7 +5245,7 @@ and the corresponding method looking like this:
 
        function x = subsasgn (x, ss, val)
          ...
-         x.myfield(ss.subs{1}) = val;
+         x.myfield (ss.subs{1}) = val;
        endfunction
 
    The problem is that on entry to the subsasgn method, `x' is still
@@ -4822,9 +5318,9 @@ like
 
      function [y, dy] = polyval (p, varargin)
        if (nargout == 2)
-         [y, dy] = polyval (fliplr(p.poly), varargin{:});
+         [y, dy] = polyval (fliplr (p.poly), varargin{:});
        else
-         y = polyval (fliplr(p.poly), varargin{:});
+         y = polyval (fliplr (p.poly), varargin{:});
        endif
      endfunction
 
@@ -4832,14 +5328,14 @@ like
 function.  Another interesting example for an overloaded function for
 our polynomial class is the `plot' function.
 
-     function h = plot(p, varargin)
+     function h = plot (p, varargin)
        n = 128;
        rmax = max (abs (roots (p.poly)));
        x = [0 : (n - 1)] / (n - 1) * 2.2 * rmax - 1.1 * rmax;
        if (nargout > 0)
-         h = plot(x, p(x), varargin{:});
+         h = plot (x, p(x), varargin{:});
        else
-         plot(x, p(x), varargin{:});
+         plot (x, p(x), varargin{:});
        endif
      endfunction
 
@@ -4861,6 +5357,10 @@ File: octave.info,  Node: Operator Overloading,  Next: Precedence of Objects,  P
 
 34.4.2 Operator Overloading
 ---------------------------
+
+The following table shows, for each built-in numerical operation, the
+corresponding function name to use when providing an overloaded method
+for a user class.
 
         Operation      Method         Description                   
 ---------------------------------------------------------------------------- 
@@ -4916,7 +5416,7 @@ class method
    An example `mtimes' method for our polynomial class might look like
 
      function y = mtimes (a, b)
-       y = polynomial (conv (double(a),double(b)));
+       y = polynomial (conv (double (a), double (b)));
      endfunction
 
 
@@ -5066,7 +5566,7 @@ memory or other physical issues.
 
      function display (f)
 
-       display(f.polynomial);
+       display (f.polynomial);
 
      endfunction
 
@@ -5077,15 +5577,15 @@ the filter coefficients.
 an object by calling the class constructor.  We may also check the
 class type and examine the underlying structure.
 
-     octave:1> f=FIRfilter(polynomial([1 1 1]/3))
+     octave:1> f = FIRfilter (polynomial ([1 1 1]/3))
      f.polynomial = 0.333333 + 0.333333 * X + 0.333333 * X ^ 2
-     octave:2> class(f)
+     octave:2> class (f)
      ans = FIRfilter
-     octave:3> isa(f,"FIRfilter")
+     octave:3> isa (f,"FIRfilter")
      ans =  1
-     octave:4> isa(f,"polynomial")
+     octave:4> isa (f,"polynomial")
      ans =  1
-     octave:5> struct(f)
+     octave:5> struct (f)
      ans =
      {
      polynomial = 0.333333 + 0.333333 * X + 0.333333 * X ^ 2
@@ -5101,7 +5601,7 @@ to access the fields.  The `subsref' method may be used for both.
        switch x.type
          case "()"
            n = f.polynomial;
-           out = filter(n.poly, 1, x.subs{1});
+           out = filter (n.poly, 1, x.subs{1});
          case "."
            fld = x.subs;
            if (strcmp (fld, "polynomial"))
@@ -5117,9 +5617,9 @@ to access the fields.  The `subsref' method may be used for both.
    The "()" case allows us to filter data using the polynomial provided
 to the constructor.
 
-     octave:2> f=FIRfilter(polynomial([1 1 1]/3));
-     octave:3> x=ones(5,1);
-     octave:4> y=f(x)
+     octave:2> f = FIRfilter (polynomial ([1 1 1]/3));
+     octave:3> x = ones (5,1);
+     octave:4> y = f(x)
      y =
 
         0.33333
@@ -5130,7 +5630,7 @@ to the constructor.
 
    The "." case allows us to view the contents of the polynomial field.
 
-     octave:1> f=FIRfilter(polynomial([1 1 1]/3));
+     octave:1> f = FIRfilter (polynomial ([1 1 1]/3));
      octave:2> f.polynomial
      ans = 0.333333 + 0.333333 * X + 0.333333 * X ^ 2
 
@@ -5155,8 +5655,8 @@ publicly writable.
 
    So that
 
-     octave:6> f=FIRfilter();
-     octave:7> f.polynomial = polynomial([1 2 3]);
+     octave:6> f = FIRfilter ();
+     octave:7> f.polynomial = polynomial ([1 2 3]);
      f.polynomial = 1 + 2 * X + 3 * X ^ 2
 
    Defining the FIRfilter class as a child of the polynomial class
@@ -5237,7 +5737,8 @@ requiring a file name.
      given the current working directory is used.  DIALOG_NAME may be
      used to customize the dialog title.
 
-     *See also:* *note uigetfile: doc-uigetfile.
+     *See also:* *note uigetfile: doc-uigetfile, *note uiputfile:
+     doc-uiputfile.
 
  -- Function File: [FNAME, FPATH, FLTIDX] = uigetfile ()
  -- Function File: [...] = uigetfile (FLT)
@@ -5278,6 +5779,9 @@ requiring a file name.
      "MultiSelect" key to "on".  In that case FNAME is a cell array
      containing the files.
 
+     *See also:* *note uiputfile: doc-uiputfile, *note uigetdir:
+     doc-uigetdir.
+
  -- Function File: [FNAME, FPATH, FLTIDX] = uiputfile ()
  -- Function File: [FNAME, FPATH, FLTIDX] = uiputfile (FLT)
  -- Function File: [FNAME, FPATH, FLTIDX] = uiputfile (FLT, DIALOG_NAME)
@@ -5290,24 +5794,27 @@ requiring a file name.
           If a filename is given the file extension is extracted and
           used as filter.  In addition the path is selected as current
           path and the filename is selected as default file.  Example:
-          uiputfile("myfun.m");
+          uiputfile ("myfun.m");
 
     `"*.ext"'
-          A single file extension.  Example: uiputfile("*.ext");
+          A single file extension.  Example: uiputfile ("*.ext");
 
     `{"*.ext","My Description"}'
           A 2-column cell array containing the file extension in the
           1st column and a brief description in the 2nd column.
-          Example: uiputfile({"*.ext","My
+          Example: uiputfile ({"*.ext","My
           Description";"*.xyz","XYZ-Format"});
 
      The filter string can also contain a semicolon separated list of
-     filter extensions.  Example: uiputfile({"*.gif;*.png;*.jpg",
+     filter extensions.  Example: uiputfile ({"*.gif;*.png;*.jpg",
      "Supported Picture Formats"});
 
      DIALOG_NAME can be used to customize the dialog title.  If
      DEFAULT_FILE is given it is preselected in the GUI dialog.  If, in
      addition, a path is given it is also used as current path.
+
+     *See also:* *note uigetfile: doc-uigetfile, *note uigetdir:
+     doc-uigetdir.
 
 
 File: octave.info,  Node: Progress Bar,  Next: GUI Utility Functions,  Prev: I/O Dialogs,  Up: GUI Development
@@ -5360,9 +5867,9 @@ developing programs that do.  *Warning:* The functions `uiwait',
 
      When specified, TIMEOUT defines the number of seconds to wait for
      the figure deletion or the `uiresume' call.  The timeout value
-     must be at least 1. If a smaller value is specified, a warning is
+     must be at least 1.  If a smaller value is specified, a warning is
      issued and a timeout value of 1 is used instead.  If a non-integer
-     value is specified, it is truncated towards 0. If TIMEOUT is not
+     value is specified, it is truncated towards 0.  If TIMEOUT is not
      specified, the program execution is suspended indefinitely.
 
      *See also:* *note uiresume: doc-uiresume, *note waitfor:
@@ -5474,13 +5981,14 @@ File: octave.info,  Node: User-Defined Preferences,  Prev: GUI Utility Functions
      *See also:* *note getpref: doc-getpref, *note addpref:
      doc-addpref, *note setpref: doc-setpref, *note rmpref: doc-rmpref.
 
+ -- Function File:  rmpref (GROUP)
  -- Function File:  rmpref (GROUP, PREF)
      Remove the named preference PREF from the preference group GROUP.
 
      The named preference group must be a character string.
 
-     The preference PREF may be a character string or a cell array of
-     character strings.
+     The preference PREF may be a character string or cell array of
+     strings.
 
      If PREF is not specified, remove the preference group GROUP.
 
@@ -5506,7 +6014,7 @@ File: octave.info,  Node: User-Defined Preferences,  Prev: GUI Utility Functions
      doc-getpref, *note ispref: doc-ispref, *note rmpref: doc-rmpref.
 
 
-File: octave.info,  Node: System Utilities,  Next: Packages,  Prev: GUI Development,  Up: Top
+File: octave.info,  Node: System Utilities,  Next: Java Interface,  Prev: GUI Development,  Up: Top
 
 36 System Utilities
 *******************
@@ -5580,7 +6088,7 @@ the following elements:
 In the descriptions of the following functions, this structure is
 referred to as a TM_STRUCT.
 
- -- Loadable Function: SECONDS = time ()
+ -- Built-in Function: SECONDS = time ()
      Return the current time as the number of seconds since the epoch.
      The epoch is referenced to 00:00:00 CUT (Coordinated Universal
      Time) 1 Jan 1970.  For example, on Monday February 17, 1997 at
@@ -5619,7 +6127,7 @@ referred to as a TM_STRUCT.
      *See also:* *note asctime: doc-asctime, *note time: doc-time,
      *note localtime: doc-localtime.
 
- -- Loadable Function: TM_STRUCT = gmtime (T)
+ -- Built-in Function: TM_STRUCT = gmtime (T)
      Given a value returned from `time', or any non-negative integer,
      return a time structure corresponding to CUT (Coordinated
      Universal Time).  For example:
@@ -5637,7 +6145,7 @@ referred to as a TM_STRUCT.
                      yday = 47
                      isdst = 0
                      zone = CST
-                   }
+                  }
 
      *See also:* *note strftime: doc-strftime, *note strptime:
      doc-strptime, *note localtime: doc-localtime, *note mktime:
@@ -5646,7 +6154,7 @@ referred to as a TM_STRUCT.
      *note datestr: doc-datestr, *note datevec: doc-datevec, *note
      calendar: doc-calendar, *note weekday: doc-weekday.
 
- -- Loadable Function: TM_STRUCT = localtime (T)
+ -- Built-in Function: TM_STRUCT = localtime (T)
      Given a value returned from `time', or any non-negative integer,
      return a time structure corresponding to the local time zone.
 
@@ -5663,7 +6171,7 @@ referred to as a TM_STRUCT.
                      yday = 47
                      isdst = 0
                      zone = CST
-                   }
+                  }
 
      *See also:* *note strftime: doc-strftime, *note strptime:
      doc-strptime, *note gmtime: doc-gmtime, *note mktime: doc-mktime,
@@ -5672,7 +6180,7 @@ referred to as a TM_STRUCT.
      doc-datestr, *note datevec: doc-datevec, *note calendar:
      doc-calendar, *note weekday: doc-weekday.
 
- -- Loadable Function: SECONDS = mktime (TM_STRUCT)
+ -- Built-in Function: SECONDS = mktime (TM_STRUCT)
      Convert a time structure corresponding to the local time to the
      number of seconds since the epoch.  For example:
 
@@ -5698,7 +6206,7 @@ referred to as a TM_STRUCT.
      *See also:* *note ctime: doc-ctime, *note localtime:
      doc-localtime, *note time: doc-time.
 
- -- Loadable Function:  strftime (FMT, TM_STRUCT)
+ -- Built-in Function:  strftime (FMT, TM_STRUCT)
      Format the time structure TM_STRUCT in a flexible way using the
      format string FMT that contains `%' substitutions similar to those
      in `printf'.  Except where noted, substituted fields have a fixed
@@ -5710,7 +6218,7 @@ referred to as a TM_STRUCT.
      without change.  For example:
 
           strftime ("%r (%Z) %A %e %B %Y", localtime (time ()))
-               => "01:15:06 AM (CST) Monday 17 February 1997"
+                => "01:15:06 AM (CST) Monday 17 February 1997"
 
      Octave's `strftime' function supports a superset of the ANSI C
      field specifiers.
@@ -5839,7 +6347,7 @@ referred to as a TM_STRUCT.
      doc-datestr, *note datevec: doc-datevec, *note calendar:
      doc-calendar, *note weekday: doc-weekday.
 
- -- Loadable Function: [TM_STRUCT, NCHARS] = strptime (STR, FMT)
+ -- Built-in Function: [TM_STRUCT, NCHARS] = strptime (STR, FMT)
      Convert the string STR to the time structure TM_STRUCT under the
      control of the format string FMT.
 
@@ -5916,6 +6424,8 @@ useful.
      time to start, it is reasonable to check to see if `cputime' works
      by checking to see if the total CPU time used is nonzero.
 
+     *See also:* *note tic: doc-tic, *note toc: doc-toc.
+
  -- Function File:  is_leap_year ()
  -- Function File:  is_leap_year (YEAR)
      Return true if YEAR is a leap year and false otherwise.  If no
@@ -5929,10 +6439,13 @@ useful.
      *note calendar: doc-calendar.
 
  -- Built-in Function:  tic ()
+ -- Built-in Function: ID = tic ()
  -- Built-in Function:  toc ()
+ -- Built-in Function:  toc (ID)
+ -- Built-in Function: VAL = toc (...)
      Set or check a wall-clock timer.  Calling `tic' without an output
-     argument sets the timer.  Subsequent calls to `toc' return the
-     number of seconds since the timer was set.  For example,
+     argument sets the internal timer state.  Subsequent calls to `toc'
+     return the number of seconds since the timer was set.  For example,
 
           tic ();
           # many computations later...
@@ -5941,29 +6454,21 @@ useful.
      will set the variable `elapsed_time' to the number of seconds since
      the most recent call to the function `tic'.
 
-     If called with one output argument then this function returns a
-     scalar of type `uint64' and the wall-clock timer is not started.
+     If called with one output argument, `tic' returns a scalar of type
+     `uint64' that may be later passed to `toc'.
 
-          t = tic; sleep (5); (double (tic ()) - double (t)) * 1e-6
-               => 5
+          id = tic; sleep (5); toc (id)
+                => 5.0010
 
-     Nested timing with `tic' and `toc' is not supported.  Therefore
-     `toc' will always return the elapsed time from the most recent
-     call to `tic'.
+     Calling `tic' and `toc' this way allows nested timing calls.
 
      If you are more interested in the CPU time that your process used,
      you should use the `cputime' function instead.  The `tic' and
      `toc' functions report the actual wall clock time that elapsed
      between the calls.  This may include time spent processing other
-     jobs or doing nothing at all.  For example:
+     jobs or doing nothing at all.
 
-          tic (); sleep (5); toc ()
-               => 5
-          t = cputime (); sleep (5); cputime () - t
-               => 0
-
-     (This example also illustrates that the CPU timer may have a fairly
-     coarse resolution.)
+     *See also:* *note toc: doc-toc, *note cputime: doc-cputime.
 
  -- Built-in Function:  pause (SECONDS)
      Suspend the execution of the program.  If invoked without any
@@ -6030,7 +6535,7 @@ useful.
         * Days can be fractional.
 
      *Caution:* this function does not attempt to handle Julian
-     calendars so dates before Octave 15, 1582 are wrong by as much as
+     calendars so dates before October 15, 1582 are wrong by as much as
      eleven days.  Also, be aware that only Roman Catholic countries
      adopted the calendar in 1582.  It took until 1924 for it to be
      adopted everywhere.  See the Wikipedia entry on the Gregorian
@@ -6082,26 +6587,26 @@ useful.
      16      HH:MM PM                       03:38 PM
      17      QQ-YY                          Q3-00
      18      QQ                             Q3
-     19      dd/mm                          13/03
-     20      dd/mm/yy                       13/03/95
-     21      mmm.dd.yyyy HH:MM:SS           Mar.03.1962 13:53:06
-     22      mmm.dd.yyyy                    Mar.03.1962
-     23      mm/dd/yyyy                     03/13/1962
-     24      dd/mm/yyyy                     12/03/1962
-     25      yy/mm/dd                       95/03/13
-     26      yyyy/mm/dd                     1995/03/13
-     27      QQ-YYYY                        Q4-2132
-     28      mmmyyyy                        Mar2047
-     29      yyyymmdd                       20470313
-     30      yyyymmddTHHMMSS                20470313T132603
-     31      yyyy-mm-dd HH:MM:SS            1047-03-13 13:26:03
+     19      dd/mm                          07/09
+     20      dd/mm/yy                       07/09/00
+     21      mmm.dd,yyyy HH:MM:SS           Sep.07,2000 15:38:08
+     22      mmm.dd,yyyy                    Sep.07,2000
+     23      mm/dd/yyyy                     09/07/2000
+     24      dd/mm/yyyy                     07/09/2000
+     25      yy/mm/dd                       00/09/07
+     26      yyyy/mm/dd                     2000/09/07
+     27      QQ-YYYY                        Q3-2000
+     28      mmmyyyy                        Sep2000
+     29      yyyy-mm-dd                     2000-09-07
+     30      yyyymmddTHHMMSS                20000907T153808
+     31      yyyy-mm-dd HH:MM:SS            2000-09-07 15:38:08
 
      If F is a format string, the following symbols are recognized:
 
      Symbol  Meaning                                         Example
      ---------------------------------------------------------------------- 
      yyyy    Full year                                       2005
-     yy      Two-digit year                                  2005
+     yy      Two-digit year                                  05
      mmmm    Full month name                                 December
      mmm     Abbreviated month name                          Dec
      mm      Numeric month number (padded with zeros)        01, 08, 12
@@ -6142,7 +6647,12 @@ useful.
      year, month, day, hour, minute, and seconds respectively.
 
      F is the format string used to interpret date strings (see
-     `datestr').
+     `datestr').  If DATE is a string, but no format is specified, then
+     a relatively slow search is performed through various formats.  It
+     is always preferable to specify the format string F if it is
+     known.  Formats which do not specify a particular time component
+     will have the value set to zero.  Formats which do not specify a
+     date will default to January 1st of the current year.
 
      P is the year at the start of the century to which two-digit years
      will be referenced.  If not specified, it defaults to the current
@@ -6409,9 +6919,9 @@ and path names.
           Number of blocks allocated for file.
 
      If the call is successful ERR is 0 and MSG is an empty string.  If
-     the file does not exist, or some other error occurs, S is an empty
-     matrix, ERR is -1, and MSG contains the corresponding system error
-     message.
+     the file does not exist, or some other error occurs, INFO is an
+     empty matrix, ERR is -1, and MSG contains the corresponding system
+     error message.
 
      If FILE is a symbolic link, `stat' will return information about
      the actual file that is referenced by the link.  Use `lstat' if
@@ -6419,26 +6929,26 @@ and path names.
 
      For example:
 
-          [s, err, msg] = stat ("/vmlinuz")
-                => s =
-                  {
-                    atime = 855399756
-                    rdev = 0
-                    ctime = 847219094
-                    uid = 0
-                    size = 389218
-                    blksize = 4096
-                    mtime = 847219094
-                    gid = 6
-                    nlink = 1
-                    blocks = 768
-                    mode = -rw-r--r--
-                    modestr = -rw-r--r--
-                    ino = 9316
-                    dev = 2049
-                  }
-               => err = 0
-               => msg =
+          [info, err, msg] = stat ("/vmlinuz")
+            => info =
+               {
+                 atime = 855399756
+                 rdev = 0
+                 ctime = 847219094
+                 uid = 0
+                 size = 389218
+                 blksize = 4096
+                 mtime = 847219094
+                 gid = 6
+                 nlink = 1
+                 blocks = 768
+                 mode = -rw-r--r--
+                 modestr = -rw-r--r--
+                 ino = 9316
+                 dev = 2049
+               }
+            => err = 0
+            => msg =
 
  -- Built-in Function:  S_ISBLK (MODE)
      Return true if MODE corresponds to a block device.  The value of
@@ -6520,6 +7030,7 @@ and path names.
     `OtherExecute'
           True if the user (group; other users) has execute permission
           for FILE.
+
      If an attribute does not apply (i.e., archive on a Unix system)
      then the field is set to NaN.
 
@@ -6553,6 +7064,7 @@ and path names.
      any of them, or an empty cell array if no patterns match.  The
      pattern strings are interpreted as filename globbing patterns (as
      they are used by Unix shells).  Within a pattern
+
     `*'
           matches any string, including the null string,
 
@@ -6566,25 +7078,25 @@ and path names.
      looking for matching file names.  For example:
 
           ls
-               =>
-                  file1  file2  file3  myfile1 myfile1b
+             =>
+                file1  file2  file3  myfile1 myfile1b
           glob ("*file1")
-               =>
-                  {
-                    [1,1] = file1
-                    [2,1] = myfile1
-                  }
+             =>
+                {
+                  [1,1] = file1
+                  [2,1] = myfile1
+                }
           glob ("myfile?")
-               =>
-                  {
-                    [1,1] = myfile1
-                  }
+             =>
+                {
+                  [1,1] = myfile1
+                }
           glob ("file[12]")
-               =>
-                  {
-                    [1,1] = file1
-                    [2,1] = file2
-                  }
+             =>
+                {
+                  [1,1] = file1
+                  [2,1] = file2
+                }
 
      *See also:* *note ls: doc-ls, *note dir: doc-dir, *note readdir:
      doc-readdir.
@@ -6618,11 +7130,11 @@ and path names.
      *See also:* *note file_in_loadpath: doc-file_in_loadpath.
 
  -- Built-in Function:  filesep ()
- -- Built-in Function:  filesep ('all')
+ -- Built-in Function:  filesep ("all")
      Return the system-dependent character used to separate directory
      names.
 
-     If 'all' is given, the function returns all valid file separators
+     If "all" is given, the function returns all valid file separators
      in the form of a string.  The list of file separators is
      system-dependent.  It is `/' (forward slash) under UNIX or
      Mac OS X, `/' and `\' (forward and backward slashes) under Windows.
@@ -6638,10 +7150,10 @@ and path names.
 
           help (["myfunc", filemarker, "mysubfunc"])
 
-     returns the help string associated with the sub-function
-     `mysubfunc' of the function `myfunc'.  Another use of `filemarker'
-     is when debugging it allows easier placement of breakpoints within
-     sub-functions.  For example,
+     returns the help string associated with the subfunction `mysubfunc'
+     of the function `myfunc'.  Another use of `filemarker' is when
+     debugging it allows easier placement of breakpoints within
+     subfunctions.  For example,
 
           dbstop (["myfunc", filemarker, "mysubfunc"])
 
@@ -6679,15 +7191,23 @@ and path names.
           tilde_expand ("~/bin")
                => "/home/jwe/bin"
 
- -- Built-in Function: [CNAME, STATUS, MSG] canonicalize_file_name
-          (NAME)
-     Return the canonical name of file NAME.
+ -- Built-in Function: [CNAME, STATUS, MSG] = canonicalize_file_name
+          (FNAME)
+     Return the canonical name of file FNAME.  If the file does not
+     exist the empty string ("") is returned.
+
+     *See also:* *note make_absolute_filename:
+     doc-make_absolute_filename, *note is_absolute_filename:
+     doc-is_absolute_filename, *note is_rooted_relative_filename:
+     doc-is_rooted_relative_filename.
 
  -- Built-in Function:  make_absolute_filename (FILE)
-     Return the full name of FILE, relative to the current directory.
+     Return the full name of FILE beginning from the root of the file
+     system.  No check is done for the existence of FILE.
 
-     *See also:* *note is_absolute_filename: doc-is_absolute_filename,
-     *note is_rooted_relative_filename:
+     *See also:* *note canonicalize_file_name:
+     doc-canonicalize_file_name, *note is_absolute_filename:
+     doc-is_absolute_filename, *note is_rooted_relative_filename:
      doc-is_rooted_relative_filename, *note isdir: doc-isdir.
 
  -- Built-in Function:  is_absolute_filename (FILE)
@@ -6718,13 +7238,14 @@ and path names.
 
      *See also:* *note tmpnam: doc-tmpnam.
 
- -- Function File: CURRENT_STATE recycle ()
- -- Function File: OLD_STATE recycle (NEW_STATE)
+ -- Function File: CURRENT_STATE = recycle ()
+ -- Function File: OLD_STATE = recycle (NEW_STATE)
      Query or set the preference for recycling deleted files.
 
-     Recycling files instead of permanently deleting them is currently
-     not implemented in Octave.  To help avoid accidental data loss it
-     is an error to attempt enable file recycling.
+     Recycling files, instead of permanently deleting them, is not
+     currently implemented in Octave.  To help avoid accidental data
+     loss an error will be raised if an attempt is made to enable file
+     recycling.
 
      *See also:* *note delete: doc-delete.
 
@@ -6746,7 +7267,7 @@ File: octave.info,  Node: File Archiving Utilities,  Next: Networking Utilities,
  -- Function File: ENTRIES = gzip (FILES)
  -- Function File: ENTRIES = gzip (FILES, OUTDIR)
      Compress the list of files and/or directories specified in FILES.
-     Each file is compressed separately and a new file with a '.gz'
+     Each file is compressed separately and a new file with a ".gz"
      extension is created.  The original files are not modified.
      Existing compressed files are silently overwritten.  If OUTDIR is
      defined the compressed files are placed in this directory.
@@ -6823,7 +7344,7 @@ File: octave.info,  Node: File Archiving Utilities,  Next: Networking Utilities,
  -- Function File: ENTRIES = bzip2 (FILES)
  -- Function File: ENTRIES = bzip2 (FILES, OUTDIR)
      Compress the list of files specified in FILES.  Each file is
-     compressed separately and a new file with a '.bz2' extension is
+     compressed separately and a new file with a ".bz2" extension is
      created.  The original files are not modified.  Existing
      compressed files are silently overwritten.  If OUTDIR is defined
      the compressed files are placed in this directory.
@@ -6851,6 +7372,10 @@ File: octave.info,  Node: FTP Objects,  Next: URL Manipulation,  Up: Networking 
 36.4.1 FTP Objects
 ------------------
 
+Octave supports the FTP protocol through an object-oriented interface.
+Use the function `ftp' to create an FTP object which represents the
+connection.  All FTP functions take an FTP object as the first argument.
+
  -- Function File: F = ftp (HOST)
  -- Function File: F = ftp (HOST, USERNAME, PASSWORD)
      Connect to the FTP server HOST with USERNAME and PASSWORD.  If
@@ -6858,9 +7383,32 @@ File: octave.info,  Node: FTP Objects,  Next: URL Manipulation,  Up: Networking 
      password is used.  The returned FTP object F represents the
      established FTP connection.
 
+     The list of actions for an FTP object are shown below.  All
+     functions require an FTP object as the first argument.
+
+     Method     Description
+     ------------------------------------------------------------------ 
+     ascii      Set transfer type to ascii
+     binary     Set transfer type to binary
+     cd         Change remote working directory
+     close      Close FTP connection
+     delete     Delete remote file
+     dir        List remote directory contents
+     mget       Download remote files
+     mkdir      Create remote directory
+     mput       Upload local files
+     rename     Rename remote file or directory
+     rmdir      Remove remote directory
+
+
+ -- Function File:  close (F)
+     Close the FTP connection represented by the FTP object F.
+
+     F is an FTP object returned by the `ftp' function.
+
  -- Function File:  mget (F, FILE)
  -- Function File:  mget (F, DIR)
- -- Function File:  mget (..., TARGET)
+ -- Function File:  mget (F, REMOTE_NAME, TARGET)
      Download a remote file FILE or directory DIR to the local
      directory on the FTP connection F.  F is an FTP object returned by
      the `ftp' function.
@@ -6869,24 +7417,63 @@ File: octave.info,  Node: FTP Objects,  Next: URL Manipulation,  Up: Networking 
      directories on the remote server that match will be downloaded.
 
      If a third argument TARGET is given, then a single file or
-     directory will be downloaded with the name TARGET to the local
-     directory.
+     directory will be downloaded to the local directory and the local
+     name will be changed to TARGET.
 
  -- Function File:  mput (F, FILE)
      Upload the local file FILE into the current remote directory on
      the FTP connection F.  F is an FTP object returned by the ftp
      function.
 
-     The argument FILE is passed by the "glob" function and any files
-     that match the wildcards in FILE will be uploaded.
+     The argument FILE is passed through the `glob' function and any
+     files that match the wildcards in FILE will be uploaded.
+
+ -- Function File:  cd (F, PATH)
+     Set the remote directory to PATH on the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File: LST = dir (F)
+     List the current directory in verbose form for the FTP connection
+     F.
+
+     F is an FTP object returned by the `ftp' function.
 
  -- Function File:  ascii (F)
-     Put the FTP connection F into ascii mode.  F is an FTP object
-     returned by the `ftp' function.
+     Set the FTP connection F to use ASCII mode for transfers.  ASCII
+     mode is only appropriate for text files as it will convert the
+     remote host's newline representation to the local host's newline
+     representation.
+
+     F is an FTP object returned by the `ftp' function.
 
  -- Function File:  binary (F)
-     Put the FTP connection F into binary mode.  F is an FTP object
-     returned by the `ftp' function.
+     Set the FTP connection F to use binary mode for transfers.  In
+     binary mode there is no conversion of newlines from the remote
+     representation to the local representation.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  delete (F, FILE)
+     Delete the remote file FILE over the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  rename (F, OLDNAME, NEWNAME)
+     Rename or move the remote file or directory OLDNAME to NEWNAME,
+     over the FTP connection F.
+
+     F is an FTP object returned by the ftp function.
+
+ -- Function File:  mkdir (F, PATH)
+     Create the remote directory PATH, over the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
+
+ -- Function File:  rmdir (F, PATH)
+     Remove the remote directory PATH, over the FTP connection F.
+
+     F is an FTP object returned by the `ftp' function.
 
 
 File: octave.info,  Node: URL Manipulation,  Prev: FTP Objects,  Up: Networking Utilities
@@ -6919,7 +7506,7 @@ File: octave.info,  Node: URL Manipulation,  Prev: FTP Objects,  Up: Networking 
      array of parameter and value pairs.  For example:
 
           s = urlread ("http://www.google.com/search", "get",
-                       {"query", "octave"});
+                      {"query", "octave"});
 
      *See also:* *note urlwrite: doc-urlwrite.
 
@@ -7038,21 +7625,27 @@ higher-level functions.
      *See also:* *note unix: doc-unix, *note system: doc-system, *note
      isunix: doc-isunix, *note ispc: doc-ispc.
 
- -- Function File: [OUTPUT, STATUS] = perl (SCRIPTFILE)
- -- Function File: [OUTPUT, STATUS] = perl (SCRIPTFILE, ARGUMENT1,
-          ARGUMENT2, ...)
-     Invoke Perl script SCRIPTFILE with possibly a list of command line
-     arguments.  Returns output in OUTPUT and status in STATUS.
+ -- Function File: OUTPUT = perl (SCRIPTFILE)
+ -- Function File: OUTPUT = perl (SCRIPTFILE, ARGUMENT1, ARGUMENT2, ...)
+ -- Function File: [OUTPUT, STATUS] = perl (...)
+     Invoke Perl script SCRIPTFILE, possibly with a list of command line
+     arguments.  Return output in OUTPUT and optional status in STATUS.
+     If SCRIPTFILE is not an absolute file name it is is searched for
+     in the current directory and then in the Octave loadpath.
 
-     *See also:* *note system: doc-system.
+     *See also:* *note system: doc-system, *note python: doc-python.
 
- -- Function File: [OUTPUT, STATUS] = python (SCRIPTFILE)
- -- Function File: [OUTPUT, STATUS] = python (SCRIPTFILE, ARGUMENT1,
-          ARGUMENT2, ...)
-     Invoke python script SCRIPTFILE with possibly a list of command
-     line arguments.  Returns output in OUTPUT and status in STATUS.
+ -- Function File: OUTPUT = python (SCRIPTFILE)
+ -- Function File: OUTPUT = python (SCRIPTFILE, ARGUMENT1, ARGUMENT2,
+          ...)
+ -- Function File: [OUTPUT, STATUS] = python (...)
+     Invoke Python script SCRIPTFILE, possibly with a list of command
+     line arguments.  Return output in OUTPUT and optional status in
+     STATUS.  If SCRIPTFILE is not an absolute file name it is is
+     searched for in the current directory and then in the Octave
+     loadpath.
 
-     *See also:* *note system: doc-system.
+     *See also:* *note system: doc-system, *note perl: doc-perl.
 
  -- Built-in Function: FID = popen (COMMAND, MODE)
      Start a process and create a pipe.  The name of the command to run
@@ -7074,9 +7667,10 @@ higher-level functions.
           while (ischar (s = fgets (fid)))
             fputs (stdout, s);
           endwhile
-               -| drwxr-xr-x  33 root  root  3072 Feb 15 13:28 etc
-               -| drwxr-xr-x   3 root  root  1024 Feb 15 13:28 lib
-               -| drwxrwxrwt  15 root  root  2048 Feb 17 14:53 tmp
+
+             -| drwxr-xr-x  33 root  root  3072 Feb 15 13:28 etc
+             -| drwxr-xr-x   3 root  root  1024 Feb 15 13:28 lib
+             -| drwxrwxrwt  15 root  root  2048 Feb 17 14:53 tmp
 
  -- Built-in Function:  pclose (FID)
      Close a file identifier that was opened by `popen'.  You may also
@@ -7110,10 +7704,11 @@ higher-level functions.
           until (done)
           fclose (out);
           waitpid (pid);
-               -| these
-               -| strings
-               -| some
-               -| are
+
+             -| these
+             -| strings
+             -| some
+             -| are
 
      Note that `popen2', unlike `popen', will not "reap" the child
      process.  If you don't use `waitpid' to check the child's exit
@@ -7414,521 +8009,4 @@ of how they can be used, look at the definition of the function
  -- Built-in Function:  SIG ()
      Return a structure containing Unix signal names and their defined
      values.
-
-
-File: octave.info,  Node: Process ID Information,  Next: Environment Variables,  Prev: Controlling Subprocesses,  Up: System Utilities
-
-36.6 Process, Group, and User IDs
-=================================
-
- -- Built-in Function: pgid = getpgrp ()
-     Return the process group id of the current process.
-
- -- Built-in Function: pid = getpid ()
-     Return the process id of the current process.
-
- -- Built-in Function: pid = getppid ()
-     Return the process id of the parent process.
-
- -- Built-in Function: euid = geteuid ()
-     Return the effective user id of the current process.
-
- -- Built-in Function: uid = getuid ()
-     Return the real user id of the current process.
-
- -- Built-in Function: egid = getegid ()
-     Return the effective group id of the current process.
-
- -- Built-in Function: gid = getgid ()
-     Return the real group id of the current process.
-
-
-File: octave.info,  Node: Environment Variables,  Next: Current Working Directory,  Prev: Process ID Information,  Up: System Utilities
-
-36.7 Environment Variables
-==========================
-
- -- Built-in Function:  getenv (VAR)
-     Return the value of the environment variable VAR.  For example,
-
-          getenv ("PATH")
-
-     returns a string containing the value of your path.
-
- -- Built-in Function:  putenv (VAR, VALUE)
- -- Built-in Function:  setenv (VAR, VALUE)
-     Set the value of the environment variable VAR to VALUE.
-
-
-File: octave.info,  Node: Current Working Directory,  Next: Password Database Functions,  Prev: Environment Variables,  Up: System Utilities
-
-36.8 Current Working Directory
-==============================
-
- -- Command:  cd dir
- -- Command:  chdir dir
-     Change the current working directory to DIR.  If DIR is omitted,
-     the current directory is changed to the user's home directory.
-     For example,
-
-          cd ~/octave
-
-     changes the current working directory to `~/octave'.  If the
-     directory does not exist, an error message is printed and the
-     working directory is not changed.
-
-     *See also:* *note mkdir: doc-mkdir, *note rmdir: doc-rmdir, *note
-     dir: doc-dir.
-
- -- Command:  ls options
-     List directory contents.  For example:
-
-          ls -l
-               -| total 12
-               -| -rw-r--r--   1 jwe  users  4488 Aug 19 04:02 foo.m
-               -| -rw-r--r--   1 jwe  users  1315 Aug 17 23:14 bar.m
-
-     The `dir' and `ls' commands are implemented by calling your
-     system's directory listing command, so the available options may
-     vary from system to system.
-
-     *See also:* *note dir: doc-dir, *note stat: doc-stat, *note
-     readdir: doc-readdir, *note glob: doc-glob, *note filesep:
-     doc-filesep, *note ls_command: doc-ls_command.
-
- -- Function File: VAL = ls_command ()
- -- Function File: OLD_VAL = ls_command (NEW_VAL)
-     Query or set the shell command used by Octave's `ls' command.
-
-     *See also:* *note ls: doc-ls.
-
- -- Function File:  dir (DIRECTORY)
- -- Function File: [LIST] = dir (DIRECTORY)
-     Display file listing for directory DIRECTORY.  If a return value
-     is requested, return a structure array with the fields
-
-          name
-          bytes
-          date
-          isdir
-          statinfo
-
-     where `statinfo' is the structure returned from `stat'.
-
-     If DIRECTORY is not a directory, return information about the
-     named FILENAME.  DIRECTORY may be a list of directories specified
-     either by name or with wildcard characters (like * and ?)  which
-     will be expanded with glob.
-
-     Note that for symbolic links, `dir' returns information about the
-     file that the symbolic link points to instead of the link itself.
-     However, if the link points to a nonexistent file, `dir' returns
-     information about the link.
-
-     *See also:* *note ls: doc-ls, *note stat: doc-stat, *note lstat:
-     doc-lstat, *note readdir: doc-readdir, *note glob: doc-glob, *note
-     filesep: doc-filesep.
-
- -- Built-in Function:  pwd ()
-     Return the current working directory.
-
-     *See also:* *note dir: doc-dir, *note ls: doc-ls.
-
-
-File: octave.info,  Node: Password Database Functions,  Next: Group Database Functions,  Prev: Current Working Directory,  Up: System Utilities
-
-36.9 Password Database Functions
-================================
-
-Octave's password database functions return information in a structure
-with the following fields.
-
-`name'
-     The user name.
-
-`passwd'
-     The encrypted password, if available.
-
-`uid'
-     The numeric user id.
-
-`gid'
-     The numeric group id.
-
-`gecos'
-     The GECOS field.
-
-`dir'
-     The home directory.
-
-`shell'
-     The initial shell.
-
-   In the descriptions of the following functions, this data structure
-is referred to as a PW_STRUCT.
-
- -- Loadable Function: PW_STRUCT = getpwent ()
-     Return a structure containing an entry from the password database,
-     opening it if necessary.  Once the end of the data has been
-     reached, `getpwent' returns 0.
-
- -- Loadable Function: PW_STRUCT = getpwuid (UID).
-     Return a structure containing the first entry from the password
-     database with the user ID UID.  If the user ID does not exist in
-     the database, `getpwuid' returns 0.
-
- -- Loadable Function: PW_STRUCT = getpwnam (NAME)
-     Return a structure containing the first entry from the password
-     database with the user name NAME.  If the user name does not exist
-     in the database, `getpwname' returns 0.
-
- -- Loadable Function:  setpwent ()
-     Return the internal pointer to the beginning of the password
-     database.
-
- -- Loadable Function:  endpwent ()
-     Close the password database.
-
-
-File: octave.info,  Node: Group Database Functions,  Next: System Information,  Prev: Password Database Functions,  Up: System Utilities
-
-36.10 Group Database Functions
-==============================
-
-Octave's group database functions return information in a structure
-with the following fields.
-
-`name'
-     The user name.
-
-`passwd'
-     The encrypted password, if available.
-
-`gid'
-     The numeric group id.
-
-`mem'
-     The members of the group.
-
-   In the descriptions of the following functions, this data structure
-is referred to as a GRP_STRUCT.
-
- -- Loadable Function: GRP_STRUCT = getgrent ()
-     Return an entry from the group database, opening it if necessary.
-     Once the end of data has been reached, `getgrent' returns 0.
-
- -- Loadable Function: GRP_STRUCT = getgrgid (GID).
-     Return the first entry from the group database with the group ID
-     GID.  If the group ID does not exist in the database, `getgrgid'
-     returns 0.
-
- -- Loadable Function: GRP_STRUCT = getgrnam (NAME)
-     Return the first entry from the group database with the group name
-     NAME.  If the group name does not exist in the database,
-     `getgrnam' returns 0.
-
- -- Loadable Function:  setgrent ()
-     Return the internal pointer to the beginning of the group database.
-
- -- Loadable Function:  endgrent ()
-     Close the group database.
-
-
-File: octave.info,  Node: System Information,  Next: Hashing Functions,  Prev: Group Database Functions,  Up: System Utilities
-
-36.11 System Information
-========================
-
- -- Function File: [C, MAXSIZE, ENDIAN] = computer ()
- -- Function File: ARCH = computer ("arch")
-     Print or return a string of the form CPU-VENDOR-OS that identifies
-     the kind of computer Octave is running on.  If invoked with an
-     output argument, the value is returned instead of printed.  For
-     example:
-
-          computer ()
-             -| i586-pc-linux-gnu
-
-          x = computer ()
-             => x = "i586-pc-linux-gnu"
-
-     If two output arguments are requested, also return the maximum
-     number of elements for an array.
-
-     If three output arguments are requested, also return the byte order
-     of the current system as a character (`"B"' for big-endian or
-     `"L"' for little-endian).
-
-     If the argument `"arch"' is specified, return a string indicating
-     the architecture of the computer on which Octave is running.
-
- -- Built-in Function: [UTS, ERR, MSG] = uname ()
-     Return system information in the structure.  For example:
-
-          uname ()
-               => {
-                     sysname = x86_64
-                     nodename = segfault
-                     release = 2.6.15-1-amd64-k8-smp
-                     version = Linux
-                     machine = #2 SMP Thu Feb 23 04:57:49 UTC 2006
-                   }
-
-     If successful, ERR is 0 and MSG is an empty string.  Otherwise,
-     ERR is nonzero and MSG contains a system-dependent error message.
-
- -- Loadable Function:  nproc ()
- -- Loadable Function:  nproc (QUERY)
-     Return the current number of available processors.
-
-     If called with the optional argument QUERY, modify how processors
-     are counted as follows:
-    `all'
-          total number of processors.
-
-    `current'
-          processors available to the current process.
-
-    `overridable'
-          likewise, but overridable through the `OMP_NUM_THREADS'
-          environment variable.
-
- -- Function File:  ispc ()
-     Return true if Octave is running on a Windows system and false
-     otherwise.
-
-     *See also:* *note isunix: doc-isunix, *note ismac: doc-ismac.
-
- -- Function File:  isunix ()
-     Return true if Octave is running on a Unix-like system and false
-     otherwise.
-
-     *See also:* *note ismac: doc-ismac, *note ispc: doc-ispc.
-
- -- Function File:  ismac ()
-     Return true if Octave is running on a Mac OS X system and false
-     otherwise.
-
-     *See also:* *note isunix: doc-isunix, *note ispc: doc-ispc.
-
- -- Built-in Function:  isieee ()
-     Return true if your computer _claims_ to conform to the IEEE
-     standard for floating point calculations.  No actual tests are
-     performed.
-
- -- Function File:  isdeployed ()
-     Return true if the current program has been compiled and is running
-     separately from the Octave interpreter and false if it is running
-     in the Octave interpreter.  Currently, this function always returns
-     false in Octave.
-
- -- Built-in Function:  OCTAVE_HOME ()
-     Return the name of the top-level Octave installation directory.
-
- -- Function File:  matlabroot ()
-     Return the name of the top-level Octave installation directory.
-
-     This is an alias for the function `OCTAVE_HOME' provided for
-     compatibility.
-
-     *See also:* *note OCTAVE_HOME: doc-OCTAVE_HOME.
-
- -- Built-in Function:  OCTAVE_VERSION ()
-     Return the version number of Octave, as a string.
-
- -- Function File:  version ()
-     Return the version number of Octave, as a string.
-
-     This is an alias for the function `OCTAVE_VERSION' provided for
-     compatibility
-
-     *See also:* *note OCTAVE_VERSION: doc-OCTAVE_VERSION..
-
- -- Function File:  ver ()
-     Display a header containing the current Octave version number,
-     license string and operating system, followed by the installed
-     package names, versions, and installation directories.
-
- -- Function File: v = ver ()
-     Return a vector of structures, respecting Octave and each
-     installed package.  The structure includes the following fields.
-
-    `Name'
-          Package name.
-
-    `Version'
-          Version of the package.
-
-    `Revision'
-          Revision of the package.
-
-    `Date'
-          Date respecting the version/revision.
-
- -- Function File: v = ver ("Octave")
-     Return version information for Octave only.
-
- -- Function File: v = ver (PACKAGE)
-     Return version information for PACKAGE.
-
-     *See also:* *note version: doc-version, *note octave_config_info:
-     doc-octave_config_info.
-
- -- Function File:  compare_versions (V1, V2, OPERATOR)
-     Compare two version strings using the given OPERATOR.
-
-     This function assumes that versions V1 and V2 are arbitrarily long
-     strings made of numeric and period characters possibly followed by
-     an arbitrary string (e.g., "1.2.3", "0.3", "0.1.2+", or
-     "1.2.3.4-test1").
-
-     The version is first split into numeric and character portions and
-     then the parts are padded to be the same length (i.e., "1.1" would
-     be padded to be "1.1.0" when being compared with "1.1.1", and
-     separately, the character parts of the strings are padded with
-     nulls).
-
-     The operator can be any logical operator from the set
-
-        * "==" equal
-
-        * "<" less than
-
-        * "<=" less than or equal to
-
-        * ">" greater than
-
-        * ">=" greater than or equal to
-
-        * "!=" not equal
-
-        * "~=" not equal
-
-     Note that version "1.1-test2" will compare as greater than
-     "1.1-test10".  Also, since the numeric part is compared first, "a"
-     compares less than "1a" because the second string starts with a
-     numeric part even though `double("a")' is greater than
-     `double("1").'
-
- -- Function File:  license
-     Display the license of Octave.
-
- -- Function File:  license ("inuse")
-     Display a list of packages currently being used.
-
- -- Function File: RETVAL = license ("inuse")
-     Return a structure containing the fields `feature' and `user'.
-
- -- Function File: RETVAL = license ("test", FEATURE)
-     Return 1 if a license exists for the product identified by the
-     string FEATURE and 0 otherwise.  The argument FEATURE is case
-     insensitive and only the first 27 characters are checked.
-
- -- Function File:  license ("test", FEATURE, TOGGLE)
-     Enable or disable license testing for FEATURE, depending on
-     TOGGLE, which may be one of:
-
-    "enable"
-          Future tests for the specified license of FEATURE are
-          conducted as usual.
-
-    "disable"
-          Future tests for the specified license of FEATURE return 0.
-
- -- Function File: RETVAL = license ("checkout", FEATURE)
-     Check out a license for FEATURE, returning 1 on success and 0 on
-     failure.
-
-     This function is provided for compatibility with MATLAB.
-
-     *See also:* *note ver: doc-ver, *note version: doc-version.
-
- -- Built-in Function:  octave_config_info ()
- -- Built-in Function:  octave_config_info (OPTION)
-     Return a structure containing configuration and installation
-     information for Octave.
-
-     If OPTION is a string, return the configuration information for the
-     specified option.
-
-
- -- Function File:  usejava (FEATURE)
-     Return true if the specific Sun Java element FEATURE is available.
-
-     Possible features are:
-
-    "awt"
-          Abstract Window Toolkit for GUIs.
-
-    "desktop"
-          Interactive desktop is running.
-
-    "jvm"
-          Java Virtual Machine.
-
-    "swing"
-          Swing components for lightweight GUIs.
-
-     This function is provided for compatibility with MATLAB scripts
-     which may alter their behavior based on the availability of Java.
-     Octave does not implement an interface to Java and this function
-     always returns `false'.
-
- -- Loadable Function:  getrusage ()
-     Return a structure containing a number of statistics about the
-     current Octave process.  Not all fields are available on all
-     systems.  If it is not possible to get CPU time statistics, the
-     CPU time slots are set to zero.  Other missing data are replaced
-     by NaN.  The list of possible fields is:
-
-    `idrss'
-          Unshared data size.
-
-    `inblock'
-          Number of block input operations.
-
-    `isrss'
-          Unshared stack size.
-
-    `ixrss'
-          Shared memory size.
-
-    `majflt'
-          Number of major page faults.
-
-    `maxrss'
-          Maximum data size.
-
-    `minflt'
-          Number of minor page faults.
-
-    `msgrcv'
-          Number of messages received.
-
-    `msgsnd'
-          Number of messages sent.
-
-    `nivcsw'
-          Number of involuntary context switches.
-
-    `nsignals'
-          Number of signals received.
-
-    `nswap'
-          Number of swaps.
-
-    `nvcsw'
-          Number of voluntary context switches.
-
-    `oublock'
-          Number of block output operations.
-
-    `stime'
-          A structure containing the system CPU time used.  The
-          structure has the elements `sec' (seconds) `usec'
-          (microseconds).
-
-    `utime'
-          A structure containing the user CPU time used.  The structure
-          has the elements `sec' (seconds) `usec' (microseconds).
 

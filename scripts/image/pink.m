@@ -28,38 +28,43 @@
 
 ## Author:  Kai Habel <kai.habel@gmx.de>
 
+## PKG_ADD: colormap ("register", "pink");
+## PKG_DEL: colormap ("unregister", "pink");
+
 function map = pink (n)
 
   if (nargin == 0)
     n = rows (colormap);
   elseif (nargin == 1)
     if (! isscalar (n))
-      error ("pink: argument must be a scalar");
+      error ("pink: N must be a scalar");
     endif
   else
     print_usage ();
   endif
 
   if (n == 1)
-    map = [0, 0, 0];
+    map = sqrt ([1/3, 1/3, 1/3]);
   elseif (n > 1)
     x = linspace (0, 1, n)';
-    r = (x < 3/8) .* (14/9 * x) + (x >= 3/8) .* (2/3 * x + 1/3);
-    g = (x < 3/8) .* (2/3 * x)\
-      + (x >= 3/8 & x < 3/4) .* (14/9 * x - 1/3)\
+    r = (x < 3/8) .* (14/9 * x) ...
+      + (x >= 3/8) .* (2/3 * x + 1/3);
+    g = (x < 3/8) .* (2/3 * x) ...
+      + (x >= 3/8 & x < 3/4) .* (14/9 * x - 1/3) ...
       + (x >= 3/4) .* (2/3 * x + 1/3);
-    b = (x < 3/4) .* (2/3 * x) + (x >= 3/4) .* (2 * x - 1);
-
+    b = (x < 3/4) .* (2/3 * x) ...
+      + (x >= 3/4) .* (2 * x - 1);
     map = sqrt ([r, g, b]);
   else
-    map = [];
+    map = zeros (0, 3);
   endif
 
 endfunction
 
+
 %!demo
 %! ## Show the 'pink' colormap as an image
-%! image (1:64, linspace (0, 1, 64), repmat (1:64, 64, 1)')
-%! axis ([1, 64, 0, 1], "ticy", "xy")
-%! colormap (pink (64))
+%! image (1:64, linspace (0, 1, 64), repmat ((1:64)', 1, 64));
+%! axis ([1, 64, 0, 1], "ticy", "xy");
+%! colormap (pink (64));
 

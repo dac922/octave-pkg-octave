@@ -39,9 +39,9 @@ like
 
 <pre class="example"><pre class="verbatim">     function [y, dy] = polyval (p, varargin)
        if (nargout == 2)
-         [y, dy] = polyval (fliplr(p.poly), varargin{:});
+         [y, dy] = polyval (fliplr (p.poly), varargin{:});
        else
-         y = polyval (fliplr(p.poly), varargin{:});
+         y = polyval (fliplr (p.poly), varargin{:});
        endif
      endfunction
 </pre>
@@ -50,14 +50,14 @@ like
 function.  Another interesting example for an overloaded function for our
 polynomial class is the <code>plot</code> function.
 
-<pre class="example"><pre class="verbatim">     function h = plot(p, varargin)
+<pre class="example"><pre class="verbatim">     function h = plot (p, varargin)
        n = 128;
        rmax = max (abs (roots (p.poly)));
        x = [0 : (n - 1)] / (n - 1) * 2.2 * rmax - 1.1 * rmax;
        if (nargout > 0)
-         h = plot(x, p(x), varargin{:});
+         h = plot (x, p(x), varargin{:});
        else
-         plot(x, p(x), varargin{:});
+         plot (x, p(x), varargin{:});
        endif
      endfunction
 </pre>

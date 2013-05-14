@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Create /proc/self/fd-related names for subfiles of open directories.
 
    Copyright (C) 2006, 2009-2012 Free Software Foundation, Inc.

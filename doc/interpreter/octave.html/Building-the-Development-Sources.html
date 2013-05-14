@@ -50,15 +50,19 @@ doing
 
      <ul>
 <li>Check out a copy of the Octave sources:
+
      <pre class="example">          hg clone http://www.octave.org/hg/octave
 </pre>
      <li>Change to the top-level directory of the newly checked out sources:
+
      <pre class="example">          cd octave
 </pre>
      <li>Generate the necessary configuration files:
-     <pre class="example">          ./autogen.sh
+
+     <pre class="example">          ./bootstrap
 </pre>
      <li>Create a build directory and change to it:
+
      <pre class="example">          mkdir build
           cd build
 </pre>
@@ -71,9 +75,11 @@ easier debugging while another may be configured to test building with
 other specialized compiler flags.
 
      <li>Run Octave's configure script from the build directory:
+
      <pre class="example">          ../configure
 </pre>
      <li>Run make in the build directory:
+
      <pre class="example">          make
 </pre>
      </ul>

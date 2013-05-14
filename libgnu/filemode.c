@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* filemode.c -- make a string describing file modes
 
    Copyright (C) 1985, 1990, 1993, 1998-2000, 2004, 2006, 2009-2012 Free

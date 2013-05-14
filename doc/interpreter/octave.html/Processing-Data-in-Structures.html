@@ -40,39 +40,36 @@ function is applied to each field of the structure.  See <a href="doc_002dstruct
    <p>Alternatively, to process the data in a structure, the structure might
 be converted to another type of container before being treated.
 
-<!-- struct2cell src/ov-cell.cc -->
+<!-- struct2cell libinterp/octave-value/ov-cell.cc -->
    <p><a name="doc_002dstruct2cell"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>struct2cell</b> (<var>S</var>)<var><a name="index-struct2cell-453"></a></var><br>
+&mdash; Built-in Function:  <b>struct2cell</b> (<var>S</var>)<var><a name="index-struct2cell-471"></a></var><br>
 <blockquote><p>Create a new cell array from the objects stored in the struct object. 
 If <var>f</var> is the number of fields in the structure, the resulting
 cell array will have a dimension vector corresponding to
 <code>[</code><var>F</var><code> size(</code><var>S</var><code>)]</code>.  For example:
 
-     <pre class="example">            s = struct('name', {'Peter', 'Hannah', 'Robert'},
-                       'age', {23, 16, 3});
-            c = struct2cell(s)
-               &rArr; c = {1x1x3 Cell Array}
-            c(1,1,:)(:)
-               &rArr; ans =
-                  {
-                    [1,1] = Peter
-                    [2,1] = Hannah
-                    [3,1] = Robert
-                  }
-            c(2,1,:)(:)
-               &rArr; ans =
-                  {
-                    [1,1] = 23
-                    [2,1] = 16
-                    [3,1] = 3
-                  }
+     <pre class="example">          s = struct ("name", {"Peter", "Hannah", "Robert"},
+                     "age", {23, 16, 3});
+          c = struct2cell (s)
+             &rArr; c = {1x1x3 Cell Array}
+          c(1,1,:)(:)
+             &rArr;
+                {
+                  [1,1] = Peter
+                  [2,1] = Hannah
+                  [3,1] = Robert
+                }
+          c(2,1,:)(:)
+             &rArr;
+                {
+                  [1,1] = 23
+                  [2,1] = 16
+                  [3,1] = 3
+                }
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcell2struct.html#doc_002dcell2struct">cell2struct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcell2struct.html#doc_002dcell2struct">cell2struct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>. 
 </p></blockquote></div>
 
    </body></html>

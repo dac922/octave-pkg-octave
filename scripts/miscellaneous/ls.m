@@ -56,7 +56,7 @@ function retval = ls (varargin)
       ## shell (cmd.exe) on MinGW uses '^' as escape character
       args = regexprep (args, '([^\w.*? -])', '^$1');
     else
-      args = regexprep (args, '([^\w.*? -])', '\$1');
+      args = regexprep (args, '([^\w.*? -])', '\\$1');
     endif
     args = sprintf ("%s ", args{:});
   else
@@ -90,5 +90,5 @@ endfunction
 %! assert (ischar (list));
 %! assert (! isempty (list));
 
-%!error ls (1);
+%!error ls (1)
 

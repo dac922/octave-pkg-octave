@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -346,7 +346,11 @@ Often it is useful to find the minimum value of a function rather than just
 the zeroes where it crosses the x-axis.  @code{fminbnd} is designed for the
 simpler, but very common, case of a univariate function where the interval
 to search is bounded.  For unbounded minimization of a function with
-potentially many variables use @code{fminunc}.  @xref{Optimization}, for
+potentially many variables use @code{fminunc} or @code{fminsearch}.  The two
+functions use different internal algorithms and some knowledge of the objective
+function is required.  For functions which can be differentiated, @code{fminunc}
+is appropriate.  For functions with discontinuities, or for which a gradient
+search would fail, use @code{fminsearch}.  @xref{Optimization}, for
 minimization with the presence of constraint functions.  Note that searches
 can be made for maxima by simply inverting the objective function
 @tex
@@ -359,14 +363,13 @@ can be made for maxima by simply inverting the objective function
 @c fminbnd scripts/optimization/fminbnd.m
 @anchor{doc-fminbnd}
 @deftypefn {Function File} {[@var{x}, @var{fval}, @var{info}, @var{output}] =} fminbnd (@var{fun}, @var{a}, @var{b}, @var{options})
-Find a minimum point of a univariate function.  @var{fun} should be a
-function
-handle or name.  @var{a}, @var{b} specify a starting interval.  @var{options}
-is a
-structure specifying additional options.  Currently, @code{fminbnd}
-recognizes these options: @code{"FunValCheck"}, @code{"OutputFcn"},
-@code{"TolX"}, @code{"MaxIter"}, @code{"MaxFunEvals"}.
-For description of these options, see @ref{doc-optimset,,optimset}.
+Find a minimum point of a univariate function.
+
+@var{fun} should be a function handle or name.  @var{a}, @var{b} specify a
+starting interval.  @var{options} is a structure specifying additional
+options.  Currently, @code{fminbnd} recognizes these options:
+"FunValCheck", "OutputFcn", "TolX", "MaxIter", "MaxFunEvals".  For a
+description of these options, see @ref{doc-optimset,,optimset}.
 
 On exit, the function returns @var{x}, the approximate minimum point
 and @var{fval}, the function value thereof.
@@ -382,7 +385,13 @@ Maximum number of iterations or function evaluations has been exhausted.
 @item -1
 The algorithm has been terminated from user output function.
 @end itemize
-@seealso{@ref{doc-optimset,,optimset}, @ref{doc-fzero,,fzero}, @ref{doc-fminunc,,fminunc}}
+
+Notes: The search for a minimum is restricted to be in the interval
+bound by @var{a} and @var{b}.  If you only have an initial point
+to begin searching from you will need to use an unconstrained
+minimization algorithm such as @code{fminunc} or @code{fminsearch}.
+@code{fminbnd} internally uses a Golden Section search strategy.
+@seealso{@ref{doc-fzero,,fzero}, @ref{doc-fminunc,,fminunc}, @ref{doc-fminsearch,,fminsearch}, @ref{doc-optimset,,optimset}}
 @end deftypefn
 
 
@@ -393,6 +402,7 @@ The algorithm has been terminated from user output function.
 @deftypefnx {Function File} {[@var{x}, @var{fvec}, @var{info}, @var{output}, @var{grad}, @var{hess}] =} fminunc (@var{fcn}, @dots{})
 Solve an unconstrained optimization problem defined by the function
 @var{fcn}.
+
 @var{fcn} should accepts a vector (array) defining the unknown variables,
 and return the objective function value, optionally with gradient.
 In other words, this function attempts to determine a vector @var{x} such
@@ -441,9 +451,45 @@ Optionally, fminunc can also yield a structure with convergence statistics
 (@var{output}), the output gradient (@var{grad}) and approximate Hessian
 (@var{hess}).
 
-Note: If you only have a single nonlinear equation of one variable, using
-@code{fminbnd} is usually a much better idea.
-@seealso{@ref{doc-fminbnd,,fminbnd}, @ref{doc-optimset,,optimset}}
+Notes: If you only have a single nonlinear equation of one variable then
+using @code{fminbnd} is usually a much better idea.  The algorithm used is a
+gradient search which depends on the objective function being differentiable.
+If the function has discontinuities it may be better to use a derivative-free
+algorithm such as @code{fminsearch}.
+@seealso{@ref{doc-fminbnd,,fminbnd}, @ref{doc-fminsearch,,fminsearch}, @ref{doc-optimset,,optimset}}
+@end deftypefn
+
+
+@c fminsearch scripts/optimization/fminsearch.m
+@anchor{doc-fminsearch}
+@deftypefn  {Function File} {@var{x} =} fminsearch (@var{fun}, @var{x0})
+@deftypefnx {Function File} {@var{x} =} fminsearch (@var{fun}, @var{x0}, @var{options})
+@deftypefnx {Function File} {[@var{x}, @var{fval}] =} fminsearch (@dots{})
+
+Find a value of @var{x} which minimizes the function @var{fun}.
+The search begins at the point @var{x0} and iterates using the
+Nelder & Mead Simplex algorithm (a derivative-free method).  This algorithm
+is better-suited to functions which have discontinuities or for which
+a gradient-based search such as @code{fminunc} fails.
+
+Options for the search are provided in the parameter @var{options} using 
+the function @code{optimset}.  Currently, @code{fminsearch} accepts the
+options: "TolX", "MaxFunEvals", "MaxIter", "Display".  For a description of
+these options, see @code{optimset}.
+
+On exit, the function returns @var{x}, the minimum point,
+and @var{fval}, the function value thereof.
+
+Example usages:
+
+@example
+@group
+fminsearch (@@(x) (x(1)-5).^2+(x(2)-8).^4, [0;0])
+
+fminsearch (inline ("(x(1)-5).^2+(x(2)-8).^4", "x"), [0;0])
+@end group
+@end example
+@seealso{@ref{doc-fminbnd,,fminbnd}, @ref{doc-fminunc,,fminunc}, @ref{doc-optimset,,optimset}}
 @end deftypefn
 
 

@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -80,7 +80,7 @@ is evaluated, the value returned by @code{ans} is 25.
 @end defvr
 
 
-@c isvarname src/utils.cc
+@c isvarname libinterp/interpfcn/utils.cc
 @anchor{doc-isvarname}
 @deftypefn {Built-in Function} {} isvarname (@var{name})
 Return true if @var{name} is a valid variable name.
@@ -279,7 +279,7 @@ will display the value of @code{x} from inside the function as 0,
 but the value of @code{x} at the top level remains unchanged, because
 the function works with a @emph{copy} of its argument.
 
-@c isglobal src/variables.cc
+@c isglobal libinterp/interpfcn/variables.cc
 @anchor{doc-isglobal}
 @deftypefn {Built-in Function} {} isglobal (@var{name})
 Return true if @var{name} is a globally visible variable.
@@ -289,7 +289,7 @@ For example:
 @group
 global x
 isglobal ("x")
-     @result{} 1
+   @result{} 1
 @end group
 @end example
 @seealso{@ref{doc-isvarname,,isvarname}, @ref{doc-exist,,exist}}
@@ -395,21 +395,21 @@ endfor
 
 clear
 for i = 1:2
-  count_calls();
+  count_calls ();
 endfor
 @print{} 'count_calls' has been called 3 times
 @print{} 'count_calls' has been called 4 times
 
 clear all
 for i = 1:2
-  count_calls();
+  count_calls ();
 endfor
 @print{} 'count_calls' has been called 1 times
 @print{} 'count_calls' has been called 2 times
 
 clear count_calls
 for i = 1:2
-  count_calls();
+  count_calls ();
 endfor
 @print{} 'count_calls' has been called 1 times
 @print{} 'count_calls' has been called 2 times
@@ -443,7 +443,7 @@ who -variables
 @end group
 @end example
 
-@c who src/variables.cc
+@c who libinterp/interpfcn/variables.cc
 @anchor{doc-who}
 @deftypefn  {Command} {} who
 @deftypefnx {Command} {} who pattern @dots{}
@@ -477,7 +477,7 @@ matching the given patterns.
 @end deftypefn
 
 
-@c whos src/variables.cc
+@c whos libinterp/interpfcn/variables.cc
 @anchor{doc-whos}
 @deftypefn  {Command} {} whos
 @deftypefnx {Command} {} whos pattern @dots{}
@@ -491,6 +491,7 @@ summarized in a table with the following default entries.
 @table @asis
 @item Attr
 Attributes of the listed variable.  Possible attributes are:
+
 @table @asis
 @item blank
 Variable in local scope
@@ -538,7 +539,7 @@ complex, nesting, persistent.
 @end deftypefn
 
 
-@c whos_line_format src/variables.cc
+@c whos_line_format libinterp/interpfcn/variables.cc
 @anchor{doc-whos_line_format}
 @deftypefn  {Built-in Function} {@var{val} =} whos_line_format ()
 @deftypefnx {Built-in Function} {@var{old_val} =} whos_line_format (@var{new_val})
@@ -625,7 +626,7 @@ endif
 @end group
 @end example
 
-@c exist src/variables.cc
+@c exist libinterp/interpfcn/variables.cc
 @anchor{doc-exist}
 @deftypefn {Built-in Function} {} exist (@var{name}, @var{type})
 Return 1 if the name exists as a variable, 2 if the name is an
@@ -654,12 +655,13 @@ Check only for variables.
 Check only for built-in functions.
 
 @item "file"
-Check only for files.
+Check only for files and directories.
 
 @item "dir"
 Check only for directories.
 @end table
-@seealso{@ref{doc-file_in_loadpath,,file_in_loadpath}}
+
+@seealso{@ref{doc-file_in_loadpath,,file_in_loadpath}, @ref{doc-file_in_path,,file_in_path}, @ref{doc-stat,,stat}}
 @end deftypefn
 
 
@@ -678,7 +680,7 @@ Since having this variable in memory might slow down other computations,
 it can be necessary to remove it manually from memory.  The @code{clear}
 function allows this.
 
-@c clear src/variables.cc
+@c clear libinterp/interpfcn/variables.cc
 @anchor{doc-clear}
 @deftypefn {Command} {} clear [options] pattern @dots{}
 Delete the names matching the given patterns from the symbol table.  The
@@ -719,6 +721,7 @@ will clear the variable definition and restore the definition of
 clear the function definition.
 
 The following options are available in both long and short form
+
 @table @code
 @item -all, -a
 Clears all local and global user-defined variables and all functions
@@ -743,6 +746,7 @@ Clears the class structure table and clears all objects.
 The arguments are treated as regular expressions as any variables that
 match will be cleared.
 @end table
+
 With the exception of @code{exclusive}, all long options can be used
 without the dash as well.
 @end deftypefn

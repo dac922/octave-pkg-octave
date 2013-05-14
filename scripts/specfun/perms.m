@@ -24,7 +24,7 @@
 ## result has size @code{factorial (@var{n}) * @var{n}}, where @var{n}
 ## is the length of @var{v}.
 ##
-## As an example, @code{perms([1, 2, 3])} returns the matrix
+## As an example, @code{perms ([1, 2, 3])} returns the matrix
 ##
 ## @example
 ## @group
@@ -38,36 +38,38 @@
 ## @end example
 ## @end deftypefn
 
-function A = perms (v)
+function A = perms (w)
   if (nargin != 1)
     print_usage ();
   endif
-  v = v(:);
+  v = [1:length(w)]';
   n = length (v);
 
   if (n == 0)
-    A = [];
+    p = [];
   else
-    A = v(1);
+    p = v(1);
     for j = 2:n
-      B = A;
-      A = zeros (prod (2:j), n, class (v));
-      k = size (B, 1);
+      B = p;
+      p = zeros (prod (2:j), n);
+      k = rows (B);
       idx = 1:k;
       for i = j:-1:1
-        A(idx,1:i-1) = B(:,1:i-1);
-        A(idx,i) = v(j);
-        A(idx,i+1:j) = B(:,i:j-1);
+        p(idx,1:i-1) = B(:,1:i-1);
+        p(idx,i) = v(j);
+        p(idx,i+1:j) = B(:,i:j-1);
         idx += k;
       endfor
     endfor
   endif
+  A = w(p);
 endfunction
 
-%!error perms ();
-%!error perms (1, 2);
 
-%!assert (perms ([1,2,3]), [1,2,3;2,1,3;1,3,2;2,3,1;3,1,2;3,2,1]);
-%!assert (perms (1:3), perms ([1,2,3]));
+%!assert (perms ([1,2,3]), [1,2,3;2,1,3;1,3,2;2,3,1;3,1,2;3,2,1])
+%!assert (perms ("abc"), ["abc"; "bac"; "acb"; "bca"; "cab"; "cba"])
+%!assert (perms (int8 ([1,2,3])), int8 ([1,2,3;2,1,3;1,3,2;2,3,1;3,1,2;3,2,1]))
 
-%!assert (perms (int8([1,2,3])), int8([1,2,3;2,1,3;1,3,2;2,3,1;3,1,2;3,2,1]));
+%!error perms ()
+%!error perms (1, 2)
+

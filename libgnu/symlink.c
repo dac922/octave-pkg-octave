@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Stub for symlink().
    Copyright (C) 2009-2012 Free Software Foundation, Inc.
 

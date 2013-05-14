@@ -1,4 +1,4 @@
-This is octave.info, produced by makeinfo version 4.13 from octave.texi.
+This is /home/jwe/src/octave/doc/interpreter/octave.info, produced by makeinfo version 4.13 from /home/jwe/src/octave/doc/interpreter/octave.texi.
 
 START-INFO-DIR-ENTRY
 * Octave: (octave).           Interactive language for numerical computations.
@@ -20,6 +20,344 @@ permission notice identical to this one.
    Permission is granted to copy and distribute translations of this
 manual into another language, under the above conditions for modified
 versions.
+
+
+File: octave.info,  Node: Call by Value,  Next: Recursion,  Up: Calling Functions
+
+8.2.1 Call by Value
+-------------------
+
+In Octave, unlike Fortran, function arguments are passed by value, which
+means that each argument in a function call is evaluated and assigned to
+a temporary location in memory before being passed to the function.
+There is currently no way to specify that a function parameter should be
+passed by reference instead of by value.  This means that it is
+impossible to directly alter the value of a function parameter in the
+calling function.  It can only change the local copy within the function
+body.  For example, the function
+
+     function f (x, n)
+       while (n-- > 0)
+         disp (x);
+       endwhile
+     endfunction
+
+displays the value of the first argument N times.  In this function,
+the variable N is used as a temporary variable without having to worry
+that its value might also change in the calling function.  Call by
+value is also useful because it is always possible to pass constants
+for any function parameter without first having to determine that the
+function will not attempt to modify the parameter.
+
+   The caller may use a variable as the expression for the argument, but
+the called function does not know this: it only knows what value the
+argument had.  For example, given a function called as
+
+     foo = "bar";
+     fcn (foo)
+
+you should not think of the argument as being "the variable `foo'."
+Instead, think of the argument as the string value, `"bar"'.
+
+   Even though Octave uses pass-by-value semantics for function
+arguments, values are not copied unnecessarily.  For example,
+
+     x = rand (1000);
+     f (x);
+
+does not actually force two 1000 by 1000 element matrices to exist
+_unless_ the function `f' modifies the value of its argument.  Then
+Octave must create a copy to avoid changing the value outside the scope
+of the function `f', or attempting (and probably failing!) to modify
+the value of a constant or the value of a temporary result.
+
+
+File: octave.info,  Node: Recursion,  Prev: Call by Value,  Up: Calling Functions
+
+8.2.2 Recursion
+---------------
+
+With some restrictions(1), recursive function calls are allowed.  A
+"recursive function" is one which calls itself, either directly or
+indirectly.  For example, here is an inefficient(2) way to compute the
+factorial of a given integer:
+
+     function retval = fact (n)
+       if (n > 0)
+         retval = n * fact (n-1);
+       else
+         retval = 1;
+       endif
+     endfunction
+
+   This function is recursive because it calls itself directly.  It
+eventually terminates because each time it calls itself, it uses an
+argument that is one less than was used for the previous call.  Once the
+argument is no longer greater than zero, it does not call itself, and
+the recursion ends.
+
+   The built-in variable `max_recursion_depth' specifies a limit to the
+recursion depth and prevents Octave from recursing infinitely.
+
+ -- Built-in Function: VAL = max_recursion_depth ()
+ -- Built-in Function: OLD_VAL = max_recursion_depth (NEW_VAL)
+ -- Built-in Function:  max_recursion_depth (NEW_VAL, "local")
+     Query or set the internal limit on the number of times a function
+     may be called recursively.  If the limit is exceeded, an error
+     message is printed and control returns to the top level.
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+   ---------- Footnotes ----------
+
+   (1) Some of Octave's functions are implemented in terms of functions
+that cannot be called recursively.  For example, the ODE solver `lsode'
+is ultimately implemented in a Fortran subroutine that cannot be called
+recursively, so `lsode' should not be called either directly or
+indirectly from within the user-supplied function that `lsode'
+requires.  Doing so will result in an error.
+
+   (2) It would be much better to use `prod (1:n)', or `gamma (n+1)'
+instead, after first checking to ensure that the value `n' is actually a
+positive integer.
+
+
+File: octave.info,  Node: Arithmetic Ops,  Next: Comparison Ops,  Prev: Calling Functions,  Up: Expressions
+
+8.3 Arithmetic Operators
+========================
+
+The following arithmetic operators are available, and work on scalars
+and matrices.  The element-by-element operators and functions broadcast
+(*note Broadcasting::).
+
+X + Y
+     Addition.  If both operands are matrices, the number of rows and
+     columns must both agree, or they must be broadcastable to the same
+     shape.
+
+X .+ Y
+     Element-by-element addition.  This operator is equivalent to `+'.
+
+X - Y
+     Subtraction.  If both operands are matrices, the number of rows and
+     columns of both must agree, or they must be broadcastable to the
+     same shape.
+
+X .- Y
+     Element-by-element subtraction.  This operator is equivalent to
+     `-'.
+
+X * Y
+     Matrix multiplication.  The number of columns of X must agree with
+     the number of rows of Y, or they must be broadcastable to the same
+     shape.
+
+X .* Y
+     Element-by-element multiplication.  If both operands are matrices,
+     the number of rows and columns must both agree, or they must be
+     broadcastable to the same shape.
+
+X / Y
+     Right division.  This is conceptually equivalent to the expression
+
+          (inverse (y') * x')'
+
+     but it is computed without forming the inverse of Y'.
+
+     If the system is not square, or if the coefficient matrix is
+     singular, a minimum norm solution is computed.
+
+X ./ Y
+     Element-by-element right division.
+
+X \ Y
+     Left division.  This is conceptually equivalent to the expression
+
+          inverse (x) * y
+
+     but it is computed without forming the inverse of X.
+
+     If the system is not square, or if the coefficient matrix is
+     singular, a minimum norm solution is computed.
+
+X .\ Y
+     Element-by-element left division.  Each element of Y is divided by
+     each corresponding element of X.
+
+X ^ Y
+X ** Y
+     Power operator.  If X and Y are both scalars, this operator
+     returns X raised to the power Y.  If X is a scalar and Y is a
+     square matrix, the result is computed using an eigenvalue
+     expansion.  If X is a square matrix, the result is computed by
+     repeated multiplication if Y is an integer, and by an eigenvalue
+     expansion if Y is not an integer.  An error results if both X and
+     Y are matrices.
+
+     The implementation of this operator needs to be improved.
+
+X .^ Y
+X .** Y
+     Element-by-element power operator.  If both operands are matrices,
+     the number of rows and columns must both agree, or they must be
+     broadcastable to the same shape.  If several complex results are
+     possible, the one with smallest non-negative argument (angle) is
+     taken.  This rule may return a complex root even when a real root
+     is also possible.  Use `realpow', `realsqrt', `cbrt', or `nthroot'
+     if a real result is preferred.
+
+-X
+     Negation.
+
++X
+     Unary plus.  This operator has no effect on the operand.
+
+X'
+     Complex conjugate transpose.  For real arguments, this operator is
+     the same as the transpose operator.  For complex arguments, this
+     operator is equivalent to the expression
+
+          conj (x.')
+
+X.'
+     Transpose.
+
+   Note that because Octave's element-by-element operators begin with a
+`.', there is a possible ambiguity for statements like
+
+     1./m
+
+because the period could be interpreted either as part of the constant
+or as part of the operator.  To resolve this conflict, Octave treats the
+expression as if you had typed
+
+     (1) ./ m
+
+and not
+
+     (1.) / m
+
+Although this is inconsistent with the normal behavior of Octave's
+lexer, which usually prefers to break the input into tokens by
+preferring the longest possible match at any given point, it is more
+useful in this case.
+
+ -- Built-in Function:  ctranspose (X)
+     Return the complex conjugate transpose of X.  This function and x'
+     are equivalent.
+
+     *See also:* *note transpose: doc-transpose.
+
+ -- Built-in Function:  ldivide (X, Y)
+     Return the element-by-element left division of X and Y.  This
+     function and x .\ y are equivalent.
+
+     *See also:* *note rdivide: doc-rdivide, *note mldivide:
+     doc-mldivide, *note times: doc-times, *note plus: doc-plus.
+
+ -- Built-in Function:  minus (X, Y)
+     This function and x - y are equivalent.
+
+     *See also:* *note plus: doc-plus, *note uminus: doc-uminus.
+
+ -- Built-in Function:  mldivide (X, Y)
+     Return the matrix left division of X and Y.  This function and
+     x \ y are equivalent.
+
+     *See also:* *note mrdivide: doc-mrdivide, *note ldivide:
+     doc-ldivide, *note rdivide: doc-rdivide.
+
+ -- Built-in Function:  mpower (X, Y)
+     Return the matrix power operation of X raised to the Y power.
+     This function and x ^ y are equivalent.
+
+     *See also:* *note power: doc-power, *note mtimes: doc-mtimes,
+     *note plus: doc-plus, *note minus: doc-minus.
+
+ -- Built-in Function:  mrdivide (X, Y)
+     Return the matrix right division of X and Y.  This function and
+     x / y are equivalent.
+
+     *See also:* *note mldivide: doc-mldivide, *note rdivide:
+     doc-rdivide, *note plus: doc-plus, *note minus: doc-minus.
+
+ -- Built-in Function:  mtimes (X, Y)
+ -- Built-in Function:  mtimes (X1, X2, ...)
+     Return the matrix multiplication product of inputs.  This function
+     and x * y are equivalent.  If more arguments are given, the
+     multiplication is applied cumulatively from left to right:
+
+          (...((x1 * x2) * x3) * ...)
+
+     At least one argument is required.
+
+     *See also:* *note times: doc-times, *note plus: doc-plus, *note
+     minus: doc-minus, *note rdivide: doc-rdivide, *note mrdivide:
+     doc-mrdivide, *note mldivide: doc-mldivide, *note mpower:
+     doc-mpower.
+
+ -- Built-in Function:  plus (X, Y)
+ -- Built-in Function:  plus (X1, X2, ...)
+     This function and x + y are equivalent.  If more arguments are
+     given, the summation is applied cumulatively from left to right:
+
+          (...((x1 + x2) + x3) + ...)
+
+     At least one argument is required.
+
+     *See also:* *note minus: doc-minus, *note uplus: doc-uplus.
+
+ -- Built-in Function:  power (X, Y)
+     Return the element-by-element operation of X raised to the Y
+     power.  If several complex results are possible, returns the one
+     with smallest non-negative argument (angle).  Use `realpow',
+     `realsqrt', `cbrt', or `nthroot' if a real result is preferred.
+
+     This function and x .^ y are equivalent.
+
+     *See also:* *note mpower: doc-mpower, *note realpow: doc-realpow,
+     *note realsqrt: doc-realsqrt, *note cbrt: doc-cbrt, *note nthroot:
+     doc-nthroot.
+
+ -- Built-in Function:  rdivide (X, Y)
+     Return the element-by-element right division of X and Y.  This
+     function and x ./ y are equivalent.
+
+     *See also:* *note ldivide: doc-ldivide, *note mrdivide:
+     doc-mrdivide, *note times: doc-times, *note plus: doc-plus.
+
+ -- Built-in Function:  times (X, Y)
+ -- Built-in Function:  times (X1, X2, ...)
+     Return the element-by-element multiplication product of inputs.
+     This function and x .* y are equivalent.  If more arguments are
+     given, the multiplication is applied cumulatively from left to
+     right:
+
+          (...((x1 .* x2) .* x3) .* ...)
+
+     At least one argument is required.
+
+     *See also:* *note mtimes: doc-mtimes, *note rdivide: doc-rdivide.
+
+ -- Built-in Function:  transpose (X)
+     Return the transpose of X.  This function and x.' are equivalent.
+
+     *See also:* *note ctranspose: doc-ctranspose.
+
+ -- Built-in Function:  uminus (X)
+     This function and - x are equivalent.
+
+     *See also:* *note uplus: doc-uplus, *note minus: doc-minus.
+
+ -- Built-in Function:  uplus (X)
+     This function and + x are equivalent.
+
+     *See also:* *note uminus: doc-uminus, *note plus: doc-plus, *note
+     minus: doc-minus.
 
 
 File: octave.info,  Node: Comparison Ops,  Next: Boolean Expressions,  Prev: Arithmetic Ops,  Up: Expressions
@@ -64,8 +402,8 @@ in turn, and the result is the same size as the matrix.
 
    For complex numbers, the following ordering is defined: Z1 < Z2 iff
 
-       abs(Z1) < abs(Z2)
-       || (abs(Z1) == abs(Z2) && arg(Z1) < arg(Z2))
+       abs (Z1) < abs (Z2)
+       || (abs (Z1) == abs (Z2) && arg (Z1) < arg (Z2))
 
    This is consistent with the ordering used by "max", "min" and
 "sort", but is not consistent with MATLAB, which only compares the real
@@ -78,13 +416,21 @@ not with the comparison operators listed above.  *Note Strings::.
      Return true if the two inputs are equal.  This function is
      equivalent to `x == y'.
 
-     *See also:* *note ne: doc-ne, *note isequal: doc-isequal.
+     *See also:* *note ne: doc-ne, *note isequal: doc-isequal, *note
+     le: doc-le, *note ge: doc-ge, *note gt: doc-gt, *note ne: doc-ne,
+     *note lt: doc-lt.
 
  -- Built-in Function:  ge (X, Y)
      This function is equivalent to `x >= y'.
 
+     *See also:* *note le: doc-le, *note eq: doc-eq, *note gt: doc-gt,
+     *note ne: doc-ne, *note lt: doc-lt.
+
  -- Built-in Function:  gt (X, Y)
      This function is equivalent to `x > y'.
+
+     *See also:* *note le: doc-le, *note eq: doc-eq, *note ge: doc-ge,
+     *note ne: doc-ne, *note lt: doc-lt.
 
  -- Function File:  isequal (X1, X2, ...)
      Return true if all of X1, X2, ... are equal.
@@ -99,14 +445,21 @@ not with the comparison operators listed above.  *Note Strings::.
  -- Built-in Function:  le (X, Y)
      This function is equivalent to `x <= y'.
 
+     *See also:* *note eq: doc-eq, *note ge: doc-ge, *note gt: doc-gt,
+     *note ne: doc-ne, *note lt: doc-lt.
+
  -- Built-in Function:  lt (X, Y)
      This function is equivalent to `x < y'.
+
+     *See also:* *note le: doc-le, *note eq: doc-eq, *note ge: doc-ge,
+     *note gt: doc-gt, *note ne: doc-ne.
 
  -- Built-in Function:  ne (X, Y)
      Return true if the two inputs are not equal.  This function is
      equivalent to `x != y'.
 
-     *See also:* *note eq: doc-eq, *note isequal: doc-isequal.
+     *See also:* *note eq: doc-eq, *note isequal: doc-isequal, *note
+     le: doc-le, *note ge: doc-ge, *note lt: doc-lt.
 
 
 File: octave.info,  Node: Boolean Expressions,  Next: Assignment Ops,  Prev: Comparison Ops,  Up: Expressions
@@ -190,7 +543,7 @@ described for matrix-valued operands.
      `x & y'.  If more arguments are given, the logical and is applied
      cumulatively from left to right:
 
-            (...((x1 & x2) & x3) & ...)
+          (...((x1 & x2) & x3) & ...)
 
      At least one argument is required.
 
@@ -209,7 +562,7 @@ described for matrix-valued operands.
      `x | y'.  If more arguments are given, the logical or is applied
      cumulatively from left to right:
 
-            (...((x1 | x2) | x3) | ...)
+          (...((x1 | x2) | x3) | ...)
 
      At least one argument is required.
 
@@ -339,7 +692,7 @@ function.
      MASK can also be arbitrary numeric type, in which case it is first
      converted to logical.
 
-     *See also:* *note logical: doc-logical.
+     *See also:* *note logical: doc-logical, *note diff: doc-diff.
 
 
 File: octave.info,  Node: Assignment Ops,  Next: Increment Ops,  Prev: Boolean Expressions,  Up: Expressions
@@ -647,7 +1000,7 @@ has been computed and stored in a string, which is exactly what the
      The following example makes the variable A with the approximate
      value 3.1416 available.
 
-          eval("a = acos(-1);");
+          eval ("a = acos(-1);");
 
      If an error occurs during the evaluation of TRY the CATCH string
      is evaluated, as the following example shows:
@@ -736,9 +1089,9 @@ function.
 
           F = @exp;
           feval (F, 1)
-               => 2.7183
+              => 2.7183
           F (1)
-               => 2.7183
+              => 2.7183
 
      are equivalent ways to call the function referred to by F.  If it
      cannot be predicted beforehand that F is a function handle or the
@@ -788,8 +1141,8 @@ example:
 
      function save (file, name1, name2)
        f = open_save_file (file);
-       save_var(f, name1, evalin ("caller", name1));
-       save_var(f, name2, evalin ("caller", name2));
+       save_var (f, name1, evalin ("caller", name1));
+       save_var (f, name2, evalin ("caller", name2));
      endfunction
 
 Here, `caller' is the `create_data' function and `name1' is the string
@@ -1264,11 +1617,11 @@ elements to assign.
    Within Octave is it also possible to iterate over matrices or cell
 arrays using the `for' statement.  For example consider
 
-     disp("Loop over a matrix")
+     disp ("Loop over a matrix")
      for i = [1,3;2,4]
        i
      endfor
-     disp("Loop over a cell array")
+     disp ("Loop over a cell array")
      for i = {1,"two";"three",4}
        i
      endfor
@@ -1279,15 +1632,15 @@ column vectors `[1;2]', followed by `[3;4]', and likewise for the loop
 over the cell array.  This can be extended to loops over
 multi-dimensional arrays.  For example:
 
-     a = [1,3;2,4]; c = cat(3, a, 2*a);
+     a = [1,3;2,4]; c = cat (3, a, 2*a);
      for i = c
        i
      endfor
 
 In the above case, the multi-dimensional matrix C is reshaped to a
-two-dimensional matrix as `reshape (c, rows(c), prod(size(c)(2:end)))'
-and then the same behavior as a loop over a two dimensional matrix is
-produced.
+two-dimensional matrix as `reshape (c, rows (c), prod (size
+(c)(2:end)))' and then the same behavior as a loop over a two
+dimensional matrix is produced.
 
    Although it is possible to rewrite all `for' loops as `while' loops,
 the Octave language has both statements because often a `for' loop is
@@ -1562,6 +1915,7 @@ just like built-in functions.
 
 * Menu:
 
+* Introduction to Function and Script Files::
 * Defining Functions::
 * Multiple Return Values::
 * Variable-length Argument Lists::
@@ -1576,9 +1930,36 @@ just like built-in functions.
 * Organization of Functions::
 
 
-File: octave.info,  Node: Defining Functions,  Next: Multiple Return Values,  Up: Functions and Scripts
+File: octave.info,  Node: Introduction to Function and Script Files,  Next: Defining Functions,  Up: Functions and Scripts
 
-11.1 Defining Functions
+11.1 Introduction to Function and Script Files
+==============================================
+
+There are seven different things covered in this section.
+  1. Typing in a function at the command prompt.
+
+  2. Storing a group of commands in a file -- called a script file.
+
+  3. Storing a function in a file--called a function file.
+
+  4. Subfunctions in function files.
+
+  5. Multiple functions in one script file.
+
+  6. Private functions.
+
+  7. Nested functions.
+
+   Both function files and script files end with an extension of .m, for
+MATLAB compatibility.  If you want more than one independent functions
+in a file, it must be a script file (*note Script Files::), and to use
+these functions you must execute the script file before you can use the
+functions that are in the script file.
+
+
+File: octave.info,  Node: Defining Functions,  Next: Multiple Return Values,  Prev: Introduction to Function and Script Files,  Up: Functions and Scripts
+
+11.2 Defining Functions
 =======================
 
 In its simplest form, the definition of a function named NAME looks
@@ -1721,13 +2102,15 @@ To avoid such problems and to provide useful messages, we check for both
 possibilities and issue our own error message.
 
  -- Built-in Function:  nargin ()
- -- Built-in Function:  nargin (FCN_NAME)
+ -- Built-in Function:  nargin (FCN)
      Within a function, return the number of arguments passed to the
      function.  At the top level, return the number of command line
-     arguments passed to Octave.  If called with the optional argument
-     FCN_NAME, return the maximum number of arguments the named
-     function can accept, or -1 if the function accepts a variable
-     number of arguments.
+     arguments passed to Octave.
+
+     If called with the optional argument FCN, a function name or
+     handle, return the declared number of arguments that the function
+     can accept.  If the last argument is VARARGIN the returned value
+     is negative.  This feature does not work on builtin functions.
 
      *See also:* *note nargout: doc-nargout, *note varargin:
      doc-varargin, *note isargout: doc-isargout, *note varargout:
@@ -1753,7 +2136,7 @@ possibilities and issue our own error message.
 
 File: octave.info,  Node: Multiple Return Values,  Next: Variable-length Argument Lists,  Prev: Defining Functions,  Up: Functions and Scripts
 
-11.2 Multiple Return Values
+11.3 Multiple Return Values
 ===========================
 
 Unlike many other computer languages, Octave allows you to define
@@ -1809,13 +2192,13 @@ Array Objects::
      matrix, the following two compositions of nthargout
 
           M = magic (5);
-          cell2mat (nthargout ([1, 2], @ind2sub, size(M),
+          cell2mat (nthargout ([1, 2], @ind2sub, size (M),
                                nthargout (2, @max, M(:))))
           => 5   3
 
      are completely equivalent to the following lines:
 
-          M = magic(5);
+          M = magic (5);
           [~, idx] = max (M(:));
           [i, j] = ind2sub (size (M), idx);
           [i, j]
@@ -1864,11 +2247,12 @@ produces:
 along with a warning.
 
  -- Built-in Function:  nargout ()
- -- Built-in Function:  nargout (FCN_NAME)
+ -- Built-in Function:  nargout (FCN)
      Within a function, return the number of values the caller expects
-     to receive.  If called with the optional argument FCN_NAME, return
-     the maximum number of values the named function can produce, or -1
-     if the function can produce a variable number of values.
+     to receive.  If called with the optional argument FCN, a function
+     name or handle, return the number of declared output values that
+     the function can produce.  If the final output argument is
+     VARARGOUT the returned value is negative.
 
      For example,
 
@@ -1880,7 +2264,19 @@ along with a warning.
 
      will cause `nargout' to return 2 inside the function `f'.
 
-     At the top level, `nargout' is undefined.
+     In the second usage,
+
+          nargout (@histc) % or nargout ('histc')
+
+     will return 2, because `histc' has two outputs, whereas
+
+          nargout (@deal)
+
+     will return -1, because `deal' has a variable number of outputs.
+
+     At the top level, `nargout' with no argument is undefined.
+     `nargout' does not work on builtin functions.  `nargout' returns
+     -1 for all anonymous functions.
 
      *See also:* *note nargin: doc-nargin, *note varargin:
      doc-varargin, *note isargout: doc-isargout, *note varargout:
@@ -1959,7 +2355,7 @@ correct way to call the function whenever the number of inputs is wrong.
 
 File: octave.info,  Node: Variable-length Argument Lists,  Next: Ignoring Arguments,  Prev: Multiple Return Values,  Up: Functions and Scripts
 
-11.3 Variable-length Argument Lists
+11.4 Variable-length Argument Lists
 ===================================
 
 Sometimes the number of input arguments is not known when the function
@@ -2038,7 +2434,7 @@ This function produces output like this
             [1,2] = 10
           }
 
-     The parseparams function may be used to separate 'regular'
+     The parseparams function may be used to separate "regular"
      arguments and additional arguments given as property/value pairs of
      the VARARGIN cell array.
 
@@ -2055,7 +2451,7 @@ This function produces output like this
 
 File: octave.info,  Node: Ignoring Arguments,  Next: Variable-length Return Lists,  Prev: Variable-length Argument Lists,  Up: Functions and Scripts
 
-11.4 Ignoring Arguments
+11.5 Ignoring Arguments
 =======================
 
 In the formal argument list, it is possible to use the dummy placeholder
@@ -2090,7 +2486,7 @@ whether the output argument is wanted.  For example:
      Functions can use `isargout' to avoid performing unnecessary
      calculations for outputs which are unwanted.
 
-     If K is outside the range `1:max(nargout)', the function returns
+     If K is outside the range `1:max (nargout)', the function returns
      false.  K can also be an array, in which case the function works
      element-by-element and a logical array is returned.  At the top
      level, `isargout' returns an error.
@@ -2102,7 +2498,7 @@ whether the output argument is wanted.  For example:
 
 File: octave.info,  Node: Variable-length Return Lists,  Next: Returning from a Function,  Prev: Ignoring Arguments,  Up: Functions and Scripts
 
-11.5 Variable-length Return Lists
+11.6 Variable-length Return Lists
 =================================
 
 It is possible to return a variable number of output arguments from a
@@ -2159,7 +2555,7 @@ handled the same as any other parameter name.
 
 File: octave.info,  Node: Returning from a Function,  Next: Default Arguments,  Prev: Variable-length Return Lists,  Up: Functions and Scripts
 
-11.6 Returning from a Function
+11.7 Returning from a Function
 ==============================
 
 The body of a user-defined function can contain a `return' statement.
@@ -2202,7 +2598,7 @@ does contain a nonzero element.
 
 File: octave.info,  Node: Default Arguments,  Next: Function Files,  Prev: Returning from a Function,  Up: Functions and Scripts
 
-11.7 Default Arguments
+11.8 Default Arguments
 ======================
 
 Since Octave supports variable number of input arguments, it is very
@@ -2244,7 +2640,7 @@ of the input argument when calling the function.
 
 File: octave.info,  Node: Function Files,  Next: Script Files,  Prev: Default Arguments,  Up: Functions and Scripts
 
-11.8 Function Files
+11.9 Function Files
 ===================
 
 Except for simple one-shot programs, it is not practical to have to
@@ -2341,8 +2737,9 @@ function resets the default behavior.
     `editor'
           This is the editor to use to modify the functions.  By
           default it uses Octave's `EDITOR' built-in function, which
-          comes from `getenv("EDITOR")' and defaults to `emacs'.  Use
+          comes from `getenv ("EDITOR")' and defaults to `emacs'.  Use
           `%s' In place of the function name.  For example,
+
          `[EDITOR, " %s"]'
                Use the editor which Octave uses for `edit_history'.
 
@@ -2436,6 +2833,7 @@ function resets the default behavior.
 * Manipulating the Load Path::
 * Subfunctions::
 * Private Functions::
+* Nested Functions::
 * Overloading and Autoloading::
 * Function Locking::
 * Function Precedence::
@@ -2447,7 +2845,7 @@ function resets the default behavior.
 
 File: octave.info,  Node: Manipulating the Load Path,  Next: Subfunctions,  Up: Function Files
 
-11.8.1 Manipulating the Load Path
+11.9.1 Manipulating the Load Path
 ---------------------------------
 
 When a function is called, Octave searches a list of directories for a
@@ -2461,7 +2859,7 @@ input or output arguments.
 using `addpath' and `rmpath'.  As an example, the following code adds
 `~/Octave' to the load path.
 
-     addpath("~/Octave")
+     addpath ("~/Octave")
 
 After this the directory `~/Octave' will be searched for functions.
 
@@ -2476,7 +2874,7 @@ After this the directory `~/Octave' will be searched for functions.
      directory names separated by `pathsep' are also accepted.  For
      example:
 
-          addpath ("dir1:/dir2:~/dir3");
+          addpath ("dir1:/dir2:~/dir3")
 
      *See also:* *note path: doc-path, *note rmpath: doc-rmpath, *note
      genpath: doc-genpath, *note pathdef: doc-pathdef, *note savepath:
@@ -2495,21 +2893,23 @@ After this the directory `~/Octave' will be searched for functions.
      directory names separated by `pathsep' are also accepted.  For
      example:
 
-          rmpath ("dir1:/dir2:~/dir3");
+          rmpath ("dir1:/dir2:~/dir3")
 
      *See also:* *note path: doc-path, *note addpath: doc-addpath,
      *note genpath: doc-genpath, *note pathdef: doc-pathdef, *note
      savepath: doc-savepath, *note pathsep: doc-pathsep.
 
+ -- Function File:  savepath ()
  -- Function File:  savepath (FILE)
-     Save the portion of the current function search path, that is not
-     set during Octave's initialization process, to FILE.  If FILE is
-     omitted, `~/.octaverc' is used.  If successful, `savepath' returns
-     0.
+ -- Function File: STATUS = savepath (...)
+     Save the unique portion of the current function search path that is
+     not set during Octave's initialization process to FILE.  If FILE
+     is omitted, `~/.octaverc' is used.  If successful, `savepath'
+     returns 0.
 
      *See also:* *note path: doc-path, *note addpath: doc-addpath,
      *note rmpath: doc-rmpath, *note genpath: doc-genpath, *note
-     pathdef: doc-pathdef, *note pathsep: doc-pathsep.
+     pathdef: doc-pathdef.
 
  -- Built-in Function:  path (...)
      Modify or display Octave's load path.
@@ -2532,8 +2932,8 @@ After this the directory `~/Octave' will be searched for functions.
 
  -- Function File: VAL = pathdef ()
      Return the default path for Octave.  The path information is
-     extracted from one of three sources.  In order of preference,
-     those are;
+     extracted from one of three sources.  The possible sources, in
+     order of preference, are:
 
        1. `~/.octaverc'
 
@@ -2543,7 +2943,7 @@ After this the directory `~/Octave' will be searched for functions.
 
      *See also:* *note path: doc-path, *note addpath: doc-addpath,
      *note rmpath: doc-rmpath, *note genpath: doc-genpath, *note
-     savepath: doc-savepath, *note pathsep: doc-pathsep.
+     savepath: doc-savepath.
 
  -- Built-in Function: VAL = pathsep ()
  -- Built-in Function: OLD_VAL = pathsep (NEW_VAL)
@@ -2600,7 +3000,7 @@ After this the directory `~/Octave' will be searched for functions.
 
 File: octave.info,  Node: Subfunctions,  Next: Private Functions,  Prev: Manipulating the Load Path,  Up: Function Files
 
-11.8.2 Subfunctions
+11.9.2 Subfunctions
 -------------------
 
 A function file may contain secondary functions called "subfunctions".
@@ -2624,9 +3024,9 @@ and `h' may only be called from the main function `f' or from the other
 subfunctions, but not from outside the file `f.m'.
 
 
-File: octave.info,  Node: Private Functions,  Next: Overloading and Autoloading,  Prev: Subfunctions,  Up: Function Files
+File: octave.info,  Node: Private Functions,  Next: Nested Functions,  Prev: Subfunctions,  Up: Function Files
 
-11.8.3 Private Functions
+11.9.3 Private Functions
 ------------------------
 
 In many cases one function needs to access one or more helper
@@ -2650,9 +3050,139 @@ only available for use of the functions, like `func1', that are found
 in `<directory>'.
 
 
-File: octave.info,  Node: Overloading and Autoloading,  Next: Function Locking,  Prev: Private Functions,  Up: Function Files
+File: octave.info,  Node: Nested Functions,  Next: Overloading and Autoloading,  Prev: Private Functions,  Up: Function Files
 
-11.8.4 Overloading and Autoloading
+11.9.4 Nested Functions
+-----------------------
+
+Nested functions are similar to subfunctions in that only the main
+function is visible outside the file.  However, they also allow for
+child functions to access the local variables in their parent function.
+This shared access mimics using a global variable to share information
+-- but a global variable which is not visible to the rest of Octave.
+As a programming strategy, sharing data this way can create code which
+is difficult to maintain.  It is recommended to use subfunctions in
+place of nested functions when possible.
+
+   As a simple example, consider a parent function `foo', that calls a
+nested child function `bar', with a shared variable X.
+
+     function y = foo ()
+       x = 10;
+       bar ();
+       y = x;
+
+       function bar ()
+         x = 20;
+       endfunction
+     endfunction
+
+     foo ()
+      => 20
+
+Notice that there is no special syntax for sharing X.  This can lead to
+problems with accidental variable sharing between a parent function and
+its child.  While normally variables are inherited, child function
+parameters and return values are local to the child function.
+
+   Now consider the function `foobar' that uses variables X and Y.
+`foobar' calls a nested function `foo' which takes X as a parameter and
+returns Y.  `foo' then calls `bat' which does some computation.
+
+     function z = foobar ()
+       x = 0;
+       y = 0;
+       z = foo (5);
+       z += x + y;
+
+       function y = foo (x)
+         y = x + bat ();
+
+         function z = bat ()
+           z = x;
+         endfunction
+       endfunction
+     endfunction
+
+     foobar ()
+         => 10
+
+It is important to note that the X and Y in `foobar' remain zero, as in
+`foo' they are a return value and parameter respectively.  The X in
+`bat' refers to the X in `foo'.
+
+   Variable inheritance leads to a problem for `eval' and scripts.  If a
+new variable is created in a parent function, it is not clear what
+should happen in nested child functions.  For example, consider a
+parent function `foo' with a nested child function `bar':
+
+     function y = foo (to_eval)
+       bar ();
+       eval (to_eval);
+
+       function bar ()
+         eval ("x = 100;");
+         eval ("y = x;");
+       endfunction
+     endfunction
+
+     foo ("x = 5;")
+         => error: can not add variable "x" to a static workspace
+
+     foo ("y = 10;")
+         => 10
+
+     foo ("")
+         => 100
+
+The parent function `foo' is unable to create a new variable X, but the
+child function `bar' was successful.  Furthermore, even in an `eval'
+statement Y in `bar' is the same Y as in its parent function `foo'.
+The use of `eval' in conjunction with nested functions is best avoided.
+
+   As with subfunctions, only the first nested function in a file may
+be called from the outside.  Inside a function the rules are more
+complicated.  In general a nested function may call:
+
+  0. Globally visible functions
+
+  1. Any function that the nested function's parent can call
+
+  2. Sibling functions (functions that have the same parents)
+
+  3. Direct children
+
+
+   As a complex example consider a parent function `ex_top' with two
+child functions, `ex_a' and `ex_b'.  In addition, `ex_a' has two more
+child functions, `ex_aa' and `ex_ab'.  For example:
+
+     function ex_top ()
+       ## Can call: ex_top, ex_a, and ex_b
+       ## Can NOT call: ex_aa and ex_ab
+
+       function ex_a ()
+         ## Call call everything
+
+         function ex_aa ()
+           ## Can call everything
+         endfunction
+
+         function ex_ab ()
+           ## Can call everything
+         endfunction
+       endfunction
+
+       function ex_b ()
+         ## Can call: ex_top, ex_a, and ex_b
+         ## Can NOT call: ex_aa and ex_ab
+       endfunction
+     endfunction
+
+
+File: octave.info,  Node: Overloading and Autoloading,  Next: Function Locking,  Prev: Nested Functions,  Up: Function Files
+
+11.9.5 Overloading and Autoloading
 ----------------------------------
 
 Functions can be overloaded to work with different input arguments.  For
@@ -2711,7 +3241,7 @@ be found.
 
 File: octave.info,  Node: Function Locking,  Next: Function Precedence,  Prev: Overloading and Autoloading,  Up: Function Files
 
-11.8.5 Function Locking
+11.9.6 Function Locking
 -----------------------
 
 It is sometime desirable to lock a function into memory with the
@@ -2739,7 +3269,7 @@ which the following illustrates.
    A common use of `mlock' is to prevent persistent variables from
 being removed from memory, as the following example shows:
 
-     function count_calls()
+     function count_calls ()
        persistent calls = 0;
        printf ("'count_calls' has been called %d times\n",
                ++calls);
@@ -2793,7 +3323,7 @@ having effect in Octave, though a similar effect can be had with the
 
 File: octave.info,  Node: Function Precedence,  Prev: Function Locking,  Up: Function Files
 
-11.8.6 Function Precedence
+11.9.7 Function Precedence
 --------------------------
 
 Given the numerous different ways that Octave can define a function, it
@@ -2832,8 +3362,8 @@ will be used within a particular scope is given by
 
 File: octave.info,  Node: Script Files,  Next: Function Handles Inline Functions and Anonymous Functions,  Prev: Function Files,  Up: Functions and Scripts
 
-11.9 Script Files
-=================
+11.10 Script Files
+==================
 
 A script file is a file containing (almost) any sequence of Octave
 commands.  It is read and evaluated just as if you had typed each
@@ -2928,7 +3458,7 @@ commands from any file.
 
 File: octave.info,  Node: Function Handles Inline Functions and Anonymous Functions,  Next: Commands,  Prev: Script Files,  Up: Functions and Scripts
 
-11.10 Function Handles, Inline Functions, and Anonymous Functions
+11.11 Function Handles, Inline Functions, and Anonymous Functions
 =================================================================
 
 It can be very convenient store a function in a variable so that it can
@@ -2945,7 +3475,7 @@ should be minimized.
 
 File: octave.info,  Node: Function Handles,  Next: Anonymous Functions,  Up: Function Handles Inline Functions and Anonymous Functions
 
-11.10.1 Function Handles
+11.11.1 Function Handles
 ------------------------
 
 A function handle is a pointer to another function and is defined with
@@ -3001,7 +3531,7 @@ list.  If there are no arguments, you must use an empty argument list
 
 File: octave.info,  Node: Anonymous Functions,  Next: Inline Functions,  Prev: Function Handles,  Up: Function Handles Inline Functions and Anonymous Functions
 
-11.10.2 Anonymous Functions
+11.11.2 Anonymous Functions
 ---------------------------
 
 Anonymous functions are defined using the syntax
@@ -3037,14 +3567,14 @@ adapts a function with several parameters to the form required by
 
 File: octave.info,  Node: Inline Functions,  Prev: Anonymous Functions,  Up: Function Handles Inline Functions and Anonymous Functions
 
-11.10.3 Inline Functions
+11.11.3 Inline Functions
 ------------------------
 
 An inline function is created from a string containing the function
 body using the `inline' function.  The following code defines the
 function f(x) = x^2 + 2.
 
-     f = inline("x^2 + 2");
+     f = inline ("x^2 + 2");
 
 After this it is possible to evaluate f at any x by writing `f(x)'.
 
@@ -3093,7 +3623,7 @@ After this it is possible to evaluate f at any x by writing `f(x)'.
 
 File: octave.info,  Node: Commands,  Next: Organization of Functions,  Prev: Function Handles Inline Functions and Anonymous Functions,  Up: Functions and Scripts
 
-11.11 Commands
+11.12 Commands
 ==============
 
 Commands are a special class of functions that only accept string input
@@ -3104,7 +3634,7 @@ also be called without the parentheses.  For example,
 
 is equivalent to
 
-     my_command("hello", "world")
+     my_command ("hello", "world")
 
 The general form of a command call is
 
@@ -3135,7 +3665,7 @@ a command must be called as a function.  For example:
 
 File: octave.info,  Node: Organization of Functions,  Prev: Commands,  Up: Functions and Scripts
 
-11.12 Organization of Functions Distributed with Octave
+11.13 Organization of Functions Distributed with Octave
 =======================================================
 
 Many of Octave's standard functions are distributed as function files.
@@ -3287,7 +3817,7 @@ function `f' is called without any input arguments.
 
      function f (arg1)
        if (nargin == 0)
-         error("not enough input arguments");
+         error ("not enough input arguments");
        endif
      endfunction
 
@@ -3335,6 +3865,16 @@ to `error' will be executed.
           function h () nargin == 1 || error ("nargin != 1\n"); end
           f ()
           error: nargin != 1
+
+     Implementation Note: For compatibility with MATLAB, escape
+     sequences (e.g., "\n" => newline) are processed in TEMPLATE
+     regardless of whether TEMPLATE has been defined within single
+     quotes as long as there are two or more input arguments.  Use a
+     second backslash to stop interpolation of the escape sequence
+     (e.g., "\\n") or use the `regexptranslate' function.
+
+     *See also:* *note warning: doc-warning, *note lasterror:
+     doc-lasterror.
 
    Since it is common to use errors when there is something wrong with
 the input to a function, Octave supports functions to simplify such
@@ -3463,7 +4003,7 @@ number of errors related to the `*' operator.
 
  -- Built-in Function: LASTERR = lasterror ()
  -- Built-in Function:  lasterror (ERR)
- -- Built-in Function:  lasterror ('reset')
+ -- Built-in Function:  lasterror ("reset")
      Query or set the last error message structure.  When called without
      arguments, return a structure containing the last error message
      and other information related to this error.  The elements of the
@@ -3497,10 +4037,11 @@ number of errors related to the `*' operator.
      ERR, as input.  Any fields of ERR that match those above are set
      while any unspecified fields are initialized with default values.
 
-     If `lasterror' is called with the argument 'reset', all fields are
+     If `lasterror' is called with the argument "reset", all fields are
      set to their default values.
 
-     *See also:* *note lasterr: doc-lasterr.
+     *See also:* *note lasterr: doc-lasterr, *note error: doc-error,
+     *note lastwarn: doc-lastwarn.
 
  -- Built-in Function: [MSG, MSGID] = lasterr ()
  -- Built-in Function:  lasterr (MSG)
@@ -3510,7 +4051,61 @@ number of errors related to the `*' operator.
      With one argument, set the last error message to MSG.  With two
      arguments, also set the last message identifier.
 
-     *See also:* *note lasterror: doc-lasterror.
+     *See also:* *note lasterror: doc-lasterror, *note error:
+     doc-error, *note lastwarn: doc-lastwarn.
+
+   It is also possible to assign an identification string to an error.
+If an error has such an ID the user can catch this error as will be
+shown in the next example.  To assign an ID to an error, simply call
+`error' with two string arguments, where the first is the
+identification string, and the second is the actual error.  Note that
+error IDs are in the format "NAMESPACE:ERROR-NAME".  The namespace
+"Octave" is used for Octave's own errors.  Any other string is available
+as a namespace for user's own errors.
+
+   The next example counts indexing errors. The errors are catched
+using the field identifier of the structure returned by the function
+`lasterror'.
+
+     number_of_errors = 0;
+     for n = 1:100
+       try
+         ...
+       catch
+         id = lasterror.identifier;
+         if (strcmp (id, "Octave:invalid-indexing"))
+           number_of_errors++;
+         endif
+       end_try_catch
+     endfor
+
+   The functions distributed with Octave can issue one of the following
+errors.
+
+`Octave:invalid-context'
+     Indicates the error was generated by an operation that cannot be
+     executed in the scope from which it was called.  For example, the
+     function `print_usage ()' when called from the Octave prompt
+     raises this error.
+
+`Octave:invalid-input-arg'
+     Indicates that a function was called with invalid input arguments.
+
+`Octave:invalid-fun-call'
+     Indicates that a function was called in an incorrect way, e.g.,
+     wrong number of input arguments.
+
+`Octave:invalid-indexing'
+     Indicates that a data-type was indexed incorrectly, e.g.,
+     real-value index for arrays, non-existent field of a structure.
+
+`Octave:bad-alloc'
+     Indicates that memory couldn't be allocated.
+
+`Octave:undefined-function'
+     Indicates a call to a function that is not defined. The function
+     may exist but Octave is unable to find it in the search path.
+
 
    When an error has been handled it is possible to raise it again.
 This can be useful when an error needs to be detected, but the program
@@ -3582,7 +4177,7 @@ convenient idiom for Octave code.  For example:
        ...
      endfunction  # rand generator state restored by onCleanup
 
- -- Loadable Function: C = onCleanup (ACTION)
+ -- Built-in Function: C = onCleanup (ACTION)
      Create a special object that executes a given function upon
      destruction.  If the object is copied to multiple variables (or
      cell or struct array elements) or returned from a function, ACTION
@@ -3651,6 +4246,7 @@ available as a namespace for user's own warnings.
  -- Built-in Function:  warning ("off", ID)
  -- Built-in Function:  warning ("query", ID)
  -- Built-in Function:  warning ("error", ID)
+ -- Built-in Function:  warning (STATE, ID, "local")
      Format the optional arguments under the control of the template
      string TEMPLATE using the same rules as the `printf' family of
      functions (*note Formatted Output::) and print the resulting
@@ -3675,35 +4271,34 @@ available as a namespace for user's own warnings.
 
           warning ("error");
 
-     *See also:* *note warning_ids: doc-warning_ids.
+     If the state is `"on"', `"off"', or `"error"' and the third
+     argument is `"local"', then the warning state will be set
+     temporarily, until the end of the current function.  Changes to
+     warning states that are set locally affect the current function
+     and all functions called from the current scope.  The previous
+     warning state is restored on return from the current function.
+     The "local" option is ignored if used in the top-level workspace.
 
- -- Built-in Function: [MSG, MSGID] = lastwarn (MSG, MSGID)
-     Without any arguments, return the last warning message.  With one
-     argument, set the last warning message to MSG.  With two arguments,
-     also set the last message identifier.
+     Implementation Note: For compatibility with MATLAB, escape
+     sequences (e.g., "\n" => newline) are processed in TEMPLATE
+     regardless of whether TEMPLATE has been defined within single
+     quotes as long as there are two or more input arguments.  Use a
+     second backslash to stop interpolation of the escape sequence
+     (e.g., "\\n") or use the `regexptranslate' function.
 
-
-File: octave.info,  Node: Enabling and Disabling Warnings,  Prev: Issuing Warnings,  Up: Handling Warnings
+     *See also:* *note warning_ids: doc-warning_ids, *note lastwarn:
+     doc-lastwarn, *note error: doc-error.
 
-12.2.2 Enabling and Disabling Warnings
---------------------------------------
+ -- Built-in Function: [MSG, MSGID] = lastwarn ()
+ -- Built-in Function:  lastwarn (MSG)
+ -- Built-in Function:  lastwarn (MSG, MSGID)
+     Query or set the last warning message.  When called without input
+     arguments, return the last warning message and message identifier.
+     With one argument, set the last warning message to MSG.  With two
+     arguments, also set the last message identifier.
 
-The `warning' function also allows you to control which warnings are
-actually printed to the screen.  If the `warning' function is called
-with a string argument that is either `"on"' or `"off"' all warnings
-will be enabled or disabled.
-
-   It is also possible to enable and disable individual warnings through
-their string identifications.  The following code will issue a warning
-
-     warning ("example:non-negative-variable",
-              "'a' must be non-negative.  Setting 'a' to zero.");
-
-while the following won't issue a warning
-
-     warning ("off", "example:non-negative-variable");
-     warning ("example:non-negative-variable",
-              "'a' must be non-negative.  Setting 'a' to zero.");
+     *See also:* *note warning: doc-warning, *note lasterror:
+     doc-lasterror, *note lasterr: doc-lasterr.
 
    The functions distributed with Octave can issue one of the following
 warnings.
@@ -3795,6 +4390,12 @@ warnings.
      By default, the `Octave:built-in-variable-assignment' warning is
      enabled.
 
+`Octave:deprecated-keyword'
+     If the `Octave:deprecated-keyword' warning is enabled, a warning
+     is issued when Octave encounters a keyword that is obsolete and
+     scheduled for removal from Octave.  By default, the
+     `Octave:deprecated-keyword' warning is enabled.
+
 `Octave:divide-by-zero'
      If the `Octave:divide-by-zero' warning is enabled, a warning is
      issued when Octave encounters a division by zero.  By default, the
@@ -3834,7 +4435,9 @@ warnings.
 `Octave:matlab-incompatible'
      Print warnings for Octave language features that may cause
      compatibility problems with MATLAB.  By default, the
-     `Octave:matlab-incompatible' warning is disabled.
+     `Octave:matlab-incompatible' warning is disabled.  The
+     -traditional or -braindead startup options for Octave may also be
+     of use, *Note Command Line Options::.
 
 `Octave:md5sum-file-in-path'
      By default, the `Octave:md5sum-file-in-path' warning is enabled.
@@ -3895,7 +4498,7 @@ warnings.
      if you would like to enable this short-circuit evaluation in
      Octave.  Note that the `&&' and `||' operators always short
      circuit in both Octave and MATLAB, so it's only necessary to
-     enable MATLAB-style short-circuiting it's too arduous to modify
+     enable MATLAB-style short-circuiting if it's too arduous to modify
      existing code that relies on this behavior.  By default, the
      `Octave:possible-matlab-short-circuit-operator' warning is enabled.
 
@@ -3908,6 +4511,15 @@ warnings.
 
 `Octave:recursive-path-search'
      By default, the `Octave:recursive-path-search' warning is enabled.
+
+`Octave:remove-init-dir'
+     The `path' function changes the search path that Octave uses to
+     find functions.  It is possible to set the path to a value which
+     excludes Octave's own built-in functions.  If the
+     `Octave:remove-init-dir' warning is enabled then Octave will warn
+     when the `path' function has been used in a way that may render
+     Octave unworkable.  By default, the `Octave:remove-init-dir'
+     warning is enabled.
 
 `Octave:reload-forces-clear'
      If several functions have been loaded from the same file, Octave
@@ -3964,6 +4576,29 @@ warnings.
      will print a warning if a switch label is not a constant or
      constant expression.  By default, the
      `Octave:variable-switch-label' warning is disabled.
+
+
+File: octave.info,  Node: Enabling and Disabling Warnings,  Prev: Issuing Warnings,  Up: Handling Warnings
+
+12.2.2 Enabling and Disabling Warnings
+--------------------------------------
+
+The `warning' function also allows you to control which warnings are
+actually printed to the screen.  If the `warning' function is called
+with a string argument that is either `"on"' or `"off"' all warnings
+will be enabled or disabled.
+
+   It is also possible to enable and disable individual warnings through
+their string identifications.  The following code will issue a warning
+
+     warning ("example:non-negative-variable",
+              "'a' must be non-negative.  Setting 'a' to zero.");
+
+while the following won't issue a warning
+
+     warning ("off", "example:non-negative-variable");
+     warning ("example:non-negative-variable",
+              "'a' must be non-negative.  Setting 'a' to zero.");
 
 
 File: octave.info,  Node: Debugging,  Next: Input and Output,  Prev: Errors and Warnings,  Up: Top
@@ -4087,8 +4722,8 @@ File: octave.info,  Node: Breakpoints,  Next: Debug Mode,  Prev: Leaving Debug M
 Breakpoints can be set in any Octave function, using the `dbstop'
 function.
 
- -- Loadable Function: RLINE = dbstop ("FUNC")
- -- Loadable Function: RLINE = dbstop ("FUNC", LINE, ...)
+ -- Built-in Function: RLINE = dbstop ("FUNC")
+ -- Built-in Function: RLINE = dbstop ("FUNC", LINE, ...)
      Set a breakpoint in function FUNC.
 
      Arguments are
@@ -4130,9 +4765,9 @@ Note that the return value of `27' means that the breakpoint was
 effectively set to line 27.  The status of breakpoints in a function can
 be queried with the `dbstatus' function.
 
- -- Loadable Function:  dbstatus ()
- -- Loadable Function: BRK_LIST = dbstatus ()
- -- Loadable Function: BRK_LIST = dbstatus ("FUNC")
+ -- Built-in Function:  dbstatus ()
+ -- Built-in Function: BRK_LIST = dbstatus ()
+ -- Built-in Function: BRK_LIST = dbstatus ("FUNC")
      Report the location of active breakpoints.
 
      When called with no input or output arguments, print the list of
@@ -4157,8 +4792,8 @@ be queried with the `dbstatus' function.
 Taking the above as an example, `dbstatus ("asind")' should return 28.
 The breakpoints can then be cleared with the `dbclear' function
 
- -- Loadable Function:  dbclear ("FUNC")
- -- Loadable Function:  dbclear ("FUNC", LINE, ...)
+ -- Built-in Function:  dbclear ("FUNC")
+ -- Built-in Function:  dbclear ("FUNC", LINE, ...)
      Delete a breakpoint in the function FUNC.
 
      Arguments are
@@ -4238,31 +4873,39 @@ interrogate where in the execution of a script Octave entered the debug
 mode and to print the code in the script surrounding the point where
 Octave entered debug mode.
 
- -- Loadable Function:  dbwhere ()
+ -- Built-in Function:  dbwhere ()
      In debugging mode, report the current file and line number where
      execution is stopped.
 
      *See also:* *note dbstatus: doc-dbstatus, *note dbcont:
      doc-dbcont, *note dbstep: doc-dbstep, *note dbup: doc-dbup.
 
- -- Loadable Function:  dbtype ()
- -- Loadable Function:  dbtype ("startl:endl")
- -- Loadable Function:  dbtype ("FUNC")
- -- Loadable Function:  dbtype ("FUNC", "startl:endl")
-     When in debugging mode and called with no arguments, list the
-     script file being debugged with line numbers.  An optional range
-     specification, specified as a string, can be used to list only a
-     portion of the file.
+ -- Command:  dbtype
+ -- Command:  dbtype LINENO
+ -- Command:  dbtype STARTL:ENDL
+ -- Command:  dbtype STARTL:END
+ -- Command:  dbtype FUNC
+ -- Command:  dbtype FUNC LINENO
+ -- Command:  dbtype FUNC STARTL:ENDL
+ -- Command:  dbtype FUNC STARTL:END
+     Display a script file with line numbers.
+
+     When called with no arguments in debugging mode, display the
+     script file currently being debugged.  An optional range
+     specification can be used to list only a portion of the file.  The
+     special keyword "end" is a valid line number specification for the
+     last line of the file.
 
      When called with the name of a function, list that script file
      with line numbers.
 
-     *See also:* *note dbstatus: doc-dbstatus, *note dbstop: doc-dbstop.
+     *See also:* *note dbwhere: doc-dbwhere, *note dbstatus:
+     doc-dbstatus, *note dbstop: doc-dbstop.
 
    You may also use `isdebugmode' to determine whether the debugger is
 currently active.
 
- -- Loadable Function:  isdebugmode ()
+ -- Built-in Function:  isdebugmode ()
      Return true if in debugging mode, otherwise false.
 
      *See also:* *note dbwhere: doc-dbwhere, *note dbstack:
@@ -4296,9 +4939,9 @@ File: octave.info,  Node: Call Stack,  Next: Profiling,  Prev: Debug Mode,  Up: 
 13.5 Call Stack
 ===============
 
- -- Loadable Function:  dbstack ()
- -- Loadable Function:  dbstack (N)
- -- Loadable Function: [STACK, IDX] = dbstack (...)
+ -- Built-in Function:  dbstack ()
+ -- Built-in Function:  dbstack (N)
+ -- Built-in Function: [STACK, IDX] = dbstack (...)
      Display or return current debugging function stack information.
      With optional argument N, omit the N innermost stack frames.
 
@@ -4329,15 +4972,15 @@ File: octave.info,  Node: Call Stack,  Next: Profiling,  Prev: Debug Mode,  Up: 
      *See also:* *note dbup: doc-dbup, *note dbdown: doc-dbdown, *note
      dbwhere: doc-dbwhere, *note dbstatus: doc-dbstatus.
 
- -- Loadable Function:  dbup
- -- Loadable Function:  dbup (N)
+ -- Built-in Function:  dbup
+ -- Built-in Function:  dbup (N)
      In debugging mode, move up the execution stack N frames.  If N is
      omitted, move up one frame.
 
      *See also:* *note dbstack: doc-dbstack, *note dbdown: doc-dbdown.
 
- -- Loadable Function:  dbdown
- -- Loadable Function:  dbdown (N)
+ -- Built-in Function:  dbdown
+ -- Built-in Function:  dbdown (N)
      In debugging mode, move down the execution stack N frames.  If N
      is omitted, move down one frame.
 
@@ -4367,8 +5010,8 @@ examined or further processed by other routines or tools.
  -- Command:  profile off
  -- Command:  profile resume
  -- Command:  profile clear
- -- Function File: S = profile ('status')
- -- Function File: T = profile ('info')
+ -- Function File: S = profile ("status")
+ -- Function File: T = profile ("info")
      Control the built-in profiler.
 
     `profile on'
@@ -4377,7 +5020,7 @@ examined or further processed by other routines or tools.
 
     `profile off'
           Stop profiling.  The collected data can later be retrieved
-          and examined with calls like `S = profile ('info')'.
+          and examined with calls like `S = profile ("info")'.
 
     `profile clear'
           Clear all collected profiler data.
@@ -4387,12 +5030,12 @@ examined or further processed by other routines or tools.
           all newly collected statistics are added to the already
           existing ones.
 
-    `S = profile ('status')'
+    `S = profile ("status")'
           Return a structure filled with certain information about the
           current status of the profiler.  At the moment, the only
-          field is `ProfilerStatus' which is either 'on' or 'off'.
+          field is `ProfilerStatus' which is either "on" or "off".
 
-    `T = profile ('info')'
+    `T = profile ("info")'
           Return the collected profiling statistics in the structure T.
           The flat profile is returned in the field `FunctionTable'
           which is an array of structures, each entry corresponding to
@@ -4427,7 +5070,7 @@ and the profiler also records that it is recursive.
      Show flat profiler results.
 
      This command prints out profiler data as a flat profile.  DATA is
-     the structure returned by `profile ('info')'.  If N is given, it
+     the structure returned by `profile ("info")'.  If N is given, it
      specifies the number of functions to show in the profile;
      functions are sorted in descending order by total time spent in
      them.  If there are more than N included in the profile, those
@@ -4443,7 +5086,7 @@ and the profiler also records that it is recursive.
      Interactively explore hierarchical profiler output.
 
      Assuming DATA is the structure with profile data returned by
-     `profile ('info')', this command opens an interactive prompt that
+     `profile ("info")', this command opens an interactive prompt that
      can be used to explore the call-tree.  Type `help' to get a list
      of possible commands.
 
@@ -4698,18 +5341,19 @@ values with `disp' and through the normal echoing mechanism.
 
      *See also:* *note fdisp: doc-fdisp.
 
- -- Built-in Function:  list_in_columns (ARG, WIDTH)
+ -- Built-in Function:  list_in_columns (ARG, WIDTH, PREFIX)
      Return a string containing the elements of ARG listed in columns
-     with an overall maximum width of WIDTH.  The argument ARG must be
-     a cell array of character strings or a character array.  If WIDTH
-     is not specified, the width of the terminal screen is used.
-     Newline characters are used to break the lines in the output
-     string.  For example:
+     with an overall maximum width of WIDTH and optional prefix PREFIX.
+     The argument ARG must be a cell array of character strings or a
+     character array.  If WIDTH is not specified or is an empty matrix,
+     or less than or equal to zero, the width of the terminal screen is
+     used.  Newline characters are used to break the lines in the
+     output string.  For example:
 
           list_in_columns ({"abc", "def", "ghijkl", "mnop", "qrs", "tuv"}, 20)
-               => ans = abc     mnop
-                      def     qrs
-                      ghijkl  tuv
+               => abc     mnop
+                  def     qrs
+                  ghijkl  tuv
 
           whos ans
                =>
@@ -4921,6 +5565,10 @@ function, and you can turn paging off by using the function `more'.
      toggles the current state.  The current state can be determined
      via `page_screen_output'.
 
+     *See also:* *note page_screen_output: doc-page_screen_output,
+     *note page_output_immediately: doc-page_output_immediately, *note
+     PAGER: doc-PAGER, *note PAGER_FLAGS: doc-PAGER_FLAGS.
+
  -- Built-in Function: VAL = PAGER ()
  -- Built-in Function: OLD_VAL = PAGER (NEW_VAL)
  -- Built-in Function:  PAGER (NEW_VAL, "local")
@@ -4934,9 +5582,9 @@ function, and you can turn paging off by using the function `more'.
      it calls.  The original variable value is restored when exiting
      the function.
 
-     *See also:* *note more: doc-more, *note page_screen_output:
-     doc-page_screen_output, *note page_output_immediately:
-     doc-page_output_immediately, *note PAGER_FLAGS: doc-PAGER_FLAGS.
+     *See also:* *note PAGER_FLAGS: doc-PAGER_FLAGS, *note
+     page_output_immediately: doc-page_output_immediately, *note more:
+     doc-more, *note page_screen_output: doc-page_screen_output.
 
  -- Built-in Function: VAL = PAGER_FLAGS ()
  -- Built-in Function: OLD_VAL = PAGER_FLAGS (NEW_VAL)
@@ -4949,7 +5597,9 @@ function, and you can turn paging off by using the function `more'.
      it calls.  The original variable value is restored when exiting
      the function.
 
-     *See also:* *note PAGER: doc-PAGER.
+     *See also:* *note PAGER: doc-PAGER, *note more: doc-more, *note
+     page_screen_output: doc-page_screen_output, *note
+     page_output_immediately: doc-page_output_immediately.
 
  -- Built-in Function: VAL = page_screen_output ()
  -- Built-in Function: OLD_VAL = page_screen_output (NEW_VAL)
@@ -4965,6 +5615,10 @@ function, and you can turn paging off by using the function `more'.
      it calls.  The original variable value is restored when exiting
      the function.
 
+     *See also:* *note more: doc-more, *note page_output_immediately:
+     doc-page_output_immediately, *note PAGER: doc-PAGER, *note
+     PAGER_FLAGS: doc-PAGER_FLAGS.
+
  -- Built-in Function: VAL = page_output_immediately ()
  -- Built-in Function: OLD_VAL = page_output_immediately (NEW_VAL)
  -- Built-in Function:  page_output_immediately (NEW_VAL, "local")
@@ -4977,6 +5631,10 @@ function, and you can turn paging off by using the function `more'.
      variable is changed locally for the function and any subroutines
      it calls.  The original variable value is restored when exiting
      the function.
+
+     *See also:* *note page_screen_output: doc-page_screen_output,
+     *note more: doc-more, *note PAGER: doc-PAGER, *note PAGER_FLAGS:
+     doc-PAGER_FLAGS.
 
  -- Built-in Function:  fflush (FID)
      Flush output to FID.  This is useful for ensuring that all pending
@@ -5176,6 +5834,7 @@ read into memory using the `load' command.
 
      The list of variables to save may use wildcard patterns containing
      the following special characters:
+
     `?'
           Match any single character.
 
@@ -5443,11 +6102,11 @@ separated lists.
      *See also:* *note dlmread: doc-dlmread, *note csvread:
      doc-csvread, *note csvwrite: doc-csvwrite.
 
- -- Loadable Function: DATA = dlmread (FILE)
- -- Loadable Function: DATA = dlmread (FILE, SEP)
- -- Loadable Function: DATA = dlmread (FILE, SEP, R0, C0)
- -- Loadable Function: DATA = dlmread (FILE, SEP, RANGE)
- -- Loadable Function: DATA = dlmread (..., "emptyvalue", EMPTYVAL)
+ -- Built-in Function: DATA = dlmread (FILE)
+ -- Built-in Function: DATA = dlmread (FILE, SEP)
+ -- Built-in Function: DATA = dlmread (FILE, SEP, R0, C0)
+ -- Built-in Function: DATA = dlmread (FILE, SEP, RANGE)
+ -- Built-in Function: DATA = dlmread (..., "emptyvalue", EMPTYVAL)
      Read the matrix DATA from a text file.  If not defined the
      separator between fields is determined from the file itself.
      Otherwise the separation character is defined by SEP.
@@ -5459,7 +6118,7 @@ separated lists.
      The RANGE parameter may be a 4-element vector containing the upper
      left and lower right corner `[R0,C0,R1,C1]' where the lowest index
      value is zero.  Alternatively, a spreadsheet style range such as
-     'A2..Q15' or 'T1:AA5' can be used.  The lowest alphabetical index
+     "A2..Q15" or "T1:AA5" can be used.  The lowest alphabetical index
      'A' refers to the first column.  The lowest row index is 1.
 
      FILE should be a file name or file id given by `fopen'.  In the
@@ -5522,8 +6181,9 @@ well.
           value is given, it will be inferred from the file.  If set to
           "" (empty string) EOLs are ignored as delimiters.
 
-     The optional input N specifes the number of times to use FORMAT
-     when parsing, i.e., the format repeat count.
+     The optional input N specifies the number of data lines to read; in
+     this sense it differs slightly from the format repeat count in
+     strread.
 
      *See also:* *note strread: doc-strread, *note load: doc-load,
      *note dlmread: doc-dlmread, *note fscanf: doc-fscanf, *note
@@ -5537,10 +6197,10 @@ well.
  -- Function File: [C, POSITION] = textscan (FID, ...)
      Read data from a text file or string.
 
-     The file associated with FID is read and parsed according to
-     FORMAT.  The function behaves like `strread' except it works by
-     parsing a file instead of a string.  See the documentation of
-     `strread' for details.
+     The string STR or file associated with FID is read from and parsed
+     according to FORMAT.  The function behaves like `strread' except
+     it can also read from file instead of a string.  See the
+     documentation of `strread' for details.
 
      In addition to the options supported by `strread', this function
      supports a few more:
@@ -5560,13 +6220,19 @@ well.
 
         * "returnonerror": If set to numerical 1 or true (default),
           return normally when read errors have been encountered.  If
-          set to 0 or false, return an error and no data.
+          set to 0 or false, return an error and no data.  As the
+          string or file is read by columns rather than by rows, and
+          because textscan is fairly forgiving as regards read errors,
+          setting this option may have little or no actual effect.
 
-     The optional input N specifes the number of times to use FORMAT
-     when parsing, i.e., the format repeat count.
+     When reading from a character string, optional input argument N
+     specifies the number of times FORMAT should be used (i.e., to limit
+     the amount of data read).  When reading from file, N specifies the
+     number of data lines to read; in this sense it differs slightly
+     from the format repeat count in strread.
 
-     The output C is a cell array whose length is given by the number
-     of format specifiers.
+     The output C is a cell array whose second dimension is determined
+     by the number of format specifiers.
 
      The second output, POSITION, provides the position, in characters,
      from the beginning of the file.
@@ -5574,6 +6240,45 @@ well.
      *See also:* *note dlmread: doc-dlmread, *note fscanf: doc-fscanf,
      *note load: doc-load, *note strread: doc-strread, *note textread:
      doc-textread.
+
+   The `importdata' function has the ability to work with a wide
+variety of data.
+
+ -- Function File: A = importdata (FNAME)
+ -- Function File: A = importdata (FNAME, DELIMITER)
+ -- Function File: A = importdata (FNAME, DELIMITER, HEADER_ROWS)
+ -- Function File: [A, DELIMITER] = importdata (...)
+ -- Function File: [A, DELIMITER, HEADER_ROWS] = importdata (...)
+     Importing data from file.
+
+     Importing the contents of file FNAME into workspace.
+
+     Input parameters:
+        * FNAME The file name for the file to import.
+
+        * DELIMITER The character separating columns of data. Use `\t'
+          for tab.  (Only valid for ascii files)
+
+        * HEADER_ROWS Number of header rows before the data begins.
+          (Only valid for ascii files)
+
+     Different file types are supported:
+        * Ascii table
+
+          Importing ascii table using the specified number of header
+          rows and the specified delimiter.
+
+        * Image file
+
+        * MATLAB file
+
+        * Spreadsheet files (depending on external software)
+
+        * Wav file
+
+
+     *See also:* *note textscan: doc-textscan, *note dlmread:
+     doc-dlmread, *note csvread: doc-csvread, *note load: doc-load.
 
 * Menu:
 
@@ -5587,7 +6292,7 @@ File: octave.info,  Node: Saving Data on Unexpected Exits,  Up: Simple File I/O
 
 If Octave for some reason exits unexpectedly it will by default save the
 variables available in the workspace to a file in the current directory.
-By default this file is named `octave-core' and can be loaded into
+By default this file is named `octave-workspace' and can be loaded into
 memory with the `load' command.  While the default behavior most often
 is reasonable it can be changed through the following functions.
 
@@ -5595,8 +6300,8 @@ is reasonable it can be changed through the following functions.
  -- Built-in Function: OLD_VAL = crash_dumps_octave_core (NEW_VAL)
  -- Built-in Function:  crash_dumps_octave_core (NEW_VAL, "local")
      Query or set the internal variable that controls whether Octave
-     tries to save all current variables to the file "octave-core" if it
-     crashes or receives a hangup, terminate or similar signal.
+     tries to save all current variables to the file "octave-workspace"
+     if it crashes or receives a hangup, terminate or similar signal.
 
      When called from inside a function with the "local" option, the
      variable is changed locally for the function and any subroutines
@@ -5612,8 +6317,8 @@ is reasonable it can be changed through the following functions.
  -- Built-in Function: OLD_VAL = sighup_dumps_octave_core (NEW_VAL)
  -- Built-in Function:  sighup_dumps_octave_core (NEW_VAL, "local")
      Query or set the internal variable that controls whether Octave
-     tries to save all current variables to the file "octave-core" if
-     it receives a hangup signal.
+     tries to save all current variables to the file "octave-workspace"
+     if it receives a hangup signal.
 
      When called from inside a function with the "local" option, the
      variable is changed locally for the function and any subroutines
@@ -5624,8 +6329,8 @@ is reasonable it can be changed through the following functions.
  -- Built-in Function: OLD_VAL = sigterm_dumps_octave_core (NEW_VAL)
  -- Built-in Function:  sigterm_dumps_octave_core (NEW_VAL, "local")
      Query or set the internal variable that controls whether Octave
-     tries to save all current variables to the file "octave-core" if
-     it receives a terminate signal.
+     tries to save all current variables to the file "octave-workspace"
+     if it receives a terminate signal.
 
      When called from inside a function with the "local" option, the
      variable is changed locally for the function and any subroutines
@@ -5678,7 +6383,7 @@ is reasonable it can be changed through the following functions.
  -- Built-in Function:  octave_core_file_name (NEW_VAL, "local")
      Query or set the internal variable that specifies the name of the
      file used for saving data from the top-level workspace if Octave
-     aborts.  The default value is `"octave-core"'
+     aborts.  The default value is `"octave-workspace"'
 
      When called from inside a function with the "local" option, the
      variable is changed locally for the function and any subroutines
@@ -5857,10 +6562,13 @@ pattern is used when reading a file.
      `ieee-be', and `ieee-le' formats.
 
      *See also:* *note fclose: doc-fclose, *note fgets: doc-fgets,
-     *note fputs: doc-fputs, *note fread: doc-fread, *note fseek:
-     doc-fseek, *note ferror: doc-ferror, *note fprintf: doc-fprintf,
-     *note fscanf: doc-fscanf, *note ftell: doc-ftell, *note fwrite:
-     doc-fwrite.
+     *note fgetl: doc-fgetl, *note fscanf: doc-fscanf, *note fread:
+     doc-fread, *note fputs: doc-fputs, *note fdisp: doc-fdisp, *note
+     fprintf: doc-fprintf, *note fwrite: doc-fwrite, *note fskipl:
+     doc-fskipl, *note fseek: doc-fseek, *note frewind: doc-frewind,
+     *note ftell: doc-ftell, *note feof: doc-feof, *note ferror:
+     doc-ferror, *note fclear: doc-fclear, *note fflush: doc-fflush,
+     *note freport: doc-freport.
 
  -- Built-in Function:  fclose (FID)
  -- Built-in Function:  fclose ("all")
@@ -5868,8 +6576,7 @@ pattern is used when reading a file.
      otherwise, it returns -1.  The second form of the `fclose' call
      closes all open files except `stdout', `stderr', and `stdin'.
 
-     *See also:* *note fopen: doc-fopen, *note fseek: doc-fseek, *note
-     ftell: doc-ftell.
+     *See also:* *note fopen: doc-fopen, *note freport: doc-freport.
 
  -- Function File:  is_valid_file_id (FID)
      Return true if FID refers to an open file.
@@ -5897,9 +6604,8 @@ write the string `Free Software is needed for Free Science' to the file
 
      Return a non-negative number on success and EOF on error.
 
-     *See also:* *note scanf: doc-scanf, *note sscanf: doc-sscanf,
-     *note fread: doc-fread, *note fprintf: doc-fprintf, *note fgets:
-     doc-fgets, *note fscanf: doc-fscanf.
+     *See also:* *note fdisp: doc-fdisp, *note fprintf: doc-fprintf,
+     *note fwrite: doc-fwrite, *note fopen: doc-fopen.
 
    A function much similar to `fputs' is available for writing data to
 the screen.  The `puts' function works just like `fputs' except it
@@ -5909,6 +6615,8 @@ doesn't take a file pointer as its input.
      Write a string to the standard output with no formatting.
 
      Return a non-negative number on success and EOF on error.
+
+     *See also:* *note fputs: doc-fputs, *note disp: doc-disp.
 
 
 File: octave.info,  Node: Line-Oriented Input,  Next: Formatted Output,  Prev: Simple Output,  Up: C-Style I/O Functions
@@ -5928,7 +6636,8 @@ illustrates
 This of course assumes that the file `free.txt' exists and contains the
 line `Free Software is needed for Free Science'.
 
- -- Built-in Function:  fgetl (FID, LEN)
+ -- Built-in Function: STR = fgetl (FID)
+ -- Built-in Function: STR = fgetl (FID, LEN)
      Read characters from a file, stopping after a newline, or EOF, or
      LEN characters have been read.  The characters read, excluding the
      possible trailing newline, are returned as a string.
@@ -5937,10 +6646,13 @@ line `Free Software is needed for Free Science'.
 
      If there are no more characters to read, `fgetl' returns -1.
 
-     *See also:* *note fread: doc-fread, *note fscanf: doc-fscanf.
+     To read a line and return the terminating newline see `fgets'.
 
- -- Built-in Function:  fgets (FID)
- -- Built-in Function:  fgets (FID, LEN)
+     *See also:* *note fgets: doc-fgets, *note fscanf: doc-fscanf,
+     *note fread: doc-fread, *note fopen: doc-fopen.
+
+ -- Built-in Function: STR = fgets (FID)
+ -- Built-in Function: STR = fgets (FID, LEN)
      Read characters from a file, stopping after a newline, or EOF, or
      LEN characters have been read.  The characters read, including the
      possible trailing newline, are returned as a string.
@@ -5949,18 +6661,27 @@ line `Free Software is needed for Free Science'.
 
      If there are no more characters to read, `fgets' returns -1.
 
-     *See also:* *note fputs: doc-fputs, *note fopen: doc-fopen, *note
-     fread: doc-fread, *note fscanf: doc-fscanf.
+     To read a line and discard the terminating newline see `fgetl'.
 
- -- Built-in Function:  fskipl (FID, COUNT)
-     Skip a given number of lines, i.e., discards characters until an
-     end-of-line is met exactly COUNT-times, or end-of-file occurs.
+     *See also:* *note fputs: doc-fputs, *note fgetl: doc-fgetl, *note
+     fscanf: doc-fscanf, *note fread: doc-fread, *note fopen: doc-fopen.
+
+ -- Built-in Function: NLINES = fskipl (FID)
+ -- Built-in Function: NLINES = fskipl (FID, COUNT)
+ -- Built-in Function: NLINES = fskipl (FID, Inf)
+     Read and skip COUNT lines from the file descriptor FID.  `fskipl'
+     discards characters until an end-of-line is encountered exactly
+     COUNT-times, or until the end-of-file marker is found.
+
+     If COUNT is omitted, it defaults to 1.  COUNT may also be `Inf',
+     in which case lines are skipped until the end of the file.  This
+     form is suitable for counting the number of lines in a file.
+
      Returns the number of lines skipped (end-of-line sequences
-     encountered).  If COUNT is omitted, it defaults to 1. COUNT may
-     also be `Inf', in which case lines are skipped to the end of file.
-     This form is suitable for counting lines in a file.
+     encountered).
 
-     *See also:* *note fgetl: doc-fgetl, *note fgets: doc-fgets.
+     *See also:* *note fgetl: doc-fgetl, *note fgets: doc-fgets, *note
+     fscanf: doc-fscanf, *note fopen: doc-fopen.
 
 
 File: octave.info,  Node: Formatted Output,  Next: Output Conversion for Matrices,  Prev: Line-Oriented Input,  Up: C-Style I/O Functions
@@ -5991,9 +6712,9 @@ performance of printing vector and matrix values.
      written to the stream FID instead of `stdout'.  If FID is omitted,
      the output is written to `stdout'.
 
-     *See also:* *note printf: doc-printf, *note sprintf: doc-sprintf,
-     *note fread: doc-fread, *note fscanf: doc-fscanf, *note fopen:
-     doc-fopen, *note fclose: doc-fclose.
+     *See also:* *note fputs: doc-fputs, *note fdisp: doc-fdisp, *note
+     fwrite: doc-fwrite, *note fscanf: doc-fscanf, *note printf:
+     doc-printf, *note sprintf: doc-sprintf, *note fopen: doc-fopen.
 
  -- Built-in Function:  sprintf (TEMPLATE, ...)
      This is like `printf', except that the output is returned as a
@@ -6361,8 +7082,8 @@ more `C-like'.
 
  -- Built-in Function: [VAL, COUNT, ERRMSG] = fscanf (FID, TEMPLATE,
           SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG] = fscanf (FID,
-          TEMPLATE, "C")
+ -- Built-in Function: [V1, V2, ..., COUNT] = fscanf (FID, TEMPLATE,
+          LOCALE)
      In the first form, read from FID according to TEMPLATE, returning
      the result in the matrix VAL.
 
@@ -6399,18 +7120,20 @@ more `C-like'.
      conversion specifier in TEMPLATE corresponding to a single scalar
      return value.  This form is more `C-like', and also compatible
      with previous versions of Octave.  The number of successful
-     conversions is returned in COUNT
+     conversions is returned in COUNT.  It permits to explicitly
+     specify a locale to take into account language specific features,
+     such as decimal separator.  This operation restores the previous
+     locales setting at the end of the conversion.
 
      See the Formatted Input section of the GNU Octave manual for a
      complete description of the syntax of the template string.
 
-     *See also:* *note scanf: doc-scanf, *note sscanf: doc-sscanf,
-     *note fread: doc-fread, *note fprintf: doc-fprintf, *note fgets:
-     doc-fgets, *note fputs: doc-fputs.
+     *See also:* *note fgets: doc-fgets, *note fgetl: doc-fgetl, *note
+     fread: doc-fread, *note scanf: doc-scanf, *note sscanf:
+     doc-sscanf, *note fopen: doc-fopen.
 
  -- Built-in Function: [VAL, COUNT, ERRMSG] = scanf (TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG]] = scanf (TEMPLATE,
-          "C")
+ -- Built-in Function: [V1, V2, ..., COUNT] = scanf (TEMPLATE, LOCALE)
      This is equivalent to calling `fscanf' with FID = `stdin'.
 
      It is currently not useful to call `scanf' in interactive programs.
@@ -6420,8 +7143,8 @@ more `C-like'.
 
  -- Built-in Function: [VAL, COUNT, ERRMSG, POS] = sscanf (STRING,
           TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG] = sscanf (STRING,
-          TEMPLATE, "C")
+ -- Built-in Function: [V1, V2, ..., COUNT] = sscanf (STRING, TEMPLATE,
+          LOCALE)
      This is like `fscanf', except that the characters are taken from
      the string STRING instead of from a stream.  Reaching the end of
      the string is treated as an end-of-file condition.  In addition to
@@ -6788,8 +7511,9 @@ the data are read.
      The data read from the file is returned in VAL, and the number of
      values read is returned in `count'
 
-     *See also:* *note fwrite: doc-fwrite, *note fopen: doc-fopen,
-     *note fclose: doc-fclose.
+     *See also:* *note fwrite: doc-fwrite, *note fgets: doc-fgets,
+     *note fgetl: doc-fgetl, *note fscanf: doc-fscanf, *note fopen:
+     doc-fopen.
 
  -- Built-in Function: COUNT = fwrite (FID, DATA, PRECISION, SKIP, ARCH)
      Write data in binary form of type PRECISION to the specified file
@@ -6805,8 +7529,8 @@ the data are read.
      The behavior of `fwrite' is undefined if the values in DATA are
      too large to fit in the specified precision.
 
-     *See also:* *note fread: doc-fread, *note fopen: doc-fopen, *note
-     fclose: doc-fclose.
+     *See also:* *note fread: doc-fread, *note fputs: doc-fputs, *note
+     fprintf: doc-fprintf, *note fopen: doc-fopen.
 
 
 File: octave.info,  Node: Temporary Files,  Next: EOF and Errors,  Prev: Binary I/O,  Up: C-Style I/O Functions
@@ -6830,8 +7554,7 @@ files will be deleted, so this step need not be executed manually.
      with the `O_EXCL' flag.
 
      If the optional argument DELETE is supplied and is true, the file
-     will be deleted automatically when Octave exits, or when the
-     function `purge_tmp_files' is called.
+     will be deleted automatically when Octave exits.
 
      If successful, FID is a valid file ID, NAME is the name of the
      file, and MSG is an empty string.  Otherwise, FID is -1, NAME is
@@ -6898,9 +7621,9 @@ above code.
      the end of the file has already been encountered, not if the next
      read operation will result in an end-of-file condition.
 
-     *See also:* *note fread: doc-fread, *note fopen: doc-fopen, *note
-     fclose: doc-fclose.
+     *See also:* *note fread: doc-fread, *note fopen: doc-fopen.
 
+ -- Built-in Function: [ERR, MSG] = ferror (FID)
  -- Built-in Function: [ERR, MSG] = ferror (FID, "clear")
      Return 1 if an error condition has been encountered for the file ID
      FID and 0 otherwise.  Note that it will only return 1 if an error
@@ -6910,8 +7633,12 @@ above code.
      The second argument is optional.  If it is supplied, also clear the
      error condition.
 
+     *See also:* *note fclear: doc-fclear, *note fopen: doc-fopen.
+
  -- Built-in Function:  fclear (FID)
      Clear the stream state for the specified file.
+
+     *See also:* *note fopen: doc-fopen.
 
  -- Built-in Function:  freport ()
      Print a list of which files have been opened, and whether they are
@@ -6926,6 +7653,8 @@ above code.
                -|       2     w  stderr
                -|       3     r  myfile
 
+     *See also:* *note fopen: doc-fopen, *note fclose: doc-fclose.
+
 
 File: octave.info,  Node: File Positioning,  Prev: EOF and Errors,  Up: C-Style I/O Functions
 
@@ -6939,29 +7668,32 @@ of the file pointer for a given file.
      Return the position of the file pointer as the number of characters
      from the beginning of the file FID.
 
-     *See also:* *note fseek: doc-fseek, *note fopen: doc-fopen, *note
-     fclose: doc-fclose.
+     *See also:* *note fseek: doc-fseek, *note feof: doc-feof, *note
+     fopen: doc-fopen.
 
+ -- Built-in Function:  fseek (FID, OFFSET)
  -- Built-in Function:  fseek (FID, OFFSET, ORIGIN)
+ -- Built-in Function: STATUS = fseek (...)
      Set the file pointer to any location within the file FID.
 
      The pointer is positioned OFFSET characters from the ORIGIN, which
      may be one of the predefined variables `SEEK_CUR' (current
      position), `SEEK_SET' (beginning), or `SEEK_END' (end of file) or
      strings "cof", "bof" or "eof".  If ORIGIN is omitted, `SEEK_SET'
-     is assumed.  The offset must be zero, or a value returned by
-     `ftell' (in which case ORIGIN must be `SEEK_SET').
+     is assumed.  OFFSET may be positive, negative, or zero but not all
+     combinations of ORIGIN and OFFSET can be realized.
 
      Return 0 on success and -1 on error.
 
-     *See also:* *note ftell: doc-ftell, *note fopen: doc-fopen, *note
-     fclose: doc-fclose.
+     *See also:* *note fskipl: doc-fskipl, *note frewind: doc-frewind,
+     *note ftell: doc-ftell, *note fopen: doc-fopen.
 
  -- Built-in Function:  SEEK_SET ()
  -- Built-in Function:  SEEK_CUR ()
  -- Built-in Function:  SEEK_END ()
      Return the numerical value to pass to `fseek' to perform one of
      the following actions:
+
     `SEEK_SET'
           Position file relative to the beginning.
 
@@ -6977,6 +7709,9 @@ of the file pointer for a given file.
      Move the file pointer to the beginning of the file FID, returning
      0 for success, and -1 if an error was encountered.  It is
      equivalent to `fseek (FID, 0, SEEK_SET)'.
+
+     *See also:* *note fseek: doc-fseek, *note ftell: doc-ftell, *note
+     fopen: doc-fopen.
 
    The following example stores the current file position in the
 variable `marker', moves the pointer to the beginning of the file, reads
@@ -7066,10 +7801,11 @@ linear axes.  For example,
 displays a sine wave shown in *note fig:plot::.  On most systems, this
 command will open a separate plot window to display the graph.
 
-
+ [image src="plot.png" text="
 +---------------------------------+
 | Image unavailable in text mode. |
 +---------------------------------+
+" ]
 Figure 15.1: Simple Two-Dimensional Plot.
 
  -- Function File:  plot (Y)
@@ -7303,10 +8039,11 @@ displaying discrete data.  For example,
 produces the histogram of 10,000 normally distributed random numbers
 shown in *note fig:hist::.
 
-
+ [image src="hist.png" text="
 +---------------------------------+
 | Image unavailable in text mode. |
 +---------------------------------+
+" ]
 Figure 15.2: Histogram.
 
  -- Function File:  bar (X, Y)
@@ -7527,7 +8264,6 @@ Figure 15.2: Histogram.
 
  -- Function File:  scatter (X, Y)
  -- Function File:  scatter (X, Y, S)
- -- Function File:  scatter (X, Y, C)
  -- Function File:  scatter (X, Y, S, C)
  -- Function File:  scatter (X, Y, S, C, STYLE)
  -- Function File:  scatter (X, Y, S, C, PROP, VAL)
@@ -7557,7 +8293,7 @@ Figure 15.2: Histogram.
 
           x = randn (100, 1);
           y = randn (100, 1);
-          scatter (x, y, [], sqrt(x.^2 + y.^2));
+          scatter (x, y, [], sqrt (x.^2 + y.^2));
 
      *See also:* *note plot: doc-plot, *note patch: doc-patch, *note
      scatter3: doc-scatter3.
@@ -7794,10 +8530,11 @@ functions produce plots with error bar markers.  For example,
 
 produces the figure shown in *note fig:errorbar::.
 
-
+ [image src="errorbar.png" text="
 +---------------------------------+
 | Image unavailable in text mode. |
 +---------------------------------+
+" ]
 Figure 15.3: Errorbar plot.
 
  -- Function File:  errorbar (ARGS)
@@ -7924,10 +8661,11 @@ and linear.  For example,
 
 produces the spiral plot shown in *note fig:polar::.
 
-
+ [image src="polar.png" text="
 +---------------------------------+
 | Image unavailable in text mode. |
 +---------------------------------+
+" ]
 Figure 15.4: Polar plot.
 
  -- Function File:  polar (THETA, RHO)
@@ -7955,7 +8693,7 @@ Figure 15.4: Polar plot.
      size of the values of X.
 
      The variable EXPLODE is a vector of the same length as X that if
-     non zero 'explodes' the slice from the pie chart.
+     non zero "explodes" the slice from the pie chart.
 
      If given LABELS is a cell array of strings of the same length as
      X, giving the labels of each of the slices of the pie chart.
@@ -7978,7 +8716,7 @@ Figure 15.4: Polar plot.
      percentage size of the values of X.
 
      The variable EXPLODE is a vector of the same length as X that if
-     non zero 'explodes' the slice from the pie chart.
+     non zero "explodes" the slice from the pie chart.
 
      If given LABELS is a cell array of strings of the same length as
      X, giving the labels of each of the slices of the pie chart.
@@ -7993,7 +8731,7 @@ Figure 15.4: Polar plot.
  -- Function File:  quiver (X, Y, U, V)
  -- Function File:  quiver (..., S)
  -- Function File:  quiver (..., STYLE)
- -- Function File:  quiver (..., 'filled')
+ -- Function File:  quiver (..., "filled")
  -- Function File:  quiver (H, ...)
  -- Function File: H = quiver (...)
      Plot the `(U, V)' components of a vector field in an `(X, Y)'
@@ -8001,7 +8739,7 @@ Figure 15.4: Polar plot.
      vectors.
 
      If X and Y are undefined they are assumed to be `(1:M, 1:N)' where
-     `[M, N] = size(U)'.
+     `[M, N] = size (U)'.
 
      The variable S is a scalar defining a scaling factor to use for
      the arrows of the field relative to the mesh spacing.  A value of 0
@@ -8011,7 +8749,7 @@ Figure 15.4: Polar plot.
      STYLE in a similar manner to the line styles used with the `plot'
      command.  If a marker is specified then markers at the grid points
      of the vectors are printed rather than arrows.  If the argument
-     'filled' is given then the markers as filled.
+     "filled" is given then the markers as filled.
 
      The optional return value H is a graphics handle to a quiver
      object.  A quiver object regroups the components of the quiver
@@ -8028,7 +8766,7 @@ Figure 15.4: Polar plot.
  -- Function File:  quiver3 (X, Y, Z, U, V, W)
  -- Function File:  quiver3 (..., S)
  -- Function File:  quiver3 (..., STYLE)
- -- Function File:  quiver3 (..., 'filled')
+ -- Function File:  quiver3 (..., "filled")
  -- Function File:  quiver3 (H, ...)
  -- Function File: H = quiver3 (...)
      Plot the `(U, V, W)' components of a vector field in an `(X, Y),
@@ -8036,7 +8774,7 @@ Figure 15.4: Polar plot.
      vectors.
 
      If X, Y and Z are undefined they are assumed to be `(1:M, 1:N,
-     1:P)' where `[M, N] = size(U)' and `P = max (size (W))'.
+     1:P)' where `[M, N] = size (U)' and `P = max (size (W))'.
 
      The variable S is a scalar defining a scaling factor to use for
      the arrows of the field relative to the mesh spacing.  A value of 0
@@ -8046,7 +8784,7 @@ Figure 15.4: Polar plot.
      STYLE in a similar manner to the line styles used with the `plot'
      command.  If a marker is specified then markers at the grid points
      of the vectors are printed rather than arrows.  If the argument
-     'filled' is given then the markers as filled.
+     "filled" is given then the markers as filled.
 
      The optional return value H is a graphics handle to a quiver
      object.  A quiver object regroups the components of the quiver
@@ -8134,25 +8872,36 @@ Figure 15.4: Polar plot.
      *note meshgrid: doc-meshgrid, *note imagesc: doc-imagesc, *note
      shading: doc-shading.
 
+ -- Function File:  area (Y)
  -- Function File:  area (X, Y)
- -- Function File:  area (X, Y, LVL)
+ -- Function File:  area (..., LVL)
  -- Function File:  area (..., PROP, VAL, ...)
- -- Function File:  area (Y, ...)
  -- Function File:  area (H, ...)
  -- Function File: H = area (...)
-     Area plot of cumulative sum of the columns of Y.  This shows the
-     contributions of a value to a sum, and is functionally similar to
+     Area plot of the columns of Y.  This shows the contributions of
+     each column value to the row sum.  It is functionally similar to
      `plot (X, cumsum (Y, 2))', except that the area under the curve is
      shaded.
 
-     If the X argument is omitted it is assumed to be given by `1 :
-     rows (Y)'.  A value LVL can be defined that determines where the
-     base level of the shading under the curve should be defined.
+     If the X argument is omitted it defaults to `1 : rows (Y)'.  A
+     value LVL can be defined that determines where the base level of
+     the shading under the curve should be defined.  The default level
+     is 0.
 
-     Additional arguments to the `area' function are passed to `patch'.
+     Additional arguments to the `area' function are passed directly to
+     `patch'.
 
      The optional return value H is a graphics handle to the hggroup
-     object representing the area patch objects.
+     object representing the area patch objects.  The "BaseValue"
+     property of the hggroup can be used to adjust the level where
+     shading begins.
+
+     Example: Verify identity sin^2 + cos^2 = 1
+
+          t = linspace (0, 2*pi, 100)';
+          y = [sin(t).^2, cos(t).^2)];
+          area (t, y);
+          legend ('sin^2', 'cos^2', 'location', 'NorthEastOutside');
 
      *See also:* *note plot: doc-plot, *note patch: doc-patch.
 

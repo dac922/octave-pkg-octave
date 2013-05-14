@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Test for NaN that does not need libm.
    Copyright (C) 2008-2012 Free Software Foundation, Inc.
 

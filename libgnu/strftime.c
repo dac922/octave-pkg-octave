@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Copyright (C) 1991-2001, 2003-2007, 2009-2012 Free Software Foundation, Inc.
 
    NOTE: The canonical source of this file is maintained with the GNU C Library.
@@ -42,7 +40,7 @@
 extern char *tzname[];
 #endif
 
-/* Do multibyte processing if multibytes are supported, unless
+/* Do multibyte processing if multibyte encodings are supported, unless
    multibyte sequences are safe in formats.  Multibyte sequences are
    safe if they cannot contain byte sequences that look like format
    conversion specifications.  The multibyte encodings used by the

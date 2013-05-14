@@ -1,4 +1,4 @@
-This is octave.info, produced by makeinfo version 4.13 from octave.texi.
+This is /home/jwe/src/octave/doc/interpreter/octave.info, produced by makeinfo version 4.13 from /home/jwe/src/octave/doc/interpreter/octave.texi.
 
 START-INFO-DIR-ENTRY
 * Octave: (octave).           Interactive language for numerical computations.
@@ -106,6 +106,7 @@ appearance of tic marks.
 
     "nolabel"
           Turn tic labels off for all axes.
+
      Note, if there are no tic marks for an axis, there can be no
      labels.
 
@@ -133,8 +134,8 @@ caxis function.
      colormap.  Values outside this range are clamped to the first and
      last colormap entries.
 
-     If LIMITS is 'auto', then automatic colormap scaling is applied,
-     whereas if LIMITS is 'manual' the colormap scaling is set to
+     If LIMITS is "auto", then automatic colormap scaling is applied,
+     whereas if LIMITS is "manual" the colormap scaling is set to
      manual.
 
      Called without any arguments to current color axis limits are
@@ -148,7 +149,7 @@ individual axis limits.  Each has the same form.
 
  -- Function File: XL = xlim ()
  -- Function File:  xlim (XL)
- -- Function File: M = xlim ('mode')
+ -- Function File: M = xlim ("mode")
  -- Function File:  xlim (M)
  -- Function File:  xlim (H, ...)
      Get or set the limits of the x-axis of the current plot.  Called
@@ -157,9 +158,9 @@ individual axis limits.  Each has the same form.
      are set to this value.
 
      The current mode for calculation of the x-axis can be returned
-     with a call `xlim ('mode')', and can be either 'auto' or 'manual'.
-     The current plotting mode can be set by passing either 'auto' or
-     'manual' as the argument.
+     with a call `xlim ("mode")', and can be either "auto" or "manual".
+     The current plotting mode can be set by passing either "auto" or
+     "manual" as the argument.
 
      If passed a handle as the first argument, then operate on this
      handle rather than the current axes handle.
@@ -304,19 +305,22 @@ function include `ezplot', `ezcontour', `ezcontourf' and `ezpolar'.
  -- Function File:  ezpolar (F)
  -- Function File:  ezpolar (..., DOM)
  -- Function File:  ezpolar (..., N)
- -- Function File:  ezpolar (H, ...)
+ -- Function File:  ezpolar (HAX, ...)
  -- Function File: H = ezpolar (...)
-     Plot a function in polar coordinates.  The function F is either a
-     string, inline function or function handle with one arguments
-     defining the function.  By default the plot is over the domain `0
-     < X < 2*pi' with 60 points.
+     Plot a function in polar coordinates.  The function F is a string,
+     inline function, or function handle with a single argument.  The
+     expected form of the function is `RHO = F(THETA)'.  By default the
+     plot is over the domain `0 < THETA < 2*pi' with 60 points.
 
      If DOM is a two element vector, it represents the minimum and
-     maximum value of both T.  N is a scalar defining the number of
-     points to use.
+     maximum values of THETA.  N is a scalar defining the number of
+     points to use.  If the optional input HAX is given then the plot
+     is placed into the specified axes rather than the current axes.
 
      The optional return value H is a graphics handle to the created
      plot.
+
+     Example:
 
           ezpolar (@(t) 1 + sin (t));
 
@@ -380,10 +384,11 @@ the use of the function `meshgrid' to create matrices of X and Y
 coordinates to use for plotting the Z data.  The `ndgrid' function is
 similar to `meshgrid', but works for N-dimensional matrices.
 
-
+ [image src="mesh.png" text="
 +---------------------------------+
 | Image unavailable in text mode. |
 +---------------------------------+
+" ]
 Figure 15.5: Mesh plot.
 
    The `meshc' function is similar to `mesh', but also produces a plot
@@ -399,10 +404,11 @@ without requiring it to form a surface.  For example,
 
 displays the spiral in three dimensions shown in *note fig:plot3::.
 
-
+ [image src="plot3.png" text="
 +---------------------------------+
 | Image unavailable in text mode. |
 +---------------------------------+
+" ]
 Figure 15.6: Three-dimensional spiral.
 
    Finally, the `view' function changes the viewpoint for
@@ -453,7 +459,7 @@ three-dimensional plots.
  -- Function File:  hidden ()
      Manipulation the mesh hidden line removal.  Called with no argument
      the hidden line removal is toggled.  The argument MODE can be
-     either 'on' or 'off' and the set of the hidden line removal is set
+     either "on" or "off" and the set of the hidden line removal is set
      accordingly.
 
      *See also:* *note mesh: doc-mesh, *note meshc: doc-meshc, *note
@@ -501,14 +507,15 @@ three-dimensional plots.
      Z(i,j)).  Thus, columns of Z correspond to different X values and
      rows of Z correspond to different Y values.
 
-     The light direction can be specified using L.  It can be given as
-     2-element vector [azimuth, elevation] in degrees or as 3-element
-     vector [lx, ly, lz].  The default value is rotated 45°
-     counter-clockwise from the current view.
+     The light direction can be specified using L.  It can be given as a
+     2-element vector [azimuth, elevation] in degrees or as a 3-element
+     vector [lx, ly, lz].  The default value is rotated 45 degrees
+     counterclockwise from the current view.
 
      The material properties of the surface can specified using a
      4-element vector P = [AM D SP EXP] which defaults to P = [0.55 0.6
      0.4 10].
+
     "AM" strength of ambient light
 
     "D" strength of diffuse reflection
@@ -539,8 +546,8 @@ three-dimensional plots.
      gridded surface is defined by X, Y, and Z.  If X and Y are not
      defined, then it is assumed that they are given by
 
-          [X, Y] = meshgrid (1:size (Z, 1),
-                             1:size (Z, 2));
+          [X, Y] = meshgrid (1:rows (Z),
+                             1:columns (Z));
 
      If no return arguments are requested, a surface plot with the
      normal vectors to the surface is plotted.  Otherwise the
@@ -794,6 +801,45 @@ three-dimensional plots.
      doc-isonormals.
 
 
+ -- Function File:  shrinkfaces (P, SF)
+ -- Function File: NFV = shrinkfaces (P, SF)
+ -- Function File: NFV = shrinkfaces (FV, SF)
+ -- Function File: NFV = shrinkfaces (F, V, SF)
+ -- Function File: [NF, NV] = shrinkfaces (...)
+     Reduce the faces area for a given patch, structure or explicit
+     faces and points matrices by a scale factor SF.  The structure FV
+     must contain the fields 'faces' and 'vertices'.  If the factor SF
+     is omitted then a default of 0.3 is used.
+
+     Given a patch handle as the first input argument and no output
+     parameters, perform the shrinking of the patch faces in place and
+     redraw the patch.
+
+     If called with one output argument, return a structure with fields
+     'faces', 'vertices', and 'facevertexcdata' containing the data
+     after shrinking which can then directly be used as an input
+     argument for the `patch' function.
+
+     Performing the shrinking on faces which are not convex can lead to
+     undesired results.
+
+     For example,
+
+          [phi r] = meshgrid (linspace (0, 1.5*pi, 16), linspace (1, 2, 4));
+          tri = delaunay (phi(:), r(:));
+          v = [r(:).*sin(phi(:)) r(:).*cos(phi(:))];
+          clf ()
+          p = patch ("Faces", tri, "Vertices", v, "FaceColor", "none");
+          fv = shrinkfaces (p);
+          patch (fv)
+          axis equal
+          grid on
+
+     draws a triangulated 3/4 circle and the corresponding shrunken
+     version.
+
+     *See also:* *note patch: doc-patch.
+
  -- Function File:  diffuse (SX, SY, SZ, LV)
      Calculate diffuse reflection strength of a surface defined by the
      normal vector elements SX, SY, SZ.  The light vector can be
@@ -830,12 +876,12 @@ three-dimensional plots.
  -- Function File: [Y1, Y2, ..., Yn] = ndgrid (X1, X2, ..., Xn)
  -- Function File: [Y1, Y2, ..., Yn] = ndgrid (X)
      Given n vectors X1, ... Xn, `ndgrid' returns n arrays of dimension
-     n. The elements of the i-th output argument contains the elements
+     n.  The elements of the i-th output argument contains the elements
      of the vector Xi repeated over all dimensions different from the
      i-th dimension.  Calling ndgrid with only one input argument X is
      equivalent of calling ndgrid with all n input arguments equal to X:
 
-     [Y1, Y2, ...,  Yn] = ndgrid (X, ..., X)
+     [Y1, Y2, ..., Yn] = ndgrid (X, ..., X)
 
      *See also:* *note meshgrid: doc-meshgrid.
 
@@ -962,7 +1008,7 @@ three-dimensional plots.
      Plot a ribbon plot for the columns of Y vs.  X.  The optional
      parameter WIDTH specifies the width of a single ribbon (default is
      0.75).  If X is omitted, a vector containing the row numbers is
-     assumed (1:rows(Y)).
+     assumed (1:rows (Y)).
 
      The optional return value H is a vector of graphics handles to the
      surface objects representing each ribbon.
@@ -986,7 +1032,7 @@ three-dimensional plots.
      current axis.
 
  -- Function File:  scatter3 (X, Y, Z, S, C)
- -- Function File:  scatter3 (..., 'filled')
+ -- Function File:  scatter3 (..., "filled")
  -- Function File:  scatter3 (..., STYLE)
  -- Function File:  scatter3 (..., PROP, VAL)
  -- Function File:  scatter3 (H, ...)
@@ -1005,7 +1051,7 @@ three-dimensional plots.
 
      The marker to use can be changed with the STYLE argument, that is a
      string defining a marker in the same manner as the `plot' command.
-     If the argument 'filled' is given then the markers as filled.  All
+     If the argument "filled" is given then the markers as filled.  All
      additional arguments are passed to the underlying patch command.
 
      The optional return value H is a graphics handle to the hggroup
@@ -1108,7 +1154,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
  -- Function File:  ezmesh (FX, FY, FZ)
  -- Function File:  ezmesh (..., DOM)
  -- Function File:  ezmesh (..., N)
- -- Function File:  ezmesh (..., 'circ')
+ -- Function File:  ezmesh (..., "circ")
  -- Function File:  ezmesh (H, ...)
  -- Function File: H = ezmesh (...)
      Plot the mesh defined by a function.  F is a string, inline
@@ -1127,7 +1173,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
      If three functions are passed, then plot the parametrically defined
      function `[FX (S, T), FY (S, T), FZ (S, T)]'.
 
-     If the argument 'circ' is given, then the function is plotted over
+     If the argument "circ" is given, then the function is plotted over
      a disk centered on the middle of the domain DOM.
 
      The optional return value H is a graphics handle to the created
@@ -1138,9 +1184,9 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
 
      An example of a parametrically defined function is
 
-          fx = @(s,t) cos (s) .* cos(t);
-          fy = @(s,t) sin (s) .* cos(t);
-          fz = @(s,t) sin(t);
+          fx = @(s,t) cos (s) .* cos (t);
+          fy = @(s,t) sin (s) .* cos (t);
+          fz = @(s,t) sin (t);
           ezmesh (fx, fy, fz, [-pi, pi, -pi/2, pi/2], 20);
 
      *See also:* *note ezplot: doc-ezplot, *note ezmeshc: doc-ezmeshc,
@@ -1150,7 +1196,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
  -- Function File:  ezmeshc (FX, FY, FZ)
  -- Function File:  ezmeshc (..., DOM)
  -- Function File:  ezmeshc (..., N)
- -- Function File:  ezmeshc (..., 'circ')
+ -- Function File:  ezmeshc (..., "circ")
  -- Function File:  ezmeshc (H, ...)
  -- Function File: H = ezmeshc (...)
      Plot the mesh and contour lines defined by a function.  F is a
@@ -1170,7 +1216,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
      If three functions are passed, then plot the parametrically defined
      function `[FX (S, T), FY (S, T), FZ (S, T)]'.
 
-     If the argument 'circ' is given, then the function is plotted over
+     If the argument "circ" is given, then the function is plotted over
      a disk centered on the middle of the domain DOM.
 
      The optional return value H is a 2-element vector with a graphics
@@ -1187,7 +1233,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
  -- Function File:  ezsurf (FX, FY, FZ)
  -- Function File:  ezsurf (..., DOM)
  -- Function File:  ezsurf (..., N)
- -- Function File:  ezsurf (..., 'circ')
+ -- Function File:  ezsurf (..., "circ")
  -- Function File:  ezsurf (H, ...)
  -- Function File: H = ezsurf (...)
      Plot the surface defined by a function.  F is a string, inline
@@ -1206,7 +1252,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
      If three functions are passed, then plot the parametrically defined
      function `[FX (S, T), FY (S, T), FZ (S, T)]'.
 
-     If the argument 'circ' is given, then the function is plotted over
+     If the argument "circ" is given, then the function is plotted over
      a disk centered on the middle of the domain DOM.
 
      The optional return value H is a graphics handle to the created
@@ -1229,7 +1275,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
  -- Function File:  ezsurfc (FX, FY, FZ)
  -- Function File:  ezsurfc (..., DOM)
  -- Function File:  ezsurfc (..., N)
- -- Function File:  ezsurfc (..., 'circ')
+ -- Function File:  ezsurfc (..., "circ")
  -- Function File:  ezsurfc (H, ...)
  -- Function File: H = ezsurfc (...)
      Plot the surface and contour lines defined by a function.  F is a
@@ -1249,7 +1295,7 @@ File: octave.info,  Node: Three-dimensional Function Plotting,  Next: Three-dime
      If three functions are passed, then plot the parametrically defined
      function `[FX (S, T), FY (S, T), FZ (S, T)]'.
 
-     If the argument 'circ' is given, then the function is plotted over
+     If the argument "circ" is given, then the function is plotted over
      a disk centered on the middle of the domain DOM.
 
      The optional return value H is a 2-element vector with a graphics
@@ -1344,19 +1390,20 @@ lines are on.
 
  -- Function File:  legend (STR1, STR2, ...)
  -- Function File:  legend (MATSTR)
- -- Function File:  legend (CELL)
+ -- Function File:  legend (CELLSTR)
  -- Function File:  legend (..., "location", POS)
  -- Function File:  legend (..., "orientation", ORIENT)
  -- Function File:  legend (HAX, ...)
  -- Function File:  legend (HOBJS, ...)
  -- Function File:  legend (HAX, HOBJS, ...)
  -- Function File:  legend ("OPTION")
+ -- Function File: [HLEG, HLEG_OBJ, HPLOT, LABELS] = legend (...)
      Display a legend for the axes with handle HAX, or the current axes,
      using the specified strings as labels.  Legend entries may be
      specified as individual character string arguments, a character
      array, or a cell array of character strings.  If the handles,
      HOBJS, are not specified then the legend's strings will be
-     associated with the axes' descendants.  Legend works on line
+     associated with the axes' descendants.  `legend' works on line
      graphs, bar graphs, etc.  A plot must exist before legend is
      called.
 
@@ -1378,7 +1425,7 @@ lines are on.
 
      The optional parameter ORIENT determines if the key elements are
      placed vertically or horizontally.  The allowed values are
-     "vertical" or "horizontal" with the default being "vertical".
+     "vertical" (default) or "horizontal".
 
      The following customizations are available using OPTION:
 
@@ -1398,13 +1445,34 @@ lines are on.
           Hide the box around legend
 
     "left"
-          Place text to the left of the keys
+          Place label text to the left of the keys
 
     "right"
-          Place text to the right of the keys
+          Place label text to the right of the keys
 
     "off"
           Delete the legend object
+
+     The optional output values are
+
+    HLEG
+          The graphics handle of the legend object.
+
+    HLEG_OBJ
+          Graphics handles to the text and line objects which make up
+          the legend.
+
+    HPLOT
+          Graphics handles to the plot objects which were used in
+          making the legend.
+
+    LABELS
+          A cell array of strings of the labels in the legend.
+
+     The legend label text is either provided in the call to `legend' or
+     is taken from the DisplayName property of graphics objects.  If no
+     labels or DisplayNames are available, then the label text is simply
+     "data1", "data2", ..., "dataN".
 
  -- Function File:  text (X, Y, LABEL)
  -- Function File:  text (X, Y, Z, LABEL)
@@ -1468,11 +1536,16 @@ lines are on.
      doc-contourf, *note contour3: doc-contour3, *note meshc:
      doc-meshc, *note surfc: doc-surfc, *note text: doc-text.
 
- -- Function File:  box (ARG)
- -- Function File:  box (H, ...)
+ -- Function File:  box
+ -- Function File:  box ("on")
+ -- Function File:  box ("off")
+ -- Function File:  box (HAX, ...)
      Control the display of a border around the plot.  The argument may
      be either `"on"' or `"off"'.  If it is omitted, the current box
      state is toggled.
+
+     If the first argument is an axis handle, HAX, operate on the
+     specified axis object.
 
      *See also:* *note grid: doc-grid.
 
@@ -1595,8 +1668,10 @@ example,
 creates two figures, with the first displaying a sine wave and the
 second a cosine wave.  Figure numbers must be positive integers.
 
+ -- Command:  figure
+ -- Command:  figure N
  -- Function File:  figure (N)
- -- Function File:  figure (N, PROPERTY, VALUE, ...)
+ -- Function File:  figure (N, "PROPERTY", VALUE, ...)
      Set the current plot window to plot window N.  If no arguments are
      specified, the next available window number is chosen.
 
@@ -1629,7 +1704,7 @@ current axes object.
  -- Function File:  patch (X, Y, C)
  -- Function File:  patch (X, Y, Z, C)
  -- Function File:  patch (FV)
- -- Function File:  patch ('Faces', F, 'Vertices', V, ...)
+ -- Function File:  patch ("Faces", F, "Vertices", V, ...)
  -- Function File:  patch (..., PROP, VAL)
  -- Function File:  patch (H, ...)
  -- Function File: H = patch (...)
@@ -1705,8 +1780,8 @@ even if it is not modified.
 
  -- Function File:  refresh ()
  -- Function File:  refresh (H)
-     Refresh a figure, forcing it to be redrawn.  Called without an
-     argument the current figure is redrawn, otherwise the figure
+     Refresh a figure, forcing it to be redrawn.  When called without an
+     argument the current figure is redrawn.  Otherwise, the figure
      pointed to by H is redrawn.
 
      *See also:* *note drawnow: doc-drawnow.
@@ -1735,7 +1810,7 @@ plot.
  -- Command:  hold
  -- Command:  hold STATE
  -- Function File:  hold (HAX, ...)
-     Toggle or set the 'hold' state of the plotting engine which
+     Toggle or set the "hold" state of the plotting engine which
      determines whether new graphic objects are added to the plot or
      replace the existing objects.
 
@@ -1753,12 +1828,12 @@ plot.
           new plot command.  (default).
 
     `hold'
-          Toggle the current 'hold' state.
+          Toggle the current hold state.
 
      When given the additional argument HAX, the hold state is modified
      only for the given axis handle.
 
-     To query the current 'hold' state use the `ishold' function.
+     To query the current hold state use the `ishold' function.
 
      *See also:* *note ishold: doc-ishold, *note cla: doc-cla, *note
      newplot: doc-newplot, *note clf: doc-clf.
@@ -1926,11 +2001,11 @@ Table 15.1: Available special characters in TeX mode
    A complete example showing the capabilities of the extended text is
 
      x = 0:0.01:3;
-     plot(x,erf(x));
+     plot (x, erf (x));
      hold on;
-     plot(x,x,"r");
-     axis([0, 3, 0, 1]);
-     text(0.65, 0.6175, strcat('\leftarrow x = {2/\surd\pi',
+     plot (x,x,"r");
+     axis ([0, 3, 0, 1]);
+     text (0.65, 0.6175, strcat ('\leftarrow x = {2/\surd\pi',
      ' {\fontsize{16}\int_{\fontsize{8}0}^{\fontsize{8}x}}',
      ' e^{-t^2} dt} = 0.6175'))
 
@@ -1940,41 +2015,56 @@ File: octave.info,  Node: Printing and Saving Plots,  Next: Interacting with Plo
 15.2.9 Printing and Saving Plots
 --------------------------------
 
-The `print' command allows you to save plots in a variety of formats.
-For example,
+The `print' command allows you to send plots to you printer and to save
+plots in a variety of formats.  For example,
+
+     print -dpsc
+
+prints the current figure to a color PostScript printer.  And,
 
      print -deps foo.eps
 
-writes the current figure to an encapsulated PostScript file called
+saves the current figure to an encapsulated PostScript file called
 `foo.eps'.
 
  -- Function File:  print ()
  -- Function File:  print (OPTIONS)
  -- Function File:  print (FILENAME, OPTIONS)
  -- Function File:  print (H, FILENAME, OPTIONS)
-     Print a graph, or save it to a file
+     Print a plot, or save it to a file.  Both output formatted for
+     printing (PDF and PostScript), and many bitmapped and vector image
+     formats are supported.
 
-     FILENAME defines the file name of the output file.  If the file
-     name has no suffix, one is inferred from the specified device and
+     FILENAME defines the name of the output file.  If the file name
+     has no suffix, one is inferred from the specified device and
      appended to the file name.  If no filename is specified, the
      output is sent to the printer.
 
      H specifies the figure handle.  If no handle is specified the
      handle for the current figure is used.
 
-     OPTIONS:
+     For output to a printer, PostScript file, or PDF file, the paper
+     size is specified by the figure's `papersize' property.  The
+     location and size of the image on the page are specified by the
+     figure's `paperposition' property.  The orientation of the page is
+     specified by the figure's `paperorientation' property.
+
+     The width and height of images are specified by the figure's
+     `paperpositon(3:4)' property values.
+
+     The `print' command supports many OPTIONS:
 
     `-fH'
           Specify the handle, H, of the figure to be printed.  The
           default is the current figure.
 
     `-PPRINTER'
-          Set the PRINTER name to which the graph is sent if no
-          FILENAME is specified.
+          Set the PRINTER name to which the plot is sent if no FILENAME
+          is specified.
 
     `-GGHOSTSCRIPT_COMMAND'
           Specify the command for calling Ghostscript.  For Unix and
-          Windows, the defaults are 'gs' and 'gswin32c', respectively.
+          Windows the defaults are 'gs' and 'gswin32c', respectively.
 
     `-color'
     `-mono'
@@ -1982,7 +2072,7 @@ writes the current figure to an encapsulated PostScript file called
 
     `-solid'
     `-dashed'
-          Forces all lines to be solid or dashed, respectively.
+          Force all lines to be solid or dashed, respectively.
 
     `-portrait'
     `-landscape'
@@ -1992,14 +2082,25 @@ writes the current figure to an encapsulated PostScript file called
           the orientation specified.  This options is equivalent to
           changing the figure's "paperorientation" property.
 
+    `-TextAlphaBits=N'
+    `-GraphicsAlphaBits=N'
+          Octave is able to produce output for various printers,
+          bitmaps, and vector formats by using Ghostscript.  For bitmap
+          and printer output anti-aliasing is applied using
+          Ghostscript's TextAlphaBits and GraphicsAlphaBits options.
+          The default number of bits for each is 4.  Allowed values for
+          N are 1, 2, or 4.
+
     `-dDEVICE'
-          Output device, where DEVICE is one of:
+          The available output format is specified by the option DEVICE,
+          and is one of:
+
          `ps'
          `ps2'
          `psc'
          `psc2'
                Postscript (level 1 and 2, mono and color).  The FLTK
-               graphics     toolkit generates Postscript level 3.0.
+               graphics toolkit generates Postscript level 3.0.
 
          `eps'
          `eps2'
@@ -2014,7 +2115,7 @@ writes the current figure to an encapsulated PostScript file called
          `pstex'
          `pslatex'
          `pdflatex'
-               Generate a LaTeX (or TeX) file for labels, and eps/ps/pdf
+               Generate a LaTeX (or TeX) file for labels and eps/ps/pdf
                for graphics.  The file produced by `epslatexstandalone'
                can be processed directly by LaTeX.  The other formats
                are intended to be included in a LaTeX (or TeX)
@@ -2023,8 +2124,8 @@ writes the current figure to an encapsulated PostScript file called
                available for the FLTK graphics toolkit.
 
          `tikz'
-               Generate a LaTeX file using PGF/TikZ.  For the FLTK the
-               result is   PGF.
+               Generate a LaTeX file using PGF/TikZ.  For the FLTK
+               toolkit the result is PGF.
 
          `ill'
          `aifm'
@@ -2044,8 +2145,8 @@ writes the current figure to an encapsulated PostScript file called
          `fig'
                XFig.  For the Gnuplot graphics toolkit, the additional
                options `-textspecial' or `-textnormal' can be used to
-               control     whether the special flag should be set for
-               the text in     the figure (default is `-textnormal').
+               control whether the special flag should be set for the
+               text in the figure.  (default is `-textnormal')
 
          `hpgl'
                HP plotter language
@@ -2114,49 +2215,51 @@ writes the current figure to an encapsulated PostScript file called
           box defined by the figure's "paperposition" property.
 
     `-append'
-          Appends the PS, or PDF output to a pre-existing file of the
+          Append Postscript or PDF output to a pre-existing file of the
           same type.
 
     `-rNUM'
           Resolution of bitmaps in pixels per inch.  For both metafiles
-          and SVG the default is the screen resolution, for other it is
-          150 dpi.  To specify screen resolution, use "-r0".
+          and SVG the default is the screen resolution; for other
+          formats it is 150 dpi.  To specify screen resolution, use
+          "-r0".
 
     `-tight'
-          Forces a tight bounding box for eps-files.
+          Force a tight bounding box for eps files.
 
     `-PREVIEW'
-          Adds a preview to eps-files.  Supported formats are;
+          Add a preview to eps files.  Supported formats are:
 
          `-interchange'
-               Provides an interchange preview.
+               Provide an interchange preview.
 
          `-metalfile'
-               Provides a metafile preview.
+               Provide a metafile preview.
 
          `-pict'
-               Provides pict preview.
+               Provide pict preview.
 
          `-tiff'
-               Provides a tiff preview.
+               Provide a tiff preview.
 
     `-SXSIZE,YSIZE'
-          Plot size in pixels for EMF, GIF, JPEG, PBM, PNG and SVG.  For
-          PS, EPS, PDF, and other vector formats the plot size is in
-          points.  This option is equivalent to changing the size of
-          the plot box associated with "paperposition" property.  Using
-          the command form of the print function, you must quote the
-          XSIZE,YSIZE option.  For example, by writing `"-S640,480"'.
+          Plot size in pixels for EMF, GIF, JPEG, PBM, PNG, and SVG.
+          For PS, EPS, PDF, and other vector formats the plot size is
+          in points.  This option is equivalent to changing the size of
+          the plot box associated with the "paperposition" property.
+          When using the command form of the print function you must
+          quote the XSIZE,YSIZE option.  For example, by writing
+          "-S640,480".
 
     `-FFONTNAME'
     `-FFONTNAME:SIZE'
     `-F:SIZE'
-          Associates all text with the FONTNAME and/or FONTSIZE.
-          FONTNAME is ignored for some devices; dxf, fig, hpgl, etc.
+          Use FONTNAME and/or FONTSIZE for all text.  FONTNAME is
+          ignored for some devices: dxf, fig, hpgl, etc.
 
      The filename and options can be given in any order.
 
-     Example: Print to a file, using the svg device.
+     Example: Print to a file using the svg device.
 
           figure (1);
           clf ();
@@ -2241,12 +2344,20 @@ populated with specific user commands via the `uimenu' function.
      *See also:* *note ginput: doc-ginput.
 
  -- Function File:  gtext (S)
+ -- Function File:  gtext ({S1, S2, ...})
  -- Function File:  gtext ({S1; S2; ...})
  -- Function File:  gtext (..., PROP, VAL)
+ -- Function File: H = gtext (...)
      Place text on the current figure using the mouse.  The text is
-     defined by the string S.  If S is a cell array, each element of
-     the cell array is written to a separate line.  Additional
-     arguments are passed to the underlying text object as properties.
+     defined by the string S.  If S is a cell string organized as a row
+     vector then each string of the cell array is written to a separate
+     line.  If S is organized as a column vector then one string
+     element of the cell array is placed for every mouse click.
+     Additional inputs besides a string or cellstr are passed to the
+     underlying text object as Property-value pairs.
+
+     The optional return value H is a graphics handle to the created
+     text object.
 
      *See also:* *note ginput: doc-ginput, *note text: doc-text.
 
@@ -2649,7 +2760,7 @@ objects.
           handles in H independent of the dimensions of PV.
 
  -- Function File: PARENT = ancestor (H, TYPE)
- -- Function File: PARENT = ancestor (H, TYPE, 'toplevel')
+ -- Function File: PARENT = ancestor (H, TYPE, "toplevel")
      Return the first ancestor of handle object H whose type matches
      TYPE, where TYPE is a character string.  If TYPE is a cell array
      of strings, return the first parent whose type matches any of the
@@ -2673,6 +2784,13 @@ objects.
 
      *See also:* *note get: doc-get, *note set: doc-set, *note findall:
      doc-findall, *note findobj: doc-findobj.
+
+ -- Function File:  findfigs ()
+     Find all visible figures that are currently off the screen and
+     move them onto the screen.
+
+     *See also:* *note allchild: doc-allchild, *note figure:
+     doc-figure, *note get: doc-get, *note set: doc-set.
 
 
 File: octave.info,  Node: Graphics Object Properties,  Next: Searching Properties,  Prev: Graphics Objects,  Up: Graphics Data Structures
@@ -2702,6 +2820,7 @@ File: octave.info,  Node: Root Figure Properties,  Next: Figure Properties,  Up:
 ...............................
 
 The `root figure' properties are:
+
 `__modified__'
      -- Values: "on," "off"
 
@@ -2774,6 +2893,7 @@ File: octave.info,  Node: Figure Properties,  Next: Axes Properties,  Prev: Root
 ..........................
 
 The `figure' properties are:
+
 `__graphics_toolkit__'
      -- The graphics toolkit currently in use.
 
@@ -2858,6 +2978,7 @@ The `figure' properties are:
      The first argument holds the handle of the calling figure.  The
      second argument holds the event structure which has the following
      members:
+
     `Character'
           The ASCII value of the key
 
@@ -2877,6 +2998,7 @@ The `figure' properties are:
 
 `nextplot'
      May be one of
+
     `"new"'
 
     `"add"'
@@ -2971,6 +3093,7 @@ File: octave.info,  Node: Axes Properties,  Next: Line Properties,  Prev: Figure
 ........................
 
 The `axes' properties are:
+
 `__modified__'
 
 `__myhandle__'
@@ -3097,6 +3220,7 @@ The `axes' properties are:
 
 `nextplot'
      May be one of
+
     `"new"'
 
     `"add"'
@@ -3310,6 +3434,7 @@ File: octave.info,  Node: Line Properties,  Next: Text Properties,  Prev: Axes P
 ........................
 
 The `line' properties are:
+
 `__modified__'
 
 `__myhandle__'
@@ -3421,6 +3546,7 @@ File: octave.info,  Node: Text Properties,  Next: Image Properties,  Prev: Line 
 ........................
 
 The `text' properties are:
+
 `__modified__'
 
 `__myhandle__'
@@ -3537,6 +3663,7 @@ File: octave.info,  Node: Image Properties,  Next: Patch Properties,  Prev: Text
 .........................
 
 The `image' properties are:
+
 `__modified__'
 
 `__myhandle__'
@@ -3613,6 +3740,7 @@ File: octave.info,  Node: Patch Properties,  Next: Surface Properties,  Prev: Im
 .........................
 
 The `patch' properties are:
+
 `__modified__'
 
 `__myhandle__'
@@ -3761,6 +3889,7 @@ File: octave.info,  Node: Surface Properties,  Prev: Patch Properties,  Up: Grap
 ...........................
 
 The `surface' properties are:
+
 `__modified__'
 
 `__myhandle__'
@@ -4073,6 +4202,7 @@ Line styles are specified by the following properties:
 
 `linestyle'
      May be one of
+
     `"-"'
           Solid line.  [default]
 
@@ -4100,6 +4230,7 @@ File: octave.info,  Node: Marker Styles,  Next: Callbacks,  Prev: Line Styles,  
 --------------------
 
 Marker styles are specified by the following properties:
+
 `marker'
      A character indicating a plot marker to be place at each data
      point, or `"none"', meaning no markers should be displayed.
@@ -4143,7 +4274,7 @@ gives some event specific data.  This can then be associated with an
 object either at the objects creation or later with the `set' function.
 For example,
 
-     plot (x, "DeleteFcn", @(s, e) disp("Window Deleted"))
+     plot (x, "DeleteFcn", @(s, e) disp ("Window Deleted"))
 
 where at the moment that the plot is deleted, the message "Window
 Deleted" will be displayed.
@@ -4998,14 +5129,20 @@ File: octave.info,  Node: Graphics Toolkits,  Prev: Object Groups,  Up: Advanced
 ------------------------
 
  -- Function File: NAME = graphics_toolkit ()
- -- Function File: OLD_NAME = graphics_toolkit (NAME)
- -- Function File:  graphics_toolkit (HLIST, NAME)
-     Query or set the default graphics toolkit to NAME.  If the toolkit
-     is not already loaded, it is first initialized by calling the
-     function `__init_NAME__'.
+     Return the default graphics toolkit.  The default graphics toolkit
+     value is assigned to new figures.
 
-     When called with a list of figure handles, HLIST, the graphics
-     toolkit is changed only for the listed figures.
+ -- Function File: NAME = graphics_toolkit (HLIST)
+     Return the graphics toolkits for the figures with handles HLIST.
+
+ -- Function File:  graphics_toolkit (NAME)
+     Set the default graphics toolkit to NAME.  If the toolkit is not
+     already loaded, it is initialized by calling the function
+     `__init_NAME__'.
+
+ -- Function File:  graphics_toolkit (HLIST, NAME)
+     Set the graphics toolkit for the figures with handles HLIST to
+     NAME.
 
      *See also:* *note available_graphics_toolkits:
      doc-available_graphics_toolkits.
@@ -5055,6 +5192,7 @@ graphics toolkit.
  -- Built-in Function:  gui_mode (MODE)
      Query or set the GUI mode for the current graphics toolkit.  The
      MODE argument can be one of the following strings:
+
     '2d'
           Allows panning and zooming of current axes.
 
@@ -5119,13 +5257,13 @@ a specified condition.
      the corresponding column of the matrix are nonzero.  For example:
 
           any (eye (2, 4))
-               => [ 1, 1, 0, 0 ]
+           => [ 1, 1, 0, 0 ]
 
      If the optional argument DIM is supplied, work along dimension
      DIM.  For example:
 
           any (eye (2, 4), 2)
-               => [ 1; 1 ]
+           => [ 1; 1 ]
 
      *See also:* *note all: doc-all.
 
@@ -5139,7 +5277,7 @@ a specified condition.
      the corresponding column of the matrix are nonzero.  For example:
 
           all ([2, 3; 1, 0]))
-               => [ 1, 0 ]
+              => [ 1, 0 ]
 
      If the optional argument DIM is supplied, work along dimension DIM.
 
@@ -5196,12 +5334,14 @@ than 0.9.
      order differences are calculated along this dimension.  In the
      case where K exceeds `size (X, DIM)' an empty matrix is returned.
 
+     *See also:* *note sort: doc-sort, *note merge: doc-merge.
+
  -- Mapping Function:  isinf (X)
      Return a logical array which is true where the elements of X are
      are infinite and false where they are not.  For example:
 
           isinf ([13, Inf, NA, NaN])
-               => [ 0, 1, 0, 0 ]
+                => [ 0, 1, 0, 0 ]
 
      *See also:* *note isfinite: doc-isfinite, *note isnan: doc-isnan,
      *note isna: doc-isna.
@@ -5212,7 +5352,7 @@ than 0.9.
      considered NaN values.  For example:
 
           isnan ([13, Inf, NA, NaN])
-               => [ 0, 0, 1, 1 ]
+                => [ 0, 0, 1, 1 ]
 
      *See also:* *note isna: doc-isna, *note isinf: doc-isinf, *note
      isfinite: doc-isfinite.
@@ -5243,11 +5383,11 @@ than 0.9.
      This is useful for implementing functions where arguments can
      either be scalars or of common size.
 
- -- Loadable Function: IDX = find (X)
- -- Loadable Function: IDX = find (X, N)
- -- Loadable Function: IDX = find (X, N, DIRECTION)
- -- Loadable Function: [i, j] = find (...)
- -- Loadable Function: [i, j, v] = find (...)
+ -- Built-in Function: IDX = find (X)
+ -- Built-in Function: IDX = find (X, N)
+ -- Built-in Function: IDX = find (X, N, DIRECTION)
+ -- Built-in Function: [i, j] = find (...)
+ -- Built-in Function: [i, j, v] = find (...)
      Return a vector of indices of nonzero elements of a matrix, as a
      row if X is a row vector or as a column otherwise.  To obtain a
      single index for each matrix element, Octave pretends that the
@@ -5255,22 +5395,22 @@ than 0.9.
      stored).  For example:
 
           find (eye (2))
-               => [ 1; 4 ]
+            => [ 1; 4 ]
 
      If two outputs are requested, `find' returns the row and column
      indices of nonzero elements of a matrix.  For example:
 
           [i, j] = find (2 * eye (2))
-               => i = [ 1; 2 ]
-               => j = [ 1; 2 ]
+              => i = [ 1; 2 ]
+              => j = [ 1; 2 ]
 
      If three outputs are requested, `find' also returns a vector
      containing the nonzero values.  For example:
 
           [i, j, v] = find (3 * eye (2))
-               => i = [ 1; 2 ]
-               => j = [ 1; 2 ]
-               => v = [ 3; 3 ]
+                 => i = [ 1; 2 ]
+                 => j = [ 1; 2 ]
+                 => v = [ 3; 3 ]
 
      If two inputs are given, N indicates the maximum number of
      elements to find from the beginning of the matrix or vector.
@@ -5289,8 +5429,8 @@ than 0.9.
 
      *See also:* *note nonzeros: doc-nonzeros.
 
- -- Loadable Function: IDX = lookup (TABLE, Y)
- -- Loadable Function: IDX = lookup (TABLE, Y, OPT)
+ -- Built-in Function: IDX = lookup (TABLE, Y)
+ -- Built-in Function: IDX = lookup (TABLE, Y, OPT)
      Lookup values in a sorted table.  Usually used as a prelude to
      interpolation.
 
@@ -5443,29 +5583,28 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
           A = ones (2, 2);
           B = zeros (2, 2);
           cat (2, A, B)
-              => 1 1 0 0
-                 1 1 0 0
+            => 1 1 0 0
+               1 1 0 0
 
      Alternatively, we can concatenate A and B along the second
-     dimension the following way:
+     dimension in the following way:
 
-          [A, B].
+          [A, B]
 
      DIM can be larger than the dimensions of the N-D array objects and
      the result will thus have DIM dimensions as the following example
      shows:
 
           cat (4, ones (2, 2), zeros (2, 2))
-              => ans =
+            => ans(:,:,1,1) =
 
-                 ans(:,:,1,1) =
+                 1 1
+                 1 1
 
-                   1 1
-                   1 1
+               ans(:,:,1,2) =
 
-                 ans(:,:,1,2) =
-                   0 0
-                   0 0
+                 0 0
+                 0 0
 
      *See also:* *note horzcat: doc-horzcat, *note vertcat: doc-vertcat.
 
@@ -5476,7 +5615,7 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      Arrays may also be concatenated horizontally using the syntax for
      creating new matrices.  For example:
 
-          HCAT = [ ARRAY1, ARRAY2, ... ];
+          HCAT = [ ARRAY1, ARRAY2, ... ]
 
      *See also:* *note cat: doc-cat, *note vertcat: doc-vertcat.
 
@@ -5487,14 +5626,14 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      Arrays may also be concatenated vertically using the syntax for
      creating new matrices.  For example:
 
-          VCAT = [ ARRAY1; ARRAY2; ... ];
+          VCAT = [ ARRAY1; ARRAY2; ... ]
 
      *See also:* *note cat: doc-cat, *note horzcat: doc-horzcat.
 
  -- Built-in Function:  permute (A, PERM)
      Return the generalized transpose for an N-D array object A.  The
-     permutation vector PERM must contain the elements `1:ndims(A)' (in
-     any order, but each element must appear only once).
+     permutation vector PERM must contain the elements `1:ndims (A)'
+     (in any order, but each element must appear only once).
 
      *See also:* *note ipermute: doc-ipermute.
 
@@ -5520,8 +5659,8 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      2x2 square matrix.
 
           reshape ([1, 2, 3, 4], 2, 2)
-               =>  1  3
-                   2  4
+                =>  1  3
+                    2  4
 
      Note that the total number of elements in the original matrix
      (`prod (size (A))') must match the total number of elements in the
@@ -5531,7 +5670,9 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      and Octave will determine its size automatically.  An empty matrix
      ([]) is used to flag the unspecified dimension.
 
-     *See also:* *note resize: doc-resize.
+     *See also:* *note resize: doc-resize, *note vec: doc-vec, *note
+     postpad: doc-postpad, *note cat: doc-cat, *note squeeze:
+     doc-squeeze.
 
  -- Built-in Function:  resize (X, M)
  -- Built-in Function:  resize (X, M, N, ...)
@@ -5544,14 +5685,16 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
 
      In other words, the statement
 
-            y = resize (x, dv);
+          y = resize (x, dv)
 
      is equivalent to the following code:
 
-            y = zeros (dv, class (x));
-            sz = min (dv, size (x));
-            for i = 1:length (sz), idx{i} = 1:sz(i); endfor
-            y(idx{:}) = x(idx{:});
+          y = zeros (dv, class (x));
+          sz = min (dv, size (x));
+          for i = 1:length (sz)
+            idx{i} = 1:sz(i);
+          endfor
+          y(idx{:}) = x(idx{:});
 
      but is performed more efficiently.
 
@@ -5565,7 +5708,8 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      case the missing dimensions are assumed to be 1.  Resizing an
      object to fewer dimensions is not possible.
 
-     *See also:* *note reshape: doc-reshape, *note postpad: doc-postpad.
+     *See also:* *note reshape: doc-reshape, *note postpad:
+     doc-postpad, *note prepad: doc-prepad, *note cat: doc-cat.
 
  -- Function File: Y = circshift (X, N)
      Circularly shift the values of the array X.  N must be a vector of
@@ -5624,36 +5768,36 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
 
      *See also:* reshape, permute, ipermute, circshift, squeeze.
 
- -- Loadable Function: [S, I] = sort (X)
- -- Loadable Function: [S, I] = sort (X, DIM)
- -- Loadable Function: [S, I] = sort (X, MODE)
- -- Loadable Function: [S, I] = sort (X, DIM, MODE)
+ -- Built-in Function: [S, I] = sort (X)
+ -- Built-in Function: [S, I] = sort (X, DIM)
+ -- Built-in Function: [S, I] = sort (X, MODE)
+ -- Built-in Function: [S, I] = sort (X, DIM, MODE)
      Return a copy of X with the elements arranged in increasing order.
      For matrices, `sort' orders the elements within columns
 
      For example:
 
           sort ([1, 2; 2, 3; 3, 1])
-               =>  1  1
-                   2  2
-                   3  3
+             =>  1  1
+                 2  2
+                 3  3
 
      If the optional argument DIM is given, then the matrix is sorted
      along the dimension defined by DIM.  The optional argument `mode'
      defines the order in which the values will be sorted.  Valid
-     values of `mode' are `ascend' or `descend'.
+     values of `mode' are "ascend" or "descend".
 
      The `sort' function may also be used to produce a matrix
      containing the original row indices of the elements in the sorted
      matrix.  For example:
 
           [s, i] = sort ([1, 2; 2, 3; 3, 1])
-               => s = 1  1
-                      2  2
-                      3  3
-               => i = 1  3
-                      2  1
-                      3  2
+            => s = 1  1
+                   2  2
+                   3  3
+            => i = 1  3
+                   2  1
+                   3  2
 
      For equal elements, the indices are such that equal elements are
      listed in the order in which they appeared in the original list.
@@ -5662,9 +5806,9 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      and for any ties by phase angle (`angle (z)').  For example:
 
           sort ([1+i; 1; 1-i])
-               => 1 + 0i
-                  1 - 1i
-                  1 + 1i
+              => 1 + 0i
+                 1 - 1i
+                 1 + 1i
 
      NaN values are treated as being greater than any other value and
      are sorted to the end of the list.
@@ -5675,6 +5819,9 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
 
      The algorithm used in `sort' is optimized for the sorting of
      partially ordered lists.
+
+     *See also:* *note sortrows: doc-sortrows, *note issorted:
+     doc-issorted.
 
  -- Function File: [S, I] = sortrows (A)
  -- Function File: [S, I] = sortrows (A, C)
@@ -5769,7 +5916,8 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      elements along the last dimension.  This is equivalent to
      `shiftdim (X(:), 1-DIM)'.
 
-     *See also:* *note vech: doc-vech.
+     *See also:* *note vech: doc-vech, *note resize: doc-resize, *note
+     cat: doc-cat.
 
  -- Function File:  vech (X)
      Return the vector obtained by eliminating all supradiagonal
@@ -5826,10 +5974,10 @@ File: octave.info,  Node: Rearranging Matrices,  Next: Special Utility Matrices,
      is placed on the main diagonal.  For example:
 
           diag ([1, 2, 3], 1)
-               =>  0  1  0  0
-                   0  0  2  0
-                   0  0  0  3
-                   0  0  0  0
+             =>  0  1  0  0
+                 0  0  2  0
+                 0  0  0  3
+                 0  0  0  0
 
      The 3-input form returns a diagonal matrix with vector V on the
      main diagonal and the resulting matrix being of size M rows x N
@@ -5864,9 +6012,9 @@ File: octave.info,  Node: Special Utility Matrices,  Next: Famous Matrices,  Pre
      respectively.  For example:
 
           eye (3)
-               =>  1  0  0
-                   0  1  0
-                   0  0  1
+           =>  1  0  0
+               0  1  0
+               0  0  1
 
      The following expressions all produce the same result:
 
@@ -5885,7 +6033,8 @@ File: octave.info,  Node: Special Utility Matrices,  Next: Famous Matrices,  Pre
      an argument of 1.  Any negative dimensions are treated as zero.
      These odd definitions are for compatibility with MATLAB.
 
-     *See also:* *note speye: doc-speye.
+     *See also:* *note speye: doc-speye, *note ones: doc-ones, *note
+     zeros: doc-zeros.
 
  -- Built-in Function:  ones (N)
  -- Built-in Function:  ones (M, N)
@@ -5930,11 +6079,13 @@ File: octave.info,  Node: Special Utility Matrices,  Next: Famous Matrices,  Pre
 
  -- Function File:  repmat (A, M)
  -- Function File:  repmat (A, M, N)
- -- Function File:  repmat (A, M, N, P, ...)
  -- Function File:  repmat (A, [M N])
  -- Function File:  repmat (A, [M N P ...])
      Form a block matrix of size M by N, with a copy of matrix A as
      each element.  If N is not specified, form an M by M block matrix.
+     For copying along more than two dimensions, specify the number of
+     times to copy across each dimension M, N, P, ..., in a vector in
+     the second argument.
 
      *See also:* *note repelems: doc-repelems.
 
@@ -5956,7 +6107,7 @@ File: octave.info,  Node: Special Utility Matrices,  Next: Famous Matrices,  Pre
             y = [y, X(R(1,i)*ones(1, R(2,i)))];
           endfor
 
-     *See also:* *note repmat: doc-repmat.
+     *See also:* *note repmat: doc-repmat, *note cat: doc-cat.
 
    The functions `linspace' and `logspace' make it very easy to create
 vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
@@ -5977,6 +6128,8 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
      For compatibility with MATLAB, return the second argument (LIMIT)
      if fewer than two values are requested.
 
+     *See also:* *note logspace: doc-logspace.
+
  -- Function File:  logspace (A, B)
  -- Function File:  logspace (A, B, N)
  -- Function File:  logspace (A, pi, N)
@@ -5992,15 +6145,17 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
 
      *See also:* *note linspace: doc-linspace.
 
- -- Loadable Function:  rand (N)
- -- Loadable Function:  rand (N, M, ...)
- -- Loadable Function:  rand ([N M ...])
- -- Loadable Function: V = rand ("state")
- -- Loadable Function:  rand ("state", V)
- -- Loadable Function:  rand ("state", "reset")
- -- Loadable Function: V = rand ("seed")
- -- Loadable Function:  rand ("seed", V)
- -- Loadable Function:  rand ("seed", "reset")
+ -- Built-in Function:  rand (N)
+ -- Built-in Function:  rand (N, M, ...)
+ -- Built-in Function:  rand ([N M ...])
+ -- Built-in Function: V = rand ("state")
+ -- Built-in Function:  rand ("state", V)
+ -- Built-in Function:  rand ("state", "reset")
+ -- Built-in Function: V = rand ("seed")
+ -- Built-in Function:  rand ("seed", V)
+ -- Built-in Function:  rand ("seed", "reset")
+ -- Built-in Function:  rand (..., "single")
+ -- Built-in Function:  rand (..., "double")
      Return a matrix with random elements uniformly distributed on the
      interval (0, 1).  The arguments are handled the same as the
      arguments for `eye'.
@@ -6021,7 +6176,11 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
 
      By default, the generator is initialized from `/dev/urandom' if it
      is available, otherwise from CPU time, wall clock time, and the
-     current fraction of a second.
+     current fraction of a second.  Note that this differs from MATLAB,
+     which always initializes the state to the same state at startup.
+     To obtain behavior comparable to MATLAB, initialize with a
+     deterministic state vector in Octave's startup files (*note
+     Startup Files::).
 
      To compute the pseudo-random sequence, `rand' uses the Mersenne
      Twister with a period of 2^19937-1 (See M. Matsumoto and T.
@@ -6055,6 +6214,9 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
 
      The state or seed of the generator can be reset to a new random
      value using the "reset" keyword.
+
+     The class of the value returned can be controlled by a trailing
+     "double" or "single" argument.  These are the only valid classes.
 
      *See also:* *note randn: doc-randn, *note rande: doc-rande, *note
      randg: doc-randg, *note randp: doc-randp.
@@ -6091,21 +6253,26 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
 
      *See also:* *note rand: doc-rand.
 
- -- Loadable Function:  randn (N)
- -- Loadable Function:  randn (N, M, ...)
- -- Loadable Function:  randn ([N M ...])
- -- Loadable Function: V = randn ("state")
- -- Loadable Function:  randn ("state", V)
- -- Loadable Function:  randn ("state", "reset")
- -- Loadable Function: V = randn ("seed")
- -- Loadable Function:  randn ("seed", V)
- -- Loadable Function:  randn ("seed", "reset")
+ -- Built-in Function:  randn (N)
+ -- Built-in Function:  randn (N, M, ...)
+ -- Built-in Function:  randn ([N M ...])
+ -- Built-in Function: V = randn ("state")
+ -- Built-in Function:  randn ("state", V)
+ -- Built-in Function:  randn ("state", "reset")
+ -- Built-in Function: V = randn ("seed")
+ -- Built-in Function:  randn ("seed", V)
+ -- Built-in Function:  randn ("seed", "reset")
+ -- Built-in Function:  randn (..., "single")
+ -- Built-in Function:  randn (..., "double")
      Return a matrix with normally distributed random elements having
      zero mean and variance one.  The arguments are handled the same as
      the arguments for `rand'.
 
      By default, `randn' uses the Marsaglia and Tsang "Ziggurat
      technique" to transform from a uniform to a normal distribution.
+
+     The class of the value returned can be controlled by a trailing
+     "double" or "single" argument.  These are the only valid classes.
 
      Reference: G. Marsaglia and W.W. Tsang, `Ziggurat Method for
      Generating Random Variables', J. Statistical Software, vol 5, 2000,
@@ -6114,21 +6281,26 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
      *See also:* *note rand: doc-rand, *note rande: doc-rande, *note
      randg: doc-randg, *note randp: doc-randp.
 
- -- Loadable Function:  rande (N)
- -- Loadable Function:  rande (N, M, ...)
- -- Loadable Function:  rande ([N M ...])
- -- Loadable Function: V = rande ("state")
- -- Loadable Function:  rande ("state", V)
- -- Loadable Function:  rande ("state", "reset")
- -- Loadable Function: V = rande ("seed")
- -- Loadable Function:  rande ("seed", V)
- -- Loadable Function:  rande ("seed", "reset")
+ -- Built-in Function:  rande (N)
+ -- Built-in Function:  rande (N, M, ...)
+ -- Built-in Function:  rande ([N M ...])
+ -- Built-in Function: V = rande ("state")
+ -- Built-in Function:  rande ("state", V)
+ -- Built-in Function:  rande ("state", "reset")
+ -- Built-in Function: V = rande ("seed")
+ -- Built-in Function:  rande ("seed", V)
+ -- Built-in Function:  rande ("seed", "reset")
+ -- Built-in Function:  rande (..., "single")
+ -- Built-in Function:  rande (..., "double")
      Return a matrix with exponentially distributed random elements.
      The arguments are handled the same as the arguments for `rand'.
 
      By default, `randn' uses the Marsaglia and Tsang "Ziggurat
      technique" to transform from a uniform to an exponential
      distribution.
+
+     The class of the value returned can be controlled by a trailing
+     "double" or "single" argument.  These are the only valid classes.
 
      Reference: G. Marsaglia and W.W. Tsang, `Ziggurat Method for
      Generating Random Variables', J. Statistical Software, vol 5, 2000,
@@ -6137,15 +6309,17 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
      *See also:* *note rand: doc-rand, *note randn: doc-randn, *note
      randg: doc-randg, *note randp: doc-randp.
 
- -- Loadable Function:  randp (L, N)
- -- Loadable Function:  randp (L, N, M, ...)
- -- Loadable Function:  randp (L, [N M ...])
- -- Loadable Function: V = randp ("state")
- -- Loadable Function:  randp ("state", V)
- -- Loadable Function:  randp ("state", "reset")
- -- Loadable Function: V = randp ("seed")
- -- Loadable Function:  randp ("seed", V)
- -- Loadable Function:  randp ("seed", "reset")
+ -- Built-in Function:  randp (L, N)
+ -- Built-in Function:  randp (L, N, M, ...)
+ -- Built-in Function:  randp (L, [N M ...])
+ -- Built-in Function: V = randp ("state")
+ -- Built-in Function:  randp ("state", V)
+ -- Built-in Function:  randp ("state", "reset")
+ -- Built-in Function: V = randp ("seed")
+ -- Built-in Function:  randp ("seed", V)
+ -- Built-in Function:  randp ("seed", "reset")
+ -- Built-in Function:  randp (..., "single")
+ -- Built-in Function:  randp (..., "double")
      Return a matrix with Poisson distributed random elements with mean
      value parameter given by the first argument, L.  The arguments are
      handled the same as the arguments for `rand', except for the
@@ -6175,19 +6349,24 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
           L. Montanet, et al., `Review of Particle Properties',
           Physical Review D 50 p1284, 1994.
 
+     The class of the value returned can be controlled by a trailing
+     "double" or "single" argument.  These are the only valid classes.
+
      *See also:* *note rand: doc-rand, *note randn: doc-randn, *note
      rande: doc-rande, *note randg: doc-randg.
 
- -- Loadable Function:  randg (N)
- -- Loadable Function:  randg (N, M, ...)
- -- Loadable Function:  randg ([N M ...])
- -- Loadable Function: V = randg ("state")
- -- Loadable Function:  randg ("state", V)
- -- Loadable Function:  randg ("state", "reset")
- -- Loadable Function: V = randg ("seed")
- -- Loadable Function:  randg ("seed", V)
- -- Loadable Function:  randg ("seed", "reset")
-     Return a matrix with `gamma(A,1)' distributed random elements.
+ -- Built-in Function:  randg (N)
+ -- Built-in Function:  randg (N, M, ...)
+ -- Built-in Function:  randg ([N M ...])
+ -- Built-in Function: V = randg ("state")
+ -- Built-in Function:  randg ("state", V)
+ -- Built-in Function:  randg ("state", "reset")
+ -- Built-in Function: V = randg ("seed")
+ -- Built-in Function:  randg ("seed", V)
+ -- Built-in Function:  randg ("seed", "reset")
+ -- Built-in Function:  randg (..., "single")
+ -- Built-in Function:  randg (..., "double")
+     Return a matrix with `gamma (A,1)' distributed random elements.
      The arguments are handled the same as the arguments for `rand',
      except for the argument A.
 
@@ -6230,6 +6409,9 @@ vectors with evenly or logarithmically spaced elements.  *Note Ranges::.
                r = (randg (a1), ..., randg (ak))
                r = r / sum (r)
 
+
+     The class of the value returned can be controlled by a trailing
+     "double" or "single" argument.  These are the only valid classes.
 
      *See also:* *note rand: doc-rand, *note randn: doc-randn, *note
      rande: doc-rande, *note randp: doc-randp.
@@ -6277,13 +6459,13 @@ compiled by Barry W. Brown and James Lovato of the Department of
 Biomathematics at The University of Texas, M.D. Anderson Cancer Center,
 Houston, TX 77030.
 
- -- Loadable Function:  randperm (N)
- -- Loadable Function:  randperm (N, M)
+ -- Built-in Function:  randperm (N)
+ -- Built-in Function:  randperm (N, M)
      Return a row vector containing a random permutation of `1:N'.  If
      M is supplied, return M unique entries, sampled without
      replacement from `1:N'.  The complexity is O(N) in memory and O(M)
      in time, unless M < N/5, in which case O(M) memory is used as
-     well.  The randomization is performed using rand(). All
+     well.  The randomization is performed using rand().  All
      permutations are equally likely.
 
      *See also:* *note perms: doc-perms.
@@ -6680,6 +6862,20 @@ functions are named after the base trigonometric function with a `d'
 suffix.  For example, `sin' expects an angle in radians while `sind'
 expects an angle in degrees.
 
+   Octave uses the C library trigonometric functions.  It is expected
+that these functions are defined by the ISO/IEC 9899 Standard.  This
+Standard is available at:
+`http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf'.  Section
+F.9.1 deals with the trigonometric functions.  The behavior of most of
+the functions is relatively straightforward.  However, there are some
+exceptions to the standard behavior.  Many of the exceptions involve the
+behavior for -0.  The most complex case is atan2.  Octave exactly
+implements the behavior given in the Standard.  Including `atan2(+- 0,
+0)' returns `+- pi'.
+
+   It should be noted that MATLAB uses different definitions which
+apparently do not distinguish -0.
+
  -- Mapping Function:  sin (X)
      Compute the sine for each element of X in radians.
 
@@ -6813,6 +7009,9 @@ expects an angle in degrees.
      Compute atan (Y / X) for corresponding elements of Y and X.
      Signal an error if Y and X do not match in size and orientation.
 
+     *See also:* *note tan: doc-tan, *note tand: doc-tand, *note tanh:
+     doc-tanh, *note atanh: doc-atanh.
+
    Octave provides the following trigonometric functions where angles
 are specified in degrees.  These functions produce true zeros at the
 appropriate intervals rather than the small round-off error that occurs
@@ -6895,28 +7094,28 @@ File: octave.info,  Node: Sums and Products,  Next: Utility Functions,  Prev: Tr
 
  -- Built-in Function:  sum (X)
  -- Built-in Function:  sum (X, DIM)
- -- Built-in Function:  sum (..., 'native')
- -- Built-in Function:  sum (..., 'double')
- -- Built-in Function:  sum (..., 'extra')
+ -- Built-in Function:  sum (..., "native")
+ -- Built-in Function:  sum (..., "double")
+ -- Built-in Function:  sum (..., "extra")
      Sum of elements along dimension DIM.  If DIM is omitted, it
      defaults to the first non-singleton dimension.
 
-     If the optional argument 'native' is given, then the sum is
+     If the optional argument "native" is given, then the sum is
      performed in the same type as the original argument, rather than
      in the default double type.  For example:
 
           sum ([true, true])
-            => 2
-          sum ([true, true], 'native')
-            => true
+             => 2
+          sum ([true, true], "native")
+             => true
 
-     On the contrary, if 'double' is given, the sum is performed in
+     On the contrary, if "double" is given, the sum is performed in
      double precision even for single precision inputs.
 
-     For double precision inputs, 'extra' indicates that a more
-     accurate algorithm than straightforward summation is to be used.
-     For single precision inputs, 'extra' is the same as 'double'.
-     Otherwise, 'extra' has no effect.
+     For double precision inputs, "extra" indicates that a more accurate
+     algorithm than straightforward summation is to be used.  For
+     single precision inputs, "extra" is the same as "double".
+     Otherwise, "extra" has no effect.
 
      *See also:* *note cumsum: doc-cumsum, *note sumsq: doc-sumsq,
      *note prod: doc-prod.
@@ -6930,14 +7129,14 @@ File: octave.info,  Node: Sums and Products,  Next: Utility Functions,  Prev: Tr
 
  -- Built-in Function:  cumsum (X)
  -- Built-in Function:  cumsum (X, DIM)
- -- Built-in Function:  cumsum (..., 'native')
- -- Built-in Function:  cumsum (..., 'double')
- -- Built-in Function:  cumsum (..., 'extra')
+ -- Built-in Function:  cumsum (..., "native")
+ -- Built-in Function:  cumsum (..., "double")
+ -- Built-in Function:  cumsum (..., "extra")
      Cumulative sum of elements along dimension DIM.  If DIM is
      omitted, it defaults to the first non-singleton dimension.
 
-     See `sum' for an explanation of the optional parameters 'native',
-     'double', and 'extra'.
+     See `sum' for an explanation of the optional parameters "native",
+     "double", and "extra".
 
      *See also:* *note sum: doc-sum, *note cumprod: doc-cumprod.
 
@@ -6959,7 +7158,7 @@ File: octave.info,  Node: Sums and Products,  Next: Utility Functions,  Prev: Tr
 
      but it uses less memory and avoids calling `conj' if X is real.
 
-     *See also:* *note sum: doc-sum.
+     *See also:* *note sum: doc-sum, *note prod: doc-prod.
 
 
 File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Sums and Products,  Up: Arithmetic
@@ -6973,7 +7172,7 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      (real (X)) + ceil (imag (X)) * I'.
 
           ceil ([-2.7, 2.7])
-             =>  -2   3
+              => -2    3
 
      *See also:* *note floor: doc-floor, *note round: doc-round, *note
      fix: doc-fix.
@@ -6984,7 +7183,7 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      return `fix (real (X)) + fix (imag (X)) * I'.
 
           fix ([-2.7, 2.7])
-             => -2   2
+             => -2    2
 
      *See also:* *note ceil: doc-ceil, *note floor: doc-floor, *note
      round: doc-round.
@@ -6995,7 +7194,7 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      `floor (real (X)) + floor (imag (X)) * I'.
 
           floor ([-2.7, 2.7])
-               => -3   2
+               => -3    2
 
      *See also:* *note ceil: doc-ceil, *note round: doc-round, *note
      fix: doc-fix.
@@ -7006,7 +7205,7 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      integers, return the one further away from zero.
 
           round ([-2.7, 2.7])
-               => -3   3
+               => -3    3
 
      *See also:* *note ceil: doc-ceil, *note floor: doc-floor, *note
      fix: doc-fix, *note roundb: doc-roundb.
@@ -7018,11 +7217,11 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
 
      *See also:* *note round: doc-round.
 
- -- Loadable Function:  max (X)
- -- Loadable Function:  max (X, Y)
- -- Loadable Function:  max (X, [], DIM)
- -- Loadable Function:  max (X, Y, DIM)
- -- Loadable Function: [W, IW] = max (X)
+ -- Built-in Function:  max (X)
+ -- Built-in Function:  max (X, Y)
+ -- Built-in Function:  max (X, [], DIM)
+ -- Built-in Function:  max (X, Y, DIM)
+ -- Built-in Function: [W, IW] = max (X)
      For a vector argument, return the maximum value.  For a matrix
      argument, return the maximum value from each column, as a row
      vector, or over the dimension DIM if defined, in which case Y
@@ -7053,11 +7252,11 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      *See also:* *note min: doc-min, *note cummax: doc-cummax, *note
      cummin: doc-cummin.
 
- -- Loadable Function:  min (X)
- -- Loadable Function:  min (X, Y)
- -- Loadable Function:  min (X, [], DIM)
- -- Loadable Function:  min (X, Y, DIM)
- -- Loadable Function: [W, IW] = min (X)
+ -- Built-in Function:  min (X)
+ -- Built-in Function:  min (X, Y)
+ -- Built-in Function:  min (X, [], DIM)
+ -- Built-in Function:  min (X, Y, DIM)
+ -- Built-in Function: [W, IW] = min (X)
      For a vector argument, return the minimum value.  For a matrix
      argument, return the minimum value from each column, as a row
      vector, or over the dimension DIM if defined, in which case Y
@@ -7088,14 +7287,14 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      *See also:* *note max: doc-max, *note cummin: doc-cummin, *note
      cummax: doc-cummax.
 
- -- Loadable Function:  cummax (X)
- -- Loadable Function:  cummax (X, DIM)
- -- Loadable Function: [W, IW] = cummax (X)
+ -- Built-in Function:  cummax (X)
+ -- Built-in Function:  cummax (X, DIM)
+ -- Built-in Function: [W, IW] = cummax (X)
      Return the cumulative maximum values along dimension DIM.  If DIM
      is unspecified it defaults to column-wise operation.  For example:
 
           cummax ([1 3 2 6 4 5])
-              =>  1  3  3  6  6  6
+             =>  1  3  3  6  6  6
 
      The call
 
@@ -7113,14 +7312,14 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      *See also:* *note cummin: doc-cummin, *note max: doc-max, *note
      min: doc-min.
 
- -- Loadable Function:  cummin (X)
- -- Loadable Function:  cummin (X, DIM)
- -- Loadable Function: [W, IW] = cummin (X)
+ -- Built-in Function:  cummin (X)
+ -- Built-in Function:  cummin (X, DIM)
+ -- Built-in Function: [W, IW] = cummin (X)
      Return the cumulative minimum values along dimension DIM.  If DIM
      is unspecified it defaults to column-wise operation.  For example:
 
           cummin ([5 4 6 2 3 1])
-              =>  5  4  4  2  2  1
+             =>  5  4  4  2  2  1
 
      The call
 
@@ -7146,8 +7345,8 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      of X or Y.  `hypot' can also be called with more than 2 arguments;
      in this case, the arguments are accumulated from left to right:
 
-            hypot (hypot (X, Y), Z)
-            hypot (hypot (hypot (X, Y), Z), W), etc.
+          hypot (hypot (X, Y), Z)
+          hypot (hypot (hypot (X, Y), Z), W), etc.
 
  -- Function File: DX = gradient (M)
  -- Function File: [DX, DY, DZ, ...] = gradient (M)
@@ -7188,7 +7387,7 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
 
      *See also:* *note diff: doc-diff, *note del2: doc-del2.
 
- -- Loadable Function:  dot (X, Y, DIM)
+ -- Built-in Function:  dot (X, Y, DIM)
      Compute the dot product of two vectors.  If X and Y are matrices,
      calculate the dot products along the first non-singleton
      dimension.  If the optional argument DIM is given, calculate the
@@ -7302,8 +7501,8 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
 
      *See also:* *note gcd: doc-gcd, *note lcm: doc-lcm.
 
- -- Loadable Function: G = gcd (A1, A2, ...)
- -- Loadable Function: [G, V1, ...] = gcd (A1, A2, ...)
+ -- Built-in Function: G = gcd (A1, A2, ...)
+ -- Built-in Function: [G, V1, ...] = gcd (A1, A2, ...)
      Compute the greatest common divisor of A1, A2, ....  If more than
      one argument is given all arguments must be the same size or
      scalar.  In this case the greatest common divisor is calculated
@@ -7311,12 +7510,12 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      Gaussian (complex) integers.  Note that for Gaussian integers, the
      gcd is not unique up to units (multiplication by 1, -1, I or -I),
      so an arbitrary greatest common divisor amongst four possible is
-     returned.  For example,
+     returned.
 
-     and
+     Example code:
 
           gcd ([15, 9], [20, 18])
-              =>  5  9
+             =>  5  9
 
      Optional return arguments V1, etc., contain integer vectors such
      that,
@@ -7377,7 +7576,7 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      Note that if you need a specific number of primes you can use the
      fact that the distance from one prime to the next is, on average,
      proportional to the logarithm of the prime.  Integrating, one finds
-     that there are about k primes less than k*log(5*k).
+     that there are about k primes less than k*log (5*k).
 
      *See also:* *note list_primes: doc-list_primes, *note isprime:
      doc-isprime.
@@ -7400,13 +7599,28 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
 
      For complex arguments, `sign' returns `x ./ abs (X)'.
 
+     Note that `sign (-0.0)' is 0.  Although IEEE 754 floating point
+     allows zero to be signed, 0.0 and -0.0 compare equal.  If you must
+     test whether zero is signed, use the `signbit' function.
+
+     *See also:* *note signbit: doc-signbit.
+
+ -- Mapping Function:  signbit (X)
+     Return a nonzero value if the value of X has its sign bit set.
+
+     This is not the same as `x < 0.0', because IEEE 754 floating point
+     allows zero to be signed.  The comparison `-0.0 < 0.0' is false,
+     but `signbit (-0.0)' will return a nonzero value.
+
+     *See also:* *note sign: doc-sign.
+
 
 File: octave.info,  Node: Special Functions,  Next: Rational Approximations,  Prev: Utility Functions,  Up: Arithmetic
 
 17.6 Special Functions
 ======================
 
- -- Loadable Function: [A, IERR] = airy (K, Z, OPT)
+ -- Built-in Function: [A, IERR] = airy (K, Z, OPT)
      Compute Airy functions of the first and second kind, and their
      derivatives.
 
@@ -7414,8 +7628,8 @@ File: octave.info,  Node: Special Functions,  Next: Rational Approximations,  Pr
           ---  --------   ---------------------------------------
            0   Ai (Z)     exp ((2/3) * Z * sqrt (Z))
            1   dAi(Z)/dZ  exp ((2/3) * Z * sqrt (Z))
-           2   Bi (Z)     exp (-abs (real ((2/3) * Z *sqrt (Z))))
-           3   dBi(Z)/dZ  exp (-abs (real ((2/3) * Z *sqrt (Z))))
+           2   Bi (Z)     exp (-abs (real ((2/3) * Z * sqrt (Z))))
+           3   dBi(Z)/dZ  exp (-abs (real ((2/3) * Z * sqrt (Z))))
 
      The function call `airy (Z)' is equivalent to `airy (0, Z)'.
 
@@ -7439,30 +7653,30 @@ File: octave.info,  Node: Special Functions,  Next: Rational Approximations,  Pr
        5. Error--no computation, algorithm termination condition not
           met, return `NaN'.
 
- -- Loadable Function: [J, IERR] = besselj (ALPHA, X, OPT)
- -- Loadable Function: [Y, IERR] = bessely (ALPHA, X, OPT)
- -- Loadable Function: [I, IERR] = besseli (ALPHA, X, OPT)
- -- Loadable Function: [K, IERR] = besselk (ALPHA, X, OPT)
- -- Loadable Function: [H, IERR] = besselh (ALPHA, K, X, OPT)
+ -- Built-in Function: [J, IERR] = besselj (ALPHA, X, OPT)
+ -- Built-in Function: [Y, IERR] = bessely (ALPHA, X, OPT)
+ -- Built-in Function: [I, IERR] = besseli (ALPHA, X, OPT)
+ -- Built-in Function: [K, IERR] = besselk (ALPHA, X, OPT)
+ -- Built-in Function: [H, IERR] = besselh (ALPHA, K, X, OPT)
      Compute Bessel or Hankel functions of various kinds:
 
     `besselj'
           Bessel functions of the first kind.  If the argument OPT is
-          supplied, the result is multiplied by `exp(-abs(imag(X)))'.
+          supplied, the result is multiplied by `exp (-abs (imag (X)))'.
 
     `bessely'
           Bessel functions of the second kind.  If the argument OPT is
-          supplied, the result is multiplied by `exp(-abs(imag(X)))'.
+          supplied, the result is multiplied by `exp (-abs (imag (X)))'.
 
     `besseli'
           Modified Bessel functions of the first kind.  If the argument
-          OPT is supplied, the result is multiplied by
-          `exp(-abs(real(X)))'.
+          OPT is supplied, the result is multiplied by `exp (-abs (real
+          (X)))'.
 
     `besselk'
           Modified Bessel functions of the second kind.  If the
-          argument OPT is supplied, the result is multiplied by
-          `exp(X)'.
+          argument OPT is supplied, the result is multiplied by `exp
+          (X)'.
 
     `besselh'
           Compute Hankel functions of the first (K = 1) or second (K =
@@ -7500,18 +7714,31 @@ File: octave.info,  Node: Special Functions,  Next: Rational Approximations,  Pr
 
           beta (a, b) = gamma (a) * gamma (b) / gamma (a + b).
 
+     *See also:* *note betaln: doc-betaln, *note betainc: doc-betainc.
 
  -- Mapping Function:  betainc (X, A, B)
      Return the regularized incomplete Beta function,
 
-                                               x
-                                    1         /
-          betainc (x, a, b) = -----------    | t^(a-1) (1-t)^(b-1) dt.
-                               beta (a, b)    /
-                                           t=0
+                                             x
+                                    1       /
+          betainc (x, a, b) = -----------   | t^(a-1) (1-t)^(b-1) dt.
+                              beta (a, b)   /
+                                         t=0
 
      If X has more than one component, both A and B must be scalars.
      If X is a scalar, A and B must be of compatible dimensions.
+
+     *See also:* *note betaincinv: doc-betaincinv, *note beta:
+     doc-beta, *note betaln: doc-betaln.
+
+ -- Mapping Function:  betaincinv (Y, A, B)
+     Compute the inverse of the incomplete Beta function, i.e., X such
+     that
+
+          Y == betainc (X, A, B)
+
+     *See also:* *note betainc: doc-betainc, *note beta: doc-beta,
+     *note betaln: doc-betaln.
 
  -- Mapping Function:  betaln (A, B)
      Return the natural logarithm of the Beta function,
@@ -7561,48 +7788,79 @@ File: octave.info,  Node: Special Functions,  Next: Rational Approximations,  Pr
      See Magnus and Neudecker (1988), Matrix differential calculus with
      applications in statistics and econometrics.
 
+ -- Mapping Function:  dawson (Z)
+     Compute the Dawson (scaled imaginary error) function,
+
+          (sqrt (pi) / 2) * exp (-z^2) * erfi (z)
+
+     *See also:* *note erfc: doc-erfc, *note erf: doc-erf, *note erfcx:
+     doc-erfcx, *note erfi: doc-erfi, *note erfinv: doc-erfinv, *note
+     erfcinv: doc-erfcinv.
+
  -- Mapping Function:  erf (Z)
      Compute the error function,
 
-                                    z
-                                   /
-          erf (z) = (2/sqrt (pi)) | e^(-t^2) dt
-                                   /
-                                t=0
+                                  z
+                        2        /
+          erf (z) = --------- *  | e^(-t^2) dt
+                    sqrt (pi)    /
+                              t=0
 
      *See also:* *note erfc: doc-erfc, *note erfcx: doc-erfcx, *note
-     erfinv: doc-erfinv.
+     erfi: doc-erfi, *note dawson: doc-dawson, *note erfinv:
+     doc-erfinv, *note erfcinv: doc-erfcinv.
 
  -- Mapping Function:  erfc (Z)
      Compute the complementary error function, `1 - erf (Z)'.
 
-     *See also:* *note erfcx: doc-erfcx, *note erf: doc-erf, *note
-     erfinv: doc-erfinv.
+     *See also:* *note erfcinv: doc-erfcinv, *note erfcx: doc-erfcx,
+     *note erfi: doc-erfi, *note dawson: doc-dawson, *note erf:
+     doc-erf, *note erfinv: doc-erfinv.
 
  -- Mapping Function:  erfcx (Z)
      Compute the scaled complementary error function,
 
-          exp (z^2) * erfc (x)
+          exp (z^2) * erfc (z)
 
-     *See also:* *note erfc: doc-erfc, *note erf: doc-erf, *note
-     erfinv: doc-erfinv.
+     *See also:* *note erfc: doc-erfc, *note erf: doc-erf, *note erfi:
+     doc-erfi, *note dawson: doc-dawson, *note erfinv: doc-erfinv,
+     *note erfcinv: doc-erfcinv.
+
+ -- Mapping Function:  erfi (Z)
+     Compute the imaginary error function,
+
+          -i * erf (i*z)
+
+     *See also:* *note erfc: doc-erfc, *note erf: doc-erf, *note erfcx:
+     doc-erfcx, *note dawson: doc-dawson, *note erfinv: doc-erfinv,
+     *note erfcinv: doc-erfcinv.
 
  -- Mapping Function:  erfinv (X)
      Compute the inverse error function, i.e., Y such that
 
-            erf (Y) == X
+          erf (Y) == X
 
      *See also:* *note erf: doc-erf, *note erfc: doc-erfc, *note erfcx:
-     doc-erfcx.
+     doc-erfcx, *note erfi: doc-erfi, *note dawson: doc-dawson, *note
+     erfcinv: doc-erfcinv.
+
+ -- Mapping Function:  erfcinv (X)
+     Compute the inverse complementary error function, i.e., Y such that
+
+          erfc (Y) == X
+
+     *See also:* *note erfc: doc-erfc, *note erf: doc-erf, *note erfcx:
+     doc-erfcx, *note erfi: doc-erfi, *note dawson: doc-dawson, *note
+     erfinv: doc-erfinv.
 
  -- Mapping Function:  gamma (Z)
      Compute the Gamma function,
 
-                        infinity
-                       /
+                       infinity
+                      /
           gamma (z) = | t^(z-1) exp (-t) dt.
-                       /
-                    t=0
+                      /
+                   t=0
 
      *See also:* *note gammainc: doc-gammainc, *note lgamma: doc-lgamma.
 
@@ -7611,11 +7869,11 @@ File: octave.info,  Node: Special Functions,  Next: Rational Approximations,  Pr
  -- Mapping Function:  gammainc (X, A, "upper")
      Compute the normalized incomplete gamma function,
 
-                                           x
-                                 1        /
+                                          x
+                                 1       /
           gammainc (x, a) = ---------    | exp (-t) t^(a-1) dt
-                             gamma (a)    /
-                                       t=0
+                            gamma (a)    /
+                                      t=0
 
      with the limiting value of 1 as X approaches infinity.  The
      standard notation is P(a,x), e.g., Abramowitz and Stegun (6.5.1).
@@ -7727,8 +7985,8 @@ File: octave.info,  Node: Rational Approximations,  Next: Coordinate Transformat
      Convert X into a rational approximation represented as a string.
      You can convert the string back into a matrix as follows:
 
-             r = rats(hilb(4));
-             x = str2num(r)
+          r = rats (hilb (4));
+          x = str2num (r)
 
      The optional second argument defines the maximum length of the
      string representing the elements of X.  By default LEN is 9.
@@ -7838,6 +8096,9 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      dimensions.  The optional argument CLASS specifies the return type
      and may be either "double" or "single".
 
+     *See also:* *note log: doc-log, *note exp: doc-exp, *note pi:
+     doc-pi, *note I: doc-I.
+
  -- Built-in Function:  pi
  -- Built-in Function:  pi (N)
  -- Built-in Function:  pi (N, M)
@@ -7855,15 +8116,18 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      matrix dimensions.  The optional argument CLASS specifies the
      return type and may be either "double" or "single".
 
+     *See also:* *note e: doc-e, *note I: doc-I.
+
  -- Built-in Function:  I
  -- Built-in Function:  I (N)
  -- Built-in Function:  I (N, M)
  -- Built-in Function:  I (N, M, K, ...)
  -- Built-in Function:  I (..., CLASS)
      Return a scalar, matrix, or N-dimensional array whose elements are
-     all equal to the pure imaginary unit, defined as `sqrt (-1)'.   I,
-     and its equivalents i, J, and j, are functions so any of the names
-     may be reused for other purposes (such as i for a counter
+     all equal to the pure imaginary unit, defined as `sqrt (-1)'.
+
+     I, and its equivalents i, j, and J, are functions so any of the
+     names may be reused for other purposes (such as i for a counter
      variable).
 
      When called with no arguments, return a scalar with the value i.
@@ -7873,6 +8137,9 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      and columns and any further arguments specify additional matrix
      dimensions.  The optional argument CLASS specifies the return type
      and may be either "double" or "single".
+
+     *See also:* *note e: doc-e, *note pi: doc-pi, *note log: doc-log,
+     *note exp: doc-exp.
 
  -- Built-in Function:  Inf
  -- Built-in Function:  Inf (N)
@@ -7886,9 +8153,8 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      using the the IEEE floating point format for numbers.  Two common
      examples which produce infinity are division by zero and overflow.
 
-          [1/0 e^800]
-          =>
-          Inf   Inf
+          [ 1/0 e^800 ]
+          => Inf   Inf
 
      When called with no arguments, return a scalar with the value
      `Inf'.  When called with a single argument, return a square matrix
@@ -7898,7 +8164,7 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      matrix dimensions.  The optional argument CLASS specifies the
      return type and may be either "double" or "single".
 
-     *See also:* *note isinf: doc-isinf.
+     *See also:* *note isinf: doc-isinf, *note NaN: doc-NaN.
 
  -- Built-in Function:  NaN
  -- Built-in Function:  NaN (N)
@@ -7924,7 +8190,7 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      matrix dimensions.  The optional argument CLASS specifies the
      return type and may be either "double" or "single".
 
-     *See also:* *note isnan: doc-isnan.
+     *See also:* *note isnan: doc-isnan, *note Inf: doc-Inf.
 
  -- Built-in Function:  eps
  -- Built-in Function:  eps (X)
@@ -7939,13 +8205,16 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      approximately 2.2204e-16 for double precision and 1.1921e-07 for
      single precision.
 
-     When called with no arguments, return a scalar with the value
-     `eps(1.0)'.  Given a single argument X, return the distance
-     between X and the next largest value.  When called with more than
-     one argument the first two arguments are taken as the number of
-     rows and columns and any further arguments specify additional
-     matrix dimensions.  The optional argument CLASS specifies the
-     return type and may be either "double" or "single".
+     When called with no arguments, return a scalar with the value `eps
+     (1.0)'.  Given a single argument X, return the distance between X
+     and the next largest value.  When called with more than one
+     argument the first two arguments are taken as the number of rows
+     and columns and any further arguments specify additional matrix
+     dimensions.  The optional argument CLASS specifies the return type
+     and may be either "double" or "single".
+
+     *See also:* *note realmax: doc-realmax, *note realmin:
+     doc-realmin, *note intmax: doc-intmax, *note bitmax: doc-bitmax.
 
  -- Built-in Function:  realmax
  -- Built-in Function:  realmax (N)
@@ -7960,15 +8229,15 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      single precision.
 
      When called with no arguments, return a scalar with the value
-     `realmax("double")'.  When called with a single argument, return a
-     square matrix with the dimension specified.  When called with more
-     than one scalar argument the first two arguments are taken as the
-     number of rows and columns and any further arguments specify
+     `realmax ("double")'.  When called with a single argument, return
+     a square matrix with the dimension specified.  When called with
+     more than one scalar argument the first two arguments are taken as
+     the number of rows and columns and any further arguments specify
      additional matrix dimensions.  The optional argument CLASS
      specifies the return type and may be either "double" or "single".
 
      *See also:* *note realmin: doc-realmin, *note intmax: doc-intmax,
-     *note bitmax: doc-bitmax.
+     *note bitmax: doc-bitmax, *note eps: doc-eps.
 
  -- Built-in Function:  realmin
  -- Built-in Function:  realmin (N)
@@ -7983,14 +8252,15 @@ File: octave.info,  Node: Mathematical Constants,  Prev: Coordinate Transformati
      single precision.
 
      When called with no arguments, return a scalar with the value
-     `realmin("double")'.  When called with a single argument, return a
-     square matrix with the dimension specified.  When called with more
-     than one scalar argument the first two arguments are taken as the
-     number of rows and columns and any further arguments specify
+     `realmin ("double")'.  When called with a single argument, return
+     a square matrix with the dimension specified.  When called with
+     more than one scalar argument the first two arguments are taken as
+     the number of rows and columns and any further arguments specify
      additional matrix dimensions.  The optional argument CLASS
      specifies the return type and may be either "double" or "single".
 
-     *See also:* *note realmax: doc-realmax, *note intmin: doc-intmin.
+     *See also:* *note realmax: doc-realmax, *note intmin: doc-intmin,
+     *note eps: doc-eps.
 
 
 File: octave.info,  Node: Linear Algebra,  Next: Vectorization and Faster Code Execution,  Prev: Arithmetic,  Up: Top
@@ -8059,11 +8329,11 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
 18.2 Basic Matrix Functions
 ===========================
 
- -- Loadable Function: AA = balance (A)
- -- Loadable Function: AA = balance (A, OPT)
- -- Loadable Function: [DD, AA] = balance (A, OPT)
- -- Loadable Function: [D, P, AA] = balance (A, OPT)
- -- Loadable Function: [CC, DD, AA, BB] = balance (A, B, OPT)
+ -- Built-in Function: AA = balance (A)
+ -- Built-in Function: AA = balance (A, OPT)
+ -- Built-in Function: [DD, AA] = balance (A, OPT)
+ -- Built-in Function: [D, P, AA] = balance (A, OPT)
+ -- Built-in Function: [CC, DD, AA, BB] = balance (A, B, OPT)
      Compute `AA = DD \ A * DD' in which AA is a matrix whose row and
      column norms are roughly equal in magnitude, and `DD = P * D', in
      which P is a permutation matrix and D is a diagonal matrix of
@@ -8107,8 +8377,8 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
      *See also:* *note condest: doc-condest, *note rcond: doc-rcond,
      *note norm: doc-norm, *note svd: doc-svd.
 
- -- Loadable Function:  det (A)
- -- Loadable Function: [D, RCOND] = det (A)
+ -- Built-in Function:  det (A)
+ -- Built-in Function: [D, RCOND] = det (A)
      Compute the determinant of A.
 
      Return an estimate of the reciprocal condition number if requested.
@@ -8123,32 +8393,31 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
      *See also:* *note cond: doc-cond, *note condest: doc-condest,
      *note rcond: doc-rcond.
 
- -- Loadable Function: LAMBDA = eig (A)
- -- Loadable Function: LAMBDA = eig (A, B)
- -- Loadable Function: [V, LAMBDA] = eig (A)
- -- Loadable Function: [V, LAMBDA] = eig (A, B)
-     Compute the eigenvalues and eigenvectors of a matrix.
+ -- Built-in Function: LAMBDA = eig (A)
+ -- Built-in Function: LAMBDA = eig (A, B)
+ -- Built-in Function: [V, LAMBDA] = eig (A)
+ -- Built-in Function: [V, LAMBDA] = eig (A, B)
+     Compute the eigenvalues (and optionally the eigenvectors) of a
+     matrix or a pair of matrices
 
-     Eigenvalues are computed in a several step process which begins
-     with a Hessenberg decomposition, followed by a
-     Schur decomposition, from which the eigenvalues are apparent.  The
-     eigenvectors, when desired, are computed by further manipulations
-     of the Schur decomposition.
+     The algorithm used depends on whether there are one or two input
+     matrices, if they are real or complex and if they are symmetric
+     (Hermitian if complex) or non-symmetric.
 
      The eigenvalues returned by `eig' are not ordered.
 
      *See also:* *note eigs: doc-eigs, *note svd: doc-svd.
 
- -- Loadable Function: G = givens (X, Y)
- -- Loadable Function: [C, S] = givens (X, Y)
+ -- Built-in Function: G = givens (X, Y)
+ -- Built-in Function: [C, S] = givens (X, Y)
      Return a 2 by 2 orthogonal matrix `G = [C S; -S' C]' such that `G
      [X; Y] = [*; 0]' with X and Y scalars.
 
      For example:
 
           givens (1, 1)
-               =>   0.70711   0.70711
-                   -0.70711   0.70711
+             =>   0.70711   0.70711
+                 -0.70711   0.70711
 
  -- Function File: [G, Y] = planerot (X)
      Given a two-element column vector, returns the 2 by 2 orthogonal
@@ -8156,8 +8425,8 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
 
      *See also:* *note givens: doc-givens.
 
- -- Loadable Function: X = inv (A)
- -- Loadable Function: [X, RCOND] = inv (A)
+ -- Built-in Function: X = inv (A)
+ -- Built-in Function: [X, RCOND] = inv (A)
      Compute the inverse of the square matrix A.  Return an estimate of
      the reciprocal condition number if requested, otherwise warn of an
      ill-conditioned matrix if the reciprocal condition number is small.
@@ -8173,12 +8442,12 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
 
      *See also:* *note ldivide: doc-ldivide, *note rdivide: doc-rdivide.
 
- -- Loadable Function: TYPE = matrix_type (A)
- -- Loadable Function: TYPE = matrix_type (A, 'nocompute')
- -- Loadable Function: A = matrix_type (A, TYPE)
- -- Loadable Function: A = matrix_type (A, 'upper', PERM)
- -- Loadable Function: A = matrix_type (A, 'lower', PERM)
- -- Loadable Function: A = matrix_type (A, 'banded', NL, NU)
+ -- Built-in Function: TYPE = matrix_type (A)
+ -- Built-in Function: TYPE = matrix_type (A, "nocompute")
+ -- Built-in Function: A = matrix_type (A, TYPE)
+ -- Built-in Function: A = matrix_type (A, "upper", PERM)
+ -- Built-in Function: A = matrix_type (A, "lower", PERM)
+ -- Built-in Function: A = matrix_type (A, "banded", NL, NU)
      Identify the matrix type or mark a matrix as a particular type.
      This allows more rapid solutions of linear equations involving A
      to be performed.  Called with a single argument, `matrix_type'
@@ -8186,50 +8455,50 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
      Called with more than one argument, `matrix_type' allows the type
      of the matrix to be defined.
 
-     If the option 'nocompute' is given, the function will not attempt
+     If the option "nocompute" is given, the function will not attempt
      to guess the type if it is still unknown.  This is useful for
      debugging purposes.
 
      The possible matrix types depend on whether the matrix is full or
      sparse, and can be one of the following
 
-    'unknown'
+    "unknown"
           Remove any previously cached matrix type, and mark type as
           unknown.
 
-    'full'
+    "full"
           Mark the matrix as full.
 
-    'positive definite'
+    "positive definite"
           Probable full positive definite matrix.
 
-    'diagonal'
+    "diagonal"
           Diagonal matrix.  (Sparse matrices only)
 
-    'permuted diagonal'
+    "permuted diagonal"
           Permuted Diagonal matrix.  The permutation does not need to
           be specifically indicated, as the structure of the matrix
           explicitly gives this.  (Sparse matrices only)
 
-    'upper'
+    "upper"
           Upper triangular.  If the optional third argument PERM is
           given, the matrix is assumed to be a permuted upper
           triangular with the permutations defined by the vector PERM.
 
-    'lower'
+    "lower"
           Lower triangular.  If the optional third argument PERM is
           given, the matrix is assumed to be a permuted lower
           triangular with the permutations defined by the vector PERM.
 
-    'banded'
-    'banded positive definite'
+    "banded"
+    "banded positive definite"
           Banded matrix with the band size of NL below the diagonal and
           NU above it.  If NL and NU are 1, then the matrix is
           tridiagonal and treated with specialized code.  In addition
           the matrix can be marked as probably a positive definite.
           (Sparse matrices only)
 
-    'singular'
+    "singular"
           The matrix is assumed to be singular and will be treated with
           a minimum norm solution.
 
@@ -8326,18 +8595,18 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
 
      *See also:* *note null: doc-null.
 
- -- Loadable Function: [Y, H] = mgorth (X, V)
-     Orthogonalize a given column vector X with respect to a given
-     orthonormal basis V using a modified Gram-Schmidt
-     orthogonalization.  On exit, Y is a unit vector such that:
+ -- Built-in Function: [Y, H] = mgorth (X, V)
+     Orthogonalize a given column vector X with respect to a set of
+     orthonormal vectors comprising the columns of V using the modified
+     Gram-Schmidt method.  On exit, Y is a unit vector such that:
 
             norm (Y) = 1
             V' * Y = 0
-            X = H*[V, Y]
+            X = [V, Y]*H'
 
 
- -- Loadable Function:  pinv (X)
- -- Loadable Function:  pinv (X, TOL)
+ -- Built-in Function:  pinv (X)
+ -- Built-in Function:  pinv (X, TOL)
      Return the pseudoinverse of X.  Singular values less than TOL are
      ignored.
 
@@ -8359,7 +8628,7 @@ File: octave.info,  Node: Basic Matrix Functions,  Next: Matrix Factorizations, 
      where `eps' is machine precision and `sigma(1)' is the largest
      singular value of A.
 
- -- Loadable Function: C = rcond (A)
+ -- Built-in Function: C = rcond (A)
      Compute the 1-norm estimate of the reciprocal condition number as
      returned by LAPACK.  If the matrix is well-conditioned then C will
      be near 1 and if the matrix is poorly conditioned it will be close
@@ -8393,9 +8662,9 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
  -- Loadable Function: R = chol (A)
  -- Loadable Function: [R, P] = chol (A)
  -- Loadable Function: [R, P, Q] = chol (S)
- -- Loadable Function: [R, P, Q] = chol (S, 'vector')
- -- Loadable Function: [L, ...] = chol (..., 'lower')
- -- Loadable Function: [L, ...] = chol (..., 'upper')
+ -- Loadable Function: [R, P, Q] = chol (S, "vector")
+ -- Loadable Function: [L, ...] = chol (..., "lower")
+ -- Loadable Function: [L, ...] = chol (..., "upper")
      Compute the Cholesky factor, R, of the symmetric positive definite
      matrix A, where
 
@@ -8415,17 +8684,17 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
           R' * R = Q' * A * Q.
 
      The sparsity preserving permutation is generally returned as a
-     matrix.  However, given the flag 'vector', Q will be returned as a
+     matrix.  However, given the flag "vector", Q will be returned as a
      vector such that
 
           R' * R = A(Q, Q).
 
-     Called with either a sparse or full matrix and using the 'lower'
+     Called with either a sparse or full matrix and using the "lower"
      flag, `chol' returns the lower triangular factorization such that
 
           L * L' = A.
 
-     For full matrices, if the 'lower' flag is set only the lower
+     For full matrices, if the "lower" flag is set only the lower
      triangular part of the matrix is used for the factorization,
      otherwise the upper triangular part is used.
 
@@ -8456,11 +8725,13 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      Update or downdate a Cholesky factorization.  Given an upper
      triangular matrix R and a column vector U, attempt to determine
      another upper triangular matrix R1 such that
+
         * R1'*R1 = R'*R + U*U' if OP is "+"
 
         * R1'*R1 = R'*R - U*U' if OP is "-"
 
      If OP is "-", INFO is set to
+
         * 0 if the downdate was successful,
 
         * 1 if R'*R - U*U' is not positive definite,
@@ -8479,6 +8750,7 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      return the Cholesky factorization of A1, where A1(p,p) = A,
      A1(:,j) = A1(j,:)' = u and p = [1:j-1,j+1:n+1].  u(j) should be
      positive.  On return, INFO is set to
+
         * 0 if the insertion was successful,
 
         * 1 if A1 is not positive definite,
@@ -8511,8 +8783,8 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      *See also:* *note chol: doc-chol, *note cholinsert:
      doc-cholinsert, *note choldelete: doc-choldelete.
 
- -- Loadable Function: H = hess (A)
- -- Loadable Function: [P, H] = hess (A)
+ -- Built-in Function: H = hess (A)
+ -- Built-in Function: [P, H] = hess (A)
      Compute the Hessenberg decomposition of the matrix A.
 
      The Hessenberg decomposition is `P * H * P' = A' where P is a
@@ -8525,13 +8797,13 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      Golub, Nash, and Van Loan, IEEE Transactions on Automatic Control,
      1979).
 
- -- Loadable Function: [L, U] = lu (A)
- -- Loadable Function: [L, U, P] = lu (A)
- -- Loadable Function: [L, U, P, Q] = lu (S)
- -- Loadable Function: [L, U, P, Q, R] = lu (S)
- -- Loadable Function: [...] = lu (S, THRES)
- -- Loadable Function: Y = lu (...)
- -- Loadable Function: [...] = lu (..., 'vector')
+ -- Built-in Function: [L, U] = lu (A)
+ -- Built-in Function: [L, U, P] = lu (A)
+ -- Built-in Function: [L, U, P, Q] = lu (S)
+ -- Built-in Function: [L, U, P, Q, R] = lu (S)
+ -- Built-in Function: [...] = lu (S, THRES)
+ -- Built-in Function: Y = lu (...)
+ -- Built-in Function: [...] = lu (..., "vector")
      Compute the LU decomposition of A.  If A is full subroutines from
      LAPACK are used and if A is sparse then UMFPACK is used.  The
      result is returned in a permuted form, according to the optional
@@ -8577,7 +8849,7 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      pivoting strategy and the second for the symmetric strategy.  By
      default, the values defined by `spparms' are used ([0.1, 0.001]).
 
-     Given the string argument 'vector', `lu' returns the values of P
+     Given the string argument "vector", `lu' returns the values of P
      and Q as vector values, such that for full matrix, `A (P,:) = L *
      U', and `R(P,:) * A (:, Q) = L * U'.
 
@@ -8589,8 +8861,8 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      For both full and sparse matrices, `lu' loses the permutation
      information.
 
- -- Loadable Function: [L, U] = luupdate (L, U, X, Y)
- -- Loadable Function: [L, U, P] = luupdate (L, U, P, X, Y)
+ -- Built-in Function: [L, U] = luupdate (L, U, X, Y)
+ -- Built-in Function: [L, U, P] = luupdate (L, U, P, X, Y)
      Given an LU factorization of a real or complex matrix A = L*U,
      L lower unit trapezoidal and U upper trapezoidal, return the
      LU factorization of A + X*Y.', where X and Y are column vectors
@@ -8600,15 +8872,15 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      permutation matrix is returned.  Note that if L, U, P is a pivoted
      LU factorization as obtained by `lu':
 
-            [L, U, P] = lu (A);
+          [L, U, P] = lu (A);
 
      then a factorization of A+X*Y.' can be obtained either as
 
-            [L1, U1] = lu (L, U, P*X, Y)
+          [L1, U1] = lu (L, U, P*X, Y)
 
      or
 
-            [L1, U1, P1] = lu (L, U, P, X, Y)
+          [L1, U1, P1] = lu (L, U, P, X, Y)
 
      The first form uses the unpivoted algorithm, which is faster, but
      less stable.  The second form uses a slower pivoted algorithm,
@@ -8645,7 +8917,7 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      The `qr' factorization has applications in the solution of least
      squares problems
 
-          `min norm(A x - b)'
+          min norm(A x - b)
 
      for overdetermined systems of equations (i.e., A  is a tall, thin
      matrix).  The QR factorization is `Q * Q = A' where Q is an
@@ -8742,8 +9014,8 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      Q unitary and R upper trapezoidal, return the QR factorization of
      [A(:,1:j-1) A(:,j+1:n)], i.e., A with one column deleted (if
      ORIENT is "col"), or the QR factorization of
-     [A(1:j-1,:);A(j+1:n,:)], i.e., A with one row deleted (if
-     ORIENT is "row").
+     [A(1:j-1,:);A(j+1:n,:)], i.e., A with one row deleted (if ORIENT
+     is "row").
 
      The default value of ORIENT is "col".
 
@@ -8771,8 +9043,8 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      *See also:* *note qr: doc-qr, *note qrinsert: doc-qrinsert, *note
      qrdelete: doc-qrdelete.
 
- -- Loadable Function: LAMBDA = qz (A, B)
- -- Loadable Function: LAMBDA = qz (A, B, OPT)
+ -- Built-in Function: LAMBDA = qz (A, B)
+ -- Built-in Function: LAMBDA = qz (A, B, OPT)
      QZ decomposition of the generalized eigenvalue problem (A x = s B
      x).  There are three ways to call this function:
        1. `LAMBDA = qz (A, B)'
@@ -8785,9 +9057,9 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
           generalized eigenvalues of (A - s B)
 
 
-                   A * V = B * V * diag (LAMBDA)
-                   W' * A = diag (LAMBDA) * W' * B
-                   AA = Q * A * Z, BB = Q * B * Z
+               A * V = B * V * diag (LAMBDA)
+               W' * A = diag (LAMBDA) * W' * B
+               AA = Q * A * Z, BB = Q * B * Z
 
           with Q and Z orthogonal (unitary)= I
 
@@ -8803,6 +9075,7 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
                for ordering eigenvalues of the GEP pencil.  The leading
                block of the revised pencil contains all eigenvalues
                that satisfy:
+
               "N"
                     = unordered (default)
 
@@ -8844,11 +9117,11 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      Algorithm taken from Golub and Van Loan, `Matrix Computations, 2nd
      edition'.
 
- -- Loadable Function: S = schur (A)
- -- Loadable Function: S = schur (A, "real")
- -- Loadable Function: S = schur (A, "complex")
- -- Loadable Function: S = schur (A, OPT)
- -- Loadable Function: [U, S] = schur (A, ...)
+ -- Built-in Function: S = schur (A)
+ -- Built-in Function: S = schur (A, "real")
+ -- Built-in Function: S = schur (A, "complex")
+ -- Built-in Function: S = schur (A, OPT)
+ -- Built-in Function: [U, S] = schur (A, ...)
      Compute the Schur decomposition of A
 
           `S = U' * A * U'
@@ -8897,9 +9170,9 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      Determine the largest principal angle between two subspaces
      spanned by the columns of matrices A and B.
 
- -- Loadable Function: S = svd (A)
- -- Loadable Function: [U, S, V] = svd (A)
- -- Loadable Function: [U, S, V] = svd (A, ECON)
+ -- Built-in Function: S = svd (A)
+ -- Built-in Function: [U, S, V] = svd (A)
+ -- Built-in Function: [U, S, V] = svd (A, ECON)
      Compute the singular value decomposition of A
 
           A = U*S*V'
@@ -8949,9 +9222,9 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      *See also:* *note svd_driver: doc-svd_driver, *note svds:
      doc-svds, *note eig: doc-eig.
 
- -- Loadable Function: VAL = svd_driver ()
- -- Loadable Function: OLD_VAL = svd_driver (NEW_VAL)
- -- Loadable Function:  svd_driver (NEW_VAL, "local")
+ -- Built-in Function: VAL = svd_driver ()
+ -- Built-in Function: OLD_VAL = svd_driver (NEW_VAL)
+ -- Built-in Function:  svd_driver (NEW_VAL, "local")
      Query or set the underlying LAPACK driver used by `svd'.
      Currently recognized values are "gesvd" and "gesdd".  The default
      is "gesvd".
@@ -8967,8 +9240,8 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      Compute Householder reflection vector HOUSV to reflect X to be the
      j-th column of identity, i.e.,
 
-          (I - beta*housv*housv')x =  norm(x)*e(j) if x(j) < 0,
-          (I - beta*housv*housv')x = -norm(x)*e(j) if x(j) >= 0
+          (I - beta*housv*housv')x =  norm (x)*e(j) if x(j) < 0,
+          (I - beta*housv*housv')x = -norm (x)*e(j) if x(j) >= 0
 
      Inputs
 
@@ -9002,7 +9275,7 @@ File: octave.info,  Node: Matrix Factorizations,  Next: Functions of a Matrix,  
      the vector `[0, 0, ..., 1]' of length `k'.  Otherwise, H is
      meaningless.
 
-     If V is a vector and K is greater than `length(A)-1', then H
+     If V is a vector and K is greater than `length (A) - 1', then H
      contains the Hessenberg matrix such that `a*u == u*h'.
 
      The value of NU is the dimension of the span of the Krylov

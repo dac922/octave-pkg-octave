@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Getopt for GNU.
    NOTE: getopt is part of the C library, so if you don't know what
    "Keep this file name-space clean" means, talk to drepper@gnu.org

@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Determine a temporary directory.
    Copyright (C) 2001-2002, 2009-2012 Free Software Foundation, Inc.
 

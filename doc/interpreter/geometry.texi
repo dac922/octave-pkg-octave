@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 2007-2012 John W. Eaton and David Bateman
 @c
@@ -91,7 +91,7 @@ axis ([0,1,0,1]);
 plot (VX, VY, "b", x, y, "r*");
 @end group
 @end example
-@seealso{@ref{doc-delaunay3,,delaunay3}, @ref{doc-delaunayn,,delaunayn}, @ref{doc-convhull,,convhull}, @ref{doc-voronoi,,voronoi}}
+@seealso{@ref{doc-delaunay3,,delaunay3}, @ref{doc-delaunayn,,delaunayn}, @ref{doc-convhull,,convhull}, @ref{doc-voronoi,,voronoi}, @ref{doc-triplot,,triplot}, @ref{doc-trimesh,,trimesh}, @ref{doc-trisurf,,trisurf}}
 @end deftypefn
 
 
@@ -129,7 +129,7 @@ used.  Otherwise, @var{options} replaces the default argument list.
 To append user options to the defaults it is necessary to repeat the 
 default arguments in @var{options}.  Use a null string to pass no arguments.
 
-@seealso{@ref{doc-delaunay,,delaunay}, @ref{doc-delaunayn,,delaunayn}, @ref{doc-convhull,,convhull}, @ref{doc-voronoi,,voronoi}}
+@seealso{@ref{doc-delaunay,,delaunay}, @ref{doc-delaunayn,,delaunayn}, @ref{doc-convhull,,convhull}, @ref{doc-voronoi,,voronoi}, @ref{doc-tetramesh,,tetramesh}}
 @end deftypefn
 
 
@@ -165,7 +165,7 @@ used.  Otherwise, @var{options} replaces the default argument list.
 To append user options to the defaults it is necessary to repeat the 
 default arguments in @var{options}.  Use a null string to pass no arguments.
 
-@seealso{@ref{doc-delaunay,,delaunay}, @ref{doc-delaunay3,,delaunay3}, @ref{doc-convhulln,,convhulln}, @ref{doc-voronoin,,voronoin}}
+@seealso{@ref{doc-delaunay,,delaunay}, @ref{doc-delaunay3,,delaunay3}, @ref{doc-convhulln,,convhulln}, @ref{doc-voronoin,,voronoin}, @ref{doc-trimesh,,trimesh}, @ref{doc-tetramesh,,tetramesh}}
 @end deftypefn
 
 
@@ -180,7 +180,7 @@ T = delaunay (x, y);
 X = [ x(T(:,1)); x(T(:,2)); x(T(:,3)); x(T(:,1)) ];
 Y = [ y(T(:,1)); y(T(:,2)); y(T(:,3)); y(T(:,1)) ];
 axis ([0, 1, 0, 1]);
-plot(X, Y, "b", x, y, "r*");
+plot (X, Y, "b", x, y, "r*");
 @end group
 @end example
 
@@ -204,6 +204,7 @@ The result of which can be seen in @ref{fig:delaunay}.
 
 Octave has the functions @code{triplot}, @code{trimesh}, and @code{trisurf}
 to plot the Delaunay triangulation of a 2-dimensional set of points.
+@code{tetramesh} will plot the triangulation of a 3-dimensional set of points.
 
 @c triplot scripts/plot/triplot.m
 @anchor{doc-triplot}
@@ -245,6 +246,38 @@ from @code{delaunay}.  The variable @var{z} is value at the point
 
 The optional return value @var{h} is a graphics handle to the created plot.
 @seealso{@ref{doc-triplot,,triplot}, @ref{doc-trimesh,,trimesh}, @ref{doc-delaunay3,,delaunay3}}
+@end deftypefn
+
+
+@c tetramesh scripts/plot/tetramesh.m
+@anchor{doc-tetramesh}
+@deftypefn  {Function File} {} tetramesh (@var{T}, @var{X})
+@deftypefnx {Function File} {} tetramesh (@var{T}, @var{X}, @var{C})
+@deftypefnx {Function File} {} tetramesh (@dots{}, @var{property}, @var{val}, @dots{})
+@deftypefnx {Function File} {@var{h} =} tetramesh (@dots{})
+
+Display the tetrahedrons defined in the m-by-4 matrix @var{T}
+as 3-D patches.  @var{T} is typically the output of a Delaunay triangulation
+of a 3-D set of points.  Every row of @var{T} contains four indices into
+the n-by-3 matrix @var{X} of the vertices of a tetrahedron.  Every row in
+@var{X} represents one point in 3-D space. 
+
+The vector @var{C} specifies the color of each tetrahedron as an index
+into the current colormap.  The default value is 1:m where m is the number
+of tetrahedrons; the indices are scaled to map to the full range of the
+colormap.  If there are more tetrahedrons than colors in the colormap then
+the values in @var{C} are cyclically repeated.
+
+Calling @code{tetramesh (@dots{}, "property", "value", @dots{})} passes all
+property/value pairs directly to the patch function as additional arguments.
+
+The optional return value @var{h} is a vector of patch handles where each
+handle represents one tetrahedron in the order given by @var{T}. 
+A typical use case for @var{h} is to turn the respective patch "visible"
+property "on" or "off".
+
+Type @code{demo tetramesh} to see examples on using @code{tetramesh}.
+@seealso{@ref{doc-delaunay3,,delaunay3}, @ref{doc-delaunayn,,delaunayn}, @ref{doc-trimesh,,trimesh}, @ref{doc-patch,,patch}}
 @end deftypefn
 
 
@@ -314,7 +347,7 @@ is imposed, and we can therefore write the above as
 @example
 @group
 @var{p} - @var{t}(end, :) = @var{beta}(1:end-1) * (@var{t}(1:end-1, :)
-      - ones(@var{N}, 1) * @var{t}(end, :)
+      - ones (@var{N}, 1) * @var{t}(end, :)
 @end group
 @end example
 
@@ -324,8 +357,8 @@ Solving for @var{beta} we can then write
 @example
 @group
 @var{beta}(1:end-1) = (@var{p} - @var{t}(end, :)) / (@var{t}(1:end-1, :)
-      - ones(@var{N}, 1) * @var{t}(end, :))
-@var{beta}(end) = sum(@var{beta}(1:end-1))
+      - ones (@var{N}, 1) * @var{t}(end, :))
+@var{beta}(end) = sum (@var{beta}(1:end-1))
 @end group
 @end example
 
@@ -347,7 +380,7 @@ of each of the simplices of the N-simplex and test the values of
 @code{tsearchn}.  @code{tsearch} is optimized for 2-dimensions and the
 Barycentric coordinates are not explicitly formed.
 
-@c tsearch src/DLD-FUNCTIONS/tsearch.cc
+@c tsearch libinterp/dldfcn/tsearch.cc
 @anchor{doc-tsearch}
 @deftypefn {Loadable Function} {@var{idx} =} tsearch (@var{x}, @var{y}, @var{t}, @var{xi}, @var{yi})
 Search for the enclosing Delaunay convex hull.  For @code{@var{t} =
@@ -495,7 +528,7 @@ See the documentation for the Qhull library for details
 
 If a single output argument is requested then the Voronoi diagram will be
 plotted and a graphics handle @var{h} to the plot is returned.
-[@var{vx}, @var{vy}] = voronoi(@dots{}) returns the Voronoi vertices
+[@var{vx}, @var{vy}] = voronoi (@dots{}) returns the Voronoi vertices
 instead of plotting the diagram.
 
 @example
@@ -534,9 +567,9 @@ An example of the use of @code{voronoi} is
 
 @example
 @group
-rand("state",9);
-x = rand(10,1);
-y = rand(10,1);
+rand ("state",9);
+x = rand (10,1);
+y = rand (10,1);
 tri = delaunay (x, y);
 [vx, vy] = voronoi (x, y, tri);
 triplot (tri, x, y, "b");
@@ -587,7 +620,7 @@ rand ("state", 2);
 x = rand (10, 1);
 y = rand (10, 1);
 [c, f] = voronoin ([x, y]);
-af = zeros (size(f));
+af = zeros (size (f));
 for i = 1 : length (f)
   af(i) = polyarea (c (f @{i, :@}, 1), c (f @{i, :@}, 2));
 endfor
@@ -637,7 +670,7 @@ y = randn (100, 1);
 vx = cos (pi * [-1 : 0.1: 1]);
 vy = sin (pi * [-1 : 0.1 : 1]);
 in = inpolygon (x, y, vx, vy);
-plot(vx, vy, x(in), y(in), "r+", x(!in), y(!in), "bo");
+plot (vx, vy, x(in), y(in), "r+", x(!in), y(!in), "bo");
 axis ([-2, 2, -2, 2]);
 @end group
 @end example
@@ -666,7 +699,7 @@ N-dimensional sets of points.
 @deftypefn  {Function File} {@var{H} =} convhull (@var{x}, @var{y})
 @deftypefnx {Function File} {@var{H} =} convhull (@var{x}, @var{y}, @var{options})
 Compute the convex hull of the set of points defined by the
-vectors @var{x} and @var{y}.  The hull @var{H} is an index vector into
+arrays @var{x} and @var{y}.  The hull @var{H} is an index vector into
 the set of points and specifies which points form the enclosing hull.
 
 An optional third argument, which must be a string or cell array of strings,
@@ -684,7 +717,7 @@ default arguments in @var{options}.  Use a null string to pass no arguments.
 @end deftypefn
 
 
-@c convhulln src/DLD-FUNCTIONS/convhulln.cc
+@c convhulln libinterp/dldfcn/convhulln.cc
 @anchor{doc-convhulln}
 @deftypefn  {Loadable Function} {@var{h} =} convhulln (@var{pts})
 @deftypefnx {Loadable Function} {@var{h} =} convhulln (@var{pts}, @var{options})
@@ -755,8 +788,9 @@ interpolation are @code{griddata}, @code{griddata3} and
 
 @c griddata scripts/geometry/griddata.m
 @anchor{doc-griddata}
-@deftypefn  {Function File} {@var{zi} =} griddata (@var{x}, @var{y}, @var{z}, @var{xi}, @var{yi}, @var{method})
-@deftypefnx {Function File} {[@var{xi}, @var{yi}, @var{zi}] =} griddata (@var{x}, @var{y}, @var{z}, @var{xi}, @var{yi}, @var{method})
+@deftypefn  {Function File} {@var{zi} =} griddata (@var{x}, @var{y}, @var{z}, @var{xi}, @var{yi})
+@deftypefnx {Function File} {@var{zi} =} griddata (@var{x}, @var{y}, @var{z}, @var{xi}, @var{yi}, @var{method})
+@deftypefnx {Function File} {[@var{xi}, @var{yi}, @var{zi}] =} griddata (@dots{})
 
 Generate a regular mesh from irregular data using interpolation.
 The function is defined by @code{@var{z} = f (@var{x}, @var{y})}.
@@ -768,13 +802,15 @@ The interpolation points are all @code{(@var{xi}, @var{yi})}.  If
 
 The interpolation method can be @code{"nearest"}, @code{"cubic"} or
 @code{"linear"}.  If method is omitted it defaults to @code{"linear"}.
-@seealso{@ref{doc-delaunay,,delaunay}}
+@seealso{@ref{doc-griddata3,,griddata3}, @ref{doc-griddatan,,griddatan}, @ref{doc-delaunay,,delaunay}}
 @end deftypefn
 
 
 @c griddata3 scripts/geometry/griddata3.m
 @anchor{doc-griddata3}
-@deftypefn {Function File} {@var{vi} =} griddata3 (@var{x}, @var{y}, @var{z}, @var{v}, @var{xi}, @var{yi}, @var{zi}, @var{method}, @var{options})
+@deftypefn  {Function File} {@var{vi} =} griddata3 (@var{x}, @var{y}, @var{z}, @var{v}, @var{xi}, @var{yi}, @var{zi})
+@deftypefnx {Function File} {@var{vi} =} griddata3 (@var{x}, @var{y}, @var{z}, @var{v}, @var{xi}, @var{yi}, @var{zi}, @var{method})
+@deftypefnx {Function File} {@var{vi} =} griddata3 (@var{x}, @var{y}, @var{z}, @var{v}, @var{xi}, @var{yi}, @var{zi}, @var{method}, @var{options})
 
 Generate a regular mesh from irregular data using interpolation.
 The function is defined by @code{@var{v} = f (@var{x}, @var{y}, @var{z})}.
@@ -782,13 +818,20 @@ The interpolation points are specified by @var{xi}, @var{yi}, @var{zi}.
 
 The interpolation method can be @code{"nearest"} or @code{"linear"}.
 If method is omitted it defaults to @code{"linear"}.
+
+The optional argument @var{options} is passed directly to Qhull when
+computing the Delaunay triangulation used for interpolation.  See
+@code{delaunayn} for information on the defaults and how to pass different
+values.
 @seealso{@ref{doc-griddata,,griddata}, @ref{doc-griddatan,,griddatan}, @ref{doc-delaunayn,,delaunayn}}
 @end deftypefn
 
 
 @c griddatan scripts/geometry/griddatan.m
 @anchor{doc-griddatan}
-@deftypefn {Function File} {@var{yi} =} griddatan (@var{x}, @var{y}, @var{xi}, @var{method}, @var{options})
+@deftypefn  {Function File} {@var{yi} =} griddatan (@var{x}, @var{y}, @var{xi})
+@deftypefnx {Function File} {@var{yi} =} griddatan (@var{x}, @var{y}, @var{xi}, @var{method})
+@deftypefnx {Function File} {@var{yi} =} griddatan (@var{x}, @var{y}, @var{xi}, @var{method}, @var{options})
 
 Generate a regular mesh from irregular data using interpolation.
 The function is defined by @code{@var{y} = f (@var{x})}.
@@ -796,7 +839,12 @@ The interpolation points are all @var{xi}.
 
 The interpolation method can be @code{"nearest"} or @code{"linear"}.
 If method is omitted it defaults to @code{"linear"}.
-@seealso{@ref{doc-griddata,,griddata}, @ref{doc-delaunayn,,delaunayn}}
+
+The optional argument @var{options} is passed directly to Qhull when
+computing the Delaunay triangulation used for interpolation.  See
+@code{delaunayn} for information on the defaults and how to pass different
+values.
+@seealso{@ref{doc-griddata,,griddata}, @ref{doc-griddata3,,griddata3}, @ref{doc-delaunayn,,delaunayn}}
 @end deftypefn
 
 
@@ -804,12 +852,12 @@ An example of the use of the @code{griddata} function is
 
 @example
 @group
-rand("state",1);
-x=2*rand(1000,1)-1;
-y=2*rand(size(x))-1;
-z=sin(2*(x.^2+y.^2));
-[xx,yy]=meshgrid(linspace(-1,1,32));
-griddata(x,y,z,xx,yy);
+rand ("state", 1);
+x = 2*rand (1000,1) - 1;
+y = 2*rand (size (x)) - 1;
+z = sin (2*(x.^2+y.^2));
+[xx,yy] = meshgrid (linspace (-1,1,32));
+griddata (x,y,z,xx,yy);
 @end group
 @end example
 

@@ -28,13 +28,16 @@
 
 ## Author:  Kai Habel <kai.habel@gmx.de>
 
+## PKG_ADD: colormap ("register", "copper");
+## PKG_DEL: colormap ("unregister", "copper");
+
 function map = copper (n)
 
   if (nargin == 0)
     n = rows (colormap);
   elseif (nargin == 1)
     if (! isscalar (n))
-      error ("copper: argument must be a scalar");
+      error ("copper: N must be a scalar");
     endif
   else
     print_usage ();
@@ -44,19 +47,21 @@ function map = copper (n)
     map = [0, 0, 0];
   elseif (n > 1)
     x = linspace (0, 1, n)';
-    r = (x < 4/5) .* (5/4 * x) + (x >= 4/5);
+    r = (x < 4/5) .* (5/4 * x) ...
+      + (x >= 4/5);
     g = 4/5 * x;
     b = 1/2 * x;
     map = [r, g, b];
   else
-    map = [];
+    map = zeros (0, 3);
   endif
 
 endfunction
 
+
 %!demo
 %! ## Show the 'copper' colormap as an image
-%! image (1:64, linspace (0, 1, 64), repmat (1:64, 64, 1)')
-%! axis ([1, 64, 0, 1], "ticy", "xy")
-%! colormap (copper (64))
+%! image (1:64, linspace (0, 1, 64), repmat ((1:64)', 1, 64));
+%! axis ([1, 64, 0, 1], "ticy", "xy");
+%! colormap (copper (64));
 

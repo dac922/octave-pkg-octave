@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -106,7 +106,7 @@ type the following which will evaluate to @code{-1} within the
 tolerance of the calculation. 
 
 @example
-octave:1> exp(i*pi)
+octave:1> exp (i*pi)
 @end example
 
 @subsection Creating a Matrix

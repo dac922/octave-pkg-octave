@@ -42,7 +42,7 @@ for a definition), and then finding its eigenvalues.
    <p><a name="doc_002droots"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>roots</b> (<var>v</var>)<var><a name="index-roots-2705"></a></var><br>
+&mdash; Function File:  <b>roots</b> (<var>v</var>)<var><a name="index-roots-2777"></a></var><br>
 <blockquote>
         <p>For a vector <var>v</var> with N components, return
 the roots of the polynomial
@@ -62,19 +62,36 @@ polynomial
         <p>Note that the true result is
 +/- sqrt(5)
 which is roughly
-+/- 2.2361. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
++/- 2.2361.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002dcompan.html#doc_002dcompan">compan</a>, <a href="doc_002dfzero.html#doc_002dfzero">fzero</a>. 
+</p></blockquote></div>
+
+<!-- polyeig scripts/polynomial/polyeig.m -->
+   <p><a name="doc_002dpolyeig"></a>
+
+<div class="defun">
+&mdash; Function File: <var>z</var> = <b>polyeig</b> (<var>C0, C1, <small class="dots">...</small>, Cl</var>)<var><a name="index-polyeig-2778"></a></var><br>
+&mdash; Function File: [<var>v</var>, <var>z</var>] = <b>polyeig</b> (<var>C0, C1, <small class="dots">...</small>, Cl</var>)<var><a name="index-polyeig-2779"></a></var><br>
+<blockquote>
+        <p>Solve the polynomial eigenvalue problem of degree <var>l</var>.
+
+        <p>Given an <var>n*n</var> matrix polynomial
+<var>C</var><code>(s) = </code><var>C0</var><code> + </code><var>C1</var><code> s + ... + </code><var>Cl</var><code> s^l</code>
+polyeig solves the eigenvalue problem
+<code>(</code><var>C0</var><code> + </code><var>C1</var><code> + ... + </code><var>Cl</var><code>)v = 0</code>. 
+Note that the eigenvalues <var>z</var> are the zeros of the matrix polynomial. 
+<var>z</var> is an <var>lxn</var> vector and <var>v</var> is an (<var>n</var> x <var>n</var>)l matrix
+with columns that correspond to the eigenvectors.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002deig.html#doc_002deig">eig</a>, <a href="doc_002deigs.html#doc_002deigs">eigs</a>, <a href="doc_002dcompan.html#doc_002dcompan">compan</a>. 
 </p></blockquote></div>
 
 <!-- compan scripts/polynomial/compan.m -->
    <p><a name="doc_002dcompan"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>compan</b> (<var>c</var>)<var><a name="index-compan-2706"></a></var><br>
+&mdash; Function File:  <b>compan</b> (<var>c</var>)<var><a name="index-compan-2780"></a></var><br>
 <blockquote><p>Compute the companion matrix corresponding to polynomial coefficient
 vector <var>c</var>.
 
@@ -91,10 +108,7 @@ vector <var>c</var>.
               |_      0            0      ...       1             0     _|
 </pre>
         <p>The eigenvalues of the companion matrix are equal to the roots of the
-polynomial. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+polynomial.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
 </p></blockquote></div>
@@ -103,9 +117,9 @@ polynomial.
    <p><a name="doc_002dmpoles"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p</var>)<var><a name="index-mpoles-2707"></a></var><br>
-&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol</var>)<var><a name="index-mpoles-2708"></a></var><br>
-&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol, reorder</var>)<var><a name="index-mpoles-2709"></a></var><br>
+&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p</var>)<var><a name="index-mpoles-2781"></a></var><br>
+&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol</var>)<var><a name="index-mpoles-2782"></a></var><br>
+&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol, reorder</var>)<var><a name="index-mpoles-2783"></a></var><br>
 <blockquote><p>Identify unique poles in <var>p</var> and their associated multiplicity.  The
 output is ordered from largest pole to smallest pole.
 
@@ -127,10 +141,7 @@ poles.  <var>multp</var><code>(n)</code> refers to the multiplicity of the Nth p
              &rArr; n = [2; 5; 1; 4; 3]
              &rArr; p(n) = [3, 2, 2, 1, 1]
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dresidue.html#doc_002dresidue">residue</a>, <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002ddeconv.html#doc_002ddeconv">deconv</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dresidue.html#doc_002dresidue">residue</a>, <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002ddeconv.html#doc_002ddeconv">deconv</a>. 
 </p></blockquote></div>
 
    </body></html>

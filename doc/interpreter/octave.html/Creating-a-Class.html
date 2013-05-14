@@ -125,15 +125,12 @@ class.
      isa (p, "polynomial")
        &rArr; 1
 </pre>
-   <!-- isobject src/ov-class.cc -->
+   <!-- isobject libinterp/octave-value/ov-class.cc -->
    <p><a name="doc_002disobject"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isobject</b> (<var>x</var>)<var><a name="index-isobject-2988"></a></var><br>
-<blockquote><p>Return true if <var>x</var> is a class object. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+&mdash; Built-in Function:  <b>isobject</b> (<var>x</var>)<var><a name="index-isobject-3108"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a class object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dtypeinfo.html#doc_002dtypeinfo">typeinfo</a>, <a href="doc_002disa.html#doc_002disa">isa</a>, <a href="doc_002dismethod.html#doc_002dismethod">ismethod</a>. 
 </p></blockquote></div>
@@ -141,29 +138,31 @@ class.
 <p class="noindent">The available methods of a class can be displayed with the
 <code>methods</code> function.
 
-<!-- methods src/ov-class.cc -->
+<!-- methods scripts/general/methods.m -->
    <p><a name="doc_002dmethods"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>methods</b> (<var>x</var>)<var><a name="index-methods-2989"></a></var><br>
-&mdash; Built-in Function:  <b>methods</b> (<var>"classname"</var>)<var><a name="index-methods-2990"></a></var><br>
-<blockquote><p>Return a cell array containing the names of the methods for the
-object <var>x</var> or the named class. 
+&mdash; Function File:  <b>methods</b> (<var>obj</var>)<var><a name="index-methods-3109"></a></var><br>
+&mdash; Function File:  <b>methods</b> (<var>"classname"</var>)<var><a name="index-methods-3110"></a></var><br>
+&mdash; Function File: <var>mtds</var> = <b>methods</b> (<var><small class="dots">...</small></var>)<var><a name="index-methods-3111"></a></var><br>
+<blockquote>
+        <p>Return a cell array containing the names of the methods for the
+object <var>obj</var> or the named class <var>classname</var>. 
+<var>obj</var> may be an Octave class object or a Java object.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>. 
 </p></blockquote></div>
 
 <p class="noindent">To inquire whether a particular method is available to a user class, the
 <code>ismethod</code> function can be used.
 
-<!-- ismethod src/ov-class.cc -->
+<!-- ismethod libinterp/octave-value/ov-class.cc -->
    <p><a name="doc_002dismethod"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ismethod</b> (<var>x, method</var>)<var><a name="index-ismethod-2991"></a></var><br>
+&mdash; Built-in Function:  <b>ismethod</b> (<var>x, method</var>)<var><a name="index-ismethod-3112"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a class object and the string <var>method</var>
-is a method of this class. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+is a method of this class.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002disobject.html#doc_002disobject">isobject</a>. 
 </p></blockquote></div>

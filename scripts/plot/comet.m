@@ -44,7 +44,7 @@ function comet (varargin)
     print_usage ();
   elseif (nargin == 1)
     y = varargin{1};
-    x = 1:numel(y);
+    x = 1:numel (y);
     p = 0.1;
   elseif (nargin == 2)
     x = varargin{1};
@@ -78,11 +78,11 @@ function comet (varargin)
 
 endfunction
 
-%!demo
-%! clf
-%! t = 0:.1:2*pi;
-%! x = cos(2*t).*(cos(t).^2);
-%! y = sin(2*t).*(sin(t).^2);
-%! comet(x,y)
 
+%!demo
+%! clf;
+%! t = 0:.1:2*pi;
+%! x = cos (2*t) .* (cos (t).^2);
+%! y = sin (2*t) .* (sin (t).^2);
+%! comet (x, y);
 

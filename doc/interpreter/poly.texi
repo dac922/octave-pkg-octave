@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -56,8 +56,8 @@ at the point @var{x} very easily, as the following example shows:
 
 @example
 @group
-N = length(c)-1;
-val = dot( x.^(N:-1:0), c );
+N = length (c) - 1;
+val = dot (x.^(N:-1:0), c);
 @end group
 @end example
 
@@ -174,6 +174,25 @@ $\pm 2.2361$.
 @end deftypefn
 
 
+@c polyeig scripts/polynomial/polyeig.m
+@anchor{doc-polyeig}
+@deftypefn  {Function File} {@var{z} =} polyeig (@var{C0}, @var{C1}, @dots{}, @var{Cl})
+@deftypefnx {Function File} {[@var{v}, @var{z}] =} polyeig (@var{C0}, @var{C1}, @dots{}, @var{Cl})
+
+Solve the polynomial eigenvalue problem of degree @var{l}.
+
+Given an @var{n*n} matrix polynomial
+@code{@var{C}(s) = @var{C0} + @var{C1} s + @dots{} + @var{Cl} s^l}
+polyeig solves the eigenvalue problem
+@code{(@var{C0} + @var{C1} + @dots{} + @var{Cl})v = 0}.
+Note that the eigenvalues @var{z} are the zeros of the matrix polynomial.
+@var{z} is an @var{lxn} vector and @var{v} is an (@var{n} x @var{n})l matrix
+with columns that correspond to the eigenvectors.
+
+@seealso{@ref{doc-eig,,eig}, @ref{doc-eigs,,eigs}, @ref{doc-compan,,compan}}
+@end deftypefn
+
+
 @c compan scripts/polynomial/compan.m
 @anchor{doc-compan}
 @deftypefn {Function File} {} compan (@var{c})
@@ -276,10 +295,10 @@ Return the central part of the convolution with the same size as @var{a}.
 @end deftypefn
 
 
-@c convn src/DLD-FUNCTIONS/conv2.cc
+@c convn libinterp/corefcn/conv2.cc
 @anchor{doc-convn}
-@deftypefn  {Loadable Function} {@var{C} =} convn (@var{A}, @var{B})
-@deftypefnx {Loadable Function} {@var{C} =} convn (@var{A}, @var{B}, @var{shape})
+@deftypefn  {Built-in Function} {@var{C} =} convn (@var{A}, @var{B})
+@deftypefnx {Built-in Function} {@var{C} =} convn (@var{A}, @var{B}, @var{shape})
 Return the n-D convolution of @var{A} and @var{B}.  The size of the result
 is determined by the optional @var{shape} argument which takes the following
 values
@@ -317,11 +336,11 @@ a remainder polynomial of lowest order.
 @end deftypefn
 
 
-@c conv2 src/DLD-FUNCTIONS/conv2.cc
+@c conv2 libinterp/corefcn/conv2.cc
 @anchor{doc-conv2}
-@deftypefn  {Loadable Function} {} conv2 (@var{A}, @var{B})
-@deftypefnx {Loadable Function} {} conv2 (@var{v1}, @var{v2}, @var{m})
-@deftypefnx {Loadable Function} {} conv2 (@dots{}, @var{shape})
+@deftypefn  {Built-in Function} {} conv2 (@var{A}, @var{B})
+@deftypefnx {Built-in Function} {} conv2 (@var{v1}, @var{v2}, @var{m})
+@deftypefnx {Built-in Function} {} conv2 (@dots{}, @var{shape})
 Return the 2-D convolution of @var{A} and @var{B}.  The size of the result
 is determined by the optional @var{shape} argument which takes the following
 values
@@ -355,7 +374,7 @@ When the third argument is a matrix, return the convolution of the matrix
 Find the greatest common divisor of two polynomials.  This is equivalent
 to the polynomial found by multiplying together all the common roots.
 Together with deconv, you can reduce a ratio of two polynomials.
-The tolerance @var{tol} defaults to @code{sqrt(eps)}.
+The tolerance @var{tol} defaults to @code{sqrt (eps)}.
 
 @strong{Caution:} This is a numerically unstable algorithm and should not
 be used on large polynomials.
@@ -366,7 +385,7 @@ Example code:
 @group
 polygcd (poly (1:8), poly (3:12)) - poly (3:8)
 @result{} [ 0, 0, 0, 0, 0, 0, 0 ]
-deconv (poly (1:8), polygcd (poly (1:8), poly (3:12))) - poly(1:2)
+deconv (poly (1:8), polygcd (poly (1:8), poly (3:12))) - poly (1:2)
 @result{} [ 0, 0, 0 ]
 @end group
 @end example
@@ -508,8 +527,8 @@ compute the definite integral of @math{p(x) = x^2 + 1} from 0 to 3.
 @example
 @group
 c = [1, 0, 1];
-integral = polyint(c);
-area = polyval(integral, 3) - polyval(integral, 0)
+integral = polyint (c);
+area = polyval (integral, 3) - polyval (integral, 0)
 @result{} 12
 @end group
 @end example
@@ -562,10 +581,11 @@ g(x) = f( (x - @var{mu}(1)) / @var{mu}(2) )
 Octave comes with good support for various kinds of interpolation,
 most of which are described in @ref{Interpolation}.  One simple alternative
 to the functions described in the aforementioned chapter, is to fit
-a single polynomial to some given data points.  To avoid a highly
-fluctuating polynomial, one most often wants to fit a low-order polynomial
-to data.  This usually means that it is necessary to fit the polynomial
-in a least-squares sense, which just is what the @code{polyfit} function does.
+a single polynomial, or a piecewise polynomial (spline) to some given
+data points.  To avoid a highly fluctuating polynomial, one most often
+wants to fit a low-order polynomial to data.  This usually means that it
+is necessary to fit the polynomial in a least-squares sense, which just
+is what the @code{polyfit} function does.
 
 @c polyfit scripts/polynomial/polyfit.m
 @anchor{doc-polyfit}
@@ -574,7 +594,9 @@ in a least-squares sense, which just is what the @code{polyfit} function does.
 @deftypefnx {Function File} {[@var{p}, @var{s}, @var{mu}] =} polyfit (@var{x}, @var{y}, @var{n})
 Return the coefficients of a polynomial @var{p}(@var{x}) of degree
 @var{n} that minimizes the least-squares-error of the fit to the points
-@code{[@var{x}, @var{y}]}.
+@code{[@var{x}, @var{y}]}.  If @var{n} is a logical vector, it is used
+as a mask to selectively force the corresponding polynomial
+coefficients to be used or ignored.
 
 The polynomial coefficients are returned in a row vector.
 
@@ -587,6 +609,11 @@ Triangular factor R from the QR@tie{}decomposition.
 @item X
 The Vandermonde matrix used to compute the polynomial coefficients.
 
+@item C
+The unscaled covariance matrix, formally equal to the inverse of
+@var{x'}*@var{x}, but computed in a way minimizing roundoff error
+propagation.
+
 @item df
 The degrees of freedom.
 
@@ -598,7 +625,9 @@ The values of the polynomial for each value of @var{x}.
 @end table
 
 The second output may be used by @code{polyval} to calculate the
-statistical error limits of the predicted values.
+statistical error limits of the predicted values.  In particular, the
+standard deviation of @var{p} coefficients is given by @*
+@code{sqrt (diag (s.C)/s.df)*s.normr}.
 
 When the third output, @var{mu}, is present the
 coefficients, @var{p}, are associated with a polynomial in
@@ -611,10 +640,291 @@ stability of the fit.
 
 
 In situations where a single polynomial isn't good enough, a solution
-is to use several polynomials pieced together.  The function @code{mkpp}
-creates a piecewise polynomial, @code{ppval} evaluates the function 
-created by @code{mkpp}, and @code{unmkpp} returns detailed information
-about the function.
+is to use several polynomials pieced together.  The function
+@code{splinefit} fits a peicewise polynomial (spline) to a set of
+data.
+
+@c splinefit scripts/polynomial/splinefit.m
+@anchor{doc-splinefit}
+@deftypefn {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{breaks})
+Fit a piecewise cubic spline with breaks (knots) @var{breaks} to the
+noisy data, @var{x} and @var{y}.  @var{x} is a vector, and @var{y}
+a vector or N-D array.  If @var{y} is an N-D array, then @var{x}(j)
+is matched to @var{y}(:,@dots{},:,j).
+
+The fitted spline is returned as a piecewise polynomial, @var{pp}, and
+may be evaluated using @code{ppval}.
+
+@deftypefnx {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{p})
+@var{p} is a positive integer defining the number of intervals along @var{x},
+and @var{p}+1 is the number of breaks.  The number of points in each interval
+differ by no more than 1.
+
+@deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "periodic", @var{periodic})
+@deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "robust", @var{robust})
+@deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "beta", @var{beta})
+@deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "order", @var{order})
+@deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "constraints", @var{constraints})
+
+The optional property @var{periodic} is a logical value which specifies
+whether a periodic boundary condition is applied to the spline.  The
+length of the period is @code{max (@var{breaks}) - min (@var{breaks})}.
+The default value is @code{false}.
+
+The optional property @var{robust} is a logical value which specifies
+if robust fitting is to be applied to reduce the influence of outlying
+data points.  Three iterations of weighted least squares are performed.
+Weights are computed from previous residuals.  The sensitivity of outlier
+identification is controlled by the property @var{beta}.  The value of
+@var{beta} is stricted to the range, 0 < @var{beta} < 1.  The default
+value is @var{beta} = 1/2.  Values close to 0 give all data equal
+weighting.  Increasing values of @var{beta} reduce the influence of
+outlying data.  Values close to unity may cause instability or rank
+deficiency.
+
+The splines are constructed of polynomials with degree @var{order}.
+The default is a cubic, @var{order}=3.  A spline with P pieces has
+P+@var{order} degrees of freedom.  With periodic boundary conditions
+the degrees of freedom are reduced to P.
+
+The optional property, @var{constaints}, is a structure specifying
+linear constraints on the fit.  The structure has three fields, "xc",
+"yc", and "cc".
+
+@table @asis
+@item "xc"
+Vector of the x-locations of the constraints.
+
+@item "yc"
+Constraining values at the locations, @var{xc}.
+The default is an array of zeros.
+
+@item "cc"
+Coefficients (matrix).  The default is an array of ones.  The number of
+rows is limited to the order of the piecewise polynomials, @var{order}.
+@end table
+
+Constraints are linear combinations of derivatives of order 0 to
+@var{order}-1 according to
+
+@example
+@group
+@tex
+$cc(1,j) \cdot y(xc(j)) + cc(2,j) \cdot y\prime(xc(j)) + ... = yc(:,\dots,:,j)$.
+@end tex
+@ifnottex
+cc(1,j) * y(xc(j)) + cc(2,j) * y'(xc(j)) + ... = yc(:,...,:,j).
+@end ifnottex
+@end group
+@end example
+
+@seealso{@ref{doc-interp1,,interp1}, @ref{doc-unmkpp,,unmkpp}, @ref{doc-ppval,,ppval}, @ref{doc-spline,,spline}, @ref{doc-pchip,,pchip}, @ref{doc-ppder,,ppder}, @ref{doc-ppint,,ppint}, @ref{doc-ppjumps,,ppjumps}}
+@end deftypefn
+
+
+The number of @var{breaks} (or knots) used to construct the piecewise
+polynomial is a significant factor in suppressing the noise present in
+the input data, @var{x} and @var{y}.  This is demonstrated by the example
+below.
+
+@example
+@group
+x = 2 * pi * rand (1, 200);
+y = sin (x) + sin (2 * x) + 0.2 * randn (size (x));
+## Uniform breaks
+breaks = linspace (0, 2 * pi, 41); % 41 breaks, 40 pieces
+pp1 = splinefit (x, y, breaks);
+## Breaks interpolated from data
+pp2 = splinefit (x, y, 10);  % 11 breaks, 10 pieces
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+plot (x, y, ".", xx, [y1; y2])
+axis tight
+ylim auto
+legend (@{"data", "41 breaks, 40 pieces", "11 breaks, 10 pieces"@})
+@end group
+@end example
+
+@ifnotinfo
+@noindent
+The result of which can be seen in @ref{fig:splinefit1}.
+
+@float Figure,fig:splinefit1
+@center @image{splinefit1,4in}
+@caption{Comparison of a fitting a piecewise polynomial with 41 breaks to one
+with 11 breaks.  The fit with the large number of breaks exhibits a fast ripple
+that is not present in the underlying function.}
+@end float
+@end ifnotinfo
+
+The piecewise polynomial fit, provided by @code{splinefit}, has
+continuous derivatives up to the @var{order}-1.  For example, a cubic fit
+has continuous first and second derivatives.  This is demonstrated by
+the code
+
+@example
+## Data (200 points)
+x = 2 * pi * rand (1, 200);
+y = sin (x) + sin (2 * x) + 0.1 * randn (size (x));
+## Piecewise constant
+pp1 = splinefit (x, y, 8, "order", 0);
+## Piecewise linear
+pp2 = splinefit (x, y, 8, "order", 1);
+## Piecewise quadratic
+pp3 = splinefit (x, y, 8, "order", 2);
+## Piecewise cubic
+pp4 = splinefit (x, y, 8, "order", 3);
+## Piecewise quartic
+pp5 = splinefit (x, y, 8, "order", 4);
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+y3 = ppval (pp3, xx);
+y4 = ppval (pp4, xx);
+y5 = ppval (pp5, xx);
+plot (x, y, ".", xx, [y1; y2; y3; y4; y5])
+axis tight
+ylim auto
+legend (@{"data", "order 0", "order 1", "order 2", "order 3", "order 4"@})
+@end example
+
+@ifnotinfo
+@noindent
+The result of which can be seen in @ref{fig:splinefit2}.
+
+@float Figure,fig:splinefit2
+@center @image{splinefit2,4in}
+@caption{Comparison of a piecewise constant, linear, quadratic, cubic, and
+quartic polynomials with 8 breaks to noisy data.  The higher order solutions
+more accurately represent the underlying function, but come with the
+expense of computational complexity.}
+@end float
+@end ifnotinfo
+
+When the underlying function to provide a fit to is periodic, @code{splinefit}
+is able to apply the boundary conditions needed to manifest a periodic fit.
+This is demonstrated by the code below.
+
+@example
+@group
+## Data (100 points)
+x = 2 * pi * [0, (rand (1, 98)), 1];
+y = sin (x) - cos (2 * x) + 0.2 * randn (size (x));
+## No constraints
+pp1 = splinefit (x, y, 10, "order", 5);
+## Periodic boundaries
+pp2 = splinefit (x, y, 10, "order", 5, "periodic", true);
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+plot (x, y, ".", xx, [y1; y2])
+axis tight
+ylim auto
+legend (@{"data", "no constraints", "periodic"@})
+@end group
+@end example
+
+@ifnotinfo
+@noindent
+The result of which can be seen in @ref{fig:splinefit3}.
+
+@float Figure,fig:splinefit3
+@center @image{splinefit3,4in}
+@caption{Comparison of piecewise polynomial fits to a noisy periodic
+function with, and without, periodic boundary conditions.}
+@end float
+@end ifnotinfo
+
+More complex constraints may be added as well.  For example, the code below
+illustrates a periodic fit with values that have been clamped at the endpoints,
+and a second periodic fit which is hinged at the endpoints.
+
+@example
+## Data (200 points)
+x = 2 * pi * rand (1, 200);
+y = sin (2 * x) + 0.1 * randn (size (x));
+## Breaks
+breaks = linspace (0, 2 * pi, 10);
+## Clamped endpoints, y = y' = 0
+xc = [0, 0, 2*pi, 2*pi];
+cc = [(eye (2)), (eye (2))];
+con = struct ("xc", xc, "cc", cc);
+pp1 = splinefit (x, y, breaks, "constraints", con);
+## Hinged periodic endpoints, y = 0
+con = struct ("xc", 0);
+pp2 = splinefit (x, y, breaks, "constraints", con, "periodic", true);
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+plot (x, y, ".", xx, [y1; y2])
+axis tight
+ylim auto
+legend (@{"data", "clamped", "hinged periodic"@})
+@end example
+
+@ifnotinfo
+@noindent
+The result of which can be seen in @ref{fig:splinefit4}.
+
+@float Figure,fig:splinefit4
+@center @image{splinefit4,4in}
+@caption{Comparison of two periodic piecewise cubic fits to a noisy periodic
+signal.  One fit has its endpoints clamped and the second has its endpoints
+hinged.}
+@end float
+@end ifnotinfo
+
+The @code{splinefit} function also provides the convenience of a @var{robust}
+fitting, where the effect of outlying data is reduced.  In the example below,
+three different fits are provided.  Two with differing levels of outlier
+suppression and a third illustrating the non-robust solution.
+
+@example
+## Data
+x = linspace (0, 2*pi, 200);
+y = sin (x) + sin (2 * x) + 0.05 * randn (size (x));
+## Add outliers
+x = [x, linspace(0,2*pi,60)];
+y = [y, -ones(1,60)];
+## Fit splines with hinged conditions
+con = struct ("xc", [0, 2*pi]);
+## Robust fitting, beta = 0.25
+pp1 = splinefit (x, y, 8, "constraints", con, "beta", 0.25);
+## Robust fitting, beta = 0.75
+pp2 = splinefit (x, y, 8, "constraints", con, "beta", 0.75);
+## No robust fitting
+pp3 = splinefit (x, y, 8, "constraints", con);
+## Plot
+xx = linspace (0, 2*pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+y3 = ppval (pp3, xx);
+plot (x, y, ".", xx, [y1; y2; y3])
+legend (@{"data with outliers","robust, beta = 0.25", ...
+         "robust, beta = 0.75", "no robust fitting"@})
+axis tight
+ylim auto
+@end example
+
+@ifnotinfo
+@noindent
+The result of which can be seen in @ref{fig:splinefit6}.
+
+@float Figure,fig:splinefit6
+@center @image{splinefit6,4in}
+@caption{Comparison of two different levels of robust fitting (@var{beta} = 0.25 and 0.75) to noisy data combined with outlying data.  A conventional fit, without
+robust fitting (@var{beta} = 0) is also included.}
+@end float
+@end ifnotinfo
+
+The function, @code{ppval}, evaluates the piecewise polynomials, created
+by @code{mkpp} or other means, and @code{unmkpp} returns detailed
+information about the piecewise polynomial.
 
 The following example shows how to combine two linear functions and a
 quadratic into one function.  Each of these functions is expressed
@@ -626,10 +936,10 @@ x = [-2, -1, 1, 2];
 p = [ 0,  1, 0;
       1, -2, 1;
       0, -1, 1 ];
-pp = mkpp(x, p);
-xi = linspace(-2, 2, 50);
-yi = ppval(pp, xi);
-plot(xi, yi);
+pp = mkpp (x, p);
+xi = linspace (-2, 2, 50);
+yi = ppval (pp, xi);
+plot (xi, yi);
 @end group
 @end example
 

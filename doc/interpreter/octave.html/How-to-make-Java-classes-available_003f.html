@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+<title>How to make Java classes available? - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions" title="FAQ - Frequently asked Questions">
+<link rel="prev" href="How-to-distinguish-between-Octave-and-Matlab_003f.html#How-to-distinguish-between-Octave-and-Matlab_003f" title="How to distinguish between Octave and Matlab?">
+<link rel="next" href="How-to-create-an-instance-of-a-Java-class_003f.html#How-to-create-an-instance-of-a-Java-class_003f" title="How to create an instance of a Java class?">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="How-to-make-Java-classes-available%3f"></a>
+<a name="How-to-make-Java-classes-available_003f"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="How-to-create-an-instance-of-a-Java-class_003f.html#How-to-create-an-instance-of-a-Java-class_003f">How to create an instance of a Java class?</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="How-to-distinguish-between-Octave-and-Matlab_003f.html#How-to-distinguish-between-Octave-and-Matlab_003f">How to distinguish between Octave and Matlab?</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions">FAQ - Frequently asked Questions</a>
+<hr>
+</div>
+
+<h4 class="subsection">37.3.2 How to make Java classes available to Octave?</h4>
+
+<!--  index - -->
+<p><a name="index-classpath_002c-setting-3567"></a><a name="index-classpath_002c-difference-between-static-and-dynamic-3568"></a><a name="index-static-classpath-3569"></a><a name="index-dynamic-classpath-3570"></a><a name="index-g_t_0040file_007bclasspath_002etxt_007d-3571"></a><a name="index-classes_002c-making-available-to-Octave-3572"></a><!--  index - -->
+
+   <p>Java finds classes by searching a <var>classpath</var>.  This is a list of Java
+archive files and/or directories containing class files.  In Octave and
+<span class="sc">matlab</span> the <var>classpath</var> is composed of two parts:
+
+     <ul>
+<li>the <var>static classpath</var> is initialized once at startup of the JVM, and
+
+     <li>the <var>dynamic classpath</var> which can be modified at runtime. 
+</ul>
+
+   <p>Octave searches the <var>static classpath</var> first, then the <var>dynamic
+classpath</var>.  Classes appearing in the <var>static</var> as well as in the
+<var>dynamic classpath</var> will therefore be found in the <var>static classpath</var>
+and loaded from this location.  Classes which shall be used regularly or must
+be available to all users should be added to the <var>static classpath</var>.  The
+<var>static classpath</var> is populated once from the contents of a plain text file
+named <samp><span class="file">classpath.txt</span></samp> when the Java Virtual Machine starts.  This file
+contains one line for each individual classpath to be added to the <var>static
+classpath</var>.  These lines can identify single class files, directories containing
+class files or Java archives with complete class file hierarchies.  Comment
+lines starting with a <code>#</code> or a <code>%</code> character are ignored.
+
+   <p>The search rules for the file <samp><span class="file">classpath.txt</span></samp> are:
+
+     <ul>
+<li>First, Octave searches for the file <samp><span class="file">classpath.txt</span></samp> in your home directory,
+If such a file is found, it is read and defines the initial <var>static
+classpath</var>.  Thus it is possible to build an initial static classpath on a 'per
+user' basis.
+
+     <li>Next, Octave looks for another file <samp><span class="file">classpath.txt</span></samp> in the package
+installation directory.  This is where <samp><span class="file">javaclasspath.m</span></samp> resides, usually
+something like <samp><span class="file">...\share\Octave\packages\java-1.2.8</span></samp>.  You can find
+this directory by executing the command
+
+     <pre class="example">          pkg list
+</pre>
+     <p>If this file exists, its contents is also appended to the static classpath. 
+Note that the archives and class directories defined in this file will affect
+all users. 
+</ul>
+
+   <p>Classes which are used only by a specific script should be placed in the
+<var>dynamic classpath</var>.  This portion of the classpath can be modified at
+runtime using the <code>javaaddpath</code> and <code>javarmpath</code> functions.
+
+   <p>Example:
+
+<pre class="example">     octave&gt; base_path = 'C:/Octave/java_files';
+     
+     octave&gt; % add two JARchives to the dynamic classpath
+     octave&gt; javaaddpath([base_path, '/someclasses.jar']);
+     octave&gt; javaaddpath([base_path, '/moreclasses.jar']);
+     
+     octave&gt; % check the dynamic classpath
+     octave&gt; p = javaclasspath;
+     octave&gt; disp(p{1});
+     C:/Octave/java_files/someclasses.jar
+     octave&gt; disp(p{2});
+     C:/Octave/java_files/moreclasses.jar
+     
+     octave&gt; % remove the first element from the classpath
+     octave&gt; javarmpath([base_path, '/someclasses.jar']);
+     octave&gt; p = javaclasspath;
+     octave&gt; disp(p{1});
+     C:/Octave/java_files/moreclasses.jar
+     
+     octave&gt; % provoke an error
+     octave&gt; disp(p{2});
+     error: A(I): Index exceeds matrix dimension.
+</pre>
+   <p>Another way to add files to the <var>dynamic classpath</var> exclusively for your
+user account is to use the file <samp><span class="file">.octaverc</span></samp> which is stored in your home
+directory.  All Octave commands in this file are executed each time you start a
+new instance of Octave.  The following example adds the directory <samp><span class="file">octave</span></samp>
+to Octave's search path and the archive <samp><span class="file">myclasses.jar</span></samp> in this directory
+to the Java search path.
+
+<pre class="example">     % content of .octaverc:
+     addpath('~/octave');
+     javaaddpath('~/octave/myclasses.jar');
+</pre>
+   <!--  -->
+   </body></html>
+

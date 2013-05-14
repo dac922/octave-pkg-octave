@@ -43,7 +43,7 @@ and populated with specific user commands via the <code>uimenu</code> function.
    <p><a name="doc_002dginput"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>buttons</var>] = <b>ginput</b> (<var>n</var>)<var><a name="index-ginput-1472"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>buttons</var>] = <b>ginput</b> (<var>n</var>)<var><a name="index-ginput-1520"></a></var><br>
 <blockquote><p>Return which mouse buttons were pressed and keys were hit on the current
 figure.  If <var>n</var> is defined, then wait for <var>n</var> mouse clicks
 before returning.  If <var>n</var> is not defined, then <code>ginput</code> will
@@ -54,13 +54,10 @@ loop until the return key &lt;RET&gt; is pressed.
    <p><a name="doc_002dwaitforbuttonpress"></a>
 
 <div class="defun">
-&mdash; Function File: <var>b</var> = <b>waitforbuttonpress</b> ()<var><a name="index-waitforbuttonpress-1473"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>waitforbuttonpress</b> ()<var><a name="index-waitforbuttonpress-1521"></a></var><br>
 <blockquote><p>Wait for button or mouse press.over a figure window.  The value of
 <var>b</var> returns 0 if a mouse button was pressed or 1 is a key was
-pressed. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+pressed.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dginput.html#doc_002dginput">ginput</a>. 
 </p></blockquote></div>
@@ -69,16 +66,21 @@ pressed.
    <p><a name="doc_002dgtext"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gtext</b> (<var>s</var>)<var><a name="index-gtext-1474"></a></var><br>
-&mdash; Function File:  <b>gtext</b> (<var>{s1; s2; <small class="dots">...</small>}</var>)<var><a name="index-gtext-1475"></a></var><br>
-&mdash; Function File:  <b>gtext</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-gtext-1476"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var>s</var>)<var><a name="index-gtext-1522"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var>{s1, s2, <small class="dots">...</small>}</var>)<var><a name="index-gtext-1523"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var>{s1; s2; <small class="dots">...</small>}</var>)<var><a name="index-gtext-1524"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-gtext-1525"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>gtext</b> (<var><small class="dots">...</small></var>)<var><a name="index-gtext-1526"></a></var><br>
 <blockquote><p>Place text on the current figure using the mouse.  The text is defined
-by the string <var>s</var>.  If <var>s</var> is a cell array, each element of the cell
-array is written to a separate line.  Additional arguments are passed to
-the underlying text object as properties. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+by the string <var>s</var>.  If <var>s</var> is a cell string organized as a row
+vector then each string of the cell array is written to a separate line. 
+If <var>s</var> is organized as a column vector then one string element of the
+cell array is placed for every mouse click.  Additional inputs besides a
+string or cellstr are passed to the underlying text object as Property-value
+pairs.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created
+text object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dginput.html#doc_002dginput">ginput</a>, <a href="doc_002dtext.html#doc_002dtext">text</a>. 
 </p></blockquote></div>
@@ -87,8 +89,8 @@ the underlying text object as properties.
    <p><a name="doc_002duimenu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>uimenu</b> (<var>property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1477"></a></var><br>
-&mdash; Function File:  <b>uimenu</b> (<var>h, property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1478"></a></var><br>
+&mdash; Function File:  <b>uimenu</b> (<var>property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1527"></a></var><br>
+&mdash; Function File:  <b>uimenu</b> (<var>h, property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1528"></a></var><br>
 <blockquote><p>Create a uimenu object and return a handle to it.  If <var>h</var> is ommited
 then a top-level menu for the current figure is created.  If <var>h</var>
 is given then a submenu relative to <var>h</var> is created.
@@ -131,10 +133,7 @@ current position.  It is ignored for top level entries.
           uimenu (e, "label", "Toggle &amp;Grid", "accelerator", "g", ...
                      "callback", "grid (gca)");
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfigure.html#doc_002dfigure">figure</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfigure.html#doc_002dfigure">figure</a>. 
 </p></blockquote></div>
 
    </body></html>

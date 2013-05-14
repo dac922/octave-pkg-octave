@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Round towards zero.
    Copyright (C) 2007, 2010-2012 Free Software Foundation, Inc.
 
@@ -54,6 +52,12 @@
 # define MINUS_ZERO (-MIN * MIN)
 #else
 # define MINUS_ZERO L_(-0.0)
+#endif
+
+/* MSVC with option -fp:strict refuses to compile constant initializers that
+   contain floating-point operations.  Pacify this compiler.  */
+#ifdef _MSC_VER
+# pragma fenv_access (off)
 #endif
 
 /* 2^(MANT_DIG-1).  */

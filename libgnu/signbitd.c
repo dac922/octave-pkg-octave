@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* signbit() macro: Determine the sign bit of a floating-point number.
    Copyright (C) 2007-2012 Free Software Foundation, Inc.
 

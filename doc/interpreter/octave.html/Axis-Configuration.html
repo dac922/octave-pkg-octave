@@ -40,14 +40,14 @@ appearance of tic marks.
    <p><a name="doc_002daxis"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>axis</b> ()<var><a name="index-axis-1189"></a></var><br>
-&mdash; Function File:  <b>axis</b> ([<var>x_lo x_hi</var>])<var><a name="index-axis-1190"></a></var><br>
-&mdash; Function File:  <b>axis</b> ([<var>x_lo x_hi y_lo y_hi</var>])<var><a name="index-axis-1191"></a></var><br>
-&mdash; Function File:  <b>axis</b> ([<var>x_lo x_hi y_lo y_hi z_lo z_hi</var>])<var><a name="index-axis-1192"></a></var><br>
-&mdash; Function File:  <b>axis</b> (<var>option</var>)<var><a name="index-axis-1193"></a></var><br>
-&mdash; Function File:  <b>axis</b> (<var><small class="dots">...</small>, option</var>)<var><a name="index-axis-1194"></a></var><br>
-&mdash; Function File:  <b>axis</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-axis-1195"></a></var><br>
-&mdash; Function File: <var>limits</var> = <b>axis</b> ()<var><a name="index-axis-1196"></a></var><br>
+&mdash; Function File:  <b>axis</b> ()<var><a name="index-axis-1227"></a></var><br>
+&mdash; Function File:  <b>axis</b> ([<var>x_lo x_hi</var>])<var><a name="index-axis-1228"></a></var><br>
+&mdash; Function File:  <b>axis</b> ([<var>x_lo x_hi y_lo y_hi</var>])<var><a name="index-axis-1229"></a></var><br>
+&mdash; Function File:  <b>axis</b> ([<var>x_lo x_hi y_lo y_hi z_lo z_hi</var>])<var><a name="index-axis-1230"></a></var><br>
+&mdash; Function File:  <b>axis</b> (<var>option</var>)<var><a name="index-axis-1231"></a></var><br>
+&mdash; Function File:  <b>axis</b> (<var><small class="dots">...</small>, option</var>)<var><a name="index-axis-1232"></a></var><br>
+&mdash; Function File:  <b>axis</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-axis-1233"></a></var><br>
+&mdash; Function File: <var>limits</var> = <b>axis</b> ()<var><a name="index-axis-1234"></a></var><br>
 <blockquote><p>Set axis limits for plots.
 
         <p>The argument <var>limits</var> should be a 2-, 4-, or 6-element vector.  The
@@ -111,7 +111,8 @@ specified axes and off for the remainder.
 
           <br><dt>"nolabel"<dd>Turn tic labels off for all axes. 
 </dl>
-        Note, if there are no tic marks for an axis, there can be no labels.
+
+        <p>Note, if there are no tic marks for an axis, there can be no labels.
 
      <p class="noindent">The following options affect the direction of increasing values on
 the axes.
@@ -133,8 +134,8 @@ function.
    <p><a name="doc_002dcaxis"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>caxis</b> (<var>limits</var>)<var><a name="index-caxis-1197"></a></var><br>
-&mdash; Function File:  <b>caxis</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-caxis-1198"></a></var><br>
+&mdash; Function File:  <b>caxis</b> (<var>limits</var>)<var><a name="index-caxis-1235"></a></var><br>
+&mdash; Function File:  <b>caxis</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-caxis-1236"></a></var><br>
 <blockquote><p>Set color axis limits for plots.
 
         <p>The argument <var>limits</var> should be a 2-element vector specifying the
@@ -142,8 +143,8 @@ lower and upper limits to assign to the first and last value in the
 colormap.  Values outside this range are clamped to the first and last
 colormap entries.
 
-        <p>If <var>limits</var> is 'auto', then automatic colormap scaling is applied,
-whereas if <var>limits</var> is 'manual' the colormap scaling is set to manual.
+        <p>If <var>limits</var> is "auto", then automatic colormap scaling is applied,
+whereas if <var>limits</var> is "manual" the colormap scaling is set to manual.
 
         <p>Called without any arguments to current color axis limits are returned.
 
@@ -156,29 +157,26 @@ get or set individual axis limits.  Each has the same form.
 
    <p><a name="doc_002dylim"></a><a name="doc_002dzlim"></a><!-- xlim scripts/plot/xlim.m -->
 <a name="doc_002dxlim"></a><!-- List other forms of function in documentation index -->
-<a name="index-ylim-1199"></a><a name="index-zlim-1200"></a>
+<a name="index-ylim-1237"></a><a name="index-zlim-1238"></a>
 
 <div class="defun">
-&mdash; Function File: <var>xl</var> = <b>xlim</b> ()<var><a name="index-xlim-1201"></a></var><br>
-&mdash; Function File:  <b>xlim</b> (<var>xl</var>)<var><a name="index-xlim-1202"></a></var><br>
-&mdash; Function File: <var>m</var> = <b>xlim</b> (<var>'mode'</var>)<var><a name="index-xlim-1203"></a></var><br>
-&mdash; Function File:  <b>xlim</b> (<var>m</var>)<var><a name="index-xlim-1204"></a></var><br>
-&mdash; Function File:  <b>xlim</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-xlim-1205"></a></var><br>
+&mdash; Function File: <var>xl</var> = <b>xlim</b> ()<var><a name="index-xlim-1239"></a></var><br>
+&mdash; Function File:  <b>xlim</b> (<var>xl</var>)<var><a name="index-xlim-1240"></a></var><br>
+&mdash; Function File: <var>m</var> = <b>xlim</b> (<var>"mode"</var>)<var><a name="index-xlim-1241"></a></var><br>
+&mdash; Function File:  <b>xlim</b> (<var>m</var>)<var><a name="index-xlim-1242"></a></var><br>
+&mdash; Function File:  <b>xlim</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-xlim-1243"></a></var><br>
 <blockquote><p>Get or set the limits of the x-axis of the current plot.  Called without
 arguments <code>xlim</code> returns the x-axis limits of the current plot. 
 If passed a two element vector <var>xl</var>, the limits of the x-axis are set
 to this value.
 
         <p>The current mode for calculation of the x-axis can be returned with a
-call <code>xlim ('mode')</code>, and can be either 'auto' or 'manual'.  The
-current plotting mode can be set by passing either 'auto' or 'manual'
+call <code>xlim ("mode")</code>, and can be either "auto" or "manual".  The
+current plotting mode can be set by passing either "auto" or "manual"
 as the argument.
 
         <p>If passed a handle as the first argument, then operate on this handle
-rather than the current axes handle. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+rather than the current axes handle.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dylim.html#doc_002dylim">ylim</a>, <a href="doc_002dzlim.html#doc_002dzlim">zlim</a>, <a href="doc_002dset.html#doc_002dset">set</a>, <a href="doc_002dget.html#doc_002dget">get</a>, <a href="doc_002dgca.html#doc_002dgca">gca</a>. 
 </p></blockquote></div>

@@ -55,7 +55,7 @@ function shading (varargin)
 
   obj = [h1(:); h2(:)];
 
-  for n = 1:numel(obj)
+  for n = 1:numel (obj)
     h = obj(n);
     if (strcmpi (mode, "flat"))
       set (h, "facecolor", "flat");
@@ -75,39 +75,44 @@ endfunction
 
 
 %!demo
-%! clf
-%! colormap (jet)
-%! sombrero
-%! shading faceted
-%! title ('shading "faceted"')
+%! clf;
+%! colormap ('default');
+%! sombrero ();
+%! shading faceted;
+%! title ('shading ''faceted''');
 
 %!demo
-%! clf
-%! sombrero
-%! shading flat
-%! title ('shading "flat"')
+%! clf;
+%! colormap ('default');
+%! sombrero ();
+%! shading flat;
+%! title ('shading ''flat''');
 
 %!demo
-%! clf
-%! sombrero
-%! shading interp
-%! title ('shading "interp"')
+%! clf;
+%! colormap ('default');
+%! sombrero ();
+%! shading interp;
+%! title ('shading ''interp''');
 
 %!demo
-%! clf
-%! pcolor (peaks ())
-%! shading faceted
-%! title ('shading "faceted"')
+%! clf;
+%! colormap ('default');
+%! pcolor (peaks ());
+%! shading faceted;
+%! title ('shading ''faceted''');
 
 %!demo
-%! clf
-%! pcolor (peaks ())
-%! shading flat
-%! title ('shading "flat"')
+%! clf;
+%! colormap ('default');
+%! pcolor (peaks ());
+%! shading flat;
+%! title ('shading ''flat''');
 
 %!demo
-%! clf
-%! pcolor (peaks ())
-%! shading interp
-%! title ('shading "interp"')
+%! clf;
+%! colormap ('default');
+%! pcolor (peaks ());
+%! shading interp;
+%! title ('shading ''interp''');
 

@@ -36,9 +36,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Lin
 <p><a name="doc_002dbicg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicg-2111"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicg-2112"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicg</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicg-2113"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicg-2177"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicg-2178"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicg</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicg-2179"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code> using the Bi-conjugate gradient iterative method.
 
           <ul>
@@ -60,13 +60,14 @@ and <code>f(x, "transp") = A'*x</code>.
         <p>The preconditioner <var>P</var> is given as <code>P = M1 * M2</code>. 
 Both <var>M1</var> and <var>M2</var> can be passed as a matrix or as
 a function handle or inline function <code>g</code> such that
-<code>g(x, 'notransp') = M1 \ x</code> or <code>g(x, 'notransp') = M2 \ x</code> and
-<code>g(x, 'transp') = M1' \ x</code> or <code>g(x, 'transp') = M2' \ x</code>.
+<code>g(x, "notransp") = M1 \ x</code> or <code>g(x, "notransp") = M2 \ x</code> and
+<code>g(x, "transp") = M1' \ x</code> or <code>g(x, "transp") = M2' \ x</code>.
 
         <p>If called with more than one output parameter
 
           <ul>
 <li><var>flag</var> indicates the exit status:
+
                <ul>
 <li>0: iteration converged to the within the chosen tolerance
 
@@ -83,9 +84,6 @@ a function handle or inline function <code>g</code> such that
           <li><var>resvec</var> is a vector containing the relative residual at each iteration. 
 </ul>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbicgstab.html#doc_002dbicgstab">bicgstab</a>, <a href="doc_002dcgs.html#doc_002dcgs">cgs</a>, <a href="doc_002dgmres.html#doc_002dgmres">gmres</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>.
 
         </blockquote></div>
@@ -94,9 +92,9 @@ a function handle or inline function <code>g</code> such that
    <p><a name="doc_002dbicgstab"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicgstab-2114"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicgstab-2115"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicgstab</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicgstab-2116"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicgstab-2180"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicgstab-2181"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicgstab</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicgstab-2182"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code> using the stabilizied Bi-conjugate gradient iterative
 method.
 
@@ -124,6 +122,7 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
 
           <ul>
 <li><var>flag</var> indicates the exit status:
+
                <ul>
 <li>0: iteration converged to the within the chosen tolerance
 
@@ -140,9 +139,6 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
           <li><var>resvec</var> is a vector containing the relative residual at each iteration. 
 </ul>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbicg.html#doc_002dbicg">bicg</a>, <a href="doc_002dcgs.html#doc_002dcgs">cgs</a>, <a href="doc_002dgmres.html#doc_002dgmres">gmres</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>.
 
         </blockquote></div>
@@ -151,9 +147,9 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
    <p><a name="doc_002dcgs"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-cgs-2117"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-cgs-2118"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>cgs</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-cgs-2119"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-cgs-2183"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-cgs-2184"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>cgs</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-cgs-2185"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code>, where <var>A</var> is a square matrix, using the
 Conjugate Gradients Squared method.
 
@@ -181,6 +177,7 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
 
           <ul>
 <li><var>flag</var> indicates the exit status:
+
                <ul>
 <li>0: iteration converged to the within the chosen tolerance
 
@@ -198,9 +195,6 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
 each iteration. 
 </ul>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>, <a href="doc_002dbicgstab.html#doc_002dbicgstab">bicgstab</a>, <a href="doc_002dbicg.html#doc_002dbicg">bicg</a>, <a href="doc_002dgmres.html#doc_002dgmres">gmres</a>. 
 </p></blockquote></div>
 
@@ -208,9 +202,9 @@ each iteration.
    <p><a name="doc_002dgmres"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, M1, M2, x0</var>)<var><a name="index-gmres-2120"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, P</var>)<var><a name="index-gmres-2121"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>gmres</b> (<var><small class="dots">...</small></var>)<var><a name="index-gmres-2122"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, M1, M2, x0</var>)<var><a name="index-gmres-2186"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, P</var>)<var><a name="index-gmres-2187"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>gmres</b> (<var><small class="dots">...</small></var>)<var><a name="index-gmres-2188"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code> using the Preconditioned GMRES iterative method
 with restart, a.k.a. PGMRES(m).
 
@@ -223,7 +217,7 @@ if not given or set to [] the default value
 <code>min (10, numel (b) / restart)</code> is used.
 
           <li><var>x0</var> is the initial guess,
-if not given or set to [] the default value <code>zeros(size (b))</code> is used.
+if not given or set to [] the default value <code>zeros (size (b))</code> is used.
 
           <li><var>m</var> is the restart parameter,
 if not given or set to [] the default value <code>numel (b)</code> is used. 
@@ -240,11 +234,12 @@ inline function <code>g</code> such that <code>g(x) = M1\x</code> or <code>g(x) 
 
           <ul>
 <li><var>flag</var> indicates the exit status:
+
                <dl>
 <dt>0 : iteration converged to within the specified tolerance
 <br><dt>1 : maximum number of iterations exceeded
 <br><dt>2 : unused, but skipped for compatibility
-<br><dt>3 : algorithm reached stagnation<dd></dl>
+<br><dt>3 : algorithm reached stagnation (no change between iterations)<dd></dl>
 
           <li><var>relres</var> is the final value of the relative residual.
 
@@ -255,13 +250,10 @@ total iterations performed.
 iteration. 
 </ul>
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dbicg.html#doc_002dbicg">bicg</a>, <a href="doc_002dbicgstab.html#doc_002dbicgstab">bicgstab</a>, <a href="doc_002dcgs.html#doc_002dcgs">cgs</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>. 
 </p></blockquote></div>
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 2012 Jordi Gutiérrez Hermoso -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

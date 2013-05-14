@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* provide a chdir function that tries not to fail due to ENAMETOOLONG
    Copyright (C) 2004-2005, 2009-2012 Free Software Foundation, Inc.
 

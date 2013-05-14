@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Debugging.html#Debugging">Debugging</a>
 
 <h3 class="section">13.6 Profiling</h3>
 
-<p><a name="index-profiler-868"></a><a name="index-code-profiling-869"></a>
+<p><a name="index-profiler-896"></a><a name="index-code-profiling-897"></a>
 Octave supports profiling of code execution on a per-function level.  If
 profiling is enabled, each call to a function (supporting built-ins,
 operators, functions in oct- and mex-files, user-defined functions in
@@ -53,12 +53,12 @@ examined or further processed by other routines or tools.
    <p><a name="doc_002dprofile"></a>
 
 <div class="defun">
-&mdash; Command:  <b>profile</b><var> on<a name="index-profile-870"></a></var><br>
-&mdash; Command:  <b>profile</b><var> off<a name="index-profile-871"></a></var><br>
-&mdash; Command:  <b>profile</b><var> resume<a name="index-profile-872"></a></var><br>
-&mdash; Command:  <b>profile</b><var> clear<a name="index-profile-873"></a></var><br>
-&mdash; Function File: <var>S</var> = <b>profile</b> (<var>'status'</var>)<var><a name="index-profile-874"></a></var><br>
-&mdash; Function File: <var>T</var> = <b>profile</b> (<var>'info'</var>)<var><a name="index-profile-875"></a></var><br>
+&mdash; Command:  <b>profile</b><var> on<a name="index-profile-898"></a></var><br>
+&mdash; Command:  <b>profile</b><var> off<a name="index-profile-899"></a></var><br>
+&mdash; Command:  <b>profile</b><var> resume<a name="index-profile-900"></a></var><br>
+&mdash; Command:  <b>profile</b><var> clear<a name="index-profile-901"></a></var><br>
+&mdash; Function File: <var>S</var> = <b>profile</b> (<var>"status"</var>)<var><a name="index-profile-902"></a></var><br>
+&mdash; Function File: <var>T</var> = <b>profile</b> (<var>"info"</var>)<var><a name="index-profile-903"></a></var><br>
 <blockquote><p>Control the built-in profiler.
 
           <dl>
@@ -66,28 +66,25 @@ examined or further processed by other routines or tools.
 is any.
 
           <br><dt><code>profile off</code><dd>Stop profiling.  The collected data can later be retrieved and examined
-with calls like <code>S = profile ('info')</code>.
+with calls like <code>S = profile ("info")</code>.
 
           <br><dt><code>profile clear</code><dd>Clear all collected profiler data.
 
           <br><dt><code>profile resume</code><dd>Restart profiling without cleaning up the old data and instead
 all newly collected statistics are added to the already existing ones.
 
-          <br><dt><var>S</var><code> = profile ('status')</code><dd>Return a structure filled with certain information about the current status
+          <br><dt><var>S</var><code> = profile ("status")</code><dd>Return a structure filled with certain information about the current status
 of the profiler.  At the moment, the only field is <code>ProfilerStatus</code>
-which is either 'on' or 'off'.
+which is either "on" or "off".
 
-          <br><dt><var>T</var><code> = profile ('info')</code><dd>Return the collected profiling statistics in the structure <var>T</var>. 
+          <br><dt><var>T</var><code> = profile ("info")</code><dd>Return the collected profiling statistics in the structure <var>T</var>. 
 The flat profile is returned in the field <code>FunctionTable</code> which is an
 array of structures, each entry corresponding to a function which was called
 and for which profiling statistics are present.  Furthermore, the field
 <code>Hierarchical</code> contains the hierarchical call-tree.  Each node
 has an index into the <code>FunctionTable</code> identifying the function it
 corresponds to as well as data fields for number of calls and time spent
-at this level in the call-tree. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+at this level in the call-tree.
 
           <p class="noindent"><strong>See also:</strong> <a href="doc_002dprofshow.html#doc_002dprofshow">profshow</a>, <a href="doc_002dprofexplore.html#doc_002dprofexplore">profexplore</a>. 
 </dl>
@@ -113,22 +110,19 @@ and the profiler also records that it is recursive.
    <p><a name="doc_002dprofshow"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>profshow</b> (<var>data</var>)<var><a name="index-profshow-876"></a></var><br>
-&mdash; Function File:  <b>profshow</b> (<var>data, n</var>)<var><a name="index-profshow-877"></a></var><br>
+&mdash; Function File:  <b>profshow</b> (<var>data</var>)<var><a name="index-profshow-904"></a></var><br>
+&mdash; Function File:  <b>profshow</b> (<var>data, n</var>)<var><a name="index-profshow-905"></a></var><br>
 <blockquote><p>Show flat profiler results.
 
         <p>This command prints out profiler data as a flat profile.  <var>data</var> is the
-structure returned by <code>profile ('info')</code>.  If <var>n</var> is given, it
+structure returned by <code>profile ("info")</code>.  If <var>n</var> is given, it
 specifies the number of functions to show in the profile; functions are
 sorted in descending order by total time spent in them.  If there are more
 than <var>n</var> included in the profile, those will not be shown.  <var>n</var>
 defaults to 20.
 
         <p>The attribute column shows &lsquo;<samp><span class="samp">R</span></samp>&rsquo; for recursive functions and nothing
-otherwise. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+otherwise.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dprofexplore.html#doc_002dprofexplore">profexplore</a>, <a href="doc_002dprofile.html#doc_002dprofile">profile</a>. 
 </p></blockquote></div>
@@ -137,16 +131,13 @@ otherwise.
    <p><a name="doc_002dprofexplore"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>profexplore</b> (<var>data</var>)<var><a name="index-profexplore-878"></a></var><br>
+&mdash; Function File:  <b>profexplore</b> (<var>data</var>)<var><a name="index-profexplore-906"></a></var><br>
 <blockquote><p>Interactively explore hierarchical profiler output.
 
         <p>Assuming <var>data</var> is the structure with profile data returned by
-<code>profile ('info')</code>, this command opens an interactive prompt
+<code>profile ("info")</code>, this command opens an interactive prompt
 that can be used to explore the call-tree.  Type <kbd>help</kbd> to get a list
-of possible commands. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+of possible commands.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dprofile.html#doc_002dprofile">profile</a>, <a href="doc_002dprofshow.html#doc_002dprofshow">profshow</a>. 
 </p></blockquote></div>

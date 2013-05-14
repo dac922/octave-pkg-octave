@@ -52,49 +52,51 @@ contents of a file and then process it, than it is to read it line by
 line.  This has the potential advantage of removing the loop in the
 above code.
 
-<!-- feof src/file-io.cc -->
+<!-- feof libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dfeof"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>feof</b> (<var>fid</var>)<var><a name="index-feof-1015"></a></var><br>
+&mdash; Built-in Function:  <b>feof</b> (<var>fid</var>)<var><a name="index-feof-1051"></a></var><br>
 <blockquote><p>Return 1 if an end-of-file condition has been encountered for a given
 file and 0 otherwise.  Note that it will only return 1 if the end of the
 file has already been encountered, not if the next read operation will
-result in an end-of-file condition. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+result in an end-of-file condition.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>, <a href="doc_002dfclose.html#doc_002dfclose">fclose</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
 </p></blockquote></div>
 
-<!-- ferror src/file-io.cc -->
+<!-- ferror libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dferror"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid, "clear"</var>)<var><a name="index-ferror-1016"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid</var>)<var><a name="index-ferror-1052"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid, "clear"</var>)<var><a name="index-ferror-1053"></a></var><br>
 <blockquote><p>Return 1 if an error condition has been encountered for the file ID
 <var>fid</var> and 0 otherwise.  Note that it will only return 1 if an error
 has already been encountered, not if the next operation will result in
 an error condition.
 
         <p>The second argument is optional.  If it is supplied, also clear the
-error condition. 
+error condition.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfclear.html#doc_002dfclear">fclear</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
 </p></blockquote></div>
 
-<!-- fclear src/file-io.cc -->
+<!-- fclear libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dfclear"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fclear</b> (<var>fid</var>)<var><a name="index-fclear-1017"></a></var><br>
-<blockquote><p>Clear the stream state for the specified file. 
+&mdash; Built-in Function:  <b>fclear</b> (<var>fid</var>)<var><a name="index-fclear-1054"></a></var><br>
+<blockquote><p>Clear the stream state for the specified file.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
 </p></blockquote></div>
 
-<!-- freport src/file-io.cc -->
+<!-- freport libinterp/interpfcn/file-io.cc -->
    <p><a name="doc_002dfreport"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>freport</b> ()<var><a name="index-freport-1018"></a></var><br>
+&mdash; Built-in Function:  <b>freport</b> ()<var><a name="index-freport-1055"></a></var><br>
 <blockquote><p>Print a list of which files have been opened, and whether they are open
 for reading, writing, or both.  For example:
 
@@ -107,7 +109,8 @@ for reading, writing, or both.  For example:
                -|       2     w  stderr
                -|       3     r  myfile
 </pre>
-        </blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>, <a href="doc_002dfclose.html#doc_002dfclose">fclose</a>. 
+</p></blockquote></div>
 
    </body></html>
 

@@ -47,37 +47,34 @@ using the <code>cell2mat</code> and <code>cell2struct</code> functions.
    <p><a name="doc_002dcell2mat"></a>
 
 <div class="defun">
-&mdash; Function File: <var>m</var> = <b>cell2mat</b> (<var>c</var>)<var><a name="index-cell2mat-472"></a></var><br>
+&mdash; Function File: <var>m</var> = <b>cell2mat</b> (<var>c</var>)<var><a name="index-cell2mat-490"></a></var><br>
 <blockquote><p>Convert the cell array <var>c</var> into a matrix by concatenating all
 elements of <var>c</var> into a hyperrectangle.  Elements of <var>c</var> must
 be numeric, logical or char matrices, or cell arrays, and <code>cat</code>
-must be able to concatenate them together. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+must be able to concatenate them together.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dmat2cell.html#doc_002dmat2cell">mat2cell</a>, <a href="doc_002dnum2cell.html#doc_002dnum2cell">num2cell</a>. 
 </p></blockquote></div>
 
-<!-- cell2struct src/ov-struct.cc -->
+<!-- cell2struct libinterp/octave-value/ov-struct.cc -->
    <p><a name="doc_002dcell2struct"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>cell2struct</b> (<var>cell, fields, dim</var>)<var><a name="index-cell2struct-473"></a></var><br>
+&mdash; Built-in Function:  <b>cell2struct</b> (<var>cell, fields, dim</var>)<var><a name="index-cell2struct-491"></a></var><br>
 <blockquote><p>Convert <var>cell</var> to a structure.  The number of fields in <var>fields</var>
 must match the number of elements in <var>cell</var> along dimension <var>dim</var>,
 that is <code>numel (</code><var>fields</var><code>) == size (</code><var>cell</var><code>, </code><var>dim</var><code>)</code>. 
 If <var>dim</var> is omitted, a value of 1 is assumed.
 
-     <pre class="example">          A = cell2struct ({'Peter', 'Hannah', 'Robert';
+     <pre class="example">          A = cell2struct ({"Peter", "Hannah", "Robert";
                              185, 170, 168},
-                           {'Name','Height'}, 1);
+                           {"Name","Height"}, 1);
           A(1)
-               &rArr; ans =
-                  {
-                    Name   = Peter
-                    Height = 185
-                  }
+             &rArr;
+                {
+                  Name   = Peter
+                  Height = 185
+                }
 </pre>
         </blockquote></div>
 

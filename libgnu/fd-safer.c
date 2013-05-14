@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Return a safer copy of a file descriptor.
 
    Copyright (C) 2005-2006, 2009-2012 Free Software Foundation, Inc.

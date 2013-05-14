@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Failure exit status
 
    Copyright (C) 2002, 2009-2012 Free Software Foundation, Inc.

@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Stop reading the entries of a directory.
    Copyright (C) 2006-2012 Free Software Foundation, Inc.
 

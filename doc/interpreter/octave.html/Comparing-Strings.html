@@ -48,11 +48,11 @@ sensitive.  <code>strncmp</code> compares only the first <code>N</code> characte
 <code>N</code> given as a parameter).  <code>strcmpi</code> and <code>strncmpi</code> are the
 corresponding functions for case-insensitive comparison.
 
-<!-- strcmp src/strfns.cc -->
+<!-- strcmp libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dstrcmp"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strcmp</b> (<var>s1, s2</var>)<var><a name="index-strcmp-349"></a></var><br>
+&mdash; Built-in Function:  <b>strcmp</b> (<var>s1, s2</var>)<var><a name="index-strcmp-361"></a></var><br>
 <blockquote><p>Return 1 if the character strings <var>s1</var> and <var>s2</var> are the same,
 and 0 otherwise.
 
@@ -64,24 +64,21 @@ or character string.
 
         <p><strong>Caution:</strong> For compatibility with <span class="sc">matlab</span>, Octave's strcmp
 function returns 1 if the character strings are equal, and 0 otherwise. 
-This is just the opposite of the corresponding C library function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+This is just the opposite of the corresponding C library function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>, <a href="doc_002dstrncmp.html#doc_002dstrncmp">strncmp</a>, <a href="doc_002dstrncmpi.html#doc_002dstrncmpi">strncmpi</a>. 
 </p></blockquote></div>
 
-<!-- strncmp src/strfns.cc -->
+<!-- strncmp libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dstrncmp"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strncmp</b> (<var>s1, s2, n</var>)<var><a name="index-strncmp-350"></a></var><br>
+&mdash; Built-in Function:  <b>strncmp</b> (<var>s1, s2, n</var>)<var><a name="index-strncmp-362"></a></var><br>
 <blockquote><p>Return 1 if the first <var>n</var> characters of strings <var>s1</var> and <var>s2</var> are
 the same, and 0 otherwise.
 
      <pre class="example">          strncmp ("abce", "abcd", 3)
-               &rArr; 1
+                &rArr; 1
 </pre>
         <p>If either <var>s1</var> or <var>s2</var> is a cell array of strings, then an array
 of the same size is returned, containing the values described above for
@@ -94,19 +91,16 @@ or character string.
 </pre>
         <p><strong>Caution:</strong> For compatibility with <span class="sc">matlab</span>, Octave's strncmp
 function returns 1 if the character strings are equal, and 0 otherwise. 
-This is just the opposite of the corresponding C library function. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+This is just the opposite of the corresponding C library function.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrncmpi.html#doc_002dstrncmpi">strncmpi</a>, <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>. 
 </p></blockquote></div>
 
-<!-- strcmpi src/strfns.cc -->
+<!-- strcmpi libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dstrcmpi"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strcmpi</b> (<var>s1, s2</var>)<var><a name="index-strcmpi-351"></a></var><br>
+&mdash; Built-in Function:  <b>strcmpi</b> (<var>s1, s2</var>)<var><a name="index-strcmpi-363"></a></var><br>
 <blockquote><p>Return 1 if the character strings <var>s1</var> and <var>s2</var> are the same,
 disregarding case of alphabetic characters, and 0 otherwise.
 
@@ -120,19 +114,16 @@ or character string.
 function returns 1 if the character strings are equal, and 0 otherwise. 
 This is just the opposite of the corresponding C library function.
 
-        <p><strong>Caution:</strong> National alphabets are not supported. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p><strong>Caution:</strong> National alphabets are not supported.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrncmp.html#doc_002dstrncmp">strncmp</a>, <a href="doc_002dstrncmpi.html#doc_002dstrncmpi">strncmpi</a>. 
 </p></blockquote></div>
 
-<!-- strncmpi src/strfns.cc -->
+<!-- strncmpi libinterp/corefcn/strfns.cc -->
    <p><a name="doc_002dstrncmpi"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strncmpi</b> (<var>s1, s2, n</var>)<var><a name="index-strncmpi-352"></a></var><br>
+&mdash; Built-in Function:  <b>strncmpi</b> (<var>s1, s2, n</var>)<var><a name="index-strncmpi-364"></a></var><br>
 <blockquote><p>Return 1 if the first <var>n</var> character of <var>s1</var> and <var>s2</var> are the
 same, disregarding case of alphabetic characters, and 0 otherwise.
 
@@ -146,10 +137,7 @@ or character string.
 function returns 1 if the character strings are equal, and 0 otherwise. 
 This is just the opposite of the corresponding C library function.
 
-        <p><strong>Caution:</strong> National alphabets are not supported. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p><strong>Caution:</strong> National alphabets are not supported.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrncmp.html#doc_002dstrncmp">strncmp</a>, <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>. 
 </p></blockquote></div>
@@ -158,10 +146,10 @@ This is just the opposite of the corresponding C library function.
    <p><a name="doc_002dvalidatestring"></a>
 
 <div class="defun">
-&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var>str, strarray</var>)<var><a name="index-validatestring-353"></a></var><br>
-&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var>str, strarray, funcname</var>)<var><a name="index-validatestring-354"></a></var><br>
-&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var>str, strarray, funcname, varname</var>)<var><a name="index-validatestring-355"></a></var><br>
-&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var><small class="dots">...</small>, position</var>)<var><a name="index-validatestring-356"></a></var><br>
+&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var>str, strarray</var>)<var><a name="index-validatestring-365"></a></var><br>
+&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var>str, strarray, funcname</var>)<var><a name="index-validatestring-366"></a></var><br>
+&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var>str, strarray, funcname, varname</var>)<var><a name="index-validatestring-367"></a></var><br>
+&mdash; Function File: <var>validstr</var> = <b>validatestring</b> (<var><small class="dots">...</small>, position</var>)<var><a name="index-validatestring-368"></a></var><br>
 <blockquote><p>Verify that <var>str</var> is an element, or substring of an element, in
 <var>strarray</var>.
 
@@ -189,10 +177,7 @@ specific.
           &rArr; error: validatestring: multiple unique matches were found for 'b':
              blue, black
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>. 
 </p></blockquote></div>
 
    </body></html>

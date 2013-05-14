@@ -42,7 +42,7 @@ function narginchk (minargs, maxargs)
   elseif (!isnumeric (maxargs) || !isscalar (maxargs))
     error ("maxargs must be a numeric scalar");
   elseif (minargs > maxargs)
-    error ("minargs cannot be larger than maxargs")
+    error ("minargs cannot be larger than maxargs");
   endif
 
   args = evalin ("caller", "nargin;");
@@ -55,6 +55,7 @@ function narginchk (minargs, maxargs)
 
 endfunction
 
+
 %!function f (nargs, varargin)
 %! narginchk (nargs(1), nargs(2));
 %!endfunction
@@ -64,6 +65,6 @@ endfunction
 
 %!test
 %! f([1,1])
-
 %!test
 %! f([1,5], 2, 3, 4, 5)
+

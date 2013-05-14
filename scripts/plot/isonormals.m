@@ -95,7 +95,7 @@
 
 ## Author: Martin Helm <martin@mhelm.de>
 
-function varargout = isonormals(varargin)
+function varargout = isonormals (varargin)
   na = nargin;
   negate = false;
   if (ischar (varargin{nargin}))
@@ -122,7 +122,7 @@ function varargout = isonormals(varargin)
     otherwise
       print_usage ();
   endswitch
-  if (ismatrix (vp) && size (vp,2) == 3)
+  if (ismatrix (vp) && columns (vp) == 3)
     pa = [];
     v = vp;
   elseif (ishandle (vp))
@@ -148,16 +148,18 @@ function varargout = isonormals(varargin)
   endswitch
 endfunction
 
+
 %!test
-%!  [x, y, z] = meshgrid (0:.5:2, 0:.5:2, 0:.5:2);
-%!  c = abs ((x-.5).^2 + (y-.5).^2 + (z-.5).^2);
-%!  [f, v, cdat] = isosurface (x, y, z, c, .4, y);
-%!  n = isonormals (x, y, z, c, v);
-%!  assert (size (v), size (n));
+%! [x, y, z] = meshgrid (0:.5:2, 0:.5:2, 0:.5:2);
+%! c = abs ((x-.5).^2 + (y-.5).^2 + (z-.5).^2);
+%! [f, v, cdat] = isosurface (x, y, z, c, .4, y);
+%! n = isonormals (x, y, z, c, v);
+%! assert (size (v), size (n));
 %!test
-%!  [x, y, z] = meshgrid (0:.5:2, 0:.5:2, 0:.5:2);
-%!  c = abs ((x-.5).^2 + (y-.5).^2 + (z-.5).^2);
-%!  [f, v, cdat] = isosurface (x, y, z, c, .4, y);
-%!  np = isonormals (x, y, z, c, v);
-%!  nn = isonormals (x, y, z, c, v, "negate");
-%!  assert (all (np == -nn));
+%! [x, y, z] = meshgrid (0:.5:2, 0:.5:2, 0:.5:2);
+%! c = abs ((x-.5).^2 + (y-.5).^2 + (z-.5).^2);
+%! [f, v, cdat] = isosurface (x, y, z, c, .4, y);
+%! np = isonormals (x, y, z, c, v);
+%! nn = isonormals (x, y, z, c, v, "negate");
+%! assert (np, -nn);
+

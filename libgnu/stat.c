@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Work around platform bugs in stat.
    Copyright (C) 2009-2012 Free Software Foundation, Inc.
 
@@ -29,7 +27,22 @@
 #include <sys/stat.h>
 #undef __need_system_sys_stat_h
 
-static inline int
+#if (defined _WIN32 || defined __WIN32__) && ! defined __CYGWIN__
+# if _GL_WINDOWS_64_BIT_ST_SIZE
+#  undef stat /* avoid warning on mingw64 with _FILE_OFFSET_BITS=64 */
+#  define stat _stati64
+#  define REPLACE_FUNC_STAT_DIR 1
+#  undef REPLACE_FUNC_STAT_FILE
+# elif REPLACE_FUNC_STAT_FILE
+/* mingw64 has a broken stat() function, based on _stat(), in libmingwex.a.
+   Bypass it.  */
+#  define stat _stat
+#  define REPLACE_FUNC_STAT_DIR 1
+#  undef REPLACE_FUNC_STAT_FILE
+# endif
+#endif
+
+static int
 orig_stat (const char *filename, struct stat *buf)
 {
   return stat (filename, buf);

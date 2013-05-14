@@ -1,3 +1,4 @@
+## Copyright (C) 2005-2012 Søren Hauberg
 ## Copyright (C) 2010-2012 VZLU Prague, a.s.
 ##
 ## This file is part of Octave.
@@ -38,30 +39,30 @@ function [ver, url] = get_forge_pkg (name)
   name = tolower (name);
 
   ## Try to download package's index page.
-  [html, succ] = urlread (sprintf ("http://packages.octave.org/%s/index.html", name));
+  [html, succ] = urlread (sprintf ("http://octave.sourceforge.net/%s/index.html", name));
   if (succ)
     ## Remove blanks for simpler matching.
     html(isspace(html)) = [];
     ## Good. Let's grep for the version.
     pat = "<tdclass=""package_table"">PackageVersion:</td><td>([\\d.]*)</td>";
     t = regexp (html, pat, "tokens");
-    if (isempty (t) || isempty(t{1}))
+    if (isempty (t) || isempty (t{1}))
       error ("get_forge_pkg: could not read version number from package's page");
     else
       ver = t{1}{1};
       if (nargout > 1)
         # Build download string.
-        pkg_file = sprintf ("%s-%s.tar.gz", name, ver);
-        url = cstrcat ("http://packages.octave.org/download/", pkg_file);
-        ## Verify that the package string exists on the page.
-        if (isempty (strfind (html, pkg_file)))
+        urlbase = "http://downloads.sourceforge.net/octave/%s-%s.tar.gz?download";
+        url = sprintf (urlbase, name, ver);
+        ## Verify that the string exists on the page.
+        if (isempty (strfind (html, url)))
           warning ("get_forge_pkg: download URL not verified");
         endif
       endif
     endif
   else
     ## Try get the list of all packages.
-    [html, succ] = urlread ("http://packages.octave.org/packages.php");
+    [html, succ] = urlread ("http://octave.sourceforge.net/packages.php");
     if (succ)
       t = regexp (html, "<div class=""package"" id=""(\\w+)"">", "tokens");
       t = horzcat (t{:});

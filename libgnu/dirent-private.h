@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Private details of the DIR type.
    Copyright (C) 2011-2012 Free Software Foundation, Inc.
 

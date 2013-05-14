@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+<title>Test the java package installation - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="How-to-compile-the-java-package-in-Octave_003f.html#How-to-compile-the-java-package-in-Octave_003f" title="How to compile the java package in Octave?">
+<link rel="prev" href="Compile-and-install-the-package-in-Octave.html#Compile-and-install-the-package-in-Octave" title="Compile and install the package in Octave">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Test-the-java-package-installation"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Compile-and-install-the-package-in-Octave.html#Compile-and-install-the-package-in-Octave">Compile and install the package in Octave</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="How-to-compile-the-java-package-in-Octave_003f.html#How-to-compile-the-java-package-in-Octave_003f">How to compile the java package in Octave?</a>
+<hr>
+</div>
+
+<h5 class="subsubsection">37.3.5.4 Test the java package installation</h5>
+
+<p>The following code creates a Java string object, which however is automatically
+converted to an Octave string:
+
+<pre class="example">     octave&gt; s = javaObject('java.lang.String', 'Hello OctaveString')
+     s = Hello OctaveString
+</pre>
+   <p>Note that the java package automatically transforms the Java String object to
+an Octave string.  This means that you cannot apply Java String methods to the
+result.
+
+   <p>This "auto boxing" scheme seems to be implemented for the following Java
+classes:
+
+     <ul>
+<li>java.lang.Integer
+
+     <li>java.lang.Double
+
+     <li>java.lang.Boolean
+
+     <li>java.lang.String
+</ul>
+
+   <p>If you instead create an object for which no "auto-boxing" is implemented,
+<code>javaObject</code> returns the genuine Java object:
+
+<pre class="example">     octave&gt; v = javaObject('java.util.Vector')
+     v =
+     &lt;Java object: java.util.Vector&gt;
+     octave&gt; v.add(12);
+     octave&gt; v.get(0)
+     ans = 12
+</pre>
+   <p>If you have created such a Java object, you can apply all methods of the Java
+class to the returned object.  Note also that for some objects you must specify
+an initializer:
+
+<pre class="example">     % not:
+     octave&gt; d = javaObject('java.lang.Double')
+     error: [java] java.lang.NoSuchMethodException: java.lang.Double
+     % but:
+     octave&gt; d = javaObject('java.lang.Double',12.34)
+     d = 12.340
+</pre>
+   <!--  -->
+   </body></html>
+

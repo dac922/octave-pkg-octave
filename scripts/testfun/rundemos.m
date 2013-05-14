@@ -65,7 +65,7 @@ function run_all_demos (directory)
         try
           demo (f);
         catch
-          printf ("error: %s\n\n", lasterror().message)
+          printf ("error: %s\n\n", lasterror().message);
         end_try_catch
         if (i != numel (flist))
           input ("Press <enter> to continue: ", "s");
@@ -82,8 +82,11 @@ function retval = has_demos (f)
   else
     str = fscanf (fid, "%s");
     fclose (fid);
-    retval = findstr (str, "%!demo");
+    retval = strfind (str, "%!demo");
   endif
 endfunction
 
-%!error rundemos ("foo", 1);
+
+%!error rundemos ("foo", 1)
+%!error <DIRECTORY argument> rundemos ("#_TOTALLY_/_INVALID_/_PATHNAME_#")
+

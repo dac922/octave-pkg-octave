@@ -24,7 +24,7 @@
 ## @deftypefnx {Function File} {} sprandn (@var{s})
 ## Generate a random sparse matrix.  The size of the matrix will be
 ## @var{m} by @var{n}, with a density of values given by @var{d}.
-## @var{d} should be between 0 and 1. Values will be normally
+## @var{d} should be between 0 and 1.  Values will be normally
 ## distributed with mean of zero and variance 1.
 ##
 ## If called with a single matrix argument, a random sparse matrix is
@@ -63,10 +63,10 @@ endfunction
 %!error sprandn ()
 %!error sprandn (1, 2)
 %!error sprandn (1, 2, 3, 4)
-%!error sprandn (ones(3), 3, 0.5)
+%!error sprandn (ones (3), 3, 0.5)
 %!error sprandn (3.5, 3, 0.5)
 %!error sprandn (0, 3, 0.5)
-%!error sprandn (3, ones(3), 0.5)
+%!error sprandn (3, ones (3), 0.5)
 %!error sprandn (3, 3.5, 0.5)
 %!error sprandn (3, 0, 0.5)
 %!error sprandn (3, 3, -1)

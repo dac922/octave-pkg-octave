@@ -28,7 +28,7 @@
 ## array @var{v} represents a value at a location given by the parameters
 ## @var{x}, @var{y}, and @var{z}.  The parameters @var{x}, @var{x}, and
 ## @var{z} are either 3-dimensional arrays of the same size as the array
-## @var{v} in the 'meshgrid' format or vectors.  The parameters @var{xi}, etc.
+## @var{v} in the "meshgrid" format or vectors.  The parameters @var{xi}, etc.
 ## respect a similar format to @var{x}, etc., and they represent the points
 ## at which the array @var{vi} is interpolated.
 ##
@@ -42,23 +42,23 @@
 ## Method is one of:
 ##
 ## @table @asis
-## @item 'nearest'
+## @item "nearest"
 ## Return the nearest neighbor.
 ##
-## @item 'linear'
+## @item "linear"
 ## Linear interpolation from nearest neighbors.
 ##
-## @item 'cubic'
+## @item "cubic"
 ## Cubic interpolation from four nearest neighbors (not implemented yet).
 ##
-## @item 'spline'
+## @item "spline"
 ## Cubic spline interpolation---smooth first and second derivatives
 ## throughout the curve.
 ## @end table
 ##
-## The default method is 'linear'.
+## The default method is "linear".
 ##
-## If @var{extrap} is the string 'extrap', then extrapolate values beyond
+## If @var{extrap} is the string "extrap", then extrapolate values beyond
 ## the endpoints.  If @var{extrap} is a number, replace values beyond the
 ## endpoints with that number.  If @var{extrap} is missing, assume NA.
 ## @seealso{interp1, interp2, spline, meshgrid}
@@ -91,7 +91,7 @@ function vi = interp3 (varargin)
     if (ndims (v) != 3)
       error ("interp3: expect 3-dimensional array of values");
     endif
-    x = varargin (2:end);
+    x = varargin (2:nargs);
     if (any (! cellfun (@isvector, x)))
       for i = 2 : 3
         if (! size_equal (x{1}, x{i}))
@@ -135,16 +135,50 @@ function vi = interp3 (varargin)
   endif
 endfunction
 
+
 %!test
-%! x = y = z = -1:1;
+%! x = y = z = -1:1; y = y + 2;
 %! f = @(x,y,z) x.^2 - y - z.^2;
 %! [xx, yy, zz] = meshgrid (x, y, z);
 %! v = f (xx,yy,zz);
-%! xi = yi = zi = -1:0.5:1;
+%! xi = yi = zi = -1:0.5:1; yi = yi + 2.1;
 %! [xxi, yyi, zzi] = meshgrid (xi, yi, zi);
-%! vi = interp3(x, y, z, v, xxi, yyi, zzi);
-%! [xxi, yyi, zzi] = ndgrid (xi, yi, zi);
-%! vi2 = interpn(x, y, z, v, xxi, yyi, zzi);
+%! vi = interp3 (x, y, z, v, xxi, yyi, zzi);
+%! [xxi, yyi, zzi] = ndgrid (yi, xi, zi);
+%! vi2 = interpn (y, x, z, v, xxi, yyi, zzi);
+%! tol = 10 * eps;
+%! assert (vi, vi2, tol);
+
+%!test
+%! x=z=1:2; y=1:3;xi=zi=.6:1.6; yi=1; v=ones([3,2,2]);  v(:,2,1)=[7 ;5;4];  v(:,1,2)=[2 ;3;5];
+%! [xxi3, yyi3, zzi3] = meshgrid (xi, yi, zi);
+%! [xxi, yyi, zzi] = ndgrid (yi, xi, zi);
+%! vi = interp3 (x, y, z, v, xxi3, yyi3, zzi3, "nearest");
+%! vi2 = interpn (y, x, z, v, xxi, yyi, zzi,"nearest");
+%! assert (vi, vi2);
+
+%!test
+%! x=z=1:2; y=1:3;xi=zi=.6:1.6; yi=1; v=ones([3,2,2]);  v(:,2,1)=[7 ;5;4];  v(:,1,2)=[2 ;3;5];
+%! vi = interp3 (x, y, z, v, xi+1, yi, zi, "nearest",3);
+%! vi2 = interpn (y, x, z, v, yi, xi+1, zi,"nearest", 3);
+%! assert (vi, vi2);
+
+%!test
+%! x=z=1:2; y=1:3;xi=zi=.6:1.6; yi=1; v=ones([3,2,2]);  v(:,2,1)=[7 ;5;4];  v(:,1,2)=[2 ;3;5];
+%! vi = interp3 (x, y, z, v, xi, yi, zi, "nearest");
+%! vi2 = interpn (y, x, z, v, yi, xi, zi,"nearest");
+%! assert (vi, vi2);
+
+%!test
+%! x=z=1:2; y=1:3;xi=zi=.6:1.6; yi=1; v=ones([3,2,2]);  v(:,2,1)=[7 ;5;4];  v(:,1,2)=[2 ;3;5];
+%! vi = interp3 (v, xi, yi, zi, "nearest",3);
+%! vi2 = interpn (v, yi, xi, zi,"nearest", 3);
+%! assert (vi, vi2);
+
+%!test
+%! xi=zi=.6:1.6; yi=1; v=ones([3,2,2]);  v(:,2,1)=[7 ;5;4];  v(:,1,2)=[2 ;3;5];
+%! vi = interp3 (v, xi, yi, zi, "nearest");
+%! vi2 = interpn (v, yi, xi, zi,"nearest");
 %! assert (vi, vi2);
 
 %!shared z, zout, tol
@@ -164,3 +198,4 @@ endfunction
 %!assert (interp3 (z), zout, tol)
 %!assert (interp3 (z, "linear"), zout, tol)
 %!assert (interp3 (z, "spline"), zout, tol)
+

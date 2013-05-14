@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Work around a bug of lstat on some systems
 
    Copyright (C) 1997-2006, 2008-2012 Free Software Foundation, Inc.
@@ -37,7 +35,7 @@ typedef int dummy;
 # include <sys/stat.h>
 # undef __need_system_sys_stat_h
 
-static inline int
+static int
 orig_lstat (const char *filename, struct stat *buf)
 {
   return lstat (filename, buf);

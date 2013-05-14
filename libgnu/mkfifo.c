@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Create a named fifo.
    Copyright (C) 2009-2012 Free Software Foundation, Inc.
 

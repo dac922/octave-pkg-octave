@@ -19,46 +19,7 @@
 \input texinfo
 @setfilename octave.info
 
-@c The following macro is used for the online help system, but we don't
-@c want lots of 'See also: foo, bar, and baz' strings cluttering the
-@c printed manual (that information should be in the supporting text for
-@c each group of functions and variables).
-
-@macro seealso {args}
-@iftex
-@vskip 2pt
-@end iftex
-@ifnottex
-@c Texinfo @sp should work but in practice produces ugly results for HTML.
-@c A simple blank line produces the correct behavior. 
-@c @sp 1
-
-@end ifnottex
-@noindent
-@strong{See also:} \args\.
-@end macro
-
-@c The following macro marks words that aspell should ignore during
-@c spellchecking.  Within Texinfo it has no effect as it merely replaces
-@c the macro call with the argument itself.
-
-@macro nospell {arg}
-\arg\
-@end macro
-
-@c The following macro works around a situation where the Info/plain text
-@c expansion of the @code{XXX} macro is 'XXX'.  The use of the apostrophe
-@c can be confusing if the code segment itself ends with a transpose operator.
-@ifinfo
-@macro xcode{arg}
-\arg\
-@end macro
-@end ifinfo
-@ifnotinfo
-@macro xcode{arg}
-@code{\arg\}
-@end macro
-@end ifnotinfo
+@include macros.texi
 
 @ifinfo
 @format
@@ -216,6 +177,7 @@ It corresponds to GNU Octave version @value{VERSION}.
 * Object Oriented Programming::            
 * GUI Development::            
 * System Utilities::            
+* Java Interface:: 
 * Packages:: 
 * Dynamically Linked Functions::
 * Test and Demo Functions::
@@ -644,7 +606,7 @@ Diagonal and Permutation Matrices
 * Basic Usage::          Creation and Manipulation of Diagonal and Permutation Matrices
 * Matrix Algebra::       Linear Algebra with Diagonal and Permutation Matrices
 * Function Support::     Functions That Are Aware of These Matrices
-* Example Codes::        Some Examples of Usage
+* Example Code::         Some Examples of Usage
 * Zeros Treatment::      The Differences in Treatment of Zero Elements
 
 Basic Usage
@@ -890,7 +852,7 @@ Installation
 
 Build Dependencies
 
-* Obtaining the Depencies Automatically::
+* Obtaining the Dependencies Automatically::
 * Build Tools::
 * External Packages::
 
@@ -948,6 +910,7 @@ Grammar and Parser
 @include oop.texi
 @include gui.texi
 @include system.texi
+@include java.texi
 @include package.texi
 
 @c maybe add again later, if anyone every writes any really interesting

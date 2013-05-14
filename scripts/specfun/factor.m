@@ -76,20 +76,21 @@ function [x, n] = factor (q)
   ## Determine muliplicity.
   if (nargout > 1)
     idx = find ([0, x] != [x, 0]);
-    x = x(idx(1:length(idx)-1));
+    x = x(idx(1:length (idx)-1));
     n = diff (idx);
   endif
 
 endfunction
 
+
+%!assert (factor (1), 1)
 %!test
-%!  assert(factor(1),1);
-%!  for i=2:20
-%!     p = factor(i);
-%!     assert(prod(p),i);
-%!     assert(all(isprime(p)));
-%!     [p,n] = factor(i);
-%!     assert(prod(p.^n),i);
-%!     assert(all([0,p]!=[p,0]));
-%!  endfor
+%! for i = 2:20
+%!   p = factor (i);
+%!   assert (prod (p), i);
+%!   assert (all (isprime (p)));
+%!   [p,n] = factor (i);
+%!   assert (prod (p.^n), i);
+%!   assert (all ([0,p] != [p,0]));
+%! endfor
 

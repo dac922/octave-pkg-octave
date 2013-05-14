@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Internal declarations for getopt.
    Copyright (C) 1989-1994, 1996-1999, 2001, 2003-2004, 2009-2012 Free Software
    Foundation, Inc.

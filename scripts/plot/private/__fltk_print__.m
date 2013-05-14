@@ -125,9 +125,9 @@ function opts = __fltk_print__ (opts)
     [cmd_gs, cmd_cleanup] = __ghostscript__ (opts.ghostscript);
     if (opts.send_to_printer || isempty (opts.name))
       cmd_lpr = opts.lpr_cmd (opts);
-      cmd = sprintf("%s | %s", cmd_gs, cmd_lpr);
+      cmd = sprintf ("%s | %s", cmd_gs, cmd_lpr);
     else
-      cmd = sprintf("%s", cmd_gs);
+      cmd = sprintf ("%s", cmd_gs);
     endif
     if (! isempty (cmd_cleanup))
       gl2ps_device = {"eps"};
@@ -148,11 +148,22 @@ function opts = __fltk_print__ (opts)
 
   opts.pipeline = pipeline;
 
-  for n = 1:numel(pipeline)
+  ## Tell gl2ps to use different rendering options for 2D plots
+  haxes = findall (opts.figure, "type", "axes");
+  vw = get (haxes, "view");
+  if (iscell (vw))
+    vw = vertcat (vw{:});
+  endif
+  is2D = all (abs (vw(:,2)) == 90);
+  if (is2D)
+    gl2ps_device{end} = [gl2ps_device{end}, "is2D"];
+  endif
+
+  for n = 1:numel (pipeline)
     if (opts.debug)
       fprintf ("fltk-pipeline: '%s'\n", pipeline{n});
     endif
-    drawnow (gl2ps_device{n}, strcat('|',pipeline{n}));
+    drawnow (gl2ps_device{n}, strcat ('|',pipeline{n}));
   endfor
 
   if (! isempty (strfind (opts.devopt, "standalone")))

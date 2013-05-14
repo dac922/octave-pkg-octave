@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Create a temporary file.
    Copyright (C) 2007, 2009-2012 Free Software Foundation, Inc.
 
@@ -55,6 +53,11 @@ supports_delete_on_close ()
   if (!known)
     {
       OSVERSIONINFO v;
+
+      /* According to
+         <http://msdn.microsoft.com/en-us/library/windows/desktop/ms724451(v=vs.85).aspx>
+         this structure must be initialised as follows:  */
+      v.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
 
       if (GetVersionEx (&v))
         known = (v.dwPlatformId == VER_PLATFORM_WIN32_NT ? 1 : -1);

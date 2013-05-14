@@ -28,37 +28,43 @@
 
 ## Author:  Kai Habel <kai.habel@gmx.de>
 
+## PKG_ADD: colormap ("register", "bone");
+## PKG_DEL: colormap ("unregister", "bone");
+
 function map = bone (n)
 
   if (nargin == 0)
     n = rows (colormap);
   elseif (nargin == 1)
     if (! isscalar (n))
-      error ("bone: argument must be a scalar");
+      error ("bone: N must be a scalar");
     endif
   else
     print_usage ();
   endif
 
   if (n == 1)
-    map = [0, 0, 0];
+    map = [0.125, 0.125, 0.125];
   elseif (n > 1)
     x = linspace (0, 1, n)';
-
-    r = (x < 3/4) .* (7/8 * x) + (x >= 3/4) .* (11/8 * x - 3/8);
-    g = (x < 3/8) .* (7/8 * x)\
-      + (x >= 3/8 & x < 3/4) .* (29/24 * x - 1/8)\
+    r = (x < 3/4) .* (7/8 * x) ...
+      + (x >= 3/4) .* (11/8 * x - 3/8);
+    g = (x < 3/8) .* (7/8 * x) ...
+      + (x >= 3/8 & x < 3/4) .* (29/24 * x - 1/8) ...
       + (x >= 3/4) .* (7/8 * x + 1/8);
-    b = (x < 3/8) .* (29/24 * x) + (x >= 3/8) .* (7/8 * x + 1/8);
+    b = (x < 3/8) .* (29/24 * x) ...
+      + (x >= 3/8) .* (7/8 * x + 1/8);
     map = [r, g, b];
   else
-    map = [];
+    map = zeros (0, 3);
   endif
+
 endfunction
+
 
 %!demo
 %! ## Show the 'bone' colormap as an image
-%! image (1:64, linspace (0, 1, 64), repmat (1:64, 64, 1)')
-%! axis ([1, 64, 0, 1], "ticy", "xy")
-%! colormap (bone (64))
+%! image (1:64, linspace (0, 1, 64), repmat ((1:64)', 1, 64));
+%! axis ([1, 64, 0, 1], "ticy", "xy");
+%! colormap (bone (64));
 

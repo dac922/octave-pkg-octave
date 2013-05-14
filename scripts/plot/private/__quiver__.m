@@ -43,9 +43,9 @@ function hg = __quiver__ (varargin)
     v = varargin{ioff++};
     if (is3d)
       w = varargin{ioff++};
-      [x, y, z] = meshgrid (1:size(u,2), 1:size(u,1), 1:max(size(w)));
+      [x, y, z] = meshgrid (1:columns (u), 1:rows (u), 1:max (size (w)));
     else
-      [x, y] = meshgrid (1:size(u,2), 1:size(u,1));
+      [x, y] = meshgrid (1:columns (u), 1:rows (u));
     endif
     if (nargin >= ioff && isnumeric (varargin{ioff})
         && isscalar (varargin{ioff}))
@@ -62,7 +62,7 @@ function hg = __quiver__ (varargin)
     if (is3d)
       w = varargin{ioff++};
       if (isvector (x) && isvector (y) && isvector (z)
-          && (! isvector (u) || ! isvector (v) || ! isvector(w)))
+          && (! isvector (u) || ! isvector (v) || ! isvector (w)))
         [x, y, z] = meshgrid (x, y, z);
       endif
     else
@@ -112,10 +112,10 @@ function hg = __quiver__ (varargin)
     else
       [nx, ny] = size (x);
     endif
-    dx = (max(x(:)) - min(x(:))) ./ nx;
-    dy = (max(y(:)) - min(y(:))) ./ ny;
+    dx = (max (x(:)) - min (x(:))) ./ nx;
+    dy = (max (y(:)) - min (y(:))) ./ ny;
     if (is3d)
-      dz = (max(z(:)) - min(z(:))) ./ max (size (z));
+      dz = (max (z(:)) - min (z(:))) ./ max (size (z));
       len = max (sqrt (u(:).^2 + v(:).^2 + w(:).^2));
     else
       dz = 0;
@@ -124,7 +124,7 @@ function hg = __quiver__ (varargin)
     if (len > 0)
       sd = sqrt (dx.^2 + dy.^2 + dz.^2) / len;
       if (sd != 0)
-        s = sqrt(2) * autoscale * sd;
+        s = sqrt (2) * autoscale * sd;
       else # special case of identical points with multiple vectors
         s = autoscale;
       endif
@@ -211,12 +211,19 @@ function hg = __quiver__ (varargin)
 
     xtmp = x + uu(:) .* (1 - arrowsize);
     ytmp = y + vv(:) .* (1 - arrowsize);
-    xarrw1 = xtmp + (y - yend) * arrowsize / 3;
-    xarrw2 = xtmp - (y - yend) * arrowsize / 3;
-    yarrw1 = ytmp - (x - xend) * arrowsize / 3;
-    yarrw2 = ytmp + (x - xend) * arrowsize / 3;
+
     if (is3d)
+      xarrw1 = xtmp + sqrt((y - yend).^2 + (z - zend).^2) * arrowsize / 3;
+      xarrw2 = xtmp - sqrt((y - yend).^2 + (z - zend).^2) * arrowsize / 3;
+      yarrw1 = ytmp - sqrt((x - xend).^2 + (z - zend).^2) * arrowsize / 3;
+      yarrw2 = ytmp + sqrt((x - xend).^2 + (z - zend).^2) * arrowsize / 3;
+
       zarrw1 = zarrw2 = zend - ww(:) * arrowsize;
+    else
+      xarrw1 = xtmp + (y - yend) * arrowsize / 3;
+      xarrw2 = xtmp - (y - yend) * arrowsize / 3;
+      yarrw1 = ytmp - (x - xend) * arrowsize / 3;
+      yarrw2 = ytmp + (x - xend) * arrowsize / 3;
     endif
 
     if (have_line_spec)
@@ -349,10 +356,10 @@ function update_data (h, d)
     else
       [nx, ny] = size (x);
     endif
-    dx = (max(x(:)) - min(x(:))) ./ nx;
-    dy = (max(y(:)) - min(y(:))) ./ ny;
+    dx = (max (x(:)) - min (x(:))) ./ nx;
+    dy = (max (y(:)) - min (y(:))) ./ ny;
     if (is3d)
-      dz = (max(z(:)) - min(z(:))) ./ max (size (z));
+      dz = (max (z(:)) - min (z(:))) ./ max (size (z));
       len = max (sqrt (u(:).^2 + v(:).^2 + w(:).^2));
     else
       dz = 0;
@@ -361,7 +368,7 @@ function update_data (h, d)
     if (len > 0)
       sd = sqrt (dx.^2 + dy.^2 + dz.^2) / len;
       if (sd != 0)
-        s *= sqrt(2) * sd;
+        s *= sqrt (2) * sd;
       endif
       u = s * u;
       v = s * v;

@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 Kurt Hornik
 @c
@@ -172,7 +172,8 @@ instead of the audio data.
 Write @var{y} to the canonical RIFF/WAVE sound file @var{filename}
 with sample rate @var{Fs} and bits per sample @var{bps}.  The
 default sample rate is 8000 Hz with 16-bits per sample.  Each column
-of the data represents a separate channel.
+of the data represents a separate channel.  If @var{y} is either a
+row vector or a column vector, it is written as a single channel.
 @seealso{@ref{doc-wavread,,wavread}}
 @end deftypefn
 

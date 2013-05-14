@@ -1,4 +1,4 @@
-@c DO NOT EDIT!  Generated automatically by munge-texi.pl.
+@c DO NOT EDIT!  Generated automatically by munge-texi.
 
 @c Copyright (C) 1996-2012 John W. Eaton
 @c
@@ -60,10 +60,10 @@ using Hindmarsh's ODE solver @sc{lsode}.
 
 
 
-@c lsode src/DLD-FUNCTIONS/lsode.cc
+@c lsode libinterp/corefcn/lsode.cc
 @anchor{doc-lsode}
-@deftypefn  {Loadable Function} {[@var{x}, @var{istate}, @var{msg}] =} lsode (@var{fcn}, @var{x_0}, @var{t})
-@deftypefnx {Loadable Function} {[@var{x}, @var{istate}, @var{msg}] =} lsode (@var{fcn}, @var{x_0}, @var{t}, @var{t_crit})
+@deftypefn  {Built-in Function} {[@var{x}, @var{istate}, @var{msg}] =} lsode (@var{fcn}, @var{x_0}, @var{t})
+@deftypefnx {Built-in Function} {[@var{x}, @var{istate}, @var{msg}] =} lsode (@var{fcn}, @var{x_0}, @var{t}, @var{t_crit})
 Solve the set of differential equations
 @tex
 $$ {dx \over dt} = f (x, t) $$
@@ -75,7 +75,7 @@ $$ x(t_0) = x_0 $$
 @example
 @group
 dx
--- = f(x, t)
+-- = f (x, t)
 dt
 @end group
 @end example
@@ -177,11 +177,11 @@ parameters for @code{lsode}.
 @end deftypefn
 
 
-@c lsode_options src/DLD-FUNCTIONS/lsode.cc
+@c lsode_options libinterp/corefcn/lsode.cc
 @anchor{doc-lsode_options}
-@deftypefn  {Loadable Function} {} lsode_options ()
-@deftypefnx {Loadable Function} {val =} lsode_options (@var{opt})
-@deftypefnx {Loadable Function} {} lsode_options (@var{opt}, @var{val})
+@deftypefn  {Built-in Function} {} lsode_options ()
+@deftypefnx {Built-in Function} {val =} lsode_options (@var{opt})
+@deftypefnx {Built-in Function} {} lsode_options (@var{opt}, @var{val})
 Query or set options for the function @code{lsode}.
 When called with no arguments, the names of all available options and
 their current values are displayed.
@@ -285,8 +285,8 @@ A more efficient set of output points might be
 
 @example
 @group
-t = [0, logspace (-1, log10(303), 150), \
-        logspace (log10(304), log10(500), 150)];
+t = [0, logspace(-1, log10(303), 150), \
+        logspace(log10(304), log10(500), 150)];
 @end group
 @end example
 
@@ -322,9 +322,9 @@ $\dot{x} = {dx \over dt}$
 is the derivative of @math{x}.  The equation is solved using Petzold's
 DAE solver @sc{daspk}.
 
-@c daspk src/DLD-FUNCTIONS/daspk.cc
+@c daspk libinterp/corefcn/daspk.cc
 @anchor{doc-daspk}
-@deftypefn {Loadable Function} {[@var{x}, @var{xdot}, @var{istate}, @var{msg}] =} daspk (@var{fcn}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
+@deftypefn {Built-in Function} {[@var{x}, @var{xdot}, @var{istate}, @var{msg}] =} daspk (@var{fcn}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
 Solve the set of differential-algebraic equations
 @tex
 $$ 0 = f (x, \dot{x}, t) $$
@@ -424,11 +424,11 @@ parameters for @code{daspk}.
 @end deftypefn
 
 
-@c daspk_options src/DLD-FUNCTIONS/daspk.cc
+@c daspk_options libinterp/corefcn/daspk.cc
 @anchor{doc-daspk_options}
-@deftypefn  {Loadable Function} {} daspk_options ()
-@deftypefnx {Loadable Function} {val =} daspk_options (@var{opt})
-@deftypefnx {Loadable Function} {} daspk_options (@var{opt}, @var{val})
+@deftypefn  {Built-in Function} {} daspk_options ()
+@deftypefnx {Built-in Function} {val =} daspk_options (@var{opt})
+@deftypefnx {Built-in Function} {} daspk_options (@var{opt}, @var{val})
 Query or set options for the function @code{daspk}.
 When called with no arguments, the names of all available options and
 their current values are displayed.
@@ -600,9 +600,9 @@ Octave also includes @sc{dassl}, an earlier version of @sc{daspk},
 and @sc{dasrt}, which can be used to solve DAEs with constraints
 (stopping conditions).
 
-@c dassl src/DLD-FUNCTIONS/dassl.cc
+@c dassl libinterp/corefcn/dassl.cc
 @anchor{doc-dassl}
-@deftypefn {Loadable Function} {[@var{x}, @var{xdot}, @var{istate}, @var{msg}] =} dassl (@var{fcn}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
+@deftypefn {Built-in Function} {[@var{x}, @var{xdot}, @var{istate}, @var{msg}] =} dassl (@var{fcn}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
 Solve the set of differential-algebraic equations
 @tex
 $$ 0 = f (x, \dot{x}, t) $$
@@ -703,11 +703,11 @@ parameters for @code{dassl}.
 @end deftypefn
 
 
-@c dassl_options src/DLD-FUNCTIONS/dassl.cc
+@c dassl_options libinterp/corefcn/dassl.cc
 @anchor{doc-dassl_options}
-@deftypefn  {Loadable Function} {} dassl_options ()
-@deftypefnx {Loadable Function} {val =} dassl_options (@var{opt})
-@deftypefnx {Loadable Function} {} dassl_options (@var{opt}, @var{val})
+@deftypefn  {Built-in Function} {} dassl_options ()
+@deftypefnx {Built-in Function} {val =} dassl_options (@var{opt})
+@deftypefnx {Built-in Function} {} dassl_options (@var{opt}, @var{val})
 Query or set options for the function @code{dassl}.
 When called with no arguments, the names of all available options and
 their current values are displayed.
@@ -770,12 +770,12 @@ underlying Fortran code.
 @end deftypefn
 
 
-@c dasrt src/DLD-FUNCTIONS/dasrt.cc
+@c dasrt libinterp/corefcn/dasrt.cc
 @anchor{doc-dasrt}
-@deftypefn  {Loadable Function} {[@var{x}, @var{xdot}, @var{t_out}, @var{istat}, @var{msg}] =} dasrt (@var{fcn}, [], @var{x_0}, @var{xdot_0}, @var{t})
-@deftypefnx {Loadable Function} {@dots{} =} dasrt (@var{fcn}, @var{g}, @var{x_0}, @var{xdot_0}, @var{t})
-@deftypefnx {Loadable Function} {@dots{} =} dasrt (@var{fcn}, [], @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
-@deftypefnx {Loadable Function} {@dots{} =} dasrt (@var{fcn}, @var{g}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
+@deftypefn  {Built-in Function} {[@var{x}, @var{xdot}, @var{t_out}, @var{istat}, @var{msg}] =} dasrt (@var{fcn}, [], @var{x_0}, @var{xdot_0}, @var{t})
+@deftypefnx {Built-in Function} {@dots{} =} dasrt (@var{fcn}, @var{g}, @var{x_0}, @var{xdot_0}, @var{t})
+@deftypefnx {Built-in Function} {@dots{} =} dasrt (@var{fcn}, [], @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
+@deftypefnx {Built-in Function} {@dots{} =} dasrt (@var{fcn}, @var{g}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
 Solve the set of differential-algebraic equations
 @tex
 $$ 0 = f (x, \dot{x}, t) $$
@@ -912,11 +912,11 @@ parameters for @code{dasrt}.
 @end deftypefn
 
 
-@c dasrt_options src/DLD-FUNCTIONS/dasrt.cc
+@c dasrt_options libinterp/corefcn/dasrt.cc
 @anchor{doc-dasrt_options}
-@deftypefn  {Loadable Function} {} dasrt_options ()
-@deftypefnx {Loadable Function} {val =} dasrt_options (@var{opt})
-@deftypefnx {Loadable Function} {} dasrt_options (@var{opt}, @var{val})
+@deftypefn  {Built-in Function} {} dasrt_options ()
+@deftypefnx {Built-in Function} {val =} dasrt_options (@var{opt})
+@deftypefnx {Built-in Function} {} dasrt_options (@var{opt}, @var{val})
 Query or set options for the function @code{dasrt}.
 When called with no arguments, the names of all available options and
 their current values are displayed.

@@ -38,7 +38,7 @@ function retval = semilogy (varargin)
   [h, varargin, nargs] = __plt_get_axis_arg__ ("semilogy", varargin{:});
 
   if (nargs < 1)
-    print_usage();
+    print_usage ();
   endif
 
   oldh = gca ();
@@ -47,7 +47,7 @@ function retval = semilogy (varargin)
     newplot ();
 
     set (h, "yscale", "log");
-    if (any( strcmp (get (gca, "nextplot"), {"new", "replace"})))
+    if (any (strcmp (get (gca, "nextplot"), {"new", "replace"})))
       set (h, "yminortick", "on");
     endif
 
@@ -63,39 +63,40 @@ function retval = semilogy (varargin)
 
 endfunction
 
+
 %!demo
-%! clf ();
+%! clf;
 %! x = 1:0.01:10;
 %! y = (x .* (1 + rand (size (x)))) .^ 2;
 %! semilogy (x, y);
 
 %!demo
-%! clf ();
+%! clf;
 %! x = logspace (-5, 1, 10);
 %! y = logspace (-5, 1, 10);
 %!
-%! subplot (2, 1, 1);
+%! subplot (2,1,1);
 %! semilogy (x, y);
-%! ylabel ("semilogy (x, y)");
+%! ylabel ('semilogy (x, y)');
 %!
-%! subplot (2, 1, 2);
+%! subplot (2,1,2);
 %! semilogy (x, -y);
-%! ylabel ("semilogy (x, -y)");
+%! ylabel ('semilogy (x, -y)');
 
 %!demo
-%! clf ();
+%! clf;
 %! x = logspace (-5, 1, 10);
 %! y = logspace (-5, 1, 10);
 %!
-%! subplot (2, 1, 1);
+%! subplot (2,1,1);
 %! semilogy (x, y);
-%! set (gca, "ydir", "reverse", "activepositionproperty", "outerposition");
-%! ylabel ({"semilogy (x, y)", "ydir = reversed"});
+%! set (gca, 'ydir', 'reverse', 'activepositionproperty', 'outerposition');
+%! ylabel ({'semilogy (x, y)', 'ydir = reversed'});
 %!
-%! subplot (2, 1, 2);
+%! subplot (2,1,2);
 %! semilogy (x, -y);
-%! set (gca, "ydir", "reverse", "activepositionproperty", "outerposition");
-%! ylabel ({"semilogy (x, -y)", "ydir = reversed"});
+%! set (gca, 'ydir', 'reverse', 'activepositionproperty', 'outerposition');
+%! ylabel ({'semilogy (x, -y)', 'ydir = reversed'});
 
 %!test
 %! hf = figure ("visible", "off");

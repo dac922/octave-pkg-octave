@@ -19,7 +19,7 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {@var{yl} =} ylim ()
 ## @deftypefnx {Function File} {} ylim (@var{yl})
-## @deftypefnx {Function File} {@var{m} =} ylim ('mode')
+## @deftypefnx {Function File} {@var{m} =} ylim ("mode")
 ## @deftypefnx {Function File} {} ylim (@var{m})
 ## @deftypefnx {Function File} {} ylim (@var{h}, @dots{})
 ## Get or set the limits of the y-axis of the current plot.  Called without
@@ -28,8 +28,8 @@
 ## to this value.
 ##
 ## The current mode for calculation of the y-axis can be returned with a
-## call @code{ylim ('mode')}, and can be either 'auto' or 'manual'.  The
-## current plotting mode can be set by passing either 'auto' or 'manual'
+## call @code{ylim ("mode")}, and can be either "auto" or "manual".  The
+## current plotting mode can be set by passing either "auto" or "manual"
 ## as the argument.
 ##
 ## If passed a handle as the first argument, then operate on this handle
@@ -45,33 +45,34 @@ function retval = ylim (varargin)
   endif
 endfunction
 
+
 %!demo
-%! clf ();
+%! clf;
 %! line ();
 %! ylim ([0.2, 0.8]);
-%! title ("ylim is [0.2, 0.8]");
+%! title ('ylim is [0.2, 0.8]');
 %! assert (ylim (), [0.2, 0.8]);
 
 %!demo
-%! clf ();
+%! clf;
 %! line ();
 %! ylim ('auto');
-%! title ("ylim is auto");
-%! assert (ylim ("mode"), "auto");
+%! title ('ylim is auto');
+%! assert (ylim ('mode'), 'auto');
 
 %!demo
-%! clf ();
+%! clf;
 %! plot3 ([0,1], [0,1], [0,1]);
 %! ylim ([0.2, 0.8]);
-%! title ("ylim is [0.2, 0.8]");
+%! title ('ylim is [0.2, 0.8]');
 %! assert (ylim (), [0.2, 0.8]);
 
 %!demo
-%! clf ();
+%! clf;
 %! plot3 ([0,1], [0,1], [0,1]);
 %! ylim ('auto');
-%! title ("ylim is auto");
-%! assert (ylim ("mode"), "auto");
+%! title ('ylim is auto');
+%! assert (ylim ('mode'), 'auto');
 
 %!test
 %! hf = figure ("visible", "off");
@@ -94,3 +95,4 @@ endfunction
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect
+

@@ -38,7 +38,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Matrix-Manipulation.html#Matrix-Manipul
    <p><a name="doc_002dhadamard"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hadamard</b> (<var>n</var>)<var><a name="index-hadamard-1761"></a></var><br>
+&mdash; Function File:  <b>hadamard</b> (<var>n</var>)<var><a name="index-hadamard-1822"></a></var><br>
 <blockquote><p>Construct a Hadamard matrix (Hn) of size <var>n</var>-by-<var>n</var>.  The
 size <var>n</var> must be of the form 2^k * p in which
 p is one of 1, 12, 20 or 28.  The returned matrix is normalized,
@@ -59,9 +59,6 @@ meaning <code>Hn(:,1)&nbsp;==&nbsp;1</code><!-- /@w --> and <code>Hn(1,:)&nbsp;=
           <li>Multiplying any row or column by -1 and the matrix will remain a Hadamard
 matrix. 
 </ul>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcompan.html#doc_002dcompan">compan</a>, <a href="doc_002dhankel.html#doc_002dhankel">hankel</a>, <a href="doc_002dtoeplitz.html#doc_002dtoeplitz">toeplitz</a>. 
 </p></blockquote></div>
@@ -70,8 +67,8 @@ matrix.
    <p><a name="doc_002dhankel"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hankel</b> (<var>c</var>)<var><a name="index-hankel-1762"></a></var><br>
-&mdash; Function File:  <b>hankel</b> (<var>c, r</var>)<var><a name="index-hankel-1763"></a></var><br>
+&mdash; Function File:  <b>hankel</b> (<var>c</var>)<var><a name="index-hankel-1823"></a></var><br>
+&mdash; Function File:  <b>hankel</b> (<var>c, r</var>)<var><a name="index-hankel-1824"></a></var><br>
 <blockquote><p>Return the Hankel matrix constructed from the first column <var>c</var>, and
 (optionally) the last row <var>r</var>.  If the last element of <var>c</var> is
 not the same as the first element of <var>r</var>, the last element of
@@ -84,17 +81,14 @@ be a vector of zeros with the same size as <var>c</var>.
      <pre class="example">          H(i,j) = c(i+j-1),  i+j-1 &lt;= m;
           H(i,j) = r(i+j-m),  otherwise
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhadamard.html#doc_002dhadamard">hadamard</a>, <a href="doc_002dtoeplitz.html#doc_002dtoeplitz">toeplitz</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dhadamard.html#doc_002dhadamard">hadamard</a>, <a href="doc_002dtoeplitz.html#doc_002dtoeplitz">toeplitz</a>. 
 </p></blockquote></div>
 
 <!-- hilb scripts/special-matrix/hilb.m -->
    <p><a name="doc_002dhilb"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hilb</b> (<var>n</var>)<var><a name="index-hilb-1764"></a></var><br>
+&mdash; Function File:  <b>hilb</b> (<var>n</var>)<var><a name="index-hilb-1825"></a></var><br>
 <blockquote><p>Return the Hilbert matrix of order <var>n</var>.  The i,j element
 of a Hilbert matrix is defined as
 
@@ -110,17 +104,14 @@ a Hilbert matrix of order 5 reveals just how difficult the problem is.
           cond (hilb (5))
              &rArr; 4.7661e+05
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinvhilb.html#doc_002dinvhilb">invhilb</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dinvhilb.html#doc_002dinvhilb">invhilb</a>. 
 </p></blockquote></div>
 
 <!-- invhilb scripts/special-matrix/invhilb.m -->
    <p><a name="doc_002dinvhilb"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>invhilb</b> (<var>n</var>)<var><a name="index-invhilb-1765"></a></var><br>
+&mdash; Function File:  <b>invhilb</b> (<var>n</var>)<var><a name="index-invhilb-1826"></a></var><br>
 <blockquote><p>Return the inverse of the Hilbert matrix of order <var>n</var>.  This can be
 computed exactly using
 
@@ -144,10 +135,7 @@ See J. W. Demmel, <cite>Applied Numerical Linear Algebra</cite>, p. 92.
 
         <p>Compare this with the numerical calculation of <code>inverse (hilb (n))</code>,
 which suffers from the ill-conditioning of the Hilbert matrix, and the
-finite precision of your computer's floating point arithmetic. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+finite precision of your computer's floating point arithmetic.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dhilb.html#doc_002dhilb">hilb</a>. 
 </p></blockquote></div>
@@ -156,7 +144,7 @@ finite precision of your computer's floating point arithmetic.
    <p><a name="doc_002dmagic"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>magic</b> (<var>n</var>)<var><a name="index-magic-1766"></a></var><br>
+&mdash; Function File:  <b>magic</b> (<var>n</var>)<var><a name="index-magic-1827"></a></var><br>
 <blockquote>
         <p>Create an <var>n</var>-by-<var>n</var> magic square.  A magic square is an arrangement
 of the integers <code>1:n^2</code> such that the row sums, column sums, and
@@ -169,8 +157,8 @@ diagonal sums are all equal to the same value.
    <p><a name="doc_002dpascal"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>pascal</b> (<var>n</var>)<var><a name="index-pascal-1767"></a></var><br>
-&mdash; Function File:  <b>pascal</b> (<var>n, t</var>)<var><a name="index-pascal-1768"></a></var><br>
+&mdash; Function File:  <b>pascal</b> (<var>n</var>)<var><a name="index-pascal-1828"></a></var><br>
+&mdash; Function File:  <b>pascal</b> (<var>n, t</var>)<var><a name="index-pascal-1829"></a></var><br>
 <blockquote><p>Return the Pascal matrix of order <var>n</var> if <var>t</var><code> = 0</code>.  <var>t</var>
 defaults to 0.  Return the pseudo-lower triangular Cholesky&nbsp;factor of
 the Pascal matrix if <var>t</var><code> = 1</code> (The sign of some columns may be
@@ -181,9 +169,6 @@ Cholesky&nbsp;factor with strictly positive values on the diagonal.  If
 (</code><var>n</var><code>, 1)</code>, which is the cube root of the identity matrix.  That is,
 <code>pascal (</code><var>n</var><code>, 2) ^ 3 == eye (</code><var>n</var><code>)</code>.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>. 
 </p></blockquote></div>
 
@@ -191,13 +176,10 @@ Cholesky&nbsp;factor with strictly positive values on the diagonal.  If
    <p><a name="doc_002drosser"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rosser</b> ()<var><a name="index-rosser-1769"></a></var><br>
+&mdash; Function File:  <b>rosser</b> ()<var><a name="index-rosser-1830"></a></var><br>
 <blockquote><p>Return the Rosser matrix.  This is a difficult test case used to evaluate
 eigenvalue algorithms.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dwilkinson.html#doc_002dwilkinson">wilkinson</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
 </p></blockquote></div>
 
@@ -205,8 +187,8 @@ eigenvalue algorithms.
    <p><a name="doc_002dtoeplitz"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>toeplitz</b> (<var>c</var>)<var><a name="index-toeplitz-1770"></a></var><br>
-&mdash; Function File:  <b>toeplitz</b> (<var>c, r</var>)<var><a name="index-toeplitz-1771"></a></var><br>
+&mdash; Function File:  <b>toeplitz</b> (<var>c</var>)<var><a name="index-toeplitz-1831"></a></var><br>
+&mdash; Function File:  <b>toeplitz</b> (<var>c, r</var>)<var><a name="index-toeplitz-1832"></a></var><br>
 <blockquote><p>Return the Toeplitz matrix constructed from the first column <var>c</var>,
 and (optionally) the first row <var>r</var>.  If the first element of <var>r</var>
 is not the same as the first element of <var>c</var>, the first element of
@@ -223,18 +205,15 @@ taken to be the same as the first column.
            .     .      .       .  .
           c(n) c(n-1) c(n-2) ...  c(0)
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhankel.html#doc_002dhankel">hankel</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dhankel.html#doc_002dhankel">hankel</a>. 
 </p></blockquote></div>
 
 <!-- vander scripts/special-matrix/vander.m -->
    <p><a name="doc_002dvander"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>vander</b> (<var>c</var>)<var><a name="index-vander-1772"></a></var><br>
-&mdash; Function File:  <b>vander</b> (<var>c, n</var>)<var><a name="index-vander-1773"></a></var><br>
+&mdash; Function File:  <b>vander</b> (<var>c</var>)<var><a name="index-vander-1833"></a></var><br>
+&mdash; Function File:  <b>vander</b> (<var>c, n</var>)<var><a name="index-vander-1834"></a></var><br>
 <blockquote><p>Return the Vandermonde matrix whose next to last column is <var>c</var>. 
 If <var>n</var> is specified, it determines the number of columns;
 otherwise, <var>n</var> is taken to be equal to the length of <var>c</var>.
@@ -248,29 +227,23 @@ otherwise, <var>n</var> is taken to be equal to the length of <var>c</var>.
               .         .  .      .    .
           c(n)^(n-1) ... c(n)^2  c(n)  1
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyfit.html#doc_002dpolyfit">polyfit</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyfit.html#doc_002dpolyfit">polyfit</a>. 
 </p></blockquote></div>
 
 <!-- wilkinson scripts/special-matrix/wilkinson.m -->
    <p><a name="doc_002dwilkinson"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>wilkinson</b> (<var>n</var>)<var><a name="index-wilkinson-1774"></a></var><br>
+&mdash; Function File:  <b>wilkinson</b> (<var>n</var>)<var><a name="index-wilkinson-1835"></a></var><br>
 <blockquote><p>Return the Wilkinson matrix of order <var>n</var>.  Wilkinson matrices are
 symmetric and tridiagonal with pairs of nearly, but not exactly, equal
 eigenvalues.  They are useful in testing the behavior and performance
 of eigenvalue solvers.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002drosser.html#doc_002drosser">rosser</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
 </p></blockquote></div>
 
-<!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->
 <!-- This file is part of Octave. -->
 <!-- Octave is free software; you can redistribute it and/or modify it -->

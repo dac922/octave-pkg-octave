@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Functions-and-Scripts.html#Functions-an
 <hr>
 </div>
 
-<h3 class="section">11.2 Multiple Return Values</h3>
+<h3 class="section">11.3 Multiple Return Values</h3>
 
 <p>Unlike many other computer languages, Octave allows you to define
 functions that return more than one value.  The syntax for defining
@@ -77,8 +77,8 @@ of the return values or several at once in a cell array.
    <p><a name="doc_002dnthargout"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nthargout</b> (<var>n, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-730"></a></var><br>
-&mdash; Function File:  <b>nthargout</b> (<var>n, ntot, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-731"></a></var><br>
+&mdash; Function File:  <b>nthargout</b> (<var>n, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-748"></a></var><br>
+&mdash; Function File:  <b>nthargout</b> (<var>n, ntot, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-749"></a></var><br>
 <blockquote><p>Return the <var>n</var>th output argument of function given by the
 function handle or string <var>func</var>.  Any arguments after <var>func</var>
 are passed to <var>func</var>.  The total number of arguments to call
@@ -92,13 +92,13 @@ For example, when finding the indices of the maximum entry of a
 matrix, the following two compositions of nthargout
 
      <pre class="example">          <var>m</var> = magic (5);
-          cell2mat (nthargout ([1, 2], @ind2sub, size(<var>m</var>),
+          cell2mat (nthargout ([1, 2], @ind2sub, size (<var>m</var>),
                                nthargout (2, @max, <var>m</var>(:))))
           &rArr; 5   3
 </pre>
         <p class="noindent">are completely equivalent to the following lines:
 
-     <pre class="example">          <var>m</var> = magic(5);
+     <pre class="example">          <var>m</var> = magic (5);
           [~, idx] = max (<var>M</var>(:));
           [i, j] = ind2sub (size (<var>m</var>), idx);
           [i, j]
@@ -109,10 +109,7 @@ in the following manner:
 
      <pre class="example">          <var>USV</var> = nthargout ([1:3], @svd, hilb (5));
 </pre>
-        <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>. 
+        <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>. 
 </p></blockquote></div>
 
    <p>In addition to setting <code>nargin</code> each time a function is called,
@@ -149,16 +146,17 @@ example, calling the function
 </pre>
    <p class="noindent">along with a warning.
 
-<!-- nargout src/ov-usr-fcn.cc -->
+<!-- nargout libinterp/octave-value/ov-usr-fcn.cc -->
    <p><a name="doc_002dnargout"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nargout</b> ()<var><a name="index-nargout-732"></a></var><br>
-&mdash; Built-in Function:  <b>nargout</b> (<var>fcn_name</var>)<var><a name="index-nargout-733"></a></var><br>
+&mdash; Built-in Function:  <b>nargout</b> ()<var><a name="index-nargout-750"></a></var><br>
+&mdash; Built-in Function:  <b>nargout</b> (<var>fcn</var>)<var><a name="index-nargout-751"></a></var><br>
 <blockquote><p>Within a function, return the number of values the caller expects to
-receive.  If called with the optional argument <var>fcn_name</var>, return the
-maximum number of values the named function can produce, or -1 if the
-function can produce a variable number of values.
+receive.  If called with the optional argument <var>fcn</var>, a function
+name or handle, return the number of declared output values that the
+function can produce.  If the final output argument is <var>varargout</var>
+the returned value is negative.
 
         <p>For example,
 
@@ -171,10 +169,19 @@ function can produce a variable number of values.
         <p class="noindent">will cause <code>nargout</code> to return 2 inside the function
 <code>f</code>.
 
-        <p>At the top level, <code>nargout</code> is undefined. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+        <p>In the second usage,
+
+     <pre class="example">          nargout (@histc) % or nargout ('histc')
+</pre>
+        <p class="noindent">will return 2, because <code>histc</code> has two outputs, whereas
+
+     <pre class="example">          nargout (@deal)
+</pre>
+        <p class="noindent">will return -1, because <code>deal</code> has a variable number of outputs.
+
+        <p>At the top level, <code>nargout</code> with no argument is undefined. 
+<code>nargout</code> does not work on builtin functions. 
+<code>nargout</code> returns -1 for all anonymous functions.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002dnthargout.html#doc_002dnthargout">nthargout</a>. 
 </p></blockquote></div>
@@ -196,17 +203,14 @@ way to call the function whenever the number of inputs is wrong.
    <p><a name="doc_002dnargchk"></a>
 
 <div class="defun">
-&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargchk-734"></a></var><br>
-&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargchk-735"></a></var><br>
-&mdash; Function File: <var>msgstruct</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargchk-736"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargchk-752"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargchk-753"></a></var><br>
+&mdash; Function File: <var>msgstruct</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargchk-754"></a></var><br>
 <blockquote><p>Return an appropriate error message string (or structure) if the
 number of inputs requested is invalid.
 
         <p>This is useful for checking to see that the number of input arguments
-supplied to a function is within an acceptable range. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+supplied to a function is within an acceptable range.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargoutchk.html#doc_002dnargoutchk">nargoutchk</a>, <a href="doc_002dnarginchk.html#doc_002dnarginchk">narginchk</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>. 
 </p></blockquote></div>
@@ -215,7 +219,7 @@ supplied to a function is within an acceptable range.
    <p><a name="doc_002dnarginchk"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>narginchk</b> (<var>minargs, maxargs</var>)<var><a name="index-narginchk-737"></a></var><br>
+&mdash; Function File:  <b>narginchk</b> (<var>minargs, maxargs</var>)<var><a name="index-narginchk-755"></a></var><br>
 <blockquote><p>Check for correct number of arguments or generate an error message if
 the number of arguments in the calling function is outside the range
 <var>minargs</var> and <var>maxargs</var>.  Otherwise, do nothing.
@@ -226,9 +230,6 @@ values.  Zero, Inf and negative values are all allowed, and
 
         <p>Note that this function evaluates <code>nargin</code> on the caller.
 
-     <!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-     <!-- A simple blank line produces the correct behavior. -->
-     <!-- @sp 1 -->
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargchk.html#doc_002dnargchk">nargchk</a>, <a href="doc_002dnargoutchk.html#doc_002dnargoutchk">nargoutchk</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>. 
 </p></blockquote></div>
 
@@ -236,10 +237,10 @@ values.  Zero, Inf and negative values are all allowed, and
    <p><a name="doc_002dnargoutchk"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nargoutchk</b> (<var>minargs, maxargs</var>)<var><a name="index-nargoutchk-738"></a></var><br>
-&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargoutchk-739"></a></var><br>
-&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargoutchk-740"></a></var><br>
-&mdash; Function File: <var>msgstruct</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargoutchk-741"></a></var><br>
+&mdash; Function File:  <b>nargoutchk</b> (<var>minargs, maxargs</var>)<var><a name="index-nargoutchk-756"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargoutchk-757"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargoutchk-758"></a></var><br>
+&mdash; Function File: <var>msgstruct</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargoutchk-759"></a></var><br>
 <blockquote><p>Check for correct number of output arguments.
 
         <p>On the first form, returns an error unless the number of arguments in its
@@ -255,10 +256,7 @@ error message string (or structure) if the number of outputs requested is
 invalid.
 
         <p>This is useful for checking to see that the number of output
-arguments supplied to a function is within an acceptable range. 
-<!-- Texinfo @sp should work but in practice produces ugly results for HTML. -->
-<!-- A simple blank line produces the correct behavior. -->
-<!-- @sp 1 -->
+arguments supplied to a function is within an acceptable range.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargchk.html#doc_002dnargchk">nargchk</a>, <a href="doc_002dnarginchk.html#doc_002dnarginchk">narginchk</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>. 
 </p></blockquote></div>

@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* save-cwd.c -- Save and restore current working directory.
 
    Copyright (C) 1995, 1997-1998, 2003-2006, 2009-2012 Free Software

@@ -1,5 +1,3 @@
-/* -*- buffer-read-only: t -*- vi: set ro: */
-/* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Invoke dup, but avoid some glitches.
 
    Copyright (C) 2001, 2004-2006, 2009-2012 Free Software Foundation, Inc.

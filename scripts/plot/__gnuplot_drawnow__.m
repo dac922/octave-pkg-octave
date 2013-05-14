@@ -74,7 +74,7 @@ function __gnuplot_drawnow__ (h, term, file, mono, debug_file)
     else
       new_stream = false;
     endif
-    term = gnuplot_default_term ();
+    term = gnuplot_default_term (plot_stream);
     if (strcmp (term, "dumb"))
       ## popen2 eats stdout of gnuplot, use temporary file instead
       dumb_tmp_file = tmpnam ();
@@ -114,7 +114,7 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
   ## When "term" originates from print.m, it may include other options.
   if (nargin < 4)
     ## This supports the gnuplot graphics toolkit.
-    term = gnuplot_default_term ();
+    term = gnuplot_default_term (plot_stream);
     opts_str = "";
   else
     ## Get the one word terminal id and save the remaining as options to
@@ -122,8 +122,8 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
     ## toolkit.
     [term, opts_str] = gnuplot_trim_term (term);
     term = lower (term);
-    if (strcmpi (term, "lua"))
-      ## Replace "lau tikz" with
+    if (strcmp (term, "lua"))
+      ## Replace "lua tikz" with just "tikz"
       term = "tikz";
       opts_str = strrep (opts_str, "tikz", "");
     endif
@@ -132,7 +132,7 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
   if (strfind (opts_str, "noenhanced"))
     enhanced = false;
   else
-    enhanced = gnuplot_is_enhanced_term (term);
+    enhanced = gnuplot_is_enhanced_term (plot_stream, term);
   endif
 
   ## Set the terminal.
@@ -147,10 +147,10 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
     if (! isempty (h) && isfigure (h))
 
       ## Generate gnuplot title string for plot windows.
-      if (output_to_screen (term) && ~strcmp (term, "dumb"))
+      if (output_to_screen (term) && ! strcmp (term, "dumb"))
         fig.numbertitle = get (h, "numbertitle");
         fig.name = strrep (get (h, "name"), "\"", "\\\"");
-        if (strcmpi (get (h, "numbertitle"), "on"))
+        if (strcmp (get (h, "numbertitle"), "on"))
           title_str = sprintf ("Figure %d", h);
         else
           title_str = "";
@@ -186,8 +186,8 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
         gnuplot_pos = position_in_pixels(1:2);
         gnuplot_size = position_in_pixels(3:4);
         if (! (output_to_screen (term)
-               || any (strcmp (term, {"emf", "gif", "jpeg", "pbm", "png", ...
-                                      "pngcairo", "svg"}))))
+               || any (strcmp (term, {"canvas", "emf", "gif", "jpeg", ...
+                                      "pbm", "png", "pngcairo", "svg"}))))
           ## Convert to inches
           gnuplot_pos = gnuplot_pos / 72;
           gnuplot_size = gnuplot_size / 72;
@@ -197,6 +197,9 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
                                  "gif", "jpeg", "latex", "pbm", "pdf", ...
                                  "pdfcairo", "postscript", "png", "pngcairo", ...
                                  "pstex", "pslatex", "svg", "tikz"};
+          if (__gnuplot_has_feature__ ("windows_figure_position"))
+            terminals_with_size{end+1} = "windows";
+          endif
           if (__gnuplot_has_feature__ ("x11_figure_position"))
             terminals_with_size{end+1} = "x11";
           endif
@@ -205,12 +208,12 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
           endif
           switch (term)
           case terminals_with_size
-            size_str = sprintf ("size %g,%g", gnuplot_size);
+            size_str = sprintf ("size %.12g,%.12g", gnuplot_size);
           case "tikz"
             size_str = sprintf ("size %gin,%gin", gnuplot_size);
           case "dumb"
             new_stream = 1;
-            if (~isempty (getenv ("COLUMNS")) && ~isempty (getenv ("LINES")))
+            if (! isempty (getenv ("COLUMNS")) && ! isempty (getenv ("LINES")))
               ## Let dumb use full text screen size (minus prompt lines).
               n = sprintf ("%i", -2 - length (find (sprintf ("%s", PS1) == "\n")));
               ## n = the number of times \n appears in PS1
@@ -226,9 +229,11 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
           otherwise
             size_str = "";
           endswitch
-          if (strncmpi (term, "x11", 3)
-              && __gnuplot_has_feature__ ("x11_figure_position"))
-            ## X11 allows the window to be positioned as well.
+          if ((strncmpi (term, "x11", 3)
+               && __gnuplot_has_feature__ ("x11_figure_position"))
+              || (strcmpi (term, "windows")
+                  && __gnuplot_has_feature__ ("windows_figure_position")))
+            ## X11/Windows allows the window to be positioned as well.
             units = get (0, "units");
             unwind_protect
               set (0, "units", "pixels");
@@ -237,7 +242,7 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
               set (0, "units", units);
             end_unwind_protect
             if (all (screen_size > 0))
-              ## For X11, set the figure positon as well as the size
+              ## For X11/Windows, set the figure positon as well as the size
               ## gnuplot position is UL, Octave's is LL (same for screen/window)
               gnuplot_pos(2) = screen_size(2) - gnuplot_pos(2) - gnuplot_size(2);
               gnuplot_pos = max (gnuplot_pos, 1);
@@ -254,9 +259,9 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
         size_str = "";
       endif
     else
-      if isempty (h)
+      if (isempty (h))
         disp ("gnuplot_set_term: figure handle is empty");
-      elseif !isfigure(h)
+      elseif (! isfigure (h))
         disp ("gnuplot_set_term: not a figure handle");
       endif
       title_str = "";
@@ -316,6 +321,7 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
         endif
       endif
     endif
+    fprintf (plot_stream, "set termoption dashed\n")
   else
     ## gnuplot will pick up the GNUTERM environment variable itself
     ## so no need to set the terminal type if not also setting the
@@ -324,11 +330,13 @@ function enhanced = gnuplot_set_term (plot_stream, new_stream, h, term, file)
 
 endfunction
 
-function term = gnuplot_default_term ()
+function term = gnuplot_default_term (plot_stream)
   term = getenv ("GNUTERM");
   ## If not specified, guess the terminal type.
-  if (isempty (term))
-    if (ismac ())
+  if (isempty (term) || ! __gnuplot_has_terminal__ (term, plot_stream))
+    if (isguirunning () && __gnuplot_has_terminal__ ("qt", plot_stream))
+      term = "qt";
+    elseif (ismac ())
       term = "aqua";
     elseif (! isunix ())
       term = "windows";
@@ -353,24 +361,24 @@ function [term, opts] = gnuplot_trim_term (string)
   endif
 endfunction
 
-function have_enhanced = gnuplot_is_enhanced_term (term)
+function have_enhanced = gnuplot_is_enhanced_term (plot_stream, term)
   persistent enhanced_terminals;
   if (isempty (enhanced_terminals))
     ## Don't include pstex, pslatex or epslatex here as the TeX commands
     ## should not be interpreted in that case.
     enhanced_terminals = {"aqua", "canvas", "dumb", "emf", "gif", "jpeg", ...
                           "pdf", "pdfcairo", "pm", "png", "pngcairo", ...
-                          "postscript", "svg", "windows", "wxt", "x11"};
+                          "postscript", "qt", "svg", "windows", "wxt", "x11"};
   endif
-  if (nargin < 1)
+  if (nargin < 2)
     ## Determine the default gnuplot terminal.
-    term = gnuplot_default_term ();
+    term = gnuplot_default_term (plot_stream);
   endif
   have_enhanced = any (strncmp (enhanced_terminals, term, min (numel (term), 3)));
 endfunction
 
 function ret = output_to_screen (term)
-  ret = any (strcmpi ({"aqua", "dumb", "wxt", "x11", "windows", "pm"}, term));
+  ret = any (strcmpi ({"aqua", "dumb", "pm", "qt", "windows", "wxt", "x11"}, term));
 endfunction
 
 function retval = have_non_legend_axes (h)
@@ -390,3 +398,4 @@ endfunction
 
 ## No test needed for internal helper function.
 %!assert (1)
+

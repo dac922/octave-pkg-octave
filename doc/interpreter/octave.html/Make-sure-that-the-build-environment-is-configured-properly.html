@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+<title>Make sure that the build environment is configured properly - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="How-to-compile-the-java-package-in-Octave_003f.html#How-to-compile-the-java-package-in-Octave_003f" title="How to compile the java package in Octave?">
+<link rel="prev" href="Uninstall-the-currently-installed-package-_0040var_007bjava_007d.html#Uninstall-the-currently-installed-package-_0040var_007bjava_007d" title="Uninstall the currently installed package @var{java}">
+<link rel="next" href="Compile-and-install-the-package-in-Octave.html#Compile-and-install-the-package-in-Octave" title="Compile and install the package in Octave">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Make-sure-that-the-build-environment-is-configured-properly"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Compile-and-install-the-package-in-Octave.html#Compile-and-install-the-package-in-Octave">Compile and install the package in Octave</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Uninstall-the-currently-installed-package-_003cvar_003ejava_003c_002fvar_003e.html#Uninstall-the-currently-installed-package-_003cvar_003ejava_003c_002fvar_003e">Uninstall the currently installed package &lt;var&gt;java&lt;/var&gt;</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="How-to-compile-the-java-package-in-Octave_003f.html#How-to-compile-the-java-package-in-Octave_003f">How to compile the java package in Octave?</a>
+<hr>
+</div>
+
+<h5 class="subsubsection">37.3.5.2 Make sure that the build environment is configured properly</h5>
+
+<p>The installation process requires that the environment variable
+<samp><span class="env">JAVA_HOME</span></samp><!-- /@w --> points to the Java Development Kit (JDK) on your computer.
+
+     <ul>
+<li>Note that JDK is not equal to JRE (Java Runtime Environment).  The JDK home
+directory contains subdirectories with include, library and executable files
+which are required to compile the <var>java</var> package.  These files are not part
+of the JRE, so you definitely need the JDK.
+
+     <li>Do not use backslashes but ordinary slashes in the path. 
+</ul>
+
+   <p>Set the environment variable <samp><span class="env">JAVA_HOME</span></samp><!-- /@w --> according to your local JDK
+installation.  Please adapt the path in the following examples according to the
+JDK installation on your system.  If you are using a Windows system that might
+be:
+
+<pre class="example">     octave&gt; setenv("JAVA_HOME","C:/Java/jdk1.6.0_21");
+</pre>
+   <p>Note, that on both system types, Windows as well as Linux, you must use the
+forward slash '/' as the separator, not the backslash '\'.
+
+   <p>If you are using a Linux system this would look probably more like:
+
+<pre class="example">     octave&gt; setenv("JAVA_HOME","/usr/local/jdk1.6.0_21");
+</pre>
+   <!--  -->
+   </body></html>
+

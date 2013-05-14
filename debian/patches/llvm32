@@ -1,0 +1,70 @@
+diff -r 03a28487fa9d libinterp/interp-core/jit-typeinfo.cc
+--- a/libinterp/interp-core/jit-typeinfo.cc	Tue Apr 23 08:14:54 2013 -0400
++++ b/libinterp/interp-core/jit-typeinfo.cc	Thu Apr 25 00:26:28 2013 +0800
+@@ -39,7 +39,8 @@
+ #include <llvm/Function.h>
+ #include <llvm/Instructions.h>
+ #include <llvm/Intrinsics.h>
+-#include <llvm/Support/IRBuilder.h>
++#include <llvm/IRBuilder.h>
++#include <llvm/Attributes.h>
+ #include <llvm/Support/raw_os_ostream.h>
+ 
+ #include "jit-ir.h"
+@@ -576,11 +577,16 @@
+   llvm_function = llvm::Function::Create (ft, llvm::Function::ExternalLinkage,
+                                           aname, module);
+ 
+-  if (sret ())
+-    llvm_function->addAttribute (1, llvm::Attribute::StructRet);
++  if (sret ()) 
++    {
++      llvm::AttrBuilder B;
++      B.addAttribute(llvm::Attributes::StructRet);
++      llvm::Attributes attr = llvm::Attributes::get(context, B);
++      llvm_function->addAttribute (1, attr);
++    }
+ 
+   if (call_conv == jit_convention::internal)
+-    llvm_function->addFnAttr (llvm::Attribute::AlwaysInline);
++    llvm_function->addFnAttr (llvm::Attributes::AlwaysInline);
+ }
+ 
+ jit_function::jit_function (const jit_function& fn, jit_type *aresult,
+@@ -683,7 +689,10 @@
+ 
+   if (sret ())
+     {
+-      callinst->addAttribute (1, llvm::Attribute::StructRet);
++      llvm::AttrBuilder B;
++      B.addAttribute(llvm::Attributes::StructRet);
++      llvm::Attributes attr = llvm::Attributes::get(context, B); 
++      callinst->addAttribute (1, attr);
+       ret = builder.CreateLoad (sret_mem);
+     }
+ 
+diff -r 03a28487fa9d libinterp/interp-core/pt-jit.cc
+--- a/libinterp/interp-core/pt-jit.cc	Tue Apr 23 08:14:54 2013 -0400
++++ b/libinterp/interp-core/pt-jit.cc	Thu Apr 25 00:26:28 2013 +0800
+@@ -51,10 +51,10 @@
+ #include <llvm/ExecutionEngine/JIT.h>
+ #include <llvm/Module.h>
+ #include <llvm/PassManager.h>
+-#include <llvm/Support/IRBuilder.h>
++#include <llvm/IRBuilder.h>
+ #include <llvm/Support/raw_os_ostream.h>
+ #include <llvm/Support/TargetSelect.h>
+-#include <llvm/Target/TargetData.h>
++#include <llvm/DataLayout.h>
+ #include <llvm/Transforms/IPO.h>
+ #include <llvm/Transforms/Scalar.h>
+ 
+@@ -1860,7 +1860,7 @@
+   module_pass_manager->add (llvm::createAlwaysInlinerPass ());
+ 
+   pass_manager = new llvm::FunctionPassManager (module);
+-  pass_manager->add (new llvm::TargetData(*engine->getTargetData ()));
++  pass_manager->add (new llvm::DataLayout(*engine->getDataLayout ()));
+   pass_manager->add (llvm::createCFGSimplificationPass ());
+   pass_manager->add (llvm::createBasicAliasAnalysisPass ());
+   pass_manager->add (llvm::createPromoteMemoryToRegisterPass ());

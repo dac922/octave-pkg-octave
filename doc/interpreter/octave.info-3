@@ -938,7 +938,8 @@ three-dimensional plots.
  -- Function File:  view (AZIMUTH, ELEVATION)
  -- Function File:  view ([AZIMUTH ELEVATION])
  -- Function File:  view ([X Y Z])
- -- Function File:  view (DIMS)
+ -- Function File:  view (2)
+ -- Function File:  view (3)
  -- Function File:  view (AX, ...)
      Query or set the viewpoint for the current axes.  The parameters
      AZIMUTH and ELEVATION can be given as two arguments or as
@@ -1079,42 +1080,52 @@ For three-dimensional plots the aspect ratio can be set for data with
 `daspect' and for the plot box with `pbaspect'.  See *note Axis
 Configuration:: for controlling the x-, y-, and z-limits for plotting.
 
+ -- Function File: DATA_ASPECT_RATIO = daspect ()
  -- Function File:  daspect (DATA_ASPECT_RATIO)
-     Set the data aspect ratio of the current axes.  The aspect ratio is
-     a normalized 3-element vector representing the span of the x, y,
-     and z-axes limits.
-
- -- Function File: DATA_ASPECT_RATIO = daspect ( )
-     Return the data aspect ratio of the current axes.
-
  -- Function File:  daspect (MODE)
-     Set the data aspect ratio mode of the current axes.
-
  -- Function File: DATA_ASPECT_RATIO_MODE = daspect ("mode")
+ -- Function File:  daspect (HAX, ...)
+     Query or set the data aspect ratio of the current axes.  The aspect
+     ratio is a normalized 3-element vector representing the span of
+     the x, y, and z-axis limits.
+
+     `(daspect (MODE))'
+
+     Set the data aspect ratio mode of the current axes.  MODE is
+     either "auto" or "manual".
+
+     `daspect ("mode")'
+
      Return the data aspect ratio mode of the current axes.
 
- -- Function File:  daspect (HAX, ...)
-     Use the axes, with handle HAX, instead of the current axes.
+     `daspect (HAX, ...)'
+
+     Operate on the axes in handle HAX instead of the current axes.
 
      *See also:* *note axis: doc-axis, *note pbaspect: doc-pbaspect,
      *note xlim: doc-xlim, *note ylim: doc-ylim, *note zlim: doc-zlim.
 
- -- Function File:  pbaspect (PLOT_BOX_ASPECT_RATIO)
-     Set the plot box aspect ratio of the current axes.  The aspect
-     ratio is a normalized 3-element vector representing the rendered
-     lengths of the x, y, and z-axes.
-
  -- Function File: PLOT_BOX_ASPECT_RATIO = pbaspect ( )
-     Return the plot box aspect ratio of the current axes.
-
+ -- Function File:  pbaspect (PLOT_BOX_ASPECT_RATIO)
  -- Function File:  pbaspect (MODE)
-     Set the plot box aspect ratio mode of the current axes.
-
  -- Function File: PLOT_BOX_ASPECT_RATIO_MODE = pbaspect ("mode")
+ -- Function File:  pbaspect (HAX, ...)
+     Query or set the plot box aspect ratio of the current axes.  The
+     aspect ratio is a normalized 3-element vector representing the
+     rendered lengths of the x, y, and z axes.
+
+     `pbaspect(MODE)'
+
+     Set the plot box aspect ratio mode of the current axes.  MODE is
+     either "auto" or "manual".
+
+     `pbaspect ("mode")'
+
      Return the plot box aspect ratio mode of the current axes.
 
- -- Function File:  pbaspect (HAX, ...)
-     Use the axes, with handle HAX, instead of the current axes.
+     `pbaspect (HAX, ...)'
+
+     Operate on the axes in handle HAX instead of the current axes.
 
      *See also:* *note axis: doc-axis, *note daspect: doc-daspect,
      *note xlim: doc-xlim, *note ylim: doc-ylim, *note zlim: doc-zlim.
@@ -1652,7 +1663,7 @@ numbered in column-major order (top to bottom, left to right).
      *See also:* *note axes: doc-axes, *note plot: doc-plot.
 
 
-File: octave.info,  Node: Multiple Plot Windows,  Next: Printing and Saving Plots,  Prev: Multiple Plots on One Page,  Up: High-Level Plotting
+File: octave.info,  Node: Multiple Plot Windows,  Next: Use of axis, line, and patch Functions,  Prev: Multiple Plots on One Page,  Up: High-Level Plotting
 
 15.2.5 Multiple Plot Windows
 ----------------------------
@@ -1678,8 +1689,11 @@ second a cosine wave.  Figure numbers must be positive integers.
      Multiple property-value pairs may be specified for the figure, but
      they must appear in pairs.
 
-15.2.6 Use of `axis',  `line', and `patch' functions
-----------------------------------------------------
+
+File: octave.info,  Node: Use of axis, line, and patch Functions,  Next: Manipulation of Plot Windows,  Prev: Multiple Plot Windows,  Up: High-Level Plotting
+
+15.2.6 Use of axis, line, and patch Functions
+---------------------------------------------
 
 You can create axes, line, and patch objects directly using the `axes',
 `line', and `patch' functions.  These objects become children of the
@@ -1758,7 +1772,10 @@ current axes object.
      *See also:* *note surf: doc-surf, *note mesh: doc-mesh, *note
      patch: doc-patch, *note line: doc-line.
 
-15.2.7 Manipulation of plot windows
+
+File: octave.info,  Node: Manipulation of Plot Windows,  Next: Use of the `interpreter' Property,  Prev: Use of axis, line, and patch Functions,  Up: High-Level Plotting
+
+15.2.7 Manipulation of Plot Windows
 -----------------------------------
 
 By default, Octave refreshes the plot window when a prompt is printed,
@@ -1803,9 +1820,13 @@ off, consecutive plotting commands like this will only display the last
 plot.
 
  -- Function File:  newplot ()
+ -- Function File: H = newplot ()
      Prepare graphics engine to produce a new plot.  This function is
      called at the beginning of all high-level plotting functions.  It
      is not normally required in user programs.
+
+     The optional return value H is a graphics handle to the created
+     axes (not figure).
 
  -- Command:  hold
  -- Command:  hold STATE
@@ -1915,6 +1936,9 @@ window, call the `close' function.
 
      *See also:* *note close: doc-close, *note delete: doc-delete.
 
+
+File: octave.info,  Node: Use of the `interpreter' Property,  Next: Printing and Saving Plots,  Prev: Manipulation of Plot Windows,  Up: High-Level Plotting
+
 15.2.8 Use of the `interpreter' Property
 ----------------------------------------
 
@@ -2010,7 +2034,7 @@ Table 15.1: Available special characters in TeX mode
      ' e^{-t^2} dt} = 0.6175'))
 
 
-File: octave.info,  Node: Printing and Saving Plots,  Next: Interacting with Plots,  Prev: Multiple Plot Windows,  Up: High-Level Plotting
+File: octave.info,  Node: Printing and Saving Plots,  Next: Interacting with Plots,  Prev: Use of the `interpreter' Property,  Up: High-Level Plotting
 
 15.2.9 Printing and Saving Plots
 --------------------------------
@@ -4350,12 +4374,12 @@ application, and will be completely ignored by Octave.
      not exist, it is created.
 
  -- Function File: VALUE = getappdata (H, NAME)
+ -- Function File: APPDATA = getappdata (H)
      Return the VALUE for named application data for the object(s) with
      handle(s) H.
 
- -- Function File: APPDATA = getappdata (H)
-     Return a structure, APPDATA, whose fields correspond to the appdata
-     properties.
+     `getappdata(H)' returns a structure, APPDATA, whose fields
+     correspond to the appdata properties.
 
  -- Function File:  rmappdata (H, NAME)
      Delete the named application data for the object(s) with handle(s)
@@ -5129,18 +5153,24 @@ File: octave.info,  Node: Graphics Toolkits,  Prev: Object Groups,  Up: Advanced
 ------------------------
 
  -- Function File: NAME = graphics_toolkit ()
+ -- Function File: NAME = graphics_toolkit (HLIST)
+ -- Function File:  graphics_toolkit (NAME)
+ -- Function File:  graphics_toolkit (HLIST, NAME)
      Return the default graphics toolkit.  The default graphics toolkit
      value is assigned to new figures.
 
- -- Function File: NAME = graphics_toolkit (HLIST)
+     `graphics_toolkit (HLIST)'
+
      Return the graphics toolkits for the figures with handles HLIST.
 
- -- Function File:  graphics_toolkit (NAME)
+     `graphics_toolkit (NAME)'
+
      Set the default graphics toolkit to NAME.  If the toolkit is not
      already loaded, it is initialized by calling the function
      `__init_NAME__'.
 
- -- Function File:  graphics_toolkit (HLIST, NAME)
+     `graphics_toolkit (HLIST, NAME)'
+
      Set the graphics toolkit for the figures with handles HLIST to
      NAME.
 
@@ -5185,8 +5215,10 @@ graphics toolkit.
      Query or set the name of the program invoked by the plot command
      when the graphics toolkit is set to "gnuplot".  Additional
      arguments to pass to the external plotting program may also be
-     given.  The default value is `"gnuplot"' without additional
+     given.  The default value is `"gnuplot"' with no additional
      arguments.  *Note Installation::.
+
+     *See also:* *note graphics_toolkit: doc-graphics_toolkit.
 
  -- Built-in Function: MODE = gui_mode ()
  -- Built-in Function:  gui_mode (MODE)
@@ -7606,7 +7638,11 @@ File: octave.info,  Node: Utility Functions,  Next: Special Functions,  Prev: Su
      *See also:* *note signbit: doc-signbit.
 
  -- Mapping Function:  signbit (X)
-     Return a nonzero value if the value of X has its sign bit set.
+     Return logical true if the value of X has its sign bit set.
+     Otherwise return logical false.  This behavior is consistent with
+     the other logical functions. See*note Logical Values::.  The
+     behavior differs from the C language function which returns
+     non-zero if the sign bit is set.
 
      This is not the same as `x < 0.0', because IEEE 754 floating point
      allows zero to be signed.  The comparison `-0.0 < 0.0' is false,

@@ -33,6 +33,7 @@ class tree_walker;
 #include "str-vec.h"
 
 #include "base-list.h"
+#include "symtab.h"
 
 // Argument lists.  Used to hold the list of expressions that are the
 // arguments in a function call or index expression.
@@ -76,11 +77,15 @@ public:
 
   bool all_elements_are_constant (void) const;
 
+  bool is_valid_lvalue_list (void) const;
+
   octave_value_list convert_to_const_vector (const octave_value *object = 0);
 
   std::list<octave_lvalue> lvalue_list (void);
 
   string_vector get_arg_names (void) const;
+
+  std::list<std::string> variable_names (void) const;
 
   tree_argument_list *dup (symbol_table::scope_id scope,
                            symbol_table::context_id context) const;

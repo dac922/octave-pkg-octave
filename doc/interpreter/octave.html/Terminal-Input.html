@@ -43,8 +43,8 @@ used for managing an interactive dialog with a user, and the
    <p><a name="doc_002dinput"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>input</b> (<var>prompt</var>)<var><a name="index-input-928"></a></var><br>
-&mdash; Built-in Function:  <b>input</b> (<var>prompt, "s"</var>)<var><a name="index-input-929"></a></var><br>
+&mdash; Built-in Function: <var>ans</var> = <b>input</b> (<var>prompt</var>)<var><a name="index-input-940"></a></var><br>
+&mdash; Built-in Function: <var>ans</var> = <b>input</b> (<var>prompt, "s"</var>)<var><a name="index-input-941"></a></var><br>
 <blockquote><p>Print a prompt and wait for user input.  For example,
 
      <pre class="example">          input ("Pick a number, any number! ")
@@ -68,14 +68,16 @@ directly, without evaluating it first.
         <p>Because there may be output waiting to be displayed by the pager, it is
 a good idea to always call <code>fflush (stdout)</code> before calling
 <code>input</code>.  This will ensure that all pending output is written to
-the screen before your prompt.  See <a href="Input-and-Output.html#Input-and-Output">Input and Output</a>. 
+the screen before your prompt.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dyes_005for_005fno.html#doc_002dyes_005for_005fno">yes_or_no</a>, <a href="doc_002dkbhit.html#doc_002dkbhit">kbhit</a>. 
 </p></blockquote></div>
 
 <!-- menu scripts/miscellaneous/menu.m -->
    <p><a name="doc_002dmenu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>menu</b> (<var>title, opt1, <small class="dots">...</small></var>)<var><a name="index-menu-930"></a></var><br>
+&mdash; Function File:  <b>menu</b> (<var>title, opt1, <small class="dots">...</small></var>)<var><a name="index-menu-942"></a></var><br>
 <blockquote><p>Print a title string followed by a series of options.  Each option will
 be printed along with a number.  The return value is the number of the
 option selected by the user.  This function is useful for interactive
@@ -90,12 +92,15 @@ screen.
    <p><a name="doc_002dyes_005for_005fno"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>yes_or_no</b> (<var>prompt</var>)<var><a name="index-yes_005for_005fno-931"></a></var><br>
-<blockquote><p>Ask the user a yes-or-no question.  Return 1 if the answer is yes. 
-Takes one argument, which is the string to display to ask the
-question.  It should end in a space; &lsquo;<samp><span class="samp">yes-or-no-p</span></samp>&rsquo; adds
-&lsquo;<samp><span class="samp">(yes or no) </span></samp>&rsquo; to it.  The user must confirm the answer with
-RET and can edit it until it has been confirmed. 
+&mdash; Built-in Function: <var>ans</var> = <b>yes_or_no</b> (<var>"prompt"</var>)<var><a name="index-yes_005for_005fno-943"></a></var><br>
+<blockquote><p>Ask the user a yes-or-no question.  Return logical true if the answer is yes
+or false if the answer is no.  Takes one argument, <var>prompt</var>, which is
+the string to display when asking the question.  <var>prompt</var> should end in
+a space; <code>yes-or-no</code> adds the string &lsquo;<samp><span class="samp">(yes or no) </span></samp>&rsquo; to it.  The
+user must confirm the answer with &lt;RET&gt; and can edit it until it has
+been confirmed.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinput.html#doc_002dinput">input</a>. 
 </p></blockquote></div>
 
    <p>For <code>input</code>, the normal command line history and editing functions
@@ -109,8 +114,9 @@ carriage return.
    <p><a name="doc_002dkbhit"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>kbhit</b> ()<var><a name="index-kbhit-932"></a></var><br>
-<blockquote><p>Read a single keystroke from the keyboard.  If called with one
+&mdash; Built-in Function:  <b>kbhit</b> ()<var><a name="index-kbhit-944"></a></var><br>
+&mdash; Built-in Function:  <b>kbhit</b> (<var>1</var>)<var><a name="index-kbhit-945"></a></var><br>
+<blockquote><p>Read a single keystroke from the keyboard.  If called with an
 argument, don't wait for a keypress.  For example,
 
      <pre class="example">          x = kbhit ();
@@ -120,8 +126,10 @@ it is typed.
 
      <pre class="example">          x = kbhit (1);
 </pre>
-        <p class="noindent">identical to the above example, but don't wait for a keypress,
-returning the empty string if no key is available. 
+        <p class="noindent">is identical to the above example, but doesn't wait for a keypress,
+returning the empty string if no key is available.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinput.html#doc_002dinput">input</a>. 
 </p></blockquote></div>
 
    </body></html>

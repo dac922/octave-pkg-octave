@@ -37,6 +37,7 @@ class tree_argument_list;
 class octave_user_function;
 
 #include "oct-obj.h"
+#include "workspace-element.h"
 #include "oct-refcount.h"
 #include "ov.h"
 
@@ -196,12 +197,9 @@ public:
     // not cleared at function exit
     static const unsigned int persistent = 64;
 
-    // temporary variables forced into symbol table for parsing
-    static const unsigned int forced = 128;
-
     // this symbol may NOT become a variable.
     // (symbol added to a static workspace)
-    static const unsigned int added_static = 256;
+    static const unsigned int added_static = 128;
 
   private:
 
@@ -218,23 +216,63 @@ public:
         value_stack.push_back (v);
       }
 
-      void force_variable (context_id context = xdefault_context)
+      void assign (const octave_value& value,
+                   context_id context = xdefault_context)
       {
-        if (context == xdefault_context)
-          context = active_context ();
+        varref (context) = value;
+      }
 
-        octave_value& val = varref (context);
+      void assign (octave_value::assign_op op,
+                   const std::string& type,
+                   const std::list<octave_value_list>& idx,
+                   const octave_value& value,
+                   context_id context = xdefault_context)
+      {
+        varref(context).assign (op, type, idx, value);
+      }
 
-        if (! val.is_defined ())
-          mark_forced ();
+      void assign (octave_value::assign_op op, const octave_value& value,
+                   context_id context = xdefault_context)
+      {
+        varref(context).assign (op, value);
+      }
+
+      void do_non_const_unary_op (octave_value::unary_op op,
+                                  context_id context = xdefault_context)
+      {
+        varref(context).do_non_const_unary_op (op);
+      }
+
+      void do_non_const_unary_op (octave_value::unary_op op,
+                                  const std::string& type,
+                                  const std::list<octave_value_list>& idx,
+                                  context_id context = xdefault_context)
+      {
+        varref(context).do_non_const_unary_op (op, type, idx);
       }
 
       octave_value& varref (context_id context = xdefault_context)
       {
+        // We duplicate global_varref and persistent_varref here to
+        // avoid calling deprecated functions.
+
         if (is_global ())
-          return symbol_table::global_varref (name);
+          {
+            symbol_table::global_table_iterator p
+              = symbol_table::global_table.find (name);
+
+            return (p == symbol_table::global_table.end ())
+              ? symbol_table::global_table[name] : p->second;
+          }
         else if (is_persistent ())
-          return symbol_table::persistent_varref (name);
+          {
+            static octave_value foobar;
+
+            symbol_table *inst
+              = symbol_table::get_instance (symbol_table::current_scope ());
+
+            return inst ? inst->do_persistent_varref (name) : foobar;
+          }
         else
           {
             if (context == xdefault_context)
@@ -313,13 +351,12 @@ public:
 
             if (is_persistent ())
               {
-                symbol_table::persistent_varref (name)
-                  = varval ();
+                symbol_table::persistent_assign (name, varval ());
 
                 unmark_persistent ();
               }
 
-            varref () = octave_value ();
+            assign (octave_value ());
           }
       }
 
@@ -341,7 +378,7 @@ public:
         if (context == xdefault_context)
           context = active_context ();
 
-        return (! is_local () || is_defined (context) || is_forced ());
+        return (! is_local () || is_defined (context));
       }
 
       bool is_local (void) const { return storage_class & local; }
@@ -351,7 +388,6 @@ public:
       bool is_inherited (void) const { return storage_class & inherited; }
       bool is_global (void) const { return storage_class & global; }
       bool is_persistent (void) const { return storage_class & persistent; }
-      bool is_forced (void) const { return storage_class & forced; }
       bool is_added_static (void) const {return storage_class & added_static; }
 
       void mark_local (void) { storage_class |= local; }
@@ -373,7 +409,6 @@ public:
         else
           storage_class |= persistent;
       }
-      void mark_forced (void) { storage_class |= forced; }
       void mark_added_static (void) { storage_class |= added_static; }
 
       void unmark_local (void) { storage_class &= ~local; }
@@ -383,7 +418,6 @@ public:
       void unmark_inherited (void) { storage_class &= ~inherited; }
       void unmark_global (void) { storage_class &= ~global; }
       void unmark_persistent (void) { storage_class &= ~persistent; }
-      void unmark_forced (void) { storage_class &= ~forced; }
       void unmark_added_static (void) { storage_class &= ~added_static; }
 
       void init_persistent (void)
@@ -392,7 +426,7 @@ public:
           {
             mark_persistent ();
 
-            varref () = symbol_table::persistent_varval (name);
+            assign (symbol_table::persistent_varval (name));
           }
         // FIXME -- this causes trouble with recursive calls.
         // else
@@ -493,14 +527,45 @@ public:
 
     const std::string& name (void) const { return rep->name; }
 
+    void rename (const std::string& new_name) { rep->name = new_name; }
+
     octave_value
     find (const octave_value_list& args = octave_value_list ()) const;
 
-    void force_variable (context_id context = xdefault_context)
+    void assign (const octave_value& value,
+                 context_id context = xdefault_context)
     {
-      rep->force_variable (context);
+      rep->assign (value, context);
     }
 
+    void assign (octave_value::assign_op op,
+                 const std::string& type,
+                 const std::list<octave_value_list>& idx,
+                 const octave_value& value,
+                 context_id context = xdefault_context)
+    {
+      rep->assign (op, type, idx, value, context);
+    }
+
+    void assign (octave_value::assign_op op, const octave_value& value,
+                 context_id context = xdefault_context)
+    {
+      rep->assign (op, value, context);
+    }
+
+    void do_non_const_unary_op (octave_value::unary_op op)
+    {
+      rep->do_non_const_unary_op (op);
+    }
+
+    void do_non_const_unary_op (octave_value::unary_op op,
+                                const std::string& type,
+                                const std::list<octave_value_list>& idx)
+    {
+      rep->do_non_const_unary_op (op, type, idx);
+    }
+
+    // Delete when deprecated varref functions are removed.
     octave_value& varref (context_id context = xdefault_context)
     {
       return rep->varref (context);
@@ -524,6 +589,11 @@ public:
       return rep->is_defined (context);
     }
 
+    bool is_undefined (context_id context = xdefault_context) const
+    {
+      return ! rep->is_defined (context);
+    }
+
     bool is_valid (void) const
     {
       return rep->is_valid ();
@@ -541,7 +611,6 @@ public:
     bool is_hidden (void) const { return rep->is_hidden (); }
     bool is_inherited (void) const { return rep->is_inherited (); }
     bool is_persistent (void) const { return rep->is_persistent (); }
-    bool is_forced (void) const { return rep->is_forced (); }
     bool is_added_static (void) const { return rep->is_added_static (); }
 
     void mark_local (void) { rep->mark_local (); }
@@ -551,7 +620,6 @@ public:
     void mark_inherited (void) { rep->mark_inherited (); }
     void mark_global (void) { rep->mark_global (); }
     void mark_persistent (void) { rep->mark_persistent (); }
-    void mark_forced (void) { rep->mark_forced (); }
     void mark_added_static (void) { rep->mark_added_static (); }
 
     void unmark_local (void) { rep->unmark_local (); }
@@ -561,7 +629,6 @@ public:
     void unmark_inherited (void) { rep->unmark_inherited (); }
     void unmark_global (void) { rep->unmark_global (); }
     void unmark_persistent (void) { rep->unmark_persistent (); }
-    void unmark_forced (void) { rep->unmark_forced (); }
     void unmark_added_static (void) { rep->unmark_added_static (); }
 
     void init_persistent (void) { rep->init_persistent (); }
@@ -597,19 +664,29 @@ public:
   symbol_reference
   {
   public:
-    symbol_reference (void) : scope (-1) {}
 
-    symbol_reference (symbol_record record,
-                       scope_id curr_scope = symbol_table::current_scope ())
+    symbol_reference (void) : scope (-1) { }
+
+    symbol_reference (const symbol_record& record,
+                      scope_id curr_scope = symbol_table::current_scope ())
       : scope (curr_scope), sym (record)
-    {}
+    { }
+
+    symbol_reference (const symbol_reference& ref)
+      : scope (ref.scope), sym (ref.sym)
+    { }
 
     symbol_reference& operator = (const symbol_reference& ref)
     {
-      scope = ref.scope;
-      sym = ref.sym;
+      if (this != &ref)
+        {
+          scope = ref.scope;
+          sym = ref.sym;
+        }
       return *this;
     }
+
+    bool is_black_hole (void) const { return scope < 0; }
 
     // The name is the same regardless of scope.
     const std::string& name (void) const { return sym.name (); }
@@ -637,9 +714,11 @@ public:
       }
     };
   private:
+
     void update (void) const
     {
       scope_id curr_scope = symbol_table::current_scope ();
+
       if (scope != curr_scope || ! sym.is_valid ())
         {
           scope = curr_scope;
@@ -1196,29 +1275,45 @@ public:
   static octave_value builtin_find (const std::string& name);
 
   // Insert a new name in the table.
-  static symbol_record& insert (const std::string& name)
+  static symbol_record& insert (const std::string& name,
+                                scope_id scope = xcurrent_scope)
   {
     static symbol_record foobar;
 
-    symbol_table *inst = get_instance (xcurrent_scope);
+    symbol_table *inst = get_instance (scope);
 
     return inst ? inst->do_insert (name) : foobar;
   }
 
-  static void force_variable (const std::string& name,
-                              scope_id scope = xcurrent_scope,
-                              context_id context = xdefault_context)
+  static void rename (const std::string& old_name,
+                      const std::string& new_name,
+                      scope_id scope = xcurrent_scope)
   {
     symbol_table *inst = get_instance (scope);
 
     if (inst)
-      inst->do_force_variable (name, context);
+      inst->do_rename (old_name, new_name);
   }
 
-  static octave_value& varref (const std::string& name,
-                               scope_id scope = xcurrent_scope,
-                               context_id context = xdefault_context,
-                               bool force_add = false)
+  static void assign (const std::string& name,
+                      const octave_value& value = octave_value (),
+                      scope_id scope = xcurrent_scope,
+                      context_id context = xdefault_context,
+                      bool force_add = false)
+  {
+    static octave_value foobar;
+
+    symbol_table *inst = get_instance (scope);
+
+    if (inst)
+      inst->do_assign (name, value, context, force_add);
+  }
+
+  // Use assign (name, value, scope, context, force_add) instead.
+  static octave_value&
+  varref (const std::string& name, scope_id scope = xcurrent_scope,
+          context_id context = xdefault_context, bool force_add = false)
+          GCC_ATTR_DEPRECATED
   {
     static octave_value foobar;
 
@@ -1227,13 +1322,27 @@ public:
     return inst ? inst->do_varref (name, context, force_add) : foobar;
   }
 
-  // Convenience function to greatly simplify
+  // Convenience function to simplify
   // octave_user_function::bind_automatic_vars
-  static octave_value& force_varref (const std::string& name,
-                                     scope_id scope = xcurrent_scope,
-                                     context_id context = xdefault_context)
+
+  static void force_assign (const std::string& name,
+                            const octave_value& value = octave_value (),
+                            scope_id scope = xcurrent_scope,
+                            context_id context = xdefault_context)
   {
-    return varref (name, scope, context, true);
+    assign (name, value, scope, context, true);
+  }
+
+  // Use force_assign (name, value, scope, context) instead.
+  static octave_value&
+  force_varref (const std::string& name, scope_id scope = xcurrent_scope,
+                context_id context = xdefault_context) GCC_ATTR_DEPRECATED
+  {
+    static octave_value foobar;
+
+    symbol_table *inst = get_instance (scope);
+
+    return inst ? inst->do_varref (name, context, true) : foobar;
   }
 
   static octave_value varval (const std::string& name,
@@ -1245,8 +1354,23 @@ public:
     return inst ? inst->do_varval (name, context) : octave_value ();
   }
 
+  static void
+  global_assign (const std::string& name,
+                 const octave_value& value = octave_value ())
+
+  {
+    global_table_iterator p = global_table.find (name);
+
+    if (p == global_table.end ())
+      global_table[name] = value;
+    else
+      p->second = value;
+  }
+
+  // Use global_assign (name, value) instead.
   static octave_value&
-  global_varref (const std::string& name)
+  global_varref (const std::string& name) GCC_ATTR_DEPRECATED
+
   {
     global_table_iterator p = global_table.find (name);
 
@@ -1261,10 +1385,22 @@ public:
     return (p != global_table.end ()) ? p->second : octave_value ();
   }
 
-  static octave_value&
-  top_level_varref (const std::string& name)
+  static void
+  top_level_assign (const std::string& name,
+                    const octave_value& value = octave_value ())
   {
-    return varref (name, top_scope (), 0);
+    assign (name, value, top_scope (), 0);
+  }
+
+  // Use top_level_assign (name, value) instead.
+  static octave_value&
+  top_level_varref (const std::string& name) GCC_ATTR_DEPRECATED
+  {
+    static octave_value foobar;
+
+    symbol_table *inst = get_instance (top_scope ());
+
+    return inst ? inst->do_varref (name, 0, true) : foobar;
   }
 
   static octave_value
@@ -1273,7 +1409,19 @@ public:
     return varval (name, top_scope (), 0);
   }
 
+  static void
+  persistent_assign (const std::string& name,
+                     const octave_value& value = octave_value ())
+  {
+    symbol_table *inst = get_instance (xcurrent_scope);
+
+    if (inst)
+      inst->do_persistent_assign (name, value);
+  }
+
+  // Use persistent_assign (name, value) instead.
   static octave_value& persistent_varref (const std::string& name)
+  GCC_ATTR_DEPRECATED
   {
     static octave_value foobar;
 
@@ -1493,14 +1641,6 @@ public:
 
     if (inst)
       inst->do_clear_objects ();
-  }
-
-  static void unmark_forced_variables (scope_id scope = xcurrent_scope)
-  {
-    symbol_table *inst = get_instance (scope);
-
-    if (inst)
-      inst->do_unmark_forced_variables ();
   }
 
   static void clear_functions (void)
@@ -1999,6 +2139,14 @@ public:
       }
   }
 
+  static std::list<workspace_element> workspace_info (void)
+  {
+    symbol_table *inst = get_instance (xcurrent_scope);
+
+    return inst
+      ? inst->do_workspace_info () : std::list<workspace_element> ();
+  }
+
   static void dump (std::ostream& os, scope_id scope = xcurrent_scope);
 
   static void dump_global (std::ostream& os);
@@ -2283,7 +2431,7 @@ private:
 
                 if (val.is_defined ())
                   {
-                    sr.varref (0) = val;
+                    sr.assign (val, 0);
 
                     sr.mark_inherited ();
                   }
@@ -2326,21 +2474,41 @@ private:
       return p->second;
   }
 
-  void do_force_variable (const std::string& name, context_id context)
+  void do_rename (const std::string& old_name, const std::string& new_name)
+  {
+    table_iterator p = table.find (old_name);
+
+    if (p != table.end ())
+      {
+        symbol_record sr = p->second;
+
+        sr.rename (new_name);
+
+        table.erase (p);
+
+        table[new_name] = sr;
+      }
+  }
+
+  void do_assign (const std::string& name, const octave_value& value,
+                  context_id context, bool force_add)
   {
     table_iterator p = table.find (name);
 
     if (p == table.end ())
       {
-        symbol_record& sr = do_insert (name);
+        symbol_record& sr = do_insert (name, force_add);
 
-        sr.force_variable (context);
+        sr.assign (value, context);
       }
     else
-      p->second.force_variable (context);
+      p->second.assign (value, context);
   }
 
-  octave_value& do_varref (const std::string& name, context_id context, bool force_add)
+  // Use do_assign (name, value, context, force_add) instead.
+  // Delete when deprecated varref functions are removed.
+  octave_value& do_varref (const std::string& name, context_id context,
+                           bool force_add)
   {
     table_iterator p = table.find (name);
 
@@ -2361,6 +2529,19 @@ private:
     return (p != table.end ()) ? p->second.varval (context) : octave_value ();
   }
 
+  void do_persistent_assign (const std::string& name,
+                             const octave_value& value)
+  {
+    persistent_table_iterator p = persistent_table.find (name);
+
+    if (p == persistent_table.end ())
+      persistent_table[name] = value;
+    else
+      p->second = value;
+  }
+
+  // Use do_persistent_assign (name, value) instead.
+  // Delete when deprecated varref functions are removed.
   octave_value& do_persistent_varref (const std::string& name)
   {
     persistent_table_iterator p = persistent_table.find (name);
@@ -2428,16 +2609,10 @@ private:
     for (table_iterator p = table.begin (); p != table.end (); p++)
       {
         symbol_record& sr = p->second;
-        octave_value& val = sr.varref ();
+        octave_value val = sr.varval ();
         if (val.is_object ())
           p->second.clear (my_scope);
       }
-  }
-
- void do_unmark_forced_variables (void)
-  {
-    for (table_iterator p = table.begin (); p != table.end (); p++)
-      p->second.unmark_forced ();
   }
 
   void do_clear_global (const std::string& name)
@@ -2656,6 +2831,8 @@ private:
 
     return p != table.end () && p->second.is_global ();
   }
+
+  std::list<workspace_element> do_workspace_info (void) const;
 
   void do_dump (std::ostream& os);
 

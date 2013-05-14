@@ -289,7 +289,7 @@ use of the @code{keyboard} function.
 @c keyboard libinterp/interpfcn/input.cc
 @anchor{doc-keyboard}
 @deftypefn  {Built-in Function} {} keyboard ()
-@deftypefnx {Built-in Function} {} keyboard (@var{prompt})
+@deftypefnx {Built-in Function} {} keyboard ("@var{prompt}")
 This function is normally used for simple debugging.  When the
 @code{keyboard} function is executed, Octave prints a prompt and waits
 for user input.  The input strings are then evaluated and the results

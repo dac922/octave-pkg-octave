@@ -167,8 +167,6 @@ void
 MINGW_signal_cleanup (void)
 {
   w32_set_quiet_shutdown ();
-
-  w32_raise_final ();
 }
 #endif
 
@@ -177,11 +175,6 @@ static void
 MINGW_init (void)
 {
   w32_set_octave_home ();
-
-  // Init mutex to protect setjmp/longjmp and get main thread context
-  w32_sigint_init ();
-
-  w32_set_quiet_shutdown ();
 }
 #endif
 
@@ -190,11 +183,6 @@ static void
 MSVC_init (void)
 {
   w32_set_octave_home ();
-
-  // Init mutex to protect setjmp/longjmp and get main thread context
-  w32_sigint_init ();
-
-  w32_set_quiet_shutdown ();
 }
 #endif
 
@@ -535,7 +523,9 @@ DEFUN (clc, , ,
 Clear the terminal screen and move the cursor to the upper left corner.\n\
 @end deftypefn")
 {
-  command_editor::clear_screen ();
+  bool skip_redisplay = true;
+
+  command_editor::clear_screen (skip_redisplay);
 
   return octave_value_list ();
 }
@@ -619,8 +609,9 @@ DEFALIAS (setenv, putenv);
 
 DEFUN (kbhit, args, ,
   "-*- texinfo -*-\n\
-@deftypefn {Built-in Function} {} kbhit ()\n\
-Read a single keystroke from the keyboard.  If called with one\n\
+@deftypefn  {Built-in Function} {} kbhit ()\n\
+@deftypefnx {Built-in Function} {} kbhit (1)\n\
+Read a single keystroke from the keyboard.  If called with an\n\
 argument, don't wait for a keypress.  For example,\n\
 \n\
 @example\n\
@@ -636,8 +627,9 @@ x = kbhit (1);\n\
 @end example\n\
 \n\
 @noindent\n\
-identical to the above example, but don't wait for a keypress,\n\
+is identical to the above example, but doesn't wait for a keypress,\n\
 returning the empty string if no key is available.\n\
+@seealso{input}\n\
 @end deftypefn")
 {
   octave_value retval;
@@ -653,7 +645,7 @@ returning the empty string if no key is available.\n\
       if (c == -1)
         c = 0;
 
-      char s[2] = {c, '\0'};
+      char s[2] = { static_cast<char> (c), '\0' };
 
       retval = s;
     }

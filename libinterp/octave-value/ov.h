@@ -419,6 +419,12 @@ public:
                                   std::list<octave_value_list>& idx,
                                   size_t skip = 1);
 
+  octave_value_list next_subsref (int nargout,
+                                  const std::string& type, const
+                                  std::list<octave_value_list>& idx,
+                                  const std::list<octave_lvalue> *lvalue_list,
+                                  size_t skip = 1);
+
   octave_value next_subsref (bool auto_add, const std::string& type, const
                              std::list<octave_value_list>& idx,
                              size_t skip = 1);
@@ -728,6 +734,14 @@ public:
   ulong_value (bool req_int = false, bool frc_str_conv = false) const
     { return rep->ulong_value (req_int, frc_str_conv); }
 
+  int64_t
+  int64_value (bool req_int = false, bool frc_str_conv = false) const
+    { return rep->int64_value (req_int, frc_str_conv); }
+
+  uint64_t
+  uint64_value (bool req_int = false, bool frc_str_conv = false) const
+    { return rep->uint64_value (req_int, frc_str_conv); }
+
   octave_idx_type
   idx_type_value (bool req_int = false, bool frc_str_conv = false) const;
 
@@ -1007,6 +1021,8 @@ public:
 
   void print_with_name (std::ostream& os, const std::string& name) const
   { rep->print_with_name (os, name, true); }
+
+  std::string short_disp (void) const { return rep->short_disp (); }
 
   int type_id (void) const { return rep->type_id (); }
 

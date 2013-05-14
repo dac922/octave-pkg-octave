@@ -97,6 +97,10 @@ octave_program_invocation_name;
 // The last component of octave_program_invocation_name.
 static std::string octave_program_name;
 
+// TRUE means we are using readline.
+// (--no-line-editing)
+static bool line_editing = true;
+
 // TRUE means we read ~/.octaverc and ./.octaverc.
 // (--norc; --no-init-file; -f)
 static bool read_init_files = true;
@@ -174,6 +178,9 @@ static bool persist = false;
 // If TRUE, the GUI should be started.
 static bool start_gui = false;
 
+// If TRUE use traditional settings (--traditional)
+static bool traditional = false;
+
 // Long options.  See the comments in getopt.h for the meanings of the
 // fields in this structure.
 #define BUILT_IN_DOCSTRINGS_FILE_OPTION 1
@@ -239,7 +246,7 @@ intern_argv (int argc, char **argv)
 {
   assert (symbol_table::at_top_level ());
 
-  symbol_table::varref (".nargin.") = argc - 1;
+  symbol_table::assign (".nargin.", argc - 1);
 
   symbol_table::mark_hidden (".nargin.");
 
@@ -354,10 +361,6 @@ static void
 execute_startup_files (void)
 {
   unwind_protect frame;
-
-  frame.protect_var (input_from_startup_file);
-
-  input_from_startup_file = true;
 
   std::string context;
 
@@ -488,30 +491,18 @@ execute_command_line_file (const std::string& fname)
   octave_initialized = true;
 
   frame.protect_var (interactive);
-  frame.protect_var (reading_script_file);
-  frame.protect_var (input_from_command_line_file);
-
-  frame.protect_var (curr_fcn_file_name);
-  frame.protect_var (curr_fcn_file_full_name);
 
   frame.protect_var (octave_program_invocation_name);
   frame.protect_var (octave_program_name);
 
   interactive = false;
-  reading_script_file = true;
-  input_from_command_line_file = true;
 
-  curr_fcn_file_name = fname;
-  curr_fcn_file_full_name = curr_fcn_file_name;
+  octave_program_invocation_name = fname;
 
-  octave_program_invocation_name = curr_fcn_file_name;
+  size_t pos = fname.find_last_of (file_ops::dir_sep_chars ());
 
-  size_t pos = curr_fcn_file_name.find_last_of (file_ops::dir_sep_chars ());
-
-  std::string tmp = (pos != std::string::npos)
-    ? curr_fcn_file_name.substr (pos+1) : curr_fcn_file_name;
-
-  octave_program_name = tmp;
+  octave_program_name
+    = (pos != std::string::npos) ? fname.substr (pos+1) : fname;
 
   std::string context;
   bool verbose = false;
@@ -826,7 +817,7 @@ octave_process_command_line (int argc, char **argv)
           break;
 
         case TRADITIONAL_OPTION:
-          maximum_braindamage ();
+          traditional = true;
           break;
 
         default:
@@ -860,6 +851,11 @@ octave_initialize_interpreter (int argc, char **argv, int embedded)
   octave_program_name = octave_env::get_program_name ();
 
   octave_thread::init ();
+
+  set_default_prompts ();
+
+  if (traditional)
+    maximum_braindamage ();
 
   init_signals ();
 
@@ -903,18 +899,12 @@ octave_initialize_interpreter (int argc, char **argv, int embedded)
   if (no_window_system)
     display_info::no_window_system ();
 
-  // Make sure we clean up when we exit.  Also allow users to register
-  // functions.  If we don't have atexit or on_exit, we're going to
-  // leave some junk files around if we exit abnormally.
-
-  atexit (do_octave_atexit);
-
   // Is input coming from a terminal?  If so, we are probably
   // interactive.
 
   // If stdin is not a tty, then we are reading commands from a pipe or
   // a redirected file.
-  stdin_is_tty = gnulib::isatty (fileno (stdin));
+  bool stdin_is_tty = gnulib::isatty (fileno (stdin));
 
   interactive = (! embedded && stdin_is_tty
                  && gnulib::isatty (fileno (stdout)));
@@ -997,9 +987,6 @@ octave_execute_interpreter (void)
   // Now argv should have the full set of args.
   intern_argv (octave_cmdline_argc, octave_cmdline_argv);
 
-  if (! octave_embedded)
-    switch_to_buffer (create_buffer (get_input_from_stdin ()));
-
   // Force input to be echoed if not really interactive, but the user
   // has forced interactive behavior.
 
@@ -1023,14 +1010,11 @@ octave_execute_interpreter (void)
 
   int retval = main_loop ();
 
-  if (retval == 1 && ! error_state)
-    retval = 0;
-
   quitting_gracefully = true;
 
-  clean_up_and_exit (retval);
+  clean_up_and_exit (retval, true);
 
-  return 0;
+  return retval;
 }
 
 static bool

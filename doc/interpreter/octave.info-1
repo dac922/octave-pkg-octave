@@ -29,7 +29,7 @@ GNU Octave
 
 This manual documents how to run, install and port GNU Octave, as well
 as its new features and incompatibilities, and how to report bugs.  It
-corresponds to GNU Octave version 3.7.2.
+corresponds to GNU Octave version 3.7.3.
 
 * Menu:
 
@@ -270,16 +270,17 @@ Statements
 * The try Statement::
 * Continuation Lines::
 
-The `switch' Statement
+The switch Statement
 
 * Notes for the C Programmer::
 
-The `for' Statement
+The for Statement
 
 * Looping Over Structure Elements::
 
 Functions and Scripts
 
+* Introduction to Function and Script Files::
 * Defining Functions::
 * Multiple Return Values::
 * Variable-length Argument Lists::
@@ -298,6 +299,7 @@ Function Files
 * Manipulating the Load Path::
 * Subfunctions::
 * Private Functions::
+* Nested Functions::
 * Overloading and Autoloading::
 * Function Locking::
 * Function Precedence::
@@ -389,6 +391,9 @@ High-Level Plotting
 * Plot Annotations::
 * Multiple Plots on One Page::
 * Multiple Plot Windows::
+* Use of axis, line, and patch Functions::
+* Manipulation of Plot Windows::
+* Use of the `interpreter' Property::
 * Printing and Saving Plots::
 * Interacting with Plots::
 * Test Plotting Functions::
@@ -649,6 +654,20 @@ Networking Utilities
 * FTP Objects::
 * URL Manipulation::
 
+Java Interface
+
+* Java Interface Functions::
+* Dialog Box Functions::
+* FAQ - Frequently asked Questions::
+
+FAQ - Frequently asked Questions
+
+* How to distinguish between Octave and Matlab?::
+* How to make Java classes available?::
+* How to create an instance of a Java class?::
+* How can I handle memory limitations?::
+* Which TeX symbols are implemented in the dialog functions?::
+
 Packages
 
 * Installing and Removing Packages::
@@ -826,104 +845,105 @@ Ben Abbott               Andy Adler               Giles Anderson
 Joel Andersson           Muthiah Annamalai        Marco Atzeri
 Shai Ayal                Roger Banks              Ben Barrowes
 Alexander Barth          David Bateman            Heinz Bauschke
-Roman Belov              Karl Berry               David Billinghurst
-Don Bindner              Jakub Bogusz             Moritz Borgmann
-Paul Boven               Richard Bovey            John Bradshaw
-Marcus Brinkmann         Max Brister              Remy Bruno
-Ansgar Burchard          Marco Caliari            Daniel Calvelo
-John C. Campbell         Juan Pablo Carbajal      Jean-Francois Cardoso
-Joao Cardoso             Larrie Carr              David Castelow
-Vincent Cautaerts        Clinton Chee             Albert Chin-A-Young
-Carsten Clark            J. D. Cole               Martin Costabel
-Michael Creel            Jeff Cunningham          Martin Dalecki
-Jorge Barros de Abreu    Carlo de Falco           Jacob Dawid
-Thomas D. Dean           Philippe Defert          Bill Denney
-Fabian Deutsch           Christos Dimitrakakis    Pantxo Diribarne
-Vivek Dogra              David M. Doolin          Carnë Draug
-Pascal A. Dupuis         John W. Eaton            Dirk Eddelbuettel
-Pieter Eendebak          Paul Eggert              Stephen Eglen
-Peter Ekberg             Rolf Fabian              Gunnar Farnebäck
-Stephen Fegan            Ramon Garcia Fernandez   Torsten Finke
-Jose Daniel Munoz Frias  Brad Froehle             Castor Fu
-Eduardo Gallestey        Walter Gautschi          Klaus Gebhardt
-Driss Ghaddab            Nicolo Giorgetti         Michael D. Godfrey
-Michael Goffioul         Glenn Golden             Tomislav Goles
-Keith Goodman            Brian Gough              Steffen Groot
-Etienne Grossmann        David Grundberg          Kyle Guinn
-Peter Gustafson          Kai Habel                Patrick Häcker
-William P. Y.            Jaroslav Hajek           Benjamin Hall
-Hadisoeseno                                       
-Kim Hansen               Søren Hauberg            Dave Hawthorne
-Daniel Heiserer          Martin Helm              Stefan Hepp
-Martin Hepperle          Jordi Gutiérrez Hermoso  Yozo Hida
-Ryan Hinton              Roman Hodek              A. Scottedward Hodel
-Júlio Hoffimann          Richard Allan Holcombe   Tom Holroyd
-David Hoover             Kurt Hornik              Christopher Hulbert
-Cyril Humbert            John Hunt                Teemu Ikonen
-Alan W. Irwin            Geoff Jacobsen           Mats Jansson
-Cai Jianming             Steven G. Johnson        Heikki Junes
-Matthias Jüschke         Atsushi Kajita           Jarkko Kaleva
-Mohamed Kamoun           Lute Kamstra             Fotios Kasolis
-Thomas Kasper            Joel Keay                Mumit Khan
-Paul Kienzle             Aaron A. King            Arno J. Klaassen
-Alexander Klein          Geoffrey Knauth          Heine Kolltveit
-Ken Kouno                Kacper Kowalik           Daniel Kraft
-Aravindh Krishnamoorthy  Oyvind Kristiansen       Piotr Krzyzanowski
-Volker Kuhlmann          Tetsuro Kurita           Miroslaw Kwasniak
-Rafael Laboissiere       Kai Labusch              Claude Lacoursiere
-Walter Landry            Bill Lash                Dirk Laurie
-Maurice LeBrun           Friedrich Leisch         Jyh-miin Lin
-Timo Lindfors            Benjamin Lindner         Ross Lippert
-David Livings            Sebastien Loisel         Erik de Castro Lopo
-Massimo Lorenzin         Emil Lucretiu            Hoxide Ma
-James Macnicol           Jens-Uwe Mager           Colin Macdonald
-Rob Mahurin              Ricardo Marranita        Orestes Mas
-Axel Mathéi              Makoto Matsumoto         Tatsuro Matsuoka
-Laurent Mazet            G. D. McBain             Alexander Mamonov
-Christoph Mayer          Júlio Hoffimann Mendes   Ronald van der Meer
-Thorsten Meyer           Petr Mikulik             Mike Miller
-Stefan Monnier           Antoine Moreau           Kai P. Mueller
-Hannes Müller            Victor Munoz             Iain Murray
-Carmen Navarrete         Todd Neal                Philip Nienhuis
-Al Niessner              Rick Niles               Takuji Nishimura
-Kai Noda                 Eric Norum               Krzesimir Nowak
-Michael O'Brien          Peter O'Gorman           Thorsten Ohl
-Arno Onken               Valentin Ortega-Clavero  Luis F. Ortiz
-Scott Pakin              Gabriele Pannocchia      Sylvain Pelissier
-Per Persson              Primozz Peterlin         Jim Peterson
-Danilo Piazzalunga       Nicholas Piper           Elias Pipping
-Robert Platt             Hans Ekkehard Plesser    Tom Poage
-Orion Poplawski          Ondrej Popp              Jef Poskanzer
-Francesco Potortì        Konstantinos Poulios     Jarno Rajahalme
-James B. Rawlings        Eric S. Raymond          Balint Reczey
-Joshua Redstone          Lukas Reichlin           Michael Reifenberger
-Anthony Richardson       Jason Riedy              E. Joshua Rigler
-Petter Risholm           Matthew W. Roberts       Andrew Ross
-Fabio Rossi              Mark van Rossum          Joe Rothweiler
-Kevin Ruland             Kristian Rumberg         Ryan Rusaw
-Olli Saarela             Toni Saarela             Juhani Saastamoinen
-Radek Salac              Ben Sapp                 Aleksej Saushev
-Alois Schlögl            Michel D. Schmid         Julian Schnidder
-Nicol N. Schraudolph     Sebastian Schubert       Ludwig Schwardt
-Thomas L. Scofield       Daniel J. Sebald         Dmitri A. Sergatskov
-Vanya Sergeev            Baylis Shanks            Andriy Shinkarchuck
-Robert T. Short          Joseph P. Skudlarek      John Smith
-Julius Smith             Shan G. Smith            Peter L. Sondergaard
-Joerg Specht             Quentin H. Spencer       Christoph Spiel
-Richard Stallman         Russell Standish         Brett Stewart
-Doug Stewart             Jonathan Stickel         Judd Storrs
-Thomas Stuart            Ivan Sutoris             John Swensen
-Daisuke Takago           Ariel Tankus             Matthew Tenny
-Georg Thimm              Duncan Temple Lang       Kris Thielemans
-Olaf Till                Christophe Tournery      Thomas Treichl
-Karsten Trulsen          Frederick Umminger       Utkarsh Upadhyay
-Daniel Wagenaar          Stefan van der Walt      Peter Van Wieren
-James R. Van Zandt       Gregory Vanuxem          Ivana Varekova
-Thomas Walter            Andreas Weber            Olaf Weber
-Thomas Weber             Rik Wehbring             Bob Weigel
-Andreas Weingessel       Martin Weiser            Michael Weitzel
-David Wells              Fook Fah Yap             Sean Young
-Michael Zeising          Federico Zenith          Alex Zvoleff
+Julien Bect              Roman Belov              Karl Berry
+David Billinghurst       Don Bindner              Jakub Bogusz
+Moritz Borgmann          Paul Boven               Richard Bovey
+John Bradshaw            Marcus Brinkmann         Max Brister
+Remy Bruno               Ansgar Burchard          Marco Caliari
+Daniel Calvelo           John C. Campbell         Juan Pablo Carbajal
+Jean-Francois Cardoso    Joao Cardoso             Larrie Carr
+David Castelow           Vincent Cautaerts        Clinton Chee
+Albert Chin-A-Young      Carsten Clark            J. D. Cole
+Martin Costabel          Michael Creel            Jeff Cunningham
+Martin Dalecki           Jorge Barros de Abreu    Carlo de Falco
+Jacob Dawid              Thomas D. Dean           Philippe Defert
+Bill Denney              Fabian Deutsch           Christos Dimitrakakis
+Pantxo Diribarne         Vivek Dogra              John Donoghue
+David M. Doolin          Carnë Draug              Pascal A. Dupuis
+John W. Eaton            Dirk Eddelbuettel        Pieter Eendebak
+Paul Eggert              Stephen Eglen            Peter Ekberg
+Rolf Fabian              Gunnar Farnebäck         Stephen Fegan
+Ramon Garcia Fernandez   Torsten Finke            Jose Daniel Munoz Frias
+Brad Froehle             Castor Fu                Eduardo Gallestey
+Walter Gautschi          Klaus Gebhardt           Driss Ghaddab
+Nicolo Giorgetti         Michael D. Godfrey       Michael Goffioul
+Glenn Golden             Tomislav Goles           Keith Goodman
+Brian Gough              Steffen Groot            Etienne Grossmann
+David Grundberg          Kyle Guinn               Peter Gustafson
+Kai Habel                Patrick Häcker           William P. Y.
+                                                  Hadisoeseno
+Jaroslav Hajek           Benjamin Hall            Kim Hansen
+Søren Hauberg            Dave Hawthorne           Daniel Heiserer
+Martin Helm              Stefan Hepp              Martin Hepperle
+Jordi Gutiérrez Hermoso  Yozo Hida                Ryan Hinton
+Roman Hodek              A. Scottedward Hodel     Richard Allan Holcombe
+Tom Holroyd              David Hoover             Kurt Hornik
+Christopher Hulbert      Cyril Humbert            John Hunt
+Teemu Ikonen             Alan W. Irwin            Geoff Jacobsen
+Mats Jansson             Cai Jianming             Steven G. Johnson
+Heikki Junes             Matthias Jüschke         Atsushi Kajita
+Jarkko Kaleva            Mohamed Kamoun           Lute Kamstra
+Fotios Kasolis           Thomas Kasper            Joel Keay
+Mumit Khan               Paul Kienzle             Aaron A. King
+Arno J. Klaassen         Alexander Klein          Geoffrey Knauth
+Heine Kolltveit          Ken Kouno                Kacper Kowalik
+Daniel Kraft             Aravindh Krishnamoorthy  Oyvind Kristiansen
+Piotr Krzyzanowski       Volker Kuhlmann          Tetsuro Kurita
+Miroslaw Kwasniak        Rafael Laboissiere       Kai Labusch
+Claude Lacoursiere       Walter Landry            Bill Lash
+Dirk Laurie              Maurice LeBrun           Friedrich Leisch
+Jyh-miin Lin             Timo Lindfors            Benjamin Lindner
+Ross Lippert             David Livings            Sebastien Loisel
+Erik de Castro Lopo      Massimo Lorenzin         Emil Lucretiu
+Hoxide Ma                James Macnicol           Jens-Uwe Mager
+Colin Macdonald          Rob Mahurin              Ricardo Marranita
+Orestes Mas              Axel Mathéi              Makoto Matsumoto
+Tatsuro Matsuoka         Laurent Mazet            G. D. McBain
+Alexander Mamonov        Christoph Mayer          Júlio Hoffimann Mendes
+Ronald van der Meer      Thorsten Meyer           Petr Mikulik
+Mike Miller              Stefan Monnier           Antoine Moreau
+Kai P. Mueller           Hannes Müller            Victor Munoz
+Iain Murray              Carmen Navarrete         Todd Neal
+Philip Nienhuis          Al Niessner              Rick Niles
+Takuji Nishimura         Kai Noda                 Eric Norum
+Krzesimir Nowak          Michael O'Brien          Peter O'Gorman
+Thorsten Ohl             Arno Onken               Valentin Ortega-Clavero
+Luis F. Ortiz            Scott Pakin              Gabriele Pannocchia
+Sylvain Pelissier        Per Persson              Primozz Peterlin
+Jim Peterson             Danilo Piazzalunga       Nicholas Piper
+Elias Pipping            Robert Platt             Hans Ekkehard Plesser
+Tom Poage                Orion Poplawski          Ondrej Popp
+Jef Poskanzer            Francesco Potortì        Konstantinos Poulios
+Jarno Rajahalme          James B. Rawlings        Eric S. Raymond
+Balint Reczey            Joshua Redstone          Lukas Reichlin
+Michael Reifenberger     Anthony Richardson       Jason Riedy
+E. Joshua Rigler         Petter Risholm           Matthew W. Roberts
+Andrew Ross              Fabio Rossi              Mark van Rossum
+Joe Rothweiler           Kevin Ruland             Kristian Rumberg
+Ryan Rusaw               Olli Saarela             Toni Saarela
+Juhani Saastamoinen      Radek Salac              Ben Sapp
+Aleksej Saushev          Alois Schlögl            Michel D. Schmid
+Julian Schnidder         Nicol N. Schraudolph     Sebastian Schubert
+Ludwig Schwardt          Thomas L. Scofield       Daniel J. Sebald
+Dmitri A. Sergatskov     Vanya Sergeev            Baylis Shanks
+Andriy Shinkarchuck      Robert T. Short          Joseph P. Skudlarek
+John Smith               Julius Smith             Shan G. Smith
+Peter L. Sondergaard     Joerg Specht             Quentin H. Spencer
+Christoph Spiel          Richard Stallman         Russell Standish
+Brett Stewart            Doug Stewart             Jonathan Stickel
+Judd Storrs              Thomas Stuart            Ivan Sutoris
+John Swensen             Daisuke Takago           Ariel Tankus
+Matthew Tenny            Georg Thimm              Duncan Temple Lang
+Kris Thielemans          Olaf Till                Christophe Tournery
+Thomas Treichl           Karsten Trulsen          Frederick Umminger
+Utkarsh Upadhyay         Daniel Wagenaar          Stefan van der Walt
+Peter Van Wieren         James R. Van Zandt       Gregory Vanuxem
+Ivana Varekova           Thomas Walter            Andreas Weber
+Olaf Weber               Thomas Weber             Rik Wehbring
+Bob Weigel               Andreas Weingessel       Martin Weiser
+Michael Weitzel          David Wells              Fook Fah Yap
+Sean Young               Michael Zeising          Federico Zenith
+Alex Zvoleff                                      
 
    Special thanks to the following people and organizations for
 supporting the development of Octave:
@@ -1051,7 +1071,7 @@ this manual in *note Copying::.
 run, use, and extend GNU Octave.  Additional chapters describe how to
 report bugs and help contribute code.
 
-   This document corresponds to Octave version 3.7.2.
+   This document corresponds to Octave version 3.7.3.
 
 * Menu:
 
@@ -1990,8 +2010,8 @@ document the functions you write.
    To see what is new in the current release of Octave, use the `news'
 function.
 
- -- Function File:  news
- -- Function File:  news (PACKAGE)
+ -- Command:  news
+ -- Command:  news PACKAGE
      Display the current NEWS file for Octave or an installed package.
 
      When called without an argument, display the NEWS file for Octave.
@@ -2449,27 +2469,33 @@ place of `C-p' and `C-n' to move through the history list.
 list, Octave provides three functions for viewing, editing, and
 re-running chunks of commands from the history list.
 
- -- Command: history options
- -- Built-in Function: H =  history (OPT1, OPT2, ...)
+ -- Command:  history
+ -- Command:  history OPT1 ...
+ -- Built-in Function: H = history ()
+ -- Built-in Function: H = history (OPT1, ...)
      If invoked with no arguments, `history' displays a list of commands
      that you have executed.  Valid options are:
 
-    `-w FILE'
-          Write the current history to the file FILE.  If the name is
-          omitted, use the default history file (normally
-          `~/.octave_hist').
+    `N'
+    `-N'
+          Display only the most recent N lines of history.
+
+    `-c'
+          Clear the history list.
+
+    `-q'
+          Don't number the displayed lines of history.  This is useful
+          for cutting and pasting commands using the X Window System.
 
     `-r FILE'
           Read the file FILE, appending its contents to the current
           history list.  If the name is omitted, use the default
           history file (normally `~/.octave_hist').
 
-    `N'
-          Display only the most recent N lines of history.
-
-    `-q'
-          Don't number the displayed lines of history.  This is useful
-          for cutting and pasting commands using the X Window System.
+    `-w FILE'
+          Write the current history to the file FILE.  If the name is
+          omitted, use the default history file (normally
+          `~/.octave_hist').
 
      For example, to display the five most recent commands that you have
      typed without displaying line numbers, use the command `history -q
@@ -2479,41 +2505,68 @@ re-running chunks of commands from the history list.
      saved to that argument as a cell string and will not be output to
      screen.
 
- -- Command:  edit_history [FIRST] [LAST]
-     If invoked with no arguments, `edit_history' allows you to edit the
-     history list using the editor named by the variable `EDITOR'.  The
-     commands to be edited are first copied to a temporary file.  When
-     you exit the editor, Octave executes the commands that remain in
-     the file.  It is often more convenient to use `edit_history' to
+ -- Command:  edit_history
+ -- Command:  edit_history CMD_NUMBER
+ -- Command:  edit_history FIRST LAST
+     Edit the history list using the editor named by the variable
+     `EDITOR'.
+
+     The commands to be edited are first copied to a temporary file.
+     When you exit the editor, Octave executes the commands that remain
+     in the file.  It is often more convenient to use `edit_history' to
      define functions rather than attempting to enter them directly on
-     the command line.  By default, the block of commands is executed
-     as soon as you exit the editor.  To avoid executing any commands,
-     simply delete all the lines from the buffer before exiting the
-     editor.
+     the command line.  The block of commands is executed as soon as
+     you exit the editor.  To avoid executing any commands, simply
+     delete all the lines from the buffer before leaving the editor.
 
-     The `edit_history' command takes two optional arguments specifying
-     the history numbers of first and last commands to edit.  For
-     example, the command
+     When invoked with no arguments, edit the previously executed
+     command; With one argument, edit the specified command CMD_NUMBER;
+     With two arguments, edit the list of commands between FIRST and
+     LAST.  Command number specifiers may also be negative where -1
+     refers to the most recently executed command.  The following are
+     equivalent and edit the most recently executed command.
 
-          edit_history 13
+          edit_history
+          edit_history -1
 
-     extracts all the commands from the 13th through the last in the
-     history list.  The command
-
-          edit_history 13 169
-
-     only extracts commands 13 through 169.  Specifying a larger number
-     for the first command than the last command reverses the list of
-     commands before placing them in the buffer to be edited.  If both
-     arguments are omitted, the previous command in the history list is
-     used.
+     When using ranges, specifying a larger number for the first
+     command than the last command reverses the list of commands before
+     they are placed in the buffer to be edited.
 
      *See also:* *note run_history: doc-run_history.
 
- -- Command:  run_history [FIRST] [LAST]
-     Similar to `edit_history', except that the editor is not invoked,
-     and the commands are simply executed as they appear in the history
-     list.
+ -- Command:  run_history
+ -- Command:  run_history CMD_NUMBER
+ -- Command:  run_history FIRST LAST
+     Run commands from the history list.
+
+     When invoked with no arguments, run the previously executed
+     command; With one argument, run the specified command CMD_NUMBER;
+     With two arguments, run the list of commands between FIRST and
+     LAST.  Command number specifiers may also be negative where -1
+     refers to the most recently executed command.  For example, the
+     command
+
+          run_history
+               OR
+          run_history -1
+
+     executes the most recent command again.  The command
+
+          run_history 13 169
+
+     executes commands 13 through 169.
+
+     Specifying a larger number for the first command than the last
+     command reverses the list of commands before executing them.  For
+     example:
+
+          disp (1)
+          disp (2)
+          run_history -1 -2
+          =>
+           2
+           1
 
      *See also:* *note edit_history: doc-edit_history.
 
@@ -5117,8 +5170,9 @@ function (*note Formatted Output::, *note doc-sprintf::).
      The optional second argument may either give the number of
      significant digits (PRECISION) to be used in the output or a format
      template string (FORMAT) as in `sprintf' (*note Formatted
-     Output::).  `num2str' can also handle complex numbers.  For
-     example:
+     Output::).  `num2str' can also handle complex numbers.
+
+     Examples:
 
           num2str (123.456)
                => "123.46"
@@ -5139,11 +5193,17 @@ function (*note Formatted Output::, *note doc-sprintf::).
           num2str (1.234 + 27.3i)
                => "1.234+27.3i"
 
+     Notes:
+
+     For Matlab compatibility, leading spaces are stripped before
+     returning the string.
+
      The `num2str' function is not very flexible.  For better control
-     over the results, use `sprintf' (*note Formatted Output::).  Note
-     that for complex X, the format string may only contain one output
-     conversion specification and nothing else.  Otherwise, you will
-     get unpredictable results.
+     over the results, use `sprintf' (*note Formatted Output::).
+
+     For complex X, the format string may only contain one output
+     conversion specification and nothing else.  Otherwise, results
+     will be unpredictable.
 
      *See also:* *note sprintf: doc-sprintf, *note int2str:
      doc-int2str, *note mat2str: doc-mat2str.
@@ -5451,6 +5511,26 @@ general regular expressions, the following functions come with Octave.
      doc-strmatch, *note regexp: doc-regexp, *note regexpi:
      doc-regexpi, *note find: doc-find.
 
+ -- Function File: STR = strjoin (CSTR)
+ -- Function File: STR = strjoin (CSTR, DELIMITER)
+     Joins the elements of the cell-string array, CSTR, into a single
+     string.
+
+     If no DELIMITER is specified, the elements of CSTR seperated by a
+     space.
+
+     If DELIMITER is specified as a string, the cell-string array is
+     joined using the string.
+
+     If DELIMITER is a cell-string array whose length is one less than
+     CSTR, then the elemennts of CSTR are joined by interleaving the
+     cell-string elements of DELIMITER.
+
+          strjoin ({'Octave','Scilab','Lush','Yorick'}, '*')
+                => 'Octave*Scilab*Lush*Yorick'
+
+     *See also:* strsplit.
+
  -- Function File:  strmatch (S, A)
  -- Function File:  strmatch (S, A, "exact")
      Return indices of entries of A which begin with the string S.  The
@@ -5503,17 +5583,31 @@ general regular expressions, the following functions come with Octave.
      *See also:* *note index: doc-index, *note strsplit: doc-strsplit,
      *note strchr: doc-strchr, *note isspace: doc-isspace.
 
- -- Function File: [CSTR] = strsplit (S, SEP)
- -- Function File: [CSTR] = strsplit (S, SEP, STRIP_EMPTY)
-     Split the string S using one or more separators SEP and return a
-     cell array of strings.  Consecutive separators and separators at
-     boundaries result in empty strings, unless STRIP_EMPTY is true.
-     The default value of STRIP_EMPTY is false.
+ -- Function File: [CSTR] = strsplit (S)
+ -- Function File: [CSTR] = strsplit (S, DEL)
+ -- Function File: [CSTR] = strsplit (S, DEL, COLLAPSEDELIMITERS)
+ -- Function File: [CSTR] = strsplit (..., NAME, VALUE)
+ -- Function File: [CSTR, MATCHES] = strsplit (...)
+     Split the string S using the delimiters specified by DEL and
+     return a cell array of strings.  For a single delimiter, DEL may
+     be a string, or a scalar cell-string.  For multible delimiters,
+     DEL must be a cell-string array.  Unless COLLAPSEDELIMITERS is
+     specified to be FALSE, consecutive delimiters are collapsed into
+     one.
 
-     2-D character arrays are split at separators and at the original
-     column boundaries.
+     The second output, MATCHES, returns the delmiters which were
+     matched in the original string.  The matched delimiters are
+     uneffected by the COLLAPSEDELIMITERS.
 
      Example:
+
+          strsplit ("a b c")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
 
           strsplit ("a,b,c", ",")
                 =>
@@ -5523,15 +5617,76 @@ general regular expressions, the following functions come with Octave.
                       [1,3] = c
                     }
 
-          strsplit (["a,b" ; "cde"], ",")
+          strsplit ("a foo b,bar c", {"\s", "foo", "bar"})
                 =>
                     {
                       [1,1] = a
                       [1,2] = b
-                      [1,3] = cde
+                      [1,3] = c
                     }
 
-     *See also:* *note strtok: doc-strtok.
+          strsplit ("a,,b, c", {",", " "}, false)
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] = b
+                      [1,4] =
+                      [1,5] = c
+                    }
+
+     Supported NAME/VALUE pair arguments are;
+
+        * COLLAPSEDELIMITERS may take the value of TRUE or FALSE with
+          the default being FALSE.
+
+        * DELIMITERTYPE may take the value of `legacy', `simple' or
+          `regularexpression'.  If DELIMITERTYPE is equal to `legacy',
+          each individual character of DEL is used to split the input.
+          If the specified delimiters are single characters, the
+          default is DELIMITERTYPE is `legacy'.  Otherwise the default
+          DELIMITERTYPE is `simple'.
+
+     Example:
+
+          strsplit ("a foo b,bar c", ",|\\s|foo|bar", "delimitertype", "regularexpression")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
+
+          strsplit ("a,,b, c", "[, ]", false, "delimitertype", "regularexpression")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] = b
+                      [1,4] =
+                      [1,5] = c
+                    }
+
+          strsplit ("a,,b, c", ", ", false, "delimitertype", "legacy")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] = b
+                      [1,4] =
+                      [1,5] = c
+                    }
+
+          strsplit ("a,\t,b, c", {',', '\s'}, "delimitertype", "regularexpression")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
+
+     *See also:* *note strjoin: doc-strjoin, *note strtok: doc-strtok,
+     *note regexp: doc-regexp.
 
  -- Function File: [A, ...] = strread (STR)
  -- Function File: [A, ...] = strread (STR, FORMAT)
@@ -7278,6 +7433,7 @@ previous example.  In some circumstances it makes sense to reference
 them by their index, and this can be performed by the `celldisp'
 function.
 
+ -- Function File:  celldisp (C)
  -- Function File:  celldisp (C, NAME)
      Recursively display the contents of a cell array.  By default the
      values are displayed with the name of the variable C.  However,
@@ -8718,66 +8874,4 @@ result.
      variable is changed locally for the function and any subroutines
      it calls.  The original variable value is restored when exiting
      the function.
-
-
-File: octave.info,  Node: Calling Functions,  Next: Arithmetic Ops,  Prev: Index Expressions,  Up: Expressions
-
-8.2 Calling Functions
-=====================
-
-A "function" is a name for a particular calculation.  Because it has a
-name, you can ask for it by name at any point in the program.  For
-example, the function `sqrt' computes the square root of a number.
-
-   A fixed set of functions are "built-in", which means they are
-available in every Octave program.  The `sqrt' function is one of
-these.  In addition, you can define your own functions.  *Note
-Functions and Scripts::, for information about how to do this.
-
-   The way to use a function is with a "function call" expression,
-which consists of the function name followed by a list of "arguments"
-in parentheses.  The arguments are expressions which give the raw
-materials for the calculation that the function will do.  When there is
-more than one argument, they are separated by commas.  If there are no
-arguments, you can omit the parentheses, but it is a good idea to
-include them anyway, to clearly indicate that a function call was
-intended.  Here are some examples:
-
-     sqrt (x^2 + y^2)      # One argument
-     ones (n, m)           # Two arguments
-     rand ()               # No arguments
-
-   Each function expects a particular number of arguments.  For
-example, the `sqrt' function must be called with a single argument, the
-number to take the square root of:
-
-     sqrt (ARGUMENT)
-
-   Some of the built-in functions take a variable number of arguments,
-depending on the particular usage, and their behavior is different
-depending on the number of arguments supplied.
-
-   Like every other expression, the function call has a value, which is
-computed by the function based on the arguments you give it.  In this
-example, the value of `sqrt (ARGUMENT)' is the square root of the
-argument.  A function can also have side effects, such as assigning the
-values of certain variables or doing input or output operations.
-
-   Unlike most languages, functions in Octave may return multiple
-values.  For example, the following statement
-
-     [u, s, v] = svd (a)
-
-computes the singular value decomposition of the matrix `a' and assigns
-the three result matrices to `u', `s', and `v'.
-
-   The left side of a multiple assignment expression is itself a list of
-expressions, and is allowed to be a list of variable names or index
-expressions.  See also *note Index Expressions::, and *note Assignment
-Ops::.
-
-* Menu:
-
-* Call by Value::
-* Recursion::
 

@@ -38,8 +38,8 @@ Up:&nbsp;<a rel="up" accesskey="u" href="System-Utilities.html#System-Utilities"
 <p><a name="doc_002dbunzip2"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>bunzip2</b> (<var>bzfile</var>)<var><a name="index-bunzip2-3336"></a></var><br>
-&mdash; Function File:  <b>bunzip2</b> (<var>bzfile, dir</var>)<var><a name="index-bunzip2-3337"></a></var><br>
+&mdash; Function File:  <b>bunzip2</b> (<var>bzfile</var>)<var><a name="index-bunzip2-3350"></a></var><br>
+&mdash; Function File:  <b>bunzip2</b> (<var>bzfile, dir</var>)<var><a name="index-bunzip2-3351"></a></var><br>
 <blockquote><p>Unpack the bzip2 archive <var>bzfile</var> to the directory <var>dir</var>.  If
 <var>dir</var> is not specified, it defaults to the current directory.
 
@@ -50,8 +50,8 @@ Up:&nbsp;<a rel="up" accesskey="u" href="System-Utilities.html#System-Utilities"
    <p><a name="doc_002dgzip"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files</var>)<var><a name="index-gzip-3338"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files, outdir</var>)<var><a name="index-gzip-3339"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files</var>)<var><a name="index-gzip-3352"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>gzip</b> (<var>files, outdir</var>)<var><a name="index-gzip-3353"></a></var><br>
 <blockquote><p>Compress the list of files and/or directories specified in <var>files</var>. 
 Each file is compressed separately and a new file with a ".gz" extension
 is created.  The original files are not modified.  Existing compressed
@@ -65,7 +65,7 @@ files are placed in this directory.
    <p><a name="doc_002dgunzip"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gunzip</b> (<var>gzfile, dir</var>)<var><a name="index-gunzip-3340"></a></var><br>
+&mdash; Function File:  <b>gunzip</b> (<var>gzfile, dir</var>)<var><a name="index-gunzip-3354"></a></var><br>
 <blockquote><p>Unpack the gzip archive <var>gzfile</var> to the directory <var>dir</var>.  If
 <var>dir</var> is not specified, it defaults to the current directory.  If
 <var>gzfile</var> is a directory, all gzfiles in the directory will be
@@ -78,8 +78,8 @@ recursively gunzipped.
    <p><a name="doc_002dtar"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files</var>)<var><a name="index-tar-3341"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files, root</var>)<var><a name="index-tar-3342"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files</var>)<var><a name="index-tar-3355"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>tar</b> (<var>tarfile, files, root</var>)<var><a name="index-tar-3356"></a></var><br>
 <blockquote><p>Pack <var>files</var> <var>files</var> into the TAR archive <var>tarfile</var>.  The
 list of files must be a string or a cell array of strings.
 
@@ -96,8 +96,8 @@ returned in a cell array.
    <p><a name="doc_002duntar"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>untar</b> (<var>tarfile</var>)<var><a name="index-untar-3343"></a></var><br>
-&mdash; Function File:  <b>untar</b> (<var>tarfile, dir</var>)<var><a name="index-untar-3344"></a></var><br>
+&mdash; Function File:  <b>untar</b> (<var>tarfile</var>)<var><a name="index-untar-3357"></a></var><br>
+&mdash; Function File:  <b>untar</b> (<var>tarfile, dir</var>)<var><a name="index-untar-3358"></a></var><br>
 <blockquote><p>Unpack the TAR archive <var>tarfile</var> to the directory <var>dir</var>. 
 If <var>dir</var> is not specified, it defaults to the current directory.
 
@@ -108,8 +108,8 @@ If <var>dir</var> is not specified, it defaults to the current directory.
    <p><a name="doc_002dzip"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files</var>)<var><a name="index-zip-3345"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files, rootdir</var>)<var><a name="index-zip-3346"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files</var>)<var><a name="index-zip-3359"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>zip</b> (<var>zipfile, files, rootdir</var>)<var><a name="index-zip-3360"></a></var><br>
 <blockquote><p>Compress the list of files and/or directories specified in <var>files</var>
 into the archive <var>zipfile</var> in the same directory.  If <var>rootdir</var>
 is defined the <var>files</var> are located relative to <var>rootdir</var> rather
@@ -122,8 +122,8 @@ than the current directory.
    <p><a name="doc_002dunzip"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>unzip</b> (<var>zipfile</var>)<var><a name="index-unzip-3347"></a></var><br>
-&mdash; Function File:  <b>unzip</b> (<var>zipfile, dir</var>)<var><a name="index-unzip-3348"></a></var><br>
+&mdash; Function File:  <b>unzip</b> (<var>zipfile</var>)<var><a name="index-unzip-3361"></a></var><br>
+&mdash; Function File:  <b>unzip</b> (<var>zipfile, dir</var>)<var><a name="index-unzip-3362"></a></var><br>
 <blockquote><p>Unpack the ZIP archive <var>zipfile</var> to the directory <var>dir</var>. 
 If <var>dir</var> is not specified, it defaults to the current directory.
 
@@ -134,9 +134,9 @@ If <var>dir</var> is not specified, it defaults to the current directory.
    <p><a name="doc_002dunpack"></a>
 
 <div class="defun">
-&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file</var>)<var><a name="index-unpack-3349"></a></var><br>
-&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir</var>)<var><a name="index-unpack-3350"></a></var><br>
-&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir, filetype</var>)<var><a name="index-unpack-3351"></a></var><br>
+&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file</var>)<var><a name="index-unpack-3363"></a></var><br>
+&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir</var>)<var><a name="index-unpack-3364"></a></var><br>
+&mdash; Function File: <var>files</var> = <b>unpack</b> (<var>file, dir, filetype</var>)<var><a name="index-unpack-3365"></a></var><br>
 <blockquote><p>Unpack the archive <var>file</var> based on its extension to the directory
 <var>dir</var>.  If <var>file</var> is a list of strings, then each file is
 unpacked individually.  If <var>dir</var> is not specified, it defaults to
@@ -152,8 +152,8 @@ the current directory.  If a directory is in the file list, then the
    <p><a name="doc_002dbzip2"></a>
 
 <div class="defun">
-&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files</var>)<var><a name="index-bzip2-3352"></a></var><br>
-&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files, outdir</var>)<var><a name="index-bzip2-3353"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files</var>)<var><a name="index-bzip2-3366"></a></var><br>
+&mdash; Function File: <var>entries</var> = <b>bzip2</b> (<var>files, outdir</var>)<var><a name="index-bzip2-3367"></a></var><br>
 <blockquote><p>Compress the list of files specified in <var>files</var>. 
 Each file is compressed separately and a new file with a ".bz2" extension
 is created.  The original files are not modified.  Existing compressed files

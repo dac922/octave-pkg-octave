@@ -37,14 +37,17 @@ class tree_walker;
 // General cells.
 
 class
-tree_cell : public tree_matrix
+tree_cell : public tree_array_list
 {
 public:
 
   tree_cell (tree_argument_list *row = 0, int l = -1, int c = -1)
-    : tree_matrix (row, l, c) { }
+    : tree_array_list (row, l, c)
+  { }
 
   ~tree_cell (void) { }
+
+  bool is_cell (void) const { return true; }
 
   bool rvalue_ok (void) const { return true; }
 

@@ -43,8 +43,8 @@ the other is more `C-like'.
    <p><a name="doc_002dfscanf"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, size</var>)<var><a name="index-fscanf-1032"></a></var><br>
-&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>] = <b>fscanf</b> (<var>fid, template, locale</var>)<var><a name="index-fscanf-1033"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, size</var>)<var><a name="index-fscanf-1045"></a></var><br>
+&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, "C"</var>)<var><a name="index-fscanf-1046"></a></var><br>
 <blockquote><p>In the first form, read from <var>fid</var> according to <var>template</var>,
 returning the result in the matrix <var>val</var>.
 
@@ -78,10 +78,7 @@ conversions.
 with each conversion specifier in <var>template</var> corresponding to a
 single scalar return value.  This form is more `C-like', and also
 compatible with previous versions of Octave.  The number of successful
-conversions is returned in <var>count</var>.  It permits to explicitly
-specify a locale to take into account language specific features,
-such as decimal separator.  This operation restores the previous locales
-setting at the end of the conversion.
+conversions is returned in <var>count</var>
 
         <p>See the Formatted Input section of the GNU Octave manual for a
 complete description of the syntax of the template string.
@@ -93,8 +90,8 @@ complete description of the syntax of the template string.
    <p><a name="doc_002dscanf"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>scanf</b> (<var>template, size</var>)<var><a name="index-scanf-1034"></a></var><br>
-&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>] = <b>scanf</b> (<var>template, locale</var>)<var><a name="index-scanf-1035"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>scanf</b> (<var>template, size</var>)<var><a name="index-scanf-1047"></a></var><br>
+&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>]] = <b>scanf</b> (<var>template, "C"</var>)<var><a name="index-scanf-1048"></a></var><br>
 <blockquote><p>This is equivalent to calling <code>fscanf</code> with <var>fid</var> = <code>stdin</code>.
 
         <p>It is currently not useful to call <code>scanf</code> in interactive
@@ -107,8 +104,8 @@ programs.
    <p><a name="doc_002dsscanf"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>, <var>pos</var>] = <b>sscanf</b> (<var>string, template, size</var>)<var><a name="index-sscanf-1036"></a></var><br>
-&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>] = <b>sscanf</b> (<var>string, template, locale</var>)<var><a name="index-sscanf-1037"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>, <var>pos</var>] = <b>sscanf</b> (<var>string, template, size</var>)<var><a name="index-sscanf-1049"></a></var><br>
+&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>] = <b>sscanf</b> (<var>string, template, "C"</var>)<var><a name="index-sscanf-1050"></a></var><br>
 <blockquote><p>This is like <code>fscanf</code>, except that the characters are taken from the
 string <var>string</var> instead of from a stream.  Reaching the end of the
 string is treated as an end-of-file condition.  In addition to the values
@@ -130,12 +127,12 @@ file, and there is no concept of precision for the numeric input
 conversions as there is for the corresponding output conversions. 
 Ordinarily, non-whitespace characters in the template are expected to
 match characters in the input stream exactly. 
-<a name="index-conversion-specifications-_0028_0040code_007bscanf_007d_0029-1038"></a>
+<a name="index-conversion-specifications-_0028_0040code_007bscanf_007d_0029-1051"></a>
 When a <dfn>matching failure</dfn> occurs, <code>scanf</code> returns immediately,
 leaving the first non-matching character as the next character to be
 read from the stream, and <code>scanf</code> returns all the items that were
 successfully converted. 
-<a name="index-matching-failure_002c-in-_0040code_007bscanf_007d-1039"></a>
+<a name="index-matching-failure_002c-in-_0040code_007bscanf_007d-1052"></a>
 The formatted input functions are not used as frequently as the
 formatted output functions.  Partly, this is because it takes some care
 to use them properly.  Another reason is that it is difficult to recover

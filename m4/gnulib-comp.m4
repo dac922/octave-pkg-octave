@@ -92,6 +92,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module fopen:
   # Code from module fpieee:
   AC_REQUIRE([gl_FP_IEEE])
+  # Code from module fpucw:
   # Code from module fpurge:
   # Code from module freading:
   # Code from module fseek:
@@ -644,6 +645,7 @@ AC_SUBST([LTALLOCA])
   gl_FUNC_PUTENV
   if test $REPLACE_PUTENV = 1; then
     AC_LIBOBJ([putenv])
+    gl_PREREQ_PUTENV
   fi
   gl_STDLIB_MODULE_INDICATOR([putenv])
   gl_FUNC_RAISE
@@ -1076,6 +1078,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/fnmatch.in.h
   lib/fnmatch_loop.c
   lib/fopen.c
+  lib/fpucw.h
   lib/fpurge.c
   lib/freading.c
   lib/freading.h

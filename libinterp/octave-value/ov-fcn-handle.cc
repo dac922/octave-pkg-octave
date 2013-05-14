@@ -466,7 +466,7 @@ octave_fcn_handle::load_ascii (std::istream& is)
                       break;
                     }
 
-                  symbol_table::varref (name, local_scope, 0) = t2;
+                  symbol_table::assign (name, t2, local_scope, 0);
                 }
             }
         }
@@ -651,7 +651,7 @@ octave_fcn_handle::load_binary (std::istream& is, bool swap,
                   break;
                 }
 
-              symbol_table::varref (name, local_scope) = t2;
+              symbol_table::assign (name, t2, local_scope);
             }
         }
 
@@ -1159,7 +1159,7 @@ octave_fcn_handle::load_hdf5 (hid_t loc_id, const char *name)
                       break;
                     }
 
-                  symbol_table::varref (dsub.name, local_scope) = dsub.tc;
+                  symbol_table::assign (dsub.name, dsub.tc, local_scope);
                 }
             }
         }
@@ -1304,7 +1304,8 @@ octave_fcn_handle::load_hdf5 (hid_t loc_id, const char *name)
 %! hdld2 = hdld;
 %! hbi2 = hbi;
 %! modes = {"-text", "-binary"};
-%! if (!isempty (findstr (octave_config_info ("DEFS"), "HAVE_HDF5")))
+%! if (isfield (octave_config_info, "HAVE_HDF5")
+%!     && octave_config_info ("HAVE_HDF5"))
 %!   modes(end+1) = "-hdf5";
 %! endif
 %! for i = 1:numel (modes)
@@ -1356,7 +1357,8 @@ Test for bug #35876
 %! hdld2 = hdld;
 %! hbi2 = hbi;
 %! modes = {"-text", "-binary"};
-%! if (!isempty (findstr (octave_config_info ("DEFS"), "HAVE_HDF5")))
+%! if (isfield (octave_config_info, "HAVE_HDF5")
+%!     && octave_config_info ("HAVE_HDF5"))
 %!   modes(end+1) = "-hdf5";
 %! endif
 %! for i = 1:numel (modes)

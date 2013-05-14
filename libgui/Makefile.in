@@ -78,14 +78,21 @@ DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(top_srcdir)/build-aux/common.mk \
 	$(top_srcdir)/libinterp/link-deps.mk \
 	$(top_srcdir)/liboctave/link-deps.mk
-@WIN32_TERMINAL_TRUE@am__append_1 = \
+@AMCOND_HAVE_QSCINTILLA_TRUE@am__append_1 = \
+@AMCOND_HAVE_QSCINTILLA_TRUE@  src/m-editor/moc-file-editor-interface.cc \
+@AMCOND_HAVE_QSCINTILLA_TRUE@  src/m-editor/moc-file-editor-tab.cc \
+@AMCOND_HAVE_QSCINTILLA_TRUE@  src/m-editor/moc-file-editor.cc \
+@AMCOND_HAVE_QSCINTILLA_TRUE@  src/m-editor/moc-find-dialog.cc \
+@AMCOND_HAVE_QSCINTILLA_TRUE@  src/m-editor/moc-lexer-octave-gui.cc
+
+@WIN32_TERMINAL_TRUE@am__append_2 = \
 @WIN32_TERMINAL_TRUE@  qterminal/libqterminal/win32/moc-QWinTerminalImpl.cc
 
-@WIN32_TERMINAL_TRUE@am__append_2 = -DUNICODE
+@WIN32_TERMINAL_TRUE@am__append_3 = -DUNICODE
 
 # This flag is required to let MOC know about Q_OS_WIN32.
-@WIN32_TERMINAL_TRUE@am__append_3 = -DQ_OS_WIN32
-@WIN32_TERMINAL_FALSE@am__append_4 = \
+@WIN32_TERMINAL_TRUE@am__append_4 = -DQ_OS_WIN32
+@WIN32_TERMINAL_FALSE@am__append_5 = \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/moc-Emulation.cc \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/moc-Filter.cc \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/moc-QUnixTerminalImpl.cc \
@@ -95,12 +102,12 @@ DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/moc-TerminalView.cc \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/moc-Vt102Emulation.cc
 
-@AMCOND_LINK_ALL_DEPS_TRUE@am__append_5 = $(LIBOCTAVE_LINK_DEPS)
-@AMCOND_LINK_ALL_DEPS_TRUE@am__append_6 = $(LIBOCTAVE_LINK_OPTS)
-@AMCOND_LINK_ALL_DEPS_TRUE@am__append_7 = $(LIBOCTINTERP_LINK_DEPS)
-@AMCOND_LINK_ALL_DEPS_TRUE@am__append_8 = $(LIBOCTINTERP_LINK_OPTS)
-@AMCOND_LINK_ALL_DEPS_TRUE@am__append_9 = $(LIBOCTINTERP_LINK_DEPS)
-@AMCOND_LINK_ALL_DEPS_TRUE@am__append_10 = $(LIBOCTINTERP_LINK_OPTS)
+@AMCOND_LINK_ALL_DEPS_TRUE@am__append_6 = $(LIBOCTAVE_LINK_DEPS)
+@AMCOND_LINK_ALL_DEPS_TRUE@am__append_7 = $(LIBOCTAVE_LINK_OPTS)
+@AMCOND_LINK_ALL_DEPS_TRUE@am__append_8 = $(LIBOCTINTERP_LINK_DEPS)
+@AMCOND_LINK_ALL_DEPS_TRUE@am__append_9 = $(LIBOCTINTERP_LINK_OPTS)
+@AMCOND_LINK_ALL_DEPS_TRUE@am__append_10 = $(LIBOCTINTERP_LINK_DEPS)
+@AMCOND_LINK_ALL_DEPS_TRUE@am__append_11 = $(LIBOCTINTERP_LINK_OPTS)
 subdir = libgui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
@@ -321,6 +328,7 @@ am__qterminal_libqterminal_la_SOURCES_DIST =  \
 	qterminal/libqterminal/unix/SelfListener.cpp \
 	qterminal/libqterminal/unix/TerminalModel.cpp \
 	qterminal/libqterminal/unix/TerminalView.cpp \
+	qterminal/libqterminal/QTerminal.cc \
 	qterminal/libqterminal/win32/QTerminalColors.cpp \
 	qterminal/libqterminal/win32/QWinTerminalImpl.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -338,9 +346,11 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @WIN32_TERMINAL_FALSE@	qterminal/libqterminal/unix/qterminal_libqterminal_la-Vt102Emulation.lo \
 @WIN32_TERMINAL_FALSE@	qterminal/libqterminal/unix/qterminal_libqterminal_la-SelfListener.lo \
 @WIN32_TERMINAL_FALSE@	qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalModel.lo \
-@WIN32_TERMINAL_FALSE@	qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalView.lo
+@WIN32_TERMINAL_FALSE@	qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalView.lo \
+@WIN32_TERMINAL_FALSE@	qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo
 @WIN32_TERMINAL_TRUE@am_qterminal_libqterminal_la_OBJECTS = qterminal/libqterminal/win32/qterminal_libqterminal_la-QTerminalColors.lo \
-@WIN32_TERMINAL_TRUE@	qterminal/libqterminal/win32/qterminal_libqterminal_la-QWinTerminalImpl.lo
+@WIN32_TERMINAL_TRUE@	qterminal/libqterminal/win32/qterminal_libqterminal_la-QWinTerminalImpl.lo \
+@WIN32_TERMINAL_TRUE@	qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo
 @WIN32_TERMINAL_TRUE@am__objects_1 = qterminal/libqterminal/win32/qterminal_libqterminal_la-moc-QWinTerminalImpl.lo
 @WIN32_TERMINAL_FALSE@am__objects_2 = qterminal/libqterminal/unix/qterminal_libqterminal_la-moc-Emulation.lo \
 @WIN32_TERMINAL_FALSE@	qterminal/libqterminal/unix/qterminal_libqterminal_la-moc-Filter.lo \
@@ -362,49 +372,52 @@ qterminal_libqterminal_la_LINK = $(LIBTOOL) --tag=CXX \
 	$(qterminal_libqterminal_la_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 src_libgui_src_la_LIBADD =
-am_src_libgui_src_la_OBJECTS =  \
-	src/src_libgui_src_la-documentation-dockwidget.lo \
-	src/src_libgui_src_la-files-dockwidget.lo \
-	src/src_libgui_src_la-history-dockwidget.lo \
+am_src_libgui_src_la_OBJECTS = src/src_libgui_src_la-dialog.lo \
+	src/src_libgui_src_la-documentation-dock-widget.lo \
+	src/src_libgui_src_la-files-dock-widget.lo \
+	src/src_libgui_src_la-history-dock-widget.lo \
 	src/m-editor/src_libgui_src_la-file-editor-tab.lo \
 	src/m-editor/src_libgui_src_la-file-editor.lo \
 	src/m-editor/src_libgui_src_la-find-dialog.lo \
 	src/m-editor/src_libgui_src_la-lexer-octave-gui.lo \
 	src/src_libgui_src_la-main-window.lo \
-	src/octave-adapter/src_libgui_src_la-octave-link.lo \
-	src/octave-adapter/src_libgui_src_la-octave-main-thread.lo \
 	src/src_libgui_src_la-octave-gui.lo \
-	src/src_libgui_src_la-octave-qt-event-listener.lo \
+	src/src_libgui_src_la-octave-main-thread.lo \
+	src/src_libgui_src_la-octave-qt-link.lo \
 	src/qtinfo/src_libgui_src_la-parser.lo \
 	src/qtinfo/src_libgui_src_la-webinfo.lo \
 	src/src_libgui_src_la-resource-manager.lo \
 	src/src_libgui_src_la-settings-dialog.lo \
-	src/src_libgui_src_la-symbol-information.lo \
-	src/src_libgui_src_la-terminal-dockwidget.lo \
+	src/src_libgui_src_la-terminal-dock-widget.lo \
+	src/src_libgui_src_la-color-picker.lo \
 	src/src_libgui_src_la-welcome-wizard.lo \
+	src/src_libgui_src_la-find-files-dialog.lo \
+	src/src_libgui_src_la-find-files-model.lo \
 	src/src_libgui_src_la-workspace-model.lo \
 	src/src_libgui_src_la-workspace-view.lo
-am__objects_4 =  \
-	src/m-editor/src_libgui_src_la-moc-file-editor-interface.lo \
-	src/m-editor/src_libgui_src_la-moc-file-editor-tab.lo \
-	src/m-editor/src_libgui_src_la-moc-file-editor.lo \
-	src/m-editor/src_libgui_src_la-moc-find-dialog.lo \
-	src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.lo \
-	src/src_libgui_src_la-moc-documentation-dockwidget.lo \
-	src/src_libgui_src_la-moc-files-dockwidget.lo \
-	src/src_libgui_src_la-moc-history-dockwidget.lo \
+@AMCOND_HAVE_QSCINTILLA_TRUE@am__objects_4 = src/m-editor/src_libgui_src_la-moc-file-editor-interface.lo \
+@AMCOND_HAVE_QSCINTILLA_TRUE@	src/m-editor/src_libgui_src_la-moc-file-editor-tab.lo \
+@AMCOND_HAVE_QSCINTILLA_TRUE@	src/m-editor/src_libgui_src_la-moc-file-editor.lo \
+@AMCOND_HAVE_QSCINTILLA_TRUE@	src/m-editor/src_libgui_src_la-moc-find-dialog.lo \
+@AMCOND_HAVE_QSCINTILLA_TRUE@	src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.lo
+am__objects_5 = $(am__objects_4) src/src_libgui_src_la-moc-dialog.lo \
+	src/src_libgui_src_la-moc-documentation-dock-widget.lo \
+	src/src_libgui_src_la-moc-files-dock-widget.lo \
+	src/src_libgui_src_la-moc-history-dock-widget.lo \
 	src/src_libgui_src_la-moc-main-window.lo \
-	src/src_libgui_src_la-moc-octave-qt-event-listener.lo \
+	src/src_libgui_src_la-moc-octave-qt-link.lo \
 	src/src_libgui_src_la-moc-settings-dialog.lo \
-	src/src_libgui_src_la-moc-terminal-dockwidget.lo \
+	src/src_libgui_src_la-moc-terminal-dock-widget.lo \
+	src/src_libgui_src_la-moc-color-picker.lo \
 	src/src_libgui_src_la-moc-welcome-wizard.lo \
 	src/src_libgui_src_la-moc-workspace-model.lo \
 	src/src_libgui_src_la-moc-workspace-view.lo \
-	src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo \
+	src/src_libgui_src_la-moc-find-files-dialog.lo \
 	src/qtinfo/src_libgui_src_la-moc-parser.lo \
-	src/qtinfo/src_libgui_src_la-moc-webinfo.lo
-am__objects_5 = src/src_libgui_src_la-qrc-resource.lo
-nodist_src_libgui_src_la_OBJECTS = $(am__objects_4) $(am__objects_5)
+	src/qtinfo/src_libgui_src_la-moc-webinfo.lo \
+	src/src_libgui_src_la-moc-octave-dock-widget.lo
+am__objects_6 = src/src_libgui_src_la-qrc-resource.lo
+nodist_src_libgui_src_la_OBJECTS = $(am__objects_5) $(am__objects_6)
 src_libgui_src_la_OBJECTS = $(am_src_libgui_src_la_OBJECTS) \
 	$(nodist_src_libgui_src_la_OBJECTS)
 src_libgui_src_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -461,6 +474,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BISON_PUSH_PULL_DECL_STYLE = @BISON_PUSH_PULL_DECL_STYLE@
 BITSIZEOF_PTRDIFF_T = @BITSIZEOF_PTRDIFF_T@
 BITSIZEOF_SIG_ATOMIC_T = @BITSIZEOF_SIG_ATOMIC_T@
 BITSIZEOF_SIZE_T = @BITSIZEOF_SIZE_T@
@@ -516,7 +530,9 @@ CXXPICFLAG = @CXXPICFLAG@
 CXX_VERSION = @CXX_VERSION@
 CYGPATH_W = @CYGPATH_W@
 DEFAULT_PAGER = @DEFAULT_PAGER@
-# ifeq ($(INCLUDE_DEPS),false)
+DEFAULT_TERMINAL_FONT = @DEFAULT_TERMINAL_FONT@
+DEFAULT_TERMINAL_FONT_SIZE = @DEFAULT_TERMINAL_FONT_SIZE@
+# ifeq ($(INCLUDE_DEPS),no)
 #   omit_deps = true;
 # endif
 DEFS = @DEFS@
@@ -956,7 +972,6 @@ GPERF = @GPERF@
 GRAPHICS_CFLAGS = @GRAPHICS_CFLAGS@
 GRAPHICS_LIBS = @GRAPHICS_LIBS@
 GREP = @GREP@
-GUIDIR = @GUIDIR@
 GXX_VERSION = @GXX_VERSION@
 HAVE_ACCEPT4 = @HAVE_ACCEPT4@
 HAVE_ACOSF = @HAVE_ACOSF@
@@ -1335,6 +1350,7 @@ LOCALE_FR = @LOCALE_FR@
 LOCALE_FR_UTF8 = @LOCALE_FR_UTF8@
 LOCALE_JA = @LOCALE_JA@
 LOCALE_ZH_CN = @LOCALE_ZH_CN@
+LRELEASE = @LRELEASE@
 LTALLOCA = @LTALLOCA@
 LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
@@ -1700,7 +1716,6 @@ TEXINFO_Z = @TEXINFO_Z@
 TIME_H_DEFINES_STRUCT_TIMESPEC = @TIME_H_DEFINES_STRUCT_TIMESPEC@
 TRUNCF_LIBM = @TRUNCF_LIBM@
 TRUNC_LIBM = @TRUNC_LIBM@
-UGLY_DEFS = @UGLY_DEFS@
 UIC = @UIC@
 UMFPACK_CPPFLAGS = @UMFPACK_CPPFLAGS@
 UMFPACK_LDFLAGS = @UMFPACK_LDFLAGS@
@@ -1936,9 +1951,9 @@ SPARSE_XLDFLAGS = \
   $(CCOLAMD_LDFLAGS) $(CXSPARSE_LDFLAGS)
 
 SPARSE_XLIBS = \
-    $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
-    $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
-    $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
+  $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
+  $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
+  $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
 
 CONFIG_SUBDIRS = @subdirs@
 
@@ -1953,36 +1968,37 @@ localstartupfiledir = ${localfcnfiledir}/startup
 # a space, so protect with $(null))
 null = 
 AUTOMAKE_OPTIONS = subdir-objects
-MOC_CPPFLAGS = $(am__append_3)
+MOC_CPPFLAGS = $(am__append_4)
 octlib_LTLIBRARIES = liboctgui.la
-locales = \
-  languages/be_BY.qm \
-  languages/de_DE.qm \
-  languages/en_US.qm \
-  languages/es_ES.qm \
-  languages/pt_BR.qm \
-  languages/ru_RU.qm \
-  languages/uk_UA.qm
+TRANSLATIONS = \
+  languages/be_BY.ts \
+  languages/de_DE.ts \
+  languages/en_US.ts \
+  languages/es_ES.ts \
+  languages/nl_NL.ts \
+  languages/pt_BR.ts \
+  languages/ru_RU.ts \
+  languages/uk_UA.ts
 
-EXTRA_DIST = default-qt-settings $(locales) src/module.mk \
+LOCALES = $(patsubst languages/%.ts, languages/%.qm, $(TRANSLATIONS))
+EXTRA_DIST = default-qt-settings.in $(TRANSLATIONS) src/module.mk \
 	src/resource.qrc $(octave_gui_UI) $(octave_gui_ICONS) \
 	qterminal-module.mk
 CLEANFILES = $(octave_gui_MOC) $(octave_gui_UI_H) $(octave_gui_RC) \
 	$(qterminal_libqterminal_la_MOC)
 BUILT_SOURCES = $(octave_gui_UI_H)
-noinst_HEADERS = src/documentation-dockwidget.h src/files-dockwidget.h \
-	src/history-dockwidget.h src/m-editor/file-editor-interface.h \
+noinst_HEADERS = src/dialog.h src/octave-dock-widget.h \
+	src/documentation-dock-widget.h src/files-dock-widget.h \
+	src/history-dock-widget.h src/m-editor/file-editor-interface.h \
 	src/m-editor/file-editor-tab.h src/m-editor/file-editor.h \
 	src/m-editor/find-dialog.h src/m-editor/lexer-octave-gui.h \
-	src/main-window.h src/octave-adapter/octave-event-listener.h \
-	src/octave-adapter/octave-link.h \
-	src/octave-adapter/octave-main-thread.h src/octave-gui.h \
-	src/octave-qt-event-listener.h src/qtinfo/parser.h \
-	src/qtinfo/webinfo.h src/resource-manager.h \
-	src/settings-dialog.h src/symbol-information.h \
-	src/terminal-dockwidget.h src/welcome-wizard.h \
-	src/workspace-model.h src/workspace-view.h \
-	qterminal/libqterminal/QTerminal.h \
+	src/main-window.h src/octave-gui.h src/octave-main-thread.h \
+	src/octave-qt-link.h src/qtinfo/parser.h src/qtinfo/webinfo.h \
+	src/resource-manager.h src/settings-dialog.h \
+	src/terminal-dock-widget.h src/color-picker.h \
+	src/welcome-wizard.h src/find-files-dialog.h \
+	src/find-files-model.h src/workspace-model.h \
+	src/workspace-view.h qterminal/libqterminal/QTerminal.h \
 	qterminal/libqterminal/QTerminalInterface.h \
 	qterminal/libqterminal/win32/QTerminalColors.h \
 	qterminal/libqterminal/win32/QWinTerminalImpl.h \
@@ -2024,12 +2040,16 @@ octave_gui_ICONS = \
   src/icons/db_stop.png \
   src/icons/editcopy.png \
   src/icons/editcut.png \
+  src/icons/editdelete.png \
   src/icons/editpaste.png \
   src/icons/filenew.png \
   src/icons/fileopen.png \
+  src/icons/fileprint.png \
   src/icons/filesaveas.png \
   src/icons/filesave.png \
   src/icons/find.png \
+  src/icons/gear.png \
+  src/icons/folder_new.png \
   src/icons/graphic_logo_DocumentationDockWidget.png \
   src/icons/graphic_logo_FileEditor.png \
   src/icons/graphic_logo_FilesDockWidget.png \
@@ -2046,9 +2066,11 @@ octave_gui_ICONS = \
   src/icons/letter_logo_TerminalDockWidget.png \
   src/icons/letter_logo_WorkspaceView.png \
   src/icons/logo.png \
+  src/icons/ok.png \
   src/icons/question.png \
   src/icons/redled.png \
   src/icons/redo.png \
+  src/icons/reload.png \
   src/icons/search.png \
   src/icons/star.png \
   src/icons/stop.png \
@@ -2058,26 +2080,15 @@ octave_gui_ICONS = \
   src/icons/zoom-in.png \
   src/icons/zoom-out.png
 
-octave_gui_MOC = \
-  src/m-editor/moc-file-editor-interface.cc \
-  src/m-editor/moc-file-editor-tab.cc \
-  src/m-editor/moc-file-editor.cc \
-  src/m-editor/moc-find-dialog.cc \
-  src/m-editor/moc-lexer-octave-gui.cc \
-  src/moc-documentation-dockwidget.cc \
-  src/moc-files-dockwidget.cc \
-  src/moc-history-dockwidget.cc \
-  src/moc-main-window.cc \
-  src/moc-octave-qt-event-listener.cc \
-  src/moc-settings-dialog.cc \
-  src/moc-terminal-dockwidget.cc \
-  src/moc-welcome-wizard.cc \
-  src/moc-workspace-model.cc \
-  src/moc-workspace-view.cc \
-  src/octave-adapter/moc-octave-main-thread.cc \
-  src/qtinfo/moc-parser.cc \
-  src/qtinfo/moc-webinfo.cc
-
+octave_gui_MOC = $(am__append_1) src/moc-dialog.cc \
+	src/moc-documentation-dock-widget.cc \
+	src/moc-files-dock-widget.cc src/moc-history-dock-widget.cc \
+	src/moc-main-window.cc src/moc-octave-qt-link.cc \
+	src/moc-settings-dialog.cc src/moc-terminal-dock-widget.cc \
+	src/moc-color-picker.cc src/moc-welcome-wizard.cc \
+	src/moc-workspace-model.cc src/moc-workspace-view.cc \
+	src/moc-find-files-dialog.cc src/qtinfo/moc-parser.cc \
+	src/qtinfo/moc-webinfo.cc src/moc-octave-dock-widget.cc
 octave_gui_RC = src/qrc-resource.cc
 octave_gui_UI = \
   src/settings-dialog.ui \
@@ -2085,25 +2096,27 @@ octave_gui_UI = \
 
 octave_gui_UI_H = $(patsubst src/%.ui, src/ui-%.h, $(octave_gui_UI))
 src_libgui_src_la_SOURCES = \
-  src/documentation-dockwidget.cc \
-  src/files-dockwidget.cc \
-  src/history-dockwidget.cc \
+  src/dialog.cc \
+  src/documentation-dock-widget.cc \
+  src/files-dock-widget.cc \
+  src/history-dock-widget.cc \
   src/m-editor/file-editor-tab.cc \
   src/m-editor/file-editor.cc \
   src/m-editor/find-dialog.cc \
   src/m-editor/lexer-octave-gui.cc \
   src/main-window.cc \
-  src/octave-adapter/octave-link.cc \
-  src/octave-adapter/octave-main-thread.cc \
   src/octave-gui.cc \
-  src/octave-qt-event-listener.cc \
+  src/octave-main-thread.cc \
+  src/octave-qt-link.cc \
   src/qtinfo/parser.cc \
   src/qtinfo/webinfo.cc \
   src/resource-manager.cc \
   src/settings-dialog.cc \
-  src/symbol-information.cc \
-  src/terminal-dockwidget.cc \
+  src/terminal-dock-widget.cc \
+  src/color-picker.cc \
   src/welcome-wizard.cc \
+  src/find-files-dialog.cc \
+  src/find-files-model.cc \
   src/workspace-model.cc \
   src/workspace-view.cc
 
@@ -2115,7 +2128,6 @@ src_libgui_src_la_CPPFLAGS = \
   -I$(srcdir)/qterminal/libqterminal \
   -Isrc -I$(srcdir)/src \
   -I$(srcdir)/src/m-editor \
-  -I$(srcdir)/src/octave-adapter \
   -I$(srcdir)/src/qtinfo \
   -I$(top_srcdir)/liboctave/cruft/misc \
   -I$(top_srcdir)/liboctave/array \
@@ -2134,10 +2146,10 @@ src_libgui_src_la_CXXFLAGS = $(AM_CXXFLAGS) $(WARN_CXXFLAGS)
 qterminal_libqterminal_la_MOC =  \
 	qterminal/libqterminal/moc-QTerminal.cc \
 	qterminal/libqterminal/moc-QTerminalInterface.cc \
-	$(am__append_1) $(am__append_4)
+	$(am__append_2) $(am__append_5)
 nodist_qterminal_libqterminal_la_SOURCES = $(qterminal_libqterminal_la_MOC)
 qterminal_libqterminal_la_CPPFLAGS = $(AM_CPPFLAGS) @QT_CPPFLAGS@ \
-	-I$(srcdir)/qterminal/libqterminal $(am__append_2)
+	-I$(srcdir)/qterminal/libqterminal $(am__append_3)
 qterminal_libqterminal_la_CFLAGS = $(AM_CFLAGS)
 qterminal_libqterminal_la_CXXFLAGS = $(AM_CXXFLAGS)
 @WIN32_TERMINAL_FALSE@qterminal_libqterminal_la_SOURCES = \
@@ -2155,11 +2167,13 @@ qterminal_libqterminal_la_CXXFLAGS = $(AM_CXXFLAGS)
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/Vt102Emulation.cpp \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/SelfListener.cpp \
 @WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/TerminalModel.cpp \
-@WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/TerminalView.cpp
+@WIN32_TERMINAL_FALSE@  qterminal/libqterminal/unix/TerminalView.cpp \
+@WIN32_TERMINAL_FALSE@  qterminal/libqterminal/QTerminal.cc
 
 @WIN32_TERMINAL_TRUE@qterminal_libqterminal_la_SOURCES = \
 @WIN32_TERMINAL_TRUE@  qterminal/libqterminal/win32/QTerminalColors.cpp \
-@WIN32_TERMINAL_TRUE@  qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+@WIN32_TERMINAL_TRUE@  qterminal/libqterminal/win32/QWinTerminalImpl.cpp \
+@WIN32_TERMINAL_TRUE@  qterminal/libqterminal/QTerminal.cc
 
 liboctgui_la_SOURCES = 
 GNULIB_LINK_DEPS = \
@@ -2210,7 +2224,7 @@ LIBOCTAVE_LINK_OPTS = \
 @AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(CARBON_LIBS) \
 @AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(LLVM_LIBS) $(JAVA_LIBS) \
 @AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(LAPACK_LIBS) \
-@AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(am__append_5)
+@AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(am__append_6)
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@LIBOCTINTERP_LINK_DEPS =  \
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(FT2_LIBS) $(HDF5_LIBS) \
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(Z_LIBS) $(FFTW_XLIBS) \
@@ -2219,20 +2233,20 @@ LIBOCTAVE_LINK_OPTS = \
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(CARBON_LIBS) \
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(LLVM_LIBS) $(JAVA_LIBS) \
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(LAPACK_LIBS) \
-@AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(am__append_5)
+@AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(am__append_6)
 LIBOCTINTERP_LINK_OPTS = $(FT2_LDFLAGS) $(HDF5_LDFLAGS) $(Z_LDFLAGS) \
 	$(REGEX_LDFLAGS) $(FFTW_XLDFLAGS) $(LLVM_LDFLAGS) \
-	$(am__append_6)
-OCT_LINK_DEPS = $(am__append_7)
-OCT_LINK_OPTS = $(LDFLAGS) $(am__append_8)
+	$(am__append_7)
+OCT_LINK_DEPS = $(am__append_8)
+OCT_LINK_OPTS = $(LDFLAGS) $(am__append_9)
 @AMCOND_LINK_ALL_DEPS_TRUE@OCTAVE_LINK_DEPS = $(LIBOCTINTERP_LINK_DEPS)
 @AMCOND_LINK_ALL_DEPS_TRUE@OCTAVE_LINK_OPTS = $(LIBOCTINTERP_LINK_OPTS)
 @AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@LIBOCTGUI_LINK_DEPS =  \
 @AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(DLDFCN_LIBS) @QT_LIBS@ \
-@AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(am__append_9)
+@AMCOND_ENABLE_DYNAMIC_LINKING_FALSE@	$(am__append_10)
 @AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@LIBOCTGUI_LINK_DEPS = @QT_LIBS@ \
-@AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(am__append_9)
-LIBOCTGUI_LINK_OPTS = @QT_LDFLAGS@ $(am__append_10)
+@AMCOND_ENABLE_DYNAMIC_LINKING_TRUE@	$(am__append_10)
+LIBOCTGUI_LINK_OPTS = @QT_LDFLAGS@ $(am__append_11)
 @AMCOND_LINK_ALL_DEPS_TRUE@OCTAVE_GUI_LINK_DEPS = $(LIBOCTGUI_LINK_DEPS)
 @AMCOND_LINK_ALL_DEPS_TRUE@OCTAVE_GUI_LINK_OPTS = $(LIBOCTGUI_LINK_OPTS)
 
@@ -2258,7 +2272,10 @@ liboctgui_la_LDFLAGS = \
   $(LIBOCTGUI_LINK_OPTS)
 
 octetc_DATA = default-qt-settings
-octlocale_DATA = $(locales)
+octlocale_DATA = $(LOCALES)
+DISTCLEANFILES = \
+  $(LOCALES)
+
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -2389,6 +2406,15 @@ qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalModel.lo:  \
 qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalView.lo:  \
 	qterminal/libqterminal/unix/$(am__dirstamp) \
 	qterminal/libqterminal/unix/$(DEPDIR)/$(am__dirstamp)
+qterminal/libqterminal/$(am__dirstamp):
+	@$(MKDIR_P) qterminal/libqterminal
+	@: > qterminal/libqterminal/$(am__dirstamp)
+qterminal/libqterminal/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) qterminal/libqterminal/$(DEPDIR)
+	@: > qterminal/libqterminal/$(DEPDIR)/$(am__dirstamp)
+qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo:  \
+	qterminal/libqterminal/$(am__dirstamp) \
+	qterminal/libqterminal/$(DEPDIR)/$(am__dirstamp)
 qterminal/libqterminal/win32/$(am__dirstamp):
 	@$(MKDIR_P) qterminal/libqterminal/win32
 	@: > qterminal/libqterminal/win32/$(am__dirstamp)
@@ -2401,12 +2427,6 @@ qterminal/libqterminal/win32/qterminal_libqterminal_la-QTerminalColors.lo:  \
 qterminal/libqterminal/win32/qterminal_libqterminal_la-QWinTerminalImpl.lo:  \
 	qterminal/libqterminal/win32/$(am__dirstamp) \
 	qterminal/libqterminal/win32/$(DEPDIR)/$(am__dirstamp)
-qterminal/libqterminal/$(am__dirstamp):
-	@$(MKDIR_P) qterminal/libqterminal
-	@: > qterminal/libqterminal/$(am__dirstamp)
-qterminal/libqterminal/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) qterminal/libqterminal/$(DEPDIR)
-	@: > qterminal/libqterminal/$(DEPDIR)/$(am__dirstamp)
 qterminal/libqterminal/qterminal_libqterminal_la-moc-QTerminal.lo:  \
 	qterminal/libqterminal/$(am__dirstamp) \
 	qterminal/libqterminal/$(DEPDIR)/$(am__dirstamp)
@@ -2451,11 +2471,13 @@ src/$(am__dirstamp):
 src/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/$(DEPDIR)
 	@: > src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-documentation-dockwidget.lo:  \
-	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-files-dockwidget.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-dialog.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-history-dockwidget.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-documentation-dock-widget.lo:  \
+	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-files-dock-widget.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-history-dock-widget.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/m-editor/$(am__dirstamp):
 	@$(MKDIR_P) src/m-editor
@@ -2477,22 +2499,12 @@ src/m-editor/src_libgui_src_la-lexer-octave-gui.lo:  \
 	src/m-editor/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-main-window.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/octave-adapter/$(am__dirstamp):
-	@$(MKDIR_P) src/octave-adapter
-	@: > src/octave-adapter/$(am__dirstamp)
-src/octave-adapter/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/octave-adapter/$(DEPDIR)
-	@: > src/octave-adapter/$(DEPDIR)/$(am__dirstamp)
-src/octave-adapter/src_libgui_src_la-octave-link.lo:  \
-	src/octave-adapter/$(am__dirstamp) \
-	src/octave-adapter/$(DEPDIR)/$(am__dirstamp)
-src/octave-adapter/src_libgui_src_la-octave-main-thread.lo:  \
-	src/octave-adapter/$(am__dirstamp) \
-	src/octave-adapter/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-octave-gui.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-octave-qt-event-listener.lo:  \
-	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-octave-main-thread.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-octave-qt-link.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/qtinfo/$(am__dirstamp):
 	@$(MKDIR_P) src/qtinfo
 	@: > src/qtinfo/$(am__dirstamp)
@@ -2507,11 +2519,15 @@ src/src_libgui_src_la-resource-manager.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-settings-dialog.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-symbol-information.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-terminal-dock-widget.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-terminal-dockwidget.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-color-picker.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-welcome-wizard.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-find-files-dialog.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-find-files-model.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-workspace-model.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
@@ -2532,19 +2548,23 @@ src/m-editor/src_libgui_src_la-moc-find-dialog.lo:  \
 src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.lo:  \
 	src/m-editor/$(am__dirstamp) \
 	src/m-editor/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-moc-documentation-dockwidget.lo:  \
-	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-moc-files-dockwidget.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-moc-dialog.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-moc-history-dockwidget.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-moc-documentation-dock-widget.lo:  \
+	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-moc-files-dock-widget.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-moc-history-dock-widget.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-moc-main-window.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-moc-octave-qt-event-listener.lo:  \
-	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-moc-octave-qt-link.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-moc-settings-dialog.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/src_libgui_src_la-moc-terminal-dockwidget.lo: src/$(am__dirstamp) \
+src/src_libgui_src_la-moc-terminal-dock-widget.lo:  \
+	src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-moc-color-picker.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-moc-welcome-wizard.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
@@ -2552,15 +2572,16 @@ src/src_libgui_src_la-moc-workspace-model.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-moc-workspace-view.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
-src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo:  \
-	src/octave-adapter/$(am__dirstamp) \
-	src/octave-adapter/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-moc-find-files-dialog.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/qtinfo/src_libgui_src_la-moc-parser.lo:  \
 	src/qtinfo/$(am__dirstamp) \
 	src/qtinfo/$(DEPDIR)/$(am__dirstamp)
 src/qtinfo/src_libgui_src_la-moc-webinfo.lo:  \
 	src/qtinfo/$(am__dirstamp) \
 	src/qtinfo/$(DEPDIR)/$(am__dirstamp)
+src/src_libgui_src_la-moc-octave-dock-widget.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/src_libgui_src_la-qrc-resource.lo: src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/libgui-src.la: $(src_libgui_src_la_OBJECTS) $(src_libgui_src_la_DEPENDENCIES) $(EXTRA_src_libgui_src_la_DEPENDENCIES) src/$(am__dirstamp)
@@ -2568,6 +2589,8 @@ src/libgui-src.la: $(src_libgui_src_la_OBJECTS) $(src_libgui_src_la_DEPENDENCIES
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.$(OBJEXT)
+	-rm -f qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo
 	-rm -f qterminal/libqterminal/qterminal_libqterminal_la-moc-QTerminal.$(OBJEXT)
 	-rm -f qterminal/libqterminal/qterminal_libqterminal_la-moc-QTerminal.lo
 	-rm -f qterminal/libqterminal/qterminal_libqterminal_la-moc-QTerminalInterface.$(OBJEXT)
@@ -2642,12 +2665,6 @@ mostlyclean-compile:
 	-rm -f src/m-editor/src_libgui_src_la-moc-find-dialog.lo
 	-rm -f src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.$(OBJEXT)
 	-rm -f src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.lo
-	-rm -f src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.$(OBJEXT)
-	-rm -f src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo
-	-rm -f src/octave-adapter/src_libgui_src_la-octave-link.$(OBJEXT)
-	-rm -f src/octave-adapter/src_libgui_src_la-octave-link.lo
-	-rm -f src/octave-adapter/src_libgui_src_la-octave-main-thread.$(OBJEXT)
-	-rm -f src/octave-adapter/src_libgui_src_la-octave-main-thread.lo
 	-rm -f src/qtinfo/src_libgui_src_la-moc-parser.$(OBJEXT)
 	-rm -f src/qtinfo/src_libgui_src_la-moc-parser.lo
 	-rm -f src/qtinfo/src_libgui_src_la-moc-webinfo.$(OBJEXT)
@@ -2656,28 +2673,44 @@ mostlyclean-compile:
 	-rm -f src/qtinfo/src_libgui_src_la-parser.lo
 	-rm -f src/qtinfo/src_libgui_src_la-webinfo.$(OBJEXT)
 	-rm -f src/qtinfo/src_libgui_src_la-webinfo.lo
-	-rm -f src/src_libgui_src_la-documentation-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-documentation-dockwidget.lo
-	-rm -f src/src_libgui_src_la-files-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-files-dockwidget.lo
-	-rm -f src/src_libgui_src_la-history-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-history-dockwidget.lo
+	-rm -f src/src_libgui_src_la-color-picker.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-color-picker.lo
+	-rm -f src/src_libgui_src_la-dialog.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-dialog.lo
+	-rm -f src/src_libgui_src_la-documentation-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-documentation-dock-widget.lo
+	-rm -f src/src_libgui_src_la-files-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-files-dock-widget.lo
+	-rm -f src/src_libgui_src_la-find-files-dialog.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-find-files-dialog.lo
+	-rm -f src/src_libgui_src_la-find-files-model.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-find-files-model.lo
+	-rm -f src/src_libgui_src_la-history-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-history-dock-widget.lo
 	-rm -f src/src_libgui_src_la-main-window.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-main-window.lo
-	-rm -f src/src_libgui_src_la-moc-documentation-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-moc-documentation-dockwidget.lo
-	-rm -f src/src_libgui_src_la-moc-files-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-moc-files-dockwidget.lo
-	-rm -f src/src_libgui_src_la-moc-history-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-moc-history-dockwidget.lo
+	-rm -f src/src_libgui_src_la-moc-color-picker.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-color-picker.lo
+	-rm -f src/src_libgui_src_la-moc-dialog.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-dialog.lo
+	-rm -f src/src_libgui_src_la-moc-documentation-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-documentation-dock-widget.lo
+	-rm -f src/src_libgui_src_la-moc-files-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-files-dock-widget.lo
+	-rm -f src/src_libgui_src_la-moc-find-files-dialog.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-find-files-dialog.lo
+	-rm -f src/src_libgui_src_la-moc-history-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-history-dock-widget.lo
 	-rm -f src/src_libgui_src_la-moc-main-window.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-moc-main-window.lo
-	-rm -f src/src_libgui_src_la-moc-octave-qt-event-listener.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-moc-octave-qt-event-listener.lo
+	-rm -f src/src_libgui_src_la-moc-octave-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-octave-dock-widget.lo
+	-rm -f src/src_libgui_src_la-moc-octave-qt-link.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-octave-qt-link.lo
 	-rm -f src/src_libgui_src_la-moc-settings-dialog.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-moc-settings-dialog.lo
-	-rm -f src/src_libgui_src_la-moc-terminal-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-moc-terminal-dockwidget.lo
+	-rm -f src/src_libgui_src_la-moc-terminal-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-moc-terminal-dock-widget.lo
 	-rm -f src/src_libgui_src_la-moc-welcome-wizard.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-moc-welcome-wizard.lo
 	-rm -f src/src_libgui_src_la-moc-workspace-model.$(OBJEXT)
@@ -2686,18 +2719,18 @@ mostlyclean-compile:
 	-rm -f src/src_libgui_src_la-moc-workspace-view.lo
 	-rm -f src/src_libgui_src_la-octave-gui.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-octave-gui.lo
-	-rm -f src/src_libgui_src_la-octave-qt-event-listener.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-octave-qt-event-listener.lo
+	-rm -f src/src_libgui_src_la-octave-main-thread.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-octave-main-thread.lo
+	-rm -f src/src_libgui_src_la-octave-qt-link.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-octave-qt-link.lo
 	-rm -f src/src_libgui_src_la-qrc-resource.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-qrc-resource.lo
 	-rm -f src/src_libgui_src_la-resource-manager.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-resource-manager.lo
 	-rm -f src/src_libgui_src_la-settings-dialog.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-settings-dialog.lo
-	-rm -f src/src_libgui_src_la-symbol-information.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-symbol-information.lo
-	-rm -f src/src_libgui_src_la-terminal-dockwidget.$(OBJEXT)
-	-rm -f src/src_libgui_src_la-terminal-dockwidget.lo
+	-rm -f src/src_libgui_src_la-terminal-dock-widget.$(OBJEXT)
+	-rm -f src/src_libgui_src_la-terminal-dock-widget.lo
 	-rm -f src/src_libgui_src_la-welcome-wizard.$(OBJEXT)
 	-rm -f src/src_libgui_src_la-welcome-wizard.lo
 	-rm -f src/src_libgui_src_la-workspace-model.$(OBJEXT)
@@ -2709,6 +2742,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dummy.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/$(DEPDIR)/qterminal_libqterminal_la-QTerminal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/$(DEPDIR)/qterminal_libqterminal_la-moc-QTerminal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/$(DEPDIR)/qterminal_libqterminal_la-moc-QTerminalInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/unix/$(DEPDIR)/qterminal_libqterminal_la-BlockArray.Plo@am__quote@
@@ -2737,27 +2771,35 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/win32/$(DEPDIR)/qterminal_libqterminal_la-QTerminalColors.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/win32/$(DEPDIR)/qterminal_libqterminal_la-QWinTerminalImpl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@qterminal/libqterminal/win32/$(DEPDIR)/qterminal_libqterminal_la-moc-QWinTerminalImpl.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-documentation-dockwidget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-files-dockwidget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-history-dockwidget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-color-picker.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-documentation-dock-widget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-files-dock-widget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-find-files-dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-find-files-model.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-history-dock-widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-main-window.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dockwidget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-files-dockwidget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-history-dockwidget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-color-picker.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dock-widget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-files-dock-widget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-find-files-dialog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-history-dock-widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-main-window.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-event-listener.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-octave-dock-widget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-settings-dialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dockwidget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dock-widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-welcome-wizard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-workspace-model.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-moc-workspace-view.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-octave-gui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-octave-qt-event-listener.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-octave-qt-link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-qrc-resource.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-resource-manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-settings-dialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-symbol-information.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-terminal-dockwidget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-terminal-dock-widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-welcome-wizard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-workspace-model.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/src_libgui_src_la-workspace-view.Plo@am__quote@
@@ -2770,9 +2812,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/m-editor/$(DEPDIR)/src_libgui_src_la-moc-file-editor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/m-editor/$(DEPDIR)/src_libgui_src_la-moc-find-dialog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/m-editor/$(DEPDIR)/src_libgui_src_la-moc-lexer-octave-gui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/octave-adapter/$(DEPDIR)/src_libgui_src_la-moc-octave-main-thread.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-link.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/qtinfo/$(DEPDIR)/src_libgui_src_la-moc-parser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/qtinfo/$(DEPDIR)/src_libgui_src_la-moc-webinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/qtinfo/$(DEPDIR)/src_libgui_src_la-parser.Plo@am__quote@
@@ -2907,6 +2946,13 @@ qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalView.lo: qterminal
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qterminal_libqterminal_la_CPPFLAGS) $(CPPFLAGS) $(qterminal_libqterminal_la_CXXFLAGS) $(CXXFLAGS) -c -o qterminal/libqterminal/unix/qterminal_libqterminal_la-TerminalView.lo `test -f 'qterminal/libqterminal/unix/TerminalView.cpp' || echo '$(srcdir)/'`qterminal/libqterminal/unix/TerminalView.cpp
 
+qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo: qterminal/libqterminal/QTerminal.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qterminal_libqterminal_la_CPPFLAGS) $(CPPFLAGS) $(qterminal_libqterminal_la_CXXFLAGS) $(CXXFLAGS) -MT qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo -MD -MP -MF qterminal/libqterminal/$(DEPDIR)/qterminal_libqterminal_la-QTerminal.Tpo -c -o qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo `test -f 'qterminal/libqterminal/QTerminal.cc' || echo '$(srcdir)/'`qterminal/libqterminal/QTerminal.cc
+@am__fastdepCXX_TRUE@	$(am__mv) qterminal/libqterminal/$(DEPDIR)/qterminal_libqterminal_la-QTerminal.Tpo qterminal/libqterminal/$(DEPDIR)/qterminal_libqterminal_la-QTerminal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='qterminal/libqterminal/QTerminal.cc' object='qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qterminal_libqterminal_la_CPPFLAGS) $(CPPFLAGS) $(qterminal_libqterminal_la_CXXFLAGS) $(CXXFLAGS) -c -o qterminal/libqterminal/qterminal_libqterminal_la-QTerminal.lo `test -f 'qterminal/libqterminal/QTerminal.cc' || echo '$(srcdir)/'`qterminal/libqterminal/QTerminal.cc
+
 qterminal/libqterminal/win32/qterminal_libqterminal_la-QTerminalColors.lo: qterminal/libqterminal/win32/QTerminalColors.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qterminal_libqterminal_la_CPPFLAGS) $(CPPFLAGS) $(qterminal_libqterminal_la_CXXFLAGS) $(CXXFLAGS) -MT qterminal/libqterminal/win32/qterminal_libqterminal_la-QTerminalColors.lo -MD -MP -MF qterminal/libqterminal/win32/$(DEPDIR)/qterminal_libqterminal_la-QTerminalColors.Tpo -c -o qterminal/libqterminal/win32/qterminal_libqterminal_la-QTerminalColors.lo `test -f 'qterminal/libqterminal/win32/QTerminalColors.cpp' || echo '$(srcdir)/'`qterminal/libqterminal/win32/QTerminalColors.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) qterminal/libqterminal/win32/$(DEPDIR)/qterminal_libqterminal_la-QTerminalColors.Tpo qterminal/libqterminal/win32/$(DEPDIR)/qterminal_libqterminal_la-QTerminalColors.Plo
@@ -2998,26 +3044,33 @@ qterminal/libqterminal/unix/qterminal_libqterminal_la-moc-Vt102Emulation.lo: qte
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qterminal_libqterminal_la_CPPFLAGS) $(CPPFLAGS) $(qterminal_libqterminal_la_CXXFLAGS) $(CXXFLAGS) -c -o qterminal/libqterminal/unix/qterminal_libqterminal_la-moc-Vt102Emulation.lo `test -f 'qterminal/libqterminal/unix/moc-Vt102Emulation.cc' || echo '$(srcdir)/'`qterminal/libqterminal/unix/moc-Vt102Emulation.cc
 
-src/src_libgui_src_la-documentation-dockwidget.lo: src/documentation-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-documentation-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-documentation-dockwidget.Tpo -c -o src/src_libgui_src_la-documentation-dockwidget.lo `test -f 'src/documentation-dockwidget.cc' || echo '$(srcdir)/'`src/documentation-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-documentation-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-documentation-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/documentation-dockwidget.cc' object='src/src_libgui_src_la-documentation-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-dialog.lo: src/dialog.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-dialog.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-dialog.Tpo -c -o src/src_libgui_src_la-dialog.lo `test -f 'src/dialog.cc' || echo '$(srcdir)/'`src/dialog.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-dialog.Tpo src/$(DEPDIR)/src_libgui_src_la-dialog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog.cc' object='src/src_libgui_src_la-dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-documentation-dockwidget.lo `test -f 'src/documentation-dockwidget.cc' || echo '$(srcdir)/'`src/documentation-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-dialog.lo `test -f 'src/dialog.cc' || echo '$(srcdir)/'`src/dialog.cc
 
-src/src_libgui_src_la-files-dockwidget.lo: src/files-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-files-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-files-dockwidget.Tpo -c -o src/src_libgui_src_la-files-dockwidget.lo `test -f 'src/files-dockwidget.cc' || echo '$(srcdir)/'`src/files-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-files-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-files-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/files-dockwidget.cc' object='src/src_libgui_src_la-files-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-documentation-dock-widget.lo: src/documentation-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-documentation-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-documentation-dock-widget.Tpo -c -o src/src_libgui_src_la-documentation-dock-widget.lo `test -f 'src/documentation-dock-widget.cc' || echo '$(srcdir)/'`src/documentation-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-documentation-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-documentation-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/documentation-dock-widget.cc' object='src/src_libgui_src_la-documentation-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-files-dockwidget.lo `test -f 'src/files-dockwidget.cc' || echo '$(srcdir)/'`src/files-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-documentation-dock-widget.lo `test -f 'src/documentation-dock-widget.cc' || echo '$(srcdir)/'`src/documentation-dock-widget.cc
 
-src/src_libgui_src_la-history-dockwidget.lo: src/history-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-history-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-history-dockwidget.Tpo -c -o src/src_libgui_src_la-history-dockwidget.lo `test -f 'src/history-dockwidget.cc' || echo '$(srcdir)/'`src/history-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-history-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-history-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/history-dockwidget.cc' object='src/src_libgui_src_la-history-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-files-dock-widget.lo: src/files-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-files-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-files-dock-widget.Tpo -c -o src/src_libgui_src_la-files-dock-widget.lo `test -f 'src/files-dock-widget.cc' || echo '$(srcdir)/'`src/files-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-files-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-files-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/files-dock-widget.cc' object='src/src_libgui_src_la-files-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-history-dockwidget.lo `test -f 'src/history-dockwidget.cc' || echo '$(srcdir)/'`src/history-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-files-dock-widget.lo `test -f 'src/files-dock-widget.cc' || echo '$(srcdir)/'`src/files-dock-widget.cc
+
+src/src_libgui_src_la-history-dock-widget.lo: src/history-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-history-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-history-dock-widget.Tpo -c -o src/src_libgui_src_la-history-dock-widget.lo `test -f 'src/history-dock-widget.cc' || echo '$(srcdir)/'`src/history-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-history-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-history-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/history-dock-widget.cc' object='src/src_libgui_src_la-history-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-history-dock-widget.lo `test -f 'src/history-dock-widget.cc' || echo '$(srcdir)/'`src/history-dock-widget.cc
 
 src/m-editor/src_libgui_src_la-file-editor-tab.lo: src/m-editor/file-editor-tab.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/m-editor/src_libgui_src_la-file-editor-tab.lo -MD -MP -MF src/m-editor/$(DEPDIR)/src_libgui_src_la-file-editor-tab.Tpo -c -o src/m-editor/src_libgui_src_la-file-editor-tab.lo `test -f 'src/m-editor/file-editor-tab.cc' || echo '$(srcdir)/'`src/m-editor/file-editor-tab.cc
@@ -3054,20 +3107,6 @@ src/src_libgui_src_la-main-window.lo: src/main-window.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-main-window.lo `test -f 'src/main-window.cc' || echo '$(srcdir)/'`src/main-window.cc
 
-src/octave-adapter/src_libgui_src_la-octave-link.lo: src/octave-adapter/octave-link.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/octave-adapter/src_libgui_src_la-octave-link.lo -MD -MP -MF src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-link.Tpo -c -o src/octave-adapter/src_libgui_src_la-octave-link.lo `test -f 'src/octave-adapter/octave-link.cc' || echo '$(srcdir)/'`src/octave-adapter/octave-link.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-link.Tpo src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-link.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/octave-adapter/octave-link.cc' object='src/octave-adapter/src_libgui_src_la-octave-link.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/octave-adapter/src_libgui_src_la-octave-link.lo `test -f 'src/octave-adapter/octave-link.cc' || echo '$(srcdir)/'`src/octave-adapter/octave-link.cc
-
-src/octave-adapter/src_libgui_src_la-octave-main-thread.lo: src/octave-adapter/octave-main-thread.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/octave-adapter/src_libgui_src_la-octave-main-thread.lo -MD -MP -MF src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Tpo -c -o src/octave-adapter/src_libgui_src_la-octave-main-thread.lo `test -f 'src/octave-adapter/octave-main-thread.cc' || echo '$(srcdir)/'`src/octave-adapter/octave-main-thread.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Tpo src/octave-adapter/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/octave-adapter/octave-main-thread.cc' object='src/octave-adapter/src_libgui_src_la-octave-main-thread.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/octave-adapter/src_libgui_src_la-octave-main-thread.lo `test -f 'src/octave-adapter/octave-main-thread.cc' || echo '$(srcdir)/'`src/octave-adapter/octave-main-thread.cc
-
 src/src_libgui_src_la-octave-gui.lo: src/octave-gui.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-octave-gui.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-octave-gui.Tpo -c -o src/src_libgui_src_la-octave-gui.lo `test -f 'src/octave-gui.cc' || echo '$(srcdir)/'`src/octave-gui.cc
 @am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-octave-gui.Tpo src/$(DEPDIR)/src_libgui_src_la-octave-gui.Plo
@@ -3075,12 +3114,19 @@ src/src_libgui_src_la-octave-gui.lo: src/octave-gui.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-octave-gui.lo `test -f 'src/octave-gui.cc' || echo '$(srcdir)/'`src/octave-gui.cc
 
-src/src_libgui_src_la-octave-qt-event-listener.lo: src/octave-qt-event-listener.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-octave-qt-event-listener.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-octave-qt-event-listener.Tpo -c -o src/src_libgui_src_la-octave-qt-event-listener.lo `test -f 'src/octave-qt-event-listener.cc' || echo '$(srcdir)/'`src/octave-qt-event-listener.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-octave-qt-event-listener.Tpo src/$(DEPDIR)/src_libgui_src_la-octave-qt-event-listener.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/octave-qt-event-listener.cc' object='src/src_libgui_src_la-octave-qt-event-listener.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-octave-main-thread.lo: src/octave-main-thread.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-octave-main-thread.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Tpo -c -o src/src_libgui_src_la-octave-main-thread.lo `test -f 'src/octave-main-thread.cc' || echo '$(srcdir)/'`src/octave-main-thread.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Tpo src/$(DEPDIR)/src_libgui_src_la-octave-main-thread.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/octave-main-thread.cc' object='src/src_libgui_src_la-octave-main-thread.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-octave-qt-event-listener.lo `test -f 'src/octave-qt-event-listener.cc' || echo '$(srcdir)/'`src/octave-qt-event-listener.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-octave-main-thread.lo `test -f 'src/octave-main-thread.cc' || echo '$(srcdir)/'`src/octave-main-thread.cc
+
+src/src_libgui_src_la-octave-qt-link.lo: src/octave-qt-link.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-octave-qt-link.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-octave-qt-link.Tpo -c -o src/src_libgui_src_la-octave-qt-link.lo `test -f 'src/octave-qt-link.cc' || echo '$(srcdir)/'`src/octave-qt-link.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-octave-qt-link.Tpo src/$(DEPDIR)/src_libgui_src_la-octave-qt-link.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/octave-qt-link.cc' object='src/src_libgui_src_la-octave-qt-link.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-octave-qt-link.lo `test -f 'src/octave-qt-link.cc' || echo '$(srcdir)/'`src/octave-qt-link.cc
 
 src/qtinfo/src_libgui_src_la-parser.lo: src/qtinfo/parser.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/qtinfo/src_libgui_src_la-parser.lo -MD -MP -MF src/qtinfo/$(DEPDIR)/src_libgui_src_la-parser.Tpo -c -o src/qtinfo/src_libgui_src_la-parser.lo `test -f 'src/qtinfo/parser.cc' || echo '$(srcdir)/'`src/qtinfo/parser.cc
@@ -3110,19 +3156,19 @@ src/src_libgui_src_la-settings-dialog.lo: src/settings-dialog.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-settings-dialog.lo `test -f 'src/settings-dialog.cc' || echo '$(srcdir)/'`src/settings-dialog.cc
 
-src/src_libgui_src_la-symbol-information.lo: src/symbol-information.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-symbol-information.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-symbol-information.Tpo -c -o src/src_libgui_src_la-symbol-information.lo `test -f 'src/symbol-information.cc' || echo '$(srcdir)/'`src/symbol-information.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-symbol-information.Tpo src/$(DEPDIR)/src_libgui_src_la-symbol-information.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/symbol-information.cc' object='src/src_libgui_src_la-symbol-information.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-terminal-dock-widget.lo: src/terminal-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-terminal-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-terminal-dock-widget.Tpo -c -o src/src_libgui_src_la-terminal-dock-widget.lo `test -f 'src/terminal-dock-widget.cc' || echo '$(srcdir)/'`src/terminal-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-terminal-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-terminal-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/terminal-dock-widget.cc' object='src/src_libgui_src_la-terminal-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-symbol-information.lo `test -f 'src/symbol-information.cc' || echo '$(srcdir)/'`src/symbol-information.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-terminal-dock-widget.lo `test -f 'src/terminal-dock-widget.cc' || echo '$(srcdir)/'`src/terminal-dock-widget.cc
 
-src/src_libgui_src_la-terminal-dockwidget.lo: src/terminal-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-terminal-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-terminal-dockwidget.Tpo -c -o src/src_libgui_src_la-terminal-dockwidget.lo `test -f 'src/terminal-dockwidget.cc' || echo '$(srcdir)/'`src/terminal-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-terminal-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-terminal-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/terminal-dockwidget.cc' object='src/src_libgui_src_la-terminal-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-color-picker.lo: src/color-picker.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-color-picker.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-color-picker.Tpo -c -o src/src_libgui_src_la-color-picker.lo `test -f 'src/color-picker.cc' || echo '$(srcdir)/'`src/color-picker.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-color-picker.Tpo src/$(DEPDIR)/src_libgui_src_la-color-picker.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/color-picker.cc' object='src/src_libgui_src_la-color-picker.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-terminal-dockwidget.lo `test -f 'src/terminal-dockwidget.cc' || echo '$(srcdir)/'`src/terminal-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-color-picker.lo `test -f 'src/color-picker.cc' || echo '$(srcdir)/'`src/color-picker.cc
 
 src/src_libgui_src_la-welcome-wizard.lo: src/welcome-wizard.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-welcome-wizard.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-welcome-wizard.Tpo -c -o src/src_libgui_src_la-welcome-wizard.lo `test -f 'src/welcome-wizard.cc' || echo '$(srcdir)/'`src/welcome-wizard.cc
@@ -3130,6 +3176,20 @@ src/src_libgui_src_la-welcome-wizard.lo: src/welcome-wizard.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/welcome-wizard.cc' object='src/src_libgui_src_la-welcome-wizard.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-welcome-wizard.lo `test -f 'src/welcome-wizard.cc' || echo '$(srcdir)/'`src/welcome-wizard.cc
+
+src/src_libgui_src_la-find-files-dialog.lo: src/find-files-dialog.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-find-files-dialog.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-find-files-dialog.Tpo -c -o src/src_libgui_src_la-find-files-dialog.lo `test -f 'src/find-files-dialog.cc' || echo '$(srcdir)/'`src/find-files-dialog.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-find-files-dialog.Tpo src/$(DEPDIR)/src_libgui_src_la-find-files-dialog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/find-files-dialog.cc' object='src/src_libgui_src_la-find-files-dialog.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-find-files-dialog.lo `test -f 'src/find-files-dialog.cc' || echo '$(srcdir)/'`src/find-files-dialog.cc
+
+src/src_libgui_src_la-find-files-model.lo: src/find-files-model.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-find-files-model.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-find-files-model.Tpo -c -o src/src_libgui_src_la-find-files-model.lo `test -f 'src/find-files-model.cc' || echo '$(srcdir)/'`src/find-files-model.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-find-files-model.Tpo src/$(DEPDIR)/src_libgui_src_la-find-files-model.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/find-files-model.cc' object='src/src_libgui_src_la-find-files-model.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-find-files-model.lo `test -f 'src/find-files-model.cc' || echo '$(srcdir)/'`src/find-files-model.cc
 
 src/src_libgui_src_la-workspace-model.lo: src/workspace-model.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-workspace-model.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-workspace-model.Tpo -c -o src/src_libgui_src_la-workspace-model.lo `test -f 'src/workspace-model.cc' || echo '$(srcdir)/'`src/workspace-model.cc
@@ -3180,26 +3240,33 @@ src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.lo: src/m-editor/moc-lexer-o
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/m-editor/src_libgui_src_la-moc-lexer-octave-gui.lo `test -f 'src/m-editor/moc-lexer-octave-gui.cc' || echo '$(srcdir)/'`src/m-editor/moc-lexer-octave-gui.cc
 
-src/src_libgui_src_la-moc-documentation-dockwidget.lo: src/moc-documentation-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-documentation-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dockwidget.Tpo -c -o src/src_libgui_src_la-moc-documentation-dockwidget.lo `test -f 'src/moc-documentation-dockwidget.cc' || echo '$(srcdir)/'`src/moc-documentation-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-documentation-dockwidget.cc' object='src/src_libgui_src_la-moc-documentation-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-moc-dialog.lo: src/moc-dialog.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-dialog.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-dialog.Tpo -c -o src/src_libgui_src_la-moc-dialog.lo `test -f 'src/moc-dialog.cc' || echo '$(srcdir)/'`src/moc-dialog.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-dialog.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-dialog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-dialog.cc' object='src/src_libgui_src_la-moc-dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-documentation-dockwidget.lo `test -f 'src/moc-documentation-dockwidget.cc' || echo '$(srcdir)/'`src/moc-documentation-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-dialog.lo `test -f 'src/moc-dialog.cc' || echo '$(srcdir)/'`src/moc-dialog.cc
 
-src/src_libgui_src_la-moc-files-dockwidget.lo: src/moc-files-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-files-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-files-dockwidget.Tpo -c -o src/src_libgui_src_la-moc-files-dockwidget.lo `test -f 'src/moc-files-dockwidget.cc' || echo '$(srcdir)/'`src/moc-files-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-files-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-files-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-files-dockwidget.cc' object='src/src_libgui_src_la-moc-files-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-moc-documentation-dock-widget.lo: src/moc-documentation-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-documentation-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dock-widget.Tpo -c -o src/src_libgui_src_la-moc-documentation-dock-widget.lo `test -f 'src/moc-documentation-dock-widget.cc' || echo '$(srcdir)/'`src/moc-documentation-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-documentation-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-documentation-dock-widget.cc' object='src/src_libgui_src_la-moc-documentation-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-files-dockwidget.lo `test -f 'src/moc-files-dockwidget.cc' || echo '$(srcdir)/'`src/moc-files-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-documentation-dock-widget.lo `test -f 'src/moc-documentation-dock-widget.cc' || echo '$(srcdir)/'`src/moc-documentation-dock-widget.cc
 
-src/src_libgui_src_la-moc-history-dockwidget.lo: src/moc-history-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-history-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-history-dockwidget.Tpo -c -o src/src_libgui_src_la-moc-history-dockwidget.lo `test -f 'src/moc-history-dockwidget.cc' || echo '$(srcdir)/'`src/moc-history-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-history-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-history-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-history-dockwidget.cc' object='src/src_libgui_src_la-moc-history-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-moc-files-dock-widget.lo: src/moc-files-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-files-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-files-dock-widget.Tpo -c -o src/src_libgui_src_la-moc-files-dock-widget.lo `test -f 'src/moc-files-dock-widget.cc' || echo '$(srcdir)/'`src/moc-files-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-files-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-files-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-files-dock-widget.cc' object='src/src_libgui_src_la-moc-files-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-history-dockwidget.lo `test -f 'src/moc-history-dockwidget.cc' || echo '$(srcdir)/'`src/moc-history-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-files-dock-widget.lo `test -f 'src/moc-files-dock-widget.cc' || echo '$(srcdir)/'`src/moc-files-dock-widget.cc
+
+src/src_libgui_src_la-moc-history-dock-widget.lo: src/moc-history-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-history-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-history-dock-widget.Tpo -c -o src/src_libgui_src_la-moc-history-dock-widget.lo `test -f 'src/moc-history-dock-widget.cc' || echo '$(srcdir)/'`src/moc-history-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-history-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-history-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-history-dock-widget.cc' object='src/src_libgui_src_la-moc-history-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-history-dock-widget.lo `test -f 'src/moc-history-dock-widget.cc' || echo '$(srcdir)/'`src/moc-history-dock-widget.cc
 
 src/src_libgui_src_la-moc-main-window.lo: src/moc-main-window.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-main-window.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-main-window.Tpo -c -o src/src_libgui_src_la-moc-main-window.lo `test -f 'src/moc-main-window.cc' || echo '$(srcdir)/'`src/moc-main-window.cc
@@ -3208,12 +3275,12 @@ src/src_libgui_src_la-moc-main-window.lo: src/moc-main-window.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-main-window.lo `test -f 'src/moc-main-window.cc' || echo '$(srcdir)/'`src/moc-main-window.cc
 
-src/src_libgui_src_la-moc-octave-qt-event-listener.lo: src/moc-octave-qt-event-listener.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-octave-qt-event-listener.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-event-listener.Tpo -c -o src/src_libgui_src_la-moc-octave-qt-event-listener.lo `test -f 'src/moc-octave-qt-event-listener.cc' || echo '$(srcdir)/'`src/moc-octave-qt-event-listener.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-event-listener.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-event-listener.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-octave-qt-event-listener.cc' object='src/src_libgui_src_la-moc-octave-qt-event-listener.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-moc-octave-qt-link.lo: src/moc-octave-qt-link.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-octave-qt-link.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-link.Tpo -c -o src/src_libgui_src_la-moc-octave-qt-link.lo `test -f 'src/moc-octave-qt-link.cc' || echo '$(srcdir)/'`src/moc-octave-qt-link.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-link.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-octave-qt-link.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-octave-qt-link.cc' object='src/src_libgui_src_la-moc-octave-qt-link.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-octave-qt-event-listener.lo `test -f 'src/moc-octave-qt-event-listener.cc' || echo '$(srcdir)/'`src/moc-octave-qt-event-listener.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-octave-qt-link.lo `test -f 'src/moc-octave-qt-link.cc' || echo '$(srcdir)/'`src/moc-octave-qt-link.cc
 
 src/src_libgui_src_la-moc-settings-dialog.lo: src/moc-settings-dialog.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-settings-dialog.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-settings-dialog.Tpo -c -o src/src_libgui_src_la-moc-settings-dialog.lo `test -f 'src/moc-settings-dialog.cc' || echo '$(srcdir)/'`src/moc-settings-dialog.cc
@@ -3222,12 +3289,19 @@ src/src_libgui_src_la-moc-settings-dialog.lo: src/moc-settings-dialog.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-settings-dialog.lo `test -f 'src/moc-settings-dialog.cc' || echo '$(srcdir)/'`src/moc-settings-dialog.cc
 
-src/src_libgui_src_la-moc-terminal-dockwidget.lo: src/moc-terminal-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-terminal-dockwidget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dockwidget.Tpo -c -o src/src_libgui_src_la-moc-terminal-dockwidget.lo `test -f 'src/moc-terminal-dockwidget.cc' || echo '$(srcdir)/'`src/moc-terminal-dockwidget.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dockwidget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dockwidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-terminal-dockwidget.cc' object='src/src_libgui_src_la-moc-terminal-dockwidget.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-moc-terminal-dock-widget.lo: src/moc-terminal-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-terminal-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dock-widget.Tpo -c -o src/src_libgui_src_la-moc-terminal-dock-widget.lo `test -f 'src/moc-terminal-dock-widget.cc' || echo '$(srcdir)/'`src/moc-terminal-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-terminal-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-terminal-dock-widget.cc' object='src/src_libgui_src_la-moc-terminal-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-terminal-dockwidget.lo `test -f 'src/moc-terminal-dockwidget.cc' || echo '$(srcdir)/'`src/moc-terminal-dockwidget.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-terminal-dock-widget.lo `test -f 'src/moc-terminal-dock-widget.cc' || echo '$(srcdir)/'`src/moc-terminal-dock-widget.cc
+
+src/src_libgui_src_la-moc-color-picker.lo: src/moc-color-picker.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-color-picker.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-color-picker.Tpo -c -o src/src_libgui_src_la-moc-color-picker.lo `test -f 'src/moc-color-picker.cc' || echo '$(srcdir)/'`src/moc-color-picker.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-color-picker.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-color-picker.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-color-picker.cc' object='src/src_libgui_src_la-moc-color-picker.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-color-picker.lo `test -f 'src/moc-color-picker.cc' || echo '$(srcdir)/'`src/moc-color-picker.cc
 
 src/src_libgui_src_la-moc-welcome-wizard.lo: src/moc-welcome-wizard.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-welcome-wizard.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-welcome-wizard.Tpo -c -o src/src_libgui_src_la-moc-welcome-wizard.lo `test -f 'src/moc-welcome-wizard.cc' || echo '$(srcdir)/'`src/moc-welcome-wizard.cc
@@ -3250,12 +3324,12 @@ src/src_libgui_src_la-moc-workspace-view.lo: src/moc-workspace-view.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-workspace-view.lo `test -f 'src/moc-workspace-view.cc' || echo '$(srcdir)/'`src/moc-workspace-view.cc
 
-src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo: src/octave-adapter/moc-octave-main-thread.cc
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo -MD -MP -MF src/octave-adapter/$(DEPDIR)/src_libgui_src_la-moc-octave-main-thread.Tpo -c -o src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo `test -f 'src/octave-adapter/moc-octave-main-thread.cc' || echo '$(srcdir)/'`src/octave-adapter/moc-octave-main-thread.cc
-@am__fastdepCXX_TRUE@	$(am__mv) src/octave-adapter/$(DEPDIR)/src_libgui_src_la-moc-octave-main-thread.Tpo src/octave-adapter/$(DEPDIR)/src_libgui_src_la-moc-octave-main-thread.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/octave-adapter/moc-octave-main-thread.cc' object='src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo' libtool=yes @AMDEPBACKSLASH@
+src/src_libgui_src_la-moc-find-files-dialog.lo: src/moc-find-files-dialog.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-find-files-dialog.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-find-files-dialog.Tpo -c -o src/src_libgui_src_la-moc-find-files-dialog.lo `test -f 'src/moc-find-files-dialog.cc' || echo '$(srcdir)/'`src/moc-find-files-dialog.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-find-files-dialog.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-find-files-dialog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-find-files-dialog.cc' object='src/src_libgui_src_la-moc-find-files-dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/octave-adapter/src_libgui_src_la-moc-octave-main-thread.lo `test -f 'src/octave-adapter/moc-octave-main-thread.cc' || echo '$(srcdir)/'`src/octave-adapter/moc-octave-main-thread.cc
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-find-files-dialog.lo `test -f 'src/moc-find-files-dialog.cc' || echo '$(srcdir)/'`src/moc-find-files-dialog.cc
 
 src/qtinfo/src_libgui_src_la-moc-parser.lo: src/qtinfo/moc-parser.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/qtinfo/src_libgui_src_la-moc-parser.lo -MD -MP -MF src/qtinfo/$(DEPDIR)/src_libgui_src_la-moc-parser.Tpo -c -o src/qtinfo/src_libgui_src_la-moc-parser.lo `test -f 'src/qtinfo/moc-parser.cc' || echo '$(srcdir)/'`src/qtinfo/moc-parser.cc
@@ -3270,6 +3344,13 @@ src/qtinfo/src_libgui_src_la-moc-webinfo.lo: src/qtinfo/moc-webinfo.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/qtinfo/moc-webinfo.cc' object='src/qtinfo/src_libgui_src_la-moc-webinfo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/qtinfo/src_libgui_src_la-moc-webinfo.lo `test -f 'src/qtinfo/moc-webinfo.cc' || echo '$(srcdir)/'`src/qtinfo/moc-webinfo.cc
+
+src/src_libgui_src_la-moc-octave-dock-widget.lo: src/moc-octave-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-moc-octave-dock-widget.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-moc-octave-dock-widget.Tpo -c -o src/src_libgui_src_la-moc-octave-dock-widget.lo `test -f 'src/moc-octave-dock-widget.cc' || echo '$(srcdir)/'`src/moc-octave-dock-widget.cc
+@am__fastdepCXX_TRUE@	$(am__mv) src/$(DEPDIR)/src_libgui_src_la-moc-octave-dock-widget.Tpo src/$(DEPDIR)/src_libgui_src_la-moc-octave-dock-widget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/moc-octave-dock-widget.cc' object='src/src_libgui_src_la-moc-octave-dock-widget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -c -o src/src_libgui_src_la-moc-octave-dock-widget.lo `test -f 'src/moc-octave-dock-widget.cc' || echo '$(srcdir)/'`src/moc-octave-dock-widget.cc
 
 src/src_libgui_src_la-qrc-resource.lo: src/qrc-resource.cc
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libgui_src_la_CPPFLAGS) $(CPPFLAGS) $(src_libgui_src_la_CXXFLAGS) $(CXXFLAGS) -MT src/src_libgui_src_la-qrc-resource.lo -MD -MP -MF src/$(DEPDIR)/src_libgui_src_la-qrc-resource.Tpo -c -o src/src_libgui_src_la-qrc-resource.lo `test -f 'src/qrc-resource.cc' || echo '$(srcdir)/'`src/qrc-resource.cc
@@ -3313,7 +3394,6 @@ clean-libtool:
 	-rm -rf qterminal/libqterminal/win32/.libs qterminal/libqterminal/win32/_libs
 	-rm -rf src/.libs src/_libs
 	-rm -rf src/m-editor/.libs src/m-editor/_libs
-	-rm -rf src/octave-adapter/.libs src/octave-adapter/_libs
 	-rm -rf src/qtinfo/.libs src/qtinfo/_libs
 install-octetcDATA: $(octetc_DATA)
 	@$(NORMAL_INSTALL)
@@ -3487,10 +3567,9 @@ distclean-generic:
 	-rm -f src/$(am__dirstamp)
 	-rm -f src/m-editor/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/m-editor/$(am__dirstamp)
-	-rm -f src/octave-adapter/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/octave-adapter/$(am__dirstamp)
 	-rm -f src/qtinfo/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/qtinfo/$(am__dirstamp)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -3502,7 +3581,7 @@ clean-am: clean-generic clean-libtool clean-noinstLTLIBRARIES \
 	clean-octlibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR) qterminal/libqterminal/$(DEPDIR) qterminal/libqterminal/unix/$(DEPDIR) qterminal/libqterminal/win32/$(DEPDIR) src/$(DEPDIR) src/m-editor/$(DEPDIR) src/octave-adapter/$(DEPDIR) src/qtinfo/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) qterminal/libqterminal/$(DEPDIR) qterminal/libqterminal/unix/$(DEPDIR) qterminal/libqterminal/win32/$(DEPDIR) src/$(DEPDIR) src/m-editor/$(DEPDIR) src/qtinfo/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -3549,7 +3628,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR) qterminal/libqterminal/$(DEPDIR) qterminal/libqterminal/unix/$(DEPDIR) qterminal/libqterminal/win32/$(DEPDIR) src/$(DEPDIR) src/m-editor/$(DEPDIR) src/octave-adapter/$(DEPDIR) src/qtinfo/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) qterminal/libqterminal/$(DEPDIR) qterminal/libqterminal/unix/$(DEPDIR) qterminal/libqterminal/win32/$(DEPDIR) src/$(DEPDIR) src/m-editor/$(DEPDIR) src/qtinfo/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -3588,8 +3667,9 @@ uninstall-am: uninstall-octetcDATA uninstall-octlibLTLIBRARIES \
 	uninstall-octlibLTLIBRARIES uninstall-octlocaleDATA
 
 export AWK
-export SED
+export GREP
 export FIND
+export SED
 export PERL
 
 # ==================== Octave-specific Makefile rules ====================
@@ -3613,10 +3693,6 @@ if [ "x$(srcdir)" != "x." ] && [ -f $(srcdir)/$@ ] && [ ! -f $@ ]; then \
   touch -r $(srcdir)/$@ $@; \
 fi
 endef
-
-# Yes, the second sed command near the end is needed, to avoid limits
-# in command lengths for some versions of sed.  UGLY_DEFS is often
-# quite large, so it makes sense to split this command there.
 
 define do_subst_config_vals
 echo "making $@ from $<"
@@ -3668,6 +3744,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_CXXPICFLAG%|\"${CXXPICFLAG}\"|" \
   -e "s|%OCTAVE_CONF_CXX_VERSION%|\"${CXX_VERSION}\"|" \
   -e "s|%OCTAVE_CONF_DEFAULT_PAGER%|\"${DEFAULT_PAGER}\"|" \
+  -e "s|%OCTAVE_CONF_DEFS%|\"${DEFS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_FLAGS%|\"${DEPEND_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_EXTRA_SED_PATTERN%|\"${DEPEND_EXTRA_SED_PATTERN}\"|" \
   -e "s|%OCTAVE_CONF_DL_LD%|\"${DL_LD}\"|" \
@@ -3698,8 +3775,8 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_GNUPLOT%|\"${GNUPLOT}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_CFLAGS%|\"${GRAPHICS_CFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_LIBS%|\"${GRAPHICS_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
+  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" | \
+  $(SED) -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_HDF5_LIBS%|\"${HDF5_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_INCLUDEDIR%|\"${includedir}\"|" \
   -e "s|%OCTAVE_CONF_LAPACK_LIBS%|\"${LAPACK_LIBS}\"|" \
@@ -3763,7 +3840,6 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_SONAME_FLAGS%|\"${SONAME_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_STATIC_LIBS%|\"${STATIC_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_TERM_LIBS%|\"${TERM_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_UGLY_DEFS%|\"${UGLY_DEFS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_CPPFLAGS%|\"${UMFPACK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LDFLAGS%|\"${UMFPACK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LIBS%|\"${UMFPACK_LIBS}\"|" \
@@ -3780,8 +3856,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_Z_CPPFLAGS%|\"${Z_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LDFLAGS%|\"${Z_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LIBS%|\"${Z_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" | \
-  $(SED)  -e "s|%OCTAVE_CONF_DEFS%|\"${UGLY_DEFS}\"|" > $@-t
+  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
@@ -3838,42 +3913,21 @@ $(SED) < $< \
   -e "s|%AWK%|${AWK}|g" \
   -e "s|%FIND%|${FIND}|g" \
   -e "s|%SED%|${SED}|g" \
-  -e "s|%library_path_var%|${library_path_var}|g" \
-  -e "s|%liboctinterp%|${SHLPRE}octinterp.${SHLEXT}|g" \
-  -e "s|%liboctave%|${SHLPRE}octave.${SHLEXT}|g" \
-  -e "s|%ldpreloadsep%|${ldpreloadsep}|g" \
-  -e "s|%srcdir%|${srcdir}|" \
-  -e "s|%top_srcdir%|${top_srcdir}|" \
   -e "s|%abs_top_srcdir%|${abs_top_srcdir}|" \
   -e "s|%builddir%|$(shell pwd)|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
-define do_script_install
-$(top_srcdir)/build-aux/mkinstalldirs $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
-for f in $(FCN_FILES); do \
-  fbase=`basename $$f`; \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-  $(INSTALL_DATA) $$f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-done
-$(top_srcdir)/mkpkgadd $(DESTDIR)$(fcnfiledir)/$(script_sub_dir) > $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t
-if [ -n "`cat $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t`" ]; then \
-  $(INSTALL_DATA) $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD ; \
-else \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t ; \
-fi
-endef
-
-define do_script_uninstall
-for f in $(FCN_FILES_NO_DIR); \
-  do rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$f; \
-done
-rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
--rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
+define do_subst_qt_settings
+echo "making $@ from $<"
+$(SED) < $< \
+  -e "s|%DEFAULT_TERMINAL_FONT%|${DEFAULT_TERMINAL_FONT}|" \
+  -e "s|%DEFAULT_TERMINAL_FONT_SIZE%|${DEFAULT_TERMINAL_FONT_SIZE}|" > $@-t
+$(simple_move_if_change_rule)
 endef
 
 define test-file-commands
-( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; $(GREP) '^%!' $< ) > $@-t
 mv $@-t $@
 endef
 
@@ -3886,14 +3940,21 @@ endef
 %.ll-tst : %.ll
 	$(test-file-commands)
 
+default-qt-settings: default-qt-settings.in
+	$(do_subst_qt_settings)
+
 moc-%.cc: %.h
-	@MOC@ -o$@ $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(MOC_CPPFLAGS) $(liboctgui_la_CPPFLAGS) $<
+	$(MOC) -o$@ $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(MOC_CPPFLAGS) $(liboctgui_la_CPPFLAGS) $<
 
 ui-%.h: %.ui
-	@UIC@ -o $@ $<
+	$(UIC) -o $@ $<
 
 qrc-%.cc: %.qrc
-	@RCC@ -o $@ $<
+	$(RCC) -o $@ $<
+
+%.qm: %.ts
+	$(MKDIR_P) languages
+	$(LRELEASE) -qm $@ $<
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

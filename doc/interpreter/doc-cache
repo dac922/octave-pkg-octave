@@ -1,8 +1,8 @@
-# doc-cache created by Octave 3.7.1+, Sat Feb 09 15:02:50 2013 EST
+# doc-cache created by Octave 3.7.3, Mon Apr 22 00:20:50 2013 EDT
 # name: cache
 # type: cell
 # rows: 3
-# columns: 1499
+# columns: 1501
 # name: <cell-element>
 # type: sq_string
 # elements: 1
@@ -536,21 +536,29 @@ wavread
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 769
+# length: 954
  -- Function File: Y = wavread (FILENAME)
+ -- Function File: [Y, FS, BPS] = wavread (FILENAME)
+ -- Function File: [...] = wavread (FILENAME, N)
+ -- Function File: [...] = wavread (FILENAME, [N1 N2])
+ -- Function File: [SAMPLES, CHANNELS] = wavread (FILENAME, "size")
      Load the RIFF/WAVE sound file FILENAME, and return the samples in vector Y.  If the file contains multichannel data, then Y is a matrix with the channels represented as columns.
 
- -- Function File: [Y, FS, BPS] = wavread (FILENAME)
+     `[Y, FS, BPS] = wavread (FILENAME)'
+
      Additionally return the sample rate (FS) in Hz and the number of bits per sample (BPS).
 
- -- Function File: [...] = wavread (FILENAME, N)
+     `[...] = wavread (FILENAME, N)'
+
      Read only the first N samples from each channel.
 
- -- Function File: [...] = wavread (FILENAME, N1 N2)
+     `wavread (FILENAME, [N1 N2])'
+
      Read only samples N1 through N2 from each channel.
 
- -- Function File: [SAMPLES, CHANNELS] = wavread (FILENAME, "size")
-     Return the number of samples (N) and channels (CH) instead of the audio data.
+     `[SAMPLES, CHANNELS] = wavread (FILENAME, "size")'
+
+     Return the number of samples (N) and number of channels (CH) instead of the audio data.
 
      *See also:* wavwrite.
    
@@ -694,13 +702,13 @@ java_debug
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 616
+# length: 612
  -- Built-in Function: VAL = java_debug ()
  -- Built-in Function: OLD_VAL = java_debug (NEW_VAL)
- -- Built-in Function:  java_debug (NEW_VAL, \"local\")
+ -- Built-in Function:  java_debug (NEW_VAL, "local")
      Query or set the internal variable that determines whether extra debugging information regarding the initialization of the JVM and any Java exceptions is printed.
 
-     When called from inside a function with the \"local\" option, the variable is changed locally for the function and any subroutines it calls.  The original variable value is restored when exiting the function.
+     When called from inside a function with the "local" option, the variable is changed locally for the function and any subroutines it calls.  The original variable value is restored when exiting the function.
 
      *See also:* debug_java, java_convert_matrix, java_unsigned_conversion.
    
@@ -774,13 +782,13 @@ java_convert_matrix
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 633
+# length: 629
  -- Built-in Function: VAL = java_convert_matrix ()
  -- Built-in Function: OLD_VAL = java_convert_matrix (NEW_VAL)
- -- Built-in Function:  java_convert_matrix (NEW_VAL, \"local\")
+ -- Built-in Function:  java_convert_matrix (NEW_VAL, "local")
      Query or set the internal variable that controls whether Java arrays are automatically converted to Octave matrices.  The default value is false.
 
-     When called from inside a function with the \"local\" option, the variable is changed locally for the function and any subroutines it calls.  The original variable value is restored when exiting the function.
+     When called from inside a function with the "local" option, the variable is changed locally for the function and any subroutines it calls.  The original variable value is restored when exiting the function.
 
      *See also:* java_matrix_autoconversion, java_unsigned_conversion, java_debug.
    
@@ -835,15 +843,15 @@ java_invoke
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 699
+# length: 693
  -- Built-in Function: RET = java_invoke (OBJ, METHODNAME)
  -- Built-in Function: RET = java_invoke (OBJ, METHODNAME, ARG1, ...)
      Invoke the method METHODNAME on the Java object OBJ with the arguments ARG1, ...  For static methods, OBJ can be a string representing the fully qualified name of the corresponding class.  The function returns the result of the method invocation.
 
      When OBJ is a regular Java object, structure-like indexing can be used as a shortcut syntax.  For instance, the two following statements are equivalent
 
-            ret = java_invoke (x, \"method1\", 1.0, \"a string\")
-            ret = x.method1 (1.0, \"a string\")
+            ret = java_invoke (x, "method1", 1.0, "a string")
+            ret = x.method1 (1.0, "a string")
 
      *See also:* javaMethod, javaObject.
    
@@ -897,13 +905,13 @@ java_unsigned_conversion
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 743
+# length: 739
  -- Built-in Function: VAL = java_unsigned_conversion ()
  -- Built-in Function: OLD_VAL = java_unsigned_conversion (NEW_VAL)
- -- Built-in Function:  java_unsigned_conversion (NEW_VAL, \"local\")
+ -- Built-in Function:  java_unsigned_conversion (NEW_VAL, "local")
      Query or set the internal variable that controls how integer classes are converted when Java matrix autoconversion is enabled.  When enabled, Java arrays of class Byte or Integer are converted to matrices of class uint8 or uint32 respectively.
 
-     When called from inside a function with the \"local\" option, the variable is changed locally for the function and any subroutines it calls.  The original variable value is restored when exiting the function.
+     When called from inside a function with the "local" option, the variable is changed locally for the function and any subroutines it calls.  The original variable value is restored when exiting the function.
 
      *See also:* java_unsigned_autoconversion, java_convert_matrix, debug_java.
    
@@ -2134,7 +2142,8 @@ celldisp
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 518
+# length: 551
+ -- Function File:  celldisp (C)
  -- Function File:  celldisp (C, NAME)
      Recursively display the contents of a cell array.  By default the values are displayed with the name of the variable C.  However, this name can be replaced with the variable NAME.  For example:
 
@@ -3715,11 +3724,13 @@ num2str
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1338
+# length: 1432
  -- Function File:  num2str (X)
  -- Function File:  num2str (X, PRECISION)
  -- Function File:  num2str (X, FORMAT)
-     Convert a number (or array) to a string (or a character array).  The optional second argument may either give the number of significant digits (PRECISION) to be used in the output or a format template string (FORMAT) as in `sprintf' (*note Formatted Output::).  `num2str' can also handle complex numbers.  For example:
+     Convert a number (or array) to a string (or a character array).  The optional second argument may either give the number of significant digits (PRECISION) to be used in the output or a format template string (FORMAT) as in `sprintf' (*note Formatted Output::).  `num2str' can also handle complex numbers.
+
+     Examples:
 
           num2str (123.456)
                => "123.46"
@@ -3740,7 +3751,13 @@ num2str
           num2str (1.234 + 27.3i)
                => "1.234+27.3i"
 
-     The `num2str' function is not very flexible.  For better control over the results, use `sprintf' (*note Formatted Output::).  Note that for complex X, the format string may only contain one output conversion specification and nothing else.  Otherwise, you will get unpredictable results.
+     Notes:
+
+     For Matlab compatibility, leading spaces are stripped before returning the string.
+
+     The `num2str' function is not very flexible.  For better control over the results, use `sprintf' (*note Formatted Output::).
+
+     For complex X, the format string may only contain one output conversion specification and nothing else.  Otherwise, results will be unpredictable.
 
      *See also:* sprintf, int2str, mat2str.
    
@@ -5083,12 +5100,20 @@ voronoin
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 643
+# length: 1078
  -- Function File: [C, F] = voronoin (PTS)
  -- Function File: [C, F] = voronoin (PTS, OPTIONS)
      Compute N-dimensional Voronoi facets.  The input matrix PTS of size [n, dim] contains n points in a space of dimension dim.  C contains the points of the Voronoi facets.  The list F contains, for each facet, the indices of the Voronoi points.
 
      An optional second argument, which must be a string or cell array of strings, contains options passed to the underlying qhull command.  See the documentation for the Qhull library for details `http://www.qhull.org/html/qh-quick.htm#options'.
+
+     The default options depend on the dimension of the input:
+
+        * 2-D and 3-D: OPTIONS = `{"Qbb"}'
+
+        * 4-D and higher: OPTIONS = `{"Qbb", "Qx"}'
+
+     If OPTIONS is not present or `[]' then the default arguments are used.  Otherwise, OPTIONS replaces the default argument list.  To append user options to the defaults it is necessary to repeat the default arguments in OPTIONS.  Use a null string to pass no arguments.
 
      *See also:* voronoi, convhulln, delaunayn.
    
@@ -5805,9 +5830,9 @@ hsv
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 554
+# length: 548
  -- Function File:  hsv (N)
-     Create color colormap.  This colormap begins with red, changes through yellow, green, cyan, blue, and magenta, before returning to red.  It is useful for displaying periodic functions.  The map is obtained by linearly varying the hue through all possible values while keeping constant maximum saturation and value.  The equivalent code is `hsv2rgb ([linspace(0,1,N)', ones(N,2)])'.
+     Create color colormap.  This colormap begins with red, changes through yellow, green, cyan, blue, and magenta, before returning to red.  It is useful for displaying periodic functions.  The map is obtained by linearly varying the hue through all possible values while keeping constant maximum saturation and value.  The equivalent code is `hsv2rgb ([(0:N-1)'/N, ones(N,2)])'.
 
      The argument N must be a scalar.  If unspecified, the length of the current colormap, or 64, is used.
 
@@ -7097,7 +7122,7 @@ textscan
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 2156
+# length: 2395
  -- Function File: C = textscan (FID, FORMAT)
  -- Function File: C = textscan (FID, FORMAT, N)
  -- Function File: C = textscan (FID, FORMAT, PARAM, VALUE, ...)
@@ -7124,6 +7149,8 @@ textscan
 
      The second output, POSITION, provides the position, in characters, from the beginning of the file.
 
+     If the format string is empty (not: omitted) and the file contains only numeric data (excluding headerlines), textscan will return data in a number of columns matching the number of numeric fields on the first data line of the file.
+
      *See also:* dlmread, fscanf, load, strread, textread.
    
 
@@ -7146,7 +7173,7 @@ textread
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1129
+# length: 1430
  -- Function File: [A, ...] = textread (FILENAME)
  -- Function File: [A, ...] = textread (FILENAME, FORMAT)
  -- Function File: [A, ...] = textread (FILENAME, FORMAT, N)
@@ -7164,6 +7191,8 @@ textread
 
      The optional input N specifies the number of data lines to read; in this sense it differs slightly from the format repeat count in strread.
 
+     If the format string is empty (not: omitted) and the file contains only numeric data (excluding headerlines), textread will return a rectangular matrix with the number of columns matching the number of numeric fields on the first data line of the file. Empty fields are returned as zero values.
+
      *See also:* strread, load, dlmread, fscanf, textscan.
    
 
@@ -7173,145 +7202,6 @@ textread
 # elements: 1
 # length: 27
 Read data from a text file.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 7
-dlgtest
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 235
-   Test the dlg... functions of the Octave-Java bridge
-
-   Once the Java bridge works OK this function should be dropped from core octave
-
-   Author: Martin Hepperle Version August 2010 Adapted for core Octave Philip Nienhuis 2012
-
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 13
-Test the dlg.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 8
-errordlg
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 504
- -- Function File: H = errordlg (MSG)
- -- Function File: H = errordlg (MSG, TITLE)
-     Display MSG using an error dialog box.
-
-     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to set the dialog caption.  The default title is "Error Dialog".
-
-     The return value is always 1.
-
-     *See also:* helpdlg, inputdlg, listdlg, msgbox, questdlg, warndlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 38
-Display MSG using an error dialog box.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 7
-helpdlg
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 497
- -- Function File: H = helpdlg (MSG)
- -- Function File: H = helpdlg (MSG, TITLE)
-     Display MSG in a help dialog box.
-
-     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to set the dialog caption.  The default title is "Help Dialog".
-
-     The return value is always 1.
-
-     *See also:* errordlg, inputdlg, listdlg, msgbox, questdlg, warndlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 33
-Display MSG in a help dialog box.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 8
-inputdlg
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 1362
- -- Function File: CSTR = inputdlg (PROMPT)
- -- Function File: CSTR = inputdlg (PROMPT, TITLE)
- -- Function File: CSTR = inputdlg (PROMPT, TITLE, ROWSCOLS)
- -- Function File: CSTR = inputdlg (PROMPT, TITLE, ROWSCOLS, DEFAULTS)
-     Return user input from a multi-textfield dialog box in a cell array of strings, or an empty cell array if the dialog is closed by the Cancel button.
-
-     Inputs:
-
-    PROMPT
-          A cell array with strings labeling each text field.  This input is required.
-
-    TITLE
-          String to use for the caption of the dialog.  The default is "Input Dialog".
-
-    ROWSCOLS
-          Specifies the size of the text fields and can take three forms:
-
-            1. a scalar value which defines the number of rows used for each text field.
-
-            2. a vector which defines the individual number of rows used for each text field.
-
-            3. a matrix which defines the individual number of rows and columns used for each text field.  In the matrix each row describes a single text field.  The first column specifies the number of input rows to use and the second column specifies the text field width.
-
-    DEFAULTS
-          A list of default values to place in each text fields.  It must be a cell array of strings with the same size as PROMPT.
-
-     *See also:* errordlg, helpdlg, listdlg, msgbox, questdlg, warndlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 148
-Return user input from a multi-textfield dialog box in a cell array of strings, or an empty cell array if the dialog is closed by the Cancel button.
 
 
 
@@ -7434,7 +7324,7 @@ javamem
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1543
+# length: 1639
  -- Function File:  javamem ()
  -- Function File: JMEM = javamem ()
      Show the current memory usage of the Java virtual machine (JVM) and run the garbage collector.
@@ -7443,17 +7333,15 @@ javamem
 
      All Java-based routines are run in the JVM's shared memory pool, a dedicated and separate part of memory claimed by the JVM from your computer's total memory (which comprises physical RAM and virtual memory / swap space on hard disk).
 
-     The maximum allowable memory usage can be set using the file java.opts (in the same subdirectory where javaaddpath.m lives, see "which javaaddpath".  Usually that is:
+     The maximum allowable memory usage can be configured using the file `java.opts'.  The directory where this file resides is determined by the environment variable `OCTAVE_JAVA_DIR'.  If unset, the directory where `javaaddpath.m' resides is used instead (typically ``OCTAVE_HOME'/share/octave/`OCTAVE_VERSION'/m/java/'
 
-     `OCTAVE_HOME/share/octave/OCTAVE_VERSION/m/java/'
-
-     java.opts is a plain text file with one option per line.  The default initial memory size and default maximum memory size (which are both system dependent) can be overridden like so:
+     `java.opts' is a plain text file with one option per line.  The default initial memory size and default maximum memory size (which are both system dependent) can be overridden like so:
 
      -Xms64m
 
      -Xmx512m
 
-     (in megabytes in this example.)  You can adapt these values to your own requirements if your system has limited available physical memory or if you get Java memory errors.
+     (in megabytes in this example).  You can adapt these values to your own requirements if your system has limited available physical memory or if you get Java memory errors.
 
      "Total memory" is what the operating system has currently assigned to the JVM and depends on actual and active memory usage.  "Free memory" is self-explanatory.  During operation of Java-based Octave functions the amount of Total and Free memory will vary, due to Java's own cleaning up and your operating system's memory management.
    
@@ -7498,146 +7386,6 @@ Remove CLSPATH from the dynamic class path of the Java virtual machine.
 # type: sq_string
 # elements: 1
 # length: 7
-listdlg
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 1677
- -- Function File: [SEL, OK] = listdlg (KEY, VALUE, ...)
-     Return user inputs from a list dialog box in a vector of selection indices SEL and a flag OK indicating how the user closed the dialog box.  The value of OK is 1 if the user closed the box with the OK button, otherwise it is 0 and SEL is empty.
-
-     The indices in SEL are 1 based.
-
-     The arguments are specified in form of KEY, VALUE pairs.  The `"ListString"' argument pair must be specified.
-
-     Valid KEY and VALUE pairs are:
-
-    `"ListString"'
-          a cell array of strings comprising the content of the list.
-
-    `"SelectionMode"'
-          can be either `"Single"' or `"Multiple"' (default).
-
-    `"ListSize"'
-          a vector with two elements WIDTH and HEIGHT defining    the size of the list field in pixels.  Default is [160 300].
-
-    `"InitialValue"'
-          a vector containing 1-based indices of preselected elements.  Default    is 1 (first item).
-
-    `"Name"'
-          a string to be used as the dialog caption.  Default is "".
-
-    `"PromptString"'
-          a cell array of strings to be displayed above the list field.  Default    is {}.
-
-    `"OKString"'
-          a string used to label the OK button.  Default is "OK".
-
-    `"CancelString"'
-          a string used to label the Cancel button.  Default is "Cancel".
-
-     Example:
-
-          [sel, ok] = listdlg ("ListString", {"An item", "another", "yet another"},
-                               "SelectionMode", "Multiple");
-          if (ok == 1)
-            for i = 1:numel (sel)
-              disp (sel(i));
-            endfor
-          endif
-
-     *See also:* errordlg, helpdlg, inputdlg, msgbox, questdlg, warndlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 139
-Return user inputs from a list dialog box in a vector of selection indices SEL and a flag OK indicating how the user closed the dialog box.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 6
-msgbox
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 648
- -- Function File: H = msgbox (MSG)
- -- Function File: H = msgbox (MSG, TITLE)
- -- Function File: H = msgbox (MSG, TITLE, ICON)
-     Display MSG using a message dialog box.
-
-     The message may have multiple lines separated by newline characters (`"\n"'), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to decorate the dialog caption.
-
-     The optional argument ICON selects a dialog icon.  It can be one of `"none"' (default), `"error"', `"help"' or `"warn"'.
-
-     The return value is always 1.
-
-     *See also:* errordlg, helpdlg, inputdlg, listdlg, questdlg, warndlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 39
-Display MSG using a message dialog box.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 8
-questdlg
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 1152
- -- Function File: BTN = questdlg (MSG)
- -- Function File: BTN = questdlg (MSG, TITLE)
- -- Function File: BTN = questdlg (MSG, TITLE, DEFAULT)
- -- Function File: BTN = questdlg (MSG, TITLE, BTN1, BTN2, DEFAULT)
- -- Function File: BTN = questdlg (MSG, TITLE, BTN1, BTN2, BTN3, DEFAULT)
-     Display MSG using a question dialog box and return the caption of the activated button.
-
-     The dialog may contain two or three buttons which will all close the dialog.
-
-     The message may have multiple lines separated by newline characters (`"\n"'), or it may be a cellstr array with one element for each line.  The optional TITLE (character string) can be used to decorate the dialog caption.
-
-     The string DEFAULT identifies the default button, which is activated by pressing the `ENTER' key.  It must match one of the strings given in BTN1, BTN2 or BTN3.
-
-     If only MSG and TITLE are specified, three buttons with the default captions "Yes", "No", and "Cancel" are used.
-
-     If only two button captions, BTN1 and BTN2, are specified the dialog will have only these two buttons.
-
-     *See also:* errordlg, helpdlg, inputdlg, listdlg, warndlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 87
-Display MSG using a question dialog box and return the caption of the activated button.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 7
 usejava
 
 
@@ -7671,35 +7419,6 @@ usejava
 # elements: 1
 # length: 53
 Return true if the Java element FEATURE is available.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 7
-warndlg
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 452
- -- Function File: H = warndlg (MSG)
- -- Function File: H = warndlg (MSG, TITLE)
-     Display MSG using a warning dialog box.
-
-     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to set the dialog caption.  The default title is "Warning Dialog".
-
-     *See also:* helpdlg, inputdlg, listdlg, questdlg.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 39
-Display MSG using a warning dialog box.
 
 
 
@@ -8603,6 +8322,36 @@ Convert VAL to data type TYPE.
 # name: <cell-element>
 # type: sq_string
 # elements: 1
+# length: 8
+citation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 654
+ -- Command:  citation
+ -- Command:  citation PACKAGE
+     Display instructions to cite GNU Octave and packages in publications.
+
+     When called without an argument, displays information on how to cite the core GNU Octave system in publications.  When given a package name PACKAGE, display information on to cite it.  However, note that some packages may not have instructions on how to cite them.
+
+     The GNU Octave developers and its active community of package authors have invested a lot of time and effort in creating GNU Octave as it is today.  Please give credit where credit is due and cite GNU Octave and its packages when you use them.
+
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 69
+Display instructions to cite GNU Octave and packages in publications.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
 # length: 5
 comma
 
@@ -9220,12 +8969,12 @@ getappdata
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 266
+# length: 283
  -- Function File: VALUE = getappdata (H, NAME)
+ -- Function File: APPDATA = getappdata (H)
      Return the VALUE for named application data for the object(s) with handle(s) H.
 
- -- Function File: APPDATA = getappdata (H)
-     Return a structure, APPDATA, whose fields correspond to the appdata properties.
+     `getappdata(H)' returns a structure, APPDATA, whose fields correspond to the appdata properties.
    
 
 
@@ -9503,20 +9252,29 @@ license
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1083
- -- Function File:  license
+# length: 1270
+ -- Command:  license
+ -- Function File:  license ("inuse")
+ -- Function File: RETVAL = license ("inuse")
+ -- Function File: RETVAL = license ("test", FEATURE)
+ -- Function File:  license ("test", FEATURE, TOGGLE)
+ -- Function File: RETVAL = license ("checkout", FEATURE)
      Display the license of Octave.
 
- -- Function File:  license ("inuse")
+     `license ("inuse")'
+
      Display a list of packages currently being used.
 
- -- Function File: RETVAL = license ("inuse")
+     `RETVAL = license ("inuse")'
+
      Return a structure containing the fields `feature' and `user'.
 
- -- Function File: RETVAL = license ("test", FEATURE)
+     `RETVAL = license ("test", FEATURE)'
+
      Return 1 if a license exists for the product identified by the string FEATURE and 0 otherwise.  The argument FEATURE is case insensitive and only the first 27 characters are checked.
 
- -- Function File:  license ("test", FEATURE, TOGGLE)
+     `license ("test", FEATURE, TOGGLE)'
+
      Enable or disable license testing for FEATURE, depending on TOGGLE, which may be one of:
 
     "enable"
@@ -9525,7 +9283,8 @@ license
     "disable"
           Future tests for the specified license of FEATURE return 0.
 
- -- Function File: RETVAL = license ("checkout", FEATURE)
+     `RETVAL = license ("checkout", FEATURE)'
+
      Check out a license for FEATURE, returning 1 on success and 0 on failure.
 
      This function is provided for compatibility with MATLAB.
@@ -9893,9 +9652,9 @@ news
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 291
- -- Function File:  news
- -- Function File:  news (PACKAGE)
+# length: 277
+ -- Command:  news
+ -- Command:  news PACKAGE
      Display the current NEWS file for Octave or an installed package.
 
      When called without an argument, display the NEWS file for Octave.  When given a package name PACKAGE, display the current NEWS file for that package.
@@ -10630,12 +10389,16 @@ ver
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 789
+# length: 853
  -- Function File:  ver ()
-     Display a header containing the current Octave version number, license string and operating system, followed by the installed package names, versions, and installation directories.
-
  -- Function File: v = ver ()
-     Return a vector of structures, respecting Octave and each installed package.  The structure includes the following fields.
+ -- Function File: v = ver ("Octave")
+ -- Function File: v = ver (PACKAGE)
+     Display a header containing the current Octave version number, license string, and operating system followed by a list of installed packages, versions, and installation directories.
+
+     `v = ver ()'
+
+     Return a vector of structures describing Octave and each installed package.  The structure includes the following fields.
 
     `Name'
           Package name.
@@ -10647,12 +10410,14 @@ ver
           Revision of the package.
 
     `Date'
-          Date respecting the version/revision.
+          Date of the version/revision.
 
- -- Function File: v = ver ("Octave")
+     `v = ver ("Octave")'
+
      Return version information for Octave only.
 
- -- Function File: v = ver (PACKAGE)
+     `v = ver (PACKAGE)'
+
      Return version information for PACKAGE.
 
      *See also:* version, octave_config_info.
@@ -10662,8 +10427,8 @@ ver
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 180
-Display a header containing the current Octave version number, license string and operating system, followed by the installed package names, versions, and installation directories.
+# length: 181
+Display a header containing the current Octave version number, license string, and operating system followed by a list of installed packages, versions, and installation directories.
 
 
 
@@ -14099,21 +13864,25 @@ daspect
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 687
+# length: 755
+ -- Function File: DATA_ASPECT_RATIO = daspect ()
  -- Function File:  daspect (DATA_ASPECT_RATIO)
-     Set the data aspect ratio of the current axes.  The aspect ratio is a normalized 3-element vector representing the span of the x, y, and z-axes limits.
-
- -- Function File: DATA_ASPECT_RATIO = daspect ( )
-     Return the data aspect ratio of the current axes.
-
  -- Function File:  daspect (MODE)
-     Set the data aspect ratio mode of the current axes.
-
  -- Function File: DATA_ASPECT_RATIO_MODE = daspect ("mode")
+ -- Function File:  daspect (HAX, ...)
+     Query or set the data aspect ratio of the current axes.  The aspect ratio is a normalized 3-element vector representing the span of the x, y, and z-axis limits.
+
+     `(daspect (MODE))'
+
+     Set the data aspect ratio mode of the current axes.  MODE is either "auto" or "manual".
+
+     `daspect ("mode")'
+
      Return the data aspect ratio mode of the current axes.
 
- -- Function File:  daspect (HAX, ...)
-     Use the axes, with handle HAX, instead of the current axes.
+     `daspect (HAX, ...)'
+
+     Operate on the axes in handle HAX instead of the current axes.
 
      *See also:* axis, pbaspect, xlim, ylim, zlim.
    
@@ -14122,8 +13891,8 @@ daspect
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 46
-Set the data aspect ratio of the current axes.
+# length: 55
+Query or set the data aspect ratio of the current axes.
 
 
 
@@ -15071,17 +14840,23 @@ graphics_toolkit
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 640
+# length: 744
  -- Function File: NAME = graphics_toolkit ()
+ -- Function File: NAME = graphics_toolkit (HLIST)
+ -- Function File:  graphics_toolkit (NAME)
+ -- Function File:  graphics_toolkit (HLIST, NAME)
      Return the default graphics toolkit.  The default graphics toolkit value is assigned to new figures.
 
- -- Function File: NAME = graphics_toolkit (HLIST)
+     `graphics_toolkit (HLIST)'
+
      Return the graphics toolkits for the figures with handles HLIST.
 
- -- Function File:  graphics_toolkit (NAME)
+     `graphics_toolkit (NAME)'
+
      Set the default graphics toolkit to NAME.  If the toolkit is not already loaded, it is initialized by calling the function `__init_NAME__'.
 
- -- Function File:  graphics_toolkit (HLIST, NAME)
+     `graphics_toolkit (HLIST, NAME)'
+
      Set the graphics toolkit for the figures with handles HLIST to NAME.
 
      *See also:* available_graphics_toolkits.
@@ -16108,9 +15883,12 @@ newplot
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 213
+# length: 336
  -- Function File:  newplot ()
+ -- Function File: H = newplot ()
      Prepare graphics engine to produce a new plot.  This function is called at the beginning of all high-level plotting functions.  It is not normally required in user programs.
+
+     The optional return value H is a graphics handle to the created axes (not figure).
    
 
 
@@ -16239,21 +16017,25 @@ pbaspect
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 724
- -- Function File:  pbaspect (PLOT_BOX_ASPECT_RATIO)
-     Set the plot box aspect ratio of the current axes.  The aspect ratio is a normalized 3-element vector representing the rendered lengths of the x, y, and z-axes.
-
+# length: 789
  -- Function File: PLOT_BOX_ASPECT_RATIO = pbaspect ( )
-     Return the plot box aspect ratio of the current axes.
-
+ -- Function File:  pbaspect (PLOT_BOX_ASPECT_RATIO)
  -- Function File:  pbaspect (MODE)
-     Set the plot box aspect ratio mode of the current axes.
-
  -- Function File: PLOT_BOX_ASPECT_RATIO_MODE = pbaspect ("mode")
+ -- Function File:  pbaspect (HAX, ...)
+     Query or set the plot box aspect ratio of the current axes.  The aspect ratio is a normalized 3-element vector representing the rendered lengths of the x, y, and z axes.
+
+     `pbaspect(MODE)'
+
+     Set the plot box aspect ratio mode of the current axes.  MODE is either "auto" or "manual".
+
+     `pbaspect ("mode")'
+
      Return the plot box aspect ratio mode of the current axes.
 
- -- Function File:  pbaspect (HAX, ...)
-     Use the axes, with handle HAX, instead of the current axes.
+     `pbaspect (HAX, ...)'
+
+     Operate on the axes in handle HAX instead of the current axes.
 
      *See also:* axis, daspect, xlim, ylim, zlim.
    
@@ -16262,8 +16044,8 @@ pbaspect
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 50
-Set the plot box aspect ratio of the current axes.
+# length: 59
+Query or set the plot box aspect ratio of the current axes.
 
 
 
@@ -16934,9 +16716,10 @@ printd
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 277
+# length: 405
  -- Function File:  printd (OBJ, FILENAME)
-     Convert any object acceptable to `disp' into the format selected by the suffix of FILENAME.
+ -- Function File: OUT_FILE = printd (...)
+     Convert any object acceptable to `disp' into the format selected by the suffix of FILENAME.  If the return argument OUT_FILE is given, the name of the created file is returned.
 
      This function is intended to facilitate manipulation of the output of functions such as `stemleaf'.
 
@@ -17877,12 +17660,38 @@ stemleaf
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 776
- -- Function File:  stemleaf (X)
- -- Function File: PLOT = stemleaf (X, OPT)
+# length: 2459
+ -- Function File:  stemleaf (X, CAPTION)
+ -- Function File:  stemleaf (X, CAPTION, STEM_SZ)
+ -- Function File: PLOTSTR = stemleaf (...)
      Compute and display a stem and leaf plot of the vector X.
 
-     The X vector is converted to integer by X = `fix' (X).  If an output argument is provided, the plot is returned as an array of strings.  The first element is the heading followed by an element for each stem.  The default stem step is 10.  The X vector should be integers.  It will be treated so that the last digit is the leaf value and the other digits are the stems.  The leaf digits are not sorted.  If sorted leaf values are wanted, use `sort' (X) before calling `stemleaf' (X).  The stem and leaf plot is described in: Ch. 3, Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
+     The input X should be a vector of integers.  Any non-integer values will be converted to integer by `X = fix (X)'.  By default each element of X will be plotted with the last digit of the element as a leaf value and the remaining digits as the stem.  For example, 123 will be plotted with the stem `12' and the leaf `3'.  The second argument, CAPTION, should be a character array which provides a description of the data.  It is included as a heading for the output.
+
+     The optional input STEM_SZ sets the width of each stem.  The stem width is determined by `10^(STEM_SZ + 1)'.  The default stem width is 10.
+
+     The output of `stemleaf' is composed of two parts: a "Fenced Letter Display," followed by the stem-and-leaf plot itself.  The Fenced Letter Display is described in `Exploratory Data Analysis'.  Briefly, the entries are as shown:
+
+
+                  Fenced Letter Display
+            #% nx|___________________          nx = numel (x)
+            M% mi|       md         |          mi median index, md median
+            H% hi|hl              hu|   hs     hi lower hinge index, hl,hu hinges, hs h_spread
+            1    |x(1)         x(nx)|          x(1), x(nx) first and last data value
+                       _______
+                 ______|step |_______          step 1.5*h_spread
+                f|ifl            ifh|          inner fence, lower and higher
+                 |nfl            nfh|          # data points within fences
+                F|ofl            ofh|          outer fence, lower and higher
+                 |nFl            nFh|          # data points outside outer fences
+
+     The stem-and-leaf plot shows on each line the stem value followed by the string made up of the leaf digits.  If the STEM_SZ is not 1 the successive leaf values are separated by ",".
+
+     With no return argument, the plot is immediately displayed.  If an output argument is provided, the plot is returned as an array of strings.
+
+     The leaf digits are not sorted.  If sorted leaf values are desired, use `XS = sort (X)' before calling `stemleaf (XS)'.
+
+     The stem and leaf plot and associated displays are described in: Ch. 3, `Exploratory Data Analysis' by J. W. Tukey, Addison-Wesley, 1977.
 
      *See also:* hist, printd.
    
@@ -18718,12 +18527,13 @@ view
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 790
+# length: 816
  -- Function File: [AZIMUTH, ELEVATION] = view ()
  -- Function File:  view (AZIMUTH, ELEVATION)
  -- Function File:  view ([AZIMUTH ELEVATION])
  -- Function File:  view ([X Y Z])
- -- Function File:  view (DIMS)
+ -- Function File:  view (2)
+ -- Function File:  view (3)
  -- Function File:  view (AX, ...)
      Query or set the viewpoint for the current axes.  The parameters AZIMUTH and ELEVATION can be given as two arguments or as 2-element vector.  The viewpoint can also be given with Cartesian coordinates X, Y, and Z.  The call `view (2)' sets the viewpoint to AZIMUTH = 0 and ELEVATION = 90, which is the default for 2-D graphs.  The call `view (3)' sets the viewpoint to AZIMUTH = -37.5 and ELEVATION = 30, which is the default for 3-D graphs.  If AX is given, the viewpoint is set for this axes, otherwise it is set for the current axes.
    
@@ -19535,10 +19345,10 @@ polyval
 # length: 741
  -- Function File: Y = polyval (P, X)
  -- Function File: Y = polyval (P, X, [], MU)
-     Evaluate the polynomial P at the specified values of X.  When MU is present, evaluate the polynomial for (X-MU(1))/MU(2).  If X is a vector or matrix, the polynomial is evaluated for each of the elements of X.
-
  -- Function File: [Y, DY] = polyval (P, X, S)
  -- Function File: [Y, DY] = polyval (P, X, S, MU)
+     Evaluate the polynomial P at the specified values of X.  When MU is present, evaluate the polynomial for (X-MU(1))/MU(2).  If X is a vector or matrix, the polynomial is evaluated for each of the elements of X.
+
      In addition to evaluating the polynomial, the second output represents the prediction interval, Y +/- DY, which contains at least 50% of the future predictions.  To calculate the prediction interval, the structured variable S, originating from `polyfit', must be supplied.
 
      *See also:* polyvalm, polyaffine, polyfit, roots, poly.
@@ -19852,20 +19662,20 @@ splinefit
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 2657
+# length: 2659
  -- Function File: PP = splinefit (X, Y, BREAKS)
-     Fit a piecewise cubic spline with breaks (knots) BREAKS to the noisy data, X and Y.  X is a vector, and Y a vector or N-D array.  If Y is an N-D array, then X(j) is matched to Y(:,...,:,j).
-
-     The fitted spline is returned as a piecewise polynomial, PP, and may be evaluated using `ppval'.
-
  -- Function File: PP = splinefit (X, Y, P)
-     P is a positive integer defining the number of intervals along X, and P+1 is the number of breaks.  The number of points in each interval differ by no more than 1.
-
  -- Function File: PP = splinefit (..., "periodic", PERIODIC)
  -- Function File: PP = splinefit (..., "robust", ROBUST)
  -- Function File: PP = splinefit (..., "beta", BETA)
  -- Function File: PP = splinefit (..., "order", ORDER)
  -- Function File: PP = splinefit (..., "constraints", CONSTRAINTS)
+     Fit a piecewise cubic spline with breaks (knots) BREAKS to the noisy data, X and Y.  X is a vector, and Y is a vector or N-D array.  If Y is an N-D array, then X(j) is matched to Y(:,...,:,j).
+
+     The fitted spline is returned as a piecewise polynomial, PP, and may be evaluated using `ppval'.
+
+     P is a positive integer defining the number of intervals along X, and P+1 is the number of breaks.  The number of points in each interval differ by no more than 1.
+
      The optional property PERIODIC is a logical value which specifies whether a periodic boundary condition is applied to the spline.  The length of the period is `max (BREAKS) - min (BREAKS)'.  The default value is `false'.
 
      The optional property ROBUST is a logical value which specifies if robust fitting is to be applied to reduce the influence of outlying data points.  Three iterations of weighted least squares are performed.  Weights are computed from previous residuals.  The sensitivity of outlier identification is controlled by the property BETA.  The value of BETA is stricted to the range, 0 < BETA < 1.  The default value is BETA = 1/2.  Values close to 0 give all data equal weighting.  Increasing values of BETA reduce the influence of outlying data.  Values close to unity may cause instability or rank deficiency.
@@ -19878,7 +19688,7 @@ splinefit
           Vector of the x-locations of the constraints.
 
     "yc"
-          Constraining values at the locations, XC.  The default is an array of zeros.
+          Constraining values at the locations XC.  The default is an array of zeros.
 
     "cc"
           Coefficients (matrix).  The default is an array of ones.  The number of rows is limited to the order of the piecewise polynomials, ORDER.
@@ -20359,23 +20169,23 @@ union
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 743
+# length: 769
  -- Function File:  union (A, B)
  -- Function File:  union (A, B, "rows")
-     Return the set of elements that are in either of the sets A and B.  A, B may be cell arrays of string(s).  For example:
+ -- Function File: [C, IA, IB] = union (A, B)
+     Return the set of elements that are in either of the sets A and B.  A, B may be cell arrays of strings.  For example:
 
           union ([1, 2, 4], [2, 3, 5])
               => [1, 2, 3, 4, 5]
 
-     If the optional third input argument is the string "rows" each row of the matrices A and B will be considered an element of sets.  For example:
+     If the optional third input argument is the string "rows" then each row of the matrices A and B will be considered as a single set element.  For example:
 
           union ([1, 2; 2, 3], [1, 2; 3, 4], "rows")
              =>  1   2
                  2   3
                  3   4
 
- -- Function File: [C, IA, IB] = union (A, B)
-     Return index vectors IA and IB such that `a(ia)' and `b(ib)' are disjoint sets whose union is C.
+     The optional outputs IA and IB are index vectors such that `a(ia)' and `b(ib)' are disjoint sets whose union is C.
 
      *See also:* intersect, setdiff, unique.
    
@@ -20903,27 +20713,33 @@ freqz
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1191
+# length: 1276
  -- Function File: [H, W] = freqz (B, A, N, "whole")
+ -- Function File: H = freqz (B, A, W)
+ -- Function File: [...] = freqz (..., FS)
+ -- Function File:  freqz (...)
      Return the complex frequency response H of the rational IIR filter whose numerator and denominator coefficients are B and A, respectively.  The response is evaluated at N angular frequencies between 0 and  2*pi.
 
      The output value W is a vector of the frequencies.
 
-     If the fourth argument is omitted, the response is evaluated at frequencies between 0 and  pi.
+     If A is omitted, the denominator is assumed to be 1 (this corresponds to a simple FIR filter).
 
      If N is omitted, a value of 512 is assumed.
 
-     If A is omitted, the denominator is assumed to be 1 (this corresponds to a simple FIR filter).
-
      For fastest computation, N should factor into a small number of small primes.
 
- -- Function File: H = freqz (B, A, W)
+     If the fourth argument, "whole", is omitted the response is evaluated at frequencies between 0 and  pi.
+
+     `freqz (B, A, W)'
+
      Evaluate the response at the specific frequencies in the vector W.  The values for W are measured in radians.
 
- -- Function File: [...] = freqz (..., FS)
+     `[...] = freqz (..., FS)'
+
      Return frequencies in Hz instead of radians assuming a sampling rate FS.  If you are evaluating the response at specific frequencies W, those frequencies should be requested in Hz rather than radians.
 
- -- Function File:  freqz (...)
+     `freqz (...)'
+
      Plot the pass band, stop band and phase response of H rather than returning them.
    
 
@@ -28382,14 +28198,25 @@ strsplit
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 880
- -- Function File: [CSTR] = strsplit (S, SEP)
- -- Function File: [CSTR] = strsplit (S, SEP, STRIP_EMPTY)
-     Split the string S using one or more separators SEP and return a cell array of strings.  Consecutive separators and separators at boundaries result in empty strings, unless STRIP_EMPTY is true.  The default value of STRIP_EMPTY is false.
+# length: 3271
+ -- Function File: [CSTR] = strsplit (S)
+ -- Function File: [CSTR] = strsplit (S, DEL)
+ -- Function File: [CSTR] = strsplit (S, DEL, COLLAPSEDELIMITERS)
+ -- Function File: [CSTR] = strsplit (..., NAME, VALUE)
+ -- Function File: [CSTR, MATCHES] = strsplit (...)
+     Split the string S using the delimiters specified by DEL and return a cell array of strings.  For a single delimiter, DEL may be a string, or a scalar cell-string.  For multible delimiters, DEL must be a cell-string array.  Unless COLLAPSEDELIMITERS is specified to be FALSE, consecutive delimiters are collapsed into one.
 
-     2-D character arrays are split at separators and at the original column boundaries.
+     The second output, MATCHES, returns the delmiters which were matched in the original string.  The matched delimiters are uneffected by the COLLAPSEDELIMITERS.
 
      Example:
+
+          strsplit ("a b c")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
 
           strsplit ("a,b,c", ",")
                 =>
@@ -28399,23 +28226,77 @@ strsplit
                       [1,3] = c
                     }
 
-          strsplit (["a,b" ; "cde"], ",")
+          strsplit ("a foo b,bar c", {"\s", "foo", "bar"})
                 =>
                     {
                       [1,1] = a
                       [1,2] = b
-                      [1,3] = cde
+                      [1,3] = c
                     }
 
-     *See also:* strtok.
+          strsplit ("a,,b, c", {",", " "}, false)
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] = b
+                      [1,4] =
+                      [1,5] = c
+                    }
+
+     Supported NAME/VALUE pair arguments are;
+
+        * COLLAPSEDELIMITERS may take the value of TRUE or FALSE with the default being FALSE.
+
+        * DELIMITERTYPE may take the value of `legacy', `simple' or `regularexpression'.  If DELIMITERTYPE is equal to `legacy', each individual character of DEL is used to split the input.  If the specified delimiters are single characters, the default is DELIMITERTYPE is `legacy'.  Otherwise the default DELIMITERTYPE is `simple'.
+
+     Example:
+
+          strsplit ("a foo b,bar c", ",|\\s|foo|bar", "delimitertype", "regularexpression")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
+
+          strsplit ("a,,b, c", "[, ]", false, "delimitertype", "regularexpression")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] = b
+                      [1,4] =
+                      [1,5] = c
+                    }
+
+          strsplit ("a,,b, c", ", ", false, "delimitertype", "legacy")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] = b
+                      [1,4] =
+                      [1,5] = c
+                    }
+
+          strsplit ("a,\t,b, c", {',', '\s'}, "delimitertype", "regularexpression")
+                =>
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
+
+     *See also:* strjoin, strtok, regexp.
    
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 87
-Split the string S using one or more separators SEP and return a cell array of strings.
+# length: 92
+Split the string S using the delimiters specified by DEL and return a cell array of strings.
 
 
 
@@ -28572,6 +28453,42 @@ strchr
 # elements: 1
 # length: 75
 Search for the string STR for occurrences of characters from the set CHARS.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+strjoin
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 654
+ -- Function File: STR = strjoin (CSTR)
+ -- Function File: STR = strjoin (CSTR, DELIMITER)
+     Joins the elements of the cell-string array, CSTR, into a single string.
+
+     If no DELIMITER is specified, the elements of CSTR seperated by a space.
+
+     If DELIMITER is specified as a string, the cell-string array is joined using the string.
+
+     If DELIMITER is a cell-string array whose length is one less than CSTR, then the elemennts of CSTR are joined by interleaving the cell-string elements of DELIMITER.
+
+          strjoin ({'Octave','Scilab','Lush','Yorick'}, '*')
+                => 'Octave*Scilab*Lush*Yorick'
+
+     *See also:* strsplit.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 72
+Joins the elements of the cell-string array, CSTR, into a single string.
 
 
 
@@ -29008,15 +28925,17 @@ fail
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 776
+# length: 1176
  -- Function File:  fail (CODE)
  -- Function File:  fail (CODE, PATTERN)
  -- Function File:  fail (CODE, "warning", PATTERN)
      Return true if CODE fails with an error message matching PATTERN, otherwise produce an error.  Note that CODE is a string and if CODE runs successfully, the error produced is:
 
-                    expected error but got none
+                    expected error <.> but got none
 
-     If the code fails with a different error, the message produced is:
+     Code must be in the form of a string that may be passed by `fail' to the Octave interpreter via the `evalin' function, that is, a (quoted) string constant or a string variable.
+
+     If called with two arguments, the behavior is similar to `fail (CODE)', except the return value will only be true if code fails with an error message containing pattern (case sensitive).  If the code fails with a different error to that given in pattern, the message produced is:
 
                     expected <pattern>
                     but got <text of actual error>
@@ -29579,14 +29498,14 @@ datetick
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 647
+# length: 598
  -- Function File:  datetick ()
  -- Function File:  datetick (FORM)
  -- Function File:  datetick (AXIS, FORM)
  -- Function File:  datetick (..., "keeplimits")
  -- Function File:  datetick (..., "keepticks")
- -- Function File:  datetick (...ax, ...)
-     Add date formatted tick labels to an axis.  The axis the apply the ticks to is determined by AXIS that can take the values "x", "y" or "z".  The default value is "x".  The formatting of the labels is determined by the variable FORM, that can either be a string in the format needed by `dateform', or a positive integer that can be accepted by `datestr'.
+ -- Function File:  datetick (HAX, ...)
+     Add date formatted tick labels to an axis.  The axis to apply the ticks to is determined by AXIS which can take the values "x", "y", or "z".  The default value is "x".  The formatting of the labels is determined by the variable FORM, which can either be a string or positive integer that `datestr' accepts.
 
      *See also:* datenum, datestr.
    
@@ -29800,6 +29719,310 @@ Return the day of the week as a number in N and as a string in S.
 # name: <cell-element>
 # type: sq_string
 # elements: 1
+# length: 8
+errordlg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 504
+ -- Function File: H = errordlg (MSG)
+ -- Function File: H = errordlg (MSG, TITLE)
+     Display MSG using an error dialog box.
+
+     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to set the dialog caption.  The default title is "Error Dialog".
+
+     The return value is always 1.
+
+     *See also:* helpdlg, inputdlg, listdlg, msgbox, questdlg, warndlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 38
+Display MSG using an error dialog box.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+helpdlg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 497
+ -- Function File: H = helpdlg (MSG)
+ -- Function File: H = helpdlg (MSG, TITLE)
+     Display MSG in a help dialog box.
+
+     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to set the dialog caption.  The default title is "Help Dialog".
+
+     The return value is always 1.
+
+     *See also:* errordlg, inputdlg, listdlg, msgbox, questdlg, warndlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 33
+Display MSG in a help dialog box.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+inputdlg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1362
+ -- Function File: CSTR = inputdlg (PROMPT)
+ -- Function File: CSTR = inputdlg (PROMPT, TITLE)
+ -- Function File: CSTR = inputdlg (PROMPT, TITLE, ROWSCOLS)
+ -- Function File: CSTR = inputdlg (PROMPT, TITLE, ROWSCOLS, DEFAULTS)
+     Return user input from a multi-textfield dialog box in a cell array of strings, or an empty cell array if the dialog is closed by the Cancel button.
+
+     Inputs:
+
+    PROMPT
+          A cell array with strings labeling each text field.  This input is required.
+
+    TITLE
+          String to use for the caption of the dialog.  The default is "Input Dialog".
+
+    ROWSCOLS
+          Specifies the size of the text fields and can take three forms:
+
+            1. a scalar value which defines the number of rows used for each text field.
+
+            2. a vector which defines the individual number of rows used for each text field.
+
+            3. a matrix which defines the individual number of rows and columns used for each text field.  In the matrix each row describes a single text field.  The first column specifies the number of input rows to use and the second column specifies the text field width.
+
+    DEFAULTS
+          A list of default values to place in each text fields.  It must be a cell array of strings with the same size as PROMPT.
+
+     *See also:* errordlg, helpdlg, listdlg, msgbox, questdlg, warndlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 148
+Return user input from a multi-textfield dialog box in a cell array of strings, or an empty cell array if the dialog is closed by the Cancel button.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+listdlg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1646
+ -- Function File: [SEL, OK] = listdlg (KEY, VALUE, ...)
+     Return user inputs from a list dialog box in a vector of selection indices SEL and a flag OK indicating how the user closed the dialog box.  The value of OK is 1 if the user closed the box with the OK button, otherwise it is 0 and SEL is empty.
+
+     The indices in SEL are 1-based.
+
+     The arguments are specified in form of KEY, VALUE pairs.  The "ListString" argument pair must be specified.
+
+     Valid KEY and VALUE pairs are:
+
+    "ListString"
+          a cell array of strings comprising the content of the list.
+
+    "SelectionMode"
+          can be either "Single" or "Multiple" (default).
+
+    "ListSize"
+          a vector with two elements WIDTH and HEIGHT defining the size of the list field in pixels.  Default is [160 300].
+
+    "InitialValue"
+          a vector containing 1-based indices of preselected elements.  Default is 1 (first item).
+
+    "Name"
+          a string to be used as the dialog caption.  Default is "".
+
+    "PromptString"
+          a cell array of strings to be displayed above the list field.  Default is {}.
+
+    "OKString"
+          a string used to label the OK button.  Default is "OK".
+
+    "CancelString"
+          a string used to label the Cancel button.  Default is "Cancel".
+
+     Example:
+
+          [sel, ok] = listdlg ("ListString", {"An item", "another", "yet another"},
+                               "SelectionMode", "Multiple");
+          if (ok == 1)
+            for i = 1:numel (sel)
+              disp (sel(i));
+            endfor
+          endif
+
+     *See also:* errordlg, helpdlg, inputdlg, msgbox, questdlg, warndlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 139
+Return user inputs from a list dialog box in a vector of selection indices SEL and a flag OK indicating how the user closed the dialog box.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+msgbox
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 649
+ -- Function File: H = msgbox (MSG)
+ -- Function File: H = msgbox (MSG, TITLE)
+ -- Function File: H = msgbox (MSG, TITLE, ICON)
+     Display MSG using a message dialog box.
+
+     The message may have multiple lines separated by newline characters (`"\n"'), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to decorate the dialog caption.
+
+     The optional argument ICON selects a dialog icon.  It can be one of `"none"' (default), `"error"', `"help"', or `"warn"'.
+
+     The return value is always 1.
+
+     *See also:* errordlg, helpdlg, inputdlg, listdlg, questdlg, warndlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 39
+Display MSG using a message dialog box.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+questdlg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1151
+ -- Function File: BTN = questdlg (MSG)
+ -- Function File: BTN = questdlg (MSG, TITLE)
+ -- Function File: BTN = questdlg (MSG, TITLE, DEFAULT)
+ -- Function File: BTN = questdlg (MSG, TITLE, BTN1, BTN2, DEFAULT)
+ -- Function File: BTN = questdlg (MSG, TITLE, BTN1, BTN2, BTN3, DEFAULT)
+     Display MSG using a question dialog box and return the caption of the activated button.
+
+     The dialog may contain two or three buttons which will all close the dialog.
+
+     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional TITLE (character string) can be used to decorate the dialog caption.
+
+     The string DEFAULT identifies the default button, which is activated by pressing the <ENTER> key.  It must match one of the strings given in BTN1, BTN2, or BTN3.
+
+     If only MSG and TITLE are specified, three buttons with the default captions "Yes", "No", and "Cancel" are used.
+
+     If only two button captions, BTN1 and BTN2, are specified the dialog will have only these two buttons.
+
+     *See also:* errordlg, helpdlg, inputdlg, listdlg, warndlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 87
+Display MSG using a question dialog box and return the caption of the activated button.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+warndlg
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 452
+ -- Function File: H = warndlg (MSG)
+ -- Function File: H = warndlg (MSG, TITLE)
+     Display MSG using a warning dialog box.
+
+     The message may have multiple lines separated by newline characters ("\n"), or it may be a cellstr array with one element for each line.  The optional input TITLE (character string) can be used to set the dialog caption.  The default title is "Warning Dialog".
+
+     *See also:* helpdlg, inputdlg, listdlg, questdlg.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 39
+Display MSG using a warning dialog box.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+message_dialog
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 105
+ -- Function File: H = message_dialog (CALLER, MSG, TITLE, ICON)
+     Undocumented internal function.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+Undocumented internal function.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
 # length: 14
 gnuplot_binary
 
@@ -29807,10 +30030,12 @@ gnuplot_binary
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 428
+# length: 464
  -- Loadable Function: [PROG, ARGS] = gnuplot_binary ()
  -- Loadable Function: [OLD_PROG, OLD_ARGS] = gnuplot_binary (NEW_PROG, ARG1, ...)
-     Query or set the name of the program invoked by the plot command when the graphics toolkit is set to "gnuplot".  Additional arguments to pass to the external plotting program may also be given.  The default value is `"gnuplot"' without additional arguments.  *Note Installation::.
+     Query or set the name of the program invoked by the plot command when the graphics toolkit is set to "gnuplot".  Additional arguments to pass to the external plotting program may also be given.  The default value is `"gnuplot"' with no additional arguments.  *Note Installation::.
+
+     *See also:* graphics_toolkit.
    
 
 
@@ -31729,252 +31954,6 @@ iskeyword
 # elements: 1
 # length: 41
 Return true if NAME is an Octave keyword.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 8
-autoload
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 976
- -- Built-in Function:  autoload (FUNCTION, FILE)
-     Define FUNCTION to autoload from FILE.
-
-     The second argument, FILE, should be an absolute file name or a file name in the same directory as the function or script from which the autoload command was run.  FILE should not depend on the Octave load path.
-
-     Normally, calls to `autoload' appear in PKG_ADD script files that are evaluated when a directory is added to the Octave's load path.  To avoid having to hardcode directory names in FILE, if FILE is in the same directory as the PKG_ADD script then
-
-          autoload ("foo", "bar.oct");
-
-     will load the function `foo' from the file `bar.oct'.  The above when `bar.oct' is not in the same directory or uses like
-
-          autoload ("foo", file_in_loadpath ("bar.oct"))
-
-     are strongly discouraged, as their behavior might be unpredictable.
-
-     With no arguments, return a structure containing the current autoload map.
-
-     *See also:* PKG_ADD.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 38
-Define FUNCTION to autoload from FILE.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 9
-mfilename
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 437
- -- Built-in Function:  mfilename ()
- -- Built-in Function:  mfilename ("fullpath")
- -- Built-in Function:  mfilename ("fullpathext")
-     Return the name of the currently executing file.  At the top-level, return the empty string.  Given the argument `"fullpath"', include the directory part of the file name, but not the extension.  Given the argument `"fullpathext"', include the directory part of the file name and the extension.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 48
-Return the name of the currently executing file.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 6
-source
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 201
- -- Built-in Function:  source (FILE)
-     Parse and execute the contents of FILE.  This is equivalent to executing commands from a script file, but without requiring the file to be named `FILE.m'.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 39
-Parse and execute the contents of FILE.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 5
-feval
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 860
- -- Built-in Function:  feval (NAME, ...)
-     Evaluate the function named NAME.  Any arguments after the first are passed on to the named function.  For example,
-
-          feval ("acos", -1)
-               => 3.1416
-
-     calls the function `acos' with the argument `-1'.
-
-     The function `feval' can also be used with function handles of any sort (*note Function Handles::).  Historically, `feval' was the only way to call user-supplied functions in strings, but function handles are now preferred due to the cleaner syntax they offer.  For example,
-
-          F = @exp;
-          feval (F, 1)
-              => 2.7183
-          F (1)
-              => 2.7183
-
-     are equivalent ways to call the function referred to by F.  If it cannot be predicted beforehand that F is a function handle or the function name in a string, `feval' can be used instead.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 33
-Evaluate the function named NAME.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 7
-builtin
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 153
- -- Loadable Function: [...] builtin (F, ...)
-     Call the base function F even if F is overloaded to another function for the given type signature.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 98
-Call the base function F even if F is overloaded to another function for the given type signature.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 4
-eval
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 953
- -- Built-in Function:  eval (TRY)
- -- Built-in Function:  eval (TRY, CATCH)
-     Parse the string TRY and evaluate it as if it were an Octave program.  If that fails, evaluate the optional string CATCH.  The string TRY is evaluated in the current context, so any results remain available after `eval' returns.
-
-     The following example makes the variable A with the approximate value 3.1416 available.
-
-          eval ("a = acos(-1);");
-
-     If an error occurs during the evaluation of TRY the CATCH string is evaluated, as the following example shows:
-
-          eval ('error ("This is a bad example");',
-                'printf ("This error occurred:\n%s\n", lasterr ());');
-               -| This error occurred:
-                  This is a bad example
-
-     Consider using try/catch blocks instead if you are only using `eval' as an error-capturing mechanism rather than for the execution of arbitrary code strings.
-
-     *See also:* evalin.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 69
-Parse the string TRY and evaluate it as if it were an Octave program.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 8
-assignin
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 181
- -- Built-in Function:  assignin (CONTEXT, VARNAME, VALUE)
-     Assign VALUE to VARNAME in context CONTEXT, which may be either `"base"' or `"caller"'.
-
-     *See also:* evalin.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 87
-Assign VALUE to VARNAME in context CONTEXT, which may be either `"base"' or `"caller"'.
-
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 6
-evalin
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 264
- -- Built-in Function:  evalin (CONTEXT, TRY)
- -- Built-in Function:  evalin (CONTEXT, TRY, CATCH)
-     Like `eval', except that the expressions are evaluated in the context CONTEXT, which may be either `"caller"' or `"base"'.
-
-     *See also:* eval, assignin.
-   
-
-
-# name: <cell-element>
-# type: sq_string
-# elements: 1
-# length: 122
-Like `eval', except that the expressions are evaluated in the context CONTEXT, which may be either `"caller"' or `"base"'.
 
 
 
@@ -36366,7 +36345,7 @@ fopen
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 3197
+# length: 3221
  -- Built-in Function: [FID, MSG] = fopen (NAME, MODE, ARCH)
  -- Built-in Function: FID_LIST = fopen ("all")
  -- Built-in Function: [FILE, MODE, ARCH] = fopen (FID)
@@ -36410,17 +36389,23 @@ fopen
 
      The parameter ARCH is a string specifying the default data format for the file.  Valid values for ARCH are:
 
-          `native' The format of the current machine (this is the default).
+    `native'
+          The format of the current machine (this is the default).
 
-          `ieee-be' IEEE big endian format.
+    `ieee-be'
+          IEEE big endian format.
 
-          `ieee-le' IEEE little endian format.
+    `ieee-le'
+          IEEE little endian format.
 
-          `vaxd' VAX D floating format.
+    `vaxd'
+          VAX D floating format.
 
-          `vaxg' VAX G floating format.
+    `vaxg'
+          VAX G floating format.
 
-          `cray' Cray floating format.
+    `cray'
+          Cray floating format.
 
      however, conversions are currently only supported for `native' `ieee-be', and `ieee-le' formats.
 
@@ -36701,9 +36686,9 @@ fscanf
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1831
+# length: 1632
  -- Built-in Function: [VAL, COUNT, ERRMSG] = fscanf (FID, TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT] = fscanf (FID, TEMPLATE, LOCALE)
+ -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG] = fscanf (FID, TEMPLATE, "C")
      In the first form, read from FID according to TEMPLATE, returning the result in the matrix VAL.
 
      The optional argument SIZE specifies the amount of data to read and may be one of
@@ -36728,7 +36713,7 @@ fscanf
 
      If an error occurs, ERRMSG contains a system-dependent error message.
 
-     In the second form, read from FID according to TEMPLATE, with each conversion specifier in TEMPLATE corresponding to a single scalar return value.  This form is more `C-like', and also compatible with previous versions of Octave.  The number of successful conversions is returned in COUNT.  It permits to explicitly specify a locale to take into account language specific features, such as decimal separator.  This operation restores the previous locales setting at the end of the conversion.
+     In the second form, read from FID according to TEMPLATE, with each conversion specifier in TEMPLATE corresponding to a single scalar return value.  This form is more `C-like', and also compatible with previous versions of Octave.  The number of successful conversions is returned in COUNT
 
      See the Formatted Input section of the GNU Octave manual for a complete description of the syntax of the template string.
 
@@ -36754,9 +36739,9 @@ sscanf
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 506
+# length: 511
  -- Built-in Function: [VAL, COUNT, ERRMSG, POS] = sscanf (STRING, TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT] = sscanf (STRING, TEMPLATE, LOCALE)
+ -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG] = sscanf (STRING, TEMPLATE, "C")
      This is like `fscanf', except that the characters are taken from the string STRING instead of from a stream.  Reaching the end of the string is treated as an end-of-file condition.  In addition to the values returned by `fscanf', the index of the next character to be read is returned in POS.
 
      *See also:* fscanf, scanf, sprintf.
@@ -36781,9 +36766,9 @@ scanf
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 323
+# length: 329
  -- Built-in Function: [VAL, COUNT, ERRMSG] = scanf (TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT] = scanf (TEMPLATE, LOCALE)
+ -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG]] = scanf (TEMPLATE, "C")
      This is equivalent to calling `fscanf' with FID = `stdin'.
 
      It is currently not useful to call `scanf' in interactive programs.
@@ -38070,9 +38055,9 @@ input
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1082
- -- Built-in Function:  input (PROMPT)
- -- Built-in Function:  input (PROMPT, "s")
+# length: 1101
+ -- Built-in Function: ANS = input (PROMPT)
+ -- Built-in Function: ANS = input (PROMPT, "s")
      Print a prompt and wait for user input.  For example,
 
           input ("Pick a number, any number! ")
@@ -38087,7 +38072,9 @@ input
 
      If you are only interested in getting a literal string value, you can call `input' with the character string `"s"' as the second argument.  This tells Octave to return the string entered by the user directly, without evaluating it first.
 
-     Because there may be output waiting to be displayed by the pager, it is a good idea to always call `fflush (stdout)' before calling `input'.  This will ensure that all pending output is written to the screen before your prompt.  *Note Input and Output::.
+     Because there may be output waiting to be displayed by the pager, it is a good idea to always call `fflush (stdout)' before calling `input'.  This will ensure that all pending output is written to the screen before your prompt.
+
+     *See also:* yes_or_no, kbhit.
    
 
 
@@ -38109,9 +38096,11 @@ yes_or_no
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 347
- -- Built-in Function:  yes_or_no (PROMPT)
-     Ask the user a yes-or-no question.  Return 1 if the answer is yes.  Takes one argument, which is the string to display to ask the question.  It should end in a space; `yes-or-no-p' adds `(yes or no) ' to it.  The user must confirm the answer with RET and can edit it until it has been confirmed.
+# length: 447
+ -- Built-in Function: ANS = yes_or_no ("PROMPT")
+     Ask the user a yes-or-no question.  Return logical true if the answer is yes or false if the answer is no.  Takes one argument, PROMPT, which is the string to display when asking the question.  PROMPT should end in a space; `yes-or-no' adds the string `(yes or no) ' to it.  The user must confirm the answer with <RET> and can edit it until it has been confirmed.
+
+     *See also:* input.
    
 
 
@@ -38133,9 +38122,9 @@ keyboard
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 674
+# length: 676
  -- Built-in Function:  keyboard ()
- -- Built-in Function:  keyboard (PROMPT)
+ -- Built-in Function:  keyboard ("PROMPT")
      This function is normally used for simple debugging.  When the `keyboard' function is executed, Octave prints a prompt and waits for user input.  The input strings are then evaluated and the results are printed.  This makes it possible to examine the values of variables within a function, and to assign new values if necessary.  To leave the prompt and return to normal execution type `return' or `dbcont'.  The `keyboard' function does not return an exit status.
 
      If `keyboard' is invoked without arguments, a default prompt of `debug> ' is used.
@@ -38276,14 +38265,16 @@ add_input_event_hook
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 398
- -- Built-in Function:  add_input_event_hook (FCN)
- -- Built-in Function:  add_input_event_hook (FCN, DATA)
-     Add the named function FCN to the list of functions to call periodically when Octave is waiting for input.  The function should have the form
+# length: 536
+ -- Built-in Function: ID = add_input_event_hook (FCN)
+ -- Built-in Function: ID = add_input_event_hook (FCN, DATA)
+     Add the named function or function handle FCN to the list of functions to call periodically when Octave is waiting for input.  The function should have the form
 
           FCN (DATA)
 
      If DATA is omitted, Octave calls the function without any arguments.
+
+     The returned identifier may be used to remove the function handle from the list of input hook functions.
 
      *See also:* remove_input_event_hook.
    
@@ -38292,8 +38283,8 @@ add_input_event_hook
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 106
-Add the named function FCN to the list of functions to call periodically when Octave is waiting for input.
+# length: 125
+Add the named function or function handle FCN to the list of functions to call periodically when Octave is waiting for input.
 
 
 
@@ -38307,9 +38298,10 @@ remove_input_event_hook
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 214
- -- Built-in Function:  remove_input_event_hook (FCN)
-     Remove the named function FCN from the list of functions to call periodically when Octave is waiting for input.
+# length: 313
+ -- Built-in Function:  remove_input_event_hook (NAME)
+ -- Built-in Function:  remove_input_event_hook (FCN_ID)
+     Remove the named function or function handle with the given identifier from the list of functions to call periodically when Octave is waiting for input.
 
      *See also:* add_input_event_hook.
    
@@ -38318,8 +38310,8 @@ remove_input_event_hook
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 111
-Remove the named function FCN from the list of functions to call periodically when Octave is waiting for input.
+# length: 152
+Remove the named function or function handle with the given identifier from the list of functions to call periodically when Octave is waiting for input.
 
 
 
@@ -39125,19 +39117,20 @@ edit_history
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1266
- -- Command:  edit_history [FIRST] [LAST]
-     If invoked with no arguments, `edit_history' allows you to edit the history list using the editor named by the variable `EDITOR'.  The commands to be edited are first copied to a temporary file.  When you exit the editor, Octave executes the commands that remain in the file.  It is often more convenient to use `edit_history' to define functions rather than attempting to enter them directly on the command line.  By default, the block of commands is executed as soon as you exit the editor.  To avoid executing any commands, simply delete all the lines from the buffer before exiting the editor.
+# length: 1283
+ -- Command:  edit_history
+ -- Command:  edit_history CMD_NUMBER
+ -- Command:  edit_history FIRST LAST
+     Edit the history list using the editor named by the variable `EDITOR'.
 
-     The `edit_history' command takes two optional arguments specifying the history numbers of first and last commands to edit.  For example, the command
+     The commands to be edited are first copied to a temporary file.  When you exit the editor, Octave executes the commands that remain in the file.  It is often more convenient to use `edit_history' to define functions rather than attempting to enter them directly on the command line.  The block of commands is executed as soon as you exit the editor.  To avoid executing any commands, simply delete all the lines from the buffer before leaving the editor.
 
-          edit_history 13
+     When invoked with no arguments, edit the previously executed command; With one argument, edit the specified command CMD_NUMBER; With two arguments, edit the list of commands between FIRST and LAST.  Command number specifiers may also be negative where -1 refers to the most recently executed command.  The following are equivalent and edit the most recently executed command.
 
-     extracts all the commands from the 13th through the last in the history list.  The command
+          edit_history
+          edit_history -1
 
-          edit_history 13 169
-
-     only extracts commands 13 through 169.  Specifying a larger number for the first command than the last command reverses the list of commands before placing them in the buffer to be edited.  If both arguments are omitted, the previous command in the history list is used.
+     When using ranges, specifying a larger number for the first command than the last command reverses the list of commands before they are placed in the buffer to be edited.
 
      *See also:* run_history.
    
@@ -39146,8 +39139,8 @@ edit_history
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 129
-If invoked with no arguments, `edit_history' allows you to edit the history list using the editor named by the variable `EDITOR'.
+# length: 70
+Edit the history list using the editor named by the variable `EDITOR'.
 
 
 
@@ -39161,22 +39154,28 @@ history
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 1031
- -- Command: history options
- -- Built-in Function: H =  history (OPT1, OPT2, ...)
+# length: 1139
+ -- Command:  history
+ -- Command:  history OPT1 ...
+ -- Built-in Function: H = history ()
+ -- Built-in Function: H = history (OPT1, ...)
      If invoked with no arguments, `history' displays a list of commands that you have executed.  Valid options are:
 
-    `-w FILE'
-          Write the current history to the file FILE.  If the name is omitted, use the default history file (normally `~/.octave_hist').
+    `N'
+    `-N'
+          Display only the most recent N lines of history.
+
+    `-c'
+          Clear the history list.
+
+    `-q'
+          Don't number the displayed lines of history.  This is useful for cutting and pasting commands using the X Window System.
 
     `-r FILE'
           Read the file FILE, appending its contents to the current history list.  If the name is omitted, use the default history file (normally `~/.octave_hist').
 
-    `N'
-          Display only the most recent N lines of history.
-
-    `-q'
-          Don't number the displayed lines of history.  This is useful for cutting and pasting commands using the X Window System.
+    `-w FILE'
+          Write the current history to the file FILE.  If the name is omitted, use the default history file (normally `~/.octave_hist').
 
      For example, to display the five most recent commands that you have typed without displaying line numbers, use the command `history -q 5'.
 
@@ -39202,9 +39201,32 @@ run_history
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 220
- -- Command:  run_history [FIRST] [LAST]
-     Similar to `edit_history', except that the editor is not invoked, and the commands are simply executed as they appear in the history list.
+# length: 951
+ -- Command:  run_history
+ -- Command:  run_history CMD_NUMBER
+ -- Command:  run_history FIRST LAST
+     Run commands from the history list.
+
+     When invoked with no arguments, run the previously executed command; With one argument, run the specified command CMD_NUMBER; With two arguments, run the list of commands between FIRST and LAST.  Command number specifiers may also be negative where -1 refers to the most recently executed command.  For example, the command
+
+          run_history
+               OR
+          run_history -1
+
+     executes the most recent command again.  The command
+
+          run_history 13 169
+
+     executes commands 13 through 169.
+
+     Specifying a larger number for the first command than the last command reverses the list of commands before executing them.  For example:
+
+          disp (1)
+          disp (2)
+          run_history -1 -2
+          =>
+           2
+           1
 
      *See also:* edit_history.
    
@@ -39213,8 +39235,8 @@ run_history
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 138
-Similar to `edit_history', except that the editor is not invoked, and the commands are simply executed as they appear in the history list.
+# length: 35
+Run commands from the history list.
 
 
 
@@ -40195,9 +40217,10 @@ kbhit
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 411
+# length: 474
  -- Built-in Function:  kbhit ()
-     Read a single keystroke from the keyboard.  If called with one argument, don't wait for a keypress.  For example,
+ -- Built-in Function:  kbhit (1)
+     Read a single keystroke from the keyboard.  If called with an argument, don't wait for a keypress.  For example,
 
           x = kbhit ();
 
@@ -40205,7 +40228,9 @@ kbhit
 
           x = kbhit (1);
 
-     identical to the above example, but don't wait for a keypress, returning the empty string if no key is available.
+     is identical to the above example, but doesn't wait for a keypress, returning the empty string if no key is available.
+
+     *See also:* input.
    
 
 
@@ -45600,9 +45625,9 @@ signbit
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 318
+# length: 536
  -- Mapping Function:  signbit (X)
-     Return a nonzero value if the value of X has its sign bit set.
+     Return logical true if the value of X has its sign bit set.  Otherwise return logical false.  This behavior is consistent with the other logical functions. See*note Logical Values::.  The behavior differs from the C language function which returns non-zero if the sign bit is set.
 
      This is not the same as `x < 0.0', because IEEE 754 floating point allows zero to be signed.  The comparison `-0.0 < 0.0' is false, but `signbit (-0.0)' will return a nonzero value.
 
@@ -45613,8 +45638,8 @@ signbit
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 62
-Return a nonzero value if the value of X has its sign bit set.
+# length: 59
+Return logical true if the value of X has its sign bit set.
 
 
 
@@ -50007,6 +50032,252 @@ bitunpack
 # elements: 1
 # length: 61
 Return an array Y corresponding to the raw bit patterns of X.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+autoload
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 976
+ -- Built-in Function:  autoload (FUNCTION, FILE)
+     Define FUNCTION to autoload from FILE.
+
+     The second argument, FILE, should be an absolute file name or a file name in the same directory as the function or script from which the autoload command was run.  FILE should not depend on the Octave load path.
+
+     Normally, calls to `autoload' appear in PKG_ADD script files that are evaluated when a directory is added to the Octave's load path.  To avoid having to hardcode directory names in FILE, if FILE is in the same directory as the PKG_ADD script then
+
+          autoload ("foo", "bar.oct");
+
+     will load the function `foo' from the file `bar.oct'.  The above when `bar.oct' is not in the same directory or uses like
+
+          autoload ("foo", file_in_loadpath ("bar.oct"))
+
+     are strongly discouraged, as their behavior might be unpredictable.
+
+     With no arguments, return a structure containing the current autoload map.
+
+     *See also:* PKG_ADD.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 38
+Define FUNCTION to autoload from FILE.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+mfilename
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 437
+ -- Built-in Function:  mfilename ()
+ -- Built-in Function:  mfilename ("fullpath")
+ -- Built-in Function:  mfilename ("fullpathext")
+     Return the name of the currently executing file.  At the top-level, return the empty string.  Given the argument `"fullpath"', include the directory part of the file name, but not the extension.  Given the argument `"fullpathext"', include the directory part of the file name and the extension.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 48
+Return the name of the currently executing file.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+source
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 201
+ -- Built-in Function:  source (FILE)
+     Parse and execute the contents of FILE.  This is equivalent to executing commands from a script file, but without requiring the file to be named `FILE.m'.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 39
+Parse and execute the contents of FILE.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+feval
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 860
+ -- Built-in Function:  feval (NAME, ...)
+     Evaluate the function named NAME.  Any arguments after the first are passed on to the named function.  For example,
+
+          feval ("acos", -1)
+               => 3.1416
+
+     calls the function `acos' with the argument `-1'.
+
+     The function `feval' can also be used with function handles of any sort (*note Function Handles::).  Historically, `feval' was the only way to call user-supplied functions in strings, but function handles are now preferred due to the cleaner syntax they offer.  For example,
+
+          F = @exp;
+          feval (F, 1)
+              => 2.7183
+          F (1)
+              => 2.7183
+
+     are equivalent ways to call the function referred to by F.  If it cannot be predicted beforehand that F is a function handle or the function name in a string, `feval' can be used instead.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 33
+Evaluate the function named NAME.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+builtin
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 153
+ -- Loadable Function: [...] builtin (F, ...)
+     Call the base function F even if F is overloaded to another function for the given type signature.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 98
+Call the base function F even if F is overloaded to another function for the given type signature.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+eval
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 953
+ -- Built-in Function:  eval (TRY)
+ -- Built-in Function:  eval (TRY, CATCH)
+     Parse the string TRY and evaluate it as if it were an Octave program.  If that fails, evaluate the optional string CATCH.  The string TRY is evaluated in the current context, so any results remain available after `eval' returns.
+
+     The following example makes the variable A with the approximate value 3.1416 available.
+
+          eval ("a = acos(-1);");
+
+     If an error occurs during the evaluation of TRY the CATCH string is evaluated, as the following example shows:
+
+          eval ('error ("This is a bad example");',
+                'printf ("This error occurred:\n%s\n", lasterr ());');
+               -| This error occurred:
+                  This is a bad example
+
+     Consider using try/catch blocks instead if you are only using `eval' as an error-capturing mechanism rather than for the execution of arbitrary code strings.
+
+     *See also:* evalin.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 69
+Parse the string TRY and evaluate it as if it were an Octave program.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+assignin
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 181
+ -- Built-in Function:  assignin (CONTEXT, VARNAME, VALUE)
+     Assign VALUE to VARNAME in context CONTEXT, which may be either `"base"' or `"caller"'.
+
+     *See also:* evalin.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 87
+Assign VALUE to VARNAME in context CONTEXT, which may be either `"base"' or `"caller"'.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+evalin
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 264
+ -- Built-in Function:  evalin (CONTEXT, TRY)
+ -- Built-in Function:  evalin (CONTEXT, TRY, CATCH)
+     Like `eval', except that the expressions are evaluated in the context CONTEXT, which may be either `"caller"' or `"base"'.
+
+     *See also:* eval, assignin.
+   
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 122
+Like `eval', except that the expressions are evaluated in the context CONTEXT, which may be either `"caller"' or `"base"'.
 
 
 

@@ -70,7 +70,7 @@
      ELEFTDIV = 288,
      EPLUS = 289,
      EMINUS = 290,
-     QUOTE = 291,
+     HERMITIAN = 291,
      TRANSPOSE = 292,
      PLUS_PLUS = 293,
      MINUS_MINUS = 294,
@@ -115,11 +115,9 @@
      END_OF_INPUT = 333,
      LEXICAL_ERROR = 334,
      FCN = 335,
-     SCRIPT_FILE = 336,
-     FUNCTION_FILE = 337,
-     CLASSDEF = 338,
-     CLOSE_BRACE = 339,
-     UNARY = 340
+     INPUT_FILE = 336,
+     CLASSDEF = 337,
+     UNARY = 338
    };
 #endif
 /* Tokens.  */
@@ -156,7 +154,7 @@
 #define ELEFTDIV 288
 #define EPLUS 289
 #define EMINUS 290
-#define QUOTE 291
+#define HERMITIAN 291
 #define TRANSPOSE 292
 #define PLUS_PLUS 293
 #define MINUS_MINUS 294
@@ -201,11 +199,9 @@
 #define END_OF_INPUT 333
 #define LEXICAL_ERROR 334
 #define FCN 335
-#define SCRIPT_FILE 336
-#define FUNCTION_FILE 337
-#define CLASSDEF 338
-#define CLOSE_BRACE 339
-#define UNARY 340
+#define INPUT_FILE 336
+#define CLASSDEF 337
+#define UNARY 338
 
 
 
@@ -215,7 +211,7 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 394 "oct-parse.yy"
+#line 157 "oct-parse.yy"
 
   // The type of the basic tokens returned by the lexer.
   token *tok_val;
@@ -255,13 +251,45 @@ typedef union YYSTYPE
 
 
 /* Line 2068 of yacc.c  */
-#line 259 "parse-tree/oct-parse.h"
+#line 255 "parse-tree/oct-parse.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 #endif
 
-extern YYSTYPE octave_lval;
 
+
+
+#ifndef YYPUSH_DECLS
+#  define YYPUSH_DECLS
+struct octave_pstate;
+typedef struct octave_pstate octave_pstate;
+enum { YYPUSH_MORE = 4 };
+#if defined __STDC__ || defined __cplusplus
+int octave_parse (octave_base_parser& parser);
+#else
+int octave_parse ();
+#endif
+#if defined __STDC__ || defined __cplusplus
+int octave_push_parse (octave_pstate *yyps, int yypushed_char, YYSTYPE const *yypushed_val, octave_base_parser& parser);
+#else
+int octave_push_parse ();
+#endif
+#if defined __STDC__ || defined __cplusplus
+int octave_pull_parse (octave_pstate *yyps, octave_base_parser& parser);
+#else
+int octave_pull_parse ();
+#endif
+#if defined __STDC__ || defined __cplusplus
+octave_pstate * octave_pstate_new (void);
+#else
+octave_pstate * octave_pstate_new ();
+#endif
+#if defined __STDC__ || defined __cplusplus
+void octave_pstate_delete (octave_pstate *yyps);
+#else
+void octave_pstate_delete ();
+#endif
+#endif
 

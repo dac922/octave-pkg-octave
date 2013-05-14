@@ -48,6 +48,7 @@ Software Foundation, Inc.
 #include "cmd-hist.h"
 #include "file-ops.h"
 #include "lo-mappers.h"
+#include "octave-link.h"
 #include "oct-env.h"
 #include "oct-time.h"
 #include "str-vec.h"
@@ -141,7 +142,7 @@ do_history (const octave_value_list& args, int nargout)
 
   int nargin = args.length ();
 
-  // Number of history lines to show
+  // Number of history lines to show (-1 = all)
   int limit = -1;
 
   for (octave_idx_type i = 0; i < nargin; i++)
@@ -155,6 +156,8 @@ do_history (const octave_value_list& args, int nargout)
       else if (arg.is_numeric_type ())
         {
           limit = arg.int_value ();
+          if (limit < 0)
+            limit = -limit;
           continue;
         }
       else
@@ -184,17 +187,28 @@ do_history (const octave_value_list& args, int nargout)
             command_history::write ();
 
           else if (option == "-r")
-            // Read entire file.
-            command_history::read ();
+            {
+              // Read entire file.
+              command_history::read ();
+              octave_link::set_history (command_history::list ());
+            }
 
           else if (option == "-n")
-            // Read 'new' history from file.
-            command_history::read_range ();
+            {
+              // Read 'new' history from file.
+              command_history::read_range ();
+              octave_link::set_history (command_history::list ());
+            }
 
           else
             panic_impossible ();
 
           return hlist;
+        }
+      else if (option == "-c")
+        {
+          command_history::clear ();
+          octave_link::clear_history ();
         }
       else if (option == "-q")
         numbered_output = false;
@@ -210,7 +224,13 @@ do_history (const octave_value_list& args, int nargout)
           int tmp;
 
           if (sscanf (option.c_str (), "%d", &tmp) == 1)
-            limit = tmp;
+            {
+              if (tmp > 0)
+                limit = tmp;
+              else
+                limit = -tmp;
+            }
+          
           else
             {
               if (option.length () > 0 && option[0] == '-')
@@ -222,9 +242,6 @@ do_history (const octave_value_list& args, int nargout)
             }
         }
     }
-
-  if (limit < 0)
-    limit = -limit;
 
   hlist = command_history::list (limit, numbered_output);
 
@@ -299,6 +316,11 @@ edit_history_readline (std::fstream& stream)
 // appear in the history list.  This way you can do 'run_history' to
 // your heart's content.
 
+// FIXME: Don't delete this block of code until memory
+//        leak in edit_history has been plugged and
+//        it is clear that this code can be removed.
+//        See additional FIXME in do_edit_history.
+/*
 static void
 edit_history_repl_hist (const std::string& command)
 {
@@ -329,6 +351,7 @@ edit_history_repl_hist (const std::string& command)
         }
     }
 }
+*/
 
 static void
 edit_history_add_hist (const std::string& line)
@@ -343,7 +366,10 @@ edit_history_add_hist (const std::string& line)
         tmp.resize (len - 1);
 
       if (! tmp.empty ())
-        command_history::add (tmp);
+        {
+          command_history::add (tmp);
+          octave_link::append_history (tmp);
+        }
     }
 }
 
@@ -377,7 +403,9 @@ mk_tmp_hist_file (const octave_value_list& args,
   int hist_count = hlist.length () - 1;  // switch to zero-based indexing
 
   // The current command line is already part of the history list by
-  // the time we get to this point.  Delete it from the list.
+  // the time we get to this point.  Delete the cmd from the list when
+  // executing 'edit_history' so that it doesn't show up in the history
+  // but the actual commands performed will.
 
   if (! insert_curr)
     command_history::remove (hist_count);
@@ -402,8 +430,14 @@ mk_tmp_hist_file (const octave_value_list& args,
       if (get_int_arg (args(0), hist_beg)
           && get_int_arg (args(1), hist_end))
         {
-          hist_beg--;
-          hist_end--;
+          if (hist_beg < 0)
+            hist_beg += (hist_count + 1);
+          else
+            hist_beg--;
+          if (hist_end < 0)
+            hist_end += (hist_count + 1);
+          else
+            hist_end--;
         }
       else
         usage_error = true;
@@ -412,23 +446,25 @@ mk_tmp_hist_file (const octave_value_list& args,
     {
       if (get_int_arg (args(0), hist_beg))
         {
-          hist_beg--;
+          if (hist_beg < 0)
+            hist_beg += (hist_count + 1);
+          else
+            hist_beg--;
           hist_end = hist_beg;
         }
       else
         usage_error = true;
     }
 
-  if (hist_beg < 0 || hist_end < 0 || hist_beg > hist_count
-      || hist_end > hist_count)
-    {
-      error ("%s: history specification out of range", warn_for);
-      return retval;
-    }
-
   if (usage_error)
     {
       usage ("%s [first] [last]", warn_for);
+      return retval;
+    }
+
+  if (hist_beg > hist_count || hist_end > hist_count)
+    {
+      error ("%s: history specification out of range", warn_for);
       return retval;
     }
 
@@ -482,9 +518,7 @@ do_edit_history (const octave_value_list& args)
   // Call up our favorite editor on the file of commands.
 
   std::string cmd = VEDITOR;
-  cmd.append (" \"");
-  cmd.append (name);
-  cmd.append ("\"");
+  cmd.append (" \"" + name + "\"");
 
   // Ignore interrupts while we are off editing commands.  Should we
   // maybe avoid using system()?
@@ -510,7 +544,7 @@ do_edit_history (const octave_value_list& args)
   std::fstream file (name.c_str (), std::ios::in);
 
   char *line;
-  int first = 1;
+  //int first = 1;
   while ((line = edit_history_readline (file)) != 0)
     {
       // Skip blank lines.
@@ -521,13 +555,17 @@ do_edit_history (const octave_value_list& args)
           continue;
         }
 
-      if (first)
-        {
-          first = 0;
-          edit_history_repl_hist (line);
-        }
-      else
-        edit_history_add_hist (line);
+      // FIXME: Don't delete this block of code until memory
+      //        leak in edit_history has been plugged and
+      //        it is clear that this code can be removed.
+      // Command 'edit history' has already been removed in mk_tmp_hist_file ()
+      //if (first)
+      //  {
+      //    first = 0;
+      //    edit_history_repl_hist (line);
+      //  }
+      //else
+      edit_history_add_hist (line);
 
       delete [] line;
     }
@@ -552,13 +590,12 @@ do_edit_history (const octave_value_list& args)
 static void
 do_run_history (const octave_value_list& args)
 {
-  std::string name = mk_tmp_hist_file (args, true, "run_history");
+  std::string name = mk_tmp_hist_file (args, false, "run_history");
 
   if (name.empty ())
     return;
 
-  // Turn on command echo so the output from this will make better
-  // sense.
+  // Turn on command echo so the output from this will make better sense.
 
   unwind_protect frame;
 
@@ -579,6 +616,8 @@ initialize_history (bool read_history_file)
                                default_history_file (),
                                default_history_size (),
                                octave_env::getenv ("OCTAVE_HISTCONTROL"));
+
+  octave_link::set_history (command_history::list ());
 }
 
 void
@@ -589,43 +628,45 @@ octave_history_write_timestamp (void)
   std::string timestamp = now.strftime (Vhistory_timestamp_format_string);
 
   if (! timestamp.empty ())
-    command_history::add (timestamp);
+    {
+      command_history::add (timestamp); 
+      octave_link::append_history (timestamp);
+   }
 }
 
 DEFUN (edit_history, args, ,
   "-*- texinfo -*-\n\
-@deftypefn {Command} {} edit_history [@var{first}] [@var{last}]\n\
-If invoked with no arguments, @code{edit_history} allows you to edit the\n\
-history list using the editor named by the variable @w{@env{EDITOR}}.  The\n\
-commands to be edited are first copied to a temporary file.  When you\n\
-exit the editor, Octave executes the commands that remain in the file.\n\
-It is often more convenient to use @code{edit_history} to define functions\n\
+@deftypefn  {Command} {} edit_history\n\
+@deftypefnx {Command} {} edit_history @var{cmd_number}\n\
+@deftypefnx {Command} {} edit_history @var{first} @var{last}\n\
+Edit the history list using the editor named by the variable\n\
+@w{@env{EDITOR}}.\n\
+\n\
+The commands to be edited are first copied to a temporary file.  When you\n\
+exit the editor, Octave executes the commands that remain in the file.  It\n\
+is often more convenient to use @code{edit_history} to define functions\n\
 rather than attempting to enter them directly on the command line.\n\
-By default, the block of commands is executed as soon as you exit the\n\
-editor.  To avoid executing any commands, simply delete all the lines\n\
-from the buffer before exiting the editor.\n\
+The block of commands is executed as soon as you exit the editor.\n\
+To avoid executing any commands, simply delete all the lines from the buffer\n\
+before leaving the editor.\n\
 \n\
-The @code{edit_history} command takes two optional arguments specifying\n\
-the history numbers of first and last commands to edit.  For example,\n\
-the command\n\
-\n\
-@example\n\
-edit_history 13\n\
-@end example\n\
-\n\
-@noindent\n\
-extracts all the commands from the 13th through the last in the history\n\
-list.  The command\n\
+When invoked with no arguments, edit the previously executed command;\n\
+With one argument, edit the specified command @var{cmd_number};\n\
+With two arguments, edit the list of commands between @var{first} and\n\
+@var{last}.  Command number specifiers may also be negative where -1\n\
+refers to the most recently executed command.\n\
+The following are equivalent and edit the most recently executed command.\n\
 \n\
 @example\n\
-edit_history 13 169\n\
+@group\n\
+edit_history\n\
+edit_history -1\n\
+@end group\n\
 @end example\n\
 \n\
-@noindent\n\
-only extracts commands 13 through 169.  Specifying a larger number for\n\
-the first command than the last command reverses the list of commands\n\
-before placing them in the buffer to be edited.  If both arguments are\n\
-omitted, the previous command in the history list is used.\n\
+When using ranges, specifying a larger number for the first command than the\n\
+last command reverses the list of commands before they are placed in the\n\
+buffer to be edited.\n\
 @seealso{run_history}\n\
 @end deftypefn")
 {
@@ -638,27 +679,33 @@ omitted, the previous command in the history list is used.\n\
 
 DEFUN (history, args, nargout,
   "-*- texinfo -*-\n\
-@deftypefn {Command} history options\n\
-@deftypefnx {Built-in Function} {@var{h} = } history (@var{opt1}, @var{opt2}, @dots{})\n\
+@deftypefn  {Command} {} history\n\
+@deftypefnx {Command} {} history @var{opt1} @dots{}\n\
+@deftypefnx {Built-in Function} {@var{h} =} history ()\n\
+@deftypefnx {Built-in Function} {@var{h} =} history (@var{opt1}, @dots{})\n\
 If invoked with no arguments, @code{history} displays a list of commands\n\
 that you have executed.  Valid options are:\n\
 \n\
 @table @code\n\
-@item -w @var{file}\n\
-Write the current history to the file @var{file}.  If the name is\n\
-omitted, use the default history file (normally @file{~/.octave_hist}).\n\
+@item   @var{n}\n\
+@itemx -@var{n}\n\
+Display only the most recent @var{n} lines of history.\n\
+\n\
+@item -c\n\
+Clear the history list.\n\
+\n\
+@item -q\n\
+Don't number the displayed lines of history.  This is useful for cutting\n\
+and pasting commands using the X Window System.\n\
 \n\
 @item -r @var{file}\n\
 Read the file @var{file}, appending its contents to the current\n\
 history list.  If the name is omitted, use the default history file\n\
 (normally @file{~/.octave_hist}).\n\
 \n\
-@item @var{n}\n\
-Display only the most recent @var{n} lines of history.\n\
-\n\
-@item -q\n\
-Don't number the displayed lines of history.  This is useful for cutting\n\
-and pasting commands using the X Window System.\n\
+@item -w @var{file}\n\
+Write the current history to the file @var{file}.  If the name is\n\
+omitted, use the default history file (normally @file{~/.octave_hist}).\n\
 @end table\n\
 \n\
 For example, to display the five most recent commands that you have\n\
@@ -681,9 +728,52 @@ argument as a cell string and will not be output to screen.\n\
 
 DEFUN (run_history, args, ,
   "-*- texinfo -*-\n\
-@deftypefn {Command} {} run_history [@var{first}] [@var{last}]\n\
-Similar to @code{edit_history}, except that the editor is not invoked,\n\
-and the commands are simply executed as they appear in the history list.\n\
+@deftypefn  {Command} {} run_history\n\
+@deftypefnx {Command} {} run_history @var{cmd_number}\n\
+@deftypefnx {Command} {} run_history @var{first} @var{last}\n\
+Run commands from the history list.\n\
+\n\
+When invoked with no arguments, run the previously executed command;\n\
+With one argument, run the specified command @var{cmd_number};\n\
+With two arguments, run the list of commands between @var{first} and\n\
+@var{last}.  Command number specifiers may also be negative where -1\n\
+refers to the most recently executed command.\n\
+For example, the command\n\
+\n\
+@example\n\
+@group\n\
+run_history\n\
+     OR\n\
+run_history -1\n\
+@end group\n\
+@end example\n\
+\n\
+@noindent\n\
+executes the most recent command again.\n\
+The command\n\
+\n\
+@example\n\
+run_history 13 169\n\
+@end example\n\
+\n\
+@noindent\n\
+executes commands 13 through 169.\n\
+\n\
+Specifying a larger number for the first command than the last command\n\
+reverses the list of commands before executing them.\n\
+For example:\n\
+\n\
+@example\n\
+@group\n\
+disp (1)\n\
+disp (2)\n\
+run_history -1 -2\n\
+@result{}\n\
+ 2\n\
+ 1\n\
+@end group\n\
+@end example\n\
+\n\
 @seealso{edit_history}\n\
 @end deftypefn")
 {

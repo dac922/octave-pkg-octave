@@ -39,7 +39,7 @@ the file pointer for a given file.
    <p><a name="doc_002dftell"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ftell</b> (<var>fid</var>)<var><a name="index-ftell-1056"></a></var><br>
+&mdash; Built-in Function:  <b>ftell</b> (<var>fid</var>)<var><a name="index-ftell-1069"></a></var><br>
 <blockquote><p>Return the position of the file pointer as the number of characters
 from the beginning of the file <var>fid</var>.
 
@@ -50,9 +50,9 @@ from the beginning of the file <var>fid</var>.
    <p><a name="doc_002dfseek"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset</var>)<var><a name="index-fseek-1057"></a></var><br>
-&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset, origin</var>)<var><a name="index-fseek-1058"></a></var><br>
-&mdash; Built-in Function: <var>status</var> = <b>fseek</b> (<var><small class="dots">...</small></var>)<var><a name="index-fseek-1059"></a></var><br>
+&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset</var>)<var><a name="index-fseek-1070"></a></var><br>
+&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset, origin</var>)<var><a name="index-fseek-1071"></a></var><br>
+&mdash; Built-in Function: <var>status</var> = <b>fseek</b> (<var><small class="dots">...</small></var>)<var><a name="index-fseek-1072"></a></var><br>
 <blockquote><p>Set the file pointer to any location within the file <var>fid</var>.
 
         <p>The pointer is positioned <var>offset</var> characters from the <var>origin</var>,
@@ -70,9 +70,9 @@ file) or strings "cof", "bof" or "eof".  If <var>origin</var> is omitted,
    <p><a name="doc_002dSEEK_005fSET"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>SEEK_SET</b> ()<var><a name="index-SEEK_005fSET-1060"></a></var><br>
-&mdash; Built-in Function:  <b>SEEK_CUR</b> ()<var><a name="index-SEEK_005fCUR-1061"></a></var><br>
-&mdash; Built-in Function:  <b>SEEK_END</b> ()<var><a name="index-SEEK_005fEND-1062"></a></var><br>
+&mdash; Built-in Function:  <b>SEEK_SET</b> ()<var><a name="index-SEEK_005fSET-1073"></a></var><br>
+&mdash; Built-in Function:  <b>SEEK_CUR</b> ()<var><a name="index-SEEK_005fCUR-1074"></a></var><br>
+&mdash; Built-in Function:  <b>SEEK_END</b> ()<var><a name="index-SEEK_005fEND-1075"></a></var><br>
 <blockquote><p>Return the numerical value to pass to <code>fseek</code> to perform
 one of the following actions:
 
@@ -91,7 +91,7 @@ one of the following actions:
    <p><a name="doc_002dfrewind"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>frewind</b> (<var>fid</var>)<var><a name="index-frewind-1063"></a></var><br>
+&mdash; Built-in Function:  <b>frewind</b> (<var>fid</var>)<var><a name="index-frewind-1076"></a></var><br>
 <blockquote><p>Move the file pointer to the beginning of the file <var>fid</var>, returning
 0 for success, and -1 if an error was encountered.  It is equivalent to
 <code>fseek (</code><var>fid</var><code>, 0, SEEK_SET)</code>.

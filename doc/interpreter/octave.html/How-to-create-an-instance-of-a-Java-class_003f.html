@@ -36,20 +36,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="FAQ-_002d-Frequently-asked-Questions.ht
 <h4 class="subsection">37.3.3 How to create an instance of a Java class?</h4>
 
 <!--  index - -->
-<p><a name="index-object_002c-how-to-create-3578"></a><a name="index-instance_002c-how-to-create-3579"></a><!--  index - -->
+<p><a name="index-object_002c-how-to-create-3593"></a><a name="index-instance_002c-how-to-create-3594"></a><!--  index - -->
 
-   <p>If your code shall work under Octave as well as <span class="sc">matlab</span> you should use the
-function <code>javaObject</code> to create Java objects.  The function
-<code>java_new</code> is Octave specific and does not exist in the <span class="sc">matlab</span>
-environment.
+   <p>The function <code>javaObject</code> can be used to create Java objects..
 
-   <p>Example 1, suitable for Octave but not for <span class="sc">matlab</span>:
+   <p>Example:
 
-<pre class="example">        Passenger = java_new('package.FirstClass', row, seat);
-</pre>
-   <p>Example 2, which works in Octave as well as in <span class="sc">matlab</span>:
-
-<pre class="example">        Passenger = javaObject('package.FirstClass', row, seat);
+<pre class="example">     Passenger = javaObject ('package.FirstClass', row, seat);
 </pre>
    <!--  -->
    </body></html>

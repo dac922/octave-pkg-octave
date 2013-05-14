@@ -51,8 +51,8 @@ code adds &lsquo;<samp><span class="samp">~/Octave</span></samp>&rsquo; to the l
    <p><a name="doc_002daddpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-addpath-780"></a></var><br>
-&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small>, option</var>)<var><a name="index-addpath-781"></a></var><br>
+&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-addpath-792"></a></var><br>
+&mdash; Built-in Function:  <b>addpath</b> (<var>dir1, <small class="dots">...</small>, option</var>)<var><a name="index-addpath-793"></a></var><br>
 <blockquote><p>Add <var>dir1</var>, <small class="dots">...</small> to the current function search path.  If
 <var>option</var> is "-begin" or 0 (the default), prepend the
 directory name to the current path.  If <var>option</var> is "-end"
@@ -71,8 +71,8 @@ directory names separated by <code>pathsep</code> are also accepted.  For exampl
    <p><a name="doc_002dgenpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>genpath</b> (<var>dir</var>)<var><a name="index-genpath-782"></a></var><br>
-&mdash; Built-in Function:  <b>genpath</b> (<var>dir, skip, <small class="dots">...</small></var>)<var><a name="index-genpath-783"></a></var><br>
+&mdash; Built-in Function:  <b>genpath</b> (<var>dir</var>)<var><a name="index-genpath-794"></a></var><br>
+&mdash; Built-in Function:  <b>genpath</b> (<var>dir, skip, <small class="dots">...</small></var>)<var><a name="index-genpath-795"></a></var><br>
 <blockquote><p>Return a path constructed from <var>dir</var> and all its subdirectories. 
 If additional string parameters are given, the resulting path will
 exclude directories with those names. 
@@ -82,7 +82,7 @@ exclude directories with those names.
    <p><a name="doc_002drmpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rmpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-rmpath-784"></a></var><br>
+&mdash; Built-in Function:  <b>rmpath</b> (<var>dir1, <small class="dots">...</small></var>)<var><a name="index-rmpath-796"></a></var><br>
 <blockquote><p>Remove <var>dir1</var>, <small class="dots">...</small> from the current function search path.
 
         <p>In addition to accepting individual directory arguments, lists of
@@ -97,9 +97,9 @@ directory names separated by <code>pathsep</code> are also accepted.  For exampl
    <p><a name="doc_002dsavepath"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>savepath</b> ()<var><a name="index-savepath-785"></a></var><br>
-&mdash; Function File:  <b>savepath</b> (<var>file</var>)<var><a name="index-savepath-786"></a></var><br>
-&mdash; Function File: <var>status</var> = <b>savepath</b> (<var><small class="dots">...</small></var>)<var><a name="index-savepath-787"></a></var><br>
+&mdash; Function File:  <b>savepath</b> ()<var><a name="index-savepath-797"></a></var><br>
+&mdash; Function File:  <b>savepath</b> (<var>file</var>)<var><a name="index-savepath-798"></a></var><br>
+&mdash; Function File: <var>status</var> = <b>savepath</b> (<var><small class="dots">...</small></var>)<var><a name="index-savepath-799"></a></var><br>
 <blockquote><p>Save the unique portion of the current function search path that is
 not set during Octave's initialization process to <var>file</var>. 
 If <var>file</var> is omitted, <samp><span class="file">~/.octaverc</span></samp> is used.  If successful,
@@ -112,7 +112,7 @@ If <var>file</var> is omitted, <samp><span class="file">~/.octaverc</span></samp
    <p><a name="doc_002dpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>path</b> (<var><small class="dots">...</small></var>)<var><a name="index-path-788"></a></var><br>
+&mdash; Built-in Function:  <b>path</b> (<var><small class="dots">...</small></var>)<var><a name="index-path-800"></a></var><br>
 <blockquote><p>Modify or display Octave's load path.
 
         <p>If <var>nargin</var> and <var>nargout</var> are zero, display the elements of
@@ -134,7 +134,7 @@ to the result and return it.
    <p><a name="doc_002dpathdef"></a>
 
 <div class="defun">
-&mdash; Function File: <var>val</var> = <b>pathdef</b> ()<var><a name="index-pathdef-789"></a></var><br>
+&mdash; Function File: <var>val</var> = <b>pathdef</b> ()<var><a name="index-pathdef-801"></a></var><br>
 <blockquote><p>Return the default path for Octave. 
 The path information is extracted from one of three sources. 
 The possible sources, in order of preference, are:
@@ -154,8 +154,8 @@ The possible sources, in order of preference, are:
    <p><a name="doc_002dpathsep"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>pathsep</b> ()<var><a name="index-pathsep-790"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>pathsep</b> (<var>new_val</var>)<var><a name="index-pathsep-791"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>pathsep</b> ()<var><a name="index-pathsep-802"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>pathsep</b> (<var>new_val</var>)<var><a name="index-pathsep-803"></a></var><br>
 <blockquote><p>Query or set the character used to separate directories in a path.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dfilesep.html#doc_002dfilesep">filesep</a>. 
@@ -165,7 +165,7 @@ The possible sources, in order of preference, are:
    <p><a name="doc_002drehash"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rehash</b> ()<var><a name="index-rehash-792"></a></var><br>
+&mdash; Built-in Function:  <b>rehash</b> ()<var><a name="index-rehash-804"></a></var><br>
 <blockquote><p>Reinitialize Octave's load path directory cache. 
 </p></blockquote></div>
 
@@ -173,8 +173,8 @@ The possible sources, in order of preference, are:
    <p><a name="doc_002dfile_005fin_005floadpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file</var>)<var><a name="index-file_005fin_005floadpath-793"></a></var><br>
-&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file, "all"</var>)<var><a name="index-file_005fin_005floadpath-794"></a></var><br>
+&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file</var>)<var><a name="index-file_005fin_005floadpath-805"></a></var><br>
+&mdash; Built-in Function:  <b>file_in_loadpath</b> (<var>file, "all"</var>)<var><a name="index-file_005fin_005floadpath-806"></a></var><br>
 <blockquote>
         <p>Return the absolute name of <var>file</var> if it can be found in
 the list of directories specified by <code>path</code>. 
@@ -195,7 +195,7 @@ name in the path.  If no files are found, return an empty cell array.
    <p><a name="doc_002drestoredefaultpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>restoredefaultpath</b> (<var><small class="dots">...</small></var>)<var><a name="index-restoredefaultpath-795"></a></var><br>
+&mdash; Built-in Function:  <b>restoredefaultpath</b> (<var><small class="dots">...</small></var>)<var><a name="index-restoredefaultpath-807"></a></var><br>
 <blockquote><p>Restore Octave's path to its initial state at startup.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
@@ -205,7 +205,7 @@ name in the path.  If no files are found, return an empty cell array.
    <p><a name="doc_002dcommand_005fline_005fpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>command_line_path</b> (<var><small class="dots">...</small></var>)<var><a name="index-command_005fline_005fpath-796"></a></var><br>
+&mdash; Built-in Function:  <b>command_line_path</b> (<var><small class="dots">...</small></var>)<var><a name="index-command_005fline_005fpath-808"></a></var><br>
 <blockquote><p>Return the command line path variable.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dpath.html#doc_002dpath">path</a>, <a href="doc_002daddpath.html#doc_002daddpath">addpath</a>, <a href="doc_002drmpath.html#doc_002drmpath">rmpath</a>, <a href="doc_002dgenpath.html#doc_002dgenpath">genpath</a>, <a href="doc_002dpathdef.html#doc_002dpathdef">pathdef</a>, <a href="doc_002dsavepath.html#doc_002dsavepath">savepath</a>, <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
@@ -215,8 +215,8 @@ name in the path.  If no files are found, return an empty cell array.
    <p><a name="doc_002dfind_005fdir_005fin_005fpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir</var>)<var><a name="index-find_005fdir_005fin_005fpath-797"></a></var><br>
-&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir, "all"</var>)<var><a name="index-find_005fdir_005fin_005fpath-798"></a></var><br>
+&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir</var>)<var><a name="index-find_005fdir_005fin_005fpath-809"></a></var><br>
+&mdash; Built-in Function:  <b>find_dir_in_path</b> (<var>dir, "all"</var>)<var><a name="index-find_005fdir_005fin_005fpath-810"></a></var><br>
 <blockquote><p>Return the full name of the path element matching <var>dir</var>.  The
 match is performed at the end of each path element.  For example, if
 <var>dir</var> is <code>"foo/bar"</code>, it matches the path element

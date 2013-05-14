@@ -25,6 +25,8 @@ along with Octave; see the file COPYING.  If not, see
 
 #include <string>
 
+#include "symtab.h"
+
 class
 token
 {
@@ -33,6 +35,7 @@ public:
   enum token_type
     {
       generic_token,
+      keyword_token,
       string_token,
       double_token,
       ettype_token,
@@ -59,26 +62,48 @@ public:
       unwind_protect_end
     };
 
-  token (int l = -1, int c = -1);
-  token (const std::string& s, int l = -1, int c = -1);
-  token (double d, const std::string& s = std::string (),
+  token (int tv, int l = -1, int c = -1);
+  token (int tv, bool is_keyword, int l = -1, int c = -1);
+  token (int tv, const std::string& s, int l = -1, int c = -1);
+  token (int tv, double d, const std::string& s = std::string (),
          int l = -1, int c = -1);
-  token (end_tok_type t, int l = -1, int c = -1);
-  token (symbol_table::symbol_record *s, int l = -1, int c = -1);
-  token (symbol_table::symbol_record *cls,
+  token (int tv, end_tok_type t, int l = -1, int c = -1);
+  token (int tv, symbol_table::symbol_record *s, int l = -1, int c = -1);
+  token (int tv, symbol_table::symbol_record *cls,
          symbol_table::symbol_record *pkg, int l = -1, int c = -1);
-  token (symbol_table::symbol_record *mth,
+  token (int tv, symbol_table::symbol_record *mth,
          symbol_table::symbol_record *cls,
          symbol_table::symbol_record *pkg, int l = -1, int c = -1);
 
   ~token (void);
 
-  int line (void) { return line_num; }
-  int column (void) { return column_num; }
+  void mark_may_be_command (void) { maybe_cmd = true; }
+  bool may_be_command (void) const { return maybe_cmd; }
 
-  std::string text (void);
-  double number (void);
-  end_tok_type ettype (void);
+  void mark_trailing_space (void) { tspc = true; }
+  bool space_follows_token (void) const { return tspc; }
+
+  int token_value (void) const { return tok_val; }
+  bool token_value_is (int tv) const { return tv == tok_val; }
+
+  int line (void) const { return line_num; }
+  int column (void) const { return column_num; }
+
+  bool is_keyword (void) const
+  {
+    return type_tag == keyword_token || type_tag == ettype_token;
+  }
+
+  bool is_symbol (void) const
+  {
+    return type_tag == sym_rec_token;
+  }
+
+  std::string text (void) const;
+  std::string symbol_name (void) const;
+  double number (void) const;
+  token_type ttype (void) const;
+  end_tok_type ettype (void) const;
   symbol_table::symbol_record *sym_rec (void);
 
   symbol_table::symbol_record *method_rec (void);
@@ -98,8 +123,11 @@ private:
 
   token& operator = (const token& tok);
 
+  bool maybe_cmd;
+  bool tspc;
   int line_num;
   int column_num;
+  int tok_val;
   token_type type_tag;
   union
     {

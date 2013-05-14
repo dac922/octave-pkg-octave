@@ -72,14 +72,16 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(srcdir)/build-aux/common.mk \
-	$(srcdir)/config.h.in $(srcdir)/m4/module.mk \
+DIST_COMMON = README $(am__configure_deps) $(octinclude_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(srcdir)/build-aux/common.mk $(srcdir)/config.in.h \
+	$(srcdir)/m4/module.mk $(srcdir)/oct-conf-post.in.h \
 	$(top_srcdir)/configure COPYING ChangeLog INSTALL NEWS \
 	build-aux/compile build-aux/config.guess build-aux/config.sub \
 	build-aux/depcomp build-aux/install-sh build-aux/ltmain.sh \
 	build-aux/mdate-sh build-aux/missing build-aux/mkinstalldirs \
 	build-aux/texinfo.tex build-aux/ylwrap
+@AMCOND_BUILD_GUI_TRUE@am__append_1 = libgui
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
@@ -193,7 +195,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(SHELL) $(top_srcdir)/build-aux/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES =
+CONFIG_CLEAN_FILES = oct-conf-post.h
 CONFIG_CLEAN_VPATH_FILES =
 SCRIPTS = $(noinst_SCRIPTS)
 SOURCES =
@@ -238,9 +240,9 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(octetcdir)" \
-	"$(DESTDIR)$(octincludedir)"
+	"$(DESTDIR)$(octincludedir)" "$(DESTDIR)$(octincludedir)"
 DATA = $(octetc_DATA)
-HEADERS = $(nodist_octinclude_HEADERS)
+HEADERS = $(nodist_octinclude_HEADERS) $(octinclude_HEADERS)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
@@ -248,7 +250,8 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
 	distdir dist dist-all distcheck
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = $(SUBDIRS)
+DIST_SUBDIRS = libgnu liboctave libinterp libgui src scripts . \
+	@DOCDIR@ examples test
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -308,6 +311,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BISON_PUSH_PULL_DECL_STYLE = @BISON_PUSH_PULL_DECL_STYLE@
 BITSIZEOF_PTRDIFF_T = @BITSIZEOF_PTRDIFF_T@
 BITSIZEOF_SIG_ATOMIC_T = @BITSIZEOF_SIG_ATOMIC_T@
 BITSIZEOF_SIZE_T = @BITSIZEOF_SIZE_T@
@@ -363,7 +367,9 @@ CXXPICFLAG = @CXXPICFLAG@
 CXX_VERSION = @CXX_VERSION@
 CYGPATH_W = @CYGPATH_W@
 DEFAULT_PAGER = @DEFAULT_PAGER@
-# ifeq ($(INCLUDE_DEPS),false)
+DEFAULT_TERMINAL_FONT = @DEFAULT_TERMINAL_FONT@
+DEFAULT_TERMINAL_FONT_SIZE = @DEFAULT_TERMINAL_FONT_SIZE@
+# ifeq ($(INCLUDE_DEPS),no)
 #   omit_deps = true;
 # endif
 DEFS = @DEFS@
@@ -803,7 +809,6 @@ GPERF = @GPERF@
 GRAPHICS_CFLAGS = @GRAPHICS_CFLAGS@
 GRAPHICS_LIBS = @GRAPHICS_LIBS@
 GREP = @GREP@
-GUIDIR = @GUIDIR@
 GXX_VERSION = @GXX_VERSION@
 HAVE_ACCEPT4 = @HAVE_ACCEPT4@
 HAVE_ACOSF = @HAVE_ACOSF@
@@ -1182,6 +1187,7 @@ LOCALE_FR = @LOCALE_FR@
 LOCALE_FR_UTF8 = @LOCALE_FR_UTF8@
 LOCALE_JA = @LOCALE_JA@
 LOCALE_ZH_CN = @LOCALE_ZH_CN@
+LRELEASE = @LRELEASE@
 LTALLOCA = @LTALLOCA@
 LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
@@ -1547,7 +1553,6 @@ TEXINFO_Z = @TEXINFO_Z@
 TIME_H_DEFINES_STRUCT_TIMESPEC = @TIME_H_DEFINES_STRUCT_TIMESPEC@
 TRUNCF_LIBM = @TRUNCF_LIBM@
 TRUNC_LIBM = @TRUNC_LIBM@
-UGLY_DEFS = @UGLY_DEFS@
 UIC = @UIC@
 UMFPACK_CPPFLAGS = @UMFPACK_CPPFLAGS@
 UMFPACK_LDFLAGS = @UMFPACK_LDFLAGS@
@@ -1783,9 +1788,9 @@ SPARSE_XLDFLAGS = \
   $(CCOLAMD_LDFLAGS) $(CXSPARSE_LDFLAGS)
 
 SPARSE_XLIBS = \
-    $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
-    $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
-    $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
+  $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
+  $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
+  $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
 
 CONFIG_SUBDIRS = @subdirs@
 
@@ -1802,7 +1807,7 @@ null =
 ACLOCAL_AMFLAGS = -I m4
 BUILT_DISTFILES = AUTHORS BUGS ChangeLog INSTALL.OCTAVE
 EXTRA_DIST = AUTHORS BUGS COPYING ChangeLog INSTALL INSTALL.OCTAVE \
-	NEWS README bootstrap bootstrap.conf \
+	NEWS README CITATION bootstrap bootstrap.conf \
 	build-aux/find-files-with-tests.sh build-aux/mk-opts.pl \
 	build-aux/mkinstalldirs build-aux/move-if-change \
 	build-aux/OctJavaQry.class etc/NEWS.1 etc/NEWS.2 etc/NEWS.3 \
@@ -1821,8 +1826,13 @@ EXTRA_DIST = AUTHORS BUGS COPYING ChangeLog INSTALL INSTALL.OCTAVE \
 	m4/libtool.m4 m4/ltoptions.m4 m4/ltsugar.m4 m4/ltversion.m4 \
 	m4/lt~obsolete.m4 m4/pkg.m4
 
-# Subdirectories in which to run `make all'.
-SUBDIRS = libgnu liboctave libinterp @GUIDIR@ src scripts @DOCDIR@ examples test
+# Subdirectories in which to run `make all'.  Including "." here
+# is an attempt to force all preceding directories in the list to
+# be processed before the current directory so that the
+# scripts/DOCSTRINGS libinterp/DOCSTRINGS files are built before
+# attempting to build AUTHORS and BUGS.
+SUBDIRS = libgnu liboctave libinterp $(am__append_1) src scripts . \
+	@DOCDIR@ examples test
 BUILT_SOURCES = run-octave
 noinst_SCRIPTS = run-octave
 INFO_FILES = \
@@ -1838,7 +1848,11 @@ DISTCLEANFILES = \
 MAINTAINERCLEANFILES = $(BUILT_DISTFILES)
 CONFIG_FILES = @ac_config_headers@ @ac_config_files@
 nodist_octinclude_HEADERS = config.h
-octetc_DATA = NEWS
+octinclude_HEADERS = oct-conf-post.h
+octetc_DATA = \
+  NEWS \
+  CITATION
+
 DIRS_TO_MAKE = \
   $(localfcnfiledir) \
   $(localapifcnfiledir) \
@@ -1894,16 +1908,18 @@ config.h: stamp-h1
 	@if test ! -f $@; then rm -f stamp-h1; else :; fi
 	@if test ! -f $@; then $(MAKE) $(AM_MAKEFLAGS) stamp-h1; else :; fi
 
-stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
+stamp-h1: $(srcdir)/config.in.h $(top_builddir)/config.status
 	@rm -f stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status config.h
-$(srcdir)/config.h.in:  $(am__configure_deps) 
+$(srcdir)/config.in.h:  $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f stamp-h1
 	touch $@
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
+oct-conf-post.h: $(top_builddir)/config.status $(srcdir)/oct-conf-post.in.h
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1953,6 +1969,27 @@ install-nodist_octincludeHEADERS: $(nodist_octinclude_HEADERS)
 uninstall-nodist_octincludeHEADERS:
 	@$(NORMAL_UNINSTALL)
 	@list='$(nodist_octinclude_HEADERS)'; test -n "$(octincludedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(octincludedir)'; $(am__uninstall_files_from_dir)
+install-octincludeHEADERS: $(octinclude_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(octinclude_HEADERS)'; test -n "$(octincludedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(octincludedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(octincludedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(octincludedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(octincludedir)" || exit $$?; \
+	done
+
+uninstall-octincludeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(octinclude_HEADERS)'; test -n "$(octincludedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(octincludedir)'; $(am__uninstall_files_from_dir)
 
@@ -2036,7 +2073,7 @@ ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	mkid -fID $$unique
 tags: TAGS
 
-TAGS: tags-recursive $(HEADERS) $(SOURCES) config.h.in $(TAGS_DEPENDENCIES) \
+TAGS: tags-recursive $(HEADERS) $(SOURCES) config.in.h $(TAGS_DEPENDENCIES) \
 		$(TAGS_FILES) $(LISP)
 	set x; \
 	here=`pwd`; \
@@ -2053,7 +2090,7 @@ TAGS: tags-recursive $(HEADERS) $(SOURCES) config.h.in $(TAGS_DEPENDENCIES) \
 	      set "$$@" "$$include_option=$$here/$$subdir/TAGS"; \
 	  fi; \
 	done; \
-	list='$(SOURCES) $(HEADERS) config.h.in $(LISP) $(TAGS_FILES)'; \
+	list='$(SOURCES) $(HEADERS) config.in.h $(LISP) $(TAGS_FILES)'; \
 	unique=`for i in $$list; do \
 	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
 	  done | \
@@ -2071,9 +2108,9 @@ TAGS: tags-recursive $(HEADERS) $(SOURCES) config.h.in $(TAGS_DEPENDENCIES) \
 	  fi; \
 	fi
 ctags: CTAGS
-CTAGS: ctags-recursive $(HEADERS) $(SOURCES) config.h.in $(TAGS_DEPENDENCIES) \
+CTAGS: ctags-recursive $(HEADERS) $(SOURCES) config.in.h $(TAGS_DEPENDENCIES) \
 		$(TAGS_FILES) $(LISP)
-	list='$(SOURCES) $(HEADERS) config.h.in $(LISP) $(TAGS_FILES)'; \
+	list='$(SOURCES) $(HEADERS) config.in.h $(LISP) $(TAGS_FILES)'; \
 	unique=`for i in $$list; do \
 	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
 	  done | \
@@ -2288,7 +2325,7 @@ check: $(BUILT_SOURCES)
 all-am: Makefile $(SCRIPTS) $(DATA) $(HEADERS) config.h all-local
 installdirs: installdirs-recursive
 installdirs-am: installdirs-local
-	for dir in "$(DESTDIR)$(octetcdir)" "$(DESTDIR)$(octincludedir)"; do \
+	for dir in "$(DESTDIR)$(octetcdir)" "$(DESTDIR)$(octincludedir)" "$(DESTDIR)$(octincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -2349,7 +2386,7 @@ info: info-recursive
 info-am:
 
 install-data-am: install-data-local install-nodist_octincludeHEADERS \
-	install-octetcDATA
+	install-octetcDATA install-octincludeHEADERS
 
 install-dvi: install-dvi-recursive
 
@@ -2395,7 +2432,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-nodist_octincludeHEADERS uninstall-octetcDATA
+uninstall-am: uninstall-nodist_octincludeHEADERS uninstall-octetcDATA \
+	uninstall-octincludeHEADERS
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) all check \
 	ctags-recursive install install-am install-strip \
@@ -2413,17 +2451,19 @@ uninstall-am: uninstall-nodist_octincludeHEADERS uninstall-octetcDATA
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
 	install-nodist_octincludeHEADERS install-octetcDATA \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am installdirs-local maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
-	uninstall uninstall-am uninstall-nodist_octincludeHEADERS \
-	uninstall-octetcDATA
+	install-octincludeHEADERS install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs installdirs-am installdirs-local \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
+	uninstall-nodist_octincludeHEADERS uninstall-octetcDATA \
+	uninstall-octincludeHEADERS
 
 export AWK
-export SED
+export GREP
 export FIND
+export SED
 export PERL
 
 # ==================== Octave-specific Makefile rules ====================
@@ -2447,10 +2487,6 @@ if [ "x$(srcdir)" != "x." ] && [ -f $(srcdir)/$@ ] && [ ! -f $@ ]; then \
   touch -r $(srcdir)/$@ $@; \
 fi
 endef
-
-# Yes, the second sed command near the end is needed, to avoid limits
-# in command lengths for some versions of sed.  UGLY_DEFS is often
-# quite large, so it makes sense to split this command there.
 
 define do_subst_config_vals
 echo "making $@ from $<"
@@ -2502,6 +2538,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_CXXPICFLAG%|\"${CXXPICFLAG}\"|" \
   -e "s|%OCTAVE_CONF_CXX_VERSION%|\"${CXX_VERSION}\"|" \
   -e "s|%OCTAVE_CONF_DEFAULT_PAGER%|\"${DEFAULT_PAGER}\"|" \
+  -e "s|%OCTAVE_CONF_DEFS%|\"${DEFS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_FLAGS%|\"${DEPEND_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_EXTRA_SED_PATTERN%|\"${DEPEND_EXTRA_SED_PATTERN}\"|" \
   -e "s|%OCTAVE_CONF_DL_LD%|\"${DL_LD}\"|" \
@@ -2532,8 +2569,8 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_GNUPLOT%|\"${GNUPLOT}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_CFLAGS%|\"${GRAPHICS_CFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_LIBS%|\"${GRAPHICS_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
+  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" | \
+  $(SED) -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_HDF5_LIBS%|\"${HDF5_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_INCLUDEDIR%|\"${includedir}\"|" \
   -e "s|%OCTAVE_CONF_LAPACK_LIBS%|\"${LAPACK_LIBS}\"|" \
@@ -2597,7 +2634,6 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_SONAME_FLAGS%|\"${SONAME_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_STATIC_LIBS%|\"${STATIC_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_TERM_LIBS%|\"${TERM_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_UGLY_DEFS%|\"${UGLY_DEFS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_CPPFLAGS%|\"${UMFPACK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LDFLAGS%|\"${UMFPACK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LIBS%|\"${UMFPACK_LIBS}\"|" \
@@ -2614,8 +2650,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_Z_CPPFLAGS%|\"${Z_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LDFLAGS%|\"${Z_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LIBS%|\"${Z_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" | \
-  $(SED)  -e "s|%OCTAVE_CONF_DEFS%|\"${UGLY_DEFS}\"|" > $@-t
+  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
@@ -2672,42 +2707,21 @@ $(SED) < $< \
   -e "s|%AWK%|${AWK}|g" \
   -e "s|%FIND%|${FIND}|g" \
   -e "s|%SED%|${SED}|g" \
-  -e "s|%library_path_var%|${library_path_var}|g" \
-  -e "s|%liboctinterp%|${SHLPRE}octinterp.${SHLEXT}|g" \
-  -e "s|%liboctave%|${SHLPRE}octave.${SHLEXT}|g" \
-  -e "s|%ldpreloadsep%|${ldpreloadsep}|g" \
-  -e "s|%srcdir%|${srcdir}|" \
-  -e "s|%top_srcdir%|${top_srcdir}|" \
   -e "s|%abs_top_srcdir%|${abs_top_srcdir}|" \
   -e "s|%builddir%|$(shell pwd)|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
-define do_script_install
-$(top_srcdir)/build-aux/mkinstalldirs $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
-for f in $(FCN_FILES); do \
-  fbase=`basename $$f`; \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-  $(INSTALL_DATA) $$f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-done
-$(top_srcdir)/mkpkgadd $(DESTDIR)$(fcnfiledir)/$(script_sub_dir) > $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t
-if [ -n "`cat $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t`" ]; then \
-  $(INSTALL_DATA) $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD ; \
-else \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t ; \
-fi
-endef
-
-define do_script_uninstall
-for f in $(FCN_FILES_NO_DIR); \
-  do rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$f; \
-done
-rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
--rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
+define do_subst_qt_settings
+echo "making $@ from $<"
+$(SED) < $< \
+  -e "s|%DEFAULT_TERMINAL_FONT%|${DEFAULT_TERMINAL_FONT}|" \
+  -e "s|%DEFAULT_TERMINAL_FONT_SIZE%|${DEFAULT_TERMINAL_FONT_SIZE}|" > $@-t
+$(simple_move_if_change_rule)
 endef
 
 define test-file-commands
-( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; $(GREP) '^%!' $< ) > $@-t
 mv $@-t $@
 endef
 

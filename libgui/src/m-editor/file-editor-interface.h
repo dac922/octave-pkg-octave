@@ -23,22 +23,19 @@ along with Octave; see the file COPYING.  If not, see
 #ifndef FILEEDITORINTERFACE_H
 #define FILEEDITORINTERFACE_H
 
-#include <QDockWidget>
 #include <QMenu>
 #include <QToolBar>
+#include "octave-dock-widget.h"
 
-class file_editor_interface : public QDockWidget
+class file_editor_interface : public octave_dock_widget
 {
   Q_OBJECT
 
   public:
   file_editor_interface (QWidget *p)
-    : QDockWidget (p)
+    : octave_dock_widget (p)
   {
     setObjectName ("FileEditor");
-
-    connect (this, SIGNAL (visibilityChanged (bool)), this,
-             SLOT (handle_visibility_changed (bool)));
   }
 
   virtual ~file_editor_interface () { }
@@ -47,31 +44,38 @@ class file_editor_interface : public QDockWidget
   virtual QMenu *debug_menu () = 0;
   virtual QToolBar *toolbar () = 0;
 
-  virtual void handle_entered_debug_mode () = 0;
-  virtual void handle_quit_debug_mode () = 0;
+  virtual void handle_enter_debug_mode (void) = 0;
+  virtual void handle_exit_debug_mode (void) = 0;
+
+  virtual void
+  handle_insert_debugger_pointer_request (const QString& file, int line) = 0;
+
+  virtual void
+  handle_delete_debugger_pointer_request (const QString& file, int line) = 0;
+
+  virtual void
+  handle_update_breakpoint_marker_request (bool insert, const QString& file,
+                                           int line) = 0;
+
+  virtual void handle_edit_file_request (const QString& file) = 0;
+
   virtual void set_focus () = 0;
 
+  virtual void connect_visibility_changed (void) = 0;
+
 public slots:
-  virtual void request_new_file () = 0;
+  virtual void request_new_file (const QString& command = QString ()) = 0;
   virtual void request_open_file () = 0;
-  virtual void request_open_file (const QString& fileName) = 0;
+  virtual void request_open_file (const QString& openFileName, int line = -1,
+                                  bool debug_pointer = false,
+                                  bool breakpoint_marker = false,
+                                  bool insert = true) = 0;
+//signals:
 
-signals:
-  void active_changed (bool active);
+//protected:
 
-protected:
-  void closeEvent (QCloseEvent *e)
-  {
-    emit active_changed (false);
-    QDockWidget::closeEvent (e);
-  }
+//protected slots:
 
-protected slots:
-  void handle_visibility_changed (bool visible)
-  {
-    if (visible)
-      emit active_changed (true);
-  }
 };
 
 #endif // FILEEDITORINTERFACE_H

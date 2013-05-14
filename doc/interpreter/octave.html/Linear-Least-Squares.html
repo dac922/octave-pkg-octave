@@ -45,7 +45,7 @@ the <code>gls</code> is needed.
    <p><a name="doc_002dols"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-2464"></a></var><br>
+&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-2478"></a></var><br>
 <blockquote><p>Ordinary least squares estimation for the multivariate model
 y&nbsp;=&nbsp;x*b&nbsp;+&nbsp;e<!-- /@w --> with
 mean (e) = 0 and cov (vec (e)) = kron (s, I). 
@@ -83,7 +83,7 @@ Otherwise, <var>beta</var><code> = pinv (</code><var>x</var><code>) * </code><va
    <p><a name="doc_002dgls"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-2465"></a></var><br>
+&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-2479"></a></var><br>
 <blockquote><p>Generalized least squares estimation for the multivariate model
 y&nbsp;=&nbsp;x*b&nbsp;+&nbsp;e<!-- /@w --> with mean (e) = 0 and
 cov (vec (e)) = (s^2) o,
@@ -112,14 +112,14 @@ defined as follows.
    <p><a name="doc_002dlsqnonneg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d</var>)<var><a name="index-lsqnonneg-2466"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0</var>)<var><a name="index-lsqnonneg-2467"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0, options</var>)<var><a name="index-lsqnonneg-2468"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2469"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2470"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2471"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2472"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>, <var>lambda</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2473"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d</var>)<var><a name="index-lsqnonneg-2480"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0</var>)<var><a name="index-lsqnonneg-2481"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0, options</var>)<var><a name="index-lsqnonneg-2482"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2483"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2484"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2485"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2486"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>, <var>lambda</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2487"></a></var><br>
 <blockquote><p>Minimize <code>norm (</code><var>c</var><code>*</code><var>x</var><code> - d)</code> subject to
 <var>x</var><code> &gt;= 0</code>.  <var>c</var> and <var>d</var> must be real.  <var>x0</var> is an
 optional initial guess for <var>x</var>. 
@@ -167,10 +167,10 @@ converge given enough iterations.)
    <p><a name="doc_002doptimset"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>optimset</b> ()<var><a name="index-optimset-2474"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2475"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>old, par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2476"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>old, new</var>)<var><a name="index-optimset-2477"></a></var><br>
+&mdash; Function File:  <b>optimset</b> ()<var><a name="index-optimset-2488"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2489"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>old, par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2490"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>old, new</var>)<var><a name="index-optimset-2491"></a></var><br>
 <blockquote><p>Create options struct for optimization functions.
 
         <p>Valid parameters are:
@@ -233,8 +233,8 @@ less than <code>TolX</code> the optimization stops.  Must be a positive scalar.
    <p><a name="doc_002doptimget"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>optimget</b> (<var>options, parname</var>)<var><a name="index-optimget-2478"></a></var><br>
-&mdash; Function File:  <b>optimget</b> (<var>options, parname, default</var>)<var><a name="index-optimget-2479"></a></var><br>
+&mdash; Function File:  <b>optimget</b> (<var>options, parname</var>)<var><a name="index-optimget-2492"></a></var><br>
+&mdash; Function File:  <b>optimget</b> (<var>options, parname, default</var>)<var><a name="index-optimget-2493"></a></var><br>
 <blockquote><p>Return a specific option from a structure created by
 <code>optimset</code>.  If <var>parname</var> is not a field of the <var>options</var>
 structure, return <var>default</var> if supplied, otherwise return an

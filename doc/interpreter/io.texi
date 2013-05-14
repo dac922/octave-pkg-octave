@@ -443,8 +443,8 @@ used for managing an interactive dialog with a user, and the
 
 @c input libinterp/interpfcn/input.cc
 @anchor{doc-input}
-@deftypefn  {Built-in Function} {} input (@var{prompt})
-@deftypefnx {Built-in Function} {} input (@var{prompt}, "s")
+@deftypefn  {Built-in Function} {@var{ans} =} input (@var{prompt})
+@deftypefnx {Built-in Function} {@var{ans} =} input (@var{prompt}, "s")
 Print a prompt and wait for user input.  For example,
 
 @example
@@ -474,7 +474,8 @@ directly, without evaluating it first.
 Because there may be output waiting to be displayed by the pager, it is
 a good idea to always call @code{fflush (stdout)} before calling
 @code{input}.  This will ensure that all pending output is written to
-the screen before your prompt.  @xref{Input and Output}.
+the screen before your prompt.
+@seealso{@ref{doc-yes_or_no,,yes_or_no}, @ref{doc-kbhit,,kbhit}}
 @end deftypefn
 
 
@@ -493,12 +494,14 @@ screen.
 
 @c yes_or_no libinterp/interpfcn/input.cc
 @anchor{doc-yes_or_no}
-@deftypefn {Built-in Function} {} yes_or_no (@var{prompt})
-Ask the user a yes-or-no question.  Return 1 if the answer is yes.
-Takes one argument, which is the string to display to ask the
-question.  It should end in a space; @samp{yes-or-no-p} adds
-@samp{(yes or no) } to it.  The user must confirm the answer with
-RET and can edit it until it has been confirmed.
+@deftypefn {Built-in Function} {@var{ans} =} yes_or_no ("@var{prompt}")
+Ask the user a yes-or-no question.  Return logical true if the answer is yes
+or false if the answer is no.  Takes one argument, @var{prompt}, which is
+the string to display when asking the question.  @var{prompt} should end in
+a space; @code{yes-or-no} adds the string @samp{(yes or no) } to it.  The
+user must confirm the answer with @key{RET} and can edit it until it has
+been confirmed.
+@seealso{@ref{doc-input,,input}}
 @end deftypefn
 
 
@@ -511,8 +514,9 @@ carriage return.
 
 @c kbhit libinterp/interpfcn/sysdep.cc
 @anchor{doc-kbhit}
-@deftypefn {Built-in Function} {} kbhit ()
-Read a single keystroke from the keyboard.  If called with one
+@deftypefn  {Built-in Function} {} kbhit ()
+@deftypefnx {Built-in Function} {} kbhit (1)
+Read a single keystroke from the keyboard.  If called with an
 argument, don't wait for a keypress.  For example,
 
 @example
@@ -528,8 +532,9 @@ x = kbhit (1);
 @end example
 
 @noindent
-identical to the above example, but don't wait for a keypress,
+is identical to the above example, but doesn't wait for a keypress,
 returning the empty string if no key is available.
+@seealso{@ref{doc-input,,input}}
 @end deftypefn
 
 
@@ -694,6 +699,65 @@ the file @file{data} in Octave's binary format.
 @end deftypefn
 
 
+There are three functions that modify the behavior of @code{save}.
+
+@c default_save_options libinterp/interpfcn/load-save.cc
+@anchor{doc-default_save_options}
+@deftypefn  {Built-in Function} {@var{val} =} default_save_options ()
+@deftypefnx {Built-in Function} {@var{old_val} =} default_save_options (@var{new_val})
+@deftypefnx {Built-in Function} {} default_save_options (@var{new_val}, "local")
+Query or set the internal variable that specifies the default options
+for the @code{save} command, and defines the default format.
+Typical values include @code{"-ascii"}, @code{"-text -zip"}.
+The default value is @option{-text}.
+
+When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function.
+@seealso{@ref{doc-save,,save}}
+@end deftypefn
+
+
+@c save_precision libinterp/interpfcn/ls-oct-ascii.cc
+@anchor{doc-save_precision}
+@deftypefn  {Built-in Function} {@var{val} =} save_precision ()
+@deftypefnx {Built-in Function} {@var{old_val} =} save_precision (@var{new_val})
+@deftypefnx {Built-in Function} {} save_precision (@var{new_val}, "local")
+Query or set the internal variable that specifies the number of
+digits to keep when saving data in text format.
+
+When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function.
+@end deftypefn
+
+
+@c save_header_format_string libinterp/interpfcn/load-save.cc
+@anchor{doc-save_header_format_string}
+@deftypefn  {Built-in Function} {@var{val} =} save_header_format_string ()
+@deftypefnx {Built-in Function} {@var{old_val} =} save_header_format_string (@var{new_val})
+@deftypefnx {Built-in Function} {} save_header_format_string (@var{new_val}, "local")
+Query or set the internal variable that specifies the format
+string used for the comment line written at the beginning of
+text-format data files saved by Octave.  The format string is
+passed to @code{strftime} and should begin with the character
+@samp{#} and contain no newline characters.  If the value of
+@code{save_header_format_string} is the empty string,
+the header comment is omitted from text-format data files.  The
+default value is
+@c Set example in small font to prevent overfull line
+
+@smallexample
+"# Created by Octave VERSION, %a %b %d %H:%M:%S %Y %Z <USER@@HOST>"
+@end smallexample
+
+When called from inside a function with the "local" option, the variable is
+changed locally for the function and any subroutines it calls.  The original
+variable value is restored when exiting the function.
+@seealso{@ref{doc-strftime,,strftime}, @ref{doc-save,,save}}
+@end deftypefn
+
+
 @c load libinterp/interpfcn/load-save.cc
 @anchor{doc-load}
 @deftypefn  {Command} {} load file
@@ -797,65 +861,6 @@ Force Octave to assume the file is in Octave's text format.
 @deftypefn {Function File} {@var{str} =} fileread (@var{filename})
 Read the contents of @var{filename} and return it as a string.
 @seealso{@ref{doc-fread,,fread}, @ref{doc-textread,,textread}, @ref{doc-sscanf,,sscanf}}
-@end deftypefn
-
-
-There are three functions that modify the behavior of @code{save}.
-
-@c default_save_options libinterp/interpfcn/load-save.cc
-@anchor{doc-default_save_options}
-@deftypefn  {Built-in Function} {@var{val} =} default_save_options ()
-@deftypefnx {Built-in Function} {@var{old_val} =} default_save_options (@var{new_val})
-@deftypefnx {Built-in Function} {} default_save_options (@var{new_val}, "local")
-Query or set the internal variable that specifies the default options
-for the @code{save} command, and defines the default format.
-Typical values include @code{"-ascii"}, @code{"-text -zip"}.
-The default value is @option{-text}.
-
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
-@seealso{@ref{doc-save,,save}}
-@end deftypefn
-
-
-@c save_precision libinterp/interpfcn/ls-oct-ascii.cc
-@anchor{doc-save_precision}
-@deftypefn  {Built-in Function} {@var{val} =} save_precision ()
-@deftypefnx {Built-in Function} {@var{old_val} =} save_precision (@var{new_val})
-@deftypefnx {Built-in Function} {} save_precision (@var{new_val}, "local")
-Query or set the internal variable that specifies the number of
-digits to keep when saving data in text format.
-
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
-@end deftypefn
-
-
-@c save_header_format_string libinterp/interpfcn/load-save.cc
-@anchor{doc-save_header_format_string}
-@deftypefn  {Built-in Function} {@var{val} =} save_header_format_string ()
-@deftypefnx {Built-in Function} {@var{old_val} =} save_header_format_string (@var{new_val})
-@deftypefnx {Built-in Function} {} save_header_format_string (@var{new_val}, "local")
-Query or set the internal variable that specifies the format
-string used for the comment line written at the beginning of
-text-format data files saved by Octave.  The format string is
-passed to @code{strftime} and should begin with the character
-@samp{#} and contain no newline characters.  If the value of
-@code{save_header_format_string} is the empty string,
-the header comment is omitted from text-format data files.  The
-default value is
-@c Set example in small font to prevent overfull line
-
-@smallexample
-"# Created by Octave VERSION, %a %b %d %H:%M:%S %Y %Z <USER@@HOST>"
-@end smallexample
-
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
-@seealso{@ref{doc-strftime,,strftime}, @ref{doc-save,,save}}
 @end deftypefn
 
 
@@ -1064,6 +1069,11 @@ delimiters.
 The optional input @var{n} specifies the number of data lines to read; in
 this sense it differs slightly from the format repeat count in strread.
 
+If the format string is empty (not: omitted) and the file contains only
+numeric data (excluding headerlines), textread will return a rectangular
+matrix with the number of columns matching the number of numeric fields on
+the first data line of the file. Empty fields are returned as zero values.
+
 @seealso{@ref{doc-strread,,strread}, @ref{doc-load,,load}, @ref{doc-dlmread,,dlmread}, @ref{doc-fscanf,,fscanf}, @ref{doc-textscan,,textscan}}
 @end deftypefn
 
@@ -1119,6 +1129,11 @@ by the number of format specifiers.
 
 The second output, @var{position}, provides the position, in characters,
 from the beginning of the file.
+
+If the format string is empty (not: omitted) and the file contains only
+numeric data (excluding headerlines), textscan will return data in a number
+of columns matching the number of numeric fields on the first data line of
+the file.
 
 @seealso{@ref{doc-dlmread,,dlmread}, @ref{doc-fscanf,,fscanf}, @ref{doc-load,,load}, @ref{doc-strread,,strread}, @ref{doc-textread,,textread}}
 @end deftypefn
@@ -1450,23 +1465,23 @@ must also open the file in binary mode.
 The parameter @var{arch} is a string specifying the default data format
 for the file.  Valid values for @var{arch} are:
 
-@table @asis
-@samp{native}
+@table @samp
+@item native
 The format of the current machine (this is the default).
 
-@samp{ieee-be}
+@item ieee-be
 IEEE big endian format.
 
-@samp{ieee-le}
+@item ieee-le
 IEEE little endian format.
 
-@samp{vaxd}
+@item vaxd
 VAX D floating format.
 
-@samp{vaxg}
+@item vaxg
 VAX G floating format.
 
-@samp{cray}
+@item cray
 Cray floating format.
 @end table
 
@@ -2044,7 +2059,7 @@ the other is more `C-like'.
 @c fscanf libinterp/interpfcn/file-io.cc
 @anchor{doc-fscanf}
 @deftypefn  {Built-in Function} {[@var{val}, @var{count}, @var{errmsg}] =} fscanf (@var{fid}, @var{template}, @var{size})
-@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}] =} fscanf (@var{fid}, @var{template}, @var{locale})
+@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}, @var{errmsg}] =} fscanf (@var{fid}, @var{template}, "C")
 In the first form, read from @var{fid} according to @var{template},
 returning the result in the matrix @var{val}.
 
@@ -2083,10 +2098,7 @@ In the second form, read from @var{fid} according to @var{template},
 with each conversion specifier in @var{template} corresponding to a
 single scalar return value.  This form is more `C-like', and also
 compatible with previous versions of Octave.  The number of successful
-conversions is returned in @var{count}.  It permits to explicitly
-specify a locale to take into account language specific features, 
-such as decimal separator.  This operation restores the previous locales
-setting at the end of the conversion.
+conversions is returned in @var{count}
 @ifclear OCTAVE_MANUAL
 
 See the Formatted Input section of the GNU Octave manual for a
@@ -2099,7 +2111,7 @@ complete description of the syntax of the template string.
 @c scanf libinterp/interpfcn/file-io.cc
 @anchor{doc-scanf}
 @deftypefn  {Built-in Function} {[@var{val}, @var{count}, @var{errmsg}] =} scanf (@var{template}, @var{size})
-@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}] =} scanf (@var{template}, @var{locale})
+@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}, @var{errmsg}]] =} scanf (@var{template}, "C")
 This is equivalent to calling @code{fscanf} with @var{fid} = @code{stdin}.
 
 It is currently not useful to call @code{scanf} in interactive
@@ -2111,7 +2123,7 @@ programs.
 @c sscanf libinterp/interpfcn/file-io.cc
 @anchor{doc-sscanf}
 @deftypefn  {Built-in Function} {[@var{val}, @var{count}, @var{errmsg}, @var{pos}] =} sscanf (@var{string}, @var{template}, @var{size})
-@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}] =} sscanf (@var{string}, @var{template}, @var{locale})
+@deftypefnx {Built-in Function} {[@var{v1}, @var{v2}, @dots{}, @var{count}, @var{errmsg}] =} sscanf (@var{string}, @var{template}, "C")
 This is like @code{fscanf}, except that the characters are taken from the
 string @var{string} instead of from a stream.  Reaching the end of the
 string is treated as an end-of-file condition.  In addition to the values

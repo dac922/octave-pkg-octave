@@ -36,12 +36,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Java-Interface.html#Java-Interface">Jav
 a way to create a Java object, get and set its data fields, and call Java
 methods which return results to Octave.
 
-   <p><a name="index-object_002c-creating-a-Java-object-3498"></a><!-- javaObject libinterp/octave-value/ov-java.cc -->
+   <p><a name="index-object_002c-creating-a-Java-object-3512"></a><!-- javaObject libinterp/octave-value/ov-java.cc -->
 <a name="doc_002djavaObject"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>jobj</var> = <b>javaObject</b> (<var>classname</var>)<var><a name="index-javaObject-3499"></a></var><br>
-&mdash; Built-in Function: <var>jobj</var> = <b>javaObject</b> (<var>classname, arg1, <small class="dots">...</small></var>)<var><a name="index-javaObject-3500"></a></var><br>
+&mdash; Built-in Function: <var>jobj</var> = <b>javaObject</b> (<var>classname</var>)<var><a name="index-javaObject-3513"></a></var><br>
+&mdash; Built-in Function: <var>jobj</var> = <b>javaObject</b> (<var>classname, arg1, <small class="dots">...</small></var>)<var><a name="index-javaObject-3514"></a></var><br>
 <blockquote><p>Create a Java object of class <var>classsname</var>, by calling the class
 constructor with the arguments <var>arg1</var>, <small class="dots">...</small>
 
@@ -54,31 +54,31 @@ while the second example supplies an initial argument to the constructor.
         <p class="noindent"><strong>See also:</strong> <a href="doc_002djavaMethod.html#doc_002djavaMethod">javaMethod</a>, <a href="doc_002djavaArray.html#doc_002djavaArray">javaArray</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-fields_002c-displaying-available-fields-of-a-Java-object-3501"></a>FIXME: Need documentation on how fieldnames() is overloaded to return
+   <p><a name="index-fields_002c-displaying-available-fields-of-a-Java-object-3515"></a><strong>FIXME:</strong> Need documentation on how fieldnames() is overloaded to return
 the methods of a Java object.
 
-   <p><a name="index-field_002c-returning-value-of-Java-object-field-3502"></a>FIXME: Need documentation on how to use structure-like indexing
+   <p><a name="index-field_002c-returning-value-of-Java-object-field-3516"></a><strong>FIXME:</strong> Need documentation on how to use structure-like indexing
 to get fields from Java object.
 
-   <p><a name="index-field_002c-setting-value-of-Java-object-field-3503"></a>FIXME: Need documentation on how to use structure-like indexing
+   <p><a name="index-field_002c-setting-value-of-Java-object-field-3517"></a><strong>FIXME:</strong> Need documentation on how to use structure-like indexing
 to set fields from Java object.
 
 <!-- isjava libinterp/octave-value/ov-java.cc -->
    <p><a name="doc_002disjava"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isjava</b> (<var>x</var>)<var><a name="index-isjava-3504"></a></var><br>
+&mdash; Built-in Function:  <b>isjava</b> (<var>x</var>)<var><a name="index-isjava-3518"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a Java object.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dtypeinfo.html#doc_002dtypeinfo">typeinfo</a>, <a href="doc_002disa.html#doc_002disa">isa</a>, <a href="doc_002djavaObject.html#doc_002djavaObject">javaObject</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-array_002c-creating-a-Java-array-3505"></a><!-- javaArray scripts/java/javaArray.m -->
+   <p><a name="index-array_002c-creating-a-Java-array-3519"></a><!-- javaArray scripts/java/javaArray.m -->
 <a name="doc_002djavaArray"></a>
 
 <div class="defun">
-&mdash; Function File: <var>jary</var> = <b>javaArray</b> (<var>classname, sz</var>)<var><a name="index-javaArray-3506"></a></var><br>
-&mdash; Function File: <var>jary</var> = <b>javaArray</b> (<var>classname, m, n, <small class="dots">...</small></var>)<var><a name="index-javaArray-3507"></a></var><br>
+&mdash; Function File: <var>jary</var> = <b>javaArray</b> (<var>classname, sz</var>)<var><a name="index-javaArray-3520"></a></var><br>
+&mdash; Function File: <var>jary</var> = <b>javaArray</b> (<var>classname, m, n, <small class="dots">...</small></var>)<var><a name="index-javaArray-3521"></a></var><br>
 <blockquote>
         <p>Create a Java array of size <var>sz</var> with elements of class
 <var>classname</var>.  <var>classname</var> may be a Java object representing a class
@@ -98,12 +98,12 @@ if <var>classname</var> is a primitive type.
         <p class="noindent"><strong>See also:</strong> <a href="doc_002djavaObject.html#doc_002djavaObject">javaObject</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-method_002c-invoking-a-method-of-a-Java-object-3508"></a><!-- javaMethod libinterp/octave-value/ov-java.cc -->
+   <p><a name="index-method_002c-invoking-a-method-of-a-Java-object-3522"></a><!-- javaMethod libinterp/octave-value/ov-java.cc -->
 <a name="doc_002djavaMethod"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>ret</var> = <b>javaMethod</b> (<var>methodname, obj</var>)<var><a name="index-javaMethod-3509"></a></var><br>
-&mdash; Built-in Function: <var>ret</var> = <b>javaMethod</b> (<var>methodname, obj, arg1, <small class="dots">...</small></var>)<var><a name="index-javaMethod-3510"></a></var><br>
+&mdash; Built-in Function: <var>ret</var> = <b>javaMethod</b> (<var>methodname, obj</var>)<var><a name="index-javaMethod-3523"></a></var><br>
+&mdash; Built-in Function: <var>ret</var> = <b>javaMethod</b> (<var>methodname, obj, arg1, <small class="dots">...</small></var>)<var><a name="index-javaMethod-3524"></a></var><br>
 <blockquote><p>Invoke the method <var>methodname</var> on the Java object <var>obj</var> with the
 arguments <var>arg1</var>, <small class="dots">...</small>  For static methods, <var>obj</var> can be a string
 representing the fully qualified name of the corresponding class.  The
@@ -119,7 +119,7 @@ equivalent
         <p class="noindent"><strong>See also:</strong> <a href="doc_002dmethods.html#doc_002dmethods">methods</a>, <a href="doc_002djavaObject.html#doc_002djavaObject">javaObject</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-methods_002c-displaying-available-methods-of-a-Java-object-3511"></a>FIXME: Need documentation on how methods() is overloaded to return
+   <p><a name="index-methods_002c-displaying-available-methods-of-a-Java-object-3525"></a><strong>FIXME:</strong> Need documentation on how methods() is overloaded to return
 the methods of a Java object.
 
    <p>The following three functions are used to display and modify the
@@ -127,14 +127,14 @@ class path used by the Java Virtual Machine.  This is entirely separate
 from Octave's PATH variable and is used by the JVM to find the correct
 code to execute.
 
-   <p><a name="index-classpath_002c-displaying-3512"></a><a name="index-classpath_002c-dynamic-3513"></a><a name="index-dynamic-classpath-3514"></a><a name="index-classpath_002c-static-3515"></a><a name="index-static-classpath-3516"></a><!-- javaclasspath scripts/java/javaclasspath.m -->
+   <p><a name="index-classpath_002c-displaying-3526"></a><a name="index-classpath_002c-dynamic-3527"></a><a name="index-dynamic-classpath-3528"></a><a name="index-classpath_002c-static-3529"></a><a name="index-static-classpath-3530"></a><!-- javaclasspath scripts/java/javaclasspath.m -->
 <a name="doc_002djavaclasspath"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>javaclasspath</b> ()<var><a name="index-javaclasspath-3517"></a></var><br>
-&mdash; Function File: <var>dpath</var> = <b>javaclasspath</b> ()<var><a name="index-javaclasspath-3518"></a></var><br>
-&mdash; Function File: [<var>dpath</var>, <var>spath</var>] = <b>javaclasspath</b> ()<var><a name="index-javaclasspath-3519"></a></var><br>
-&mdash; Function File: <var>clspath</var> = <b>javaclasspath</b> (<var>what</var>)<var><a name="index-javaclasspath-3520"></a></var><br>
+&mdash; Function File:  <b>javaclasspath</b> ()<var><a name="index-javaclasspath-3531"></a></var><br>
+&mdash; Function File: <var>dpath</var> = <b>javaclasspath</b> ()<var><a name="index-javaclasspath-3532"></a></var><br>
+&mdash; Function File: [<var>dpath</var>, <var>spath</var>] = <b>javaclasspath</b> ()<var><a name="index-javaclasspath-3533"></a></var><br>
+&mdash; Function File: <var>clspath</var> = <b>javaclasspath</b> (<var>what</var>)<var><a name="index-javaclasspath-3534"></a></var><br>
 <blockquote><p>Return the class path of the Java virtual machine in the form of a cell
 array of strings.
 
@@ -165,12 +165,12 @@ the second will be contain the static classpath.
      <p class="noindent"><strong>See also:</strong> <a href="doc_002djavaaddpath.html#doc_002djavaaddpath">javaaddpath</a>, <a href="doc_002djavarmpath.html#doc_002djavarmpath">javarmpath</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-javaaddpath-3521"></a><a name="index-classpath_002c-adding-new-path-3522"></a><a name="index-path_002c-adding-to-classpath-3523"></a><a name="index-classpath_002c-dynamic-3524"></a><a name="index-dynamic-classpath_002c-adding-new-path-3525"></a><!-- javaaddpath scripts/java/javaaddpath.m -->
+   <p><a name="index-javaaddpath-3535"></a><a name="index-classpath_002c-adding-new-path-3536"></a><a name="index-path_002c-adding-to-classpath-3537"></a><a name="index-classpath_002c-dynamic-3538"></a><a name="index-dynamic-classpath_002c-adding-new-path-3539"></a><!-- javaaddpath scripts/java/javaaddpath.m -->
 <a name="doc_002djavaaddpath"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>javaaddpath</b> (<var>clspath</var>)<var><a name="index-javaaddpath-3526"></a></var><br>
-&mdash; Function File:  <b>javaaddpath</b> (<var>clspath1, <small class="dots">...</small></var>)<var><a name="index-javaaddpath-3527"></a></var><br>
+&mdash; Function File:  <b>javaaddpath</b> (<var>clspath</var>)<var><a name="index-javaaddpath-3540"></a></var><br>
+&mdash; Function File:  <b>javaaddpath</b> (<var>clspath1, <small class="dots">...</small></var>)<var><a name="index-javaaddpath-3541"></a></var><br>
 <blockquote><p>Add <var>clspath</var> to the dynamic class path of the Java virtual
 machine.  <var>clspath</var> may either be a directory where <samp><span class="file">.class</span></samp>
 files are found, or a <samp><span class="file">.jar</span></samp> file containing Java classes. 
@@ -179,12 +179,12 @@ Multiple paths may be added at once by specifying additional arguments.
      <p class="noindent"><strong>See also:</strong> <a href="doc_002djavarmpath.html#doc_002djavarmpath">javarmpath</a>, <a href="doc_002djavaclasspath.html#doc_002djavaclasspath">javaclasspath</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-classpath_002c-removing-path-3528"></a><a name="index-path_002c-removing-from-classpath-3529"></a><!-- javarmpath scripts/java/javarmpath.m -->
+   <p><a name="index-classpath_002c-removing-path-3542"></a><a name="index-path_002c-removing-from-classpath-3543"></a><!-- javarmpath scripts/java/javarmpath.m -->
 <a name="doc_002djavarmpath"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>javarmpath</b> (<var>clspath</var>)<var><a name="index-javarmpath-3530"></a></var><br>
-&mdash; Function File:  <b>javarmpath</b> (<var>clspath1, <small class="dots">...</small></var>)<var><a name="index-javarmpath-3531"></a></var><br>
+&mdash; Function File:  <b>javarmpath</b> (<var>clspath</var>)<var><a name="index-javarmpath-3544"></a></var><br>
+&mdash; Function File:  <b>javarmpath</b> (<var>clspath1, <small class="dots">...</small></var>)<var><a name="index-javarmpath-3545"></a></var><br>
 <blockquote><p>Remove <var>clspath</var> from the dynamic class path of the Java virtual
 machine.  <var>clspath</var> may either be a directory where <samp><span class="file">.class</span></samp>
 files are found, or a <samp><span class="file">.jar</span></samp> file containing Java classes. 
@@ -200,7 +200,7 @@ between Octave and the Java Virtual Machine.
    <p><a name="doc_002dusejava"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>usejava</b> (<var>feature</var>)<var><a name="index-usejava-3532"></a></var><br>
+&mdash; Function File:  <b>usejava</b> (<var>feature</var>)<var><a name="index-usejava-3546"></a></var><br>
 <blockquote><p>Return true if the Java element <var>feature</var> is available.
 
         <p>Possible features are:
@@ -223,12 +223,12 @@ features may be available if Octave was compiled with the Java Interface
 and Java is installed. 
 </p></blockquote></div>
 
-   <p><a name="index-memory_002c-displaying-Java-memory-status-3533"></a><!-- javamem scripts/java/javamem.m -->
+   <p><a name="index-memory_002c-displaying-Java-memory-status-3547"></a><!-- javamem scripts/java/javamem.m -->
 <a name="doc_002djavamem"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>javamem</b> ()<var><a name="index-javamem-3534"></a></var><br>
-&mdash; Function File: <var>jmem</var> = <b>javamem</b> ()<var><a name="index-javamem-3535"></a></var><br>
+&mdash; Function File:  <b>javamem</b> ()<var><a name="index-javamem-3548"></a></var><br>
+&mdash; Function File: <var>jmem</var> = <b>javamem</b> ()<var><a name="index-javamem-3549"></a></var><br>
 <blockquote><p>Show the current memory usage of the Java virtual machine (JVM)
 and run the garbage collector.
 
@@ -241,13 +241,13 @@ a dedicated and separate part of memory claimed by the JVM from
 your computer's total memory (which comprises physical RAM and
 virtual memory / swap space on hard disk).
 
-        <p>The maximum allowable memory usage can be set using the file java.opts
-(in the same subdirectory where javaaddpath.m lives, see
-"which javaaddpath".  Usually that is:
+        <p>The maximum allowable memory usage can be configured using the file
+<samp><span class="file">java.opts</span></samp>.  The directory where this file resides is
+determined by the environment variable <samp><span class="env">OCTAVE_JAVA_DIR</span></samp><!-- /@w -->. 
+If unset, the directory where <samp><span class="file">javaaddpath.m</span></samp> resides is used instead
+(typically <samp><samp><span class="env">OCTAVE_HOME</span></samp><span class="file">/share/octave/</span><samp><span class="env">OCTAVE_VERSION</span></samp><span class="file">/m/java/</span></samp>
 
-        <p><samp><span class="file">OCTAVE_HOME/share/octave/OCTAVE_VERSION/m/java/</span></samp>
-
-        <p>java.opts is a plain text file with one option per line.  The
+        <p><samp><span class="file">java.opts</span></samp> is a plain text file with one option per line.  The
 default initial memory size and default maximum memory size (which
 are both system dependent) can be overridden like so:
 
@@ -255,7 +255,7 @@ are both system dependent) can be overridden like so:
 
         <p>-Xmx512m
 
-        <p>(in megabytes in this example.) 
+        <p>(in megabytes in this example). 
 You can adapt these values to your own requirements if your system
 has limited available physical memory or if you get Java memory
 errors.
@@ -272,9 +272,9 @@ management.
    <p><a name="doc_002djava_005fmatrix_005fautoconversion"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>java_matrix_autoconversion</b> ()<var><a name="index-java_005fmatrix_005fautoconversion-3536"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>java_matrix_autoconversion</b> (<var>new_val</var>)<var><a name="index-java_005fmatrix_005fautoconversion-3537"></a></var><br>
-&mdash; Built-in Function:  <b>java_matrix_autoconversion</b> (<var>new_val, "local"</var>)<var><a name="index-java_005fmatrix_005fautoconversion-3538"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>java_matrix_autoconversion</b> ()<var><a name="index-java_005fmatrix_005fautoconversion-3550"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>java_matrix_autoconversion</b> (<var>new_val</var>)<var><a name="index-java_005fmatrix_005fautoconversion-3551"></a></var><br>
+&mdash; Built-in Function:  <b>java_matrix_autoconversion</b> (<var>new_val, "local"</var>)<var><a name="index-java_005fmatrix_005fautoconversion-3552"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether Java arrays are
 automatically converted to Octave matrices.  The default value is false.
 
@@ -289,9 +289,9 @@ variable value is restored when exiting the function.
    <p><a name="doc_002djava_005funsigned_005fautoconversion"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>java_unsigned_autoconversion</b> ()<var><a name="index-java_005funsigned_005fautoconversion-3539"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>java_unsigned_autoconversion</b> (<var>new_val</var>)<var><a name="index-java_005funsigned_005fautoconversion-3540"></a></var><br>
-&mdash; Built-in Function:  <b>java_unsigned_autoconversion</b> (<var>new_val, "local"</var>)<var><a name="index-java_005funsigned_005fautoconversion-3541"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>java_unsigned_autoconversion</b> ()<var><a name="index-java_005funsigned_005fautoconversion-3553"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>java_unsigned_autoconversion</b> (<var>new_val</var>)<var><a name="index-java_005funsigned_005fautoconversion-3554"></a></var><br>
+&mdash; Built-in Function:  <b>java_unsigned_autoconversion</b> (<var>new_val, "local"</var>)<var><a name="index-java_005funsigned_005fautoconversion-3555"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls how integer classes are
 converted when <code>java_matrix_autoconversion</code> is enabled.  When enabled,
 Java arrays of class Byte or Integer are converted to matrices of class
@@ -308,9 +308,9 @@ variable value is restored when exiting the function.
    <p><a name="doc_002ddebug_005fjava"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>debug_java</b> ()<var><a name="index-debug_005fjava-3542"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>debug_java</b> (<var>new_val</var>)<var><a name="index-debug_005fjava-3543"></a></var><br>
-&mdash; Built-in Function:  <b>debug_java</b> (<var>new_val, "local"</var>)<var><a name="index-debug_005fjava-3544"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>debug_java</b> ()<var><a name="index-debug_005fjava-3556"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>debug_java</b> (<var>new_val</var>)<var><a name="index-debug_005fjava-3557"></a></var><br>
+&mdash; Built-in Function:  <b>debug_java</b> (<var>new_val, "local"</var>)<var><a name="index-debug_005fjava-3558"></a></var><br>
 <blockquote><p>Query or set the internal variable that determines whether extra debugging
 information regarding the initialization of the JVM and any Java exceptions
 is printed.

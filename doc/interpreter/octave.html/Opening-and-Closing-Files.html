@@ -49,9 +49,9 @@ used when reading a file.
    <p><a name="doc_002dfopen"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>fopen</b> (<var>name, mode, arch</var>)<var><a name="index-fopen-1009"></a></var><br>
-&mdash; Built-in Function: <var>fid_list</var> = <b>fopen</b> (<var>"all"</var>)<var><a name="index-fopen-1010"></a></var><br>
-&mdash; Built-in Function: [<var>file</var>, <var>mode</var>, <var>arch</var>] = <b>fopen</b> (<var>fid</var>)<var><a name="index-fopen-1011"></a></var><br>
+&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>fopen</b> (<var>name, mode, arch</var>)<var><a name="index-fopen-1022"></a></var><br>
+&mdash; Built-in Function: <var>fid_list</var> = <b>fopen</b> (<var>"all"</var>)<var><a name="index-fopen-1023"></a></var><br>
+&mdash; Built-in Function: [<var>file</var>, <var>mode</var>, <var>arch</var>] = <b>fopen</b> (<var>fid</var>)<var><a name="index-fopen-1024"></a></var><br>
 <blockquote><p>The first form of the <code>fopen</code> function opens the named file with
 the specified mode (read-write, read-only, etc.) and architecture
 interpretation (IEEE big endian, IEEE little endian, etc.), and returns
@@ -115,23 +115,17 @@ must also open the file in binary mode.
 for the file.  Valid values for <var>arch</var> are:
 
           <dl>
-&lsquo;<samp><span class="samp">native</span></samp>&rsquo;
-The format of the current machine (this is the default).
+<dt>&lsquo;<samp><span class="samp">native</span></samp>&rsquo;<dd>The format of the current machine (this is the default).
 
-          <p>&lsquo;<samp><span class="samp">ieee-be</span></samp>&rsquo;
-IEEE big endian format.
+          <br><dt>&lsquo;<samp><span class="samp">ieee-be</span></samp>&rsquo;<dd>IEEE big endian format.
 
-          <p>&lsquo;<samp><span class="samp">ieee-le</span></samp>&rsquo;
-IEEE little endian format.
+          <br><dt>&lsquo;<samp><span class="samp">ieee-le</span></samp>&rsquo;<dd>IEEE little endian format.
 
-          <p>&lsquo;<samp><span class="samp">vaxd</span></samp>&rsquo;
-VAX D floating format.
+          <br><dt>&lsquo;<samp><span class="samp">vaxd</span></samp>&rsquo;<dd>VAX D floating format.
 
-          <p>&lsquo;<samp><span class="samp">vaxg</span></samp>&rsquo;
-VAX G floating format.
+          <br><dt>&lsquo;<samp><span class="samp">vaxg</span></samp>&rsquo;<dd>VAX G floating format.
 
-          <p>&lsquo;<samp><span class="samp">cray</span></samp>&rsquo;
-Cray floating format. 
+          <br><dt>&lsquo;<samp><span class="samp">cray</span></samp>&rsquo;<dd>Cray floating format. 
 </dl>
 
      <p class="noindent">however, conversions are currently only supported for &lsquo;<samp><span class="samp">native</span></samp>&rsquo;
@@ -144,8 +138,8 @@ Cray floating format.
    <p><a name="doc_002dfclose"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fclose</b> (<var>fid</var>)<var><a name="index-fclose-1012"></a></var><br>
-&mdash; Built-in Function:  <b>fclose</b> (<var>"all"</var>)<var><a name="index-fclose-1013"></a></var><br>
+&mdash; Built-in Function:  <b>fclose</b> (<var>fid</var>)<var><a name="index-fclose-1025"></a></var><br>
+&mdash; Built-in Function:  <b>fclose</b> (<var>"all"</var>)<var><a name="index-fclose-1026"></a></var><br>
 <blockquote><p>Close the specified file.  If successful, <code>fclose</code> returns 0,
 otherwise, it returns -1.  The second form of the <code>fclose</code> call closes
 all open files except <code>stdout</code>, <code>stderr</code>, and <code>stdin</code>.
@@ -157,7 +151,7 @@ all open files except <code>stdout</code>, <code>stderr</code>, and <code>stdin<
    <p><a name="doc_002dis_005fvalid_005ffile_005fid"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>is_valid_file_id</b> (<var>fid</var>)<var><a name="index-is_005fvalid_005ffile_005fid-1014"></a></var><br>
+&mdash; Function File:  <b>is_valid_file_id</b> (<var>fid</var>)<var><a name="index-is_005fvalid_005ffile_005fid-1027"></a></var><br>
 <blockquote><p>Return true if <var>fid</var> refers to an open file.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 

@@ -58,13 +58,15 @@ BUILT_SOURCES = \
   parse-tree/oct-gperf.h \
   parse-tree/oct-parse.cc \
   oct-conf.h \
+  oct-conf-features.h \
   version.h \
   builtin-defun-decls.h \
   builtins.cc
 
 BUILT_DISTFILES = \
   parse-tree/oct-gperf.h \
-  parse-tree/oct-parse.h
+  parse-tree/oct-parse.h \
+  parse-tree/oct-parse.yy
 
 ## Files that are created during build process and installed,
 ## BUT not distributed in tarball.
@@ -76,6 +78,7 @@ BUILT_NODISTFILES = \
   builtin-defun-decls.h \
   operators/ops.cc \
   oct-conf.h \
+  oct-conf-features.h \
   version.h \
   $(OPT_HANDLERS) \
   $(OPT_INC) \
@@ -85,6 +88,7 @@ BUILT_NODISTFILES = \
 EXTRA_DIST = \
   Makefile.in \
   DOCSTRINGS \
+  config-features.sh \
   find-defun-files.sh \
   gendoc.pl \
   genprops.awk \
@@ -94,6 +98,7 @@ EXTRA_DIST = \
   mkdefs \
   mkops \
   oct-conf.in.h \
+  parse-tree/oct-parse.in.yy \
   version.in.h \
   $(BUILT_DISTFILES)
 
@@ -105,6 +110,7 @@ octinclude_HEADERS = \
   octave.h \
   $(OCTAVE_VALUE_INC) \
   $(PARSE_TREE_INC) \
+  $(PARSER_INC) \
   $(OPERATORS_INC) \
   $(INTERP_CORE_INC) \
   $(INTERPFCN_INC)
@@ -120,6 +126,7 @@ DIST_SRC = \
   octave.cc \
   $(OCTAVE_VALUE_SRC) \
   $(PARSE_TREE_SRC) \
+  $(PARSER_SRC) \
   $(INTERP_CORE_SRC) \
   $(INTERPFCN_SRC) \
   $(COREFCN_SRC)
@@ -162,6 +169,7 @@ nodist_liboctinterp_la_SOURCES = \
   builtin-defun-decls.h \
   builtins.cc \
   oct-conf.h \
+  oct-conf-features.h \
   version.h \
   $(OPT_INC)
 
@@ -172,6 +180,7 @@ include link-deps.mk
 liboctinterp_la_LIBADD = \
   octave-value/liboctave-value.la \
   parse-tree/libparse-tree.la \
+  parse-tree/libparser.la \
   interp-core/libinterp-core.la \
   interpfcn/libinterpfcn.la \
   corefcn/libcorefcn.la \
@@ -192,7 +201,11 @@ liboctinterp_la_LDFLAGS = \
   $(LIBOCTINTERP_LINK_OPTS)
 
 ## Section for defining and creating DEF_FILES
-SRC_DEF_FILES := $(shell $(srcdir)/find-defun-files.sh "$(srcdir)" $(DIST_SRC))
+
+ULT_DIST_SRC := \
+  $(filter-out parse-tree/oct-parse.yy, $(DIST_SRC)) parse-tree/oct-parse.in.yy
+
+SRC_DEF_FILES := $(shell $(srcdir)/find-defun-files.sh "$(srcdir)" $(ULT_DIST_SRC))
 
 DLDFCN_DEF_FILES = $(DLDFCN_SRC:.cc=.df)
 
@@ -232,7 +245,7 @@ DLL_CXXDEFS = @OCTINTERP_DLL_DEFS@
 
 ## Rules to build test files
 
-TST_FILES_SRC := $(shell $(top_srcdir)/build-aux/find-files-with-tests.sh "$(srcdir)" $(DIST_SRC) $(DLDFCN_SRC))
+TST_FILES_SRC := $(shell $(top_srcdir)/build-aux/find-files-with-tests.sh "$(srcdir)" $(ULT_DIST_SRC) $(DLDFCN_SRC))
 
 TST_FILES := $(addsuffix -tst,$(TST_FILES_SRC))
 
@@ -255,6 +268,10 @@ nobase_libinterptests_DATA = $(TST_FILES)
 ## Makefile.am and trigger the rules below.
 oct-conf.h: oct-conf.in.h Makefile
 	@$(do_subst_config_vals)
+
+oct-conf-features.h: $(top_builddir)/config.h config-features.sh
+	$(srcdir)/config-features.sh $< > $@-t
+	mv $@-t $@
 
 version.h: version.in.h Makefile
 	$(SED) < $< \
@@ -356,7 +373,9 @@ DISTCLEANFILES = \
   DOCSTRINGS \
   $(BUILT_NODISTFILES) \
   $(OCT_FILES) \
-  $(OCT_STAMP_FILES)
+  $(OCT_STAMP_FILES) \
+  $(TST_FILES)
 
 MAINTAINERCLEANFILES = \
   $(BUILT_DISTFILES)
+

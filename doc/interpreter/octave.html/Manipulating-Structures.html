@@ -40,7 +40,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Structures.html#Structures">Structures<
    <p><a name="doc_002dnfields"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nfields</b> (<var>s</var>)<var><a name="index-nfields-456"></a></var><br>
+&mdash; Built-in Function:  <b>nfields</b> (<var>s</var>)<var><a name="index-nfields-467"></a></var><br>
 <blockquote><p>Return the number of fields of the structure <var>s</var>. 
 </p></blockquote></div>
 
@@ -48,10 +48,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Structures.html#Structures">Structures<
    <p><a name="doc_002dfieldnames"></a>
 
 <div class="defun">
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-457"></a></var><br>
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>obj</var>)<var><a name="index-fieldnames-458"></a></var><br>
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>javaobj</var>)<var><a name="index-fieldnames-459"></a></var><br>
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>"jclassname"</var>)<var><a name="index-fieldnames-460"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-468"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>obj</var>)<var><a name="index-fieldnames-469"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>javaobj</var>)<var><a name="index-fieldnames-470"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>"jclassname"</var>)<var><a name="index-fieldnames-471"></a></var><br>
 <blockquote><p>Return a cell array of strings with the names of the fields in the
 specified input.
 
@@ -72,7 +72,7 @@ class.
    <p><a name="doc_002disfield"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isfield</b> (<var>x, name</var>)<var><a name="index-isfield-461"></a></var><br>
+&mdash; Built-in Function:  <b>isfield</b> (<var>x, name</var>)<var><a name="index-isfield-472"></a></var><br>
 <blockquote><p>Return true if the <var>x</var> is a structure and it
 includes an element named <var>name</var>.  If <var>name</var> is a cell
 array of strings then a logical array of equal dimension is returned. 
@@ -82,8 +82,8 @@ array of strings then a logical array of equal dimension is returned.
    <p><a name="doc_002dsetfield"></a>
 
 <div class="defun">
-&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, field, val</var>)<var><a name="index-setfield-462"></a></var><br>
-&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small>, val</var>)<var><a name="index-setfield-463"></a></var><br>
+&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, field, val</var>)<var><a name="index-setfield-473"></a></var><br>
+&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small>, val</var>)<var><a name="index-setfield-474"></a></var><br>
 <blockquote>
         <p>Set a field member <var>field</var> in a structure <var>s</var> equal to <var>val</var>.  For example:
 
@@ -146,8 +146,8 @@ another structure array whose third element is a structure
    <p><a name="doc_002dgetfield"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, field</var>)<var><a name="index-getfield-464"></a></var><br>
-&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small></var>)<var><a name="index-getfield-465"></a></var><br>
+&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, field</var>)<var><a name="index-getfield-475"></a></var><br>
+&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small></var>)<var><a name="index-getfield-476"></a></var><br>
 <blockquote><p>Extract a field from a structure (or a nested structure). The syntax
 is the same as <code>setfield</code>, except it omits the final <var>val</var>
 argument, returning this value instead of setting it.
@@ -159,8 +159,8 @@ argument, returning this value instead of setting it.
    <p><a name="doc_002drmfield"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, "f"</var>)<var><a name="index-rmfield-466"></a></var><br>
-&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-467"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, "f"</var>)<var><a name="index-rmfield-477"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-478"></a></var><br>
 <blockquote><p>Return a copy of the structure (array) <var>s</var> with the field <var>f</var>
 removed.  If <var>f</var> is a cell array of strings or a character array, remove
 each of the named fields.
@@ -172,8 +172,8 @@ each of the named fields.
    <p><a name="doc_002dorderfields"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1</var>)<var><a name="index-orderfields-468"></a></var><br>
-&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-469"></a></var><br>
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1</var>)<var><a name="index-orderfields-479"></a></var><br>
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-480"></a></var><br>
 <blockquote><p>Return a copy of <var>s1</var> with fields arranged alphabetically or
 as specified by <var>s2</var>.
 
@@ -237,7 +237,7 @@ which converts the original name order into the new name order.
    <p><a name="doc_002dsubstruct"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-470"></a></var><br>
+&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-481"></a></var><br>
 <blockquote><p>Create a subscript structure for use with <code>subsref</code> or
 <code>subsasgn</code>.  For example:
 

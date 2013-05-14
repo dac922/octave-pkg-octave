@@ -7,7 +7,7 @@
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions" title="FAQ - Frequently asked Questions">
 <link rel="prev" href="How-to-create-an-instance-of-a-Java-class_003f.html#How-to-create-an-instance-of-a-Java-class_003f" title="How to create an instance of a Java class?">
-<link rel="next" href="How-to-compile-the-java-package-in-Octave_003f.html#How-to-compile-the-java-package-in-Octave_003f" title="How to compile the java package in Octave?">
+<link rel="next" href="Which-_0040TeX_007b_007d-symbols-are-implemented-in-the-dialog-functions_003f.html#Which-_0040TeX_007b_007d-symbols-are-implemented-in-the-dialog-functions_003f" title="Which @TeX{} symbols are implemented in the dialog functions?">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -27,7 +27,7 @@
 <a name="How-can-I-handle-memory-limitations%3f"></a>
 <a name="How-can-I-handle-memory-limitations_003f"></a>
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="How-to-compile-the-java-package-in-Octave_003f.html#How-to-compile-the-java-package-in-Octave_003f">How to compile the java package in Octave?</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Which-TeX-symbols-are-implemented-in-the-dialog-functions_003f.html#Which-TeX-symbols-are-implemented-in-the-dialog-functions_003f">Which TeX symbols are implemented in the dialog functions?</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="How-to-create-an-instance-of-a-Java-class_003f.html#How-to-create-an-instance-of-a-Java-class_003f">How to create an instance of a Java class?</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="FAQ-_002d-Frequently-asked-Questions.html#FAQ-_002d-Frequently-asked-Questions">FAQ - Frequently asked Questions</a>
 <hr>
@@ -35,38 +35,32 @@ Up:&nbsp;<a rel="up" accesskey="u" href="FAQ-_002d-Frequently-asked-Questions.ht
 
 <h4 class="subsection">37.3.4 How can I handle memory limitations?</h4>
 
-<p><a name="index-memory_002c-limitations-3580"></a>
+<p><a name="index-memory_002c-limitations-3595"></a>
 In order to execute Java code Octave creates a Java Virtual Machine (JVM). 
 Such a JVM allocates a fixed amount of initial memory and may expand this pool
 up to a fixed maximum memory limit.  The default values depend on the Java
-version (see <a href="doc_002djavamem.html#doc_002djavamem">javamem</a>).  The memory pool is shared by all Java
-objects running in the JVM.  This strict memory limit is intended mainly to
-avoid that runaway applications inside web browsers or in enterprise servers
+version (see <a href="doc_002djavamem.html#doc_002djavamem">javamem</a>).  The memory pool is shared by all
+Java objects running in the JVM.  This strict memory limit is intended mainly
+to avoid that runaway applications inside web browsers or in enterprise servers
 can consume all memory and crash the system.  When the maximum memory limit is
 hit, Java code will throw exceptions so that applications will fail or behave
 unexpectedly.
 
-   <p>In Octave as well as in <span class="sc">matlab</span>, you can specify options for the creation
-of the JVM inside a file named <samp><span class="file">java.opts</span></samp>.  This is a text file where you
-can enter lines containing <samp><span class="option">-X</span></samp> and <samp><span class="option">-D</span></samp> options handed to the
-JVM during initialization.
+   <p>You can specify options for the creation of the JVM inside a file named
+<samp><span class="file">java.opts</span></samp>.  This is a text file where you can enter lines containing
+<samp><span class="option">-X</span></samp> and <samp><span class="option">-D</span></samp> options handed to the JVM during initialization.
 
-   <p>In Octave, the Java options file must be located in the directory where
-<samp><span class="file">javaclasspath.m</span></samp> resides, i.e., the package installation directory,
-usually something like <samp><span class="file">...\share\Octave\packages\java-1.2.8</span></samp>.  You can
+   <p>The directory where the Java options file is located is specified by the
+environment variable <samp><span class="env">OCTAVE_JAVA_DIR</span></samp><!-- /@w -->.  If unset the directory where
+<samp><span class="file">javaclasspath.m</span></samp> resides is used instead (typically
+<samp><samp><span class="env">OCTAVE_HOME</span></samp><span class="file">/share/octave/</span><samp><span class="env">OCTAVE_VERSION</span></samp><span class="file">/m/java/</span></samp>).  You can
 find this directory by executing
 
-<pre class="example">     pkg list
+<pre class="example">     which javaclasspath
 </pre>
-   <p>In <span class="sc">matlab</span>, the options file goes into the <samp><span class="file">MATLABROOT/bin/ARCH</span></samp>
-directory or in your personal <span class="sc">matlab</span> startup directory (can be determined
-by a &lsquo;<samp><span class="samp">pwd</span></samp>&rsquo; command).  <var>MATLABROOT</var> is the <span class="sc">matlab</span> root directory
-and <var>ARCH</var> is your system architecture, which you find by issuing the
-commands &lsquo;<samp><span class="samp">matlabroot</span></samp>&rsquo; respectively &lsquo;<samp><span class="samp">computer('arch')</span></samp>&rsquo;.
-
    <p>The <samp><span class="option">-X</span></samp> options allow you to increase the maximum amount of memory
-available to the JVM to 256 Megabytes by adding the following line to the
-<samp><span class="file">java.opts</span></samp> file:
+available to the JVM.  The following example allows up to 256 Megabytes to
+be used by adding the following line to the <samp><span class="file">java.opts</span></samp> file:
 
 <pre class="example">     -Xmx256m
 </pre>
@@ -96,7 +90,7 @@ the string <code>12.34</code>.
    <p>The value of this property can then be retrieved as a string by a Java object
 or in Octave:
 
-<pre class="example">     octave&gt; javaMethod('java.lang.System', 'getProperty', 'MyProperty');
+<pre class="example">     octave&gt; javaMethod ('getProperty', 'java.lang.System', 'MyProperty');
      ans = 12.34
 </pre>
    <p class="noindent"><strong>See also:</strong> javamem.

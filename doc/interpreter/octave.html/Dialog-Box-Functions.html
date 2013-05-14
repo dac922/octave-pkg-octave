@@ -37,13 +37,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Java-Interface.html#Java-Interface">Jav
 <p>The following functions all use the Java Interface to provide some form
 of dialog box.
 
-   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3545"></a><!-- msgbox scripts/java/msgbox.m -->
+   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3559"></a><!-- msgbox scripts/ui/msgbox.m -->
 <a name="doc_002dmsgbox"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg</var>)<var><a name="index-msgbox-3546"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title</var>)<var><a name="index-msgbox-3547"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title, icon</var>)<var><a name="index-msgbox-3548"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg</var>)<var><a name="index-msgbox-3560"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title</var>)<var><a name="index-msgbox-3561"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title, icon</var>)<var><a name="index-msgbox-3562"></a></var><br>
 <blockquote><p>Display <var>msg</var> using a message dialog box.
 
         <p>The message may have multiple lines separated by newline characters
@@ -52,7 +52,7 @@ line.  The optional input <var>title</var> (character string) can be used to
 decorate the dialog caption.
 
         <p>The optional argument <var>icon</var> selects a dialog icon. 
-It can be one of <code>"none"</code> (default), <code>"error"</code>, <code>"help"</code> or
+It can be one of <code>"none"</code> (default), <code>"error"</code>, <code>"help"</code>, or
 <code>"warn"</code>.
 
         <p>The return value is always 1.
@@ -60,12 +60,12 @@ It can be one of <code>"none"</code> (default), <code>"error"</code>, <code>"hel
      <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-dialog_002c-displaying-an-error-dialog-3549"></a><!-- errordlg scripts/java/errordlg.m -->
+   <p><a name="index-dialog_002c-displaying-an-error-dialog-3563"></a><!-- errordlg scripts/ui/errordlg.m -->
 <a name="doc_002derrordlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg</var>)<var><a name="index-errordlg-3550"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg, title</var>)<var><a name="index-errordlg-3551"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg</var>)<var><a name="index-errordlg-3564"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg, title</var>)<var><a name="index-errordlg-3565"></a></var><br>
 <blockquote><p>Display <var>msg</var> using an error dialog box.
 
         <p>The message may have multiple lines separated by newline characters
@@ -78,12 +78,12 @@ set the dialog caption.  The default title is "Error Dialog".
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-dialog_002c-displaying-a-help-dialog-3552"></a><!-- helpdlg scripts/java/helpdlg.m -->
+   <p><a name="index-dialog_002c-displaying-a-help-dialog-3566"></a><!-- helpdlg scripts/ui/helpdlg.m -->
 <a name="doc_002dhelpdlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg</var>)<var><a name="index-helpdlg-3553"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg, title</var>)<var><a name="index-helpdlg-3554"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg</var>)<var><a name="index-helpdlg-3567"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg, title</var>)<var><a name="index-helpdlg-3568"></a></var><br>
 <blockquote><p>Display <var>msg</var> in a help dialog box.
 
         <p>The message may have multiple lines separated by newline characters
@@ -96,14 +96,14 @@ set the dialog caption.  The default title is "Help Dialog".
      <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-dialog_002c-displaying-an-input-dialog-3555"></a><!-- inputdlg scripts/java/inputdlg.m -->
+   <p><a name="index-dialog_002c-displaying-an-input-dialog-3569"></a><!-- inputdlg scripts/ui/inputdlg.m -->
 <a name="doc_002dinputdlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt</var>)<var><a name="index-inputdlg-3556"></a></var><br>
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title</var>)<var><a name="index-inputdlg-3557"></a></var><br>
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols</var>)<var><a name="index-inputdlg-3558"></a></var><br>
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols, defaults</var>)<var><a name="index-inputdlg-3559"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt</var>)<var><a name="index-inputdlg-3570"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title</var>)<var><a name="index-inputdlg-3571"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols</var>)<var><a name="index-inputdlg-3572"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols, defaults</var>)<var><a name="index-inputdlg-3573"></a></var><br>
 <blockquote><p>Return user input from a multi-textfield dialog box in a cell array
 of strings, or an empty cell array if the dialog is closed by the
 Cancel button.
@@ -137,43 +137,43 @@ a cell array of strings with the same size as <var>prompt</var>.
      <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-dialog_002c-displaying-a-list-dialog-3560"></a><!-- listdlg scripts/java/listdlg.m -->
+   <p><a name="index-dialog_002c-displaying-a-list-dialog-3574"></a><!-- listdlg scripts/ui/listdlg.m -->
 <a name="doc_002dlistdlg"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>sel</var>, <var>ok</var>] = <b>listdlg</b> (<var>key, value, <small class="dots">...</small></var>)<var><a name="index-listdlg-3561"></a></var><br>
+&mdash; Function File: [<var>sel</var>, <var>ok</var>] = <b>listdlg</b> (<var>key, value, <small class="dots">...</small></var>)<var><a name="index-listdlg-3575"></a></var><br>
 <blockquote><p>Return user inputs from a list dialog box in a vector of
 selection indices <var>sel</var> and a flag <var>ok</var> indicating how the
 user closed the dialog box.  The value of <var>ok</var> is 1 if the user
 closed the box with the OK button, otherwise it is 0 and <var>sel</var> is
 empty.
 
-        <p>The indices in <var>sel</var> are 1 based.
+        <p>The indices in <var>sel</var> are 1-based.
 
         <p>The arguments are specified in form of <var>key</var>, <var>value</var> pairs. 
-The <code>"ListString"</code> argument pair must be specified.
+The "ListString" argument pair must be specified.
 
         <p>Valid <var>key</var> and <var>value</var> pairs are:
 
           <dl>
-<dt><code>"ListString"</code><dd>   a cell array of strings comprising the content of the list.
+<dt>"ListString"<dd>a cell array of strings comprising the content of the list.
 
-          <br><dt><code>"SelectionMode"</code><dd>   can be either <code>"Single"</code> or <code>"Multiple"</code> (default).
+          <br><dt>"SelectionMode"<dd>can be either "Single" or "Multiple" (default).
 
-          <br><dt><code>"ListSize"</code><dd>   a vector with two elements <var>width</var> and <var>height</var> defining
-   the size of the list field in pixels.  Default is [160 300].
+          <br><dt>"ListSize"<dd>a vector with two elements <var>width</var> and <var>height</var> defining
+the size of the list field in pixels.  Default is [160 300].
 
-          <br><dt><code>"InitialValue"</code><dd>   a vector containing 1-based indices of preselected elements.  Default
-   is 1 (first item).
+          <br><dt>"InitialValue"<dd>a vector containing 1-based indices of preselected elements.  Default
+is 1 (first item).
 
-          <br><dt><code>"Name"</code><dd>   a string to be used as the dialog caption.  Default is "".
+          <br><dt>"Name"<dd>a string to be used as the dialog caption.  Default is "".
 
-          <br><dt><code>"PromptString"</code><dd>   a cell array of strings to be displayed above the list field.  Default
-   is {}.
+          <br><dt>"PromptString"<dd>a cell array of strings to be displayed above the list field.  Default
+is {}.
 
-          <br><dt><code>"OKString"</code><dd>   a string used to label the OK button.  Default is "OK".
+          <br><dt>"OKString"<dd>a string used to label the OK button.  Default is "OK".
 
-          <br><dt><code>"CancelString"</code><dd>   a string used to label the Cancel button.  Default is "Cancel". 
+          <br><dt>"CancelString"<dd>a string used to label the Cancel button.  Default is "Cancel". 
 </dl>
 
         <p>Example:
@@ -189,28 +189,28 @@ The <code>"ListString"</code> argument pair must be specified.
         <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-dialog_002c-displaying-a-question-dialog-3562"></a><!-- questdlg scripts/java/questdlg.m -->
+   <p><a name="index-dialog_002c-displaying-a-question-dialog-3576"></a><!-- questdlg scripts/ui/questdlg.m -->
 <a name="doc_002dquestdlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg</var>)<var><a name="index-questdlg-3563"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title</var>)<var><a name="index-questdlg-3564"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, default</var>)<var><a name="index-questdlg-3565"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, default</var>)<var><a name="index-questdlg-3566"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, btn3, default</var>)<var><a name="index-questdlg-3567"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg</var>)<var><a name="index-questdlg-3577"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title</var>)<var><a name="index-questdlg-3578"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, default</var>)<var><a name="index-questdlg-3579"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, default</var>)<var><a name="index-questdlg-3580"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, btn3, default</var>)<var><a name="index-questdlg-3581"></a></var><br>
 <blockquote><p>Display <var>msg</var> using a question dialog box and return the caption
 of the activated button.
 
         <p>The dialog may contain two or three buttons which will all close the dialog.
 
         <p>The message may have multiple lines separated by newline characters
-(<code>"\n"</code>), or it may be a cellstr array with one element for each
+("\n"), or it may be a cellstr array with one element for each
 line.  The optional <var>title</var> (character string) can be used to
 decorate the dialog caption.
 
         <p>The string <var>default</var> identifies the default button,
-which is activated by pressing the <kbd>ENTER</kbd> key. 
-It must match one of the strings given in <var>btn1</var>, <var>btn2</var> or
+which is activated by pressing the &lt;ENTER&gt; key. 
+It must match one of the strings given in <var>btn1</var>, <var>btn2</var>, or
 <var>btn3</var>.
 
         <p>If only <var>msg</var> and <var>title</var> are specified, three buttons with
@@ -222,12 +222,12 @@ the dialog will have only these two buttons.
      <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
 </p></blockquote></div>
 
-   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3568"></a><!-- warndlg scripts/java/warndlg.m -->
+   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3582"></a><!-- warndlg scripts/ui/warndlg.m -->
 <a name="doc_002dwarndlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg</var>)<var><a name="index-warndlg-3569"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg, title</var>)<var><a name="index-warndlg-3570"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg</var>)<var><a name="index-warndlg-3583"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg, title</var>)<var><a name="index-warndlg-3584"></a></var><br>
 <blockquote><p>Display <var>msg</var> using a warning dialog box.
 
         <p>The message may have multiple lines separated by newline characters

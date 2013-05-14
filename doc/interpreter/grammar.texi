@@ -85,9 +85,9 @@ from being evaluated periodically.
 
 @c add_input_event_hook libinterp/interpfcn/input.cc
 @anchor{doc-add_input_event_hook}
-@deftypefn  {Built-in Function} {} add_input_event_hook (@var{fcn})
-@deftypefnx {Built-in Function} {} add_input_event_hook (@var{fcn}, @var{data})
-Add the named function @var{fcn} to the list of functions to call
+@deftypefn  {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn})
+@deftypefnx {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn}, @var{data})
+Add the named function or function handle @var{fcn} to the list of functions to call
 periodically when Octave is waiting for input.  The function should
 have the form
 
@@ -97,15 +97,20 @@ have the form
 
 If @var{data} is omitted, Octave calls the function without any
 arguments.
+
+The returned identifier may be used to remove the function handle from
+the list of input hook functions.
 @seealso{@ref{doc-remove_input_event_hook,,remove_input_event_hook}}
 @end deftypefn
 
 
 @c remove_input_event_hook libinterp/interpfcn/input.cc
 @anchor{doc-remove_input_event_hook}
-@deftypefn {Built-in Function} {} remove_input_event_hook (@var{fcn})
-Remove the named function @var{fcn} from the list of functions to call
-periodically when Octave is waiting for input.
+@deftypefn {Built-in Function} {} remove_input_event_hook (@var{name})
+@deftypefnx {Built-in Function} {} remove_input_event_hook (@var{fcn_id})
+Remove the named function or function handle with the given identifier
+from the list of functions to call periodically when Octave is waiting
+for input.
 @seealso{@ref{doc-add_input_event_hook,,add_input_event_hook}}
 @end deftypefn
 

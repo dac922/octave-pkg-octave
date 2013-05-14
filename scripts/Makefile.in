@@ -89,8 +89,8 @@ DIST_COMMON = $(srcdir)/@ftp/module.mk $(srcdir)/Makefile.am \
 	$(srcdir)/statistics/models/module.mk \
 	$(srcdir)/statistics/tests/module.mk \
 	$(srcdir)/strings/module.mk $(srcdir)/testfun/module.mk \
-	$(srcdir)/time/module.mk $(top_srcdir)/build-aux/common.mk \
-	mkinstalldirs
+	$(srcdir)/time/module.mk $(srcdir)/ui/module.mk \
+	$(top_srcdir)/build-aux/common.mk mkinstalldirs
 @AMCOND_HAVE_JAVA_TRUE@am__append_1 = java/octave.jar
 subdir = scripts
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -261,6 +261,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BISON_PUSH_PULL_DECL_STYLE = @BISON_PUSH_PULL_DECL_STYLE@
 BITSIZEOF_PTRDIFF_T = @BITSIZEOF_PTRDIFF_T@
 BITSIZEOF_SIG_ATOMIC_T = @BITSIZEOF_SIG_ATOMIC_T@
 BITSIZEOF_SIZE_T = @BITSIZEOF_SIZE_T@
@@ -316,7 +317,9 @@ CXXPICFLAG = @CXXPICFLAG@
 CXX_VERSION = @CXX_VERSION@
 CYGPATH_W = @CYGPATH_W@
 DEFAULT_PAGER = @DEFAULT_PAGER@
-# ifeq ($(INCLUDE_DEPS),false)
+DEFAULT_TERMINAL_FONT = @DEFAULT_TERMINAL_FONT@
+DEFAULT_TERMINAL_FONT_SIZE = @DEFAULT_TERMINAL_FONT_SIZE@
+# ifeq ($(INCLUDE_DEPS),no)
 #   omit_deps = true;
 # endif
 DEFS = @DEFS@
@@ -756,7 +759,6 @@ GPERF = @GPERF@
 GRAPHICS_CFLAGS = @GRAPHICS_CFLAGS@
 GRAPHICS_LIBS = @GRAPHICS_LIBS@
 GREP = @GREP@
-GUIDIR = @GUIDIR@
 GXX_VERSION = @GXX_VERSION@
 HAVE_ACCEPT4 = @HAVE_ACCEPT4@
 HAVE_ACOSF = @HAVE_ACOSF@
@@ -1135,6 +1137,7 @@ LOCALE_FR = @LOCALE_FR@
 LOCALE_FR_UTF8 = @LOCALE_FR_UTF8@
 LOCALE_JA = @LOCALE_JA@
 LOCALE_ZH_CN = @LOCALE_ZH_CN@
+LRELEASE = @LRELEASE@
 LTALLOCA = @LTALLOCA@
 LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
@@ -1500,7 +1503,6 @@ TEXINFO_Z = @TEXINFO_Z@
 TIME_H_DEFINES_STRUCT_TIMESPEC = @TIME_H_DEFINES_STRUCT_TIMESPEC@
 TRUNCF_LIBM = @TRUNCF_LIBM@
 TRUNC_LIBM = @TRUNC_LIBM@
-UGLY_DEFS = @UGLY_DEFS@
 UIC = @UIC@
 UMFPACK_CPPFLAGS = @UMFPACK_CPPFLAGS@
 UMFPACK_LDFLAGS = @UMFPACK_LDFLAGS@
@@ -1736,9 +1738,9 @@ SPARSE_XLDFLAGS = \
   $(CCOLAMD_LDFLAGS) $(CXSPARSE_LDFLAGS)
 
 SPARSE_XLIBS = \
-    $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
-    $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
-    $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
+  $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
+  $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
+  $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
 
 CONFIG_SUBDIRS = @subdirs@
 
@@ -1764,7 +1766,7 @@ FCN_FILE_DIRS = @ftp audio deprecated elfun general geometry help \
 	pkg plot polynomial prefs set signal sparse specfun \
 	special-matrix startup statistics/base \
 	statistics/distributions statistics/models statistics/tests \
-	strings testfun time
+	strings testfun time ui
 FCN_FILES = $(@ftp_FCN_FILES) $(audio_FCN_FILES) \
 	$(deprecated_FCN_FILES) $(elfun_FCN_FILES) \
 	$(general_FCN_FILES) $(geometry_FCN_FILES) $(help_FCN_FILES) \
@@ -1777,7 +1779,8 @@ FCN_FILES = $(@ftp_FCN_FILES) $(audio_FCN_FILES) \
 	$(startup_FCN_FILES) $(statistics_base_FCN_FILES) \
 	$(statistics_distributions_FCN_FILES) \
 	$(statistics_models_FCN_FILES) $(statistics_tests_FCN_FILES) \
-	$(strings_FCN_FILES) $(testfun_FCN_FILES) $(time_FCN_FILES)
+	$(strings_FCN_FILES) $(testfun_FCN_FILES) $(time_FCN_FILES) \
+	$(ui_FCN_FILES)
 GEN_FCN_FILES = $(plot_GEN_FCN_FILES)
 PKG_ADD_FILES = @ftp/PKG_ADD audio/PKG_ADD deprecated/PKG_ADD \
 	elfun/PKG_ADD general/PKG_ADD geometry/PKG_ADD help/PKG_ADD \
@@ -1788,7 +1791,7 @@ PKG_ADD_FILES = @ftp/PKG_ADD audio/PKG_ADD deprecated/PKG_ADD \
 	special-matrix/PKG_ADD startup/PKG_ADD statistics/base/PKG_ADD \
 	statistics/distributions/PKG_ADD statistics/models/PKG_ADD \
 	statistics/tests/PKG_ADD strings/PKG_ADD testfun/PKG_ADD \
-	time/PKG_ADD
+	time/PKG_ADD ui/PKG_ADD
 DIRSTAMP_FILES = @ftp/$(octave_dirstamp) audio/$(octave_dirstamp) \
 	deprecated/$(octave_dirstamp) elfun/$(octave_dirstamp) \
 	general/$(octave_dirstamp) geometry/$(octave_dirstamp) \
@@ -1806,7 +1809,8 @@ DIRSTAMP_FILES = @ftp/$(octave_dirstamp) audio/$(octave_dirstamp) \
 	statistics/distributions/$(octave_dirstamp) \
 	statistics/models/$(octave_dirstamp) \
 	statistics/tests/$(octave_dirstamp) strings/$(octave_dirstamp) \
-	testfun/$(octave_dirstamp) time/$(octave_dirstamp)
+	testfun/$(octave_dirstamp) time/$(octave_dirstamp) \
+	ui/$(octave_dirstamp)
 IMAGES = image/default.img
 JAR_FILES = $(am__append_1)
 @ftp_FCN_FILES = \
@@ -2065,20 +2069,12 @@ io_FCN_FILES = \
   io/textread.m
 
 java_FCN_FILES = \
-  java/dlgtest.m \
-  java/errordlg.m \
-  java/helpdlg.m \
-  java/inputdlg.m \
   java/javaArray.m \
   java/javaaddpath.m \
   java/javaclasspath.m \
   java/javamem.m \
   java/javarmpath.m \
-  java/listdlg.m \
-  java/msgbox.m \
-  java/questdlg.m \
-  java/usejava.m \
-  java/warndlg.m
+  java/usejava.m
 
 org_octave_dir = org/octave
 @AMCOND_HAVE_JAVA_TRUE@JAVA_SRC = \
@@ -2130,6 +2126,7 @@ linear_algebra_FCN_FILES = \
   linear-algebra/vech.m
 
 miscellaneous_PRIVATE_FCN_FILES = \
+  miscellaneous/private/display_info_file.m \
   miscellaneous/private/__xzip__.m
 
 miscellaneous_FCN_FILES = \
@@ -2139,6 +2136,7 @@ miscellaneous_FCN_FILES = \
   miscellaneous/bunzip2.m \
   miscellaneous/bzip2.m \
   miscellaneous/cast.m \
+  miscellaneous/citation.m \
   miscellaneous/comma.m \
   miscellaneous/compare_versions.m \
   miscellaneous/computer.m \
@@ -2834,6 +2832,7 @@ strings_FCN_FILES = \
   strings/strcat.m \
   strings/cstrcat.m \
   strings/strchr.m \
+  strings/strjoin.m \
   strings/strjust.m \
   strings/strmatch.m \
   strings/strtok.m \
@@ -2844,6 +2843,7 @@ strings_FCN_FILES = \
   strings/validatestring.m
 
 testfun_FCN_FILES = \
+  testfun/__have_feature__.m \
   testfun/__printf_assert__.m \
   testfun/__prog_output_assert__.m \
   testfun/__run_test_suite__.m \
@@ -2873,6 +2873,19 @@ time_FCN_FILES = \
   time/now.m \
   time/weekday.m
 
+ui_PRIVATE_FCN_FILES = \
+  ui/private/message_dialog.m
+
+ui_FCN_FILES = \
+  ui/errordlg.m \
+  ui/helpdlg.m \
+  ui/inputdlg.m \
+  ui/listdlg.m \
+  ui/msgbox.m \
+  ui/questdlg.m \
+  ui/warndlg.m \
+  $(ui_PRIVATE_FCN_FILES)
+
 nobase_fcnfile_DATA = $(FCN_FILES) $(GEN_FCN_FILES) $(JAR_FILES)
 image_DATA = $(IMAGES)
 FCN_FILES_IN = $(GEN_FCN_FILES:.m=.in)
@@ -2880,7 +2893,7 @@ octave_dirstamp = $(am__leading_dot)dirstamp
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/build-aux/common.mk $(srcdir)/@ftp/module.mk $(srcdir)/audio/module.mk $(srcdir)/deprecated/module.mk $(srcdir)/elfun/module.mk $(srcdir)/general/module.mk $(srcdir)/geometry/module.mk $(srcdir)/help/module.mk $(srcdir)/image/module.mk $(srcdir)/io/module.mk $(srcdir)/java/module.mk $(srcdir)/linear-algebra/module.mk $(srcdir)/miscellaneous/module.mk $(srcdir)/optimization/module.mk $(srcdir)/path/module.mk $(srcdir)/pkg/module.mk $(srcdir)/plot/module.mk $(srcdir)/polynomial/module.mk $(srcdir)/prefs/module.mk $(srcdir)/set/module.mk $(srcdir)/signal/module.mk $(srcdir)/sparse/module.mk $(srcdir)/specfun/module.mk $(srcdir)/special-matrix/module.mk $(srcdir)/startup/module.mk $(srcdir)/statistics/base/module.mk $(srcdir)/statistics/distributions/module.mk $(srcdir)/statistics/models/module.mk $(srcdir)/statistics/tests/module.mk $(srcdir)/strings/module.mk $(srcdir)/testfun/module.mk $(srcdir)/time/module.mk $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/build-aux/common.mk $(srcdir)/@ftp/module.mk $(srcdir)/audio/module.mk $(srcdir)/deprecated/module.mk $(srcdir)/elfun/module.mk $(srcdir)/general/module.mk $(srcdir)/geometry/module.mk $(srcdir)/help/module.mk $(srcdir)/image/module.mk $(srcdir)/io/module.mk $(srcdir)/java/module.mk $(srcdir)/linear-algebra/module.mk $(srcdir)/miscellaneous/module.mk $(srcdir)/optimization/module.mk $(srcdir)/path/module.mk $(srcdir)/pkg/module.mk $(srcdir)/plot/module.mk $(srcdir)/polynomial/module.mk $(srcdir)/prefs/module.mk $(srcdir)/set/module.mk $(srcdir)/signal/module.mk $(srcdir)/sparse/module.mk $(srcdir)/specfun/module.mk $(srcdir)/special-matrix/module.mk $(srcdir)/startup/module.mk $(srcdir)/statistics/base/module.mk $(srcdir)/statistics/distributions/module.mk $(srcdir)/statistics/models/module.mk $(srcdir)/statistics/tests/module.mk $(srcdir)/strings/module.mk $(srcdir)/testfun/module.mk $(srcdir)/time/module.mk $(srcdir)/ui/module.mk $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -2901,7 +2914,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/build-aux/common.mk $(srcdir)/@ftp/module.mk $(srcdir)/audio/module.mk $(srcdir)/deprecated/module.mk $(srcdir)/elfun/module.mk $(srcdir)/general/module.mk $(srcdir)/geometry/module.mk $(srcdir)/help/module.mk $(srcdir)/image/module.mk $(srcdir)/io/module.mk $(srcdir)/java/module.mk $(srcdir)/linear-algebra/module.mk $(srcdir)/miscellaneous/module.mk $(srcdir)/optimization/module.mk $(srcdir)/path/module.mk $(srcdir)/pkg/module.mk $(srcdir)/plot/module.mk $(srcdir)/polynomial/module.mk $(srcdir)/prefs/module.mk $(srcdir)/set/module.mk $(srcdir)/signal/module.mk $(srcdir)/sparse/module.mk $(srcdir)/specfun/module.mk $(srcdir)/special-matrix/module.mk $(srcdir)/startup/module.mk $(srcdir)/statistics/base/module.mk $(srcdir)/statistics/distributions/module.mk $(srcdir)/statistics/models/module.mk $(srcdir)/statistics/tests/module.mk $(srcdir)/strings/module.mk $(srcdir)/testfun/module.mk $(srcdir)/time/module.mk:
+$(top_srcdir)/build-aux/common.mk $(srcdir)/@ftp/module.mk $(srcdir)/audio/module.mk $(srcdir)/deprecated/module.mk $(srcdir)/elfun/module.mk $(srcdir)/general/module.mk $(srcdir)/geometry/module.mk $(srcdir)/help/module.mk $(srcdir)/image/module.mk $(srcdir)/io/module.mk $(srcdir)/java/module.mk $(srcdir)/linear-algebra/module.mk $(srcdir)/miscellaneous/module.mk $(srcdir)/optimization/module.mk $(srcdir)/path/module.mk $(srcdir)/pkg/module.mk $(srcdir)/plot/module.mk $(srcdir)/polynomial/module.mk $(srcdir)/prefs/module.mk $(srcdir)/set/module.mk $(srcdir)/signal/module.mk $(srcdir)/sparse/module.mk $(srcdir)/specfun/module.mk $(srcdir)/special-matrix/module.mk $(srcdir)/startup/module.mk $(srcdir)/statistics/base/module.mk $(srcdir)/statistics/distributions/module.mk $(srcdir)/statistics/models/module.mk $(srcdir)/statistics/tests/module.mk $(srcdir)/strings/module.mk $(srcdir)/testfun/module.mk $(srcdir)/time/module.mk $(srcdir)/ui/module.mk:
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -2968,6 +2981,7 @@ TAGS:
 ctags: CTAGS
 CTAGS:
 
+@AMCOND_HAVE_JAVA_TRUE@dist-hook:
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -2999,6 +3013,9 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) \
+	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+	  dist-hook
 check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
@@ -3109,12 +3126,12 @@ uninstall-am: uninstall-imageDATA uninstall-local \
 .MAKE: install-am install-strip
 
 .PHONY: all all-am all-local check check-am clean clean-generic \
-	clean-libtool distclean distclean-generic distclean-libtool \
-	distclean-local distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-imageDATA \
-	install-info install-info-am install-man \
+	clean-libtool dist-hook distclean distclean-generic \
+	distclean-libtool distclean-local distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-imageDATA install-info install-info-am install-man \
 	install-nobase_fcnfileDATA install-pdf install-pdf-am \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -3124,8 +3141,9 @@ uninstall-am: uninstall-imageDATA uninstall-local \
 	uninstall-nobase_fcnfileDATA
 
 export AWK
-export SED
+export GREP
 export FIND
+export SED
 export PERL
 
 # ==================== Octave-specific Makefile rules ====================
@@ -3149,10 +3167,6 @@ if [ "x$(srcdir)" != "x." ] && [ -f $(srcdir)/$@ ] && [ ! -f $@ ]; then \
   touch -r $(srcdir)/$@ $@; \
 fi
 endef
-
-# Yes, the second sed command near the end is needed, to avoid limits
-# in command lengths for some versions of sed.  UGLY_DEFS is often
-# quite large, so it makes sense to split this command there.
 
 define do_subst_config_vals
 echo "making $@ from $<"
@@ -3204,6 +3218,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_CXXPICFLAG%|\"${CXXPICFLAG}\"|" \
   -e "s|%OCTAVE_CONF_CXX_VERSION%|\"${CXX_VERSION}\"|" \
   -e "s|%OCTAVE_CONF_DEFAULT_PAGER%|\"${DEFAULT_PAGER}\"|" \
+  -e "s|%OCTAVE_CONF_DEFS%|\"${DEFS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_FLAGS%|\"${DEPEND_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_EXTRA_SED_PATTERN%|\"${DEPEND_EXTRA_SED_PATTERN}\"|" \
   -e "s|%OCTAVE_CONF_DL_LD%|\"${DL_LD}\"|" \
@@ -3234,8 +3249,8 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_GNUPLOT%|\"${GNUPLOT}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_CFLAGS%|\"${GRAPHICS_CFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_LIBS%|\"${GRAPHICS_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
+  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" | \
+  $(SED) -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_HDF5_LIBS%|\"${HDF5_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_INCLUDEDIR%|\"${includedir}\"|" \
   -e "s|%OCTAVE_CONF_LAPACK_LIBS%|\"${LAPACK_LIBS}\"|" \
@@ -3299,7 +3314,6 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_SONAME_FLAGS%|\"${SONAME_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_STATIC_LIBS%|\"${STATIC_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_TERM_LIBS%|\"${TERM_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_UGLY_DEFS%|\"${UGLY_DEFS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_CPPFLAGS%|\"${UMFPACK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LDFLAGS%|\"${UMFPACK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LIBS%|\"${UMFPACK_LIBS}\"|" \
@@ -3316,8 +3330,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_Z_CPPFLAGS%|\"${Z_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LDFLAGS%|\"${Z_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LIBS%|\"${Z_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" | \
-  $(SED)  -e "s|%OCTAVE_CONF_DEFS%|\"${UGLY_DEFS}\"|" > $@-t
+  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
@@ -3374,42 +3387,21 @@ $(SED) < $< \
   -e "s|%AWK%|${AWK}|g" \
   -e "s|%FIND%|${FIND}|g" \
   -e "s|%SED%|${SED}|g" \
-  -e "s|%library_path_var%|${library_path_var}|g" \
-  -e "s|%liboctinterp%|${SHLPRE}octinterp.${SHLEXT}|g" \
-  -e "s|%liboctave%|${SHLPRE}octave.${SHLEXT}|g" \
-  -e "s|%ldpreloadsep%|${ldpreloadsep}|g" \
-  -e "s|%srcdir%|${srcdir}|" \
-  -e "s|%top_srcdir%|${top_srcdir}|" \
   -e "s|%abs_top_srcdir%|${abs_top_srcdir}|" \
   -e "s|%builddir%|$(shell pwd)|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
-define do_script_install
-$(top_srcdir)/build-aux/mkinstalldirs $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
-for f in $(FCN_FILES); do \
-  fbase=`basename $$f`; \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-  $(INSTALL_DATA) $$f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-done
-$(top_srcdir)/mkpkgadd $(DESTDIR)$(fcnfiledir)/$(script_sub_dir) > $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t
-if [ -n "`cat $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t`" ]; then \
-  $(INSTALL_DATA) $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD ; \
-else \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t ; \
-fi
-endef
-
-define do_script_uninstall
-for f in $(FCN_FILES_NO_DIR); \
-  do rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$f; \
-done
-rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
--rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
+define do_subst_qt_settings
+echo "making $@ from $<"
+$(SED) < $< \
+  -e "s|%DEFAULT_TERMINAL_FONT%|${DEFAULT_TERMINAL_FONT}|" \
+  -e "s|%DEFAULT_TERMINAL_FONT_SIZE%|${DEFAULT_TERMINAL_FONT_SIZE}|" > $@-t
+$(simple_move_if_change_rule)
 endef
 
 define test-file-commands
-( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; $(GREP) '^%!' $< ) > $@-t
 mv $@-t $@
 endef
 
@@ -3564,6 +3556,10 @@ time/PKG_ADD: $(time_FCN_FILES) $(time_GEN_FCN_FILES) time/$(octave_dirstamp) mk
 	$(srcdir)/mk-pkg-add $(srcdir) $(time_FCN_FILES) -- $(time_GEN_FCN_FILES) > $@-t
 	mv $@-t $@
 
+ui/PKG_ADD: $(ui_FCN_FILES) $(ui_GEN_FCN_FILES) ui/$(octave_dirstamp) mk-pkg-add
+	$(srcdir)/mk-pkg-add $(srcdir) $(ui_FCN_FILES) -- $(ui_GEN_FCN_FILES) > $@-t
+	mv $@-t $@
+
 $(@ftp_GEN_FCN_FILES): @ftp/$(octave_dirstamp)
 $(audio_GEN_FCN_FILES): audio/$(octave_dirstamp)
 $(deprecated_GEN_FCN_FILES): deprecated/$(octave_dirstamp)
@@ -3595,6 +3591,7 @@ $(statistics_tests_GEN_FCN_FILES): statistics/tests/$(octave_dirstamp)
 $(strings_GEN_FCN_FILES): strings/$(octave_dirstamp)
 $(testfun_GEN_FCN_FILES): testfun/$(octave_dirstamp)
 $(time_GEN_FCN_FILES): time/$(octave_dirstamp)
+$(ui_GEN_FCN_FILES): ui/$(octave_dirstamp)
 
 @ftp/$(octave_dirstamp):
 	$(MKDIR_P) @ftp
@@ -3689,6 +3686,9 @@ testfun/$(octave_dirstamp):
 time/$(octave_dirstamp):
 	$(MKDIR_P) time
 	: > time/$(octave_dirstamp)
+ui/$(octave_dirstamp):
+	$(MKDIR_P) ui
+	: > ui/$(octave_dirstamp)
 
 @AMCOND_BUILD_DOCS_TRUE@.DOCSTRINGS: $(FCN_FILES) $(GEN_FCN_FILES) mkdoc.pl Makefile
 @AMCOND_BUILD_DOCS_TRUE@	if [ "x$(srcdir)" != "x." ] && [ -f $(srcdir)/DOCSTRINGS ] && [ ! -f DOCSTRINGS ]; then \
@@ -3781,6 +3781,9 @@ uninstall-pkg-add:
 	  rm -f $(DESTDIR)$(fcnfiledir)/$$f; \
 	done
 .PHONY: uninstall-pkg-add
+
+@AMCOND_HAVE_JAVA_FALSE@dist-hook:
+@AMCOND_HAVE_JAVA_FALSE@	@echo "Packaging distribution requires Java." ; exit 1;
 
 distclean-local:
 	if [ "x$(srcdir)" != "x." ]; then \

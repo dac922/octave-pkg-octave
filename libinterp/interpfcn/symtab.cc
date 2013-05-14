@@ -123,7 +123,7 @@ symbol_table::symbol_record::find (const octave_value_list& args) const
   octave_value retval;
 
   if (is_global ())
-    retval = symbol_table::global_varref (name ());
+    retval = symbol_table::global_varval (name ());
   else
     {
       retval = varval ();
@@ -1013,20 +1013,12 @@ bool
 symbol_table::set_class_relationship (const std::string& sup_class,
                                       const std::string& inf_class)
 {
-  class_precedence_table_const_iterator p
-    = class_precedence_table.find (inf_class);
+  if (is_superiorto (inf_class, sup_class))
+    return false;
 
-  if (p != class_precedence_table.end ())
-    {
-      const std::set<std::string>& inferior_classes = p->second;
-
-      std::set<std::string>::const_iterator q
-        = inferior_classes.find (sup_class);
-
-      if (q != inferior_classes.end ())
-        return false;
-    }
-
+  // If sup_class doesn't have an entry in the precedence table,
+  // this will automatically create it, and associate to it a
+  // singleton set {inf_class} of inferior classes.
   class_precedence_table[sup_class].insert (inf_class);
 
   return true;
@@ -1034,7 +1026,7 @@ symbol_table::set_class_relationship (const std::string& sup_class,
 
 // Has class A been marked as superior to class B?  Also returns
 // TRUE if B has been marked as inferior to A, since we only keep
-// one table, and convert inferiort information to a superiorto
+// one table, and convert inferiorto information to a superiorto
 // relationship.  Two calls are required to determine whether there
 // is no relationship between two classes:
 //
@@ -1048,20 +1040,14 @@ symbol_table::set_class_relationship (const std::string& sup_class,
 bool
 symbol_table::is_superiorto (const std::string& a, const std::string& b)
 {
-  bool retval = false;
-
   class_precedence_table_const_iterator p = class_precedence_table.find (a);
+  // If a has no entry in the precedence table, return false
+  if (p == class_precedence_table.end ())
+    return false;
 
-  if (p != class_precedence_table.end ())
-    {
-      const std::set<std::string>& inferior_classes = p->second;
-      std::set<std::string>::const_iterator q = inferior_classes.find (b);
-
-      if (q != inferior_classes.end ())
-        retval = true;
-    }
-
-  return retval;
+  const std::set<std::string>& inferior_classes = p->second;
+  std::set<std::string>::const_iterator q = inferior_classes.find (b);
+  return (q != inferior_classes.end ());
 }
 
 static std::string
@@ -1339,13 +1325,11 @@ symbol_table::do_find (const std::string& name,
         {
           symbol_record sr = p->second;
 
-          // FIXME -- should we be using something other than varref here?
-
           if (sr.is_global ())
-            return symbol_table::global_varref (name);
+            return symbol_table::global_varval (name);
           else
             {
-              octave_value& val = sr.varref ();
+              octave_value val = sr.varval ();
 
               if (val.is_defined ())
                 return val;
@@ -1391,6 +1375,49 @@ symbol_table::do_builtin_find (const std::string& name)
         fcn_table[name] = finfo;
 
       return fcn;
+    }
+
+  return retval;
+}
+
+std::list<workspace_element>
+symbol_table::do_workspace_info (void) const
+{
+  std::list<workspace_element> retval;
+
+  for (table_const_iterator p = table.begin (); p != table.end (); p++)
+    {
+      std::string nm = p->first;
+      symbol_record sr = p->second;
+
+      if (! sr.is_hidden ())
+        {
+          octave_value val = sr.varval ();
+
+          if (val.is_defined ())
+            {
+              dim_vector dv = val.dims ();
+
+              char storage = ' ';
+              if (sr.is_global ())
+                storage = 'g';
+              else if (sr.is_persistent ())
+                storage = 'p';
+              else if (sr.is_automatic ())
+                storage = 'a';
+              else if (sr.is_formal ())
+                storage = 'f';
+              else if (sr.is_hidden ())
+                storage = 'h';
+              else if (sr.is_inherited ())
+                storage = 'i';
+
+              workspace_element elt (storage, nm, val.class_name (),
+                                     val.short_disp (), dv.str ());
+
+              retval.push_back (elt);
+            }
+        }
     }
 
   return retval;
@@ -1480,7 +1507,7 @@ symbol_table::do_update_nest (void)
             {
               if (ours.is_global () || ours.is_persistent ())
                 ::error ("global and persistent may only be used in the topmost level in which a nested variable is used");
-                
+
               if (! ours.is_formal ())
                 {
                   ours.invalidate ();
@@ -1681,7 +1708,7 @@ DEFUN (set_variable, args, , "set_variable (NAME, VALUE)")
       std::string name = args(0).string_value ();
 
       if (! error_state)
-        symbol_table::varref (name) = args(1);
+        symbol_table::assign (name, args(1));
       else
         error ("set_variable: expecting variable name as first argument");
     }

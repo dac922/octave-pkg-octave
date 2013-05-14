@@ -36,13 +36,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Test-and-Demo-Functions.html#Test-and-D
 <p><a name="doc_002dtest"></a>
 
 <div class="defun">
-&mdash; Command:  <b>test</b><var> name<a name="index-test-3612"></a></var><br>
-&mdash; Command:  <b>test</b><var> name quiet|normal|verbose<a name="index-test-3613"></a></var><br>
-&mdash; Function File:  <b>test</b> (<var>"name", "quiet|normal|verbose", fid</var>)<var><a name="index-test-3614"></a></var><br>
-&mdash; Function File:  <b>test</b> ([]<var>, "explain", fid</var>)<var><a name="index-test-3615"></a></var><br>
-&mdash; Function File: <var>success</var> = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3616"></a></var><br>
-&mdash; Function File: [<var>n</var>, <var>max</var>] = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3617"></a></var><br>
-&mdash; Function File: [<var>code</var>, <var>idx</var>] = <b>test</b> (<var>"name", "grabdemo"</var>)<var><a name="index-test-3618"></a></var><br>
+&mdash; Command:  <b>test</b><var> name<a name="index-test-3622"></a></var><br>
+&mdash; Command:  <b>test</b><var> name quiet|normal|verbose<a name="index-test-3623"></a></var><br>
+&mdash; Function File:  <b>test</b> (<var>"name", "quiet|normal|verbose", fid</var>)<var><a name="index-test-3624"></a></var><br>
+&mdash; Function File:  <b>test</b> ([]<var>, "explain", fid</var>)<var><a name="index-test-3625"></a></var><br>
+&mdash; Function File: <var>success</var> = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3626"></a></var><br>
+&mdash; Function File: [<var>n</var>, <var>max</var>] = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3627"></a></var><br>
+&mdash; Function File: [<var>code</var>, <var>idx</var>] = <b>test</b> (<var>"name", "grabdemo"</var>)<var><a name="index-test-3628"></a></var><br>
 <blockquote>
         <p>Perform tests from the first file in the loadpath matching <var>name</var>. 
 <code>test</code> can be called as a command or as a function.  Called with
@@ -92,8 +92,12 @@ generates an error, then the test is said to fail.
 
    <p>Since <code>eval()</code> will stop at the first error it encounters, you must
 divide your tests up into blocks, with anything in a separate
-block evaluated separately.  Blocks are introduced by the keyword
-<code>test</code> immediately following &lsquo;<samp><span class="samp">%!</span></samp>&rsquo;.  For example:
+block evaluated separately.  Blocks are introduced by valid keywords like
+<code>test</code>, <code>function</code>, or <code>assert</code> immediately following &lsquo;<samp><span class="samp">%!</span></samp>&rsquo;. 
+A block is defined by indentation as in Python.  Lines beginning with
+&lsquo;<samp><span class="samp">%!&lt;whitespace&gt;</span></samp>&rsquo; are part of the preceeding block.
+
+   <p>For example:
 
 <pre class="example">     %!test error ("this test fails!");
      %!test "test doesn't fail. it doesn't generate an error";
@@ -156,7 +160,7 @@ for <code>svds</code> begin with
 
 <pre class="example">     %!testif HAVE_ARPACK
 </pre>
-   <p class="noindent">Review <samp><span class="file">config.h</span></samp> or <code>octave_config_info ("DEFS")</code> to see some
+   <p class="noindent">Review <samp><span class="file">config.h</span></samp> or <code>octave_config_info ("features")</code> to see some
 of the possible values to check.
 
    <p>Sometimes during development there is a test that should work but is
@@ -200,6 +204,19 @@ is empty), and then uses it in several subsequent tests.
 </pre>
    <p>Note that all previous variables and values are lost when a new
 shared block is declared.
+
+   <p>Remember that <code>%!function</code> begins a new block and that
+<code>%!endfunction</code> ends this block.  Be aware that until a new block
+is started, lines starting with &lsquo;<samp><span class="samp">%!&lt;space&gt;</span></samp>&rsquo; will be discarded as comments. 
+The following is nearly identical to the example above, but does nothing.
+
+<pre class="example">     %!function <var>a</var> = fn (<var>b</var>)
+     %!  <var>a</var> = 2*<var>b</var>;
+     %!endfunction
+     %! assert (fn(2), 4);
+</pre>
+   <p class="noindent">Because there is a space after &lsquo;<samp><span class="samp">%!</span></samp>&rsquo; the <code>assert</code> statement does
+not begin a new block and this line is treated as a comment.
 
    <p>Error and warning blocks are like test blocks, but they only succeed
 if the code generates an error.  You can check the text of the error
@@ -248,6 +265,35 @@ in the log file but not executed.  For example:
      %! <var>t</var> = [0:0.01:2*pi]; <var>x</var> = sin (<var>t</var>);
      %! plot (<var>t</var>, <var>x</var>);
      %! # you should now see a sine wave in your figure window
+</pre>
+   <p class="noindent">The following trivial code snippet provides examples for the use of
+fail, assert, error and xtest:
+
+<pre class="example">     function output = must_be_zero (<var>input</var>)
+       if (<var>input</var> != 0)
+         error ("Non-zero input!")
+       endif
+       output = input;
+     endfunction
+     
+     %!fail ("must_be_zero (1)");
+     %!assert (must_be_zero (0), 0);
+     %!error &lt;Non-zero&gt; must_be_zero (1);
+     %!xtest error ("This code generates an error");
+</pre>
+   <p class="noindent">When putting this a file <samp><span class="file">must_be_zero.m</span></samp>, and running the test, we see
+
+<pre class="example">     test must_be_zero verbose
+     
+     &rArr;
+     &gt;&gt;&gt;&gt;&gt; /path/to/must_be_zero.m
+       ***** fail ("must_be_zero (1)");
+       ***** assert (must_be_zero (0), 0);
+       ***** error &lt;Non-zero&gt; must_be_zero (1);
+       ***** xtest error ("This code generates an error");
+     !!!!! known failure
+     This code generates an error
+     PASSES 4 out of 4 tests (1 expected failures)
 </pre>
    <h5 class="subsubheading">Block type summary:</h5>
 
@@ -299,11 +345,11 @@ path and the user will have to remember to type
    <p><a name="doc_002dassert"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>assert</b> (<var>cond</var>)<var><a name="index-assert-3619"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>cond, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3620"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>cond, msg_id, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3621"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>observed, expected</var>)<var><a name="index-assert-3622"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>observed, expected, tol</var>)<var><a name="index-assert-3623"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond</var>)<var><a name="index-assert-3629"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3630"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond, msg_id, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3631"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>observed, expected</var>)<var><a name="index-assert-3632"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>observed, expected, tol</var>)<var><a name="index-assert-3633"></a></var><br>
 <blockquote>
         <p>Produce an error if the specified condition is not met.  <code>assert</code> can
 be called in three different ways.
@@ -334,17 +380,25 @@ always be interpreted as an absolute tolerance.
    <p><a name="doc_002dfail"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fail</b> (<var>code</var>)<var><a name="index-fail-3624"></a></var><br>
-&mdash; Function File:  <b>fail</b> (<var>code, pattern</var>)<var><a name="index-fail-3625"></a></var><br>
-&mdash; Function File:  <b>fail</b> (<var>code, "warning", pattern</var>)<var><a name="index-fail-3626"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code</var>)<var><a name="index-fail-3634"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code, pattern</var>)<var><a name="index-fail-3635"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code, "warning", pattern</var>)<var><a name="index-fail-3636"></a></var><br>
 <blockquote>
         <p>Return true if <var>code</var> fails with an error message matching
 <var>pattern</var>, otherwise produce an error.  Note that <var>code</var>
 is a string and if <var>code</var> runs successfully, the error produced is:
 
-     <pre class="example">                    expected error but got none
+     <pre class="example">                    expected error &lt;.&gt; but got none
 </pre>
-        <p>If the code fails with a different error, the message produced is:
+        <p>Code must be in the form of a string that may be passed by
+<code>fail</code> to the Octave interpreter via the <code>evalin</code> function,
+that is, a (quoted) string constant or a string variable.
+
+        <p>If called with two arguments, the behavior is similar to
+<code>fail (</code><var>code</var><code>)</code>, except the return value will only be true if
+code fails with an error message containing pattern (case sensitive). 
+If the code fails with a different error to that given in pattern,
+the message produced is:
 
      <pre class="example">                    expected &lt;pattern&gt;
                     but got &lt;text of actual error&gt;

@@ -1312,6 +1312,23 @@ octave_value::next_subsref (int nargout, const std::string& type,
     return *this;
 }
 
+octave_value_list
+octave_value::next_subsref (int nargout, const std::string& type,
+                            const std::list<octave_value_list>& idx,
+                            const std::list<octave_lvalue> *lvalue_list,
+                            size_t skip)
+{
+  if (! error_state && idx.size () > skip)
+    {
+      std::list<octave_value_list> new_idx (idx);
+      for (size_t i = 0; i < skip; i++)
+        new_idx.erase (new_idx.begin ());
+      return subsref (type.substr (skip), new_idx, nargout, lvalue_list);
+    }
+  else
+    return *this;
+}
+
 octave_value
 octave_value::next_subsref (bool auto_add, const std::string& type,
                             const std::list<octave_value_list>& idx,
@@ -1523,12 +1540,10 @@ octave_value::cell_value (void) const
 octave_idx_type
 octave_value::idx_type_value (bool req_int, bool frc_str_conv) const
 {
-#if SIZEOF_OCTAVE_IDX_TYPE == SIZEOF_LONG
-  return long_value (req_int, frc_str_conv);
-#elif SIZEOF_OCTAVE_IDX_TYPE == SIZEOF_INT
-  return int_value (req_int, frc_str_conv);
+#if defined (USE_64_BIT_IDX_T)
+  return int64_value (req_int, frc_str_conv);
 #else
-#error "no octave_value extractor for octave_idx_type"
+  return int_value (req_int, frc_str_conv);
 #endif
 }
 

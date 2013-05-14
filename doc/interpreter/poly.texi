@@ -77,19 +77,21 @@ provides such an algorithm.
 @anchor{doc-polyval}
 @deftypefn  {Function File} {@var{y} =} polyval (@var{p}, @var{x})
 @deftypefnx {Function File} {@var{y} =} polyval (@var{p}, @var{x}, [], @var{mu})
+@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s})
+@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s}, @var{mu})
+
 Evaluate the polynomial @var{p} at the specified values of @var{x}.  When
 @var{mu} is present, evaluate the polynomial for
 (@var{x}-@var{mu}(1))/@var{mu}(2).
 If @var{x} is a vector or matrix, the polynomial is evaluated for each of
 the elements of @var{x}.
 
-@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s})
-@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s}, @var{mu})
 In addition to evaluating the polynomial, the second output
 represents the prediction interval, @var{y} +/- @var{dy}, which
 contains at least 50% of the future predictions.  To calculate the
 prediction interval, the structured variable @var{s}, originating
 from @code{polyfit}, must be supplied.
+
 @seealso{@ref{doc-polyvalm,,polyvalm}, @ref{doc-polyaffine,,polyaffine}, @ref{doc-polyfit,,polyfit}, @ref{doc-roots,,roots}, @ref{doc-poly,,poly}}
 @end deftypefn
 
@@ -646,25 +648,25 @@ data.
 
 @c splinefit scripts/polynomial/splinefit.m
 @anchor{doc-splinefit}
-@deftypefn {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{breaks})
-Fit a piecewise cubic spline with breaks (knots) @var{breaks} to the
-noisy data, @var{x} and @var{y}.  @var{x} is a vector, and @var{y}
-a vector or N-D array.  If @var{y} is an N-D array, then @var{x}(j)
-is matched to @var{y}(:,@dots{},:,j).
-
-The fitted spline is returned as a piecewise polynomial, @var{pp}, and
-may be evaluated using @code{ppval}.
-
+@deftypefn  {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{breaks})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{p})
-@var{p} is a positive integer defining the number of intervals along @var{x},
-and @var{p}+1 is the number of breaks.  The number of points in each interval
-differ by no more than 1.
-
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "periodic", @var{periodic})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "robust", @var{robust})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "beta", @var{beta})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "order", @var{order})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "constraints", @var{constraints})
+
+Fit a piecewise cubic spline with breaks (knots) @var{breaks} to the
+noisy data, @var{x} and @var{y}.  @var{x} is a vector, and @var{y}
+is a vector or N-D array.  If @var{y} is an N-D array, then @var{x}(j)
+is matched to @var{y}(:,@dots{},:,j).
+
+The fitted spline is returned as a piecewise polynomial, @var{pp}, and
+may be evaluated using @code{ppval}.
+
+@var{p} is a positive integer defining the number of intervals along @var{x},
+and @var{p}+1 is the number of breaks.  The number of points in each interval
+differ by no more than 1.
 
 The optional property @var{periodic} is a logical value which specifies
 whether a periodic boundary condition is applied to the spline.  The
@@ -696,7 +698,7 @@ linear constraints on the fit.  The structure has three fields, "xc",
 Vector of the x-locations of the constraints.
 
 @item "yc"
-Constraining values at the locations, @var{xc}.
+Constraining values at the locations @var{xc}.
 The default is an array of zeros.
 
 @item "cc"

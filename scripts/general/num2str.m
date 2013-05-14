@@ -24,8 +24,9 @@
 ## optional second argument may either give the number of significant
 ## digits (@var{precision}) to be used in the output or a format
 ## template string (@var{format}) as in @code{sprintf} (@pxref{Formatted
-## Output}).  @code{num2str} can also handle complex numbers.  For
-## example:
+## Output}).  @code{num2str} can also handle complex numbers.
+##
+## Examples:
 ##
 ## @example
 ## @group
@@ -50,11 +51,17 @@
 ## @end group
 ## @end example
 ##
+## Notes:
+##
+## For Matlab compatibility, leading spaces are stripped before returning
+## the string.
+##
 ## The @code{num2str} function is not very flexible.  For better control
 ## over the results, use @code{sprintf} (@pxref{Formatted Output}).
-## Note that for complex @var{x}, the format string may only contain one
-## output conversion specification and nothing else.  Otherwise, you
-## will get unpredictable results.
+##
+## For complex @var{x}, the format string may only contain one
+## output conversion specification and nothing else.  Otherwise, results
+## will be unpredictable.
 ## @seealso{sprintf, int2str, mat2str}
 ## @end deftypefn
 
@@ -111,7 +118,7 @@ function retval = num2str (x, arg)
     fmt = cstrcat (deblank (repmat (fmt, 1, columns (x))), "\n");
     nd = ndims (x);
     tmp = sprintf (fmt, permute (x, [2, 1, 3:nd]));
-    retval = strtrim (char (strsplit (tmp(1:end-1), "\n")));
+    retval = strtrim (char (strsplit (tmp(1:end-1), "\n", false)));
   else   # Complex matrix input
     if (nargin == 2)
       if (ischar (arg))
@@ -157,7 +164,7 @@ function retval = num2str (x, arg)
     tmp = regexprep (tmp, " +i\n", "i\n");
     tmp = regexprep (tmp, "( +)i", "i$1");
 
-    retval = strtrim (char (strsplit (tmp(1:end-1), "\n")));
+    retval = strtrim (char (strsplit (tmp(1:end-1), "\n", false)));
   endif
 
 endfunction

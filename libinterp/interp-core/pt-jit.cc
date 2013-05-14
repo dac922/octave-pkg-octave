@@ -36,11 +36,11 @@ along with Octave; see the file COPYING.  If not, see
 #include "symtab.h"
 #include "variables.h"
 
+#ifdef HAVE_LLVM
+
 static bool Venable_jit_debugging = false;
 
 static bool Venable_jit_compiler = true;
-
-#ifdef HAVE_LLVM
 
 #include <llvm/Analysis/CallGraph.h>
 #include <llvm/Analysis/Passes.h>
@@ -2182,7 +2182,7 @@ jit_info::execute (const vmap& extra_vars) const
 
       // do not store for loop bounds temporary
       if (name.size () && name[0] != '#')
-        symbol_table::varref (arguments[i].first) = real_arguments[i];
+        symbol_table::assign (arguments[i].first, real_arguments[i]);
     }
 
   octave_quit ();

@@ -40,14 +40,14 @@
 %!assert ([ r ; sparse(z)          ], sparse (expect))
 %!assert ([ r ; sparse(logical(z)) ], sparse (expect))
 
-%!assert ([ r ; int8(z)            ], int8(expect))
-%!assert ([ r ; int16(z)           ], int16(expect))
-%!assert ([ r ; int32(z)           ], int32(expect))
-%!assert ([ r ; int64(z)           ], int64(expect))
-%!assert ([ r ; uint8(z)           ], uint8(expect))
-%!assert ([ r ; uint16(z)          ], uint16(expect))
-%!assert ([ r ; uint32(z)          ], uint32(expect))
-%!assert ([ r ; uint64(z)          ], uint64(expect))
+%!assert ([ r ; int8(z)            ], int8 (expect))
+%!assert ([ r ; int16(z)           ], int16 (expect))
+%!assert ([ r ; int32(z)           ], int32 (expect))
+%!assert ([ r ; int64(z)           ], int64 (expect))
+%!assert ([ r ; uint8(z)           ], uint8 (expect))
+%!assert ([ r ; uint16(z)          ], uint16 (expect))
+%!assert ([ r ; uint32(z)          ], uint32 (expect))
+%!assert ([ r ; uint64(z)          ], uint64 (expect))
 
 ## Test mixing non-integer range with other types
 
@@ -63,12 +63,47 @@
 %!assert ([ r ; sparse(z)          ], sparse (expect))
 %!assert ([ r ; sparse(logical(z)) ], sparse (expect))
 
-%!assert ([ r ; int8(z)            ], int8(expect))
-%!assert ([ r ; int16(z)           ], int16(expect))
-%!assert ([ r ; int32(z)           ], int32(expect))
-%!assert ([ r ; int64(z)           ], int64(expect))
-%!assert ([ r ; uint8(z)           ], uint8(expect))
-%!assert ([ r ; uint16(z)          ], uint16(expect))
-%!assert ([ r ; uint32(z)          ], uint32(expect))
-%!assert ([ r ; uint64(z)          ], uint64(expect))
+%!assert ([ r ; int8(z)            ], int8 (expect))
+%!assert ([ r ; int16(z)           ], int16 (expect))
+%!assert ([ r ; int32(z)           ], int32 (expect))
+%!assert ([ r ; int64(z)           ], int64 (expect))
+%!assert ([ r ; uint8(z)           ], uint8 (expect))
+%!assert ([ r ; uint16(z)          ], uint16 (expect))
+%!assert ([ r ; uint32(z)          ], uint32 (expect))
+%!assert ([ r ; uint64(z)          ], uint64 (expect))
+
+## Test corner cases of ranges (base and limit)
+
+%!shared r, rrev, rneg
+%! r = -0:3;
+%! rrev = 3:-1:-0;
+%! rneg = -3:-0;
+
+%!assert (full (r), [-0 1 2 3])
+%!assert (signbit (full (r)), logical ([1 0 0 0]))
+%!assert (r(1), -0)
+%!assert (signbit (r(1)), true)
+%!assert (signbit (r(1:2)), logical ([1 0]))
+%!assert (signbit (r(2:-1:1)), logical ([0 1]))
+%!assert (signbit (r([2 1 1 3])), logical ([0 1 1 0]))
+
+%!assert (full (rrev), [3 2 1 -0])
+%!assert (signbit (full (rrev)), logical ([0 0 0 1]))
+%!assert (rrev(4), -0)
+%!assert (signbit (rrev(4)), true)
+%!assert (signbit (rrev(3:4)), logical ([0 1]))
+%!assert (signbit (rrev(4:-1:3)), logical ([1 0]))
+%!assert (signbit (rrev([1 4 4 2])), logical ([0 1 1 0]))
+
+%!assert (min (r), -0)
+%!assert (signbit (min (r)), true)
+%!assert (min (rrev), -0)
+%!assert (signbit (min (rrev)), true)
+
+%!assert (max (rneg), -0)
+%!assert (signbit (max (rneg)), true)
+
+%!assert (sort (r, "descend"), [3 2 1 -0])
+%!assert (signbit (sort (r, "descend")), logical ([0 0 0 1]))
+%!assert (signbit (sort (rrev, "ascend")), logical ([1 0 0 0]))
 

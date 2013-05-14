@@ -1467,7 +1467,10 @@ whether zero is signed, use the @code{signbit} function.
 @c signbit libinterp/corefcn/mappers.cc
 @anchor{doc-signbit}
 @deftypefn {Mapping Function} {} signbit (@var{x})
-Return a nonzero value if the value of @var{x} has its sign bit set.
+Return logical true if the value of @var{x} has its sign bit set.
+Otherwise return logical false.  This behavior is consistent with the other
+logical functions. See@ref{Logical Values}.  The behavior differs from the
+C language function which returns non-zero if the sign bit is set.
 
 This is not the same as @code{x < 0.0}, because IEEE 754 floating point
 allows zero to be signed.  The comparison @code{-0.0 < 0.0} is false,

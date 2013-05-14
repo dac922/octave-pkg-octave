@@ -30,9 +30,9 @@ along with Octave; see the file COPYING.  If not, see
 #include "lo-ieee.h"
 #include "lo-sysdep.h"
 
-extern void sysdep_init (void);
+extern OCTINTERP_API void sysdep_init (void);
 
-extern void sysdep_cleanup (void);
+extern OCTINTERP_API void sysdep_cleanup (void);
 
 extern OCTINTERP_API void raw_mode (bool, bool wait = true);
 
@@ -47,7 +47,6 @@ extern void w32_set_quiet_shutdown (void);
 
 #if defined (__WIN32__) && ! defined (_POSIX_VERSION)
 extern void MINGW_signal_cleanup (void);
-#define USE_W32_SIGINT 1
 #define MINGW_SIGNAL_CLEANUP() MINGW_signal_cleanup ()
 #else
 #define MINGW_SIGNAL_CLEANUP() do { } while (0)

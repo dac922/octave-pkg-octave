@@ -1,0 +1,246 @@
+<html lang="en">
+<head>
+<title>Manipulation of Plot Windows - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="High_002dLevel-Plotting.html#High_002dLevel-Plotting" title="High-Level Plotting">
+<link rel="prev" href="Use-of-axis_0040comma_007b_007d-line_0040comma_007b_007d-and-patch-Functions.html#Use-of-axis_0040comma_007b_007d-line_0040comma_007b_007d-and-patch-Functions" title="Use of axis@comma{} line@comma{} and patch Functions">
+<link rel="next" href="Use-of-the-_0040code_007binterpreter_007d-Property.html#Use-of-the-_0040code_007binterpreter_007d-Property" title="Use of the @code{interpreter} Property">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Manipulation-of-Plot-Windows"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property.html#Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property">Use of the &lt;code&gt;interpreter&lt;/code&gt; Property</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Use-of-axis_002c-line_002c-and-patch-Functions.html#Use-of-axis_002c-line_002c-and-patch-Functions">Use of axis, line, and patch Functions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="High_002dLevel-Plotting.html#High_002dLevel-Plotting">High-Level Plotting</a>
+<hr>
+</div>
+
+<h4 class="subsection">15.2.7 Manipulation of Plot Windows</h4>
+
+<p>By default, Octave refreshes the plot window when a prompt is printed,
+or when waiting for input.  The
+<code>drawnow</code> function is used to cause a plot window to be updated.
+
+<!-- drawnow libinterp/interpfcn/graphics.cc -->
+   <p><a name="doc_002ddrawnow"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>drawnow</b> ()<var><a name="index-drawnow-1499"></a></var><br>
+&mdash; Built-in Function:  <b>drawnow</b> (<var>"expose"</var>)<var><a name="index-drawnow-1500"></a></var><br>
+&mdash; Built-in Function:  <b>drawnow</b> (<var>term, file, mono, debug_file</var>)<var><a name="index-drawnow-1501"></a></var><br>
+<blockquote><p>Update figure windows and their children.  The event queue is flushed and
+any callbacks generated are executed.  With the optional argument
+<code>"expose"</code>, only graphic objects are updated and no other events or
+callbacks are processed. 
+The third calling form of <code>drawnow</code> is for debugging and is
+undocumented. 
+</p></blockquote></div>
+
+   <p>Only figures that are modified will be updated.  The <code>refresh</code>
+function can also be used to force an update of the current figure, even if
+it is not modified.
+
+<!-- refresh scripts/plot/refresh.m -->
+   <p><a name="doc_002drefresh"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>refresh</b> ()<var><a name="index-refresh-1502"></a></var><br>
+&mdash; Function File:  <b>refresh</b> (<var>h</var>)<var><a name="index-refresh-1503"></a></var><br>
+<blockquote><p>Refresh a figure, forcing it to be redrawn.  When called without an
+argument the current figure is redrawn.  Otherwise, the figure pointed
+to by <var>h</var> is redrawn.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddrawnow.html#doc_002ddrawnow">drawnow</a>. 
+</p></blockquote></div>
+
+   <p>Normally, high-level plot functions like <code>plot</code> or <code>mesh</code> call
+<code>newplot</code> to initialize the state of the current axes so that the
+next plot is drawn in a blank window with default property settings.  To
+have two plots superimposed over one another, use the <code>hold</code>
+function.  For example,
+
+<pre class="example">     hold on;
+     x = -10:0.1:10;
+     plot (x, sin (x));
+     plot (x, cos (x));
+     hold off;
+</pre>
+   <p class="noindent">displays sine and cosine waves on the same axes.  If the hold state is
+off, consecutive plotting commands like this will only display the last
+plot.
+
+<!-- newplot scripts/plot/newplot.m -->
+   <p><a name="doc_002dnewplot"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>newplot</b> ()<var><a name="index-newplot-1504"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>newplot</b> ()<var><a name="index-newplot-1505"></a></var><br>
+<blockquote><p>Prepare graphics engine to produce a new plot.  This function is
+called at the beginning of all high-level plotting functions. 
+It is not normally required in user programs.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created
+axes (not figure). 
+</p></blockquote></div>
+
+<!-- hold scripts/plot/hold.m -->
+   <p><a name="doc_002dhold"></a>
+
+<div class="defun">
+&mdash; Command:  <b>hold</b><var><a name="index-hold-1506"></a></var><br>
+&mdash; Command:  <b>hold</b><var> state<a name="index-hold-1507"></a></var><br>
+&mdash; Function File:  <b>hold</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-hold-1508"></a></var><br>
+<blockquote><p>Toggle or set the "hold" state of the plotting engine which determines
+whether new graphic objects are added to the plot or replace the existing
+objects.
+
+          <dl>
+<dt><code>hold on</code><dd>Retain plot data and settings so that subsequent plot commands are displayed
+on a single graph.
+
+          <br><dt><code>hold all</code><dd>Retain plot line color, line style, data and settings so that subsequent
+plot commands are displayed on a single graph with the next line color and
+style.
+
+          <br><dt><code>hold off</code><dd>Clear plot and restore default graphics settings before each new plot
+command.  (default).
+
+          <br><dt><code>hold</code><dd>Toggle the current hold state. 
+</dl>
+
+        <p>When given the additional argument <var>hax</var>, the hold state is modified
+only for the given axis handle.
+
+        <p>To query the current hold state use the <code>ishold</code> function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dishold.html#doc_002dishold">ishold</a>, <a href="doc_002dcla.html#doc_002dcla">cla</a>, <a href="doc_002dnewplot.html#doc_002dnewplot">newplot</a>, <a href="doc_002dclf.html#doc_002dclf">clf</a>. 
+</p></blockquote></div>
+
+<!-- ishold scripts/plot/ishold.m -->
+   <p><a name="doc_002dishold"></a>
+
+<div class="defun">
+&mdash; Command:  <b>ishold</b><var><a name="index-ishold-1509"></a></var><br>
+&mdash; Function File:  <b>ishold</b> (<var>h</var>)<var><a name="index-ishold-1510"></a></var><br>
+<blockquote><p>Return true if the next plot will be added to the current plot, or
+false if the plot device will be cleared before drawing the next plot.
+
+        <p>Optionally, operate on the graphics handle <var>h</var> rather than the current
+plot.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhold.html#doc_002dhold">hold</a>. 
+</p></blockquote></div>
+
+   <p>To clear the current figure, call the <code>clf</code> function.  To clear the
+current axis, call the <code>cla</code> function.  To bring the current figure
+to the top of the window stack, call the <code>shg</code> function.  To delete
+a graphics object, call <code>delete</code> on its index.  To close the
+figure window, call the <code>close</code> function.
+
+<!-- clf scripts/plot/clf.m -->
+   <p><a name="doc_002dclf"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>clf</b> ()<var><a name="index-clf-1511"></a></var><br>
+&mdash; Function File:  <b>clf</b> (<var>"reset"</var>)<var><a name="index-clf-1512"></a></var><br>
+&mdash; Function File:  <b>clf</b> (<var>hfig</var>)<var><a name="index-clf-1513"></a></var><br>
+&mdash; Function File:  <b>clf</b> (<var>hfig, "reset"</var>)<var><a name="index-clf-1514"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>clf</b> (<var><small class="dots">...</small></var>)<var><a name="index-clf-1515"></a></var><br>
+<blockquote><p>Clear the current figure window.  <code>clf</code> operates by deleting child
+graphics objects with visible handles (<code>handlevisibility</code> = on). 
+If <var>hfig</var> is specified operate on it instead of the current figure. 
+If the optional argument <code>"reset"</code> is specified, all objects including
+those with hidden handles are deleted.
+
+        <p>The optional return value <var>h</var> is the graphics handle of the figure
+window that was cleared.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcla.html#doc_002dcla">cla</a>, <a href="doc_002dclose.html#doc_002dclose">close</a>, <a href="doc_002ddelete.html#doc_002ddelete">delete</a>. 
+</p></blockquote></div>
+
+<!-- cla scripts/plot/cla.m -->
+   <p><a name="doc_002dcla"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>cla</b> ()<var><a name="index-cla-1516"></a></var><br>
+&mdash; Function File:  <b>cla</b> (<var>"reset"</var>)<var><a name="index-cla-1517"></a></var><br>
+&mdash; Function File:  <b>cla</b> (<var>hax</var>)<var><a name="index-cla-1518"></a></var><br>
+&mdash; Function File:  <b>cla</b> (<var>hax, "reset"</var>)<var><a name="index-cla-1519"></a></var><br>
+<blockquote><p>Delete the children of the current axes with visible handles. 
+If <var>hax</var> is specified and is an axes object handle, operate on it
+instead of the current axes.  If the optional argument <code>"reset"</code>
+is specified, also delete the children with hidden handles.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclf.html#doc_002dclf">clf</a>. 
+</p></blockquote></div>
+
+<!-- shg scripts/plot/shg.m -->
+   <p><a name="doc_002dshg"></a>
+
+<div class="defun">
+&mdash; Command:  <b>shg</b><var><a name="index-shg-1520"></a></var><br>
+<blockquote><p>Show the graph window.  Currently, this is the same as executing
+<code>drawnow</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddrawnow.html#doc_002ddrawnow">drawnow</a>, <a href="doc_002dfigure.html#doc_002dfigure">figure</a>. 
+</p></blockquote></div>
+
+<!-- delete scripts/miscellaneous/delete.m -->
+   <p><a name="doc_002ddelete"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>delete</b> (<var>file</var>)<var><a name="index-delete-1521"></a></var><br>
+&mdash; Function File:  <b>delete</b> (<var>handle</var>)<var><a name="index-delete-1522"></a></var><br>
+<blockquote><p>Delete the named file or graphics handle.
+
+        <p>Deleting graphics objects is the proper way to remove
+features from a plot without clearing the entire figure.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclf.html#doc_002dclf">clf</a>, <a href="doc_002dcla.html#doc_002dcla">cla</a>, <a href="doc_002dunlink.html#doc_002dunlink">unlink</a>. 
+</p></blockquote></div>
+
+<!-- close scripts/plot/close.m -->
+   <p><a name="doc_002dclose"></a>
+
+<div class="defun">
+&mdash; Command:  <b>close</b><var><a name="index-close-1523"></a></var><br>
+&mdash; Command:  <b>close</b> (<var>n</var>)<var><a name="index-close-1524"></a></var><br>
+&mdash; Command:  <b>close</b><var> all<a name="index-close-1525"></a></var><br>
+&mdash; Command:  <b>close</b><var> all hidden<a name="index-close-1526"></a></var><br>
+<blockquote><p>Close figure window(s) by calling the function specified by the
+<code>"closerequestfcn"</code> property for each figure.  By default, the
+function <code>closereq</code> is used.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclosereq.html#doc_002dclosereq">closereq</a>. 
+</p></blockquote></div>
+
+<!-- closereq scripts/plot/closereq.m -->
+   <p><a name="doc_002dclosereq"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>closereq</b> ()<var><a name="index-closereq-1527"></a></var><br>
+<blockquote><p>Close the current figure and delete all graphics objects associated
+with it.
+
+     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclose.html#doc_002dclose">close</a>, <a href="doc_002ddelete.html#doc_002ddelete">delete</a>. 
+</p></blockquote></div>
+
+   </body></html>
+

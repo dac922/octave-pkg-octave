@@ -1052,24 +1052,24 @@ computes the union of the two sets.
 
  -- Function File:  union (A, B)
  -- Function File:  union (A, B, "rows")
+ -- Function File: [C, IA, IB] = union (A, B)
      Return the set of elements that are in either of the sets A and B.
-     A, B may be cell arrays of string(s).  For example:
+     A, B may be cell arrays of strings.  For example:
 
           union ([1, 2, 4], [2, 3, 5])
               => [1, 2, 3, 4, 5]
 
-     If the optional third input argument is the string "rows" each row
-     of the matrices A and B will be considered an element of sets.
-     For example:
+     If the optional third input argument is the string "rows" then
+     each row of the matrices A and B will be considered as a single
+     set element.  For example:
 
           union ([1, 2; 2, 3], [1, 2; 3, 4], "rows")
              =>  1   2
                  2   3
                  3   4
 
- -- Function File: [C, IA, IB] = union (A, B)
-     Return index vectors IA and IB such that `a(ia)' and `b(ib)' are
-     disjoint sets whose union is C.
+     The optional outputs IA and IB are index vectors such that `a(ia)'
+     and `b(ib)' are disjoint sets whose union is C.
 
      *See also:* *note intersect: doc-intersect, *note setdiff:
      doc-setdiff, *note unique: doc-unique.
@@ -1182,13 +1182,13 @@ algorithm.
 
  -- Function File: Y = polyval (P, X)
  -- Function File: Y = polyval (P, X, [], MU)
+ -- Function File: [Y, DY] = polyval (P, X, S)
+ -- Function File: [Y, DY] = polyval (P, X, S, MU)
      Evaluate the polynomial P at the specified values of X.  When MU
      is present, evaluate the polynomial for (X-MU(1))/MU(2).  If X is
      a vector or matrix, the polynomial is evaluated for each of the
      elements of X.
 
- -- Function File: [Y, DY] = polyval (P, X, S)
- -- Function File: [Y, DY] = polyval (P, X, S, MU)
      In addition to evaluating the polynomial, the second output
      represents the prediction interval, Y +/- DY, which contains at
      least 50% of the future predictions.  To calculate the prediction
@@ -1596,23 +1596,23 @@ is to use several polynomials pieced together.  The function
 `splinefit' fits a peicewise polynomial (spline) to a set of data.
 
  -- Function File: PP = splinefit (X, Y, BREAKS)
-     Fit a piecewise cubic spline with breaks (knots) BREAKS to the
-     noisy data, X and Y.  X is a vector, and Y a vector or N-D array.
-     If Y is an N-D array, then X(j) is matched to Y(:,...,:,j).
-
-     The fitted spline is returned as a piecewise polynomial, PP, and
-     may be evaluated using `ppval'.
-
  -- Function File: PP = splinefit (X, Y, P)
-     P is a positive integer defining the number of intervals along X,
-     and P+1 is the number of breaks.  The number of points in each
-     interval differ by no more than 1.
-
  -- Function File: PP = splinefit (..., "periodic", PERIODIC)
  -- Function File: PP = splinefit (..., "robust", ROBUST)
  -- Function File: PP = splinefit (..., "beta", BETA)
  -- Function File: PP = splinefit (..., "order", ORDER)
  -- Function File: PP = splinefit (..., "constraints", CONSTRAINTS)
+     Fit a piecewise cubic spline with breaks (knots) BREAKS to the
+     noisy data, X and Y.  X is a vector, and Y is a vector or N-D
+     array.  If Y is an N-D array, then X(j) is matched to Y(:,...,:,j).
+
+     The fitted spline is returned as a piecewise polynomial, PP, and
+     may be evaluated using `ppval'.
+
+     P is a positive integer defining the number of intervals along X,
+     and P+1 is the number of breaks.  The number of points in each
+     interval differ by no more than 1.
+
      The optional property PERIODIC is a logical value which specifies
      whether a periodic boundary condition is applied to the spline.
      The length of the period is `max (BREAKS) - min (BREAKS)'.  The
@@ -1642,7 +1642,7 @@ is to use several polynomials pieced together.  The function
           Vector of the x-locations of the constraints.
 
     "yc"
-          Constraining values at the locations, XC.  The default is an
+          Constraining values at the locations XC.  The default is an
           array of zeros.
 
     "cc"
@@ -2787,6 +2787,18 @@ tessellation.
      command.  See the documentation for the Qhull library for details
      `http://www.qhull.org/html/qh-quick.htm#options'.
 
+     The default options depend on the dimension of the input:
+
+        * 2-D and 3-D: OPTIONS = `{"Qbb"}'
+
+        * 4-D and higher: OPTIONS = `{"Qbb", "Qx"}'
+
+     If OPTIONS is not present or `[]' then the default arguments are
+     used.  Otherwise, OPTIONS replaces the default argument list.  To
+     append user options to the defaults it is necessary to repeat the
+     default arguments in OPTIONS.  Use a null string to pass no
+     arguments.
+
      *See also:* *note voronoi: doc-voronoi, *note convhulln:
      doc-convhulln, *note delaunayn: doc-delaunayn.
 
@@ -3329,6 +3341,9 @@ system-wide wisdom file.
      *See also:* *note conv2: doc-conv2.
 
  -- Function File: [H, W] = freqz (B, A, N, "whole")
+ -- Function File: H = freqz (B, A, W)
+ -- Function File: [...] = freqz (..., FS)
+ -- Function File:  freqz (...)
      Return the complex frequency response H of the rational IIR filter
      whose numerator and denominator coefficients are B and A,
      respectively.  The response is evaluated at N angular frequencies
@@ -3336,28 +3351,31 @@ system-wide wisdom file.
 
      The output value W is a vector of the frequencies.
 
-     If the fourth argument is omitted, the response is evaluated at
-     frequencies between 0 and  pi.
-
-     If N is omitted, a value of 512 is assumed.
-
      If A is omitted, the denominator is assumed to be 1 (this
      corresponds to a simple FIR filter).
+
+     If N is omitted, a value of 512 is assumed.
 
      For fastest computation, N should factor into a small number of
      small primes.
 
- -- Function File: H = freqz (B, A, W)
+     If the fourth argument, "whole", is omitted the response is
+     evaluated at frequencies between 0 and  pi.
+
+     `freqz (B, A, W)'
+
      Evaluate the response at the specific frequencies in the vector W.
      The values for W are measured in radians.
 
- -- Function File: [...] = freqz (..., FS)
+     `[...] = freqz (..., FS)'
+
      Return frequencies in Hz instead of radians assuming a sampling
      rate FS.  If you are evaluating the response at specific
      frequencies W, those frequencies should be requested in Hz rather
      than radians.
 
- -- Function File:  freqz (...)
+     `freqz (...)'
+
      Plot the pass band, stop band and phase response of H rather than
      returning them.
 
@@ -4224,7 +4242,7 @@ color map must be of class `double' with values between 0 and 1.
      to red.  It is useful for displaying periodic functions.  The map
      is obtained by linearly varying the hue through all possible
      values while keeping constant maximum saturation and value.  The
-     equivalent code is `hsv2rgb ([linspace(0,1,N)', ones(N,2)])'.
+     equivalent code is `hsv2rgb ([(0:N-1)'/N, ones(N,2)])'.
 
      The argument N must be a scalar.  If unspecified, the length of
      the current colormap, or 64, is used.
@@ -4661,23 +4679,31 @@ hardware are welcome.
      arguments W_TYPE and VALUE.
 
  -- Function File: Y = wavread (FILENAME)
+ -- Function File: [Y, FS, BPS] = wavread (FILENAME)
+ -- Function File: [...] = wavread (FILENAME, N)
+ -- Function File: [...] = wavread (FILENAME, [N1 N2])
+ -- Function File: [SAMPLES, CHANNELS] = wavread (FILENAME, "size")
      Load the RIFF/WAVE sound file FILENAME, and return the samples in
      vector Y.  If the file contains multichannel data, then Y is a
      matrix with the channels represented as columns.
 
- -- Function File: [Y, FS, BPS] = wavread (FILENAME)
+     `[Y, FS, BPS] = wavread (FILENAME)'
+
      Additionally return the sample rate (FS) in Hz and the number of
      bits per sample (BPS).
 
- -- Function File: [...] = wavread (FILENAME, N)
+     `[...] = wavread (FILENAME, N)'
+
      Read only the first N samples from each channel.
 
- -- Function File: [...] = wavread (FILENAME, N1 N2)
+     `wavread (FILENAME, [N1 N2])'
+
      Read only samples N1 through N2 from each channel.
 
- -- Function File: [SAMPLES, CHANNELS] = wavread (FILENAME, "size")
-     Return the number of samples (N) and channels (CH) instead of the
-     audio data.
+     `[SAMPLES, CHANNELS] = wavread (FILENAME, "size")'
+
+     Return the number of samples (N) and number of channels (CH)
+     instead of the audio data.
 
      *See also:* *note wavwrite: doc-wavwrite.
 
@@ -6743,13 +6769,12 @@ useful.
  -- Function File:  datetick (AXIS, FORM)
  -- Function File:  datetick (..., "keeplimits")
  -- Function File:  datetick (..., "keepticks")
- -- Function File:  datetick (...ax, ...)
-     Add date formatted tick labels to an axis.  The axis the apply the
-     ticks to is determined by AXIS that can take the values "x", "y"
+ -- Function File:  datetick (HAX, ...)
+     Add date formatted tick labels to an axis.  The axis to apply the
+     ticks to is determined by AXIS which can take the values "x", "y",
      or "z".  The default value is "x".  The formatting of the labels is
-     determined by the variable FORM, that can either be a string in
-     the format needed by `dateform', or a positive integer that can be
-     accepted by `datestr'.
+     determined by the variable FORM, which can either be a string or
+     positive integer that `datestr' accepts.
 
      *See also:* *note datenum: doc-datenum, *note datestr: doc-datestr.
 

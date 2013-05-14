@@ -3,11 +3,14 @@ CROSS_TOOL_PREFIX = @CROSS_TOOL_PREFIX@
 AWK = @AWK@
 export AWK
 
-SED = @SED@
-export SED
+GREP = @GREP@
+export GREP
 
 FIND = @FIND@
 export FIND
+
+SED = @SED@
+export SED
 
 PERL = @PERL@
 export PERL
@@ -41,6 +44,7 @@ LEXLIB = @LEXLIB@
 
 YACC = @YACC@
 AM_YFLAGS = -dv
+BISON_PUSH_PULL_DECL_STYLE = @BISON_PUSH_PULL_DECL_STYLE@
 
 GPERF = @GPERF@
 
@@ -62,6 +66,9 @@ TEXI2PDF = @TEXI2PDF@
 GHOSTSCRIPT = @GHOSTSCRIPT@
 
 DEFAULT_PAGER = @DEFAULT_PAGER@
+
+DEFAULT_TERMINAL_FONT = @DEFAULT_TERMINAL_FONT@
+DEFAULT_TERMINAL_FONT_SIZE = @DEFAULT_TERMINAL_FONT_SIZE@
 
 ENABLE_DYNAMIC_LINKING = @ENABLE_DYNAMIC_LINKING@
 
@@ -113,12 +120,11 @@ BUILD_CFLAGS = @BUILD_CFLAGS@
 DEPEND_FLAGS = @DEPEND_FLAGS@
 DEPEND_EXTRA_SED_PATTERN = @DEPEND_EXTRA_SED_PATTERN@
 INCLUDE_DEPS = @INCLUDE_DEPS@
-# ifeq ($(INCLUDE_DEPS),false)
+# ifeq ($(INCLUDE_DEPS),no)
 #   omit_deps = true;
 # endif
 
 DEFS = @DEFS@
-UGLY_DEFS = @UGLY_DEFS@
 
 # C++ compiler flags.
 
@@ -278,9 +284,9 @@ SPARSE_XLDFLAGS = \
 
 ## Order matters, at least on some systems (Cygwin, for example).
 SPARSE_XLIBS = \
-    $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
-    $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
-    $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
+  $(CHOLMOD_LIBS) $(UMFPACK_LIBS) \
+  $(AMD_LIBS) $(CAMD_LIBS) $(COLAMD_LIBS) \
+  $(CCOLAMD_LIBS) $(CXSPARSE_LIBS)
 
 TERM_LIBS = @TERM_LIBS@
 
@@ -472,9 +478,8 @@ if [ "x$(srcdir)" != "x." ] && [ -f $(srcdir)/$@ ] && [ ! -f $@ ]; then \
 fi
 endef
 
-# Yes, the second sed command near the end is needed, to avoid limits
-# in command lengths for some versions of sed.  UGLY_DEFS is often
-# quite large, so it makes sense to split this command there.
+## To avoid shell command line limits, break the replacement patterns
+## into two roughly equal sized parts.
 
 define do_subst_config_vals
 echo "making $@ from $<"
@@ -526,6 +531,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_CXXPICFLAG%|\"${CXXPICFLAG}\"|" \
   -e "s|%OCTAVE_CONF_CXX_VERSION%|\"${CXX_VERSION}\"|" \
   -e "s|%OCTAVE_CONF_DEFAULT_PAGER%|\"${DEFAULT_PAGER}\"|" \
+  -e "s|%OCTAVE_CONF_DEFS%|\"${DEFS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_FLAGS%|\"${DEPEND_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_DEPEND_EXTRA_SED_PATTERN%|\"${DEPEND_EXTRA_SED_PATTERN}\"|" \
   -e "s|%OCTAVE_CONF_DL_LD%|\"${DL_LD}\"|" \
@@ -556,8 +562,8 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_GNUPLOT%|\"${GNUPLOT}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_CFLAGS%|\"${GRAPHICS_CFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_GRAPHICS_LIBS%|\"${GRAPHICS_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" \
-  -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
+  -e "s|%OCTAVE_CONF_HDF5_CPPFLAGS%|\"${HDF5_CPPFLAGS}\"|" | \
+  $(SED) -e "s|%OCTAVE_CONF_HDF5_LDFLAGS%|\"${HDF5_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_HDF5_LIBS%|\"${HDF5_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_INCLUDEDIR%|\"${includedir}\"|" \
   -e "s|%OCTAVE_CONF_LAPACK_LIBS%|\"${LAPACK_LIBS}\"|" \
@@ -621,7 +627,6 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_SONAME_FLAGS%|\"${SONAME_FLAGS}\"|" \
   -e "s|%OCTAVE_CONF_STATIC_LIBS%|\"${STATIC_LIBS}\"|" \
   -e "s|%OCTAVE_CONF_TERM_LIBS%|\"${TERM_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_UGLY_DEFS%|\"${UGLY_DEFS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_CPPFLAGS%|\"${UMFPACK_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LDFLAGS%|\"${UMFPACK_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_UMFPACK_LIBS%|\"${UMFPACK_LIBS}\"|" \
@@ -638,8 +643,7 @@ $(SED) < $< \
   -e "s|%OCTAVE_CONF_Z_CPPFLAGS%|\"${Z_CPPFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LDFLAGS%|\"${Z_LDFLAGS}\"|" \
   -e "s|%OCTAVE_CONF_Z_LIBS%|\"${Z_LIBS}\"|" \
-  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" | \
-  $(SED)  -e "s|%OCTAVE_CONF_DEFS%|\"${UGLY_DEFS}\"|" > $@-t
+  -e "s|%OCTAVE_CONF_config_opts%|\"${config_opts}\"|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
@@ -696,42 +700,21 @@ $(SED) < $< \
   -e "s|%AWK%|${AWK}|g" \
   -e "s|%FIND%|${FIND}|g" \
   -e "s|%SED%|${SED}|g" \
-  -e "s|%library_path_var%|${library_path_var}|g" \
-  -e "s|%liboctinterp%|${SHLPRE}octinterp.${SHLEXT}|g" \
-  -e "s|%liboctave%|${SHLPRE}octave.${SHLEXT}|g" \
-  -e "s|%ldpreloadsep%|${ldpreloadsep}|g" \
-  -e "s|%srcdir%|${srcdir}|" \
-  -e "s|%top_srcdir%|${top_srcdir}|" \
   -e "s|%abs_top_srcdir%|${abs_top_srcdir}|" \
   -e "s|%builddir%|$(shell pwd)|" > $@-t
 $(simple_move_if_change_rule)
 endef
 
-define do_script_install
-$(top_srcdir)/build-aux/mkinstalldirs $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
-for f in $(FCN_FILES); do \
-  fbase=`basename $$f`; \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-  $(INSTALL_DATA) $$f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$fbase; \
-done
-$(top_srcdir)/mkpkgadd $(DESTDIR)$(fcnfiledir)/$(script_sub_dir) > $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t
-if [ -n "`cat $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t`" ]; then \
-  $(INSTALL_DATA) $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD ; \
-else \
-  rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD.t ; \
-fi
-endef
-
-define do_script_uninstall
-for f in $(FCN_FILES_NO_DIR); \
-  do rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/$$f; \
-done
-rm -f $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)/PKG_ADD
--rmdir $(DESTDIR)$(fcnfiledir)/$(script_sub_dir)
+define do_subst_qt_settings
+echo "making $@ from $<"
+$(SED) < $< \
+  -e "s|%DEFAULT_TERMINAL_FONT%|${DEFAULT_TERMINAL_FONT}|" \
+  -e "s|%DEFAULT_TERMINAL_FONT_SIZE%|${DEFAULT_TERMINAL_FONT_SIZE}|" > $@-t
+$(simple_move_if_change_rule)
 endef
 
 define test-file-commands
-( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; grep '^%!' $< ) > $@-t
+( echo "## DO NOT EDIT!  Generated automatically from $(<F) by Make."; $(GREP) '^%!' $< ) > $@-t
 mv $@-t $@
 endef
 

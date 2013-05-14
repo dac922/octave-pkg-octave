@@ -53,17 +53,18 @@ provides such an algorithm.
    <p><a name="doc_002dpolyval"></a>
 
 <div class="defun">
-&mdash; Function File: <var>y</var> = <b>polyval</b> (<var>p, x</var>)<var><a name="index-polyval-2775"></a></var><br>
-&mdash; Function File: <var>y</var> = <b>polyval</b> (<var>p, x, </var>[]<var>, mu</var>)<var><a name="index-polyval-2776"></a></var><br>
-<blockquote><p>Evaluate the polynomial <var>p</var> at the specified values of <var>x</var>.  When
+&mdash; Function File: <var>y</var> = <b>polyval</b> (<var>p, x</var>)<var><a name="index-polyval-2789"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>polyval</b> (<var>p, x, </var>[]<var>, mu</var>)<var><a name="index-polyval-2790"></a></var><br>
+&mdash; Function File: [<var>y</var>, <var>dy</var>] = <b>polyval</b> (<var>p, x, s</var>)<var><a name="index-polyval-2791"></a></var><br>
+&mdash; Function File: [<var>y</var>, <var>dy</var>] = <b>polyval</b> (<var>p, x, s, mu</var>)<var><a name="index-polyval-2792"></a></var><br>
+<blockquote>
+        <p>Evaluate the polynomial <var>p</var> at the specified values of <var>x</var>.  When
 <var>mu</var> is present, evaluate the polynomial for
 (<var>x</var>-<var>mu</var>(1))/<var>mu</var>(2). 
 If <var>x</var> is a vector or matrix, the polynomial is evaluated for each of
 the elements of <var>x</var>.
 
-   &mdash; Function File: [<var>y</var>, <var>dy</var>] = <b>polyval</b> (<var>p, x, s</var>)<var><a name="index-polyval-2777"></a></var><br>
-&mdash; Function File: [<var>y</var>, <var>dy</var>] = <b>polyval</b> (<var>p, x, s, mu</var>)<var><a name="index-polyval-2778"></a></var><br>
-<blockquote><p>In addition to evaluating the polynomial, the second output
+        <p>In addition to evaluating the polynomial, the second output
 represents the prediction interval, <var>y</var> +/- <var>dy</var>, which
 contains at least 50% of the future predictions.  To calculate the
 prediction interval, the structured variable <var>s</var>, originating
@@ -76,7 +77,7 @@ from <code>polyfit</code>, must be supplied.
    <p><a name="doc_002dpolyvalm"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>polyvalm</b> (<var>c, x</var>)<var><a name="index-polyvalm-2779"></a></var><br>
+&mdash; Function File:  <b>polyvalm</b> (<var>c, x</var>)<var><a name="index-polyvalm-2793"></a></var><br>
 <blockquote><p>Evaluate a polynomial in the matrix sense.
 
         <p><code>polyvalm (</code><var>c</var><code>, </code><var>x</var><code>)</code> will evaluate the polynomial in the

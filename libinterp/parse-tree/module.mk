@@ -4,23 +4,16 @@ EXTRA_DIST += \
 
 PARSER_INC = \
   parse-tree/lex.h \
-  parse-tree/parse.h \
-  parse-tree/parse-private.h
+  parse-tree/parse.h
 
 PARSER_SRC = \
   parse-tree/lex.ll \
   parse-tree/oct-parse.yy
 
-## FIXME: Automake does not support per-object rules.
-##        These rules could be emulated by creating a new convenience
-##        library and using per-library rules.  Or we can just live
-##        with the extra warnings about old-sytle-casts. (09/18/2012)
-#lex.lo lex.o oct-parse.lo oct-parse.o: \
-#  AM_CXXFLAGS := $(filter-out -Wold-style-cast, $(AM_CXXFLAGS))
-
 PARSE_TREE_INC = \
   parse-tree/pt-all.h \
   parse-tree/pt-arg-list.h \
+  parse-tree/pt-array-list.h \
   parse-tree/pt-assign.h \
   parse-tree/pt-binop.h \
   parse-tree/pt-bp.h \
@@ -47,11 +40,11 @@ PARSE_TREE_INC = \
   parse-tree/pt-unop.h \
   parse-tree/pt-walk.h \
   parse-tree/pt.h \
-  parse-tree/token.h \
-  $(PARSER_INC)
+  parse-tree/token.h
 
 PARSE_TREE_SRC = \
   parse-tree/pt-arg-list.cc \
+  parse-tree/pt-array-list.cc \
   parse-tree/pt-assign.cc \
   parse-tree/pt-binop.cc \
   parse-tree/pt-bp.cc \
@@ -77,8 +70,7 @@ PARSE_TREE_SRC = \
   parse-tree/pt-stmt.cc \
   parse-tree/pt-unop.cc \
   parse-tree/pt.cc \
-  parse-tree/token.cc \
-  $(PARSER_SRC)
+  parse-tree/token.cc
 
 ## Special rules for sources which must be built before rest of compilation.
 
@@ -92,7 +84,26 @@ parse-tree/oct-gperf.h: parse-tree/octave.gperf
 	mv $@-t $@
 	rm -f $@-t1
 
-noinst_LTLIBRARIES += parse-tree/libparse-tree.la
+parse-tree/oct-parse.yy: parse-tree/oct-parse.in.yy
+	case "$(BISON_PUSH_PULL_DECL_STYLE)" in \
+          *quote*) quote='"' ;; \
+	  *) quote="" ;; \
+        esac; \
+        case "$(BISON_PUSH_PULL_DECL_STYLE)" in \
+          *dash*) decl="%define api.push-pull $${quote}both$${quote}"; ;; \
+          *underscore*) decl="%define api.push_pull $${quote}both$${quote}"; ;; \
+        esac; \
+	$(SED) "s/%PUSH_PULL_DECL%/$$decl/" $< > $@-t
+	mv $@-t $@
+
+noinst_LTLIBRARIES += \
+  parse-tree/libparse-tree.la \
+  parse-tree/libparser.la
 
 parse_tree_libparse_tree_la_SOURCES = $(PARSE_TREE_SRC)
 parse_tree_libparse_tree_la_CPPFLAGS = $(liboctinterp_la_CPPFLAGS)
+
+parse_tree_libparser_la_SOURCES = $(PARSER_SRC)
+parse_tree_libparser_la_CPPFLAGS = $(liboctinterp_la_CPPFLAGS)
+parse_tree_libparser_la_CXXFLAGS = \
+  $(filter-out -Wold-style-cast, $(AM_CXXFLAGS))

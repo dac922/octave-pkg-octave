@@ -64,6 +64,9 @@ and @ref{Advanced Plotting}.
 * Plot Annotations::            
 * Multiple Plots on One Page::  
 * Multiple Plot Windows::       
+* Use of axis@comma{} line@comma{} and patch Functions::
+* Manipulation of Plot Windows::
+* Use of the @code{interpreter} Property::
 * Printing and Saving Plots::              
 * Interacting with Plots::      
 * Test Plotting Functions::     
@@ -537,23 +540,57 @@ colormap (summer ());
 
 @c stemleaf scripts/plot/stemleaf.m
 @anchor{doc-stemleaf}
-@deftypefn  {Function File} {} stemleaf (@var{x})
-@deftypefnx {Function File} {@var{plot} =} stemleaf (@var{x}, @var{opt})
-
+@deftypefn  {Function File} {} stemleaf (@var{x}, @var{caption})
+@deftypefnx {Function File} {} stemleaf (@var{x}, @var{caption}, @var{stem_sz})
+@deftypefnx {Function File} {@var{plotstr} =} stemleaf (@dots{})
 Compute and display a stem and leaf plot of the vector @var{x}.
 
-The @var{x} vector is converted to integer by @var{x} = @code{fix} (@var{x}). 
-If an output argument is provided, the plot is returned as
-an array of strings.  The first element is the heading
-followed by an element for each stem.
-The default stem step is 10.  
-The @var{x} vector should be integers.  It will be treated so that
-the last digit is the leaf value and the other digits are
-the stems.
-The leaf digits are not sorted.  If sorted leaf values
-are wanted, use @code{sort} (@var{x}) before calling @code{stemleaf} (@var{x}).
-The stem and leaf plot is described in: Ch. 3,
-Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
+The input @var{x} should be a vector of integers.  Any non-integer values
+will be converted to integer by @code{@var{x} = fix (@var{x})}.  By default
+each element of @var{x} will be plotted with the last digit of the element
+as a leaf value and the remaining digits as the stem.  For example, 123
+will be plotted with the stem @samp{12} and the leaf @samp{3}.  The second
+argument, @var{caption}, should be a character array which provides a
+description of the data.  It is included as a heading for the output.
+
+The optional input @var{stem_sz} sets the width of each stem.
+The stem width is determined by @code{10^(@var{stem_sz} + 1)}.
+The default stem width is 10.
+
+The output of @code{stemleaf} is composed of two parts: a
+"Fenced Letter Display," followed by the stem-and-leaf plot itself.
+The Fenced Letter Display is described in @cite{Exploratory Data Analysis}.
+Briefly, the entries are as shown:
+
+@example
+@group
+
+        Fenced Letter Display
+  #% nx|___________________          nx = numel (x)
+  M% mi|       md         |          mi median index, md median
+  H% hi|hl              hu|   hs     hi lower hinge index, hl,hu hinges, hs h_spread
+  1    |x(1)         x(nx)|          x(1), x(nx) first and last data value
+             _______   
+       ______|step |_______          step 1.5*h_spread
+      f|ifl            ifh|          inner fence, lower and higher
+       |nfl            nfh|          # data points within fences
+      F|ofl            ofh|          outer fence, lower and higher
+       |nFl            nFh|          # data points outside outer fences
+@end group
+@end example
+
+The stem-and-leaf plot shows on each line the stem value followed by the
+string made up of the leaf digits.  If the @var{stem_sz} is not 1 the
+successive leaf values are separated by ",".
+
+With no return argument, the plot is immediately displayed.  If an output
+argument is provided, the plot is returned as an array of strings. 
+
+The leaf digits are not sorted.  If sorted leaf values are desired, use
+@code{@var{xs} = sort (@var{x})} before calling @code{stemleaf (@var{xs})}.
+
+The stem and leaf plot and associated displays are described in: 
+Ch. 3, @cite{Exploratory Data Analysis} by J. W. Tukey, Addison-Wesley, 1977.
 @seealso{@ref{doc-hist,,hist}, @ref{doc-printd,,printd}}
 @end deftypefn
 
@@ -561,9 +598,11 @@ Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
 @c printd scripts/plot/printd.m
 @anchor{doc-printd}
 @deftypefn  {Function File} {} printd (@var{obj}, @var{filename})
+@deftypefnx {Function File} {@var{out_file} =} printd (@dots{})
 
 Convert any object acceptable to @code{disp} into the format
-selected by the suffix of @var{filename}.
+selected by the suffix of @var{filename}.  If the return argument
+@var{out_file} is given, the name of the created file is returned.
 
 This function is intended to facilitate manipulation of the output
 of functions such as @code{stemleaf}.
@@ -2631,7 +2670,8 @@ plot3 (z, exp (2i*pi*z), ";complex sinusoid;");
 @deftypefnx {Function File} {} view (@var{azimuth}, @var{elevation})
 @deftypefnx {Function File} {} view ([@var{azimuth} @var{elevation}])
 @deftypefnx {Function File} {} view ([@var{x} @var{y} @var{z}])
-@deftypefnx {Function File} {} view (@var{dims})
+@deftypefnx {Function File} {} view (2)
+@deftypefnx {Function File} {} view (3)
 @deftypefnx {Function File} {} view (@var{ax}, @dots{})
 Query or set the viewpoint for the current axes.  The parameters
 @var{azimuth} and @var{elevation} can be given as two arguments or as
@@ -2802,22 +2842,27 @@ plotting.
 
 @c daspect scripts/plot/daspect.m
 @anchor{doc-daspect}
-@deftypefn {Function File} {} daspect (@var{data_aspect_ratio})
-Set the data aspect ratio of the current axes.  The aspect ratio is
-a normalized 3-element vector representing the span of the x, y, and
-z-axes limits.
-
-@deftypefnx {Function File} {@var{data_aspect_ratio} =} daspect ( )
-Return the data aspect ratio of the current axes.
-
+@deftypefn  {Function File} {@var{data_aspect_ratio} =} daspect ()
+@deftypefnx {Function File} {} daspect (@var{data_aspect_ratio})
 @deftypefnx {Function File} {} daspect (@var{mode})
-Set the data aspect ratio mode of the current axes.
-
 @deftypefnx {Function File} {@var{data_aspect_ratio_mode} =} daspect ("mode")
+@deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
+Query or set the data aspect ratio of the current axes.  The aspect 
+ratio is a normalized 3-element vector representing the span of the x, y,
+and z-axis limits.
+
+@code{(daspect (@var{mode}))}
+
+Set the data aspect ratio mode of the current axes.  @var{mode} is
+either "auto" or "manual".
+
+@code{daspect ("mode")}
+
 Return the data aspect ratio mode of the current axes.
 
-@deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
-Use the axes, with handle @var{hax}, instead of the current axes.
+@code{daspect (@var{hax}, @dots{})}
+
+Operate on the axes in handle @var{hax} instead of the current axes.
 
 @seealso{@ref{doc-axis,,axis}, @ref{doc-pbaspect,,pbaspect}, @ref{doc-xlim,,xlim}, @ref{doc-ylim,,ylim}, @ref{doc-zlim,,zlim}}
 @end deftypefn
@@ -2825,22 +2870,28 @@ Use the axes, with handle @var{hax}, instead of the current axes.
 
 @c pbaspect scripts/plot/pbaspect.m
 @anchor{doc-pbaspect}
-@deftypefn {Function File} {} pbaspect (@var{plot_box_aspect_ratio})
-Set the plot box aspect ratio of the current axes.  The aspect ratio
-is a normalized 3-element vector representing the rendered lengths of
-the x, y, and z-axes.
-
-@deftypefnx {Function File} {@var{plot_box_aspect_ratio} =} pbaspect ( )
-Return the plot box aspect ratio of the current axes.
-
+@deftypefn  {Function File} {@var{plot_box_aspect_ratio} =} pbaspect ( )
+@deftypefnx {Function File} {} pbaspect (@var{plot_box_aspect_ratio})
 @deftypefnx {Function File} {} pbaspect (@var{mode})
-Set the plot box aspect ratio mode of the current axes.
-
 @deftypefnx {Function File} {@var{plot_box_aspect_ratio_mode} =} pbaspect ("mode")
+@deftypefnx {Function File} {} pbaspect (@var{hax}, @dots{})
+
+Query or set the plot box aspect ratio of the current axes.  The aspect
+ratio is a normalized 3-element vector representing the rendered lengths of
+the x, y, and z axes.
+
+@code{pbaspect(@var{mode})}
+
+Set the plot box aspect ratio mode of the current axes.  @var{mode} is
+either "auto" or "manual".
+
+@code{pbaspect ("mode")}
+
 Return the plot box aspect ratio mode of the current axes.
 
-@deftypefnx {Function File} {} pbaspect (@var{hax}, @dots{})
-Use the axes, with handle @var{hax}, instead of the current axes.
+@code{pbaspect (@var{hax}, @dots{})}
+
+Operate on the axes in handle @var{hax} instead of the current axes.
 
 @seealso{@ref{doc-axis,,axis}, @ref{doc-daspect,,daspect}, @ref{doc-xlim,,xlim}, @ref{doc-ylim,,ylim}, @ref{doc-zlim,,zlim}}
 @end deftypefn
@@ -3247,7 +3298,7 @@ The following customizations are available using @var{option}:
 @item "hide"
   Hide legend on the plot
 
-@itemx "toggle"
+@item "toggle"
   Toggles between "hide" and "show"
 
 @item "boxon"
@@ -3262,7 +3313,7 @@ The following customizations are available using @var{option}:
 @item "right"
   Place label text to the right of the keys
 
-@itemx "off"
+@item  "off"
   Delete the legend object
 @end table
 
@@ -3547,8 +3598,9 @@ Multiple property-value pairs may be specified for the figure, but they
 must appear in pairs.
 @end deftypefn
 
-@subsection Use of @code{axis},  @code{line}, and @code{patch} functions
-@cindex use of @code{axis},  @code{line}, and @code{patch} functions
+
+@node Use of axis@comma{} line@comma{} and patch Functions
+@subsection Use of axis@comma{} line@comma{} and patch Functions
 
 You can create axes, line, and patch objects directly using the
 @code{axes}, @code{line}, and @code{patch} functions.  These objects
@@ -3643,8 +3695,8 @@ surface object.
 @end deftypefn
 
 
-@subsection Manipulation of plot windows
-@cindex manipulation of plot windows
+@node Manipulation of Plot Windows
+@subsection Manipulation of Plot Windows
 
 By default, Octave refreshes the plot window when a prompt is printed,
 or when waiting for input.  The
@@ -3702,10 +3754,14 @@ plot.
 
 @c newplot scripts/plot/newplot.m
 @anchor{doc-newplot}
-@deftypefn {Function File} {} newplot ()
+@deftypefn  {Function File} {} newplot ()
+@deftypefnx {Function File} {@var{h} =} newplot ()
 Prepare graphics engine to produce a new plot.  This function is
 called at the beginning of all high-level plotting functions.
 It is not normally required in user programs.
+
+The optional return value @var{h} is a graphics handle to the created
+axes (not figure).
 @end deftypefn
 
 
@@ -3838,8 +3894,8 @@ with it.
 @end deftypefn
 
 
+@node Use of the @code{interpreter} Property
 @subsection Use of the @code{interpreter} Property
-@cindex use of the @code{interpreter} property
 
 All text objects, including titles, labels, legends, and text, include
 the property 'interpreter', this property determines the manner in which
@@ -4297,11 +4353,10 @@ by the figure's "papersize" property.  When the output
 is sent to a file the size is determined by the plot box defined by
 the figure's "paperposition" property.
 
-@itemx -append
-  Append Postscript or PDF output to a pre-existing file of the
-same type.
+@item -append
+  Append Postscript or PDF output to a pre-existing file of the same type.
 
-@itemx -r@var{NUM}
+@item -r@var{NUM}
   Resolution of bitmaps in pixels per inch.  For both metafiles and
 SVG the default is the screen resolution; for other formats it is 150 dpi.
 To specify screen resolution, use "-r0".
@@ -6484,15 +6539,15 @@ Marker styles are specified by the following properties:
 A character indicating a plot marker to be place at each data point, or
 @code{"none"}, meaning no markers should be displayed.
 
-@itemx markeredgecolor
+@item markeredgecolor
 The color of the edge around the marker, or @code{"auto"}, meaning that
 the edge color is the same as the face color.  @xref{Colors}.
 
-@itemx markerfacecolor
+@item markerfacecolor
 The color of the marker, or @code{"none"} to indicate that the marker
 should not be filled.  @xref{Colors}.
 
-@itemx markersize
+@item markersize
 A number specifying the size of the marker.  The default is 1.  A value
 of 2 is twice as large as the default, etc.
 @end table
@@ -6627,12 +6682,14 @@ not exist, it is created.
 
 @c getappdata scripts/miscellaneous/getappdata.m
 @anchor{doc-getappdata}
-@deftypefn {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+@deftypefn  {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+@deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
+
 Return the @var{value} for named application data for the object(s) with
 handle(s) @var{h}.
-@deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
-Return a structure, @var{appdata}, whose fields correspond to the appdata
-properties.
+
+@code{getappdata(@var{h})} returns a structure, @var{appdata}, whose fields
+correspond to the appdata properties.
 @end deftypefn
 
 
@@ -7478,18 +7535,28 @@ Data source variables.
 
 @c graphics_toolkit scripts/plot/graphics_toolkit.m
 @anchor{doc-graphics_toolkit}
-@deftypefn {Function File} {@var{name} =} graphics_toolkit ()
+@deftypefn  {Function File} {@var{name} =} graphics_toolkit ()
+@deftypefnx {Function File} {@var{name} =} graphics_toolkit (@var{hlist})
+@deftypefnx {Function File} {} graphics_toolkit (@var{name})
+@deftypefnx {Function File} {} graphics_toolkit (@var{hlist}, @var{name})
 Return the default graphics toolkit.  The default graphics toolkit value
 is assigned to new figures.
-@deftypefnx {Function File} {@var{name} =} graphics_toolkit (@var{hlist})
+
+@code{graphics_toolkit (@var{hlist})}
+
 Return the graphics toolkits for the figures with handles @var{hlist}.
-@deftypefnx {Function File} {} graphics_toolkit (@var{name})
+
+@code{graphics_toolkit (@var{name})}
+
 Set the default graphics toolkit to @var{name}.  If the toolkit is not
 already loaded, it is initialized by calling the function
 @code{__init_@var{name}__}.
-@deftypefnx {Function File} {} graphics_toolkit (@var{hlist}, @var{name})
+
+@code{graphics_toolkit (@var{hlist}, @var{name})}
+
 Set the graphics toolkit for the figures with handles @var{hlist} to
 @var{name}.
+
 @seealso{@ref{doc-available_graphics_toolkits,,available_graphics_toolkits}}
 @end deftypefn
 
@@ -7537,8 +7604,9 @@ graphics toolkit.
 Query or set the name of the program invoked by the plot command
 when the graphics toolkit is set to "gnuplot".  Additional arguments to
 pass to the external plotting program may also be given.
-The default value is @code{"gnuplot"} without additional arguments.
+The default value is @code{"gnuplot"} with no additional arguments.
 @xref{Installation}.
+@seealso{@ref{doc-graphics_toolkit,,graphics_toolkit}}
 @end deftypefn
 
 

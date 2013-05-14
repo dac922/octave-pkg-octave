@@ -613,8 +613,9 @@ Convert a number (or array) to a string (or a character array).  The
 optional second argument may either give the number of significant
 digits (@var{precision}) to be used in the output or a format
 template string (@var{format}) as in @code{sprintf} (@pxref{Formatted
-Output}).  @code{num2str} can also handle complex numbers.  For
-example:
+Output}).  @code{num2str} can also handle complex numbers.
+
+Examples:
 
 @example
 @group
@@ -639,11 +640,17 @@ num2str (1.234 + 27.3i)
 @end group
 @end example
 
+Notes:
+
+For Matlab compatibility, leading spaces are stripped before returning
+the string.
+
 The @code{num2str} function is not very flexible.  For better control
 over the results, use @code{sprintf} (@pxref{Formatted Output}).
-Note that for complex @var{x}, the format string may only contain one
-output conversion specification and nothing else.  Otherwise, you
-will get unpredictable results.
+
+For complex @var{x}, the format string may only contain one
+output conversion specification and nothing else.  Otherwise, results
+will be unpredictable.
 @seealso{@ref{doc-sprintf,,sprintf}, @ref{doc-int2str,,int2str}, @ref{doc-mat2str,,mat2str}}
 @end deftypefn
 
@@ -1030,6 +1037,33 @@ strfind (@{"abababa", "bebebe", "ab"@}, "aba")
 @end deftypefn
 
 
+@c strjoin scripts/strings/strjoin.m
+@anchor{doc-strjoin}
+@deftypefn {Function File} {@var{str} =} strjoin (@var{cstr})
+@deftypefnx {Function File} {@var{str} =} strjoin (@var{cstr}, @var{delimiter})
+Joins the elements of the cell-string array, @var{cstr}, into a single
+string.
+
+If no @var{delimiter} is specified, the elements of @var{cstr}
+seperated by a space.
+
+If @var{delimiter} is specified as a string, the cell-string array is
+joined using the string.
+
+If @var{delimiter} is a cell-string array whose length is one less
+than @var{cstr}, then the elemennts of @var{cstr} are joined by
+interleaving the cell-string elements of @var{delimiter}.
+
+@example
+@group
+strjoin (@{'Octave','Scilab','Lush','Yorick'@}, '*')
+      @result{} 'Octave*Scilab*Lush*Yorick'
+@end group
+@end example
+@seealso {strsplit}
+@end deftypefn
+
+
 @c strmatch scripts/strings/strmatch.m
 @anchor{doc-strmatch}
 @deftypefn  {Function File} {} strmatch (@var{s}, @var{A})
@@ -1094,20 +1128,33 @@ strtok ("this is the life")
 
 @c strsplit scripts/strings/strsplit.m
 @anchor{doc-strsplit}
-@deftypefn  {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{sep})
-@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{sep}, @var{strip_empty})
-Split the string @var{s} using one or more separators @var{sep} and return
-a cell array of strings.  Consecutive separators and separators at
-boundaries result in empty strings, unless @var{strip_empty} is true.
-The default value of @var{strip_empty} is false.
+@deftypefn  {Function File} {[@var{cstr}] =} strsplit (@var{s})
+@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{del})
+@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{del}, @var{collapsedelimiters})
+@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@dots{}, @var{name}, @var{value})
+@deftypefnx {Function File} {[@var{cstr}, @var{matches}] =} strsplit (@dots{})
+Split the string @var{s} using the delimiters specified by @var{del}
+and return a cell array of strings.  For a single delimiter, @var{del}
+may be a string, or a scalar cell-string.  For multible delimiters, 
+@var{del} must be a cell-string array.  Unless @var{collapsedelimiters} is
+specified to be @var{false}, consecutive delimiters are collapsed into one.
 
-2-D character arrays are split at separators and at the original column
-boundaries.
+The second output, @var{matches}, returns the delmiters which were matched
+in the original string.  The matched delimiters are uneffected by the
+@var{collapsedelimiters}.
 
 Example:
 
 @example
 @group
+strsplit ("a b c")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          @}
+
 strsplit ("a,b,c", ",")
       @result{}
           @{
@@ -1116,16 +1163,84 @@ strsplit ("a,b,c", ",")
             [1,3] = c
           @}
 
-strsplit (["a,b" ; "cde"], ",")
+strsplit ("a foo b,bar c", @{"\s", "foo", "bar"@})
       @result{}
           @{
             [1,1] = a
             [1,2] = b
-            [1,3] = cde
+            [1,3] = c
+          @}
+
+strsplit ("a,,b, c", @{",", " "@}, false)
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = 
+            [1,3] = b
+            [1,4] = 
+            [1,5] = c
+          @}
+
+@end group
+@end example
+
+Supported @var{name}/@var{value} pair arguments are;
+
+@itemize
+@item @var{collapsedelimiters} may take the value of @var{true} or @var{false}
+with the default being @var{false}.
+@item @var{delimitertype} may take the value of @code{legacy},
+@code{simple} or @code{regularexpression}.
+If @var{delimitertype} is equal to @code{legacy}, each individual
+character of @var{del} is used to split the input.
+If the specified delimiters are single characters, the default is
+@var{delimitertype} is @code{legacy}.  Otherwise the default
+@var{delimitertype} is @code{simple}.
+@end itemize
+
+Example:
+
+@example
+@group
+strsplit ("a foo b,bar c", ",|\\s|foo|bar", "delimitertype", "regularexpression")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          @}
+
+strsplit ("a,,b, c", "[, ]", false, "delimitertype", "regularexpression")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = 
+            [1,3] = b
+            [1,4] = 
+            [1,5] = c
+          @}
+
+strsplit ("a,,b, c", ", ", false, "delimitertype", "legacy")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = 
+            [1,3] = b
+            [1,4] = 
+            [1,5] = c
+          @}
+
+strsplit ("a,\t,b, c", @{',', '\s'@}, "delimitertype", "regularexpression")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
           @}
 @end group
 @end example
-@seealso{@ref{doc-strtok,,strtok}}
+
+@seealso{@ref{doc-strjoin,,strjoin}, @ref{doc-strtok,,strtok}, @ref{doc-regexp,,regexp}}
 @end deftypefn
 
 
@@ -1152,7 +1267,7 @@ It may contain any combination of the following specifiers:
 @item %s
 The word is parsed as a string.
 
-@itemx %f
+@item  %f
 @itemx %n
 The word is parsed as a number and converted to double.
 

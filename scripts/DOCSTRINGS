@@ -222,23 +222,32 @@ arguments @var{w_type} and @var{value}.
 wavread
 @c wavread scripts/audio/wavread.m
 -*- texinfo -*-
-@deftypefn {Function File} {@var{y} =} wavread (@var{filename})
+@deftypefn  {Function File} {@var{y} =} wavread (@var{filename})
+@deftypefnx {Function File} {[@var{y}, @var{Fs}, @var{bps}] =} wavread (@var{filename})
+@deftypefnx {Function File} {[@dots{}] =} wavread (@var{filename}, @var{n})
+@deftypefnx {Function File} {[@dots{}] =} wavread (@var{filename}, [@var{n1} @var{n2}])
+@deftypefnx {Function File} {[@var{samples}, @var{channels}] =} wavread (@var{filename}, "size")
+
 Load the RIFF/WAVE sound file @var{filename}, and return the samples
 in vector @var{y}.  If the file contains multichannel data, then
 @var{y} is a matrix with the channels represented as columns.
 
-@deftypefnx {Function File} {[@var{y}, @var{Fs}, @var{bps}] =} wavread (@var{filename})
+@code{[@var{y}, @var{Fs}, @var{bps}] = wavread (@var{filename})}
+
 Additionally return the sample rate (@var{fs}) in Hz and the number of bits
 per sample (@var{bps}).
 
-@deftypefnx {Function File} {[@dots{}] =} wavread (@var{filename}, @var{n})
+@code{[@dots{}] = wavread (@var{filename}, @var{n})}
+
 Read only the first @var{n} samples from each channel.
 
-@deftypefnx {Function File} {[@dots{}] =} wavread (@var{filename}, @var{n1} @var{n2})
+@code{wavread (@var{filename}, [@var{n1} @var{n2}])}
+
 Read only samples @var{n1} through @var{n2} from each channel.
 
-@deftypefnx {Function File} {[@var{samples}, @var{channels}] =} wavread (@var{filename}, "size")
-Return the number of samples (@var{n}) and channels (@var{ch})
+@code{[@var{samples}, @var{channels}] = wavread (@var{filename}, "size")}
+
+Return the number of samples (@var{n}) and number of channels (@var{ch})
 instead of the audio data.
 @seealso{wavwrite}
 @end deftypefn
@@ -321,12 +330,12 @@ from 1 to the number of groups; points outside the range of
 -*- texinfo -*-
 @deftypefn  {Built-in Function} {@var{val} =} java_debug ()
 @deftypefnx {Built-in Function} {@var{old_val} =} java_debug (@var{new_val})
-@deftypefnx {Built-in Function} {} java_debug (@var{new_val}, \"local\")
+@deftypefnx {Built-in Function} {} java_debug (@var{new_val}, "local")
 Query or set the internal variable that determines whether extra debugging
 information regarding the initialization of the JVM and any Java exceptions
 is printed.
 
-When called from inside a function with the \"local\" option, the variable is
+When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
 @seealso{debug_java, java_convert_matrix, java_unsigned_conversion}
@@ -349,11 +358,11 @@ This function has been deprecated.  Use ischar instead.
 -*- texinfo -*-
 @deftypefn  {Built-in Function} {@var{val} =} java_convert_matrix ()
 @deftypefnx {Built-in Function} {@var{old_val} =} java_convert_matrix (@var{new_val})
-@deftypefnx {Built-in Function} {} java_convert_matrix (@var{new_val}, \"local\")
+@deftypefnx {Built-in Function} {} java_convert_matrix (@var{new_val}, "local")
 Query or set the internal variable that controls whether Java arrays are
 automatically converted to Octave matrices.  The default value is false.
 
-When called from inside a function with the \"local\" option, the variable is
+When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
 @seealso{java_matrix_autoconversion, java_unsigned_conversion, java_debug}
@@ -395,8 +404,8 @@ equivalent
 
 @example
 @group
-  ret = java_invoke (x, \"method1\", 1.0, \"a string\")
-  ret = x.method1 (1.0, \"a string\")
+  ret = java_invoke (x, "method1", 1.0, "a string")
+  ret = x.method1 (1.0, "a string")
 @end group
 @end example
 
@@ -424,13 +433,13 @@ with the arguments @var{arg1}, @dots{}
 -*- texinfo -*-
 @deftypefn  {Built-in Function} {@var{val} =} java_unsigned_conversion ()
 @deftypefnx {Built-in Function} {@var{old_val} =} java_unsigned_conversion (@var{new_val})
-@deftypefnx {Built-in Function} {} java_unsigned_conversion (@var{new_val}, \"local\")
+@deftypefnx {Built-in Function} {} java_unsigned_conversion (@var{new_val}, "local")
 Query or set the internal variable that controls how integer classes are
 converted when Java matrix autoconversion is enabled.  When enabled, Java
 arrays of class Byte or Integer are converted to matrices of class uint8 or
 uint32 respectively.
 
-When called from inside a function with the \"local\" option, the variable is
+When called from inside a function with the "local" option, the variable is
 changed locally for the function and any subroutines it calls.  The original
 variable value is restored when exiting the function.
 @seealso{java_unsigned_autoconversion, java_convert_matrix, debug_java}
@@ -1017,7 +1026,8 @@ must be able to concatenate them together.
 celldisp
 @c celldisp scripts/general/celldisp.m
 -*- texinfo -*-
-@deftypefn {Function File} {} celldisp (@var{c}, @var{name})
+@deftypefn  {Function File} {} celldisp (@var{c})
+@deftypefnx {Function File} {} celldisp (@var{c}, @var{name})
 Recursively display the contents of a cell array.  By default the values
 are displayed with the name of the variable @var{c}.  However, this name
 can be replaced with the variable @var{name}.  For example:
@@ -2215,8 +2225,9 @@ Convert a number (or array) to a string (or a character array).  The
 optional second argument may either give the number of significant
 digits (@var{precision}) to be used in the output or a format
 template string (@var{format}) as in @code{sprintf} (@pxref{Formatted
-Output}).  @code{num2str} can also handle complex numbers.  For
-example:
+Output}).  @code{num2str} can also handle complex numbers.
+
+Examples:
 
 @example
 @group
@@ -2241,11 +2252,17 @@ num2str (1.234 + 27.3i)
 @end group
 @end example
 
+Notes:
+
+For Matlab compatibility, leading spaces are stripped before returning
+the string.
+
 The @code{num2str} function is not very flexible.  For better control
 over the results, use @code{sprintf} (@pxref{Formatted Output}).
-Note that for complex @var{x}, the format string may only contain one
-output conversion specification and nothing else.  Otherwise, you
-will get unpredictable results.
+
+For complex @var{x}, the format string may only contain one
+output conversion specification and nothing else.  Otherwise, results
+will be unpredictable.
 @seealso{sprintf, int2str, mat2str}
 @end deftypefn
 pol2cart
@@ -3307,6 +3324,20 @@ An optional second argument, which must be a string or cell array of strings,
 contains options passed to the underlying qhull command.
 See the documentation for the Qhull library for details
 @url{http://www.qhull.org/html/qh-quick.htm#options}.
+
+The default options depend on the dimension of the input:
+
+@itemize
+@item 2-D and 3-D: @var{options} = @code{@{"Qbb"@}}
+
+@item 4-D and higher: @var{options} = @code{@{"Qbb", "Qx"@}}
+@end itemize
+
+If @var{options} is not present or @code{[]} then the default arguments are
+used.  Otherwise, @var{options} replaces the default argument list. 
+To append user options to the defaults it is necessary to repeat the 
+default arguments in @var{options}.  Use a null string to pass no arguments.
+
 @seealso{voronoi, convhulln, delaunayn}
 @end deftypefn
 __makeinfo__
@@ -3719,7 +3750,7 @@ yellow, green, cyan, blue, and magenta, before returning to red.
 It is useful for displaying periodic functions.  The map is obtained by
 linearly varying the hue through all possible values while keeping constant
 maximum saturation and value.  The equivalent code is
-@code{hsv2rgb ([linspace(0,1,N)', ones(N,2)])}.
+@code{hsv2rgb ([(0:N-1)'/N, ones(N,2)])}.
 
 The argument @var{n} must be a scalar.
 If unspecified, the length of the current colormap, or 64, is used.
@@ -4443,7 +4474,7 @@ It may contain any combination of the following specifiers:
 @item %s
 The word is parsed as a string.
 
-@itemx %f
+@item  %f
 @itemx %n
 The word is parsed as a number and converted to double.
 
@@ -4627,6 +4658,11 @@ by the number of format specifiers.
 The second output, @var{position}, provides the position, in characters,
 from the beginning of the file.
 
+If the format string is empty (not: omitted) and the file contains only
+numeric data (excluding headerlines), textscan will return data in a number
+of columns matching the number of numeric fields on the first data line of
+the file.
+
 @seealso{dlmread, fscanf, load, strread, textread}
 @end deftypefn
 textread
@@ -4659,90 +4695,12 @@ delimiters.
 The optional input @var{n} specifies the number of data lines to read; in
 this sense it differs slightly from the format repeat count in strread.
 
+If the format string is empty (not: omitted) and the file contains only
+numeric data (excluding headerlines), textread will return a rectangular
+matrix with the number of columns matching the number of numeric fields on
+the first data line of the file. Empty fields are returned as zero values.
+
 @seealso{strread, load, dlmread, fscanf, textscan}
-@end deftypefn
-dlgtest
-@c dlgtest scripts/java/dlgtest.m
-
-Test the dlg... functions of the Octave-Java bridge
-
-Once the Java bridge works OK this function should be dropped from core octave
-
-Author: Martin Hepperle
-Version August 2010
-Adapted for core Octave Philip Nienhuis 2012
-
-errordlg
-@c errordlg scripts/java/errordlg.m
--*- texinfo -*-
-@deftypefn  {Function File} {@var{h} =} errordlg (@var{msg})
-@deftypefnx {Function File} {@var{h} =} errordlg (@var{msg}, @var{title})
-Display @var{msg} using an error dialog box.
-
-The message may have multiple lines separated by newline characters
-("\n"), or it may be a cellstr array with one element for each
-line.  The optional input @var{title} (character string) can be used to
-set the dialog caption.  The default title is "Error Dialog".
-
-The return value is always 1.
-@seealso{helpdlg, inputdlg, listdlg, msgbox, questdlg, warndlg}
-@end deftypefn
-helpdlg
-@c helpdlg scripts/java/helpdlg.m
--*- texinfo -*-
-@deftypefn  {Function File} {@var{h} =} helpdlg (@var{msg})
-@deftypefnx {Function File} {@var{h} =} helpdlg (@var{msg}, @var{title})
-Display @var{msg} in a help dialog box.
-
-The message may have multiple lines separated by newline characters
-("\n"), or it may be a cellstr array with one element for each
-line.  The optional input @var{title} (character string) can be used to
-set the dialog caption.  The default title is "Help Dialog".
-
-The return value is always 1.
-@seealso{errordlg, inputdlg, listdlg, msgbox, questdlg, warndlg}
-@end deftypefn
-inputdlg
-@c inputdlg scripts/java/inputdlg.m
--*- texinfo -*-
-@deftypefn  {Function File} {@var{cstr} =} inputdlg (@var{prompt})
-@deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title})
-@deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title}, @var{rowscols})
-@deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title}, @var{rowscols}, @var{defaults})
-Return user input from a multi-textfield dialog box in a cell array
-of strings, or an empty cell array if the dialog is closed by the
-Cancel button.
-
-Inputs:
-
-@table @var
-@item prompt
-A cell array with strings labeling each text field.  This input is required. 
-
-@item title
-String to use for the caption of the dialog.  The default is "Input Dialog".
-
-@item rowscols
-Specifies the size of the text fields and can take three forms:
-
-@enumerate
-@item a scalar value which defines the number of rows used for each
-text field.
-
-@item a vector which defines the individual number of rows
-used for each text field. 
-
-@item a matrix which defines the individual number of rows and
-columns used for each text field.  In the matrix each row describes
-a single text field.  The first column specifies the number of input
-rows to use and the second column specifies the text field width.
-@end enumerate
-
-@item defaults
-A list of default values to place in each text fields.  It must be
-a cell array of strings with the same size as @var{prompt}.
-@end table
-@seealso{errordlg, helpdlg, listdlg, msgbox, questdlg, warndlg}
 @end deftypefn
 javaArray
 @c javaArray scripts/java/javaArray.m
@@ -4836,13 +4794,13 @@ a dedicated and separate part of memory claimed by the JVM from
 your computer's total memory (which comprises physical RAM and
 virtual memory / swap space on hard disk).
 
-The maximum allowable memory usage can be set using the file java.opts
-(in the same subdirectory where javaaddpath.m lives, see 
-"which javaaddpath".  Usually that is:
+The maximum allowable memory usage can be configured using the file
+@file{java.opts}.  The directory where this file resides is
+determined by the environment variable @w{@env{OCTAVE_JAVA_DIR}}.
+If unset, the directory where @file{javaaddpath.m} resides is used instead
+(typically @file{@env{OCTAVE_HOME}/share/octave/@env{OCTAVE_VERSION}/m/java/}
 
-@file{OCTAVE_HOME/share/octave/OCTAVE_VERSION/m/java/}
-
-java.opts is a plain text file with one option per line.  The
+@file{java.opts} is a plain text file with one option per line.  The
 default initial memory size and default maximum memory size (which
 are both system dependent) can be overridden like so:
 
@@ -4850,7 +4808,7 @@ are both system dependent) can be overridden like so:
 
 @nospell{-Xmx512m}
 
-(in megabytes in this example.)
+(in megabytes in this example).
 You can adapt these values to your own requirements if your system
 has limited available physical memory or if you get Java memory
 errors.
@@ -4872,119 +4830,6 @@ machine.  @var{clspath} may either be a directory where @file{.class}
 files are found, or a @file{.jar} file containing Java classes.
 Multiple paths may be removed at once by specifying additional arguments.
 @seealso{javaaddpath, javaclasspath}
-@end deftypefn
-listdlg
-@c listdlg scripts/java/listdlg.m
--*- texinfo -*-
-@deftypefn {Function File} {[@var{sel}, @var{ok}] =} listdlg (@var{key}, @var{value}, @dots{})
-Return user inputs from a list dialog box in a vector of 
-selection indices @var{sel} and a flag @var{ok} indicating how the
-user closed the dialog box.  The value of @var{ok} is 1 if the user
-closed the box with the OK button, otherwise it is 0 and @var{sel} is
-empty.
-
-The indices in @var{sel} are 1 based.
-
-The arguments are specified in form of @var{key}, @var{value} pairs. 
-The @code{"ListString"} argument pair must be specified.
-
-Valid @var{key} and @var{value} pairs are:
-
-@table @code
-@item "ListString"
-   a cell array of strings comprising the content of the list.
-
-@item "SelectionMode"
-   can be either @code{"Single"} or @code{"Multiple"} (default).
-
-@item "ListSize"
-   a vector with two elements @var{width} and @var{height} defining
-   the size of the list field in pixels.  Default is [160 300].
-
-@item "InitialValue"
-   a vector containing 1-based indices of preselected elements.  Default
-   is 1 (first item).
-
-@item "Name"
-   a string to be used as the dialog caption.  Default is "".
-
-@item "PromptString"
-   a cell array of strings to be displayed above the list field.  Default
-   is @{@}.
-
-@item "OKString"
-   a string used to label the OK button.  Default is "OK".
-
-@item "CancelString"
-   a string used to label the Cancel button.  Default is "Cancel".
-@end table
-
-Example:
-
-@example
-@group
-[sel, ok] = listdlg ("ListString", @{"An item", "another", "yet another"@},
-                     "SelectionMode", "Multiple");
-if (ok == 1)
-  for i = 1:numel (sel)
-    disp (sel(i));
-  endfor
-endif
-@end group
-@end example
-
-@seealso{errordlg, helpdlg, inputdlg, msgbox, questdlg, warndlg}
-@end deftypefn
-msgbox
-@c msgbox scripts/java/msgbox.m
--*- texinfo -*-
-@deftypefn  {Function File} {@var{h} =} msgbox (@var{msg})
-@deftypefnx {Function File} {@var{h} =} msgbox (@var{msg}, @var{title})
-@deftypefnx {Function File} {@var{h} =} msgbox (@var{msg}, @var{title}, @var{icon})
-Display @var{msg} using a message dialog box. 
-
-The message may have multiple lines separated by newline characters
-(@code{"\n"}), or it may be a cellstr array with one element for each
-line.  The optional input @var{title} (character string) can be used to
-decorate the dialog caption.
-
-The optional argument @var{icon} selects a dialog icon. 
-It can be one of @code{"none"} (default), @code{"error"}, @code{"help"} or
-@code{"warn"}.
-
-The return value is always 1.
-@seealso{errordlg, helpdlg, inputdlg, listdlg, questdlg, warndlg}
-@end deftypefn
-questdlg
-@c questdlg scripts/java/questdlg.m
--*- texinfo -*-
-@deftypefn  {Function File} {@var{btn} =} questdlg (@var{msg})
-@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title})
-@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{default})
-@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{btn1}, @var{btn2}, @var{default})
-@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{btn1}, @var{btn2}, @var{btn3}, @var{default})
-Display @var{msg} using a question dialog box and return the caption
-of the activated button.
-
-The dialog may contain two or three buttons which will all close the dialog.
-
-The message may have multiple lines separated by newline characters
-(@code{"\n"}), or it may be a cellstr array with one element for each
-line.  The optional @var{title} (character string) can be used to
-decorate the dialog caption.
-
-The string @var{default} identifies the default button, 
-which is activated by pressing the @kbd{ENTER} key.
-It must match one of the strings given in @var{btn1}, @var{btn2} or
-@var{btn3}.
-
-If only @var{msg} and @var{title} are specified, three buttons with
-the default captions "Yes", "No", and "Cancel" are used.
-
-If only two button captions, @var{btn1} and @var{btn2}, are specified 
-the dialog will have only these two buttons.
-
-@seealso{errordlg, helpdlg, inputdlg, listdlg, warndlg}
 @end deftypefn
 usejava
 @c usejava scripts/java/usejava.m
@@ -5014,20 +4859,6 @@ their behavior based on the availability of Java.  The feature "desktop"
 always returns @code{false} as Octave has no Java-based desktop.  Other
 features may be available if Octave was compiled with the Java Interface
 and Java is installed.
-@end deftypefn
-warndlg
-@c warndlg scripts/java/warndlg.m
--*- texinfo -*-
-@deftypefn  {Function File} {@var{h} =} warndlg (@var{msg})
-@deftypefnx {Function File} {@var{h} =} warndlg (@var{msg}, @var{title})
-Display @var{msg} using a warning dialog box. 
-
-The message may have multiple lines separated by newline characters
-("\n"), or it may be a cellstr array with one element for each
-line.  The optional input @var{title} (character string) can be used to
-set the dialog caption.  The default title is "Warning Dialog".
-
-@seealso{helpdlg, inputdlg, listdlg, questdlg}
 @end deftypefn
 commutation_matrix
 @c commutation_matrix scripts/linear-algebra/commutation_matrix.m
@@ -5679,6 +5510,24 @@ files are placed in this directory.
 Convert @var{val} to data type @var{type}.
 @seealso{int8, uint8, int16, uint16, int32, uint32, int64, uint64, double}
 @end deftypefn
+citation
+@c citation scripts/miscellaneous/citation.m
+-*- texinfo -*-
+@deftypefn  {Command} {} citation
+@deftypefnx {Command} {} citation @var{package}
+Display instructions to cite GNU Octave and packages in publications.
+
+When called without an argument, displays information on how to cite the core
+GNU Octave system in publications.  When given a package name @var{package},
+display information on to cite it.  However, note that some packages may not
+have instructions on how to cite them.
+
+The GNU Octave developers and its active community of package authors have
+invested a lot of time and effort in creating GNU Octave as it is today.
+Please give credit where credit is due and cite GNU Octave and its packages
+when you use them.
+
+@end deftypefn
 comma
 @c comma scripts/miscellaneous/comma.m
 -*- texinfo -*-
@@ -6162,12 +6011,14 @@ Return a complete filename constructed from the given components.
 getappdata
 @c getappdata scripts/miscellaneous/getappdata.m
 -*- texinfo -*-
-@deftypefn {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+@deftypefn  {Function File} {@var{value} =} getappdata (@var{h}, @var{name})
+@deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
+
 Return the @var{value} for named application data for the object(s) with
 handle(s) @var{h}.
-@deftypefnx {Function File} {@var{appdata} =} getappdata (@var{h})
-Return a structure, @var{appdata}, whose fields correspond to the appdata
-properties.
+
+@code{getappdata(@var{h})} returns a structure, @var{appdata}, whose fields
+correspond to the appdata properties.
 @end deftypefn
 getfield
 @c getfield scripts/miscellaneous/getfield.m
@@ -6256,21 +6107,31 @@ Return true if Octave is running on a Unix-like system and false otherwise.
 license
 @c license scripts/miscellaneous/license.m
 -*- texinfo -*-
-@deftypefn {Function File} {} license
+@deftypefn  {Command} {} license
+@deftypefnx {Function File} {} license ("inuse")
+@deftypefnx {Function File} {@var{retval} =} license ("inuse")
+@deftypefnx {Function File} {@var{retval} =} license ("test", @var{feature})
+@deftypefnx {Function File} {} license ("test", @var{feature}, @var{toggle})
+@deftypefnx {Function File} {@var{retval} =} license ("checkout", @var{feature})
+
 Display the license of Octave.
 
-@deftypefnx {Function File} {} license ("inuse")
+@code{license ("inuse")}
+
 Display a list of packages currently being used.
 
-@deftypefnx {Function File} {@var{retval} =} license ("inuse")
+@code{@var{retval} = license ("inuse")}
+
 Return a structure containing the fields @code{feature} and @code{user}.
 
-@deftypefnx {Function File} {@var{retval} =} license ("test", @var{feature})
+@code{@var{retval} = license ("test", @var{feature})}
+
 Return 1 if a license exists for the product identified by the string
 @var{feature} and 0 otherwise.  The argument @var{feature} is case
 insensitive and only the first 27 characters are checked.
 
-@deftypefnx {Function File} {} license ("test", @var{feature}, @var{toggle})
+@code{license ("test", @var{feature}, @var{toggle})}
+
 Enable or disable license testing for @var{feature}, depending on
 @var{toggle}, which may be one of:
 
@@ -6283,7 +6144,8 @@ as usual.
 Future tests for the specified license of @var{feature} return 0.
 @end table
 
-@deftypefnx {Function File} {@var{retval} =} license ("checkout", @var{feature})
+@code{@var{retval} = license ("checkout", @var{feature})}
+
 Check out a license for @var{feature}, returning 1 on success and 0
 on failure.
 
@@ -6511,8 +6373,8 @@ format will have their names truncated to this length.
 news
 @c news scripts/miscellaneous/news.m
 -*- texinfo -*-
-@deftypefn  {Function File} {} news
-@deftypefnx {Function File} {} news (@var{package})
+@deftypefn  {Command} {} news
+@deftypefnx {Command} {} news @var{package}
 Display the current NEWS file for Octave or an installed package.
 
 When called without an argument, display the NEWS file for Octave.
@@ -6929,13 +6791,18 @@ If @var{dir} is not specified, it defaults to the current directory.
 ver
 @c ver scripts/miscellaneous/ver.m
 -*- texinfo -*-
-@deftypefn {Function File} {} ver ()
+@deftypefn  {Function File} {} ver ()
+@deftypefnx {Function File} {v =} ver ()
+@deftypefnx {Function File} {v =} ver ("Octave")
+@deftypefnx {Function File} {v =} ver (@var{package})
+
 Display a header containing the current Octave version number, license
-string and operating system, followed by the installed package names,
+string, and operating system followed by a list of installed packages,
 versions, and installation directories.
 
-@deftypefnx {Function File} {v =} ver ()
-Return a vector of structures, respecting Octave and each installed package.
+@code{v = ver ()}
+
+Return a vector of structures describing Octave and each installed package.
 The structure includes the following fields.
 
 @table @code
@@ -6949,13 +6816,15 @@ Version of the package.
 Revision of the package.
 
 @item Date
-Date respecting the version/revision.
+Date of the version/revision.
 @end table
 
-@deftypefnx {Function File} {v =} ver ("Octave")
+@code{v = ver ("Octave")}
+
 Return version information for Octave only.
 
-@deftypefnx {Function File} {v =} ver (@var{package})
+@code{v = ver (@var{package})}
+
 Return version information for @var{package}.
 
 @seealso{version, octave_config_info}
@@ -7333,6 +7202,10 @@ is defined the @var{files} are located relative to @var{rootdir} rather
 than the current directory.
 @seealso{unzip, bzip2, gzip, tar}
 @end deftypefn
+display_info_file
+@c display_info_file scripts/miscellaneous/private/display_info_file.m
+news() and citation() are very much alike. They both do the same thing, just
+for different files. This function does all the work.
 __xzip__
 @c __xzip__ scripts/miscellaneous/private/__xzip__.m
 -*- texinfo -*-
@@ -9809,22 +9682,27 @@ title ("a cone");
 daspect
 @c daspect scripts/plot/daspect.m
 -*- texinfo -*-
-@deftypefn {Function File} {} daspect (@var{data_aspect_ratio})
-Set the data aspect ratio of the current axes.  The aspect ratio is
-a normalized 3-element vector representing the span of the x, y, and
-z-axes limits.
-
-@deftypefnx {Function File} {@var{data_aspect_ratio} =} daspect ( )
-Return the data aspect ratio of the current axes.
-
+@deftypefn  {Function File} {@var{data_aspect_ratio} =} daspect ()
+@deftypefnx {Function File} {} daspect (@var{data_aspect_ratio})
 @deftypefnx {Function File} {} daspect (@var{mode})
-Set the data aspect ratio mode of the current axes.
-
 @deftypefnx {Function File} {@var{data_aspect_ratio_mode} =} daspect ("mode")
+@deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
+Query or set the data aspect ratio of the current axes.  The aspect 
+ratio is a normalized 3-element vector representing the span of the x, y,
+and z-axis limits.
+
+@code{(daspect (@var{mode}))}
+
+Set the data aspect ratio mode of the current axes.  @var{mode} is
+either "auto" or "manual".
+
+@code{daspect ("mode")}
+
 Return the data aspect ratio mode of the current axes.
 
-@deftypefnx {Function File} {} daspect (@var{hax}, @dots{})
-Use the axes, with handle @var{hax}, instead of the current axes.
+@code{daspect (@var{hax}, @dots{})}
+
+Operate on the axes in handle @var{hax} instead of the current axes.
 
 @seealso{axis, pbaspect, xlim, ylim, zlim}
 @end deftypefn
@@ -10569,18 +10447,28 @@ loop until the return key @key{RET} is pressed.
 graphics_toolkit
 @c graphics_toolkit scripts/plot/graphics_toolkit.m
 -*- texinfo -*-
-@deftypefn {Function File} {@var{name} =} graphics_toolkit ()
+@deftypefn  {Function File} {@var{name} =} graphics_toolkit ()
+@deftypefnx {Function File} {@var{name} =} graphics_toolkit (@var{hlist})
+@deftypefnx {Function File} {} graphics_toolkit (@var{name})
+@deftypefnx {Function File} {} graphics_toolkit (@var{hlist}, @var{name})
 Return the default graphics toolkit.  The default graphics toolkit value
 is assigned to new figures.
-@deftypefnx {Function File} {@var{name} =} graphics_toolkit (@var{hlist})
+
+@code{graphics_toolkit (@var{hlist})}
+
 Return the graphics toolkits for the figures with handles @var{hlist}.
-@deftypefnx {Function File} {} graphics_toolkit (@var{name})
+
+@code{graphics_toolkit (@var{name})}
+
 Set the default graphics toolkit to @var{name}.  If the toolkit is not
 already loaded, it is initialized by calling the function
 @code{__init_@var{name}__}.
-@deftypefnx {Function File} {} graphics_toolkit (@var{hlist}, @var{name})
+
+@code{graphics_toolkit (@var{hlist}, @var{name})}
+
 Set the graphics toolkit for the figures with handles @var{hlist} to
 @var{name}.
+
 @seealso{available_graphics_toolkits}
 @end deftypefn
 grid
@@ -11120,7 +11008,7 @@ The following customizations are available using @var{option}:
 @item "hide"
   Hide legend on the plot
 
-@itemx "toggle"
+@item "toggle"
   Toggles between "hide" and "show"
 
 @item "boxon"
@@ -11135,7 +11023,7 @@ The following customizations are available using @var{option}:
 @item "right"
   Place label text to the right of the keys
 
-@itemx "off"
+@item  "off"
   Delete the legend object
 @end table
 
@@ -11315,10 +11203,14 @@ all n input arguments equal to @var{x}:
 newplot
 @c newplot scripts/plot/newplot.m
 -*- texinfo -*-
-@deftypefn {Function File} {} newplot ()
+@deftypefn  {Function File} {} newplot ()
+@deftypefnx {Function File} {@var{h} =} newplot ()
 Prepare graphics engine to produce a new plot.  This function is
 called at the beginning of all high-level plotting functions.
 It is not normally required in user programs.
+
+The optional return value @var{h} is a graphics handle to the created
+axes (not figure).
 @end deftypefn
 orient
 @c orient scripts/plot/orient.m
@@ -11403,22 +11295,28 @@ object.
 pbaspect
 @c pbaspect scripts/plot/pbaspect.m
 -*- texinfo -*-
-@deftypefn {Function File} {} pbaspect (@var{plot_box_aspect_ratio})
-Set the plot box aspect ratio of the current axes.  The aspect ratio
-is a normalized 3-element vector representing the rendered lengths of
-the x, y, and z-axes.
-
-@deftypefnx {Function File} {@var{plot_box_aspect_ratio} =} pbaspect ( )
-Return the plot box aspect ratio of the current axes.
-
+@deftypefn  {Function File} {@var{plot_box_aspect_ratio} =} pbaspect ( )
+@deftypefnx {Function File} {} pbaspect (@var{plot_box_aspect_ratio})
 @deftypefnx {Function File} {} pbaspect (@var{mode})
-Set the plot box aspect ratio mode of the current axes.
-
 @deftypefnx {Function File} {@var{plot_box_aspect_ratio_mode} =} pbaspect ("mode")
+@deftypefnx {Function File} {} pbaspect (@var{hax}, @dots{})
+
+Query or set the plot box aspect ratio of the current axes.  The aspect
+ratio is a normalized 3-element vector representing the rendered lengths of
+the x, y, and z axes.
+
+@code{pbaspect(@var{mode})}
+
+Set the plot box aspect ratio mode of the current axes.  @var{mode} is
+either "auto" or "manual".
+
+@code{pbaspect ("mode")}
+
 Return the plot box aspect ratio mode of the current axes.
 
-@deftypefnx {Function File} {} pbaspect (@var{hax}, @dots{})
-Use the axes, with handle @var{hax}, instead of the current axes.
+@code{pbaspect (@var{hax}, @dots{})}
+
+Operate on the axes in handle @var{hax} instead of the current axes.
 
 @seealso{axis, daspect, xlim, ylim, zlim}
 @end deftypefn
@@ -12058,11 +11956,10 @@ by the figure's "papersize" property.  When the output
 is sent to a file the size is determined by the plot box defined by
 the figure's "paperposition" property.
 
-@itemx -append
-  Append Postscript or PDF output to a pre-existing file of the
-same type.
+@item -append
+  Append Postscript or PDF output to a pre-existing file of the same type.
 
-@itemx -r@var{NUM}
+@item -r@var{NUM}
   Resolution of bitmaps in pixels per inch.  For both metafiles and
 SVG the default is the screen resolution; for other formats it is 150 dpi.
 To specify screen resolution, use "-r0".
@@ -12132,9 +12029,11 @@ print -dcdj550
 @c printd scripts/plot/printd.m
 -*- texinfo -*-
 @deftypefn  {Function File} {} printd (@var{obj}, @var{filename})
+@deftypefnx {Function File} {@var{out_file} =} printd (@dots{})
 
 Convert any object acceptable to @code{disp} into the format
-selected by the suffix of @var{filename}.
+selected by the suffix of @var{filename}.  If the return argument
+@var{out_file} is given, the name of the created file is returned.
 
 This function is intended to facilitate manipulation of the output
 of functions such as @code{stemleaf}.
@@ -12849,23 +12748,57 @@ definitions with RGB-triples are not valid!
 stemleaf
 @c stemleaf scripts/plot/stemleaf.m
 -*- texinfo -*-
-@deftypefn  {Function File} {} stemleaf (@var{x})
-@deftypefnx {Function File} {@var{plot} =} stemleaf (@var{x}, @var{opt})
-
+@deftypefn  {Function File} {} stemleaf (@var{x}, @var{caption})
+@deftypefnx {Function File} {} stemleaf (@var{x}, @var{caption}, @var{stem_sz})
+@deftypefnx {Function File} {@var{plotstr} =} stemleaf (@dots{})
 Compute and display a stem and leaf plot of the vector @var{x}.
 
-The @var{x} vector is converted to integer by @var{x} = @code{fix} (@var{x}). 
-If an output argument is provided, the plot is returned as
-an array of strings.  The first element is the heading
-followed by an element for each stem.
-The default stem step is 10.  
-The @var{x} vector should be integers.  It will be treated so that
-the last digit is the leaf value and the other digits are
-the stems.
-The leaf digits are not sorted.  If sorted leaf values
-are wanted, use @code{sort} (@var{x}) before calling @code{stemleaf} (@var{x}).
-The stem and leaf plot is described in: Ch. 3,
-Exploratory Data Analysis by J. W. Tukey, Addison-Wesley, 1977.
+The input @var{x} should be a vector of integers.  Any non-integer values
+will be converted to integer by @code{@var{x} = fix (@var{x})}.  By default
+each element of @var{x} will be plotted with the last digit of the element
+as a leaf value and the remaining digits as the stem.  For example, 123
+will be plotted with the stem @samp{12} and the leaf @samp{3}.  The second
+argument, @var{caption}, should be a character array which provides a
+description of the data.  It is included as a heading for the output.
+
+The optional input @var{stem_sz} sets the width of each stem.
+The stem width is determined by @code{10^(@var{stem_sz} + 1)}.
+The default stem width is 10.
+
+The output of @code{stemleaf} is composed of two parts: a
+"Fenced Letter Display," followed by the stem-and-leaf plot itself.
+The Fenced Letter Display is described in @cite{Exploratory Data Analysis}.
+Briefly, the entries are as shown:
+
+@example
+@group
+
+        Fenced Letter Display
+  #% nx|___________________          nx = numel (x)
+  M% mi|       md         |          mi median index, md median
+  H% hi|hl              hu|   hs     hi lower hinge index, hl,hu hinges, hs h_spread
+  1    |x(1)         x(nx)|          x(1), x(nx) first and last data value
+             _______   
+       ______|step |_______          step 1.5*h_spread
+      f|ifl            ifh|          inner fence, lower and higher
+       |nfl            nfh|          # data points within fences
+      F|ofl            ofh|          outer fence, lower and higher
+       |nFl            nFh|          # data points outside outer fences
+@end group
+@end example
+
+The stem-and-leaf plot shows on each line the stem value followed by the
+string made up of the leaf digits.  If the @var{stem_sz} is not 1 the
+successive leaf values are separated by ",".
+
+With no return argument, the plot is immediately displayed.  If an output
+argument is provided, the plot is returned as an array of strings. 
+
+The leaf digits are not sorted.  If sorted leaf values are desired, use
+@code{@var{xs} = sort (@var{x})} before calling @code{stemleaf (@var{xs})}.
+
+The stem and leaf plot and associated displays are described in: 
+Ch. 3, @cite{Exploratory Data Analysis} by J. W. Tukey, Addison-Wesley, 1977.
 @seealso{hist, printd}
 @end deftypefn
 struct2hdl
@@ -13405,7 +13338,8 @@ the program execution is suspended indefinitely.
 @deftypefnx {Function File} {} view (@var{azimuth}, @var{elevation})
 @deftypefnx {Function File} {} view ([@var{azimuth} @var{elevation}])
 @deftypefnx {Function File} {} view ([@var{x} @var{y} @var{z}])
-@deftypefnx {Function File} {} view (@var{dims})
+@deftypefnx {Function File} {} view (2)
+@deftypefnx {Function File} {} view (3)
 @deftypefnx {Function File} {} view (@var{ax}, @dots{})
 Query or set the viewpoint for the current axes.  The parameters
 @var{azimuth} and @var{elevation} can be given as two arguments or as
@@ -14230,19 +14164,21 @@ stripping off any leading zeros.
 -*- texinfo -*-
 @deftypefn  {Function File} {@var{y} =} polyval (@var{p}, @var{x})
 @deftypefnx {Function File} {@var{y} =} polyval (@var{p}, @var{x}, [], @var{mu})
+@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s})
+@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s}, @var{mu})
+
 Evaluate the polynomial @var{p} at the specified values of @var{x}.  When
 @var{mu} is present, evaluate the polynomial for
 (@var{x}-@var{mu}(1))/@var{mu}(2).
 If @var{x} is a vector or matrix, the polynomial is evaluated for each of
 the elements of @var{x}.
 
-@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s})
-@deftypefnx {Function File} {[@var{y}, @var{dy}] =} polyval (@var{p}, @var{x}, @var{s}, @var{mu})
 In addition to evaluating the polynomial, the second output
 represents the prediction interval, @var{y} +/- @var{dy}, which
 contains at least 50% of the future predictions.  To calculate the
 prediction interval, the structured variable @var{s}, originating
 from @code{polyfit}, must be supplied.
+
 @seealso{polyvalm, polyaffine, polyfit, roots, poly}
 @end deftypefn
 polyvalm
@@ -14530,25 +14466,25 @@ compatibility.
 splinefit
 @c splinefit scripts/polynomial/splinefit.m
 -*- texinfo -*-
-@deftypefn {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{breaks})
-Fit a piecewise cubic spline with breaks (knots) @var{breaks} to the
-noisy data, @var{x} and @var{y}.  @var{x} is a vector, and @var{y}
-a vector or N-D array.  If @var{y} is an N-D array, then @var{x}(j)
-is matched to @var{y}(:,@dots{},:,j).
-
-The fitted spline is returned as a piecewise polynomial, @var{pp}, and
-may be evaluated using @code{ppval}.
-
+@deftypefn  {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{breaks})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@var{x}, @var{y}, @var{p})
-@var{p} is a positive integer defining the number of intervals along @var{x},
-and @var{p}+1 is the number of breaks.  The number of points in each interval
-differ by no more than 1.
-
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "periodic", @var{periodic})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "robust", @var{robust})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "beta", @var{beta})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "order", @var{order})
 @deftypefnx {Function File} {@var{pp} =} splinefit (@dots{}, "constraints", @var{constraints})
+
+Fit a piecewise cubic spline with breaks (knots) @var{breaks} to the
+noisy data, @var{x} and @var{y}.  @var{x} is a vector, and @var{y}
+is a vector or N-D array.  If @var{y} is an N-D array, then @var{x}(j)
+is matched to @var{y}(:,@dots{},:,j).
+
+The fitted spline is returned as a piecewise polynomial, @var{pp}, and
+may be evaluated using @code{ppval}.
+
+@var{p} is a positive integer defining the number of intervals along @var{x},
+and @var{p}+1 is the number of breaks.  The number of points in each interval
+differ by no more than 1.
 
 The optional property @var{periodic} is a logical value which specifies
 whether a periodic boundary condition is applied to the spline.  The
@@ -14580,7 +14516,7 @@ linear constraints on the fit.  The structure has three fields, "xc",
 Vector of the x-locations of the constraints.
 
 @item "yc"
-Constraining values at the locations, @var{xc}.
+Constraining values at the locations @var{xc}.
 The default is an array of zeros.
 
 @item "cc"
@@ -14872,8 +14808,10 @@ is @var{c}.
 -*- texinfo -*-
 @deftypefn  {Function File} {} union (@var{a}, @var{b})
 @deftypefnx {Function File} {} union (@var{a}, @var{b}, "rows")
+@deftypefnx {Function File} {[@var{c}, @var{ia}, @var{ib}] =} union (@var{a}, @var{b})
+
 Return the set of elements that are in either of the sets @var{a} and
-@var{b}.  @var{a}, @var{b} may be cell arrays of string(s).
+@var{b}.  @var{a}, @var{b} may be cell arrays of strings.
 For example:
 
 @example
@@ -14883,8 +14821,8 @@ union ([1, 2, 4], [2, 3, 5])
 @end group
 @end example
 
-If the optional third input argument is the string "rows" each row of
-the matrices @var{a} and @var{b} will be considered an element of sets.
+If the optional third input argument is the string "rows" then each row of
+the matrices @var{a} and @var{b} will be considered as a single set element.
 For example:
 
 @example
@@ -14896,10 +14834,8 @@ union ([1, 2; 2, 3], [1, 2; 3, 4], "rows")
 @end group
 @end example
 
-@deftypefnx {Function File} {[@var{c}, @var{ia}, @var{ib}] =} union (@var{a}, @var{b})
-
-Return index vectors @var{ia} and @var{ib} such that @code{a(ia)} and
-@code{b(ib)} are disjoint sets whose union is @var{c}.
+The optional outputs @var{ia} and @var{ib} are index vectors such that
+@code{a(ia)} and @code{b(ib)} are disjoint sets whose union is @var{c}.
 
 @seealso{intersect, setdiff, unique}
 @end deftypefn
@@ -15229,7 +15165,11 @@ denotes the lag-operator and @math{d} is greater than -1.
 freqz
 @c freqz scripts/signal/freqz.m
 -*- texinfo -*-
-@deftypefn {Function File} {[@var{h}, @var{w}] =} freqz (@var{b}, @var{a}, @var{n}, "whole")
+@deftypefn  {Function File} {[@var{h}, @var{w}] =} freqz (@var{b}, @var{a}, @var{n}, "whole")
+@deftypefnx {Function File} {@var{h} =} freqz (@var{b}, @var{a}, @var{w})
+@deftypefnx {Function File} {[@dots{}] =} freqz (@dots{}, @var{Fs})
+@deftypefnx {Function File} {} freqz (@dots{})
+
 Return the complex frequency response @var{h} of the rational IIR filter
 whose numerator and denominator coefficients are @var{b} and @var{a},
 respectively.  The response is evaluated at @var{n} angular frequencies
@@ -15244,7 +15184,15 @@ between 0 and
 @noindent
 The output value @var{w} is a vector of the frequencies.
 
-If the fourth argument is omitted, the response is evaluated at
+If @var{a} is omitted, the denominator is assumed to be 1 (this
+corresponds to a simple FIR filter).
+
+If @var{n} is omitted, a value of 512 is assumed.
+
+For fastest computation, @var{n} should factor into a small number of
+small primes.
+
+If the fourth argument, "whole", is omitted the response is evaluated at
 frequencies between 0 and
 @ifnottex
  pi.
@@ -15253,24 +15201,19 @@ frequencies between 0 and
  $\pi$.
 @end tex
 
-If @var{n} is omitted, a value of 512 is assumed.
+@code{freqz (@var{b}, @var{a}, @var{w})}
 
-If @var{a} is omitted, the denominator is assumed to be 1 (this
-corresponds to a simple FIR filter).
-
-For fastest computation, @var{n} should factor into a small number of
-small primes.
-
-@deftypefnx {Function File} {@var{h} =} freqz (@var{b}, @var{a}, @var{w})
 Evaluate the response at the specific frequencies in the vector @var{w}.
 The values for @var{w} are measured in radians.
 
-@deftypefnx {Function File} {[@dots{}] =} freqz (@dots{}, @var{Fs})
+@code{[@dots{}] = freqz (@dots{}, @var{Fs})}
+
 Return frequencies in Hz instead of radians assuming a sampling rate
 @var{Fs}.  If you are evaluating the response at specific frequencies
 @var{w}, those frequencies should be requested in Hz rather than radians.
 
-@deftypefnx {Function File} {} freqz (@dots{})
+@code{freqz (@dots{})}
+
 Plot the pass band, stop band and phase response of @var{h} rather
 than returning them.
 @end deftypefn
@@ -20339,20 +20282,33 @@ The @code{rindex} function is equivalent to @code{index} with
 strsplit
 @c strsplit scripts/strings/strsplit.m
 -*- texinfo -*-
-@deftypefn  {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{sep})
-@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{sep}, @var{strip_empty})
-Split the string @var{s} using one or more separators @var{sep} and return
-a cell array of strings.  Consecutive separators and separators at
-boundaries result in empty strings, unless @var{strip_empty} is true.
-The default value of @var{strip_empty} is false.
+@deftypefn  {Function File} {[@var{cstr}] =} strsplit (@var{s})
+@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{del})
+@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@var{s}, @var{del}, @var{collapsedelimiters})
+@deftypefnx {Function File} {[@var{cstr}] =} strsplit (@dots{}, @var{name}, @var{value})
+@deftypefnx {Function File} {[@var{cstr}, @var{matches}] =} strsplit (@dots{})
+Split the string @var{s} using the delimiters specified by @var{del}
+and return a cell array of strings.  For a single delimiter, @var{del}
+may be a string, or a scalar cell-string.  For multible delimiters, 
+@var{del} must be a cell-string array.  Unless @var{collapsedelimiters} is
+specified to be @var{false}, consecutive delimiters are collapsed into one.
 
-2-D character arrays are split at separators and at the original column
-boundaries.
+The second output, @var{matches}, returns the delmiters which were matched
+in the original string.  The matched delimiters are uneffected by the
+@var{collapsedelimiters}.
 
 Example:
 
 @example
 @group
+strsplit ("a b c")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          @}
+
 strsplit ("a,b,c", ",")
       @result{}
           @{
@@ -20361,16 +20317,84 @@ strsplit ("a,b,c", ",")
             [1,3] = c
           @}
 
-strsplit (["a,b" ; "cde"], ",")
+strsplit ("a foo b,bar c", @{"\s", "foo", "bar"@})
       @result{}
           @{
             [1,1] = a
             [1,2] = b
-            [1,3] = cde
+            [1,3] = c
+          @}
+
+strsplit ("a,,b, c", @{",", " "@}, false)
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = 
+            [1,3] = b
+            [1,4] = 
+            [1,5] = c
+          @}
+
+@end group
+@end example
+
+Supported @var{name}/@var{value} pair arguments are;
+
+@itemize
+@item @var{collapsedelimiters} may take the value of @var{true} or @var{false}
+with the default being @var{false}.
+@item @var{delimitertype} may take the value of @code{legacy},
+@code{simple} or @code{regularexpression}.
+If @var{delimitertype} is equal to @code{legacy}, each individual
+character of @var{del} is used to split the input.
+If the specified delimiters are single characters, the default is
+@var{delimitertype} is @code{legacy}.  Otherwise the default
+@var{delimitertype} is @code{simple}.
+@end itemize
+
+Example:
+
+@example
+@group
+strsplit ("a foo b,bar c", ",|\\s|foo|bar", "delimitertype", "regularexpression")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          @}
+
+strsplit ("a,,b, c", "[, ]", false, "delimitertype", "regularexpression")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = 
+            [1,3] = b
+            [1,4] = 
+            [1,5] = c
+          @}
+
+strsplit ("a,,b, c", ", ", false, "delimitertype", "legacy")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = 
+            [1,3] = b
+            [1,4] = 
+            [1,5] = c
+          @}
+
+strsplit ("a,\t,b, c", @{',', '\s'@}, "delimitertype", "regularexpression")
+      @result{}
+          @{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
           @}
 @end group
 @end example
-@seealso{strtok}
+
+@seealso{strjoin, strtok, regexp}
 @end deftypefn
 str2num
 @c str2num scripts/strings/str2num.m
@@ -20500,6 +20524,32 @@ the set @var{chars}.  The return value(s), as well as the @var{n} and
 This will be faster than using regexp in most cases.
 
 @seealso{find}
+@end deftypefn
+strjoin
+@c strjoin scripts/strings/strjoin.m
+-*- texinfo -*-
+@deftypefn {Function File} {@var{str} =} strjoin (@var{cstr})
+@deftypefnx {Function File} {@var{str} =} strjoin (@var{cstr}, @var{delimiter})
+Joins the elements of the cell-string array, @var{cstr}, into a single
+string.
+
+If no @var{delimiter} is specified, the elements of @var{cstr}
+seperated by a space.
+
+If @var{delimiter} is specified as a string, the cell-string array is
+joined using the string.
+
+If @var{delimiter} is a cell-string array whose length is one less
+than @var{cstr}, then the elemennts of @var{cstr} are joined by
+interleaving the cell-string elements of @var{delimiter}.
+
+@example
+@group
+strjoin (@{'Octave','Scilab','Lush','Yorick'@}, '*')
+      @result{} 'Octave*Scilab*Lush*Yorick'
+@end group
+@end example
+@seealso {strsplit}
 @end deftypefn
 strjust
 @c strjust scripts/strings/strjust.m
@@ -20718,6 +20768,12 @@ validatestring ("b", @{"red", "green", "blue", "black"@})
 
 @seealso{strcmp, strcmpi}
 @end deftypefn
+__have_feature__
+@c __have_feature__ scripts/testfun/__have_feature__.m
+-*- texinfo -*-
+@deftypefn  {Function File} {} __have_feature__ (feature)
+Undocumented internal function.
+@end deftypefn
 __printf_assert__
 @c __printf_assert__ scripts/testfun/__printf_assert__.m
 -*- texinfo -*-
@@ -20874,10 +20930,19 @@ Return true if @var{code} fails with an error message matching
 is a string and if @var{code} runs successfully, the error produced is:
 
 @example
-          expected error but got none
+          expected error <.> but got none
 @end example
 
-If the code fails with a different error, the message produced is:
+
+Code must be in the form of a string that may be passed by
+@code{fail} to the Octave interpreter via the @code{evalin} function,
+that is, a (quoted) string constant or a string variable.
+
+If called with two arguments, the behavior is similar to
+@code{fail (@var{code})}, except the return value will only be true if
+code fails with an error message containing pattern (case sensitive).
+If the code fails with a different error to that given in pattern,
+the message produced is:
 
 @example
 @group
@@ -21361,13 +21426,12 @@ is returned.
 @deftypefnx {Function File} {} datetick (@var{axis}, @var{form})
 @deftypefnx {Function File} {} datetick (@dots{}, "keeplimits")
 @deftypefnx {Function File} {} datetick (@dots{}, "keepticks")
-@deftypefnx {Function File} {} datetick (@dots{ax}, @dots{})
-Add date formatted tick labels to an axis.  The axis the apply the
-ticks to is determined by @var{axis} that can take the values "x",
-"y" or "z".  The default value is "x".  The formatting of the labels is
-determined by the variable @var{form}, that can either be a string in
-the format needed by @code{dateform}, or a positive integer that can
-be accepted by @code{datestr}.
+@deftypefnx {Function File} {} datetick (@var{hax}, @dots{})
+Add date formatted tick labels to an axis.  The axis to apply the
+ticks to is determined by @var{axis} which can take the values "x",
+"y", or "z".  The default value is "x".  The formatting of the labels is
+determined by the variable @var{form}, which can either be a string or
+positive integer that @code{datestr} accepts.
 @seealso{datenum, datestr}
 @end deftypefn
 datevec
@@ -21484,6 +21548,211 @@ Table of return values based on @var{format}:
 
 @seealso{eomday, is_leap_year, calendar, datenum, datevec}
 @end deftypefn
+errordlg
+@c errordlg scripts/ui/errordlg.m
+-*- texinfo -*-
+@deftypefn  {Function File} {@var{h} =} errordlg (@var{msg})
+@deftypefnx {Function File} {@var{h} =} errordlg (@var{msg}, @var{title})
+Display @var{msg} using an error dialog box.
+
+The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional input @var{title} (character string) can be used to
+set the dialog caption.  The default title is "Error Dialog".
+
+The return value is always 1.
+@seealso{helpdlg, inputdlg, listdlg, msgbox, questdlg, warndlg}
+@end deftypefn
+helpdlg
+@c helpdlg scripts/ui/helpdlg.m
+-*- texinfo -*-
+@deftypefn  {Function File} {@var{h} =} helpdlg (@var{msg})
+@deftypefnx {Function File} {@var{h} =} helpdlg (@var{msg}, @var{title})
+Display @var{msg} in a help dialog box.
+
+The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional input @var{title} (character string) can be used to
+set the dialog caption.  The default title is "Help Dialog".
+
+The return value is always 1.
+@seealso{errordlg, inputdlg, listdlg, msgbox, questdlg, warndlg}
+@end deftypefn
+inputdlg
+@c inputdlg scripts/ui/inputdlg.m
+-*- texinfo -*-
+@deftypefn  {Function File} {@var{cstr} =} inputdlg (@var{prompt})
+@deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title})
+@deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title}, @var{rowscols})
+@deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title}, @var{rowscols}, @var{defaults})
+Return user input from a multi-textfield dialog box in a cell array
+of strings, or an empty cell array if the dialog is closed by the
+Cancel button.
+
+Inputs:
+
+@table @var
+@item prompt
+A cell array with strings labeling each text field.  This input is required. 
+
+@item title
+String to use for the caption of the dialog.  The default is "Input Dialog".
+
+@item rowscols
+Specifies the size of the text fields and can take three forms:
+
+@enumerate
+@item a scalar value which defines the number of rows used for each
+text field.
+
+@item a vector which defines the individual number of rows
+used for each text field. 
+
+@item a matrix which defines the individual number of rows and
+columns used for each text field.  In the matrix each row describes
+a single text field.  The first column specifies the number of input
+rows to use and the second column specifies the text field width.
+@end enumerate
+
+@item defaults
+A list of default values to place in each text fields.  It must be
+a cell array of strings with the same size as @var{prompt}.
+@end table
+@seealso{errordlg, helpdlg, listdlg, msgbox, questdlg, warndlg}
+@end deftypefn
+listdlg
+@c listdlg scripts/ui/listdlg.m
+-*- texinfo -*-
+@deftypefn {Function File} {[@var{sel}, @var{ok}] =} listdlg (@var{key}, @var{value}, @dots{})
+Return user inputs from a list dialog box in a vector of 
+selection indices @var{sel} and a flag @var{ok} indicating how the
+user closed the dialog box.  The value of @var{ok} is 1 if the user
+closed the box with the OK button, otherwise it is 0 and @var{sel} is
+empty.
+
+The indices in @var{sel} are 1-based.
+
+The arguments are specified in form of @var{key}, @var{value} pairs. 
+The "ListString" argument pair must be specified.
+
+Valid @var{key} and @var{value} pairs are:
+
+@table @asis
+@item "ListString"
+a cell array of strings comprising the content of the list.
+
+@item "SelectionMode"
+can be either "Single" or "Multiple" (default).
+
+@item "ListSize"
+a vector with two elements @var{width} and @var{height} defining
+the size of the list field in pixels.  Default is [160 300].
+
+@item "InitialValue"
+a vector containing 1-based indices of preselected elements.  Default
+is 1 (first item).
+
+@item "Name"
+a string to be used as the dialog caption.  Default is "".
+
+@item "PromptString"
+a cell array of strings to be displayed above the list field.  Default
+is @{@}.
+
+@item "OKString"
+a string used to label the OK button.  Default is "OK".
+
+@item "CancelString"
+a string used to label the Cancel button.  Default is "Cancel".
+@end table
+
+Example:
+
+@example
+@group
+[sel, ok] = listdlg ("ListString", @{"An item", "another", "yet another"@},
+                     "SelectionMode", "Multiple");
+if (ok == 1)
+  for i = 1:numel (sel)
+    disp (sel(i));
+  endfor
+endif
+@end group
+@end example
+
+@seealso{errordlg, helpdlg, inputdlg, msgbox, questdlg, warndlg}
+@end deftypefn
+msgbox
+@c msgbox scripts/ui/msgbox.m
+-*- texinfo -*-
+@deftypefn  {Function File} {@var{h} =} msgbox (@var{msg})
+@deftypefnx {Function File} {@var{h} =} msgbox (@var{msg}, @var{title})
+@deftypefnx {Function File} {@var{h} =} msgbox (@var{msg}, @var{title}, @var{icon})
+Display @var{msg} using a message dialog box. 
+
+The message may have multiple lines separated by newline characters
+(@code{"\n"}), or it may be a cellstr array with one element for each
+line.  The optional input @var{title} (character string) can be used to
+decorate the dialog caption.
+
+The optional argument @var{icon} selects a dialog icon. 
+It can be one of @code{"none"} (default), @code{"error"}, @code{"help"}, or
+@code{"warn"}.
+
+The return value is always 1.
+@seealso{errordlg, helpdlg, inputdlg, listdlg, questdlg, warndlg}
+@end deftypefn
+questdlg
+@c questdlg scripts/ui/questdlg.m
+-*- texinfo -*-
+@deftypefn  {Function File} {@var{btn} =} questdlg (@var{msg})
+@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title})
+@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{default})
+@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{btn1}, @var{btn2}, @var{default})
+@deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{btn1}, @var{btn2}, @var{btn3}, @var{default})
+Display @var{msg} using a question dialog box and return the caption
+of the activated button.
+
+The dialog may contain two or three buttons which will all close the dialog.
+
+The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional @var{title} (character string) can be used to
+decorate the dialog caption.
+
+The string @var{default} identifies the default button, 
+which is activated by pressing the @key{ENTER} key.
+It must match one of the strings given in @var{btn1}, @var{btn2}, or
+@var{btn3}.
+
+If only @var{msg} and @var{title} are specified, three buttons with
+the default captions "Yes", "No", and "Cancel" are used.
+
+If only two button captions, @var{btn1} and @var{btn2}, are specified 
+the dialog will have only these two buttons.
+
+@seealso{errordlg, helpdlg, inputdlg, listdlg, warndlg}
+@end deftypefn
+warndlg
+@c warndlg scripts/ui/warndlg.m
+-*- texinfo -*-
+@deftypefn  {Function File} {@var{h} =} warndlg (@var{msg})
+@deftypefnx {Function File} {@var{h} =} warndlg (@var{msg}, @var{title})
+Display @var{msg} using a warning dialog box. 
+
+The message may have multiple lines separated by newline characters
+("\n"), or it may be a cellstr array with one element for each
+line.  The optional input @var{title} (character string) can be used to
+set the dialog caption.  The default title is "Warning Dialog".
+
+@seealso{helpdlg, inputdlg, listdlg, questdlg}
+@end deftypefn
+message_dialog
+@c message_dialog scripts/ui/private/message_dialog.m
+-*- texinfo -*-
+@deftypefn {Function File} {@var{h} =} message_dialog (@var{caller}, @var{msg}, @var{title}, @var{icon})
+Undocumented internal function.
+@end deftypefn
 gnuplot_binary
 @c gnuplot_binary scripts/plot/gnuplot_binary.m
 -*- texinfo -*-
@@ -21492,6 +21761,7 @@ Table of return values based on @var{format}:
 Query or set the name of the program invoked by the plot command
 when the graphics toolkit is set to "gnuplot".  Additional arguments to
 pass to the external plotting program may also be given.
-The default value is @code{"gnuplot"} without additional arguments.
+The default value is @code{"gnuplot"} with no additional arguments.
 @xref{Installation}.
+@seealso{graphics_toolkit}
 @end deftypefn

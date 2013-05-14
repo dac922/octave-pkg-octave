@@ -99,6 +99,29 @@ tree_argument_list::all_elements_are_constant (void) const
   return true;
 }
 
+bool
+tree_argument_list::is_valid_lvalue_list (void) const
+{
+  bool retval = true;
+
+  for (const_iterator p = begin (); p != end (); p++)
+    {
+      tree_expression *elt = *p;
+
+      // There is no need for a separate check for the magic "~" because
+      // it represented by tree_black_hole, and that is derived from
+      // tree_identifier.
+
+      if (! (elt->is_identifier () || elt->is_index_expression ()))
+        {
+          retval = false;
+          break;
+        }
+    }
+
+  return retval;
+}
+
 static const octave_value *indexed_object = 0;
 static int index_position = 0;
 static int num_indices = 0;
@@ -255,6 +278,26 @@ tree_argument_list::get_arg_names (void) const
       tree_expression *elt = *p;
 
       retval(k++) = elt->str_print_code ();
+    }
+
+  return retval;
+}
+
+std::list<std::string>
+tree_argument_list::variable_names (void) const
+{
+  std::list<std::string> retval;
+
+  for (const_iterator p = begin (); p != end (); p++)
+    {
+      tree_expression *elt = *p;
+
+      if (elt->is_identifier ())
+        {
+          tree_identifier *id = dynamic_cast<tree_identifier *> (elt);
+      
+          retval.push_back (id->name ());
+        }
     }
 
   return retval;

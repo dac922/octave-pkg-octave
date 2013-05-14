@@ -54,7 +54,7 @@ mean and the variance of each column.
    <p><a name="doc_002dissparse"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>issparse</b> (<var>x</var>)<var><a name="index-issparse-2270"></a></var><br>
+&mdash; Built-in Function:  <b>issparse</b> (<var>x</var>)<var><a name="index-issparse-2284"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a sparse matrix.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
@@ -64,7 +64,7 @@ mean and the variance of each column.
    <p><a name="doc_002dnnz"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>scalar</var> = <b>nnz</b> (<var>a</var>)<var><a name="index-nnz-2271"></a></var><br>
+&mdash; Built-in Function: <var>scalar</var> = <b>nnz</b> (<var>a</var>)<var><a name="index-nnz-2285"></a></var><br>
 <blockquote><p>Return the number of non zero elements in <var>a</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>, <a href="doc_002dnzmax.html#doc_002dnzmax">nzmax</a>. 
@@ -74,7 +74,7 @@ mean and the variance of each column.
    <p><a name="doc_002dnonzeros"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nonzeros</b> (<var>s</var>)<var><a name="index-nonzeros-2272"></a></var><br>
+&mdash; Function File:  <b>nonzeros</b> (<var>s</var>)<var><a name="index-nonzeros-2286"></a></var><br>
 <blockquote><p>Return a vector of the non-zero values of the sparse matrix <var>s</var>. 
 </p></blockquote></div>
 
@@ -82,7 +82,7 @@ mean and the variance of each column.
    <p><a name="doc_002dnzmax"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>scalar</var> = <b>nzmax</b> (<var>SM</var>)<var><a name="index-nzmax-2273"></a></var><br>
+&mdash; Built-in Function: <var>scalar</var> = <b>nzmax</b> (<var>SM</var>)<var><a name="index-nzmax-2287"></a></var><br>
 <blockquote><p>Return the amount of storage allocated to the sparse matrix <var>SM</var>. 
 Note that Octave tends to crop unused memory at the first opportunity
 for sparse objects.  There are some cases of user created sparse objects
@@ -96,8 +96,8 @@ but in general they will give the same result.
    <p><a name="doc_002dspstats"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S</var>)<var><a name="index-spstats-2274"></a></var><br>
-&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S, j</var>)<var><a name="index-spstats-2275"></a></var><br>
+&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S</var>)<var><a name="index-spstats-2288"></a></var><br>
+&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S, j</var>)<var><a name="index-spstats-2289"></a></var><br>
 <blockquote><p>Return the stats for the non-zero elements of the sparse matrix <var>S</var>. 
 <var>count</var> is the number of non-zeros in each column, <var>mean</var>
 is the mean of the non-zeros in each column, and <var>var</var> is the
@@ -182,9 +182,9 @@ symmetric or <code>treeplot (etree (A+A'))</code> otherwise.
    <p><a name="doc_002dspy"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>spy</b> (<var>x</var>)<var><a name="index-spy-2276"></a></var><br>
-&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, markersize</var>)<var><a name="index-spy-2277"></a></var><br>
-&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, line_spec</var>)<var><a name="index-spy-2278"></a></var><br>
+&mdash; Function File:  <b>spy</b> (<var>x</var>)<var><a name="index-spy-2290"></a></var><br>
+&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, markersize</var>)<var><a name="index-spy-2291"></a></var><br>
+&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, line_spec</var>)<var><a name="index-spy-2292"></a></var><br>
 <blockquote><p>Plot the sparsity pattern of the sparse matrix <var>x</var>.  If the argument
 <var>markersize</var> is given as a scalar value, it is used to determine the
 point size in the plot.  If the string <var>line_spec</var> is given it is
@@ -197,9 +197,9 @@ passed to <code>plot</code> and determines the appearance of the plot.
    <p><a name="doc_002detree"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S</var>)<var><a name="index-etree-2279"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2280"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>q</var>] = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2281"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S</var>)<var><a name="index-etree-2293"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2294"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>q</var>] = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2295"></a></var><br>
 <blockquote>
         <p>Return the elimination tree for the matrix <var>S</var>.  By default <var>S</var>
 is assumed to be symmetric and the symmetric elimination tree is
@@ -215,8 +215,8 @@ permutations on the tree.
    <p><a name="doc_002detreeplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>etreeplot</b> (<var>A</var>)<var><a name="index-etreeplot-2282"></a></var><br>
-&mdash; Function File:  <b>etreeplot</b> (<var>A, node_style, edge_style</var>)<var><a name="index-etreeplot-2283"></a></var><br>
+&mdash; Function File:  <b>etreeplot</b> (<var>A</var>)<var><a name="index-etreeplot-2296"></a></var><br>
+&mdash; Function File:  <b>etreeplot</b> (<var>A, node_style, edge_style</var>)<var><a name="index-etreeplot-2297"></a></var><br>
 <blockquote><p>Plot the elimination tree of the matrix <var>A</var> or
 <var>A</var><code>+</code><var>A</var><code>'</code> if <var>A</var> in not symmetric.  The optional
 parameters <var>node_style</var> and <var>edge_style</var> define the output
@@ -229,9 +229,9 @@ style.
    <p><a name="doc_002dgplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2284"></a></var><br>
-&mdash; Function File:  <b>gplot</b> (<var>A, xy, line_style</var>)<var><a name="index-gplot-2285"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2286"></a></var><br>
+&mdash; Function File:  <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2298"></a></var><br>
+&mdash; Function File:  <b>gplot</b> (<var>A, xy, line_style</var>)<var><a name="index-gplot-2299"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2300"></a></var><br>
 <blockquote><p>Plot a graph defined by <var>A</var> and <var>xy</var> in the graph theory
 sense.  <var>A</var> is the adjacency matrix of the array to be plotted
 and <var>xy</var> is an <var>n</var>-by-2 matrix containing the coordinates of
@@ -249,8 +249,8 @@ and <var>y</var>.
    <p><a name="doc_002dtreeplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>treeplot</b> (<var>tree</var>)<var><a name="index-treeplot-2287"></a></var><br>
-&mdash; Function File:  <b>treeplot</b> (<var>tree, node_style, edge_style</var>)<var><a name="index-treeplot-2288"></a></var><br>
+&mdash; Function File:  <b>treeplot</b> (<var>tree</var>)<var><a name="index-treeplot-2301"></a></var><br>
+&mdash; Function File:  <b>treeplot</b> (<var>tree, node_style, edge_style</var>)<var><a name="index-treeplot-2302"></a></var><br>
 <blockquote><p>Produce a graph of tree or forest.  The first argument is vector of
 predecessors, optional parameters <var>node_style</var> and <var>edge_style</var>
 define the output style.  The complexity of the algorithm is O(n) in
@@ -263,8 +263,8 @@ terms of is time and memory requirements.
    <p><a name="doc_002dtreelayout"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>treelayout</b> (<var>tree</var>)<var><a name="index-treelayout-2289"></a></var><br>
-&mdash; Function File:  <b>treelayout</b> (<var>tree, permutation</var>)<var><a name="index-treelayout-2290"></a></var><br>
+&mdash; Function File:  <b>treelayout</b> (<var>tree</var>)<var><a name="index-treelayout-2303"></a></var><br>
+&mdash; Function File:  <b>treelayout</b> (<var>tree, permutation</var>)<var><a name="index-treelayout-2304"></a></var><br>
 <blockquote><p>treelayout lays out a tree or a forest.  The first argument <var>tree</var> is a
 vector of
 predecessors, optional parameter <var>permutation</var> is an optional postorder

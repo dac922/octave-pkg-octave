@@ -38,7 +38,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Matrix-Manipulation.html#Matrix-Manipul
    <p><a name="doc_002dhadamard"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hadamard</b> (<var>n</var>)<var><a name="index-hadamard-1825"></a></var><br>
+&mdash; Function File:  <b>hadamard</b> (<var>n</var>)<var><a name="index-hadamard-1839"></a></var><br>
 <blockquote><p>Construct a Hadamard matrix (Hn) of size <var>n</var>-by-<var>n</var>.  The
 size <var>n</var> must be of the form 2^k * p in which
 p is one of 1, 12, 20 or 28.  The returned matrix is normalized,
@@ -67,8 +67,8 @@ matrix.
    <p><a name="doc_002dhankel"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hankel</b> (<var>c</var>)<var><a name="index-hankel-1826"></a></var><br>
-&mdash; Function File:  <b>hankel</b> (<var>c, r</var>)<var><a name="index-hankel-1827"></a></var><br>
+&mdash; Function File:  <b>hankel</b> (<var>c</var>)<var><a name="index-hankel-1840"></a></var><br>
+&mdash; Function File:  <b>hankel</b> (<var>c, r</var>)<var><a name="index-hankel-1841"></a></var><br>
 <blockquote><p>Return the Hankel matrix constructed from the first column <var>c</var>, and
 (optionally) the last row <var>r</var>.  If the last element of <var>c</var> is
 not the same as the first element of <var>r</var>, the last element of
@@ -88,7 +88,7 @@ be a vector of zeros with the same size as <var>c</var>.
    <p><a name="doc_002dhilb"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hilb</b> (<var>n</var>)<var><a name="index-hilb-1828"></a></var><br>
+&mdash; Function File:  <b>hilb</b> (<var>n</var>)<var><a name="index-hilb-1842"></a></var><br>
 <blockquote><p>Return the Hilbert matrix of order <var>n</var>.  The i,j element
 of a Hilbert matrix is defined as
 
@@ -111,7 +111,7 @@ a Hilbert matrix of order 5 reveals just how difficult the problem is.
    <p><a name="doc_002dinvhilb"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>invhilb</b> (<var>n</var>)<var><a name="index-invhilb-1829"></a></var><br>
+&mdash; Function File:  <b>invhilb</b> (<var>n</var>)<var><a name="index-invhilb-1843"></a></var><br>
 <blockquote><p>Return the inverse of the Hilbert matrix of order <var>n</var>.  This can be
 computed exactly using
 
@@ -144,7 +144,7 @@ finite precision of your computer's floating point arithmetic.
    <p><a name="doc_002dmagic"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>magic</b> (<var>n</var>)<var><a name="index-magic-1830"></a></var><br>
+&mdash; Function File:  <b>magic</b> (<var>n</var>)<var><a name="index-magic-1844"></a></var><br>
 <blockquote>
         <p>Create an <var>n</var>-by-<var>n</var> magic square.  A magic square is an arrangement
 of the integers <code>1:n^2</code> such that the row sums, column sums, and
@@ -157,8 +157,8 @@ diagonal sums are all equal to the same value.
    <p><a name="doc_002dpascal"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>pascal</b> (<var>n</var>)<var><a name="index-pascal-1831"></a></var><br>
-&mdash; Function File:  <b>pascal</b> (<var>n, t</var>)<var><a name="index-pascal-1832"></a></var><br>
+&mdash; Function File:  <b>pascal</b> (<var>n</var>)<var><a name="index-pascal-1845"></a></var><br>
+&mdash; Function File:  <b>pascal</b> (<var>n, t</var>)<var><a name="index-pascal-1846"></a></var><br>
 <blockquote><p>Return the Pascal matrix of order <var>n</var> if <var>t</var><code> = 0</code>.  <var>t</var>
 defaults to 0.  Return the pseudo-lower triangular Cholesky&nbsp;factor of
 the Pascal matrix if <var>t</var><code> = 1</code> (The sign of some columns may be
@@ -176,7 +176,7 @@ Cholesky&nbsp;factor with strictly positive values on the diagonal.  If
    <p><a name="doc_002drosser"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rosser</b> ()<var><a name="index-rosser-1833"></a></var><br>
+&mdash; Function File:  <b>rosser</b> ()<var><a name="index-rosser-1847"></a></var><br>
 <blockquote><p>Return the Rosser matrix.  This is a difficult test case used to evaluate
 eigenvalue algorithms.
 
@@ -187,8 +187,8 @@ eigenvalue algorithms.
    <p><a name="doc_002dtoeplitz"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>toeplitz</b> (<var>c</var>)<var><a name="index-toeplitz-1834"></a></var><br>
-&mdash; Function File:  <b>toeplitz</b> (<var>c, r</var>)<var><a name="index-toeplitz-1835"></a></var><br>
+&mdash; Function File:  <b>toeplitz</b> (<var>c</var>)<var><a name="index-toeplitz-1848"></a></var><br>
+&mdash; Function File:  <b>toeplitz</b> (<var>c, r</var>)<var><a name="index-toeplitz-1849"></a></var><br>
 <blockquote><p>Return the Toeplitz matrix constructed from the first column <var>c</var>,
 and (optionally) the first row <var>r</var>.  If the first element of <var>r</var>
 is not the same as the first element of <var>c</var>, the first element of
@@ -212,8 +212,8 @@ taken to be the same as the first column.
    <p><a name="doc_002dvander"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>vander</b> (<var>c</var>)<var><a name="index-vander-1836"></a></var><br>
-&mdash; Function File:  <b>vander</b> (<var>c, n</var>)<var><a name="index-vander-1837"></a></var><br>
+&mdash; Function File:  <b>vander</b> (<var>c</var>)<var><a name="index-vander-1850"></a></var><br>
+&mdash; Function File:  <b>vander</b> (<var>c, n</var>)<var><a name="index-vander-1851"></a></var><br>
 <blockquote><p>Return the Vandermonde matrix whose next to last column is <var>c</var>. 
 If <var>n</var> is specified, it determines the number of columns;
 otherwise, <var>n</var> is taken to be equal to the length of <var>c</var>.
@@ -234,7 +234,7 @@ otherwise, <var>n</var> is taken to be equal to the length of <var>c</var>.
    <p><a name="doc_002dwilkinson"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>wilkinson</b> (<var>n</var>)<var><a name="index-wilkinson-1838"></a></var><br>
+&mdash; Function File:  <b>wilkinson</b> (<var>n</var>)<var><a name="index-wilkinson-1852"></a></var><br>
 <blockquote><p>Return the Wilkinson matrix of order <var>n</var>.  Wilkinson matrices are
 symmetric and tridiagonal with pairs of nearly, but not exactly, equal
 eigenvalues.  They are useful in testing the behavior and performance

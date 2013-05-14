@@ -370,10 +370,10 @@ AC_DEFUN([OCTAVE_CHECK_LIB], [
     LDFLAGS="$m4_toupper([$1])_LDFLAGS $LDFLAGS"
     LIBS="$m4_toupper([$1])_LIBS $LIBS"
     m4_ifnblank([$6], [AC_LANG_PUSH($6)])
-    ac_octave_$1_check_for_lib=false
-    m4_ifblank([$4], [ac_octave_$1_check_for_lib=true],
-               [AC_CHECK_HEADERS([$4], [ac_octave_$1_check_for_lib=true; break])])
-    if $ac_octave_$1_check_for_lib; then
+    ac_octave_$1_check_for_lib=no
+    m4_ifblank([$4], [ac_octave_$1_check_for_lib=yes],
+               [AC_CHECK_HEADERS([$4], [ac_octave_$1_check_for_lib=yes; break])])
+    if test $ac_octave_$1_check_for_lib = yes; then
       AC_CACHE_CHECK([for $5 in $m4_toupper([$1])_LIBS],
         [octave_cv_lib_$1],
         [AC_LINK_IFELSE([AC_LANG_CALL([], [$5])],
@@ -861,13 +861,10 @@ AC_DEFUN([OCTAVE_CHECK_SIZEOF_FORTRAN_INTEGER], [
       LIBS="fintsize.$ac_objext $[]_AC_LANG_PREFIX[]LIBS"
       AC_LANG_PUSH(C)
       AC_RUN_IFELSE([AC_LANG_PROGRAM([[
-          #include <assert.h> ]], [[
+          #include <assert.h>
+          #include <stdint.h> ]], [[
           #ifdef USE_64_BIT_IDX_T
-          #if IDX_TYPE_LONG
-            typedef long octave_idx_type;
-          #else
-            typedef int octave_idx_type;
-          #endif
+            typedef int64_t octave_idx_type;
           #else
             typedef int octave_idx_type;
           #endif
@@ -1159,16 +1156,16 @@ dnl Allow the user disable support for command line editing using GNU
 dnl readline.
 dnl
 AC_DEFUN([OCTAVE_ENABLE_READLINE], [
-  USE_READLINE=true
+  USE_READLINE=yes
   READLINE_LIBS=
   AC_ARG_ENABLE([readline],
     [AS_HELP_STRING([--disable-readline],
       [use readline library])],
     [if test "$enableval" = no; then
-       USE_READLINE=false
+       USE_READLINE=no
        warn_readline="command editing and history features require GNU Readline"
      fi])
-  if $USE_READLINE; then
+  if test $USE_READLINE = yes; then
     dnl RHEL 5 and older systems require termlib set before enabling readline
     AC_REQUIRE([OCTAVE_CHECK_LIB_TERMLIB])
     ac_octave_save_LIBS="$LIBS"
@@ -1403,6 +1400,62 @@ dnl Check for bison.
 dnl
 AC_DEFUN([OCTAVE_PROG_BISON], [
   AC_PROG_YACC
+  case "$YACC" in
+    bison*)
+    AC_CACHE_CHECK([syntax of bison push/pull declaration],
+                   [octave_cv_bison_push_pull_decl_style], [
+      style="dash underscore"
+      quote="noquote quote"
+      for s in $style; do
+        for q in $quote; do
+          if test $s = "dash"; then
+            def="%define api.push-pull"
+          else
+            def="%define api.push_pull"
+          fi
+          if test $q = "quote"; then
+            def="$def \"both\""
+          else
+            def="$def both"
+          fi
+          cat << EOF > conftest.yy
+$def
+%start input
+%%
+input:;
+%%
+EOF
+          $YACC conftest.yy > /dev/null 2>&1
+          ac_status=$?
+          if test $ac_status -eq 0; then
+            if test $q = noquote; then
+              q=
+            fi
+            octave_cv_bison_push_pull_decl_style="$s $q"
+            break
+          fi
+        done
+        if test $ac_status -eq 0; then
+          break
+        fi
+      done
+      rm -f conftest.yy y.tab.h y.tab.c
+      ])
+    ;;
+  esac
+
+  AC_SUBST(BISON_PUSH_PULL_DECL_STYLE, $octave_cv_bison_push_pull_decl_style)
+
+  if test -z "$octave_cv_bison_push_pull_decl_style"; then
+    YACC=
+    warn_bison_push_pull_decl_style="
+
+I wasn't able to find a suitable style for declaring a push-pull
+parser in a bison input file so I'm disabling bison.
+"
+    OCTAVE_CONFIGURE_WARNING([warn_bison_push_pull_decl_style])
+  fi
+
   case "$YACC" in
     bison*)
     ;;
@@ -1672,15 +1725,15 @@ AC_DEFUN([OCTAVE_PROG_TEXI2PDF], [
   AC_REQUIRE([OCTAVE_PROG_TEXI2DVI])
   AC_CHECK_PROG(TEXI2PDF, texi2pdf, texi2pdf, [])
   if test -z "$TEXI2PDF"; then
-    ac_octave_missing=true;
+    ac_octave_texi2pdf_missing=yes;
     if test -n "$TEXI2DVI"; then
       TEXI2PDF="$TEXI2DVI --pdf"
-      ac_octave_missing=false;
+      ac_octave_texi2pdf_missing=no;
     fi
   else
-    ac_octave_missing=false;
+    ac_octave_texi2pdf_missing=no;
   fi
-  if $ac_octave_missing; then
+  if test $ac_octave_texi2pdf_missing = yes; then
     TEXI2PDF='$(top_srcdir)/build-aux/missing texi2pdf'
     warn_texi2pdf="
 
@@ -1739,6 +1792,7 @@ AC_DEFUN([OCTAVE_UMFPACK_SEPARATE_SPLIT], [
   AC_MSG_CHECKING([for UMFPACK separate complex matrix and rhs split])
   AC_CACHE_VAL([octave_cv_umfpack_separate_split],
     [AC_RUN_IFELSE([AC_LANG_SOURCE([[
+        #include <stdint.h>
         #include <stdlib.h>
         #include <math.h>
         #if defined (HAVE_SUITESPARSE_UMFPACK_H)
@@ -1750,9 +1804,16 @@ AC_DEFUN([OCTAVE_UMFPACK_SEPARATE_SPLIT], [
         #elif defined (HAVE_UMFPACK_H)
         # include <umfpack.h>
         #endif
-        int n = 5;
-        int Ap[] = {0, 2, 5, 9, 10, 12};
-        int Ai[]  = {0, 1, 0, 2, 4, 1, 2, 3, 4, 2, 1, 4};
+        #ifdef USE_64_BIT_IDX_T
+        typedef uint64_t idx_type;
+        #define UMFPACK_NAME(name) umfpack_zl_ ## name
+        #else
+        typedef int idx_type;
+        #define UMFPACK_NAME(name) umfpack_zi_ ## name
+        #endif
+        idx_type n = 5;
+        idx_type Ap[] = {0, 2, 5, 9, 10, 12};
+        idx_type Ai[]  = {0, 1, 0, 2, 4, 1, 2, 3, 4, 2, 1, 4};
         double Ax[] = {2., 0., 3., 0., 3., 0., -1., 0., 4., 0., 4., 0., 
                       -3., 0., 1., 0., 2., 0., 2., 0., 6., 0., 1., 0.};
         double br[] = {8., 45., -3., 3., 19.};
@@ -1761,14 +1822,14 @@ AC_DEFUN([OCTAVE_UMFPACK_SEPARATE_SPLIT], [
         {
           double *null = (double *) NULL ;
           double *x = (double *)malloc (2 * n * sizeof(double));
-          int i ;
+          idx_type i ;
           void *Symbolic, *Numeric ;
-          (void) umfpack_zi_symbolic (n, n, Ap, Ai, Ax, null, &Symbolic, null, null) ;
-          (void) umfpack_zi_numeric (Ap, Ai, Ax, null, Symbolic, &Numeric, null, null) ;
-          umfpack_zi_free_symbolic (&Symbolic) ;
-          (void) umfpack_zi_solve (0, Ap, Ai, Ax, null, x, null, br, bi, 
+          (void) UMFPACK_NAME (symbolic) (n, n, Ap, Ai, Ax, null, &Symbolic, null, null) ;
+          (void) UMFPACK_NAME (numeric) (Ap, Ai, Ax, null, Symbolic, &Numeric, null, null) ;
+          UMFPACK_NAME (free_symbolic) (&Symbolic) ;
+          (void) UMFPACK_NAME (solve) (0, Ap, Ai, Ax, null, x, null, br, bi, 
                                    Numeric, null, null) ;
-          umfpack_zi_free_numeric (&Numeric) ;
+          UMFPACK_NAME (free_numeric) (&Numeric) ;
           for (i = 0; i < n; i++, x+=2) 
             if (fabs (*x - i - 1.) > 1.e-13)
               return (1);

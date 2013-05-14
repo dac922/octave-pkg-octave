@@ -1789,9 +1789,9 @@ property_list::set (const caseless_str& name, const octave_value& val)
               bool remove = false;
               if (val.is_string ())
                 {
-                  caseless_str tval = val.string_value ();
+                  std::string tval = val.string_value ();
 
-                  remove = tval.compare ("remove");
+                  remove = (tval.compare ("remove") == 0);
                 }
 
               pval_map_type& pval_map = plist_map[pfx];
@@ -2105,11 +2105,11 @@ graphics_object::set_value_or_default (const caseless_str& name,
 {
   if (val.is_string ())
     {
-      caseless_str tval = val.string_value ();
+      std::string tval = val.string_value ();
 
       octave_value default_val;
 
-      if (tval.compare ("default"))
+      if (tval.compare ("default") == 0)
         {
           default_val = get_default (name);
 
@@ -2118,7 +2118,7 @@ graphics_object::set_value_or_default (const caseless_str& name,
 
           rep->set (name, default_val);
         }
-      else if (tval.compare ("factory"))
+      else if (tval.compare ("factory") == 0)
         {
           default_val = get_factory_default (name);
 
@@ -2128,7 +2128,15 @@ graphics_object::set_value_or_default (const caseless_str& name,
           rep->set (name, default_val);
         }
       else
-        rep->set (name, val);
+        {
+          // Matlab specifically uses "\default" to escape string setting 
+          if (tval.compare ("\\default") == 0)
+            rep->set (name, "default");
+          else if (tval.compare ("\\factory") == 0)
+            rep->set (name, "factory");
+          else
+            rep->set (name, val);
+        }
     }
   else
     rep->set (name, val);
@@ -3904,7 +3912,7 @@ axes::properties::init (void)
   xset (title.handle_value (), "horizontalalignment", "center");
   xset (title.handle_value (), "horizontalalignmentmode", "auto");
 
-  xset (xlabel.handle_value (), "verticalalignment", "cap");
+  xset (xlabel.handle_value (), "verticalalignment", "top");
   xset (xlabel.handle_value (), "verticalalignmentmode", "auto");
   xset (ylabel.handle_value (), "verticalalignment", "bottom");
   xset (ylabel.handle_value (), "verticalalignmentmode", "auto");
@@ -4412,7 +4420,7 @@ axes::properties::set_defaults (base_graphics_object& obj,
   xset (title.handle_value (), "horizontalalignment", "center");
   xset (title.handle_value (), "horizontalalignmentmode", "auto");
 
-  xset (xlabel.handle_value (), "verticalalignment", "cap");
+  xset (xlabel.handle_value (), "verticalalignment", "top");
   xset (xlabel.handle_value (), "verticalalignmentmode", "auto");
   xset (ylabel.handle_value (), "verticalalignment", "bottom");
   xset (ylabel.handle_value (), "verticalalignmentmode", "auto");
@@ -5194,11 +5202,20 @@ axes::properties::update_ylabel_position (void)
       graphics_xform xform = get_transform ();
 
       Matrix ext (1, 2, 0.0);
+
+      // The underlying get_extents() from FreeType produces mismatched values.
+      // x-extent accurately measures the width of the glyphs.
+      // y-extent instead measures from baseline-to-baseline.
+      // Pad x-extent (+4) so that it approximately matches y-extent.
+      // This keeps ylabels about the same distance from y-axis as
+      // xlabels are from x-axis.
+      // ALWAYS use an even number for padding or horizontal alignment
+      // will be off.
       ext = get_ticklabel_extents (get_ytick ().matrix_value (),
                                    get_yticklabel ().all_strings (),
                                    get_ylim ().matrix_value ());
 
-      double wmax = ext(0), hmax = ext(1), angle = 0;
+      double wmax = ext(0)+4, hmax = ext(1), angle = 0;
       ColumnVector p =
         graphics_xform::xform_vector (xpTick, (ypTickN+ypTick)/2, zpTick);
 
@@ -7013,12 +7030,14 @@ text::properties::update_text_extent (void)
   else if (horizontalalignment_is ("right"))
     halign = 2;
 
-  if (verticalalignment_is ("top"))
+  if (verticalalignment_is ("middle"))
+    valign = 1;
+  else if (verticalalignment_is ("top"))
     valign = 2;
   else if (verticalalignment_is ("baseline"))
     valign = 3;
-  else if (verticalalignment_is ("middle"))
-    valign = 1;
+  else if (verticalalignment_is ("cap"))
+    valign = 4;
 
   Matrix bbox;
 

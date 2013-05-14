@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Grammar-and-Parser.html#Grammar-and-Par
 
 <h3 class="section">I.2 Parser</h3>
 
-<p><a name="index-parser-3701"></a>
+<p><a name="index-parser-3711"></a>
 The parser has a number of variables that affect its internal operation. 
 These variables are generally documented in the manual alongside the code that
 they affect.  For example, <code>allow_noninteger_range_as_index</code> is discussed
@@ -47,9 +47,9 @@ from being evaluated periodically.
    <p><a name="doc_002dadd_005finput_005fevent_005fhook"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>add_input_event_hook</b> (<var>fcn</var>)<var><a name="index-add_005finput_005fevent_005fhook-3702"></a></var><br>
-&mdash; Built-in Function:  <b>add_input_event_hook</b> (<var>fcn, data</var>)<var><a name="index-add_005finput_005fevent_005fhook-3703"></a></var><br>
-<blockquote><p>Add the named function <var>fcn</var> to the list of functions to call
+&mdash; Built-in Function: <var>id</var> = <b>add_input_event_hook</b> (<var>fcn</var>)<var><a name="index-add_005finput_005fevent_005fhook-3712"></a></var><br>
+&mdash; Built-in Function: <var>id</var> = <b>add_input_event_hook</b> (<var>fcn, data</var>)<var><a name="index-add_005finput_005fevent_005fhook-3713"></a></var><br>
+<blockquote><p>Add the named function or function handle <var>fcn</var> to the list of functions to call
 periodically when Octave is waiting for input.  The function should
 have the form
 
@@ -58,6 +58,9 @@ have the form
         <p>If <var>data</var> is omitted, Octave calls the function without any
 arguments.
 
+        <p>The returned identifier may be used to remove the function handle from
+the list of input hook functions.
+
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dremove_005finput_005fevent_005fhook.html#doc_002dremove_005finput_005fevent_005fhook">remove_input_event_hook</a>. 
 </p></blockquote></div>
 
@@ -65,9 +68,11 @@ arguments.
    <p><a name="doc_002dremove_005finput_005fevent_005fhook"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>fcn</var>)<var><a name="index-remove_005finput_005fevent_005fhook-3704"></a></var><br>
-<blockquote><p>Remove the named function <var>fcn</var> from the list of functions to call
-periodically when Octave is waiting for input.
+&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>name</var>)<var><a name="index-remove_005finput_005fevent_005fhook-3714"></a></var><br>
+&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>fcn_id</var>)<var><a name="index-remove_005finput_005fevent_005fhook-3715"></a></var><br>
+<blockquote><p>Remove the named function or function handle with the given identifier
+from the list of functions to call periodically when Octave is waiting
+for input.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dadd_005finput_005fevent_005fhook.html#doc_002dadd_005finput_005fevent_005fhook">add_input_event_hook</a>. 
 </p></blockquote></div>
@@ -81,9 +86,9 @@ functions.
    <p><a name="doc_002dmissing_005ffunction_005fhook"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>missing_function_hook</b> ()<var><a name="index-missing_005ffunction_005fhook-3705"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>missing_function_hook</b> (<var>new_val</var>)<var><a name="index-missing_005ffunction_005fhook-3706"></a></var><br>
-&mdash; Built-in Function:  <b>missing_function_hook</b> (<var>new_val, "local"</var>)<var><a name="index-missing_005ffunction_005fhook-3707"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>missing_function_hook</b> ()<var><a name="index-missing_005ffunction_005fhook-3716"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>missing_function_hook</b> (<var>new_val</var>)<var><a name="index-missing_005ffunction_005fhook-3717"></a></var><br>
+&mdash; Built-in Function:  <b>missing_function_hook</b> (<var>new_val, "local"</var>)<var><a name="index-missing_005ffunction_005fhook-3718"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the function to call when
 an unknown identifier is requested.
 

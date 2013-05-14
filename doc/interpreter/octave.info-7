@@ -955,8 +955,6 @@ Concept Index
 * comparison expressions <1>:            Operator Overloading.
                                                               (line   6)
 * comparison expressions:                Comparison Ops.      (line   6)
-* compiling the java package, how?:      How to compile the java package in Octave?.
-                                                              (line   6)
 * complex-conjugate transpose <1>:       Operator Overloading.
                                                               (line   6)
 * complex-conjugate transpose:           Arithmetic Ops.      (line   6)
@@ -969,7 +967,7 @@ Concept Index
                                                               (line   6)
 * contributors:                          Preface.             (line   6)
 * conversion specifications (printf):    Formatted Output.    (line  51)
-* conversion specifications (scanf):     Formatted Input.     (line  96)
+* conversion specifications (scanf):     Formatted Input.     (line  94)
 * copy-on-write:                         Miscellaneous Techniques.
                                                               (line  16)
 * copyright:                             Copying.             (line   6)
@@ -1210,14 +1208,10 @@ Concept Index
 * introduction to graphics structures:   Introduction to Graphics Structures.
                                                               (line   6)
 * invalid input:                         Bug Criteria.        (line  24)
-* java package, how to compile?:         How to compile the java package in Octave?.
-                                                              (line   6)
-* java package, how to install?:         How to compile the java package in Octave?.
-                                                              (line   6)
-* java package, how to uninstall?:       How to compile the java package in Octave?.
-                                                              (line   6)
 * Java, calling from Octave:             Java Interface.      (line   6)
 * Java, using with Octave:               Java Interface.      (line   6)
+* javaclasspath.txt:                     How to make Java classes available?.
+                                                              (line   6)
 * Kendall's Tau:                         Correlation and Regression Analysis.
                                                               (line  68)
 * keywords:                              Keywords.            (line   6)
@@ -1251,14 +1245,12 @@ Concept Index
 * LU decomposition:                      Matrix Factorizations.
                                                               (line 151)
 * lvalue:                                Assignment Ops.      (line  33)
-* manipulation of plot windows:          Multiple Plot Windows.
-                                                              (line 110)
 * map:                                   Function Application.
                                                               (line   6)
 * mapping function:                      A Sample Function Description.
                                                               (line  57)
 * marker styles, graphics:               Marker Styles.       (line   6)
-* matching failure, in scanf:            Formatted Input.     (line 101)
+* matching failure, in scanf:            Formatted Input.     (line  99)
 * matrices:                              Matrices.            (line   6)
 * matrix multiplication <1>:             Operator Overloading.
                                                               (line   6)
@@ -1307,7 +1299,7 @@ Concept Index
 * obsolete functions:                    Obsolete Functions.  (line   6)
 * oct:                                   Oct-Files.           (line   6)
 * oct-files:                             Oct-Files.           (line   6)
-* Octave and Matlab, how to distinguish between: How to distinguish between Octave and Matlab?.
+* Octave and MATLAB, how to distinguish between: How to distinguish between Octave and Matlab?.
                                                               (line   6)
 * Octave command options:                Command Line Options.
                                                               (line   6)
@@ -1348,8 +1340,6 @@ Concept Index
                                                               (line   6)
 * output conversions, for printf:        Table of Output Conversions.
                                                               (line   6)
-* package, how to compile?:              How to compile the java package in Octave?.
-                                                              (line   6)
 * parser:                                Parser.              (line   6)
 * patch graphics object:                 Graphics Objects.    (line  32)
 * patch properties:                      Patch Properties.    (line   6)
@@ -1363,8 +1353,8 @@ Concept Index
 * persistent variables:                  Persistent Variables.
                                                               (line   6)
 * personal startup file:                 Startup Files.       (line  31)
-* PKG_ADD:                               Creating Packages.   (line  41)
-* PKG_DEL:                               Creating Packages.   (line  59)
+* PKG_ADD:                               Creating Packages.   (line  46)
+* PKG_DEL:                               Creating Packages.   (line  64)
 * plotting:                              Plotting.            (line   6)
 * precision (printf):                    Output Conversion Syntax.
                                                               (line  47)
@@ -1496,11 +1486,7 @@ Concept Index
                                                               (line   6)
 * unwind_protect_cleanup:                The unwind_protect Statement.
                                                               (line   6)
-* use of axis,  line, and patch functions: Multiple Plot Windows.
-                                                              (line  30)
 * use of comments:                       Comments.            (line   6)
-* use of the interpreter property:       Multiple Plot Windows.
-                                                              (line 267)
 * user-defined data types:               User-defined Data Types.
                                                               (line   6)
 * user-defined functions:                Functions and Scripts.
@@ -1578,16 +1564,16 @@ Function Index
 * anova:                                 Tests.              (line   38)
 * any:                                   Finding Elements and Checking Conditions.
                                                              (line   12)
-* arch_fit:                              Signal Processing.  (line  367)
-* arch_rnd:                              Signal Processing.  (line  388)
-* arch_test:                             Signal Processing.  (line  398)
+* arch_fit:                              Signal Processing.  (line  373)
+* arch_rnd:                              Signal Processing.  (line  394)
+* arch_test:                             Signal Processing.  (line  404)
 * area:                                  Two-Dimensional Plots.
-                                                             (line 1119)
+                                                             (line 1157)
 * arg:                                   Complex Arithmetic. (line   18)
 * argnames:                              Inline Functions.   (line   37)
 * argv:                                  Command Line Options.
                                                              (line  181)
-* arma_rnd:                              Signal Processing.  (line  429)
+* arma_rnd:                              Signal Processing.  (line  435)
 * arrayfun:                              Function Application.
                                                              (line   14)
 * ascii:                                 FTP Objects.        (line   74)
@@ -1598,7 +1584,7 @@ Function Index
 * asin:                                  Trigonometry.       (line   66)
 * asind:                                 Trigonometry.       (line  210)
 * asinh:                                 Trigonometry.       (line  129)
-* assert:                                Test Functions.     (line  273)
+* assert:                                Test Functions.     (line  320)
 * assignin:                              Evaluation in a Different Context.
                                                              (line   76)
 * atan:                                  Trigonometry.       (line   76)
@@ -1608,12 +1594,12 @@ Function Index
 * atexit:                                Quitting Octave.    (line   13)
 * autoload:                              Overloading and Autoloading.
                                                              (line   33)
-* autoreg_matrix:                        Signal Processing.  (line  443)
+* autoreg_matrix:                        Signal Processing.  (line  449)
 * autumn:                                Representing Images.
                                                              (line  153)
-* available_graphics_toolkits:           Graphics Toolkits.  (line   26)
-* axes:                                  Multiple Plot Windows.
-                                                             (line   35)
+* available_graphics_toolkits:           Graphics Toolkits.  (line   32)
+* axes:                                  Use of axis, line, and patch Functions.
+                                                             (line   11)
 * axis:                                  Axis Configuration. (line   11)
 * balance:                               Basic Matrix Functions.
                                                              (line    7)
@@ -1621,7 +1607,7 @@ Function Index
                                                              (line  267)
 * barh:                                  Two-Dimensional Plots.
                                                              (line  322)
-* bartlett:                              Signal Processing.  (line  450)
+* bartlett:                              Signal Processing.  (line  456)
 * bartlett_test:                         Tests.              (line   62)
 * base2dec:                              String Conversions. (line  113)
 * beep:                                  Raising Errors.     (line  140)
@@ -1666,7 +1652,7 @@ Function Index
 * bitunpack:                             Built-in Data Types.
                                                              (line  127)
 * bitxor:                                Bit Manipulations.  (line   89)
-* blackman:                              Signal Processing.  (line  457)
+* blackman:                              Signal Processing.  (line  463)
 * blanks:                                Creating Strings.   (line   13)
 * blkdiag:                               Rearranging Matrices.
                                                              (line  513)
@@ -1763,24 +1749,24 @@ Function Index
 * chop:                                  Utility Functions.  (line  372)
 * circshift:                             Rearranging Matrices.
                                                              (line  238)
-* cla:                                   Multiple Plot Windows.
-                                                             (line  222)
+* cla:                                   Manipulation of Plot Windows.
+                                                             (line  122)
 * clabel:                                Plot Annotations.   (line  144)
 * class:                                 Built-in Data Types.
                                                              (line   17)
 * clc:                                   Cursor Motion.      (line   60)
 * clear:                                 Status of Variables.
                                                              (line  229)
-* clf:                                   Multiple Plot Windows.
-                                                             (line  205)
+* clf:                                   Manipulation of Plot Windows.
+                                                             (line  105)
 * clock:                                 Timing Utilities.   (line  329)
 * cloglog:                               Basic Statistical Functions.
                                                              (line  153)
 * close <1>:                             FTP Objects.        (line   36)
-* close:                                 Multiple Plot Windows.
-                                                             (line  249)
-* closereq:                              Multiple Plot Windows.
-                                                             (line  259)
+* close:                                 Manipulation of Plot Windows.
+                                                             (line  149)
+* closereq:                              Manipulation of Plot Windows.
+                                                             (line  159)
 * cmpermute:                             Representing Images.
                                                              (line  441)
 * cmunique:                              Representing Images.
@@ -1801,18 +1787,18 @@ Function Index
 * colstyle:                              Marker Styles.      (line   28)
 * columns:                               Object Sizes.       (line   23)
 * comet:                                 Two-Dimensional Plots.
-                                                             (line 1152)
+                                                             (line 1190)
 * comet3:                                Two-Dimensional Plots.
-                                                             (line 1167)
+                                                             (line 1205)
 * command_line_path:                     Manipulating the Load Path.
                                                              (line  138)
 * common_size:                           Finding Elements and Checking Conditions.
                                                              (line  133)
 * commutation_matrix:                    Special Functions.  (line  157)
 * compan:                                Finding Roots.      (line   46)
-* compare_versions:                      System Information. (line  143)
+* compare_versions:                      System Information. (line  149)
 * compass:                               Two-Dimensional Plots.
-                                                             (line 1047)
+                                                             (line 1085)
 * completion_append_char:                Commands For Completion.
                                                              (line   17)
 * completion_matches:                    Commands For Completion.
@@ -1827,13 +1813,13 @@ Function Index
                                                              (line  101)
 * conj:                                  Complex Arithmetic. (line   28)
 * contour:                               Two-Dimensional Plots.
-                                                             (line  642)
+                                                             (line  680)
 * contour3:                              Two-Dimensional Plots.
-                                                             (line  737)
+                                                             (line  775)
 * contourc:                              Two-Dimensional Plots.
-                                                             (line  706)
+                                                             (line  744)
 * contourf:                              Two-Dimensional Plots.
-                                                             (line  670)
+                                                             (line  708)
 * contrast:                              Representing Images.
                                                              (line  321)
 * conv:                                  Products of Polynomials.
@@ -1936,7 +1922,7 @@ Function Index
 * dec2hex:                               String Conversions. (line   53)
 * deconv:                                Products of Polynomials.
                                                              (line   48)
-* default_save_options:                  Simple File I/O.    (line  248)
+* default_save_options:                  Simple File I/O.    (line  148)
 * del2:                                  Utility Functions.  (line  295)
 * delaunay:                              Delaunay Triangulation.
                                                              (line   18)
@@ -1945,8 +1931,8 @@ Function Index
 * delaunayn:                             Delaunay Triangulation.
                                                              (line   95)
 * delete <1>:                            FTP Objects.        (line   89)
-* delete:                                Multiple Plot Windows.
-                                                             (line  239)
+* delete:                                Manipulation of Plot Windows.
+                                                             (line  139)
 * dellistener:                           Object Groups.      (line  132)
 * demo:                                  Demonstration Functions.
                                                              (line    7)
@@ -1959,7 +1945,7 @@ Function Index
                                                              (line   11)
 * diff:                                  Finding Elements and Checking Conditions.
                                                              (line   79)
-* diffpara:                              Signal Processing.  (line  463)
+* diffpara:                              Signal Processing.  (line  469)
 * diffuse:                               Three-Dimensional Plots.
                                                              (line  476)
 * dims:                                  Matrices and Arrays in Oct-Files.
@@ -1989,8 +1975,8 @@ Function Index
                                                              (line   71)
 * dot:                                   Utility Functions.  (line  228)
 * double:                                Numeric Data Types. (line   49)
-* drawnow:                               Multiple Plot Windows.
-                                                             (line  115)
+* drawnow:                               Manipulation of Plot Windows.
+                                                             (line   11)
 * dsearch:                               Identifying Points in Triangulation.
                                                              (line  100)
 * dsearchn:                              Identifying Points in Triangulation.
@@ -1999,7 +1985,7 @@ Function Index
 * dup2:                                  Controlling Subprocesses.
                                                              (line  232)
 * duplication_matrix:                    Special Functions.  (line  167)
-* durbinlevinson:                        Signal Processing.  (line  479)
+* durbinlevinson:                        Signal Processing.  (line  485)
 * e:                                     Mathematical Constants.
                                                              (line    7)
 * echo:                                  Diary and Echo Commands.
@@ -2008,9 +1994,9 @@ Function Index
                                                              (line   53)
 * edit:                                  Function Files.     (line   53)
 * edit_history:                          Commands For History.
-                                                             (line   81)
+                                                             (line   87)
 * EDITOR:                                Commands For History.
-                                                             (line  208)
+                                                             (line  241)
 * eig:                                   Basic Matrix Functions.
                                                              (line   71)
 * eigs:                                  Sparse Linear Algebra.
@@ -2042,7 +2028,7 @@ Function Index
 * errno_list:                            Catching Errors.    (line  185)
 * error:                                 Raising Errors.     (line   21)
 * errorbar:                              Two-Dimensional Plots.
-                                                             (line  784)
+                                                             (line  822)
 * errordlg:                              Dialog Box Functions.
                                                              (line   30)
 * etime:                                 Timing Utilities.   (line  359)
@@ -2094,17 +2080,17 @@ Function Index
 * f_test_regression:                     Tests.              (line  143)
 * factor:                                Utility Functions.  (line  332)
 * factorial:                             Utility Functions.  (line  323)
-* fail:                                  Test Functions.     (line  307)
+* fail:                                  Test Functions.     (line  354)
 * false:                                 Logical Values.     (line   54)
 * fcdf:                                  Distributions.      (line  164)
 * fclear:                                EOF and Errors.     (line   45)
 * fclose:                                Opening and Closing Files.
-                                                             (line  114)
+                                                             (line  119)
 * fcntl:                                 Controlling Subprocesses.
                                                              (line  396)
 * fdisp:                                 Simple File I/O.    (line  311)
 * feather:                               Two-Dimensional Plots.
-                                                             (line 1069)
+                                                             (line 1107)
 * feof:                                  EOF and Errors.     (line   25)
 * ferror:                                EOF and Errors.     (line   33)
 * feval:                                 Calling a Function by its Name.
@@ -2116,7 +2102,7 @@ Function Index
 * fftconv:                               Signal Processing.  (line  229)
 * fftfilt:                               Signal Processing.  (line  244)
 * fftn:                                  Signal Processing.  (line  199)
-* fftshift:                              Signal Processing.  (line  489)
+* fftshift:                              Signal Processing.  (line  495)
 * fftw:                                  Signal Processing.  (line   62)
 * fgetl:                                 Line-Oriented Input.
                                                              (line   19)
@@ -2136,11 +2122,11 @@ Function Index
                                                              (line  404)
 * fileparts:                             Filesystem Utilities.
                                                              (line  428)
-* fileread:                              Simple File I/O.    (line  240)
+* fileread:                              Simple File I/O.    (line  289)
 * filesep:                               Filesystem Utilities.
                                                              (line  392)
-* fill:                                  Multiple Plot Windows.
-                                                             (line   74)
+* fill:                                  Use of axis, line, and patch Functions.
+                                                             (line   50)
 * filter:                                Signal Processing.  (line  255)
 * filter2:                               Signal Processing.  (line  299)
 * find:                                  Finding Elements and Checking Conditions.
@@ -2189,11 +2175,11 @@ Function Index
                                                              (line   19)
 * fprintf:                               Formatted Output.   (line   25)
 * fputs:                                 Simple Output.      (line   17)
-* fractdiff:                             Signal Processing.  (line  513)
+* fractdiff:                             Signal Processing.  (line  519)
 * fread:                                 Binary I/O.         (line   14)
 * freport:                               EOF and Errors.     (line   50)
 * freqz:                                 Signal Processing.  (line  319)
-* freqz_plot:                            Signal Processing.  (line  352)
+* freqz_plot:                            Signal Processing.  (line  358)
 * frewind:                               File Positioning.   (line   51)
 * frnd:                                  Random Number Generation.
                                                              (line  163)
@@ -2273,7 +2259,7 @@ Function Index
                                                              (line   44)
 * getpwuid:                              Password Database Functions.
                                                              (line   39)
-* getrusage:                             System Information. (line  221)
+* getrusage:                             System Information. (line  237)
 * getuid:                                Process ID Information.
                                                              (line   19)
 * ginput:                                Interacting with Plots.
@@ -2310,7 +2296,7 @@ Function Index
 * gtext:                                 Interacting with Plots.
                                                              (line   25)
 * gui_mode:                              Customizing Toolkit Behavior.
-                                                             (line   20)
+                                                             (line   22)
 * guidata:                               GUI Utility Functions.
                                                              (line   11)
 * guihandles:                            GUI Utility Functions.
@@ -2320,9 +2306,9 @@ Function Index
 * gzip:                                  File Archiving Utilities.
                                                              (line   16)
 * hadamard:                              Famous Matrices.    (line    9)
-* hamming:                               Signal Processing.  (line  517)
+* hamming:                               Signal Processing.  (line  523)
 * hankel:                                Famous Matrices.    (line   32)
-* hanning:                               Signal Processing.  (line  523)
+* hanning:                               Signal Processing.  (line  529)
 * help:                                  Getting Help.       (line   15)
 * helpdlg:                               Dialog Box Functions.
                                                              (line   46)
@@ -2339,17 +2325,17 @@ Function Index
 * histc:                                 Basic Statistical Functions.
                                                              (line   39)
 * history:                               Commands For History.
-                                                             (line   52)
+                                                             (line   51)
 * history_control:                       Commands For History.
-                                                             (line  138)
+                                                             (line  171)
 * history_file:                          Commands For History.
-                                                             (line  164)
+                                                             (line  197)
 * history_size:                          Commands For History.
-                                                             (line  176)
+                                                             (line  209)
 * history_timestamp_format_string:       Commands For History.
-                                                             (line  187)
-* hold:                                  Multiple Plot Windows.
-                                                             (line  157)
+                                                             (line  220)
+* hold:                                  Manipulation of Plot Windows.
+                                                             (line   57)
 * home:                                  Cursor Motion.      (line   61)
 * horzcat:                               Rearranging Matrices.
                                                              (line  135)
@@ -2362,7 +2348,7 @@ Function Index
 * hsv:                                   Representing Images.
                                                              (line  222)
 * hsv2rgb:                               Color Conversion.   (line   26)
-* hurst:                                 Signal Processing.  (line  529)
+* hurst:                                 Signal Processing.  (line  535)
 * hygecdf:                               Distributions.      (line  209)
 * hygeinv:                               Distributions.      (line  219)
 * hygepdf:                               Distributions.      (line  199)
@@ -2379,7 +2365,7 @@ Function Index
 * ifft:                                  Signal Processing.  (line  147)
 * ifft2:                                 Signal Processing.  (line  185)
 * ifftn:                                 Signal Processing.  (line  214)
-* ifftshift:                             Signal Processing.  (line  508)
+* ifftshift:                             Signal Processing.  (line  514)
 * ignore_function_time_stamp:            Function Files.     (line  178)
 * imag:                                  Complex Arithmetic. (line   54)
 * image:                                 Displaying Images.  (line   44)
@@ -2388,7 +2374,7 @@ Function Index
 * imagesc:                               Displaying Images.  (line   73)
 * imfinfo:                               Loading and Saving Images.
                                                              (line   89)
-* importdata:                            Simple File I/O.    (line  521)
+* importdata:                            Simple File I/O.    (line  532)
 * imread:                                Loading and Saving Images.
                                                              (line   20)
 * imshow:                                Displaying Images.  (line   11)
@@ -2411,14 +2397,14 @@ Function Index
 * info_file:                             Getting Help.       (line   98)
 * info_program:                          Getting Help.       (line  117)
 * inline:                                Inline Functions.   (line   15)
-* inpolygon:                             Voronoi Diagrams.   (line  118)
+* inpolygon:                             Voronoi Diagrams.   (line  130)
 * input:                                 Terminal Input.     (line   12)
 * inputdlg:                              Dialog Box Functions.
                                                              (line   62)
 * inputname:                             Defining Functions. (line  161)
 * int16:                                 Integer Data Types. (line   44)
 * int2str:                               Conversion of Numerical Data to Strings.
-                                                             (line   88)
+                                                             (line   95)
 * int32:                                 Integer Data Types. (line   50)
 * int64:                                 Integer Data Types. (line   56)
 * int8:                                  Integer Data Types. (line   38)
@@ -2455,7 +2441,7 @@ Function Index
 * is_sq_string:                          Escape Sequences in String Constants.
                                                              (line   72)
 * is_valid_file_id:                      Opening and Closing Files.
-                                                             (line  122)
+                                                             (line  127)
 * isa:                                   Built-in Data Types.
                                                              (line   26)
 * isalnum:                               Character Class Functions.
@@ -2470,7 +2456,7 @@ Function Index
 * isbool:                                Predicates for Numeric Objects.
                                                              (line  134)
 * iscell:                                Basic Usage of Cell Arrays.
-                                                             (line   82)
+                                                             (line   83)
 * iscellstr:                             Cell Arrays of Strings.
                                                              (line   53)
 * ischar:                                Character Arrays.   (line   26)
@@ -2507,8 +2493,8 @@ Function Index
 * ishermitian:                           Predicates for Numeric Objects.
                                                              (line  113)
 * ishghandle:                            Graphics Objects.   (line   52)
-* ishold:                                Multiple Plot Windows.
-                                                             (line  188)
+* ishold:                                Manipulation of Plot Windows.
+                                                             (line   88)
 * isieee:                                System Information. (line   80)
 * isindex:                               Advanced Indexing.  (line  159)
 * isinf:                                 Finding Elements and Checking Conditions.
@@ -2603,7 +2589,7 @@ Function Index
                                                              (line  127)
 * jet:                                   Representing Images.
                                                              (line  235)
-* kbhit:                                 Terminal Input.     (line   64)
+* kbhit:                                 Terminal Input.     (line   69)
 * kendall:                               Correlation and Regression Analysis.
                                                              (line   67)
 * keyboard:                              Breakpoints.        (line  130)
@@ -2634,10 +2620,10 @@ Function Index
 * legendre:                              Special Functions.  (line  280)
 * length:                                Object Sizes.       (line   60)
 * lgamma:                                Special Functions.  (line  342)
-* license:                               System Information. (line  179)
+* license:                               System Information. (line  185)
 * lin2mu:                                Audio Processing.   (line   28)
-* line:                                  Multiple Plot Windows.
-                                                             (line   40)
+* line:                                  Use of axis, line, and patch Functions.
+                                                             (line   16)
 * lines:                                 Representing Images.
                                                              (line  244)
 * link:                                  Filesystem Utilities.
@@ -2649,9 +2635,9 @@ Function Index
 * list_primes:                           Utility Functions.  (line  422)
 * listdlg:                               Dialog Box Functions.
                                                              (line  104)
-* load:                                  Simple File I/O.    (line  146)
+* load:                                  Simple File I/O.    (line  195)
 * loadaudio:                             Audio Processing.   (line   49)
-* loaded_graphics_toolkits:              Graphics Toolkits.  (line   32)
+* loaded_graphics_toolkits:              Graphics Toolkits.  (line   38)
 * loadobj:                               Manipulating Classes.
                                                              (line  162)
 * localtime:                             Timing Utilities.   (line  115)
@@ -2676,7 +2662,7 @@ Function Index
 * loglog:                                Two-Dimensional Plots.
                                                              (line  236)
 * loglogerr:                             Two-Dimensional Plots.
-                                                             (line  886)
+                                                             (line  924)
 * logm:                                  Functions of a Matrix.
                                                              (line   30)
 * logncdf:                               Distributions.      (line  276)
@@ -2733,7 +2719,7 @@ Function Index
                                                              (line  111)
 * median:                                Descriptive Statistics.
                                                              (line   43)
-* menu:                                  Terminal Input.     (line   39)
+* menu:                                  Terminal Input.     (line   41)
 * merge:                                 Short-circuit Boolean Operators.
                                                              (line  105)
 * mesh:                                  Three-Dimensional Plots.
@@ -2756,7 +2742,7 @@ Function Index
 * min:                                   Utility Functions.  (line   93)
 * minus:                                 Arithmetic Ops.     (line  136)
 * mislocked:                             Function Locking.   (line   75)
-* missing_function_hook:                 Parser.             (line   42)
+* missing_function_hook:                 Parser.             (line   47)
 * mkdir <1>:                             FTP Objects.        (line  100)
 * mkdir:                                 Filesystem Utilities.
                                                              (line   77)
@@ -2778,7 +2764,7 @@ Function Index
 * more:                                  Paging Screen Output.
                                                              (line   26)
 * mouse_wheel_zoom:                      Customizing Toolkit Behavior.
-                                                             (line   39)
+                                                             (line   41)
 * movefile:                              Filesystem Utilities.
                                                              (line   12)
 * mpoles:                                Finding Roots.      (line   67)
@@ -2819,8 +2805,8 @@ Function Index
 * ne:                                    Comparison Ops.     (line   96)
 * nelem:                                 Matrices and Arrays in Oct-Files.
                                                              (line   89)
-* newplot:                               Multiple Plot Windows.
-                                                             (line  152)
+* newplot:                               Manipulation of Plot Windows.
+                                                             (line   48)
 * news:                                  Getting Help.       (line   80)
 * nextpow2:                              Exponents and Logarithms.
                                                              (line   64)
@@ -2859,7 +2845,7 @@ Function Index
 * nzmax:                                 Information.        (line   36)
 * ocean:                                 Representing Images.
                                                              (line  254)
-* octave_config_info:                    System Information. (line  212)
+* octave_config_info:                    System Information. (line  228)
 * octave_core_file_limit:                Saving Data on Unexpected Exits.
                                                              (line   73)
 * octave_core_file_name:                 Saving Data on Unexpected Exits.
@@ -2885,8 +2871,6 @@ Function Index
                                                              (line  120)
 * optimset:                              Linear Least Squares.
                                                              (line  110)
-* options:                               Commands For History.
-                                                             (line   51)
 * or:                                    Element-by-element Boolean Operators.
                                                              (line   85)
 * orderfields:                           Manipulating Structures.
@@ -2910,12 +2894,12 @@ Function Index
 * PAGER_FLAGS:                           Paging Screen Output.
                                                              (line   54)
 * pareto:                                Two-Dimensional Plots.
-                                                             (line  579)
+                                                             (line  617)
 * parseparams:                           Variable-length Argument Lists.
                                                              (line   64)
 * pascal:                                Famous Matrices.    (line  104)
-* patch:                                 Multiple Plot Windows.
-                                                             (line   50)
+* patch:                                 Use of axis, line, and patch Functions.
+                                                             (line   26)
 * path:                                  Manipulating the Load Path.
                                                              (line   70)
 * pathdef:                               Manipulating the Load Path.
@@ -2923,19 +2907,19 @@ Function Index
 * pathsep:                               Manipulating the Load Path.
                                                              (line  104)
 * pause:                                 Timing Utilities.   (line  431)
-* pbaspect:                              Aspect Ratio.       (line   31)
+* pbaspect:                              Aspect Ratio.       (line   36)
 * pcg:                                   Iterative Techniques.
                                                              (line   13)
-* pchip:                                 Signal Processing.  (line  534)
+* pchip:                                 Signal Processing.  (line  540)
 * pclose:                                Controlling Subprocesses.
                                                              (line  131)
 * pcolor:                                Two-Dimensional Plots.
-                                                             (line 1091)
+                                                             (line 1129)
 * pcr:                                   Iterative Techniques.
                                                              (line  160)
 * peaks:                                 Test Plotting Functions.
                                                              (line   22)
-* periodogram:                           Signal Processing.  (line  558)
+* periodogram:                           Signal Processing.  (line  564)
 * perl:                                  Controlling Subprocesses.
                                                              (line   84)
 * perms:                                 Basic Statistical Functions.
@@ -2945,9 +2929,9 @@ Function Index
 * pi:                                    Mathematical Constants.
                                                              (line   27)
 * pie:                                   Two-Dimensional Plots.
-                                                             (line  928)
+                                                             (line  966)
 * pie3:                                  Two-Dimensional Plots.
-                                                             (line  951)
+                                                             (line  989)
 * pink:                                  Representing Images.
                                                              (line  262)
 * pinv:                                  Basic Matrix Functions.
@@ -2965,7 +2949,7 @@ Function Index
 * plot3:                                 Three-Dimensional Plots.
                                                              (line  521)
 * plotmatrix:                            Two-Dimensional Plots.
-                                                             (line  545)
+                                                             (line  583)
 * plotyy:                                Two-Dimensional Plots.
                                                              (line  169)
 * plus:                                  Arithmetic Ops.     (line  177)
@@ -2977,12 +2961,12 @@ Function Index
 * pol2cart:                              Coordinate Transformations.
                                                              (line   27)
 * polar:                                 Two-Dimensional Plots.
-                                                             (line  915)
+                                                             (line  953)
 * poly:                                  Miscellaneous Functions.
                                                              (line    7)
 * polyaffine:                            Derivatives / Integrals / Transforms.
                                                              (line   38)
-* polyarea:                              Voronoi Diagrams.   (line   80)
+* polyarea:                              Voronoi Diagrams.   (line   92)
 * polyder:                               Derivatives / Integrals / Transforms.
                                                              (line   17)
 * polyeig:                               Finding Roots.      (line   33)
@@ -3033,7 +3017,7 @@ Function Index
                                                              (line  108)
 * print_usage:                           Raising Errors.     (line  111)
 * printd:                                Two-Dimensional Plots.
-                                                             (line  408)
+                                                             (line  444)
 * printf:                                Formatted Output.   (line   14)
 * prism:                                 Representing Images.
                                                              (line  271)
@@ -3092,9 +3076,9 @@ Function Index
                                                              (line  160)
 * quit:                                  Quitting Octave.    (line    8)
 * quiver:                                Two-Dimensional Plots.
-                                                             (line  974)
+                                                             (line 1012)
 * quiver3:                               Two-Dimensional Plots.
-                                                             (line 1009)
+                                                             (line 1047)
 * qz:                                    Matrix Factorizations.
                                                              (line  391)
 * qzhess:                                Matrix Factorizations.
@@ -3150,28 +3134,28 @@ Function Index
 * record:                                Audio Processing.   (line   90)
 * rectangle:                             Two-dimensional Geometric Shapes.
                                                              (line    7)
-* rectangle_lw:                          Signal Processing.  (line  596)
-* rectangle_sw:                          Signal Processing.  (line  600)
-* rectint:                               Voronoi Diagrams.   (line  107)
+* rectangle_lw:                          Signal Processing.  (line  602)
+* rectangle_sw:                          Signal Processing.  (line  606)
+* rectint:                               Voronoi Diagrams.   (line  119)
 * recycle:                               Filesystem Utilities.
                                                              (line  501)
-* refresh:                               Multiple Plot Windows.
-                                                             (line  128)
+* refresh:                               Manipulation of Plot Windows.
+                                                             (line   24)
 * refreshdata:                           Data Sources in Object Groups.
                                                              (line   12)
 * regexp:                                Manipulating Strings.
-                                                             (line  406)
+                                                             (line  501)
 * regexpi:                               Manipulating Strings.
-                                                             (line  604)
+                                                             (line  699)
 * regexprep:                             Manipulating Strings.
-                                                             (line  613)
+                                                             (line  708)
 * regexptranslate:                       Manipulating Strings.
-                                                             (line  647)
-* register_graphics_toolkit:             Graphics Toolkits.  (line   38)
+                                                             (line  742)
+* register_graphics_toolkit:             Graphics Toolkits.  (line   44)
 * rehash:                                Manipulating the Load Path.
                                                              (line  110)
 * rem:                                   Utility Functions.  (line  382)
-* remove_input_event_hook:               Parser.             (line   31)
+* remove_input_event_hook:               Parser.             (line   34)
 * rename <1>:                            FTP Objects.        (line   94)
 * rename:                                Filesystem Utilities.
                                                              (line   25)
@@ -3201,7 +3185,7 @@ Function Index
 * rgbplot:                               Representing Images.
                                                              (line  126)
 * ribbon:                                Three-Dimensional Plots.
-                                                             (line  638)
+                                                             (line  639)
 * rindex:                                Manipulating Strings.
                                                              (line  104)
 * rmappdata:                             Application-defined Data.
@@ -3217,7 +3201,7 @@ Function Index
                                                              (line   59)
 * roots:                                 Finding Roots.      (line   11)
 * rose:                                  Two-Dimensional Plots.
-                                                             (line  614)
+                                                             (line  652)
 * rosser:                                Famous Matrices.    (line  117)
 * rot90:                                 Rearranging Matrices.
                                                              (line   49)
@@ -3235,7 +3219,7 @@ Function Index
 * run_count:                             Basic Statistical Functions.
                                                              (line  127)
 * run_history:                           Commands For History.
-                                                             (line  112)
+                                                             (line  117)
 * run_test:                              Tests.              (line  320)
 * rundemos:                              Demonstration Functions.
                                                              (line   81)
@@ -3258,8 +3242,8 @@ Function Index
 * S_ISSOCK:                              Filesystem Utilities.
                                                              (line  249)
 * save:                                  Simple File I/O.    (line   29)
-* save_header_format_string:             Simple File I/O.    (line  274)
-* save_precision:                        Simple File I/O.    (line  263)
+* save_header_format_string:             Simple File I/O.    (line  174)
+* save_precision:                        Simple File I/O.    (line  163)
 * saveas:                                Printing and Saving Plots.
                                                              (line  268)
 * saveaudio:                             Audio Processing.   (line   63)
@@ -3268,12 +3252,12 @@ Function Index
 * savepath:                              Manipulating the Load Path.
                                                              (line   58)
 * saving_history:                        Commands For History.
-                                                             (line  122)
-* scanf:                                 Formatted Input.    (line   64)
+                                                             (line  155)
+* scanf:                                 Formatted Input.    (line   61)
 * scatter:                               Two-Dimensional Plots.
-                                                             (line  509)
+                                                             (line  547)
 * scatter3:                              Three-Dimensional Plots.
-                                                             (line  667)
+                                                             (line  668)
 * schur:                                 Matrix Factorizations.
                                                              (line  465)
 * sec:                                   Trigonometry.       (line   48)
@@ -3285,11 +3269,11 @@ Function Index
 * semilogx:                              Two-Dimensional Plots.
                                                              (line  204)
 * semilogxerr:                           Two-Dimensional Plots.
-                                                             (line  858)
+                                                             (line  896)
 * semilogy:                              Two-Dimensional Plots.
                                                              (line  220)
 * semilogyerr:                           Two-Dimensional Plots.
-                                                             (line  872)
+                                                             (line  910)
 * set:                                   Graphics Objects.   (line  144)
 * setappdata:                            Application-defined Data.
                                                              (line   11)
@@ -3307,9 +3291,9 @@ Function Index
                                                              (line   49)
 * setxor:                                Set Operations.     (line  109)
 * shading:                               Three-Dimensional Plots.
-                                                             (line  649)
-* shg:                                   Multiple Plot Windows.
-                                                             (line  233)
+                                                             (line  650)
+* shg:                                   Manipulation of Plot Windows.
+                                                             (line  133)
 * shift:                                 Rearranging Matrices.
                                                              (line  262)
 * shiftdim:                              Rearranging Matrices.
@@ -3327,10 +3311,10 @@ Function Index
                                                              (line   42)
 * silent_functions:                      Defining Functions. (line  165)
 * sin:                                   Trigonometry.       (line   30)
-* sinc:                                  Signal Processing.  (line  355)
+* sinc:                                  Signal Processing.  (line  361)
 * sind:                                  Trigonometry.       (line  176)
-* sinetone:                              Signal Processing.  (line  604)
-* sinewave:                              Signal Processing.  (line  611)
+* sinetone:                              Signal Processing.  (line  610)
+* sinewave:                              Signal Processing.  (line  617)
 * single:                                Single Precision Data Types.
                                                              (line   12)
 * sinh:                                  Trigonometry.       (line   96)
@@ -3342,7 +3326,7 @@ Function Index
                                                              (line  191)
 * sleep:                                 Timing Utilities.   (line  442)
 * slice:                                 Three-Dimensional Plots.
-                                                             (line  586)
+                                                             (line  587)
 * sombrero:                              Test Plotting Functions.
                                                              (line   11)
 * sort:                                  Rearranging Matrices.
@@ -3364,13 +3348,13 @@ Function Index
                                                              (line   48)
 * spearman:                              Correlation and Regression Analysis.
                                                              (line   52)
-* spectral_adf:                          Signal Processing.  (line  617)
-* spectral_xdf:                          Signal Processing.  (line  627)
+* spectral_adf:                          Signal Processing.  (line  623)
+* spectral_xdf:                          Signal Processing.  (line  633)
 * specular:                              Three-Dimensional Plots.
                                                              (line  485)
 * speed:                                 Demonstration Functions.
                                                              (line   97)
-* spencer:                               Signal Processing.  (line  637)
+* spencer:                               Signal Processing.  (line  643)
 * speye:                                 Creating Sparse Matrices.
                                                              (line   75)
 * spfun:                                 Function Application.
@@ -3410,9 +3394,9 @@ Function Index
 * sqrtm:                                 Functions of a Matrix.
                                                              (line   44)
 * squeeze:                               Object Sizes.       (line  129)
-* sscanf:                                Formatted Input.    (line   74)
+* sscanf:                                Formatted Input.    (line   72)
 * stairs:                                Two-Dimensional Plots.
-                                                             (line  417)
+                                                             (line  455)
 * stat:                                  Filesystem Utilities.
                                                              (line  126)
 * statistics:                            Descriptive Statistics.
@@ -3431,12 +3415,12 @@ Function Index
 * stdout:                                C-Style I/O Functions.
                                                              (line   27)
 * stem:                                  Two-Dimensional Plots.
-                                                             (line  449)
+                                                             (line  487)
 * stem3:                                 Two-Dimensional Plots.
-                                                             (line  492)
+                                                             (line  530)
 * stemleaf:                              Two-Dimensional Plots.
                                                              (line  391)
-* stft:                                  Signal Processing.  (line  640)
+* stft:                                  Signal Processing.  (line  646)
 * str2double:                            String Conversions. (line  167)
 * str2func:                              Function Handles.   (line   51)
 * str2num:                               String Conversions. (line  224)
@@ -3450,20 +3434,22 @@ Function Index
                                                              (line  119)
 * strftime:                              Timing Utilities.   (line  167)
 * string_fill_char:                      Character Arrays.   (line   52)
+* strjoin:                               Manipulating Strings.
+                                                             (line  147)
 * strjust:                               String Conversions. (line  203)
 * strmatch:                              Manipulating Strings.
-                                                             (line  147)
+                                                             (line  167)
 * strncmp:                               Comparing Strings.  (line   38)
 * strncmpi:                              Comparing Strings.  (line   81)
 * strptime:                              Timing Utilities.   (line  308)
 * strread:                               Manipulating Strings.
-                                                             (line  229)
+                                                             (line  324)
 * strrep:                                Manipulating Strings.
-                                                             (line  369)
+                                                             (line  464)
 * strsplit:                              Manipulating Strings.
-                                                             (line  199)
+                                                             (line  219)
 * strtok:                                Manipulating Strings.
-                                                             (line  175)
+                                                             (line  195)
 * strtrim:                               Manipulating Strings.
                                                              (line   36)
 * strtrunc:                              Manipulating Strings.
@@ -3490,7 +3476,7 @@ Function Index
 * subsref:                               Defining Indexing And Indexed Assignment.
                                                              (line   15)
 * substr:                                Manipulating Strings.
-                                                             (line  383)
+                                                             (line  478)
 * substruct:                             Manipulating Structures.
                                                              (line  185)
 * sum:                                   Sums and Products.  (line    7)
@@ -3502,8 +3488,8 @@ Function Index
 * suppress_verbose_help_message:         Getting Help.       (line  193)
 * surf:                                  Three-Dimensional Plots.
                                                              (line  101)
-* surface:                               Multiple Plot Windows.
-                                                             (line   86)
+* surface:                               Use of axis, line, and patch Functions.
+                                                             (line   62)
 * surfc:                                 Three-Dimensional Plots.
                                                              (line  122)
 * surfl:                                 Three-Dimensional Plots.
@@ -3529,7 +3515,7 @@ Function Index
 * symrcm:                                Mathematical Considerations.
                                                              (line  489)
 * symvar:                                Inline Functions.   (line   51)
-* synthesis:                             Signal Processing.  (line  670)
+* synthesis:                             Signal Processing.  (line  676)
 * system:                                Controlling Subprocesses.
                                                              (line   17)
 * t_test:                                Tests.              (line  349)
@@ -3554,7 +3540,7 @@ Function Index
 * texi_macros_file:                      Getting Help.       (line  153)
 * text:                                  Plot Annotations.   (line  117)
 * textread:                              Simple File I/O.    (line  434)
-* textscan:                              Simple File I/O.    (line  466)
+* textscan:                              Simple File I/O.    (line  472)
 * tic:                                   Timing Utilities.   (line  399)
 * tilde_expand:                          Filesystem Utilities.
                                                              (line  439)
@@ -3577,8 +3563,8 @@ Function Index
                                                              (line  437)
 * treelayout:                            Information.        (line  191)
 * treeplot:                              Information.        (line  182)
-* triangle_lw:                           Signal Processing.  (line  679)
-* triangle_sw:                           Signal Processing.  (line  683)
+* triangle_lw:                           Signal Processing.  (line  685)
+* triangle_sw:                           Signal Processing.  (line  689)
 * tril:                                  Rearranging Matrices.
                                                              (line  394)
 * trimesh:                               Plotting the Triangulation.
@@ -3643,10 +3629,10 @@ Function Index
 * unpack:                                File Archiving Utilities.
                                                              (line   79)
 * untabify:                              Manipulating Strings.
-                                                             (line  673)
+                                                             (line  768)
 * untar:                                 File Archiving Utilities.
                                                              (line   51)
-* unwrap:                                Signal Processing.  (line  358)
+* unwrap:                                Signal Processing.  (line  364)
 * unzip:                                 File Archiving Utilities.
                                                              (line   70)
 * uplus:                                 Arithmetic Ops.     (line  230)
@@ -3688,7 +3674,7 @@ Function Index
 * warning:                               Issuing Warnings.   (line   34)
 * warranty:                              Getting Help.       (line   91)
 * wavread:                               Audio Processing.   (line  106)
-* wavwrite:                              Audio Processing.   (line  127)
+* wavwrite:                              Audio Processing.   (line  135)
 * wblcdf:                                Distributions.      (line  451)
 * wblinv:                                Distributions.      (line  464)
 * wblpdf:                                Distributions.      (line  438)
@@ -3742,10 +3728,10 @@ Function Index
 * xlim:                                  Axis Configuration. (line  127)
 * xor:                                   Finding Elements and Checking Conditions.
                                                              (line   62)
-* yes_or_no:                             Terminal Input.     (line   50)
+* yes_or_no:                             Terminal Input.     (line   52)
 * ylabel:                                Plot Annotations.   (line  134)
 * ylim:                                  Axis Configuration. (line  126)
-* yulewalker:                            Signal Processing.  (line  687)
+* yulewalker:                            Signal Processing.  (line  693)
 * z_test:                                Tests.              (line  484)
 * z_test_2:                              Tests.              (line  502)
 * zeros:                                 Special Utility Matrices.

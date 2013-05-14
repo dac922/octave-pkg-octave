@@ -49,13 +49,17 @@ along with Octave; see the file COPYING.  If not, see
 #include "error.h"
 #include "gripes.h"
 #include "help.h"
+#include "hook-fcn.h"
 #include "input.h"
 #include "lex.h"
 #include "load-path.h"
+#include "octave-link.h"
 #include "oct-map.h"
 #include "oct-hist.h"
 #include "toplev.h"
+#include "octave-link.h"
 #include "oct-obj.h"
+#include "ov-fcn-handle.h"
 #include "pager.h"
 #include "parse.h"
 #include "pathlen.h"
@@ -64,6 +68,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "pt-eval.h"
 #include "pt-stmt.h"
 #include "sighandlers.h"
+#include "symtab.h"
 #include "sysdep.h"
 #include "toplev.h"
 #include "unwind-prot.h"
@@ -71,10 +76,10 @@ along with Octave; see the file COPYING.  If not, see
 #include "variables.h"
 
 // Primary prompt string.
-static std::string VPS1 = "\\s:\\#> ";
+static std::string VPS1;
 
 // Secondary prompt string.
-static std::string VPS2 = "> ";
+static std::string VPS2;
 
 // String printed before echoed input (enabled by --echo-input).
 std::string VPS4 = "+ ";
@@ -94,52 +99,11 @@ octave_time Vlast_prompt_time = 0.0;
 // Character to append after successful command-line completion attempts.
 static char Vcompletion_append_char = ' ';
 
-// Global pointer for eval().
-std::string current_eval_string;
-
-// TRUE means get input from current_eval_string.
-bool get_input_from_eval_string = false;
-
-// TRUE means we haven't been asked for the input from
-// current_eval_string yet.
-bool input_from_eval_string_pending = false;
-
-// TRUE means that input is coming from a file that was named on
-// the command line.
-bool input_from_command_line_file = false;
-
-// TRUE means that stdin is a terminal, not a pipe or redirected file.
-bool stdin_is_tty = false;
-
-// TRUE means we're parsing a function file.
-bool reading_fcn_file = false;
-
-// TRUE means we're parsing a classdef file.
-bool reading_classdef_file = false;
-
-// Simple name of function file we are reading.
-std::string curr_fcn_file_name;
-
-// Full name of file we are reading.
-std::string curr_fcn_file_full_name;
-
-// TRUE means we're parsing a script file.
-bool reading_script_file = false;
-
-// If we are reading from an M-file, this is it.
-FILE *ff_instream = 0;
-
 // TRUE means this is an interactive shell.
 bool interactive = false;
 
 // TRUE means the user forced this shell to be interactive (-i).
 bool forced_interactive = false;
-
-// Should we issue a prompt?
-int promptflag = 1;
-
-// The current line of input, from wherever.
-std::string current_input_line;
 
 // TRUE after a call to completion_matches.
 bool octave_completion_matches_called = false;
@@ -153,7 +117,7 @@ bool Vdebugging = false;
 
 // If we are in debugging mode, this is the last command entered, so
 // that we can repeat the previous command if the user just types RET.
-static std::string last_debugging_command;
+static std::string last_debugging_command = "\n";
 
 // TRUE if we are running in the Emacs GUD mode.
 static bool Vgud_mode = false;
@@ -161,10 +125,29 @@ static bool Vgud_mode = false;
 // The filemarker used to separate filenames from subfunction names
 char Vfilemarker = '>';
 
-static void
-do_input_echo (const std::string& input_string)
+static hook_function_list input_event_hook_functions;
+
+// For octave_quit.
+void
+remove_input_event_hook_functions (void)
 {
-  int do_echo = reading_script_file ?
+  input_event_hook_functions.clear ();
+}
+
+void
+set_default_prompts (void)
+{
+  VPS1 = "\\s:\\#> ";
+  VPS2 = "> ";
+  VPS4 = "+ ";
+
+  octave_link::set_default_prompts (VPS1, VPS2, VPS4);
+}
+
+void
+octave_base_reader::do_input_echo (const std::string& input_string) const
+{
+  int do_echo = LEXER->reading_script_file ?
     (Vecho_executing_commands & ECHO_SCRIPTS)
       : (Vecho_executing_commands & ECHO_CMD_LINE) && ! forced_interactive;
 
@@ -172,7 +155,7 @@ do_input_echo (const std::string& input_string)
     {
       if (forced_interactive)
         {
-          if (promptflag > 0)
+          if (pflag > 0)
             octave_stdout << command_editor::decode_prompt_string (VPS1);
           else
             octave_stdout << command_editor::decode_prompt_string (VPS2);
@@ -190,45 +173,23 @@ do_input_echo (const std::string& input_string)
     }
 }
 
-std::string
-gnu_readline (const std::string& s, bool force_readline)
+static std::string
+gnu_readline (const std::string& s, bool& eof)
 {
   octave_quit ();
 
-  std::string retval;
+  eof = false;
 
-  if (line_editing || force_readline)
-    {
-      bool eof;
+  std::string retval = command_editor::readline (s, eof);
 
-      retval = command_editor::readline (s, eof);
-
-      if (! eof && retval.empty ())
-        retval = "\n";
-    }
-  else
-    {
-      if (! s.empty () && (interactive || forced_interactive))
-        {
-          FILE *stream = command_editor::get_output_stream ();
-
-          gnulib::fputs (s.c_str (), stream);
-          gnulib::fflush (stream);
-        }
-
-      FILE *curr_stream = command_editor::get_input_stream ();
-
-      if (reading_fcn_file || reading_script_file || reading_classdef_file)
-        curr_stream = ff_instream;
-
-      retval = octave_fgets (curr_stream);
-    }
+  if (! eof && retval.empty ())
+    retval = "\n";
 
   return retval;
 }
 
 static inline std::string
-interactive_input (const std::string& s, bool force_readline = false)
+interactive_input (const std::string& s, bool& eof)
 {
   Vlast_prompt_time.stamp ();
 
@@ -247,201 +208,93 @@ interactive_input (const std::string& s, bool force_readline = false)
         return "\n";
     }
 
-  return gnu_readline (s, force_readline);
+  return gnu_readline (s, eof);
 }
 
-static std::string
-octave_gets (void)
+std::string
+octave_base_reader::octave_gets (bool& eof)
 {
   octave_quit ();
 
+  eof = false;
+
   std::string retval;
+
+  // Process pre input event hook function prior to flushing output and
+  // printing the prompt.
+
+  if (interactive || forced_interactive)
+    {
+      if (! Vdebugging)
+        octave_link::exit_debugger_event ();
+
+      octave_link::pre_input_event ();
+
+      octave_link::set_workspace ();
+    }
 
   bool history_skip_auto_repeated_debugging_command = false;
 
-  if ((interactive || forced_interactive)
-      && (! (reading_fcn_file
-             || reading_classdef_file
-             || reading_script_file
-             || get_input_from_eval_string
-             || input_from_startup_file
-             || input_from_command_line_file)))
+  std::string ps = (pflag > 0) ? VPS1 : VPS2;
+
+  std::string prompt = command_editor::decode_prompt_string (ps);
+
+  pipe_handler_error_count = 0;
+
+  flush_octave_stdout ();
+
+  octave_pager_stream::reset ();
+  octave_diary_stream::reset ();
+
+  octave_diary << prompt;
+
+  retval = interactive_input (prompt, eof);
+
+  // There is no need to update the load_path cache if there is no
+  // user input.
+  if (retval != "\n"
+      && retval.find_first_not_of (" \t\n\r") != std::string::npos)
     {
-      std::string ps = (promptflag > 0) ? VPS1 : VPS2;
+      load_path::update ();
 
-      std::string prompt = command_editor::decode_prompt_string (ps);
+      if (Vdebugging)
+        last_debugging_command = retval;
+      else
+        last_debugging_command = "\n";
+    }
+  else if (Vdebugging)
+    {
+      retval = last_debugging_command;
+      history_skip_auto_repeated_debugging_command = true;
+    }
 
-      pipe_handler_error_count = 0;
-
-      flush_octave_stdout ();
-
-      octave_pager_stream::reset ();
-      octave_diary_stream::reset ();
-
-      octave_diary << prompt;
-
-      retval = interactive_input (prompt);
-
-      // There is no need to update the load_path cache if there is no
-      // user input.
-      if (! retval.empty ()
-          && retval.find_first_not_of (" \t\n\r") != std::string::npos)
+  if (retval != "\n")
+    {
+      if (! history_skip_auto_repeated_debugging_command)
         {
-          load_path::update ();
+          command_history::add (retval);
 
-          if (Vdebugging)
-            last_debugging_command = retval;
-          else
-            last_debugging_command = std::string ();
+          if (! command_history::ignoring_entries ())
+            octave_link::append_history (retval);
         }
-      else if (Vdebugging)
-        {
-          retval = last_debugging_command;
-          history_skip_auto_repeated_debugging_command = true;
-        }
+
+      octave_diary << retval;
+
+      if (retval[retval.length () - 1] != '\n')
+        octave_diary << "\n";
+
+      do_input_echo (retval);
     }
   else
-    retval = gnu_readline ("");
-
-  current_input_line = retval;
-
-  if (! current_input_line.empty ())
-    {
-      if (! (input_from_startup_file || input_from_command_line_file
-             || history_skip_auto_repeated_debugging_command))
-        command_history::add (current_input_line);
-
-      if (! (reading_fcn_file || reading_script_file || reading_classdef_file))
-        {
-          octave_diary << current_input_line;
-
-          if (current_input_line[current_input_line.length () - 1] != '\n')
-            octave_diary << "\n";
-        }
-
-      do_input_echo (current_input_line);
-    }
-  else if (! (reading_fcn_file || reading_script_file || reading_classdef_file))
     octave_diary << "\n";
 
-  return retval;
-}
+  // Process post input event hook function after the internal history
+  // list has been updated.
 
-// Read a line from the input stream.
-
-static std::string
-get_user_input (void)
-{
-  octave_quit ();
-
-  std::string retval;
-
-  if (get_input_from_eval_string)
-    {
-      if (input_from_eval_string_pending)
-        {
-          input_from_eval_string_pending = false;
-
-          retval = current_eval_string;
-
-          size_t len = retval.length ();
-
-          if (len > 0 && retval[len-1] != '\n')
-            retval.append ("\n");
-        }
-    }
-  else
-    retval = octave_gets ();
-
-  current_input_line = retval;
+  if (interactive || forced_interactive)
+    octave_link::post_input_event ();
 
   return retval;
-}
-
-int
-octave_read (char *buf, unsigned max_size)
-{
-  // FIXME -- is this a safe way to buffer the input?
-
-  static const char * const eol = "\n";
-  static std::string input_buf;
-  static const char *pos = 0;
-  static size_t chars_left = 0;
-
-  int status = 0;
-  if (chars_left == 0)
-    {
-      pos = 0;
-
-      input_buf = get_user_input ();
-
-      chars_left = input_buf.length ();
-
-      pos = input_buf.c_str ();
-    }
-
-  if (chars_left > 0)
-    {
-      size_t len = max_size > chars_left ? chars_left : max_size;
-      assert (len > 0);
-
-      memcpy (buf, pos, len);
-
-      chars_left -= len;
-      pos += len;
-
-      // Make sure input ends with a new line character.
-      if (chars_left == 0 && buf[len-1] != '\n')
-        {
-          if (len < max_size)
-            {
-              // There is enough room to plug the newline character in
-              // the buffer.
-              buf[len++] = '\n';
-            }
-          else
-            {
-              // There isn't enough room to plug the newline character
-              // in the buffer so make sure it is returned on the next
-              // octave_read call.
-              pos = eol;
-              chars_left = 1;
-            }
-        }
-
-      status = len;
-
-    }
-  else if (chars_left == 0)
-    {
-      status = 0;
-    }
-  else
-    status = -1;
-
-  return status;
-}
-
-// Fix things up so that input can come from file 'name', printing a
-// warning if the file doesn't exist.
-
-FILE *
-get_input_from_file (const std::string& name, int warn)
-{
-  FILE *instream = 0;
-
-  if (name.length () > 0)
-    instream = gnulib::fopen (name.c_str (), "rb");
-
-  if (! instream && warn)
-    warning ("%s: no such file or directory", name.c_str ());
-
-  if (reading_fcn_file || reading_script_file || reading_classdef_file)
-    ff_instream = instream;
-  else
-    command_editor::set_input_stream (instream);
-
-  return instream;
 }
 
 // Fix things up so that input can come from the standard input.  This
@@ -626,8 +479,16 @@ initialize_command_input (void)
 }
 
 static void
+execute_in_debugger_handler (const std::pair<std::string, int>& arg)
+{
+  octave_link::execute_in_debugger_event (arg.first, arg.second);
+}
+
+static void
 get_debug_input (const std::string& prompt)
 {
+  unwind_protect frame;
+
   octave_user_code *caller = octave_call_stack::caller_user_code ();
   std::string nm;
 
@@ -670,6 +531,13 @@ get_debug_input (const std::string& prompt)
 
           if (have_file)
             {
+              octave_link::enter_debugger_event (nm, curr_debug_line);
+
+              octave_link::set_workspace ();
+
+              frame.add_fcn (execute_in_debugger_handler,
+                             std::pair<std::string, int> (nm, curr_debug_line));
+
               std::string line_buf
                 = get_file_line (nm, curr_debug_line);
 
@@ -684,91 +552,98 @@ get_debug_input (const std::string& prompt)
   if (! msg.empty ())
     std::cerr << msg << std::endl;
 
-  unwind_protect frame;
-
   frame.protect_var (VPS1);
   VPS1 = prompt;
 
   if (! (interactive || forced_interactive)
-      || (reading_fcn_file
-          || reading_classdef_file
-          || reading_script_file
-          || get_input_from_eval_string
-          || input_from_startup_file
-          || input_from_command_line_file))
+      || LEXER->reading_fcn_file
+      || LEXER->reading_classdef_file
+      || LEXER->reading_script_file
+      || LEXER->input_from_eval_string ())
     {
       frame.protect_var (forced_interactive);
       forced_interactive = true;
-
-      frame.protect_var (reading_fcn_file);
-      reading_fcn_file = false;
-
-      frame.protect_var (reading_classdef_file);
-      reading_classdef_file = false;
-
-      frame.protect_var (reading_script_file);
-      reading_script_file = false;
-
-      frame.protect_var (input_from_startup_file);
-      input_from_startup_file = false;
-
-      frame.protect_var (input_from_command_line_file);
-      input_from_command_line_file = false;
-
-      frame.protect_var (get_input_from_eval_string);
-      get_input_from_eval_string = false;
-
-      YY_BUFFER_STATE old_buf = current_buffer ();
-      YY_BUFFER_STATE new_buf = create_buffer (get_input_from_stdin ());
-
-      // FIXME: are these safe?
-      frame.add_fcn (switch_to_buffer, old_buf);
-      frame.add_fcn (delete_buffer, new_buf);
-
-      switch_to_buffer (new_buf);
     }
+
+  // octave_parser constructor sets this for us.
+  frame.protect_var (LEXER);
+
+  octave_parser curr_parser;
 
   while (Vdebugging)
     {
+      unwind_protect middle_frame;
+
       reset_error_handler ();
 
-      reset_parser ();
+      curr_parser.reset ();
 
-      // Save current value of global_command.
-      frame.protect_var (global_command);
+      int retval = curr_parser.run ();
 
-      global_command = 0;
-
-      // Do this with an unwind-protect cleanup function so that the
-      // forced variables will be unmarked in the event of an interrupt.
-      symbol_table::scope_id scope = symbol_table::top_scope ();
-      frame.add_fcn (symbol_table::unmark_forced_variables, scope);
-
-      // This is the same as yyparse in parse.y.
-      int retval = octave_parse ();
-
-      if (retval == 0 && global_command)
+      if (command_editor::interrupt (false))
+        break;
+      else
         {
-          unwind_protect inner_frame;
+          if (retval == 0 && curr_parser.stmt_list)
+            {
+              curr_parser.stmt_list->accept (*current_evaluator);
 
-          // Use an unwind-protect cleanup function so that the
-          // global_command list will be deleted in the event of an
-          // interrupt.
+              if (octave_completion_matches_called)
+                octave_completion_matches_called = false;
+            }
 
-          inner_frame.add_fcn (cleanup_statement_list, &global_command);
-
-          global_command->accept (*current_evaluator);
-
-          if (octave_completion_matches_called)
-            octave_completion_matches_called = false;
+          octave_quit ();
         }
-
-      // Unmark forced variables.
-      // Restore previous value of global_command.
-      frame.run (2);
-
-      octave_quit ();
     }
+}
+
+const std::string octave_base_reader::in_src ("invalid");
+
+const std::string octave_terminal_reader::in_src ("terminal");
+
+std::string
+octave_terminal_reader::get_input (bool& eof)
+{
+  octave_quit ();
+
+  eof = false;
+
+  return octave_gets (eof);
+}
+
+const std::string octave_file_reader::in_src ("file");
+
+std::string
+octave_file_reader::get_input (bool& eof)
+{
+  octave_quit ();
+
+  eof = false;
+
+  return octave_fgets (file, eof);
+}
+
+const std::string octave_eval_string_reader::in_src ("eval_string");
+
+std::string
+octave_eval_string_reader::get_input (bool& eof)
+{
+  octave_quit ();
+
+  eof = false;
+
+  std::string retval;
+
+  retval = eval_string;
+
+  // Clear the eval string so that the next call will return
+  // an empty character string with EOF = true.
+  eval_string = "";
+
+  if (retval.empty ())
+    eof = true;
+
+  return retval;
 }
 
 // If the user simply hits return, this will produce an empty matrix.
@@ -800,13 +675,12 @@ get_user_input (const octave_value_list& args, int nargout)
 
   octave_diary << prompt;
 
-  std::string input_buf = interactive_input (prompt.c_str (), true);
+  bool eof = false;
+
+  std::string input_buf = interactive_input (prompt.c_str (), eof);
 
   if (! (error_state || input_buf.empty ()))
     {
-      if (! input_from_startup_file)
-        command_history::add (input_buf);
-
       size_t len = input_buf.length ();
 
       octave_diary << input_buf;
@@ -843,8 +717,8 @@ get_user_input (const octave_value_list& args, int nargout)
 
 DEFUN (input, args, nargout,
   "-*- texinfo -*-\n\
-@deftypefn  {Built-in Function} {} input (@var{prompt})\n\
-@deftypefnx {Built-in Function} {} input (@var{prompt}, \"s\")\n\
+@deftypefn  {Built-in Function} {@var{ans} =} input (@var{prompt})\n\
+@deftypefnx {Built-in Function} {@var{ans} =} input (@var{prompt}, \"s\")\n\
 Print a prompt and wait for user input.  For example,\n\
 \n\
 @example\n\
@@ -874,7 +748,8 @@ directly, without evaluating it first.\n\
 Because there may be output waiting to be displayed by the pager, it is\n\
 a good idea to always call @code{fflush (stdout)} before calling\n\
 @code{input}.  This will ensure that all pending output is written to\n\
-the screen before your prompt.  @xref{Input and Output}.\n\
+the screen before your prompt.\n\
+@seealso{yes_or_no, kbhit}\n\
 @end deftypefn")
 {
   octave_value_list retval;
@@ -896,7 +771,9 @@ octave_yes_or_no (const std::string& prompt)
 
   while (1)
     {
-      std::string input_buf = interactive_input (prompt_string, true);
+      bool eof = false;
+
+      std::string input_buf = interactive_input (prompt_string, eof);
 
       if (input_buf == "yes")
         return true;
@@ -909,12 +786,14 @@ octave_yes_or_no (const std::string& prompt)
 
 DEFUN (yes_or_no, args, ,
   "-*- texinfo -*-\n\
-@deftypefn {Built-in Function} {} yes_or_no (@var{prompt})\n\
-Ask the user a yes-or-no question.  Return 1 if the answer is yes.\n\
-Takes one argument, which is the string to display to ask the\n\
-question.  It should end in a space; @samp{yes-or-no-p} adds\n\
-@samp{(yes or no) } to it.  The user must confirm the answer with\n\
-RET and can edit it until it has been confirmed.\n\
+@deftypefn {Built-in Function} {@var{ans} =} yes_or_no (\"@var{prompt}\")\n\
+Ask the user a yes-or-no question.  Return logical true if the answer is yes\n\
+or false if the answer is no.  Takes one argument, @var{prompt}, which is\n\
+the string to display when asking the question.  @var{prompt} should end in\n\
+a space; @code{yes-or-no} adds the string @samp{(yes or no) } to it.  The\n\
+user must confirm the answer with @key{RET} and can edit it until it has\n\
+been confirmed.\n\
+@seealso{input}\n\
 @end deftypefn")
 {
   octave_value retval;
@@ -986,7 +865,7 @@ do_keyboard (const octave_value_list& args)
 DEFUN (keyboard, args, ,
   "-*- texinfo -*-\n\
 @deftypefn  {Built-in Function} {} keyboard ()\n\
-@deftypefnx {Built-in Function} {} keyboard (@var{prompt})\n\
+@deftypefnx {Built-in Function} {} keyboard (\"@var{prompt}\")\n\
 This function is normally used for simple debugging.  When the\n\
 @code{keyboard} function is executed, Octave prints a prompt and waits\n\
 for user input.  The input strings are then evaluated and the results\n\
@@ -1234,47 +1113,22 @@ for details.\n\
   return retval;
 }
 
-typedef std::map<std::string, octave_value> hook_fcn_map_type;
-
-static hook_fcn_map_type hook_fcn_map;
-
 static int
-input_event_hook (void)
+internal_input_event_hook_fcn (void)
 {
-  if (! lexer_flags.defining_func)
-    {
-      hook_fcn_map_type::iterator p = hook_fcn_map.begin ();
+  input_event_hook_functions.run ();
 
-      while (p != hook_fcn_map.end ())
-        {
-          std::string hook_fcn = p->first;
-          octave_value user_data = p->second;
-
-          hook_fcn_map_type::iterator q = p++;
-
-          if (is_valid_function (hook_fcn))
-            {
-              if (user_data.is_defined ())
-                feval (hook_fcn, user_data, 0);
-              else
-                feval (hook_fcn, octave_value_list (), 0);
-            }
-          else
-            hook_fcn_map.erase (q);
-        }
-
-      if (hook_fcn_map.empty ())
-        command_editor::remove_event_hook (input_event_hook);
-    }
+  if (input_event_hook_functions.empty ())
+    command_editor::remove_event_hook (internal_input_event_hook_fcn);
 
   return 0;
 }
 
 DEFUN (add_input_event_hook, args, ,
   "-*- texinfo -*-\n\
-@deftypefn  {Built-in Function} {} add_input_event_hook (@var{fcn})\n\
-@deftypefnx {Built-in Function} {} add_input_event_hook (@var{fcn}, @var{data})\n\
-Add the named function @var{fcn} to the list of functions to call\n\
+@deftypefn  {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn})\n\
+@deftypefnx {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn}, @var{data})\n\
+Add the named function or function handle @var{fcn} to the list of functions to call\n\
 periodically when Octave is waiting for input.  The function should\n\
 have the form\n\
 \n\
@@ -1284,10 +1138,13 @@ have the form\n\
 \n\
 If @var{data} is omitted, Octave calls the function without any\n\
 arguments.\n\
+\n\
+The returned identifier may be used to remove the function handle from\n\
+the list of input hook functions.\n\
 @seealso{remove_input_event_hook}\n\
 @end deftypefn")
 {
-  octave_value_list retval;
+  octave_value retval;
 
   int nargin = args.length ();
 
@@ -1298,17 +1155,19 @@ arguments.\n\
       if (nargin == 2)
         user_data = args(1);
 
-      std::string hook_fcn = args(0).string_value ();
+      hook_function hook_fcn (args(0), user_data);
 
       if (! error_state)
         {
-          if (hook_fcn_map.empty ())
-            command_editor::add_event_hook (input_event_hook);
+          if (input_event_hook_functions.empty ())
+            command_editor::add_event_hook (internal_input_event_hook_fcn);
 
-          hook_fcn_map[hook_fcn] = user_data;
+          input_event_hook_functions.insert (hook_fcn.id (), hook_fcn);
+
+          retval = hook_fcn.id ();
         }
       else
-        error ("add_input_event_hook: expecting string as first arg");
+        error ("add_input_event_hook: expecting function handle or character string as first argument");
     }
   else
     print_usage ();
@@ -1318,9 +1177,11 @@ arguments.\n\
 
 DEFUN (remove_input_event_hook, args, ,
   "-*- texinfo -*-\n\
-@deftypefn {Built-in Function} {} remove_input_event_hook (@var{fcn})\n\
-Remove the named function @var{fcn} from the list of functions to call\n\
-periodically when Octave is waiting for input.\n\
+@deftypefn {Built-in Function} {} remove_input_event_hook (@var{name})\n\
+@deftypefnx {Built-in Function} {} remove_input_event_hook (@var{fcn_id})\n\
+Remove the named function or function handle with the given identifier\n\
+from the list of functions to call periodically when Octave is waiting\n\
+for input.\n\
 @seealso{add_input_event_hook}\n\
 @end deftypefn")
 {
@@ -1328,25 +1189,28 @@ periodically when Octave is waiting for input.\n\
 
   int nargin = args.length ();
 
-  if (nargin == 1)
+  if (nargin == 1 || nargin == 2)
     {
-      std::string hook_fcn = args(0).string_value ();
+      std::string hook_fcn_id = args(0).string_value ();
+
+      bool warn = (nargin < 2);
 
       if (! error_state)
         {
-          hook_fcn_map_type::iterator p = hook_fcn_map.find (hook_fcn);
+          hook_function_list::iterator p
+            = input_event_hook_functions.find (hook_fcn_id);
 
-          if (p != hook_fcn_map.end ())
-            hook_fcn_map.erase (p);
-          else
-            error ("remove_input_event_hook: %s not found in list",
-                   hook_fcn.c_str ());
+          if (p != input_event_hook_functions.end ())
+            input_event_hook_functions.erase (p);
+          else if (warn)
+            warning ("remove_input_event_hook: %s not found in list",
+                     hook_fcn_id.c_str ());
 
-          if (hook_fcn_map.empty ())
-            command_editor::remove_event_hook (input_event_hook);
+          if (input_event_hook_functions.empty ())
+            command_editor::remove_event_hook (internal_input_event_hook_fcn);
         }
       else
-        error ("remove_input_event_hook: expecting string as first arg");
+        error ("remove_input_event_hook: argument not valid as a hook function name or id");
     }
   else
     print_usage ();

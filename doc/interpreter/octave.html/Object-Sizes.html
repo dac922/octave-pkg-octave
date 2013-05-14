@@ -42,7 +42,7 @@ data structure type doesn't have rows or columns, so the <code>rows</code> and
    <p><a name="doc_002dndims"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ndims</b> (<var>a</var>)<var><a name="index-ndims-240"></a></var><br>
+&mdash; Built-in Function:  <b>ndims</b> (<var>a</var>)<var><a name="index-ndims-246"></a></var><br>
 <blockquote><p>Return the number of dimensions of <var>a</var>. 
 For any array, the result will always be larger than or equal to 2. 
 Trailing singleton dimensions are not counted.
@@ -57,7 +57,7 @@ Trailing singleton dimensions are not counted.
    <p><a name="doc_002dcolumns"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>columns</b> (<var>a</var>)<var><a name="index-columns-241"></a></var><br>
+&mdash; Built-in Function:  <b>columns</b> (<var>a</var>)<var><a name="index-columns-247"></a></var><br>
 <blockquote><p>Return the number of columns of <var>a</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002drows.html#doc_002drows">rows</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>, <a href="doc_002dnumel.html#doc_002dnumel">numel</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
@@ -67,7 +67,7 @@ Trailing singleton dimensions are not counted.
    <p><a name="doc_002drows"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rows</b> (<var>a</var>)<var><a name="index-rows-242"></a></var><br>
+&mdash; Built-in Function:  <b>rows</b> (<var>a</var>)<var><a name="index-rows-248"></a></var><br>
 <blockquote><p>Return the number of rows of <var>a</var>.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolumns.html#doc_002dcolumns">columns</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>, <a href="doc_002dnumel.html#doc_002dnumel">numel</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
@@ -77,8 +77,8 @@ Trailing singleton dimensions are not counted.
    <p><a name="doc_002dnumel"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>numel</b> (<var>a</var>)<var><a name="index-numel-243"></a></var><br>
-&mdash; Built-in Function:  <b>numel</b> (<var>a, idx1, idx2, <small class="dots">...</small></var>)<var><a name="index-numel-244"></a></var><br>
+&mdash; Built-in Function:  <b>numel</b> (<var>a</var>)<var><a name="index-numel-249"></a></var><br>
+&mdash; Built-in Function:  <b>numel</b> (<var>a, idx1, idx2, <small class="dots">...</small></var>)<var><a name="index-numel-250"></a></var><br>
 <blockquote><p>Return the number of elements in the object <var>a</var>. 
 Optionally, if indices <var>idx1</var>, <var>idx2</var>, <small class="dots">...</small> are supplied,
 return the number of elements that would result from the indexing
@@ -103,7 +103,7 @@ indexing, i.e., <code>object{...}</code> or <code>object(...).field</code>.
    <p><a name="doc_002dlength"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>length</b> (<var>a</var>)<var><a name="index-length-245"></a></var><br>
+&mdash; Built-in Function:  <b>length</b> (<var>a</var>)<var><a name="index-length-251"></a></var><br>
 <blockquote><p>Return the "length" of the object <var>a</var>.  For matrix objects, the
 length is the number of rows or columns, whichever is greater (this
 odd definition is used for compatibility with <span class="sc">matlab</span>).
@@ -115,8 +115,8 @@ odd definition is used for compatibility with <span class="sc">matlab</span>).
    <p><a name="doc_002dsize"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>size</b> (<var>a</var>)<var><a name="index-size-246"></a></var><br>
-&mdash; Built-in Function:  <b>size</b> (<var>a, dim</var>)<var><a name="index-size-247"></a></var><br>
+&mdash; Built-in Function:  <b>size</b> (<var>a</var>)<var><a name="index-size-252"></a></var><br>
+&mdash; Built-in Function:  <b>size</b> (<var>a, dim</var>)<var><a name="index-size-253"></a></var><br>
 <blockquote><p>Return the number of rows and columns of <var>a</var>.
 
         <p>With one input argument and one output argument, the result is returned
@@ -146,7 +146,7 @@ corresponding dimension.  For example,
    <p><a name="doc_002disempty"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isempty</b> (<var>a</var>)<var><a name="index-isempty-248"></a></var><br>
+&mdash; Built-in Function:  <b>isempty</b> (<var>a</var>)<var><a name="index-isempty-254"></a></var><br>
 <blockquote><p>Return true if <var>a</var> is an empty matrix (any one of its dimensions is
 zero).  Otherwise, return false.
 
@@ -157,7 +157,7 @@ zero).  Otherwise, return false.
    <p><a name="doc_002disnull"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isnull</b> (<var>x</var>)<var><a name="index-isnull-249"></a></var><br>
+&mdash; Built-in Function:  <b>isnull</b> (<var>x</var>)<var><a name="index-isnull-255"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a special null matrix, string, or single quoted
 string.  Indexed assignment with such a value on the right-hand side should
 delete array elements.  This function should be used when overloading
@@ -177,7 +177,7 @@ distinguish the cases:
    <p><a name="doc_002dsizeof"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>sizeof</b> (<var>val</var>)<var><a name="index-sizeof-250"></a></var><br>
+&mdash; Built-in Function:  <b>sizeof</b> (<var>val</var>)<var><a name="index-sizeof-256"></a></var><br>
 <blockquote><p>Return the size of <var>val</var> in bytes.
 
      <p class="noindent"><strong>See also:</strong> <a href="doc_002dwhos.html#doc_002dwhos">whos</a>. 
@@ -187,7 +187,7 @@ distinguish the cases:
    <p><a name="doc_002dsize_005fequal"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>size_equal</b> (<var>a, b, <small class="dots">...</small></var>)<var><a name="index-size_005fequal-251"></a></var><br>
+&mdash; Built-in Function:  <b>size_equal</b> (<var>a, b, <small class="dots">...</small></var>)<var><a name="index-size_005fequal-257"></a></var><br>
 <blockquote><p>Return true if the dimensions of all arguments agree. 
 Trailing singleton dimensions are ignored. 
 Called with a single or no argument, size_equal returns true.
@@ -199,7 +199,7 @@ Called with a single or no argument, size_equal returns true.
    <p><a name="doc_002dsqueeze"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>squeeze</b> (<var>x</var>)<var><a name="index-squeeze-252"></a></var><br>
+&mdash; Built-in Function:  <b>squeeze</b> (<var>x</var>)<var><a name="index-squeeze-258"></a></var><br>
 <blockquote><p>Remove singleton dimensions from <var>x</var> and return the result. 
 Note that for compatibility with <span class="sc">matlab</span>, all objects have
 a minimum of two dimensions and row vectors are left unchanged.

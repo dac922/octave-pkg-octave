@@ -97,6 +97,9 @@ octave_user_script::octave_user_script (const std::string& fnm,
 
 octave_user_script::~octave_user_script (void)
 {
+  if (cmd_list)
+    cmd_list->remove_all_breakpoints (file_name);
+
   delete cmd_list;
 }
 
@@ -207,6 +210,9 @@ octave_user_function::octave_user_function
 
 octave_user_function::~octave_user_function (void)
 {
+  if (cmd_list)
+    cmd_list->remove_all_breakpoints (file_name);
+
   delete param_list;
   delete ret_list;
   delete cmd_list;
@@ -481,7 +487,9 @@ octave_user_function::do_multi_index_op (int nargout,
       tree_expression *expr = special_expr ();
 
       if (expr)
-        retval = expr->rvalue (nargout);
+        retval = (lvalue_list
+                  ? expr->rvalue (nargout, lvalue_list)
+                  : expr->rvalue (nargout));
     }
   else
     cmd_list->accept (*current_evaluator);
@@ -599,8 +607,8 @@ octave_user_function::bind_automatic_vars
       // which might be redefined in a function.  Keep the old argn name
       // for backward compatibility of functions that use it directly.
 
-      symbol_table::force_varref ("argn") = arg_names;
-      symbol_table::force_varref (".argn.") = Cell (arg_names);
+      symbol_table::force_assign ("argn", arg_names);
+      symbol_table::force_assign (".argn.", Cell (arg_names));
 
       symbol_table::mark_hidden (".argn.");
 
@@ -608,8 +616,8 @@ octave_user_function::bind_automatic_vars
       symbol_table::mark_automatic (".argn.");
     }
 
-  symbol_table::force_varref (".nargin.") = nargin;
-  symbol_table::force_varref (".nargout.") = nargout;
+  symbol_table::force_assign (".nargin.", nargin);
+  symbol_table::force_assign (".nargout.", nargout);
 
   symbol_table::mark_hidden (".nargin.");
   symbol_table::mark_hidden (".nargout.");
@@ -617,16 +625,16 @@ octave_user_function::bind_automatic_vars
   symbol_table::mark_automatic (".nargin.");
   symbol_table::mark_automatic (".nargout.");
 
-  symbol_table::varref (".saved_warning_states.") = octave_value ();
+  symbol_table::assign (".saved_warning_states.");
 
   symbol_table::mark_automatic (".saved_warning_states.");
   symbol_table::mark_automatic (".saved_warning_states.");
 
   if (takes_varargs ())
-    symbol_table::varref ("varargin") = va_args.cell_value ();
+    symbol_table::assign ("varargin", va_args.cell_value ());
 
   // Force .ignored. variable to be undefined by default.
-  symbol_table::varref (".ignored.") = octave_value ();
+  symbol_table::assign (".ignored.");
 
   if (lvalue_list)
     {
@@ -648,7 +656,7 @@ octave_user_function::bind_automatic_vars
               k += p->numel ();
             }
 
-          symbol_table::varref (".ignored.") = bh;
+          symbol_table::assign (".ignored.", bh);
         }
     }
 
@@ -1006,4 +1014,24 @@ element-by-element and a logical array is returned.  At the top level,\n\
 %!test
 %! [x, y] = try_isargout ();
 %! assert ([x, y], [1, 2]);
+%!
+%% It should work without ():
+%!test
+%! [~, y] = try_isargout;
+%! assert (y, -2);
+%!
+%% It should work in function handles, anonymous functions, and cell
+%% arrays of handles or anonymous functions.
+%!test
+%! fh = @try_isargout;
+%! af = @() try_isargout;
+%! c = {fh, af};
+%! [~, y] = fh ();
+%! assert (y, -2);
+%! [~, y] = af ();
+%! assert (y, -2);
+%! [~, y] = c{1}();
+%! assert (y, -2);
+%! [~, y] = c{2}();
+%! assert (y, -2);
 */

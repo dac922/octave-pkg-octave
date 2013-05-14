@@ -22,6 +22,68 @@ manual into another language, under the above conditions for modified
 versions.
 
 
+File: octave.info,  Node: Calling Functions,  Next: Arithmetic Ops,  Prev: Index Expressions,  Up: Expressions
+
+8.2 Calling Functions
+=====================
+
+A "function" is a name for a particular calculation.  Because it has a
+name, you can ask for it by name at any point in the program.  For
+example, the function `sqrt' computes the square root of a number.
+
+   A fixed set of functions are "built-in", which means they are
+available in every Octave program.  The `sqrt' function is one of
+these.  In addition, you can define your own functions.  *Note
+Functions and Scripts::, for information about how to do this.
+
+   The way to use a function is with a "function call" expression,
+which consists of the function name followed by a list of "arguments"
+in parentheses.  The arguments are expressions which give the raw
+materials for the calculation that the function will do.  When there is
+more than one argument, they are separated by commas.  If there are no
+arguments, you can omit the parentheses, but it is a good idea to
+include them anyway, to clearly indicate that a function call was
+intended.  Here are some examples:
+
+     sqrt (x^2 + y^2)      # One argument
+     ones (n, m)           # Two arguments
+     rand ()               # No arguments
+
+   Each function expects a particular number of arguments.  For
+example, the `sqrt' function must be called with a single argument, the
+number to take the square root of:
+
+     sqrt (ARGUMENT)
+
+   Some of the built-in functions take a variable number of arguments,
+depending on the particular usage, and their behavior is different
+depending on the number of arguments supplied.
+
+   Like every other expression, the function call has a value, which is
+computed by the function based on the arguments you give it.  In this
+example, the value of `sqrt (ARGUMENT)' is the square root of the
+argument.  A function can also have side effects, such as assigning the
+values of certain variables or doing input or output operations.
+
+   Unlike most languages, functions in Octave may return multiple
+values.  For example, the following statement
+
+     [u, s, v] = svd (a)
+
+computes the singular value decomposition of the matrix `a' and assigns
+the three result matrices to `u', `s', and `v'.
+
+   The left side of a multiple assignment expression is itself a list of
+expressions, and is allowed to be a list of variable names or index
+expressions.  See also *note Index Expressions::, and *note Assignment
+Ops::.
+
+* Menu:
+
+* Call by Value::
+* Recursion::
+
+
 File: octave.info,  Node: Call by Value,  Next: Recursion,  Up: Calling Functions
 
 8.2.1 Call by Value
@@ -4845,7 +4907,7 @@ subfunctions from the file containing them.
 use of the `keyboard' function.
 
  -- Built-in Function:  keyboard ()
- -- Built-in Function:  keyboard (PROMPT)
+ -- Built-in Function:  keyboard ("PROMPT")
      This function is normally used for simple debugging.  When the
      `keyboard' function is executed, Octave prints a prompt and waits
      for user input.  The input strings are then evaluated and the
@@ -5660,8 +5722,8 @@ The `input' and `menu' functions are normally used for managing an
 interactive dialog with a user, and the `keyboard' function is normally
 used for doing simple debugging.
 
- -- Built-in Function:  input (PROMPT)
- -- Built-in Function:  input (PROMPT, "s")
+ -- Built-in Function: ANS = input (PROMPT)
+ -- Built-in Function: ANS = input (PROMPT, "s")
      Print a prompt and wait for user input.  For example,
 
           input ("Pick a number, any number! ")
@@ -5685,7 +5747,9 @@ used for doing simple debugging.
      Because there may be output waiting to be displayed by the pager,
      it is a good idea to always call `fflush (stdout)' before calling
      `input'.  This will ensure that all pending output is written to
-     the screen before your prompt.  *Note Input and Output::.
+     the screen before your prompt.
+
+     *See also:* *note yes_or_no: doc-yes_or_no, *note kbhit: doc-kbhit.
 
  -- Function File:  menu (TITLE, OPT1, ...)
      Print a title string followed by a series of options.  Each option
@@ -5698,12 +5762,15 @@ used for doing simple debugging.
      *See also:* *note disp: doc-disp, *note printf: doc-printf, *note
      input: doc-input.
 
- -- Built-in Function:  yes_or_no (PROMPT)
-     Ask the user a yes-or-no question.  Return 1 if the answer is yes.
-     Takes one argument, which is the string to display to ask the
-     question.  It should end in a space; `yes-or-no-p' adds `(yes or
-     no) ' to it.  The user must confirm the answer with RET and can
+ -- Built-in Function: ANS = yes_or_no ("PROMPT")
+     Ask the user a yes-or-no question.  Return logical true if the
+     answer is yes or false if the answer is no.  Takes one argument,
+     PROMPT, which is the string to display when asking the question.
+     PROMPT should end in a space; `yes-or-no' adds the string `(yes or
+     no) ' to it.  The user must confirm the answer with <RET> and can
      edit it until it has been confirmed.
+
+     *See also:* *note input: doc-input.
 
    For `input', the normal command line history and editing functions
 are available at the prompt.
@@ -5713,7 +5780,8 @@ character from the keyboard without requiring the user to type a
 carriage return.
 
  -- Built-in Function:  kbhit ()
-     Read a single keystroke from the keyboard.  If called with one
+ -- Built-in Function:  kbhit (1)
+     Read a single keystroke from the keyboard.  If called with an
      argument, don't wait for a keypress.  For example,
 
           x = kbhit ();
@@ -5723,8 +5791,10 @@ carriage return.
 
           x = kbhit (1);
 
-     identical to the above example, but don't wait for a keypress,
+     is identical to the above example, but doesn't wait for a keypress,
      returning the empty string if no key is available.
+
+     *See also:* *note input: doc-input.
 
 
 File: octave.info,  Node: Simple File I/O,  Prev: Terminal Input,  Up: Basic Input and Output
@@ -5871,6 +5941,55 @@ read into memory using the `load' command.
      doc-save_header_format_string, *note dlmread: doc-dlmread, *note
      csvread: doc-csvread, *note fread: doc-fread.
 
+   There are three functions that modify the behavior of `save'.
+
+ -- Built-in Function: VAL = default_save_options ()
+ -- Built-in Function: OLD_VAL = default_save_options (NEW_VAL)
+ -- Built-in Function:  default_save_options (NEW_VAL, "local")
+     Query or set the internal variable that specifies the default
+     options for the `save' command, and defines the default format.
+     Typical values include `"-ascii"', `"-text -zip"'.  The default
+     value is `-text'.
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+     *See also:* *note save: doc-save.
+
+ -- Built-in Function: VAL = save_precision ()
+ -- Built-in Function: OLD_VAL = save_precision (NEW_VAL)
+ -- Built-in Function:  save_precision (NEW_VAL, "local")
+     Query or set the internal variable that specifies the number of
+     digits to keep when saving data in text format.
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+ -- Built-in Function: VAL = save_header_format_string ()
+ -- Built-in Function: OLD_VAL = save_header_format_string (NEW_VAL)
+ -- Built-in Function:  save_header_format_string (NEW_VAL, "local")
+     Query or set the internal variable that specifies the format
+     string used for the comment line written at the beginning of
+     text-format data files saved by Octave.  The format string is
+     passed to `strftime' and should begin with the character `#' and
+     contain no newline characters.  If the value of
+     `save_header_format_string' is the empty string, the header
+     comment is omitted from text-format data files.  The default value
+     is
+
+          "# Created by Octave VERSION, %a %b %d %H:%M:%S %Y %Z <USER@HOST>"
+
+     When called from inside a function with the "local" option, the
+     variable is changed locally for the function and any subroutines
+     it calls.  The original variable value is restored when exiting
+     the function.
+
+     *See also:* *note strftime: doc-strftime, *note save: doc-save.
+
  -- Command:  load file
  -- Command:  load options file
  -- Command:  load options file v1 v2 ...
@@ -5970,55 +6089,6 @@ read into memory using the `load' command.
 
      *See also:* *note fread: doc-fread, *note textread: doc-textread,
      *note sscanf: doc-sscanf.
-
-   There are three functions that modify the behavior of `save'.
-
- -- Built-in Function: VAL = default_save_options ()
- -- Built-in Function: OLD_VAL = default_save_options (NEW_VAL)
- -- Built-in Function:  default_save_options (NEW_VAL, "local")
-     Query or set the internal variable that specifies the default
-     options for the `save' command, and defines the default format.
-     Typical values include `"-ascii"', `"-text -zip"'.  The default
-     value is `-text'.
-
-     When called from inside a function with the "local" option, the
-     variable is changed locally for the function and any subroutines
-     it calls.  The original variable value is restored when exiting
-     the function.
-
-     *See also:* *note save: doc-save.
-
- -- Built-in Function: VAL = save_precision ()
- -- Built-in Function: OLD_VAL = save_precision (NEW_VAL)
- -- Built-in Function:  save_precision (NEW_VAL, "local")
-     Query or set the internal variable that specifies the number of
-     digits to keep when saving data in text format.
-
-     When called from inside a function with the "local" option, the
-     variable is changed locally for the function and any subroutines
-     it calls.  The original variable value is restored when exiting
-     the function.
-
- -- Built-in Function: VAL = save_header_format_string ()
- -- Built-in Function: OLD_VAL = save_header_format_string (NEW_VAL)
- -- Built-in Function:  save_header_format_string (NEW_VAL, "local")
-     Query or set the internal variable that specifies the format
-     string used for the comment line written at the beginning of
-     text-format data files saved by Octave.  The format string is
-     passed to `strftime' and should begin with the character `#' and
-     contain no newline characters.  If the value of
-     `save_header_format_string' is the empty string, the header
-     comment is omitted from text-format data files.  The default value
-     is
-
-          "# Created by Octave VERSION, %a %b %d %H:%M:%S %Y %Z <USER@HOST>"
-
-     When called from inside a function with the "local" option, the
-     variable is changed locally for the function and any subroutines
-     it calls.  The original variable value is restored when exiting
-     the function.
-
-     *See also:* *note strftime: doc-strftime, *note save: doc-save.
 
  -- Built-in Function:  native_float_format ()
      Return the native floating point format as a string
@@ -6187,6 +6257,12 @@ well.
      this sense it differs slightly from the format repeat count in
      strread.
 
+     If the format string is empty (not: omitted) and the file contains
+     only numeric data (excluding headerlines), textread will return a
+     rectangular matrix with the number of columns matching the number
+     of numeric fields on the first data line of the file. Empty fields
+     are returned as zero values.
+
      *See also:* *note strread: doc-strread, *note load: doc-load,
      *note dlmread: doc-dlmread, *note fscanf: doc-fscanf, *note
      textscan: doc-textscan.
@@ -6238,6 +6314,11 @@ well.
 
      The second output, POSITION, provides the position, in characters,
      from the beginning of the file.
+
+     If the format string is empty (not: omitted) and the file contains
+     only numeric data (excluding headerlines), textscan will return
+     data in a number of columns matching the number of numeric fields
+     on the first data line of the file.
 
      *See also:* *note dlmread: doc-dlmread, *note fscanf: doc-fscanf,
      *note load: doc-load, *note strread: doc-strread, *note textread:
@@ -6547,18 +6628,23 @@ pattern is used when reading a file.
      The parameter ARCH is a string specifying the default data format
      for the file.  Valid values for ARCH are:
 
-          `native' The format of the current machine (this is the
-          default).
+    `native'
+          The format of the current machine (this is the default).
 
-          `ieee-be' IEEE big endian format.
+    `ieee-be'
+          IEEE big endian format.
 
-          `ieee-le' IEEE little endian format.
+    `ieee-le'
+          IEEE little endian format.
 
-          `vaxd' VAX D floating format.
+    `vaxd'
+          VAX D floating format.
 
-          `vaxg' VAX G floating format.
+    `vaxg'
+          VAX G floating format.
 
-          `cray' Cray floating format.
+    `cray'
+          Cray floating format.
 
      however, conversions are currently only supported for `native'
      `ieee-be', and `ieee-le' formats.
@@ -7084,8 +7170,8 @@ more `C-like'.
 
  -- Built-in Function: [VAL, COUNT, ERRMSG] = fscanf (FID, TEMPLATE,
           SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT] = fscanf (FID, TEMPLATE,
-          LOCALE)
+ -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG] = fscanf (FID,
+          TEMPLATE, "C")
      In the first form, read from FID according to TEMPLATE, returning
      the result in the matrix VAL.
 
@@ -7122,10 +7208,7 @@ more `C-like'.
      conversion specifier in TEMPLATE corresponding to a single scalar
      return value.  This form is more `C-like', and also compatible
      with previous versions of Octave.  The number of successful
-     conversions is returned in COUNT.  It permits to explicitly
-     specify a locale to take into account language specific features,
-     such as decimal separator.  This operation restores the previous
-     locales setting at the end of the conversion.
+     conversions is returned in COUNT
 
      See the Formatted Input section of the GNU Octave manual for a
      complete description of the syntax of the template string.
@@ -7135,7 +7218,8 @@ more `C-like'.
      doc-sscanf, *note fopen: doc-fopen.
 
  -- Built-in Function: [VAL, COUNT, ERRMSG] = scanf (TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT] = scanf (TEMPLATE, LOCALE)
+ -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG]] = scanf (TEMPLATE,
+          "C")
      This is equivalent to calling `fscanf' with FID = `stdin'.
 
      It is currently not useful to call `scanf' in interactive programs.
@@ -7145,8 +7229,8 @@ more `C-like'.
 
  -- Built-in Function: [VAL, COUNT, ERRMSG, POS] = sscanf (STRING,
           TEMPLATE, SIZE)
- -- Built-in Function: [V1, V2, ..., COUNT] = sscanf (STRING, TEMPLATE,
-          LOCALE)
+ -- Built-in Function: [V1, V2, ..., COUNT, ERRMSG] = sscanf (STRING,
+          TEMPLATE, "C")
      This is like `fscanf', except that the characters are taken from
      the string STRING instead of from a stream.  Reaching the end of
      the string is treated as an end-of-file condition.  In addition to
@@ -7778,6 +7862,9 @@ Structures:: and *note Advanced Plotting::.
 * Plot Annotations::
 * Multiple Plots on One Page::
 * Multiple Plot Windows::
+* Use of axis, line, and patch Functions::
+* Manipulation of Plot Windows::
+* Use of the `interpreter' Property::
 * Printing and Saving Plots::
 * Interacting with Plots::
 * Test Plotting Functions::
@@ -8172,26 +8259,64 @@ Figure 15.2: Histogram.
 
      *See also:* *note bar: doc-bar.
 
- -- Function File:  stemleaf (X)
- -- Function File: PLOT = stemleaf (X, OPT)
+ -- Function File:  stemleaf (X, CAPTION)
+ -- Function File:  stemleaf (X, CAPTION, STEM_SZ)
+ -- Function File: PLOTSTR = stemleaf (...)
      Compute and display a stem and leaf plot of the vector X.
 
-     The X vector is converted to integer by X = `fix' (X).  If an
+     The input X should be a vector of integers.  Any non-integer values
+     will be converted to integer by `X = fix (X)'.  By default each
+     element of X will be plotted with the last digit of the element as
+     a leaf value and the remaining digits as the stem.  For example,
+     123 will be plotted with the stem `12' and the leaf `3'.  The
+     second argument, CAPTION, should be a character array which
+     provides a description of the data.  It is included as a heading
+     for the output.
+
+     The optional input STEM_SZ sets the width of each stem.  The stem
+     width is determined by `10^(STEM_SZ + 1)'.  The default stem width
+     is 10.
+
+     The output of `stemleaf' is composed of two parts: a "Fenced
+     Letter Display," followed by the stem-and-leaf plot itself.  The
+     Fenced Letter Display is described in `Exploratory Data Analysis'.
+     Briefly, the entries are as shown:
+
+
+                  Fenced Letter Display
+            #% nx|___________________          nx = numel (x)
+            M% mi|       md         |          mi median index, md median
+            H% hi|hl              hu|   hs     hi lower hinge index, hl,hu hinges, hs h_spread
+            1    |x(1)         x(nx)|          x(1), x(nx) first and last data value
+                       _______
+                 ______|step |_______          step 1.5*h_spread
+                f|ifl            ifh|          inner fence, lower and higher
+                 |nfl            nfh|          # data points within fences
+                F|ofl            ofh|          outer fence, lower and higher
+                 |nFl            nFh|          # data points outside outer fences
+
+     The stem-and-leaf plot shows on each line the stem value followed
+     by the string made up of the leaf digits.  If the STEM_SZ is not 1
+     the successive leaf values are separated by ",".
+
+     With no return argument, the plot is immediately displayed.  If an
      output argument is provided, the plot is returned as an array of
-     strings.  The first element is the heading followed by an element
-     for each stem.  The default stem step is 10.  The X vector should
-     be integers.  It will be treated so that the last digit is the
-     leaf value and the other digits are the stems.  The leaf digits
-     are not sorted.  If sorted leaf values are wanted, use `sort' (X)
-     before calling `stemleaf' (X).  The stem and leaf plot is
-     described in: Ch. 3, Exploratory Data Analysis by J. W. Tukey,
-     Addison-Wesley, 1977.
+     strings.
+
+     The leaf digits are not sorted.  If sorted leaf values are
+     desired, use `XS = sort (X)' before calling `stemleaf (XS)'.
+
+     The stem and leaf plot and associated displays are described in:
+     Ch. 3, `Exploratory Data Analysis' by J. W. Tukey, Addison-Wesley,
+     1977.
 
      *See also:* *note hist: doc-hist, *note printd: doc-printd.
 
  -- Function File:  printd (OBJ, FILENAME)
+ -- Function File: OUT_FILE = printd (...)
      Convert any object acceptable to `disp' into the format selected
-     by the suffix of FILENAME.
+     by the suffix of FILENAME.  If the return argument OUT_FILE is
+     given, the name of the created file is returned.
 
      This function is intended to facilitate manipulation of the output
      of functions such as `stemleaf'.

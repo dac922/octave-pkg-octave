@@ -1,8 +1,8 @@
-octave (3.7.5-0~ppa1~quantal1) quantal; urgency=low
+octave (3.7.5-0~ppa1~precise1) precise; urgency=low
 
-  * Backport to quantal
+  * Backport to precise
 
- -- Stefan Mahr <dac922@gmx.de>  Thu, 15 May 2013 17:16:31 +0200
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 15 May 2013 17:29:31 +0200
 
 octave (3.7.5-0~ppa1~raring1) raring; urgency=low
 

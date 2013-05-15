@@ -1,0 +1,31 @@
+--- octave-3.7.2/configure	2013-02-10 07:28:41.000000000 +0100
++++ octave-precise/configure	2013-03-02 10:42:36.792807815 +0100
+@@ -14095,7 +14095,7 @@
+   ## Find llvm-config program from environment variable or by searching
+ 
+   # Extract the first word of "llvm-config", so it can be a program name with args.
+-set dummy llvm-config; ac_word=$2
++set dummy llvm-config-3.0; ac_word=$2
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+ $as_echo_n "checking for $ac_word... " >&6; }
+ if ${ac_cv_prog_LLVM_CONFIG+:} false; then :
+@@ -14111,7 +14111,7 @@
+   test -z "$as_dir" && as_dir=.
+     for ac_exec_ext in '' $ac_executable_extensions; do
+   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+-    ac_cv_prog_LLVM_CONFIG="llvm-config"
++    ac_cv_prog_LLVM_CONFIG="llvm-config-3.0"
+     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+     break 2
+   fi
+--- octave-3.7.2/configure.ac	2013-02-10 06:59:08.000000000 +0100
++++ octave-precise/configure.ac	2013-03-02 10:33:02.025551184 +0100
+@@ -721,7 +721,7 @@
+ 
+   ## Find llvm-config program from environment variable or by searching
+   AC_ARG_VAR([LLVM_CONFIG], [path to llvm-config utility])
+-  AC_CHECK_PROG([LLVM_CONFIG], llvm-config, llvm-config, [])
++  AC_CHECK_PROG([LLVM_CONFIG], llvm-config-3.0, llvm-config-3.0, [])
+ 
+   if test -z "$LLVM_CONFIG"; then
+     warn_llvm="llvm-config utility not found.  JIT compiler is disabled."

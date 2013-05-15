@@ -14,7 +14,7 @@ Build-Depends: gfortran, debhelper (>= 9), automake, dh-autoreconf, texinfo,
  libqhull-dev, desktop-file-utils, libfltk1.1-dev, libgl2ps-dev,
  libgraphicsmagick++1-dev, libftgl-dev, libfontconfig1-dev,
  libqrupdate-dev, libarpack2-dev (>= 2.1+parpack96.dfsg-2), dh-exec,
- libqt4-dev, libqscintilla2-dev, llvm-dev (>=3.0), default-jdk,
+ libqt4-dev, libqscintilla2-dev, llvm-3.0-dev (>=3.0), default-jdk,
  dpkg-dev (>= 1.16.1)
 Standards-Version: 3.9.4
 Homepage: http://www.octave.org/

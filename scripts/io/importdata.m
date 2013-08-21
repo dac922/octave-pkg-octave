@@ -1,4 +1,4 @@
-## Copyright (C) 2012-2013 Erik Kjellson <erikiiofph7@users.sourceforge.net>
+## Copyright (C) 2012-2013 Erik Kjellson
 ##
 ## This file is part of Octave.
 ##
@@ -27,38 +27,41 @@
 ## Importing the contents of file @var{fname} into workspace.
 ##
 ## Input parameters:
+##
 ## @itemize
 ## @item @var{fname}
 ## The file name for the file to import.
 ## 
 ## @item @var{delimiter}
-## The character separating columns of data. Use @code{\t} for tab.
+## The character separating columns of data.  Use @code{\t} for tab.
 ## (Only valid for ascii files)
 ##
 ## @item @var{header_rows}
-## Number of header rows before the data begins. (Only valid for ascii files)
+## Number of header rows before the data begins.  (Only valid for ascii files)
 ## @end itemize
 ##
 ## Different file types are supported:
-## @itemize
-## @item Ascii table
 ##
-## Importing ascii table using the specified number of header rows and
+## @itemize
+## @item ASCII table
+##
+## Importing ASCII table using the specified number of header rows and
 ## the specified delimiter.
 ##
 ## @item Image file
 ##
-## @item @sc{Matlab} file
+## @item @sc{matlab} file
 ##
 ## @item Spreadsheet files (depending on external software)
 ##
-## @item Wav file
+## @item WAV file
 ##
 ## @end itemize
 ##
 ## @seealso{textscan, dlmread, csvread, load}
 ## @end deftypefn
 
+## Author: Erik Kjellson <erikiiofph7@users.sourceforge.net>
 
 function [output, delimiter, header_rows] = importdata (varargin)
 
@@ -117,15 +120,13 @@ function [output, delimiter, header_rows] = importdata (varargin)
   ## Make sure file extension is in lower case.
   fileExt = lower (fileExt);
 
-  switch fileExt
+  switch (fileExt)
     case {".au", ".snd"}
-      error (sprintf ("importdata: not implemented for file format %s", 
-                      fileExt));
+      error ("importdata: not implemented for file format %s", fileExt);
     case ".avi"
-      error (sprintf ("importdata: not implemented for file format %s", 
-                      fileExt));
-    case {".bmp", ".cur", ".gif", ".hdf", ".ico", ".jpe", ".jpeg", ".jpg", \
-          ".pbm", ".pcx", ".pgm", ".png", ".pnm", ".ppm", ".ras", \
+      error ("importdata: not implemented for file format %s", fileExt);
+    case {".bmp", ".cur", ".gif", ".hdf", ".ico", ".jpe", ".jpeg", ".jpg", ...
+          ".pbm", ".pcx", ".pgm", ".png", ".pnm", ".ppm", ".ras", ...
           ".tif", ".tiff", ".xwd"}
       delimiter  = NaN;
       header_rows = 0;
@@ -151,7 +152,7 @@ function [output, delimiter, header_rows] = importdata (varargin)
       [output.data, output.fs] = wavread (fname);
     otherwise
       ## Assume the file is in ascii format.
-      [output, delimiter, header_rows]  = \
+      [output, delimiter, header_rows]  = ...
           importdata_ascii (fname, delimiter, header_rows);
   endswitch
 
@@ -178,7 +179,7 @@ endfunction
 
 ########################################
 
-function [output, delimiter, header_rows] = \
+function [output, delimiter, header_rows] = ...
       importdata_ascii (fname, delimiter, header_rows)
 
   ## Define the fields in the output structure so that the order will be
@@ -238,7 +239,7 @@ function [output, delimiter, header_rows] = \
   ## get out of bounds.
   for i=length (file_content_rows):-1:(header_rows + 1)
     if (length (file_content_rows{i}) < 1)
-      file_content_rows = [file_content_rows(1:i-1), \
+      file_content_rows = [file_content_rows(1:i-1), ...
                            file_content_rows(i+1:length(file_content_rows))];
     endif
   endfor
@@ -352,7 +353,7 @@ endfunction
 %!test
 %! # Header
 %! A.data = [3.1 -7.2 0; 0.012 6.5 128];
-%! A.textdata = {"This is a header row."; \
+%! A.textdata = {"This is a header row."; ...
 %!               "this row does not contain any data, but the next one does."};
 %! fn  = tmpnam ();
 %! fid = fopen (fn, "w");

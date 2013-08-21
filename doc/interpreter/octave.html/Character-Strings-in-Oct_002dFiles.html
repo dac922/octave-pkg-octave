@@ -35,15 +35,15 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.3 Character Strings in Oct-Files</h4>
 
-<p>In Octave a character string is just a special <code>Array</code> class. 
+<p>A character string in Octave is just a special <code>Array</code> class. 
 Consider the example:
 
 <pre class="example"><pre class="verbatim">     #include &lt;octave/oct.h>
      
      DEFUN_DLD (stringdemo, args, , "String Demo")
      {
-       int nargin = args.length ();
        octave_value_list retval;
+       int nargin = args.length ();
      
        if (nargin != 1)
          print_usage ();
@@ -53,20 +53,16 @@ Consider the example:
      
            if (! error_state)
              {
-               if (args(0).is_sq_string ())
-                 retval(1) = octave_value (ch, true);
-               else
-                 retval(1) = octave_value (ch, true, '\'');
+               retval(1) = octave_value (ch, '\'');  // Single Quote String
      
                octave_idx_type nr = ch.rows ();
                for (octave_idx_type i = 0; i &lt; nr / 2; i++)
                  {
                    std::string tmp = ch.row_as_string (i);
-                   ch.insert (ch.row_as_string (nr-i-1).c_str (),
-                              i, 0);
+                   ch.insert (ch.row_as_string (nr-i-1).c_str (), i, 0);
                    ch.insert (tmp.c_str (), nr-i-1, 0);
                  }
-               retval(0) = octave_value (ch, true);
+               retval(0) = octave_value (ch, '"');  // Double Quote String
              }
          }
        return retval;
@@ -91,16 +87,15 @@ Consider the example:
 </pre>
    <p>One additional complication of strings in Octave is the difference
 between single quoted and double quoted strings.  To find out if an
-<code>octave_value</code> contains a single or double quoted string an example is
+<code>octave_value</code> contains a single or double quoted string use
+one of the predicate tests shown below.
 
-<pre class="example">         if (args(0).is_sq_string ())
-           octave_stdout &lt;&lt;
-             "First argument is a singularly quoted string\n";
-         else if (args(0).is_dq_string ())
-           octave_stdout &lt;&lt;
-             "First argument is a doubly quoted string\n";
+<pre class="example">     if (args(0).is_sq_string ())
+       octave_stdout &lt;&lt; "First argument is a single quoted string\n";
+     else if (args(0).is_dq_string ())
+       octave_stdout &lt;&lt; "First argument is a double quoted string\n";
 </pre>
-   <p>Note however, that both types of strings are represented by the
+   <p>Note, however, that both types of strings are represented by the
 <code>charNDArray</code> type, and so when assigning to an
 <code>octave_value</code>, the type of string should be specified.  For example:
 
@@ -108,10 +103,12 @@ between single quoted and double quoted strings.  To find out if an
      charNDArray c;
      ...
      // Create single quoted string
-     retval(1) = octave_value (ch, true, '\'');
+     retval(1) = octave_value (ch);        // default constructor is sq_string
+                OR
+     retval(1) = octave_value (ch, '\'');  // explicitly create sq_string
      
      // Create a double quoted string
-     retval(0) = octave_value (ch, true);
+     retval(0) = octave_value (ch, '"');
 </pre>
    </body></html>
 

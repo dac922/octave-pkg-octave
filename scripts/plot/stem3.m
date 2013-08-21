@@ -17,25 +17,45 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{h} =} stem3 (@var{x}, @var{y}, @var{z}, @var{linespec})
-## Plot a three-dimensional stem graph and return the handles of the line
-## and marker objects used to draw the stems as "stem series" object.
-## The default color is @code{"r"} (red).  The default line style is
-## @code{"-"} and the default marker is @code{"o"}.
+## @deftypefn  {Function File} {} stem3 (@var{x}, @var{y}, @var{z})
+## @deftypefnx {Function File} {} stem3 (@dots{}, @var{linespec})
+## @deftypefnx {Function File} {} stem3 (@dots{}, "filled")
+## @deftypefnx {Function File} {} stem3 (@dots{}, @var{prop}, @var{val}, @dots{})
+## @deftypefnx {Function File} {} stem3 (@var{hax}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} stem3 (@dots{})
+## Plot a 3-D stem graph.
 ##
-## For example,
+## Stems are drawn from the height @var{z} to the location in the x-y plane
+## determined by @var{x} and @var{y}.  The default color is @qcode{"b"} (blue),
+## the default line style is @qcode{"-"}, and the default marker is @qcode{"o"}.
+##
+## The line style can be altered by the @code{linespec} argument in the same
+## manner as the @code{plot} command.  If the @qcode{"filled"} argument is
+## present the markers at the top of the stems will be filled in.
+##
+## Optional property/value pairs may be specified to control the appearance
+## of the plot.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a vector with the handles of the line
+## and marker objects used to draw the stems as a "stem series" object.
+##
+## Example:
 ##
 ## @example
 ## @group
 ## theta = 0:0.2:6;
-## stem3 (cos (theta), sin (theta), theta)
+## stem3 (cos (theta), sin (theta), theta);
 ## @end group
 ## @end example
 ##
 ## @noindent
-## plots 31 stems with heights from 0 to 6 lying on a circle.  Color
-## definitions with RGB-triples are not valid!
-## @seealso{bar, barh, stem, plot}
+## plots 31 stems with heights from 0 to 6 lying on a circle.
+##
+## Implementation Note: Color definitions with RGB-triples are not valid.
+## @seealso{stem, bar, hist, plot}
 ## @end deftypefn
 
 function h = stem3 (varargin)
@@ -44,10 +64,10 @@ function h = stem3 (varargin)
     print_usage ();
   endif
 
-  tmp = __stem__ (true, varargin{:});
+  htmp = __stem__ (true, varargin{:});
 
   if (nargout > 0)
-    h = tmp;
+    h = htmp;
   endif
 
 endfunction
@@ -57,4 +77,5 @@ endfunction
 %! clf;
 %! theta = 0:0.2:6;
 %! stem3 (cos (theta), sin (theta), theta);
+%! title ('stem3() plot');
 

@@ -17,10 +17,14 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} semilogyerr (@var{args})
-## Produce two-dimensional plots using a logarithmic scale for the @var{y}
-## axis and errorbars at each data point.  Many different combinations of
-## arguments are possible.  The most used form is
+## @deftypefn  {Function File} {} semilogyerr (@var{args})
+## @deftypefnx {Function File} {} semilogyerr (@var{hax}, @var{args})
+## @deftypefnx {Function File} {@var{h} =} semilogyerr (@var{args})
+## Produce 2-D plots using a logarithmic scale for the y-axis and
+## errorbars at each data point.
+##
+## Many different combinations of arguments are possible.  The most common
+## form is
 ##
 ## @example
 ## semilogyerr (@var{x}, @var{y}, @var{ey}, @var{fmt})
@@ -29,34 +33,46 @@
 ## @noindent
 ## which produces a semi-logarithmic plot of @var{y} versus @var{x}
 ## with errors in the @var{y}-scale defined by @var{ey} and the plot
-## format defined by @var{fmt}.  See @code{errorbar} for available formats and
-## additional information.
-## @seealso{errorbar, loglogerr, semilogxerr}
+## format defined by @var{fmt}.  @xref{XREFerrorbar,,errorbar}, for available
+## formats and additional information.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## @seealso{errorbar, semilogxerr, loglogerr}
 ## @end deftypefn
 
 ## Created: 20.2.2001
 ## Author: Teemu Ikonen <tpikonen@pcu.helsinki.fi>
 ## Keywords: errorbar, plotting
 
-function retval = semilogyerr (varargin)
+function h = semilogyerr (varargin)
 
-  [h, varargin] = __plt_get_axis_arg__ ("semilogyerr", varargin{:});
+  [hax, varargin] = __plt_get_axis_arg__ ("semilogyerr", varargin{:});
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
+    hax = newplot (hax);
 
-    set (h, "yscale", "log");
-
-    tmp = __errcomm__ ("semilogyerr", h, varargin{:});
-
-    if (nargout > 0)
-      retval = tmp;
+    set (hax, "yscale", "log");
+    if (! ishold (hax))
+      set (hax, "yminortick", "on");
     endif
+
+    htmp = __errcomm__ ("semilogyerr", hax, varargin{:});
+
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
+  if (nargout > 0)
+    h = htmp;
+  endif
 
 endfunction
 
@@ -69,4 +85,6 @@ endfunction
 %! eyl = 1.0 - 1./(1+eyu);
 %! semilogyerr (x, y, eyl.*y, eyu.*y, '~-d');
 %! xlim ([0 10]);
+%! title ({'semilogyerr(): semilogy() plot with errorbars', ...
+%!         'Y-axis is logarithmic'});
 

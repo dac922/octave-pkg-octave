@@ -66,23 +66,24 @@ for leap seconds.
 referred to as a <var>tm_struct</var>.
 
 <!-- time libinterp/corefcn/time.cc -->
-   <p><a name="doc_002dtime"></a>
+   <p><a name="XREFtime"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>seconds</var> = <b>time</b> ()<var><a name="index-time-3370"></a></var><br>
+&mdash; Built-in Function: <var>seconds</var> = <b>time</b> ()<var><a name="index-time-3558"></a></var><br>
 <blockquote><p>Return the current time as the number of seconds since the epoch.  The
 epoch is referenced to 00:00:00 CUT (Coordinated Universal Time) 1 Jan
 1970.  For example, on Monday February 17, 1997 at 07:15:06 CUT, the
 value returned by <code>time</code> was 856163706.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dstrptime.html#doc_002dstrptime">strptime</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>, <a href="doc_002dgmtime.html#doc_002dgmtime">gmtime</a>, <a href="doc_002dmktime.html#doc_002dmktime">mktime</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstrftime.html#XREFstrftime">strftime</a>, <a href="XREFstrptime.html#XREFstrptime">strptime</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>, <a href="XREFgmtime.html#XREFgmtime">gmtime</a>, <a href="XREFmktime.html#XREFmktime">mktime</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFweekday.html#XREFweekday">weekday</a>.
+
+        </blockquote></div>
 
 <!-- now scripts/time/now.m -->
-   <p><a name="doc_002dnow"></a>
+   <p><a name="XREFnow"></a>
 
 <div class="defun">
-&mdash; Function File: t = <b>now</b> ()<var><a name="index-now-3371"></a></var><br>
+&mdash; Function File: t = <b>now</b> ()<var><a name="index-now-3559"></a></var><br>
 <blockquote><p>Return the current local date/time as a serial day number
 (see <code>datenum</code>).
 
@@ -92,14 +93,15 @@ between today and Jan 1, 0000.
         <p>The fractional part, <code>rem (now, 1)</code> corresponds to the current
 time.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>.
+
+        </blockquote></div>
 
 <!-- ctime scripts/time/ctime.m -->
-   <p><a name="doc_002dctime"></a>
+   <p><a name="XREFctime"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ctime</b> (<var>t</var>)<var><a name="index-ctime-3372"></a></var><br>
+&mdash; Function File:  <b>ctime</b> (<var>t</var>)<var><a name="index-ctime-3560"></a></var><br>
 <blockquote><p>Convert a value returned from <code>time</code> (or any other non-negative
 integer), to the local time and return a string of the same form as
 <code>asctime</code>.  The function <code>ctime (time)</code> is equivalent to
@@ -108,14 +110,15 @@ integer), to the local time and return a string of the same form as
      <pre class="example">          ctime (time ())
              &rArr; "Mon Feb 17 01:15:06 1997"
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dasctime.html#doc_002dasctime">asctime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFasctime.html#XREFasctime">asctime</a>, <a href="XREFtime.html#XREFtime">time</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>.
+
+        </blockquote></div>
 
 <!-- gmtime libinterp/corefcn/time.cc -->
-   <p><a name="doc_002dgmtime"></a>
+   <p><a name="XREFgmtime"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>tm_struct</var> = <b>gmtime</b> (<var>t</var>)<var><a name="index-gmtime-3373"></a></var><br>
+&mdash; Built-in Function: <var>tm_struct</var> = <b>gmtime</b> (<var>t</var>)<var><a name="index-gmtime-3561"></a></var><br>
 <blockquote><p>Given a value returned from <code>time</code>, or any non-negative integer,
 return a time structure corresponding to CUT (Coordinated Universal Time). 
 For example:
@@ -135,14 +138,15 @@ For example:
                      zone = CST
                   }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dstrptime.html#doc_002dstrptime">strptime</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>, <a href="doc_002dmktime.html#doc_002dmktime">mktime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrftime.html#XREFstrftime">strftime</a>, <a href="XREFstrptime.html#XREFstrptime">strptime</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>, <a href="XREFmktime.html#XREFmktime">mktime</a>, <a href="XREFtime.html#XREFtime">time</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFweekday.html#XREFweekday">weekday</a>.
+
+        </blockquote></div>
 
 <!-- localtime libinterp/corefcn/time.cc -->
-   <p><a name="doc_002dlocaltime"></a>
+   <p><a name="XREFlocaltime"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>tm_struct</var> = <b>localtime</b> (<var>t</var>)<var><a name="index-localtime-3374"></a></var><br>
+&mdash; Built-in Function: <var>tm_struct</var> = <b>localtime</b> (<var>t</var>)<var><a name="index-localtime-3562"></a></var><br>
 <blockquote><p>Given a value returned from <code>time</code>, or any non-negative integer,
 return a time structure corresponding to the local time zone.
 
@@ -161,44 +165,47 @@ return a time structure corresponding to the local time zone.
                      zone = CST
                   }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dstrptime.html#doc_002dstrptime">strptime</a>, <a href="doc_002dgmtime.html#doc_002dgmtime">gmtime</a>, <a href="doc_002dmktime.html#doc_002dmktime">mktime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrftime.html#XREFstrftime">strftime</a>, <a href="XREFstrptime.html#XREFstrptime">strptime</a>, <a href="XREFgmtime.html#XREFgmtime">gmtime</a>, <a href="XREFmktime.html#XREFmktime">mktime</a>, <a href="XREFtime.html#XREFtime">time</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFweekday.html#XREFweekday">weekday</a>.
+
+        </blockquote></div>
 
 <!-- mktime libinterp/corefcn/time.cc -->
-   <p><a name="doc_002dmktime"></a>
+   <p><a name="XREFmktime"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>seconds</var> = <b>mktime</b> (<var>tm_struct</var>)<var><a name="index-mktime-3375"></a></var><br>
+&mdash; Built-in Function: <var>seconds</var> = <b>mktime</b> (<var>tm_struct</var>)<var><a name="index-mktime-3563"></a></var><br>
 <blockquote><p>Convert a time structure corresponding to the local time to the number
 of seconds since the epoch.  For example:
 
      <pre class="example">          mktime (localtime (time ()))
                &rArr; 856163706
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dstrptime.html#doc_002dstrptime">strptime</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>, <a href="doc_002dgmtime.html#doc_002dgmtime">gmtime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrftime.html#XREFstrftime">strftime</a>, <a href="XREFstrptime.html#XREFstrptime">strptime</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>, <a href="XREFgmtime.html#XREFgmtime">gmtime</a>, <a href="XREFtime.html#XREFtime">time</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFweekday.html#XREFweekday">weekday</a>.
+
+        </blockquote></div>
 
 <!-- asctime scripts/time/asctime.m -->
-   <p><a name="doc_002dasctime"></a>
+   <p><a name="XREFasctime"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>asctime</b> (<var>tm_struct</var>)<var><a name="index-asctime-3376"></a></var><br>
+&mdash; Function File:  <b>asctime</b> (<var>tm_struct</var>)<var><a name="index-asctime-3564"></a></var><br>
 <blockquote><p>Convert a time structure to a string using the following
-format: "ddd mmm mm HH:MM:SS yyyy".  For example:
+format: <code>"ddd mmm mm HH:MM:SS yyyy"</code>.  For example:
 
      <pre class="example">          asctime (localtime (time ()))
                &rArr; "Mon Feb 17 01:15:06 1997"
 </pre>
         <p>This is equivalent to <code>ctime (time ())</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dctime.html#doc_002dctime">ctime</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFctime.html#XREFctime">ctime</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>, <a href="XREFtime.html#XREFtime">time</a>.
+
+        </blockquote></div>
 
 <!-- strftime libinterp/corefcn/time.cc -->
-   <p><a name="doc_002dstrftime"></a>
+   <p><a name="XREFstrftime"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strftime</b> (<var>fmt, tm_struct</var>)<var><a name="index-strftime-3377"></a></var><br>
+&mdash; Built-in Function:  <b>strftime</b> (<var>fmt, tm_struct</var>)<var><a name="index-strftime-3565"></a></var><br>
 <blockquote><p>Format the time structure <var>tm_struct</var> in a flexible way using the
 format string <var>fmt</var> that contains &lsquo;<samp><span class="samp">%</span></samp>&rsquo; substitutions
 similar to those in <code>printf</code>.  Except where noted, substituted
@@ -303,14 +310,15 @@ field specifiers.
           <br><dt><code>%Y</code><dd>Year (1970-). 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrptime.html#doc_002dstrptime">strptime</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>, <a href="doc_002dgmtime.html#doc_002dgmtime">gmtime</a>, <a href="doc_002dmktime.html#doc_002dmktime">mktime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstrptime.html#XREFstrptime">strptime</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>, <a href="XREFgmtime.html#XREFgmtime">gmtime</a>, <a href="XREFmktime.html#XREFmktime">mktime</a>, <a href="XREFtime.html#XREFtime">time</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFweekday.html#XREFweekday">weekday</a>.
+
+        </blockquote></div>
 
 <!-- strptime libinterp/corefcn/time.cc -->
-   <p><a name="doc_002dstrptime"></a>
+   <p><a name="XREFstrptime"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>tm_struct</var>, <var>nchars</var>] = <b>strptime</b> (<var>str, fmt</var>)<var><a name="index-strptime-3378"></a></var><br>
+&mdash; Built-in Function: [<var>tm_struct</var>, <var>nchars</var>] = <b>strptime</b> (<var>str, fmt</var>)<var><a name="index-strptime-3566"></a></var><br>
 <blockquote><p>Convert the string <var>str</var> to the time structure <var>tm_struct</var> under
 the control of the format string <var>fmt</var>.
 
@@ -318,8 +326,9 @@ the control of the format string <var>fmt</var>.
 position of last matched character plus 1. Always check for this unless
 you're absolutely sure the date string will be parsed correctly.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>, <a href="doc_002dgmtime.html#doc_002dgmtime">gmtime</a>, <a href="doc_002dmktime.html#doc_002dmktime">mktime</a>, <a href="doc_002dtime.html#doc_002dtime">time</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstrftime.html#XREFstrftime">strftime</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>, <a href="XREFgmtime.html#XREFgmtime">gmtime</a>, <a href="XREFmktime.html#XREFmktime">mktime</a>, <a href="XREFtime.html#XREFtime">time</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFweekday.html#XREFweekday">weekday</a>.
+
+        </blockquote></div>
 
    <p>Most of the remaining functions described in this section are not
 patterned after the standard C library.  Some are available for
@@ -327,10 +336,10 @@ compatibility with <span class="sc">matlab</span> and others are provided becaus
 useful.
 
 <!-- clock scripts/time/clock.m -->
-   <p><a name="doc_002dclock"></a>
+   <p><a name="XREFclock"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>clock</b> ()<var><a name="index-clock-3379"></a></var><br>
+&mdash; Function File:  <b>clock</b> ()<var><a name="index-clock-3567"></a></var><br>
 <blockquote><p>Return the current local date and time as a date vector.  The date vector
 contains the following fields: current year, month (1-12), day (1-31),
 hour (0-23), minute (0-59), and second (0-61).  The seconds field has
@@ -344,14 +353,15 @@ a fractional part after the decimal point for extended accuracy.
         <p>The function clock is more accurate on systems that have the
 <code>gettimeofday</code> function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>.
+
+        </blockquote></div>
 
 <!-- date scripts/time/date.m -->
-   <p><a name="doc_002ddate"></a>
+   <p><a name="XREFdate"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>date</b> ()<var><a name="index-date-3380"></a></var><br>
+&mdash; Function File:  <b>date</b> ()<var><a name="index-date-3568"></a></var><br>
 <blockquote><p>Return the current date as a character string in the form DD-MMM-YYYY.
 
         <p>For example:
@@ -359,14 +369,15 @@ a fractional part after the decimal point for extended accuracy.
      <pre class="example">          date ()
             &rArr; "20-Aug-1993"
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002dlocaltime.html#doc_002dlocaltime">localtime</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFlocaltime.html#XREFlocaltime">localtime</a>.
+
+        </blockquote></div>
 
 <!-- etime scripts/time/etime.m -->
-   <p><a name="doc_002detime"></a>
+   <p><a name="XREFetime"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>etime</b> (<var>t2, t1</var>)<var><a name="index-etime-3381"></a></var><br>
+&mdash; Function File:  <b>etime</b> (<var>t2, t1</var>)<var><a name="index-etime-3569"></a></var><br>
 <blockquote><p>Return the difference in seconds between two time values returned from
 <code>clock</code> (<var>t2</var> - <var>t1</var>).  For example:
 
@@ -377,14 +388,15 @@ a fractional part after the decimal point for extended accuracy.
         <p class="noindent">will set the variable <code>elapsed_time</code> to the number of seconds since
 the variable <code>t0</code> was set.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtic.html#doc_002dtic">tic</a>, <a href="doc_002dtoc.html#doc_002dtoc">toc</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002dcputime.html#doc_002dcputime">cputime</a>, <a href="doc_002daddtodate.html#doc_002daddtodate">addtodate</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtic.html#XREFtic">tic</a>, <a href="XREFtoc.html#XREFtoc">toc</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFcputime.html#XREFcputime">cputime</a>, <a href="XREFaddtodate.html#XREFaddtodate">addtodate</a>.
 
-<!-- cputime libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dcputime"></a>
+        </blockquote></div>
+
+<!-- cputime libinterp/corefcn/data.cc -->
+   <p><a name="XREFcputime"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>total</var>, <var>user</var>, <var>system</var>] = <b>cputime</b> ()<var>;<a name="index-cputime-3382"></a></var><br>
+&mdash; Built-in Function: [<var>total</var>, <var>user</var>, <var>system</var>] = <b>cputime</b> ()<var>;<a name="index-cputime-3570"></a></var><br>
 <blockquote><p>Return the CPU time used by your Octave session.  The first output is
 the total time spent executing your process and is equal to the sum of
 second and third outputs, which are the number of CPU seconds spent
@@ -395,15 +407,16 @@ Note that because Octave used some CPU time to start, it is reasonable
 to check to see if <code>cputime</code> works by checking to see if the total
 CPU time used is nonzero.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtic.html#doc_002dtic">tic</a>, <a href="doc_002dtoc.html#doc_002dtoc">toc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtic.html#XREFtic">tic</a>, <a href="XREFtoc.html#XREFtoc">toc</a>.
+
+        </blockquote></div>
 
 <!-- is_leap_year scripts/time/is_leap_year.m -->
-   <p><a name="doc_002dis_005fleap_005fyear"></a>
+   <p><a name="XREFis_005fleap_005fyear"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>is_leap_year</b> ()<var><a name="index-is_005fleap_005fyear-3383"></a></var><br>
-&mdash; Function File:  <b>is_leap_year</b> (<var>year</var>)<var><a name="index-is_005fleap_005fyear-3384"></a></var><br>
+&mdash; Function File:  <b>is_leap_year</b> ()<var><a name="index-is_005fleap_005fyear-3571"></a></var><br>
+&mdash; Function File:  <b>is_leap_year</b> (<var>year</var>)<var><a name="index-is_005fleap_005fyear-3572"></a></var><br>
 <blockquote><p>Return true if <var>year</var> is a leap year and false otherwise.  If no
 year is specified, <code>is_leap_year</code> uses the current year. 
 For example:
@@ -411,18 +424,19 @@ For example:
      <pre class="example">          is_leap_year (2000)
              &rArr; 1
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>, <a href="doc_002deomday.html#doc_002deomday">eomday</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFweekday.html#XREFweekday">weekday</a>, <a href="XREFeomday.html#XREFeomday">eomday</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>.
 
-   <p><a name="doc_002dtoc"></a><!-- tic libinterp/interpfcn/data.cc -->
-<a name="doc_002dtic"></a>
+        </blockquote></div>
+
+   <p><a name="XREFtoc"></a><!-- tic libinterp/corefcn/data.cc -->
+<a name="XREFtic"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>tic</b> ()<var><a name="index-tic-3385"></a></var><br>
-&mdash; Built-in Function: <var>id</var> = <b>tic</b> ()<var><a name="index-tic-3386"></a></var><br>
-&mdash; Built-in Function:  <b>toc</b> ()<var><a name="index-toc-3387"></a></var><br>
-&mdash; Built-in Function:  <b>toc</b> (<var>id</var>)<var><a name="index-toc-3388"></a></var><br>
-&mdash; Built-in Function: <var>val</var> = <b>toc</b> (<var><small class="dots">...</small></var>)<var><a name="index-toc-3389"></a></var><br>
+&mdash; Built-in Function:  <b>tic</b> ()<var><a name="index-tic-3573"></a></var><br>
+&mdash; Built-in Function: <var>id</var> = <b>tic</b> ()<var><a name="index-tic-3574"></a></var><br>
+&mdash; Built-in Function:  <b>toc</b> ()<var><a name="index-toc-3575"></a></var><br>
+&mdash; Built-in Function:  <b>toc</b> (<var>id</var>)<var><a name="index-toc-3576"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>toc</b> (<var><small class="dots">...</small></var>)<var><a name="index-toc-3577"></a></var><br>
 <blockquote><p>Set or check a wall-clock timer.  Calling <code>tic</code> without an
 output argument sets the internal timer state.  Subsequent calls
 to <code>toc</code> return the number of seconds since the timer was set. 
@@ -449,14 +463,15 @@ should use the <code>cputime</code> function instead.  The <code>tic</code> and
 between the calls.  This may include time spent processing other jobs or
 doing nothing at all.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtoc.html#doc_002dtoc">toc</a>, <a href="doc_002dcputime.html#doc_002dcputime">cputime</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtoc.html#XREFtoc">toc</a>, <a href="XREFcputime.html#XREFcputime">cputime</a>.
 
-<!-- pause libinterp/interpfcn/sysdep.cc -->
-   <p><a name="doc_002dpause"></a>
+        </blockquote></div>
+
+<!-- pause libinterp/corefcn/sysdep.cc -->
+   <p><a name="XREFpause"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>pause</b> (<var>seconds</var>)<var><a name="index-pause-3390"></a></var><br>
+&mdash; Built-in Function:  <b>pause</b> (<var>seconds</var>)<var><a name="index-pause-3578"></a></var><br>
 <blockquote><p>Suspend the execution of the program.  If invoked without any arguments,
 Octave waits until you type a character.  With a numeric argument, it
 pauses for the given number of seconds.  For example, the following
@@ -469,19 +484,19 @@ screen.
 </pre>
         </blockquote></div>
 
-<!-- sleep libinterp/interpfcn/sysdep.cc -->
-   <p><a name="doc_002dsleep"></a>
+<!-- sleep libinterp/corefcn/sysdep.cc -->
+   <p><a name="XREFsleep"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>sleep</b> (<var>seconds</var>)<var><a name="index-sleep-3391"></a></var><br>
+&mdash; Built-in Function:  <b>sleep</b> (<var>seconds</var>)<var><a name="index-sleep-3579"></a></var><br>
 <blockquote><p>Suspend the execution of the program for the given number of seconds. 
 </p></blockquote></div>
 
-<!-- usleep libinterp/interpfcn/sysdep.cc -->
-   <p><a name="doc_002dusleep"></a>
+<!-- usleep libinterp/corefcn/sysdep.cc -->
+   <p><a name="XREFusleep"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>usleep</b> (<var>microseconds</var>)<var><a name="index-usleep-3392"></a></var><br>
+&mdash; Built-in Function:  <b>usleep</b> (<var>microseconds</var>)<var><a name="index-usleep-3580"></a></var><br>
 <blockquote><p>Suspend the execution of the program for the given number of
 microseconds.  On systems where it is not possible to sleep for periods
 of time less than one second, <code>usleep</code> will pause the execution for
@@ -489,17 +504,17 @@ of time less than one second, <code>usleep</code> will pause the execution for
 </p></blockquote></div>
 
 <!-- datenum scripts/time/datenum.m -->
-   <p><a name="doc_002ddatenum"></a>
+   <p><a name="XREFdatenum"></a>
 
 <div class="defun">
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>datevec</var>)<var><a name="index-datenum-3393"></a></var><br>
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day</var>)<var><a name="index-datenum-3394"></a></var><br>
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day, hour</var>)<var><a name="index-datenum-3395"></a></var><br>
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day, hour, minute</var>)<var><a name="index-datenum-3396"></a></var><br>
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day, hour, minute, second</var>)<var><a name="index-datenum-3397"></a></var><br>
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>"datestr"</var>)<var><a name="index-datenum-3398"></a></var><br>
-&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>"datestr", p</var>)<var><a name="index-datenum-3399"></a></var><br>
-&mdash; Function File: [<var>days</var>, <var>secs</var>] = <b>datenum</b> (<var><small class="dots">...</small></var>)<var><a name="index-datenum-3400"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>datevec</var>)<var><a name="index-datenum-3581"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day</var>)<var><a name="index-datenum-3582"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day, hour</var>)<var><a name="index-datenum-3583"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day, hour, minute</var>)<var><a name="index-datenum-3584"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>year, month, day, hour, minute, second</var>)<var><a name="index-datenum-3585"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>"datestr"</var>)<var><a name="index-datenum-3586"></a></var><br>
+&mdash; Function File: <var>days</var> = <b>datenum</b> (<var>"datestr", p</var>)<var><a name="index-datenum-3587"></a></var><br>
+&mdash; Function File: [<var>days</var>, <var>secs</var>] = <b>datenum</b> (<var><small class="dots">...</small></var>)<var><a name="index-datenum-3588"></a></var><br>
 <blockquote><p>Return the date/time input as a serial day number, with Jan 1, 0000
 defined as day 1.
 
@@ -545,16 +560,17 @@ calendar for more details.
         <p><strong>Warning:</strong> leap seconds are ignored.  A table of leap seconds
 is available on the Wikipedia entry for leap seconds.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFdate.html#XREFdate">date</a>.
+
+        </blockquote></div>
 
 <!-- datestr scripts/time/datestr.m -->
-   <p><a name="doc_002ddatestr"></a>
+   <p><a name="XREFdatestr"></a>
 
 <div class="defun">
-&mdash; Function File: <var>str</var> = <b>datestr</b> (<var>date</var>)<var><a name="index-datestr-3401"></a></var><br>
-&mdash; Function File: <var>str</var> = <b>datestr</b> (<var>date, f</var>)<var><a name="index-datestr-3402"></a></var><br>
-&mdash; Function File: <var>str</var> = <b>datestr</b> (<var>date, f, p</var>)<var><a name="index-datestr-3403"></a></var><br>
+&mdash; Function File: <var>str</var> = <b>datestr</b> (<var>date</var>)<var><a name="index-datestr-3589"></a></var><br>
+&mdash; Function File: <var>str</var> = <b>datestr</b> (<var>date, f</var>)<var><a name="index-datestr-3590"></a></var><br>
+&mdash; Function File: <var>str</var> = <b>datestr</b> (<var>date, f, p</var>)<var><a name="index-datestr-3591"></a></var><br>
 <blockquote><p>Format the given date/time according to the format <code>f</code> and return
 the result in <var>str</var>.  <var>date</var> is a serial date number (see
 <code>datenum</code>) or a date vector (see <code>datevec</code>).  The value of
@@ -636,18 +652,19 @@ depending on whether the date portion or the time portion of
         <p>If a matrix or cell array of dates is given, a column vector of date strings
 is returned.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFdate.html#XREFdate">date</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFclock.html#XREFclock">clock</a>.
+
+        </blockquote></div>
 
 <!-- datevec scripts/time/datevec.m -->
-   <p><a name="doc_002ddatevec"></a>
+   <p><a name="XREFdatevec"></a>
 
 <div class="defun">
-&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date</var>)<var><a name="index-datevec-3404"></a></var><br>
-&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date, f</var>)<var><a name="index-datevec-3405"></a></var><br>
-&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date, p</var>)<var><a name="index-datevec-3406"></a></var><br>
-&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date, f, p</var>)<var><a name="index-datevec-3407"></a></var><br>
-&mdash; Function File: [<var>y</var>, <var>m</var>, <var>d</var>, <var>h</var>, <var>mi</var>, <var>s</var>] = <b>datevec</b> (<var><small class="dots">...</small></var>)<var><a name="index-datevec-3408"></a></var><br>
+&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date</var>)<var><a name="index-datevec-3592"></a></var><br>
+&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date, f</var>)<var><a name="index-datevec-3593"></a></var><br>
+&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date, p</var>)<var><a name="index-datevec-3594"></a></var><br>
+&mdash; Function File: <var>v</var> = <b>datevec</b> (<var>date, f, p</var>)<var><a name="index-datevec-3595"></a></var><br>
+&mdash; Function File: [<var>y</var>, <var>m</var>, <var>d</var>, <var>h</var>, <var>mi</var>, <var>s</var>] = <b>datevec</b> (<var><small class="dots">...</small></var>)<var><a name="index-datevec-3596"></a></var><br>
 <blockquote><p>Convert a serial date number (see <code>datenum</code>) or date string (see
 <code>datestr</code>) into a date vector.
 
@@ -666,31 +683,34 @@ default to January 1st of the current year.
 will be referenced.  If not specified, it defaults to the current year
 minus 50.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>, <a href="doc_002dclock.html#doc_002dclock">clock</a>, <a href="doc_002dnow.html#doc_002dnow">now</a>, <a href="doc_002ddate.html#doc_002ddate">date</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>, <a href="XREFclock.html#XREFclock">clock</a>, <a href="XREFnow.html#XREFnow">now</a>, <a href="XREFdate.html#XREFdate">date</a>.
+
+        </blockquote></div>
 
 <!-- addtodate scripts/time/addtodate.m -->
-   <p><a name="doc_002daddtodate"></a>
+   <p><a name="XREFaddtodate"></a>
 
 <div class="defun">
-&mdash; Function File: <var>d</var> = <b>addtodate</b> (<var>d, q, f</var>)<var><a name="index-addtodate-3409"></a></var><br>
+&mdash; Function File: <var>d</var> = <b>addtodate</b> (<var>d, q, f</var>)<var><a name="index-addtodate-3597"></a></var><br>
 <blockquote><p>Add <var>q</var> amount of time (with units <var>f</var>) to the serial datenum,
 <var>d</var>.
 
-        <p><var>f</var> must be one of "year", "month", "day", "hour", "minute", "second",
-or "millisecond".
+        <p><var>f</var> must be one of <code>"year"</code>, <code>"month"</code>, <code>"day"</code>,
+<code>"hour"</code>, <code>"minute"</code>, <code>"second"</code>, or
+<code>"millisecond"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002detime.html#doc_002detime">etime</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFetime.html#XREFetime">etime</a>.
+
+        </blockquote></div>
 
 <!-- calendar scripts/time/calendar.m -->
-   <p><a name="doc_002dcalendar"></a>
+   <p><a name="XREFcalendar"></a>
 
 <div class="defun">
-&mdash; Function File: <var>c</var> = <b>calendar</b> ()<var><a name="index-calendar-3410"></a></var><br>
-&mdash; Function File: <var>c</var> = <b>calendar</b> (<var>d</var>)<var><a name="index-calendar-3411"></a></var><br>
-&mdash; Function File: <var>c</var> = <b>calendar</b> (<var>y, m</var>)<var><a name="index-calendar-3412"></a></var><br>
-&mdash; Function File:  <b>calendar</b> (<var><small class="dots">...</small></var>)<var><a name="index-calendar-3413"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>calendar</b> ()<var><a name="index-calendar-3598"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>calendar</b> (<var>d</var>)<var><a name="index-calendar-3599"></a></var><br>
+&mdash; Function File: <var>c</var> = <b>calendar</b> (<var>y, m</var>)<var><a name="index-calendar-3600"></a></var><br>
+&mdash; Function File:  <b>calendar</b> (<var><small class="dots">...</small></var>)<var><a name="index-calendar-3601"></a></var><br>
 <blockquote><p>Return the current monthly calendar in a 6x7 matrix.
 
         <p>If <var>d</var> is specified, return the calendar for the month containing
@@ -702,27 +722,28 @@ and month <var>m</var>.
         <p>If no output arguments are specified, print the calendar on the screen
 instead of returning a matrix.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>.
+
+        </blockquote></div>
 
 <!-- weekday scripts/time/weekday.m -->
-   <p><a name="doc_002dweekday"></a>
+   <p><a name="XREFweekday"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>n</var>, <var>s</var>] = <b>weekday</b> (<var>d</var>)<var><a name="index-weekday-3414"></a></var><br>
-&mdash; Function File: [<var>n</var>, <var>s</var>] = <b>weekday</b> (<var>d, format</var>)<var><a name="index-weekday-3415"></a></var><br>
+&mdash; Function File: [<var>n</var>, <var>s</var>] = <b>weekday</b> (<var>d</var>)<var><a name="index-weekday-3602"></a></var><br>
+&mdash; Function File: [<var>n</var>, <var>s</var>] = <b>weekday</b> (<var>d, format</var>)<var><a name="index-weekday-3603"></a></var><br>
 <blockquote><p>Return the day of the week as a number in <var>n</var> and as a string in <var>s</var>. 
 The days of the week are numbered 1&ndash;7 with the first day being Sunday.
 
         <p><var>d</var> is a serial date number or a date string.
 
-        <p>If the string <var>format</var> is not present or is equal to "short" then
+        <p>If the string <var>format</var> is not present or is equal to <code>"short"</code> then
 <var>s</var> will contain the abbreviated name of the weekday.  If <var>format</var>
-is "long" then <var>s</var> will contain the full name.
+is <code>"long"</code> then <var>s</var> will contain the full name.
 
         <p>Table of return values based on <var>format</var>:
 
-        <p><table summary=""><tr align="left"><th valign="top" width="6%"><var>n</var> </th><th valign="top" width="13%">"short" </th><th valign="top" width="16%">"long"
+        <p><table summary=""><tr align="left"><th valign="top" width="6%"><var>n</var> </th><th valign="top" width="13%"><code>"short"</code> </th><th valign="top" width="16%"><code>"long"</code>
 <br></th></tr><tr align="left"><td valign="top" width="6%">1 </td><td valign="top" width="13%">Sun </td><td valign="top" width="16%">Sunday
 <br></td></tr><tr align="left"><td valign="top" width="6%">2 </td><td valign="top" width="13%">Mon </td><td valign="top" width="16%">Monday
 <br></td></tr><tr align="left"><td valign="top" width="6%">3 </td><td valign="top" width="13%">Tue </td><td valign="top" width="16%">Tuesday
@@ -732,37 +753,40 @@ is "long" then <var>s</var> will contain the full name.
 <br></td></tr><tr align="left"><td valign="top" width="6%">7 </td><td valign="top" width="13%">Sat </td><td valign="top" width="16%">Saturday
         <br></td></tr></table>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002deomday.html#doc_002deomday">eomday</a>, <a href="doc_002dis_005fleap_005fyear.html#doc_002dis_005fleap_005fyear">is_leap_year</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeomday.html#XREFeomday">eomday</a>, <a href="XREFis_005fleap_005fyear.html#XREFis_005fleap_005fyear">is_leap_year</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>.
+
+        </blockquote></div>
 
 <!-- eomday scripts/time/eomday.m -->
-   <p><a name="doc_002deomday"></a>
+   <p><a name="XREFeomday"></a>
 
 <div class="defun">
-&mdash; Function File: <var>e</var> = <b>eomday</b> (<var>y, m</var>)<var><a name="index-eomday-3416"></a></var><br>
+&mdash; Function File: <var>e</var> = <b>eomday</b> (<var>y, m</var>)<var><a name="index-eomday-3604"></a></var><br>
 <blockquote><p>Return the last day of the month <var>m</var> for the year <var>y</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dweekday.html#doc_002dweekday">weekday</a>, <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatevec.html#doc_002ddatevec">datevec</a>, <a href="doc_002dis_005fleap_005fyear.html#doc_002dis_005fleap_005fyear">is_leap_year</a>, <a href="doc_002dcalendar.html#doc_002dcalendar">calendar</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFweekday.html#XREFweekday">weekday</a>, <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatevec.html#XREFdatevec">datevec</a>, <a href="XREFis_005fleap_005fyear.html#XREFis_005fleap_005fyear">is_leap_year</a>, <a href="XREFcalendar.html#XREFcalendar">calendar</a>.
+
+        </blockquote></div>
 
 <!-- datetick scripts/time/datetick.m -->
-   <p><a name="doc_002ddatetick"></a>
+   <p><a name="XREFdatetick"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>datetick</b> ()<var><a name="index-datetick-3417"></a></var><br>
-&mdash; Function File:  <b>datetick</b> (<var>form</var>)<var><a name="index-datetick-3418"></a></var><br>
-&mdash; Function File:  <b>datetick</b> (<var>axis, form</var>)<var><a name="index-datetick-3419"></a></var><br>
-&mdash; Function File:  <b>datetick</b> (<var><small class="dots">...</small>, "keeplimits"</var>)<var><a name="index-datetick-3420"></a></var><br>
-&mdash; Function File:  <b>datetick</b> (<var><small class="dots">...</small>, "keepticks"</var>)<var><a name="index-datetick-3421"></a></var><br>
-&mdash; Function File:  <b>datetick</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-datetick-3422"></a></var><br>
+&mdash; Function File:  <b>datetick</b> ()<var><a name="index-datetick-3605"></a></var><br>
+&mdash; Function File:  <b>datetick</b> (<var>form</var>)<var><a name="index-datetick-3606"></a></var><br>
+&mdash; Function File:  <b>datetick</b> (<var>axis, form</var>)<var><a name="index-datetick-3607"></a></var><br>
+&mdash; Function File:  <b>datetick</b> (<var><small class="dots">...</small>, "keeplimits"</var>)<var><a name="index-datetick-3608"></a></var><br>
+&mdash; Function File:  <b>datetick</b> (<var><small class="dots">...</small>, "keepticks"</var>)<var><a name="index-datetick-3609"></a></var><br>
+&mdash; Function File:  <b>datetick</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-datetick-3610"></a></var><br>
 <blockquote><p>Add date formatted tick labels to an axis.  The axis to apply the
-ticks to is determined by <var>axis</var> which can take the values "x",
-"y", or "z".  The default value is "x".  The formatting of the labels is
-determined by the variable <var>form</var>, which can either be a string or
-positive integer that <code>datestr</code> accepts.
+ticks to is determined by <var>axis</var> which can take the values <code>"x"</code>,
+<code>"y"</code>, or <code>"z"</code>.  The default value is <code>"x"</code>.  The
+formatting of the labels is determined by the variable <var>form</var>, which
+can either be a string or positive integer that <code>datestr</code> accepts.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddatenum.html#doc_002ddatenum">datenum</a>, <a href="doc_002ddatestr.html#doc_002ddatestr">datestr</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdatenum.html#XREFdatenum">datenum</a>, <a href="XREFdatestr.html#XREFdatestr">datestr</a>.
+
+        </blockquote></div>
 
    </body></html>
 

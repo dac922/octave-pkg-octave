@@ -186,7 +186,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/xstrndup.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/build-aux/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -1527,6 +1527,10 @@ ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
+ac_ct_LRELEASE = @ac_ct_LRELEASE@
+ac_ct_MOC = @ac_ct_MOC@
+ac_ct_RCC = @ac_ct_RCC@
+ac_ct_UIC = @ac_ct_UIC@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -1741,7 +1745,7 @@ localstartupfiledir = ${localfcnfiledir}/startup
 null = 
 FCN_FILES = fntests.m args.tst bug-31371.tst bug-38576.tst \
 	diag-perm.tst error.tst eval-catch.tst for.tst func.tst \
-	global.tst if.tst index.tst io.tst line-continue.tst \
+	global.tst if.tst index.tst io.tst jit.tst line-continue.tst \
 	logical-index.tst null-assign.tst parser.tst prefer.tst \
 	range.tst recursion.tst return.tst slice.tst struct.tst \
 	switch.tst system.tst transpose.tst try.tst unwind.tst \

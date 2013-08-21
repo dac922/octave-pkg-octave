@@ -36,7 +36,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Mex_002dFiles.html#Mex_002dFiles">Mex-F
 <h4 class="subsection">A.2.5 Structures with Mex-Files</h4>
 
 <p>The basic function to create a structure in a mex-file is
-<code>mxCreateStructMatrix</code>, which creates a structure array with a two
+<code>mxCreateStructMatrix</code> which creates a structure array with a two
 dimensional matrix, or <code>mxCreateStructArray</code>.
 
 <pre class="example">     mxArray *mxCreateStructArray (int ndims, int *dims,
@@ -46,7 +46,7 @@ dimensional matrix, or <code>mxCreateStructArray</code>.
                                     int num_keys,
                                     const char **keys);
 </pre>
-   <p>Accessing the fields of the structure can then be performed with the
+   <p>Accessing the fields of the structure can then be performed with
 <code>mxGetField</code> and <code>mxSetField</code> or alternatively with the
 <code>mxGetFieldByNumber</code> and <code>mxSetFieldByNumber</code> functions.
 
@@ -62,17 +62,17 @@ dimensional matrix, or <code>mxCreateStructArray</code>.
    <p>A difference between the oct-file interface to structures and the
 mex-file version is that the functions to operate on structures in
 mex-files directly include an <code>index</code> over the elements of the
-arrays of elements per <code>field</code>.  Whereas the oct-file structure
+arrays of elements per <code>field</code>; Whereas, the oct-file structure
 includes a Cell Array per field of the structure.
 
-   <p>An example that demonstrates the use of structures in mex-file can be
-found in the file <samp><span class="file">mystruct.c</span></samp>, as seen below
+   <p>An example that demonstrates the use of structures in a mex-file can be
+found in the file <samp><span class="file">mystruct.c</span></samp> shown below.
 
 <pre class="example"><pre class="verbatim">     #include "mex.h"
      
      void
-     mexFunction (int nlhs, mxArray* plhs[], int nrhs, 
-                  const mxArray* prhs[])
+     mexFunction (int nlhs, mxArray* plhs[],
+                  int nrhs, const mxArray* prhs[])
      {
        int i;
        mwIndex j;
@@ -88,7 +88,7 @@ found in the file <samp><span class="file">mystruct.c</span></samp>, as seen bel
              mexPrintf ("field %s(%d) = ", 
                         mxGetFieldNameByNumber (prhs[0], i), j);
              v = mxGetFieldByNumber (prhs[0], j, i);
-             mexCallMATLAB (0, 0, 1, &amp;v, "disp");
+             mexCallMATLAB (0, NULL, 1, &amp;v, "disp");
            }
      
        v = mxCreateStructMatrix (2, 2, 2, keys);

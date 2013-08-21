@@ -34,14 +34,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Matrix-Manipulation.html#Matrix-Manipul
 
 <h3 class="section">16.3 Special Utility Matrices</h3>
 
-<!-- eye libinterp/interpfcn/data.cc -->
-<p><a name="doc_002deye"></a>
+<!-- eye libinterp/corefcn/data.cc -->
+<p><a name="XREFeye"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>eye</b> (<var>n</var>)<var><a name="index-eye-1756"></a></var><br>
-&mdash; Built-in Function:  <b>eye</b> (<var>m, n</var>)<var><a name="index-eye-1757"></a></var><br>
-&mdash; Built-in Function:  <b>eye</b> ([<var>m n</var>])<var><a name="index-eye-1758"></a></var><br>
-&mdash; Built-in Function:  <b>eye</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-eye-1759"></a></var><br>
+&mdash; Built-in Function:  <b>eye</b> (<var>n</var>)<var><a name="index-eye-1899"></a></var><br>
+&mdash; Built-in Function:  <b>eye</b> (<var>m, n</var>)<var><a name="index-eye-1900"></a></var><br>
+&mdash; Built-in Function:  <b>eye</b> ([<var>m n</var>])<var><a name="index-eye-1901"></a></var><br>
+&mdash; Built-in Function:  <b>eye</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-eye-1902"></a></var><br>
 <blockquote><p>Return an identity matrix.  If invoked with a single scalar argument <var>n</var>,
 return a square NxN identity matrix.  If
 supplied two scalar arguments (<var>m</var>, <var>n</var>), <code>eye</code> takes them to be
@@ -71,18 +71,19 @@ the specified type, like
 with an argument of 1.  Any negative dimensions are treated as zero. 
 These odd definitions are for compatibility with <span class="sc">matlab</span>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dspeye.html#doc_002dspeye">speye</a>, <a href="doc_002dones.html#doc_002dones">ones</a>, <a href="doc_002dzeros.html#doc_002dzeros">zeros</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFspeye.html#XREFspeye">speye</a>, <a href="XREFones.html#XREFones">ones</a>, <a href="XREFzeros.html#XREFzeros">zeros</a>.
 
-<!-- ones libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dones"></a>
+        </blockquote></div>
+
+<!-- ones libinterp/corefcn/data.cc -->
+   <p><a name="XREFones"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ones</b> (<var>n</var>)<var><a name="index-ones-1760"></a></var><br>
-&mdash; Built-in Function:  <b>ones</b> (<var>m, n</var>)<var><a name="index-ones-1761"></a></var><br>
-&mdash; Built-in Function:  <b>ones</b> (<var>m, n, k, <small class="dots">...</small></var>)<var><a name="index-ones-1762"></a></var><br>
-&mdash; Built-in Function:  <b>ones</b> ([<var>m n <small class="dots">...</small></var>])<var><a name="index-ones-1763"></a></var><br>
-&mdash; Built-in Function:  <b>ones</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-ones-1764"></a></var><br>
+&mdash; Built-in Function:  <b>ones</b> (<var>n</var>)<var><a name="index-ones-1903"></a></var><br>
+&mdash; Built-in Function:  <b>ones</b> (<var>m, n</var>)<var><a name="index-ones-1904"></a></var><br>
+&mdash; Built-in Function:  <b>ones</b> (<var>m, n, k, <small class="dots">...</small></var>)<var><a name="index-ones-1905"></a></var><br>
+&mdash; Built-in Function:  <b>ones</b> ([<var>m n <small class="dots">...</small></var>])<var><a name="index-ones-1906"></a></var><br>
+&mdash; Built-in Function:  <b>ones</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-ones-1907"></a></var><br>
 <blockquote><p>Return a matrix or N-dimensional array whose elements are all 1. 
 If invoked with a single scalar integer argument <var>n</var>, return a square
 NxN matrix.  If invoked with two or more scalar
@@ -99,18 +100,19 @@ and defaults to double.  For example:
 
      <pre class="example">          val = ones (m,n, "uint8")
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dzeros.html#doc_002dzeros">zeros</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFzeros.html#XREFzeros">zeros</a>.
 
-<!-- zeros libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dzeros"></a>
+        </blockquote></div>
+
+<!-- zeros libinterp/corefcn/data.cc -->
+   <p><a name="XREFzeros"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>zeros</b> (<var>n</var>)<var><a name="index-zeros-1765"></a></var><br>
-&mdash; Built-in Function:  <b>zeros</b> (<var>m, n</var>)<var><a name="index-zeros-1766"></a></var><br>
-&mdash; Built-in Function:  <b>zeros</b> (<var>m, n, k, <small class="dots">...</small></var>)<var><a name="index-zeros-1767"></a></var><br>
-&mdash; Built-in Function:  <b>zeros</b> ([<var>m n <small class="dots">...</small></var>])<var><a name="index-zeros-1768"></a></var><br>
-&mdash; Built-in Function:  <b>zeros</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-zeros-1769"></a></var><br>
+&mdash; Built-in Function:  <b>zeros</b> (<var>n</var>)<var><a name="index-zeros-1908"></a></var><br>
+&mdash; Built-in Function:  <b>zeros</b> (<var>m, n</var>)<var><a name="index-zeros-1909"></a></var><br>
+&mdash; Built-in Function:  <b>zeros</b> (<var>m, n, k, <small class="dots">...</small></var>)<var><a name="index-zeros-1910"></a></var><br>
+&mdash; Built-in Function:  <b>zeros</b> ([<var>m n <small class="dots">...</small></var>])<var><a name="index-zeros-1911"></a></var><br>
+&mdash; Built-in Function:  <b>zeros</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-zeros-1912"></a></var><br>
 <blockquote><p>Return a matrix or N-dimensional array whose elements are all 0. 
 If invoked with a single scalar integer argument, return a square
 NxN matrix.  If invoked with two or more scalar
@@ -122,31 +124,33 @@ and defaults to double.  For example:
 
      <pre class="example">          val = zeros (m,n, "uint8")
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dones.html#doc_002dones">ones</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFones.html#XREFones">ones</a>.
+
+        </blockquote></div>
 
 <!-- repmat scripts/general/repmat.m -->
-   <p><a name="doc_002drepmat"></a>
+   <p><a name="XREFrepmat"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>repmat</b> (<var>A, m</var>)<var><a name="index-repmat-1770"></a></var><br>
-&mdash; Function File:  <b>repmat</b> (<var>A, m, n</var>)<var><a name="index-repmat-1771"></a></var><br>
-&mdash; Function File:  <b>repmat</b> (<var>A, </var>[<var>m n</var>])<var><a name="index-repmat-1772"></a></var><br>
-&mdash; Function File:  <b>repmat</b> (<var>A, </var>[<var>m n p <small class="dots">...</small></var>])<var><a name="index-repmat-1773"></a></var><br>
+&mdash; Function File:  <b>repmat</b> (<var>A, m</var>)<var><a name="index-repmat-1913"></a></var><br>
+&mdash; Function File:  <b>repmat</b> (<var>A, m, n</var>)<var><a name="index-repmat-1914"></a></var><br>
+&mdash; Function File:  <b>repmat</b> (<var>A, </var>[<var>m n</var>])<var><a name="index-repmat-1915"></a></var><br>
+&mdash; Function File:  <b>repmat</b> (<var>A, </var>[<var>m n p <small class="dots">...</small></var>])<var><a name="index-repmat-1916"></a></var><br>
 <blockquote><p>Form a block matrix of size <var>m</var> by <var>n</var>, with a copy of matrix
 <var>A</var> as each element.  If <var>n</var> is not specified, form an
 <var>m</var> by <var>m</var> block matrix.  For copying along more than two
 dimensions, specify the number of times to copy across each dimension
 <var>m</var>, <var>n</var>, <var>p</var>, <small class="dots">...</small>, in a vector in the second argument.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drepelems.html#doc_002drepelems">repelems</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrepelems.html#XREFrepelems">repelems</a>.
 
-<!-- repelems libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002drepelems"></a>
+        </blockquote></div>
+
+<!-- repelems libinterp/corefcn/data.cc -->
+   <p><a name="XREFrepelems"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>repelems</b> (<var>x, r</var>)<var><a name="index-repelems-1774"></a></var><br>
+&mdash; Built-in Function:  <b>repelems</b> (<var>x, r</var>)<var><a name="index-repelems-1917"></a></var><br>
 <blockquote><p>Construct a vector of repeated elements from <var>x</var>.  <var>r</var>
 is a 2x<var>N</var> integer matrix specifying which elements to repeat and
 how often to repeat each element.
@@ -164,19 +168,20 @@ index.  A row vector is always returned.
             y = [y, <var>x</var>(<var>r</var>(1,i)*ones(1, <var>r</var>(2,i)))];
           endfor
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002drepmat.html#doc_002drepmat">repmat</a>, <a href="doc_002dcat.html#doc_002dcat">cat</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFrepmat.html#XREFrepmat">repmat</a>, <a href="XREFcat.html#XREFcat">cat</a>.
+
+        </blockquote></div>
 
    <p>The functions <code>linspace</code> and <code>logspace</code> make it very easy to
 create vectors with evenly or logarithmically spaced elements. 
 See <a href="Ranges.html#Ranges">Ranges</a>.
 
-<!-- linspace libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dlinspace"></a>
+<!-- linspace libinterp/corefcn/data.cc -->
+   <p><a name="XREFlinspace"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>linspace</b> (<var>base, limit</var>)<var><a name="index-linspace-1775"></a></var><br>
-&mdash; Built-in Function:  <b>linspace</b> (<var>base, limit, n</var>)<var><a name="index-linspace-1776"></a></var><br>
+&mdash; Built-in Function:  <b>linspace</b> (<var>base, limit</var>)<var><a name="index-linspace-1918"></a></var><br>
+&mdash; Built-in Function:  <b>linspace</b> (<var>base, limit, n</var>)<var><a name="index-linspace-1919"></a></var><br>
 <blockquote><p>Return a row vector with <var>n</var> linearly spaced elements between
 <var>base</var> and <var>limit</var>.  If the number of elements is greater than one,
 then the endpoints <var>base</var> and <var>limit</var> are always included in
@@ -191,16 +196,17 @@ vectors, <code>linspace</code> returns a matrix.
         <p>For compatibility with <span class="sc">matlab</span>, return the second argument (<var>limit</var>)
 if fewer than two values are requested.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlogspace.html#doc_002dlogspace">logspace</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlogspace.html#XREFlogspace">logspace</a>.
+
+        </blockquote></div>
 
 <!-- logspace scripts/general/logspace.m -->
-   <p><a name="doc_002dlogspace"></a>
+   <p><a name="XREFlogspace"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>logspace</b> (<var>a, b</var>)<var><a name="index-logspace-1777"></a></var><br>
-&mdash; Function File:  <b>logspace</b> (<var>a, b, n</var>)<var><a name="index-logspace-1778"></a></var><br>
-&mdash; Function File:  <b>logspace</b> (<var>a, pi, n</var>)<var><a name="index-logspace-1779"></a></var><br>
+&mdash; Function File:  <b>logspace</b> (<var>a, b</var>)<var><a name="index-logspace-1920"></a></var><br>
+&mdash; Function File:  <b>logspace</b> (<var>a, b, n</var>)<var><a name="index-logspace-1921"></a></var><br>
+&mdash; Function File:  <b>logspace</b> (<var>a, pi, n</var>)<var><a name="index-logspace-1922"></a></var><br>
 <blockquote><p>Return a row vector with <var>n</var> elements logarithmically spaced from
 10^<var>a</var> to 10^<var>b</var>. 
 If <var>n</var> is unspecified it defaults to 50.
@@ -216,24 +222,25 @@ in order to be compatible with the corresponding <span class="sc">matlab</span> 
         <p>Also for compatibility with <span class="sc">matlab</span>, return the second argument <var>b</var>
 if fewer than two values are requested.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlinspace.html#doc_002dlinspace">linspace</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlinspace.html#XREFlinspace">linspace</a>.
+
+        </blockquote></div>
 
 <!-- rand libinterp/corefcn/rand.cc -->
-   <p><a name="doc_002drand"></a>
+   <p><a name="XREFrand"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rand</b> (<var>n</var>)<var><a name="index-rand-1780"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-rand-1781"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-rand-1782"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>rand</b> (<var>"state"</var>)<var><a name="index-rand-1783"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var>"state", v</var>)<var><a name="index-rand-1784"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var>"state", "reset"</var>)<var><a name="index-rand-1785"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>rand</b> (<var>"seed"</var>)<var><a name="index-rand-1786"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var>"seed", v</var>)<var><a name="index-rand-1787"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var>"seed", "reset"</var>)<var><a name="index-rand-1788"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-rand-1789"></a></var><br>
-&mdash; Built-in Function:  <b>rand</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-rand-1790"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var>n</var>)<var><a name="index-rand-1923"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-rand-1924"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-rand-1925"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>rand</b> (<var>"state"</var>)<var><a name="index-rand-1926"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var>"state", v</var>)<var><a name="index-rand-1927"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var>"state", "reset"</var>)<var><a name="index-rand-1928"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>rand</b> (<var>"seed"</var>)<var><a name="index-rand-1929"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var>"seed", v</var>)<var><a name="index-rand-1930"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var>"seed", "reset"</var>)<var><a name="index-rand-1931"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-rand-1932"></a></var><br>
+&mdash; Built-in Function:  <b>rand</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-rand-1933"></a></var><br>
 <blockquote><p>Return a matrix with random elements uniformly distributed on the
 interval (0, 1).  The arguments are handled the same as the arguments
 for <code>eye</code>.
@@ -277,7 +284,7 @@ as it is significantly faster than the old generator, and produces
 random numbers with a significantly longer cycle time.  However, in
 some circumstances it might be desirable to obtain the same random
 sequences as used by the old generators.  To do this the keyword
-"seed" is used to specify that the old generators should be use,
+<code>"seed"</code> is used to specify that the old generators should be use,
 as in
 
      <pre class="example">          rand ("seed", val)
@@ -290,26 +297,29 @@ generator can be queried with
         <p>However, it should be noted that querying the seed will not cause
 <code>rand</code> to use the old generators, only setting the seed will. 
 To cause <code>rand</code> to once again use the new generators, the
-keyword "state" should be used to reset the state of the <code>rand</code>.
+keyword <code>"state"</code> should be used to reset the state of the
+<code>rand</code>.
 
         <p>The state or seed of the generator can be reset to a new random value
-using the "reset" keyword.
+using the <code>"reset"</code> keyword.
 
-        <p>The class of the value returned can be controlled by a trailing "double"
-or "single" argument.  These are the only valid classes.
+        <p>The class of the value returned can be controlled by a trailing
+<code>"double"</code> or <code>"single"</code> argument.  These are the only valid
+classes.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drandn.html#doc_002drandn">randn</a>, <a href="doc_002drande.html#doc_002drande">rande</a>, <a href="doc_002drandg.html#doc_002drandg">randg</a>, <a href="doc_002drandp.html#doc_002drandp">randp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrandn.html#XREFrandn">randn</a>, <a href="XREFrande.html#XREFrande">rande</a>, <a href="XREFrandg.html#XREFrandg">randg</a>, <a href="XREFrandp.html#XREFrandp">randp</a>.
+
+        </blockquote></div>
 
 <!-- randi scripts/general/randi.m -->
-   <p><a name="doc_002drandi"></a>
+   <p><a name="XREFrandi"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>randi</b> (<var>imax</var>)<var><a name="index-randi-1791"></a></var><br>
-&mdash; Function File:  <b>randi</b> (<var>imax, n</var>)<var><a name="index-randi-1792"></a></var><br>
-&mdash; Function File:  <b>randi</b> (<var>imax, m, n, <small class="dots">...</small></var>)<var><a name="index-randi-1793"></a></var><br>
-&mdash; Function File:  <b>randi</b> ([<var>imin imax</var>]<var>, <small class="dots">...</small></var>)<var><a name="index-randi-1794"></a></var><br>
-&mdash; Function File:  <b>randi</b> (<var><small class="dots">...</small>, "class"</var>)<var><a name="index-randi-1795"></a></var><br>
+&mdash; Function File:  <b>randi</b> (<var>imax</var>)<var><a name="index-randi-1934"></a></var><br>
+&mdash; Function File:  <b>randi</b> (<var>imax, n</var>)<var><a name="index-randi-1935"></a></var><br>
+&mdash; Function File:  <b>randi</b> (<var>imax, m, n, <small class="dots">...</small></var>)<var><a name="index-randi-1936"></a></var><br>
+&mdash; Function File:  <b>randi</b> ([<var>imin imax</var>]<var>, <small class="dots">...</small></var>)<var><a name="index-randi-1937"></a></var><br>
+&mdash; Function File:  <b>randi</b> (<var><small class="dots">...</small>, "class"</var>)<var><a name="index-randi-1938"></a></var><br>
 <blockquote><p>Return random integers in the range 1:<var>imax</var>.
 
         <p>Additional arguments determine the shape of the return matrix.  When no
@@ -322,37 +332,38 @@ matrix (<var>m</var>&nbsp;x&nbsp;<var>n</var>&nbsp;x&nbsp;<small class="dots">..
 with a lower and upper bound in which case the returned integers will be
 on the interval [<var>imin</var>,&nbsp;<var>imax</var>]<!-- /@w -->.
 
-        <p>The optional argument "<var>class</var>" will return a matrix of the requested
-type.  The default is "double".
+        <p>The optional argument <var>class</var> will return a matrix of the requested
+type.  The default is <code>"double"</code>.
 
         <p>The following example returns 150 integers in the range 1-10.
 
      <pre class="example">          ri = randi (10, 150, 1)
 </pre>
         <p>Implementation Note: <code>randi</code> relies internally on <code>rand</code> which
-uses class "double" to represent numbers.  This limits the maximum
+uses class <code>"double"</code> to represent numbers.  This limits the maximum
 integer (<var>imax</var>) and range (<var>imax</var> - <var>imin</var>) to the value
 returned by the <code>bitmax</code> function.  For IEEE floating point numbers
 this value is 2^53&nbsp;-&nbsp;1<!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drand.html#doc_002drand">rand</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrand.html#XREFrand">rand</a>.
+
+        </blockquote></div>
 
 <!-- randn libinterp/corefcn/rand.cc -->
-   <p><a name="doc_002drandn"></a>
+   <p><a name="XREFrandn"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>randn</b> (<var>n</var>)<var><a name="index-randn-1796"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-randn-1797"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-randn-1798"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>randn</b> (<var>"state"</var>)<var><a name="index-randn-1799"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var>"state", v</var>)<var><a name="index-randn-1800"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var>"state", "reset"</var>)<var><a name="index-randn-1801"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>randn</b> (<var>"seed"</var>)<var><a name="index-randn-1802"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var>"seed", v</var>)<var><a name="index-randn-1803"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var>"seed", "reset"</var>)<var><a name="index-randn-1804"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-randn-1805"></a></var><br>
-&mdash; Built-in Function:  <b>randn</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-randn-1806"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var>n</var>)<var><a name="index-randn-1939"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-randn-1940"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-randn-1941"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>randn</b> (<var>"state"</var>)<var><a name="index-randn-1942"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var>"state", v</var>)<var><a name="index-randn-1943"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var>"state", "reset"</var>)<var><a name="index-randn-1944"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>randn</b> (<var>"seed"</var>)<var><a name="index-randn-1945"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var>"seed", v</var>)<var><a name="index-randn-1946"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var>"seed", "reset"</var>)<var><a name="index-randn-1947"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-randn-1948"></a></var><br>
+&mdash; Built-in Function:  <b>randn</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-randn-1949"></a></var><br>
 <blockquote><p>Return a matrix with normally distributed random
 elements having zero mean and variance one.  The arguments are
 handled the same as the arguments for <code>rand</code>.
@@ -360,64 +371,68 @@ handled the same as the arguments for <code>rand</code>.
         <p>By default, <code>randn</code> uses the Marsaglia and Tsang &ldquo;Ziggurat technique&rdquo;
 to transform from a uniform to a normal distribution.
 
-        <p>The class of the value returned can be controlled by a trailing "double"
-or "single" argument.  These are the only valid classes.
+        <p>The class of the value returned can be controlled by a trailing
+<code>"double"</code> or <code>"single"</code> argument.  These are the only valid
+classes.
 
         <p>Reference: G. Marsaglia and W.W. Tsang,
 <cite>Ziggurat Method for Generating Random Variables</cite>,
 J. Statistical Software, vol 5, 2000,
 <a href="http://www.jstatsoft.org/v05/i08/">http://www.jstatsoft.org/v05/i08/</a>)
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drand.html#doc_002drand">rand</a>, <a href="doc_002drande.html#doc_002drande">rande</a>, <a href="doc_002drandg.html#doc_002drandg">randg</a>, <a href="doc_002drandp.html#doc_002drandp">randp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrand.html#XREFrand">rand</a>, <a href="XREFrande.html#XREFrande">rande</a>, <a href="XREFrandg.html#XREFrandg">randg</a>, <a href="XREFrandp.html#XREFrandp">randp</a>.
+
+        </blockquote></div>
 
 <!-- rande libinterp/corefcn/rand.cc -->
-   <p><a name="doc_002drande"></a>
+   <p><a name="XREFrande"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rande</b> (<var>n</var>)<var><a name="index-rande-1807"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-rande-1808"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-rande-1809"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>rande</b> (<var>"state"</var>)<var><a name="index-rande-1810"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var>"state", v</var>)<var><a name="index-rande-1811"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var>"state", "reset"</var>)<var><a name="index-rande-1812"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>rande</b> (<var>"seed"</var>)<var><a name="index-rande-1813"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var>"seed", v</var>)<var><a name="index-rande-1814"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var>"seed", "reset"</var>)<var><a name="index-rande-1815"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-rande-1816"></a></var><br>
-&mdash; Built-in Function:  <b>rande</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-rande-1817"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var>n</var>)<var><a name="index-rande-1950"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-rande-1951"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-rande-1952"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>rande</b> (<var>"state"</var>)<var><a name="index-rande-1953"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var>"state", v</var>)<var><a name="index-rande-1954"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var>"state", "reset"</var>)<var><a name="index-rande-1955"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>rande</b> (<var>"seed"</var>)<var><a name="index-rande-1956"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var>"seed", v</var>)<var><a name="index-rande-1957"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var>"seed", "reset"</var>)<var><a name="index-rande-1958"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-rande-1959"></a></var><br>
+&mdash; Built-in Function:  <b>rande</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-rande-1960"></a></var><br>
 <blockquote><p>Return a matrix with exponentially distributed random elements.  The
 arguments are handled the same as the arguments for <code>rand</code>.
 
         <p>By default, <code>randn</code> uses the Marsaglia and Tsang &ldquo;Ziggurat technique&rdquo;
 to transform from a uniform to an exponential distribution.
 
-        <p>The class of the value returned can be controlled by a trailing "double"
-or "single" argument.  These are the only valid classes.
+        <p>The class of the value returned can be controlled by a trailing
+<code>"double"</code> or <code>"single"</code> argument.  These are the only valid
+classes.
 
         <p>Reference: G. Marsaglia and W.W. Tsang,
 <cite>Ziggurat Method for Generating Random Variables</cite>,
 J. Statistical Software, vol 5, 2000,
 <a href="http://www.jstatsoft.org/v05/i08/">http://www.jstatsoft.org/v05/i08/</a>)
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drand.html#doc_002drand">rand</a>, <a href="doc_002drandn.html#doc_002drandn">randn</a>, <a href="doc_002drandg.html#doc_002drandg">randg</a>, <a href="doc_002drandp.html#doc_002drandp">randp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrand.html#XREFrand">rand</a>, <a href="XREFrandn.html#XREFrandn">randn</a>, <a href="XREFrandg.html#XREFrandg">randg</a>, <a href="XREFrandp.html#XREFrandp">randp</a>.
+
+        </blockquote></div>
 
 <!-- randp libinterp/corefcn/rand.cc -->
-   <p><a name="doc_002drandp"></a>
+   <p><a name="XREFrandp"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>randp</b> (<var>l, n</var>)<var><a name="index-randp-1818"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var>l, n, m, <small class="dots">...</small></var>)<var><a name="index-randp-1819"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var>l, </var>[<var>n m <small class="dots">...</small></var>])<var><a name="index-randp-1820"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>randp</b> (<var>"state"</var>)<var><a name="index-randp-1821"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var>"state", v</var>)<var><a name="index-randp-1822"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var>"state", "reset"</var>)<var><a name="index-randp-1823"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>randp</b> (<var>"seed"</var>)<var><a name="index-randp-1824"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var>"seed", v</var>)<var><a name="index-randp-1825"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var>"seed", "reset"</var>)<var><a name="index-randp-1826"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-randp-1827"></a></var><br>
-&mdash; Built-in Function:  <b>randp</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-randp-1828"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>l, n</var>)<var><a name="index-randp-1961"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>l, n, m, <small class="dots">...</small></var>)<var><a name="index-randp-1962"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>l, </var>[<var>n m <small class="dots">...</small></var>])<var><a name="index-randp-1963"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>randp</b> (<var>"state"</var>)<var><a name="index-randp-1964"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>"state", v</var>)<var><a name="index-randp-1965"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>"state", "reset"</var>)<var><a name="index-randp-1966"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>randp</b> (<var>"seed"</var>)<var><a name="index-randp-1967"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>"seed", v</var>)<var><a name="index-randp-1968"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var>"seed", "reset"</var>)<var><a name="index-randp-1969"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-randp-1970"></a></var><br>
+&mdash; Built-in Function:  <b>randp</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-randp-1971"></a></var><br>
 <blockquote><p>Return a matrix with Poisson distributed random elements with mean value
 parameter given by the first argument, <var>l</var>.  The arguments
 are handled the same as the arguments for <code>rand</code>, except for the
@@ -444,27 +459,29 @@ University Graz, Austria, 1994.
 D 50 p1284, 1994. 
 </dl>
 
-        <p>The class of the value returned can be controlled by a trailing "double"
-or "single" argument.  These are the only valid classes.
+        <p>The class of the value returned can be controlled by a trailing
+<code>"double"</code> or <code>"single"</code> argument.  These are the only valid
+classes.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drand.html#doc_002drand">rand</a>, <a href="doc_002drandn.html#doc_002drandn">randn</a>, <a href="doc_002drande.html#doc_002drande">rande</a>, <a href="doc_002drandg.html#doc_002drandg">randg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrand.html#XREFrand">rand</a>, <a href="XREFrandn.html#XREFrandn">randn</a>, <a href="XREFrande.html#XREFrande">rande</a>, <a href="XREFrandg.html#XREFrandg">randg</a>.
+
+        </blockquote></div>
 
 <!-- randg libinterp/corefcn/rand.cc -->
-   <p><a name="doc_002drandg"></a>
+   <p><a name="XREFrandg"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>randg</b> (<var>n</var>)<var><a name="index-randg-1829"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-randg-1830"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-randg-1831"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>randg</b> (<var>"state"</var>)<var><a name="index-randg-1832"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var>"state", v</var>)<var><a name="index-randg-1833"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var>"state", "reset"</var>)<var><a name="index-randg-1834"></a></var><br>
-&mdash; Built-in Function: <var>v</var> = <b>randg</b> (<var>"seed"</var>)<var><a name="index-randg-1835"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var>"seed", v</var>)<var><a name="index-randg-1836"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var>"seed", "reset"</var>)<var><a name="index-randg-1837"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-randg-1838"></a></var><br>
-&mdash; Built-in Function:  <b>randg</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-randg-1839"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var>n</var>)<var><a name="index-randg-1972"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var>n, m, <small class="dots">...</small></var>)<var><a name="index-randg-1973"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> ([<var>n m <small class="dots">...</small></var>])<var><a name="index-randg-1974"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>randg</b> (<var>"state"</var>)<var><a name="index-randg-1975"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var>"state", v</var>)<var><a name="index-randg-1976"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var>"state", "reset"</var>)<var><a name="index-randg-1977"></a></var><br>
+&mdash; Built-in Function: <var>v</var> = <b>randg</b> (<var>"seed"</var>)<var><a name="index-randg-1978"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var>"seed", v</var>)<var><a name="index-randg-1979"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var>"seed", "reset"</var>)<var><a name="index-randg-1980"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var><small class="dots">...</small>, "single"</var>)<var><a name="index-randg-1981"></a></var><br>
+&mdash; Built-in Function:  <b>randg</b> (<var><small class="dots">...</small>, "double"</var>)<var><a name="index-randg-1982"></a></var><br>
 <blockquote><p>Return a matrix with <code>gamma (</code><var>a</var><code>,1)</code> distributed random elements. 
 The arguments are handled the same as the arguments for <code>rand</code>,
 except for the argument <var>a</var>.
@@ -510,11 +527,13 @@ except for the argument <var>a</var>.
 </pre>
           </dl>
 
-        <p>The class of the value returned can be controlled by a trailing "double"
-or "single" argument.  These are the only valid classes.
+        <p>The class of the value returned can be controlled by a trailing
+<code>"double"</code> or <code>"single"</code> argument.  These are the only valid
+classes.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drand.html#doc_002drand">rand</a>, <a href="doc_002drandn.html#doc_002drandn">randn</a>, <a href="doc_002drande.html#doc_002drande">rande</a>, <a href="doc_002drandp.html#doc_002drandp">randp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrand.html#XREFrand">rand</a>, <a href="XREFrandn.html#XREFrandn">randn</a>, <a href="XREFrande.html#XREFrande">rande</a>, <a href="XREFrandp.html#XREFrandp">randp</a>.
+
+        </blockquote></div>
 
    <p>The generators operate in the new or old style together, it is not
 possible to mix the two.  Initializing any generator with
@@ -562,11 +581,11 @@ Biomathematics at The University of Texas, M.D. Anderson Cancer Center,
 Houston, TX 77030.
 
 <!-- randperm libinterp/corefcn/rand.cc -->
-   <p><a name="doc_002drandperm"></a>
+   <p><a name="XREFrandperm"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>randperm</b> (<var>n</var>)<var><a name="index-randperm-1840"></a></var><br>
-&mdash; Built-in Function:  <b>randperm</b> (<var>n, m</var>)<var><a name="index-randperm-1841"></a></var><br>
+&mdash; Built-in Function:  <b>randperm</b> (<var>n</var>)<var><a name="index-randperm-1983"></a></var><br>
+&mdash; Built-in Function:  <b>randperm</b> (<var>n, m</var>)<var><a name="index-randperm-1984"></a></var><br>
 <blockquote><p>Return a row vector containing a random permutation of <code>1:</code><var>n</var>. 
 If <var>m</var> is supplied, return <var>m</var> unique entries, sampled without
 replacement from <code>1:</code><var>n</var>.  The complexity is O(<var>n</var>) in
@@ -574,8 +593,9 @@ memory and O(<var>m</var>) in time, unless <var>m</var> &lt; <var>n</var>/5, in 
 O(<var>m</var>) memory is used as well.  The randomization is performed using
 rand().  All permutations are equally likely.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dperms.html#doc_002dperms">perms</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFperms.html#XREFperms">perms</a>.
+
+        </blockquote></div>
 
    <div class="footnote">
 <hr>

@@ -35,10 +35,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic<
 <h3 class="section">17.6 Special Functions</h3>
 
 <!-- airy libinterp/corefcn/besselj.cc -->
-<p><a name="doc_002dairy"></a>
+<p><a name="XREFairy"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>a</var>, <var>ierr</var>] = <b>airy</b> (<var>k, z, opt</var>)<var><a name="index-airy-2102"></a></var><br>
+&mdash; Built-in Function: [<var>a</var>, <var>ierr</var>] = <b>airy</b> (<var>k, z, opt</var>)<var><a name="index-airy-2257"></a></var><br>
 <blockquote><p>Compute Airy functions of the first and second kind, and their
 derivatives.
 
@@ -75,14 +75,14 @@ return <code>NaN</code>.
 </p></blockquote></div>
 
 <!-- besselj libinterp/corefcn/besselj.cc -->
-   <p><a name="doc_002dbesselj"></a>
+   <p><a name="XREFbesselj"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>j</var>, <var>ierr</var>] = <b>besselj</b> (<var>alpha, x, opt</var>)<var><a name="index-besselj-2103"></a></var><br>
-&mdash; Built-in Function: [<var>y</var>, <var>ierr</var>] = <b>bessely</b> (<var>alpha, x, opt</var>)<var><a name="index-bessely-2104"></a></var><br>
-&mdash; Built-in Function: [<var>i</var>, <var>ierr</var>] = <b>besseli</b> (<var>alpha, x, opt</var>)<var><a name="index-besseli-2105"></a></var><br>
-&mdash; Built-in Function: [<var>k</var>, <var>ierr</var>] = <b>besselk</b> (<var>alpha, x, opt</var>)<var><a name="index-besselk-2106"></a></var><br>
-&mdash; Built-in Function: [<var>h</var>, <var>ierr</var>] = <b>besselh</b> (<var>alpha, k, x, opt</var>)<var><a name="index-besselh-2107"></a></var><br>
+&mdash; Built-in Function: [<var>j</var>, <var>ierr</var>] = <b>besselj</b> (<var>alpha, x, opt</var>)<var><a name="index-besselj-2258"></a></var><br>
+&mdash; Built-in Function: [<var>y</var>, <var>ierr</var>] = <b>bessely</b> (<var>alpha, x, opt</var>)<var><a name="index-bessely-2259"></a></var><br>
+&mdash; Built-in Function: [<var>i</var>, <var>ierr</var>] = <b>besseli</b> (<var>alpha, x, opt</var>)<var><a name="index-besseli-2260"></a></var><br>
+&mdash; Built-in Function: [<var>k</var>, <var>ierr</var>] = <b>besselk</b> (<var>alpha, x, opt</var>)<var><a name="index-besselk-2261"></a></var><br>
+&mdash; Built-in Function: [<var>h</var>, <var>ierr</var>] = <b>besselh</b> (<var>alpha, k, x, opt</var>)<var><a name="index-besselh-2262"></a></var><br>
 <blockquote><p>Compute Bessel or Hankel functions of various kinds:
 
           <dl>
@@ -137,22 +137,23 @@ return <code>NaN</code>.
 </p></blockquote></div>
 
 <!-- beta scripts/specfun/beta.m -->
-   <p><a name="doc_002dbeta"></a>
+   <p><a name="XREFbeta"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>beta</b> (<var>a, b</var>)<var><a name="index-beta-2108"></a></var><br>
+&mdash; Mapping Function:  <b>beta</b> (<var>a, b</var>)<var><a name="index-beta-2263"></a></var><br>
 <blockquote><p>For real inputs, return the Beta function,
 
      <pre class="example">          beta (a, b) = gamma (a) * gamma (b) / gamma (a + b).
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dbetaln.html#doc_002dbetaln">betaln</a>, <a href="doc_002dbetainc.html#doc_002dbetainc">betainc</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFbetaln.html#XREFbetaln">betaln</a>, <a href="XREFbetainc.html#XREFbetainc">betainc</a>.
+
+        </blockquote></div>
 
 <!-- betainc libinterp/corefcn/betainc.cc -->
-   <p><a name="doc_002dbetainc"></a>
+   <p><a name="XREFbetainc"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>betainc</b> (<var>x, a, b</var>)<var><a name="index-betainc-2109"></a></var><br>
+&mdash; Mapping Function:  <b>betainc</b> (<var>x, a, b</var>)<var><a name="index-betainc-2264"></a></var><br>
 <blockquote><p>Return the regularized incomplete Beta function,
 <!-- Set example in small font to prevent overfull line -->
 
@@ -166,40 +167,43 @@ return <code>NaN</code>.
 scalars.  If <var>x</var> is a scalar, <var>a</var> and <var>b</var> must be of
 compatible dimensions.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbetaincinv.html#doc_002dbetaincinv">betaincinv</a>, <a href="doc_002dbeta.html#doc_002dbeta">beta</a>, <a href="doc_002dbetaln.html#doc_002dbetaln">betaln</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbetaincinv.html#XREFbetaincinv">betaincinv</a>, <a href="XREFbeta.html#XREFbeta">beta</a>, <a href="XREFbetaln.html#XREFbetaln">betaln</a>.
+
+        </blockquote></div>
 
 <!-- betaincinv libinterp/corefcn/betainc.cc -->
-   <p><a name="doc_002dbetaincinv"></a>
+   <p><a name="XREFbetaincinv"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>betaincinv</b> (<var>y, a, b</var>)<var><a name="index-betaincinv-2110"></a></var><br>
+&mdash; Mapping Function:  <b>betaincinv</b> (<var>y, a, b</var>)<var><a name="index-betaincinv-2265"></a></var><br>
 <blockquote><p>Compute the inverse of the incomplete Beta function, i.e., <var>x</var> such that
 
      <pre class="example">          <var>y</var> == betainc (<var>x</var>, <var>a</var>, <var>b</var>)
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dbetainc.html#doc_002dbetainc">betainc</a>, <a href="doc_002dbeta.html#doc_002dbeta">beta</a>, <a href="doc_002dbetaln.html#doc_002dbetaln">betaln</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFbetainc.html#XREFbetainc">betainc</a>, <a href="XREFbeta.html#XREFbeta">beta</a>, <a href="XREFbetaln.html#XREFbetaln">betaln</a>.
+
+        </blockquote></div>
 
 <!-- betaln scripts/specfun/betaln.m -->
-   <p><a name="doc_002dbetaln"></a>
+   <p><a name="XREFbetaln"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>betaln</b> (<var>a, b</var>)<var><a name="index-betaln-2111"></a></var><br>
+&mdash; Mapping Function:  <b>betaln</b> (<var>a, b</var>)<var><a name="index-betaln-2266"></a></var><br>
 <blockquote><p>Return the natural logarithm of the Beta function,
 
      <pre class="example">          betaln (a, b) = log (beta (a, b))
 </pre>
         <p>calculated in a way to reduce the occurrence of underflow.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbeta.html#doc_002dbeta">beta</a>, <a href="doc_002dbetainc.html#doc_002dbetainc">betainc</a>, <a href="doc_002dgammaln.html#doc_002dgammaln">gammaln</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbeta.html#XREFbeta">beta</a>, <a href="XREFbetainc.html#XREFbetainc">betainc</a>, <a href="XREFgammaln.html#XREFgammaln">gammaln</a>.
+
+        </blockquote></div>
 
 <!-- bincoeff scripts/miscellaneous/bincoeff.m -->
-   <p><a name="doc_002dbincoeff"></a>
+   <p><a name="XREFbincoeff"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>bincoeff</b> (<var>n, k</var>)<var><a name="index-bincoeff-2112"></a></var><br>
+&mdash; Mapping Function:  <b>bincoeff</b> (<var>n, k</var>)<var><a name="index-bincoeff-2267"></a></var><br>
 <blockquote><p>Return the binomial coefficient of <var>n</var> and <var>k</var>, defined as
 
      <pre class="example">           /   \
@@ -217,14 +221,15 @@ compatible dimensions.
 scalar integer arguments.  It also warns about loss of precision for
 big arguments.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnchoosek.html#doc_002dnchoosek">nchoosek</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnchoosek.html#XREFnchoosek">nchoosek</a>.
+
+        </blockquote></div>
 
 <!-- commutation_matrix scripts/linear-algebra/commutation_matrix.m -->
-   <p><a name="doc_002dcommutation_005fmatrix"></a>
+   <p><a name="XREFcommutation_005fmatrix"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>commutation_matrix</b> (<var>m, n</var>)<var><a name="index-commutation_005fmatrix-2113"></a></var><br>
+&mdash; Function File:  <b>commutation_matrix</b> (<var>m, n</var>)<var><a name="index-commutation_005fmatrix-2268"></a></var><br>
 <blockquote><p>Return the commutation matrix
  K(m,n)
  which is the unique
@@ -245,10 +250,10 @@ Applications in Statistics and Econometrics.</cite>
 </p></blockquote></div>
 
 <!-- duplication_matrix scripts/linear-algebra/duplication_matrix.m -->
-   <p><a name="doc_002dduplication_005fmatrix"></a>
+   <p><a name="XREFduplication_005fmatrix"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>duplication_matrix</b> (<var>n</var>)<var><a name="index-duplication_005fmatrix-2114"></a></var><br>
+&mdash; Function File:  <b>duplication_matrix</b> (<var>n</var>)<var><a name="index-duplication_005fmatrix-2269"></a></var><br>
 <blockquote><p>Return the duplication matrix
 Dn
  which is the unique
@@ -265,23 +270,24 @@ applications in statistics and econometrics.
 </p></blockquote></div>
 
 <!-- dawson libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002ddawson"></a>
+   <p><a name="XREFdawson"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>dawson</b> (<var>z</var>)<var><a name="index-dawson-2115"></a></var><br>
+&mdash; Mapping Function:  <b>dawson</b> (<var>z</var>)<var><a name="index-dawson-2270"></a></var><br>
 <blockquote><p>Compute the Dawson (scaled imaginary error) function,
 
      <pre class="example">          (sqrt (pi) / 2) * exp (-z^2) * erfi (z)
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derfc.html#doc_002derfc">erfc</a>, <a href="doc_002derf.html#doc_002derf">erf</a>, <a href="doc_002derfcx.html#doc_002derfcx">erfcx</a>, <a href="doc_002derfi.html#doc_002derfi">erfi</a>, <a href="doc_002derfinv.html#doc_002derfinv">erfinv</a>, <a href="doc_002derfcinv.html#doc_002derfcinv">erfcinv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerfc.html#XREFerfc">erfc</a>, <a href="XREFerf.html#XREFerf">erf</a>, <a href="XREFerfcx.html#XREFerfcx">erfcx</a>, <a href="XREFerfi.html#XREFerfi">erfi</a>, <a href="XREFerfinv.html#XREFerfinv">erfinv</a>, <a href="XREFerfcinv.html#XREFerfcinv">erfcinv</a>.
+
+        </blockquote></div>
 
 <!-- ellipj libinterp/corefcn/ellipj.cc -->
-   <p><a name="doc_002dellipj"></a>
+   <p><a name="XREFellipj"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>sn</var>, <var>cn</var>, <var>dn</var>, <var>err</var>] = <b>ellipj</b> (<var>u, m</var>)<var><a name="index-ellipj-2116"></a></var><br>
-&mdash; Built-in Function: [<var>sn</var>, <var>cn</var>, <var>dn</var>, <var>err</var>] = <b>ellipj</b> (<var>u, m, tol</var>)<var><a name="index-ellipj-2117"></a></var><br>
+&mdash; Built-in Function: [<var>sn</var>, <var>cn</var>, <var>dn</var>, <var>err</var>] = <b>ellipj</b> (<var>u, m</var>)<var><a name="index-ellipj-2271"></a></var><br>
+&mdash; Built-in Function: [<var>sn</var>, <var>cn</var>, <var>dn</var>, <var>err</var>] = <b>ellipj</b> (<var>u, m, tol</var>)<var><a name="index-ellipj-2272"></a></var><br>
 <blockquote><p>Compute the Jacobi elliptic functions <var>sn</var>, <var>cn</var>, and <var>dn</var>
 of complex argument <var>u</var> and real parameter <var>m</var>.
 
@@ -293,52 +299,55 @@ results are matrices with <code>length (</code><var>u</var><code>)</code> rows a
 <var>m</var> must conform and the results will be the same size.
 
         <p>The value of <var>u</var> may be complex. 
-The value of <var>m</var> must be 0 &lt;= m &lt;= 1.
+The value of <var>m</var> must be 0 &le; m &le; 1.
 
-        <p><var>tol</var> is currently ignored (<span class="sc">Matlab</span> uses this to allow faster,
+        <p><var>tol</var> is currently ignored (<span class="sc">matlab</span> uses this to allow faster,
 less accurate approximation).
 
         <p>If requested, <var>err</var> contains the following status information
 and is the same size as the result.
 
           <ol type=1 start=0>
-<li>Normal return. 
-<li>Error&mdash;no computation, algorithm termination condition not met,
+<li>Normal return.
+
+          <li>Error&mdash;no computation, algorithm termination condition not met,
 return <code>NaN</code>.
              </ol>
  Ref: Abramowitz, Milton and Stegun, Irene A
       Handbook of Mathematical Functions, Dover, 1965
       Chapter 16 (Sections 16.4, 16.13 and 16.15)
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dellipke.html#doc_002dellipke">ellipke</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFellipke.html#XREFellipke">ellipke</a>.
+
+        </blockquote></div>
 
 <!-- ellipke scripts/specfun/ellipke.m -->
-   <p><a name="doc_002dellipke"></a>
+   <p><a name="XREFellipke"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ellipke</b> (<var>m</var>)<var><a name="index-ellipke-2118"></a></var><br>
-&mdash; Function File:  <b>ellipke</b> (<var>m, tol</var>)<var><a name="index-ellipke-2119"></a></var><br>
-&mdash; Function File: [<var>k</var>, <var>e</var>] = <b>ellipke</b> (<var><small class="dots">...</small></var>)<var><a name="index-ellipke-2120"></a></var><br>
+&mdash; Function File:  <b>ellipke</b> (<var>m</var>)<var><a name="index-ellipke-2273"></a></var><br>
+&mdash; Function File:  <b>ellipke</b> (<var>m, tol</var>)<var><a name="index-ellipke-2274"></a></var><br>
+&mdash; Function File: [<var>k</var>, <var>e</var>] = <b>ellipke</b> (<var><small class="dots">...</small></var>)<var><a name="index-ellipke-2275"></a></var><br>
 <blockquote><p>Compute complete elliptic integral of the first K(<var>m</var>) and second
 E(<var>m</var>) kind.
 
-        <p><var>m</var> is either real array or scalar with 0 &lt;= m &lt;= 1.
+        <p><var>m</var> is either real array or scalar with 0 &le; m &le; 1.
 
-        <p><var>tol</var> is currently ignored (<span class="sc">Matlab</span> uses this to allow faster,
+        <p><var>tol</var> is currently ignored (<span class="sc">matlab</span> uses this to allow faster,
 less accurate approximation).
 
         <p>Ref: Abramowitz, Milton and Stegun, Irene A. Handbook of Mathematical
 Functions, Dover, 1965, Chapter 17.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dellipj.html#doc_002dellipj">ellipj</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFellipj.html#XREFellipj">ellipj</a>.
+
+        </blockquote></div>
 
 <!-- erf libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002derf"></a>
+   <p><a name="XREFerf"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>erf</b> (<var>z</var>)<var><a name="index-erf-2121"></a></var><br>
+&mdash; Mapping Function:  <b>erf</b> (<var>z</var>)<var><a name="index-erf-2276"></a></var><br>
 <blockquote><p>Compute the error function,
 
      <pre class="example">                                  z
@@ -347,73 +356,79 @@ Functions, Dover, 1965, Chapter 17.
                     sqrt (pi)    /
                               t=0
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derfc.html#doc_002derfc">erfc</a>, <a href="doc_002derfcx.html#doc_002derfcx">erfcx</a>, <a href="doc_002derfi.html#doc_002derfi">erfi</a>, <a href="doc_002ddawson.html#doc_002ddawson">dawson</a>, <a href="doc_002derfinv.html#doc_002derfinv">erfinv</a>, <a href="doc_002derfcinv.html#doc_002derfcinv">erfcinv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerfc.html#XREFerfc">erfc</a>, <a href="XREFerfcx.html#XREFerfcx">erfcx</a>, <a href="XREFerfi.html#XREFerfi">erfi</a>, <a href="XREFdawson.html#XREFdawson">dawson</a>, <a href="XREFerfinv.html#XREFerfinv">erfinv</a>, <a href="XREFerfcinv.html#XREFerfcinv">erfcinv</a>.
+
+        </blockquote></div>
 
 <!-- erfc libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002derfc"></a>
+   <p><a name="XREFerfc"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>erfc</b> (<var>z</var>)<var><a name="index-erfc-2122"></a></var><br>
+&mdash; Mapping Function:  <b>erfc</b> (<var>z</var>)<var><a name="index-erfc-2277"></a></var><br>
 <blockquote><p>Compute the complementary error function,
 <code>1&nbsp;-&nbsp;erf&nbsp;(</code><var>z</var><code>)</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002derfcinv.html#doc_002derfcinv">erfcinv</a>, <a href="doc_002derfcx.html#doc_002derfcx">erfcx</a>, <a href="doc_002derfi.html#doc_002derfi">erfi</a>, <a href="doc_002ddawson.html#doc_002ddawson">dawson</a>, <a href="doc_002derf.html#doc_002derf">erf</a>, <a href="doc_002derfinv.html#doc_002derfinv">erfinv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFerfcinv.html#XREFerfcinv">erfcinv</a>, <a href="XREFerfcx.html#XREFerfcx">erfcx</a>, <a href="XREFerfi.html#XREFerfi">erfi</a>, <a href="XREFdawson.html#XREFdawson">dawson</a>, <a href="XREFerf.html#XREFerf">erf</a>, <a href="XREFerfinv.html#XREFerfinv">erfinv</a>.
+
+        </blockquote></div>
 
 <!-- erfcx libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002derfcx"></a>
+   <p><a name="XREFerfcx"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>erfcx</b> (<var>z</var>)<var><a name="index-erfcx-2123"></a></var><br>
+&mdash; Mapping Function:  <b>erfcx</b> (<var>z</var>)<var><a name="index-erfcx-2278"></a></var><br>
 <blockquote><p>Compute the scaled complementary error function,
 
      <pre class="example">          exp (z^2) * erfc (z)
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derfc.html#doc_002derfc">erfc</a>, <a href="doc_002derf.html#doc_002derf">erf</a>, <a href="doc_002derfi.html#doc_002derfi">erfi</a>, <a href="doc_002ddawson.html#doc_002ddawson">dawson</a>, <a href="doc_002derfinv.html#doc_002derfinv">erfinv</a>, <a href="doc_002derfcinv.html#doc_002derfcinv">erfcinv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerfc.html#XREFerfc">erfc</a>, <a href="XREFerf.html#XREFerf">erf</a>, <a href="XREFerfi.html#XREFerfi">erfi</a>, <a href="XREFdawson.html#XREFdawson">dawson</a>, <a href="XREFerfinv.html#XREFerfinv">erfinv</a>, <a href="XREFerfcinv.html#XREFerfcinv">erfcinv</a>.
+
+        </blockquote></div>
 
 <!-- erfi libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002derfi"></a>
+   <p><a name="XREFerfi"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>erfi</b> (<var>z</var>)<var><a name="index-erfi-2124"></a></var><br>
+&mdash; Mapping Function:  <b>erfi</b> (<var>z</var>)<var><a name="index-erfi-2279"></a></var><br>
 <blockquote><p>Compute the imaginary error function,
 
      <pre class="example">          -i * erf (i*z)
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derfc.html#doc_002derfc">erfc</a>, <a href="doc_002derf.html#doc_002derf">erf</a>, <a href="doc_002derfcx.html#doc_002derfcx">erfcx</a>, <a href="doc_002ddawson.html#doc_002ddawson">dawson</a>, <a href="doc_002derfinv.html#doc_002derfinv">erfinv</a>, <a href="doc_002derfcinv.html#doc_002derfcinv">erfcinv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerfc.html#XREFerfc">erfc</a>, <a href="XREFerf.html#XREFerf">erf</a>, <a href="XREFerfcx.html#XREFerfcx">erfcx</a>, <a href="XREFdawson.html#XREFdawson">dawson</a>, <a href="XREFerfinv.html#XREFerfinv">erfinv</a>, <a href="XREFerfcinv.html#XREFerfcinv">erfcinv</a>.
+
+        </blockquote></div>
 
 <!-- erfinv libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002derfinv"></a>
+   <p><a name="XREFerfinv"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>erfinv</b> (<var>x</var>)<var><a name="index-erfinv-2125"></a></var><br>
+&mdash; Mapping Function:  <b>erfinv</b> (<var>x</var>)<var><a name="index-erfinv-2280"></a></var><br>
 <blockquote><p>Compute the inverse error function, i.e., <var>y</var> such that
 
      <pre class="example">          erf (<var>y</var>) == <var>x</var>
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derf.html#doc_002derf">erf</a>, <a href="doc_002derfc.html#doc_002derfc">erfc</a>, <a href="doc_002derfcx.html#doc_002derfcx">erfcx</a>, <a href="doc_002derfi.html#doc_002derfi">erfi</a>, <a href="doc_002ddawson.html#doc_002ddawson">dawson</a>, <a href="doc_002derfcinv.html#doc_002derfcinv">erfcinv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerf.html#XREFerf">erf</a>, <a href="XREFerfc.html#XREFerfc">erfc</a>, <a href="XREFerfcx.html#XREFerfcx">erfcx</a>, <a href="XREFerfi.html#XREFerfi">erfi</a>, <a href="XREFdawson.html#XREFdawson">dawson</a>, <a href="XREFerfcinv.html#XREFerfcinv">erfcinv</a>.
+
+        </blockquote></div>
 
 <!-- erfcinv libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002derfcinv"></a>
+   <p><a name="XREFerfcinv"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>erfcinv</b> (<var>x</var>)<var><a name="index-erfcinv-2126"></a></var><br>
+&mdash; Mapping Function:  <b>erfcinv</b> (<var>x</var>)<var><a name="index-erfcinv-2281"></a></var><br>
 <blockquote><p>Compute the inverse complementary error function, i.e., <var>y</var> such that
 
      <pre class="example">          erfc (<var>y</var>) == <var>x</var>
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derfc.html#doc_002derfc">erfc</a>, <a href="doc_002derf.html#doc_002derf">erf</a>, <a href="doc_002derfcx.html#doc_002derfcx">erfcx</a>, <a href="doc_002derfi.html#doc_002derfi">erfi</a>, <a href="doc_002ddawson.html#doc_002ddawson">dawson</a>, <a href="doc_002derfinv.html#doc_002derfinv">erfinv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerfc.html#XREFerfc">erfc</a>, <a href="XREFerf.html#XREFerf">erf</a>, <a href="XREFerfcx.html#XREFerfcx">erfcx</a>, <a href="XREFerfi.html#XREFerfi">erfi</a>, <a href="XREFdawson.html#XREFdawson">dawson</a>, <a href="XREFerfinv.html#XREFerfinv">erfinv</a>.
+
+        </blockquote></div>
 
 <!-- expint scripts/specfun/expint.m -->
-   <p><a name="doc_002dexpint"></a>
+   <p><a name="XREFexpint"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>expint</b> (<var>x</var>)<var><a name="index-expint-2127"></a></var><br>
+&mdash; Function File:  <b>expint</b> (<var>x</var>)<var><a name="index-expint-2282"></a></var><br>
 <blockquote><p>Compute the exponential integral,
 
      <pre class="example">                        infinity
@@ -425,10 +440,10 @@ Functions, Dover, 1965, Chapter 17.
         </blockquote></div>
 
 <!-- gamma libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dgamma"></a>
+   <p><a name="XREFgamma"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>gamma</b> (<var>z</var>)<var><a name="index-gamma-2128"></a></var><br>
+&mdash; Mapping Function:  <b>gamma</b> (<var>z</var>)<var><a name="index-gamma-2283"></a></var><br>
 <blockquote><p>Compute the Gamma function,
 
      <pre class="example">                       infinity
@@ -437,16 +452,17 @@ Functions, Dover, 1965, Chapter 17.
                       /
                    t=0
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dgammainc.html#doc_002dgammainc">gammainc</a>, <a href="doc_002dlgamma.html#doc_002dlgamma">lgamma</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFgammainc.html#XREFgammainc">gammainc</a>, <a href="XREFlgamma.html#XREFlgamma">lgamma</a>.
+
+        </blockquote></div>
 
 <!-- gammainc libinterp/corefcn/gammainc.cc -->
-   <p><a name="doc_002dgammainc"></a>
+   <p><a name="XREFgammainc"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>gammainc</b> (<var>x, a</var>)<var><a name="index-gammainc-2129"></a></var><br>
-&mdash; Mapping Function:  <b>gammainc</b> (<var>x, a, "lower"</var>)<var><a name="index-gammainc-2130"></a></var><br>
-&mdash; Mapping Function:  <b>gammainc</b> (<var>x, a, "upper"</var>)<var><a name="index-gammainc-2131"></a></var><br>
+&mdash; Mapping Function:  <b>gammainc</b> (<var>x, a</var>)<var><a name="index-gammainc-2284"></a></var><br>
+&mdash; Mapping Function:  <b>gammainc</b> (<var>x, a, "lower"</var>)<var><a name="index-gammainc-2285"></a></var><br>
+&mdash; Mapping Function:  <b>gammainc</b> (<var>x, a, "upper"</var>)<var><a name="index-gammainc-2286"></a></var><br>
 <blockquote><p>Compute the normalized incomplete gamma function,
 
      <pre class="example">                                          x
@@ -465,20 +481,21 @@ for each element of <var>x</var> and vice versa.
 <var>a</var> must agree, and <code>gammainc</code> is applied element-by-element.
 
         <p>By default the incomplete gamma function integrated from 0 to <var>x</var> is
-computed.  If "upper" is given then the complementary function integrated
-from <var>x</var> to infinity is calculated.  It should be noted that
+computed.  If <code>"upper"</code> is given then the complementary function
+integrated from <var>x</var> to infinity is calculated.  It should be noted that
 
      <pre class="example">          gammainc (<var>x</var>, <var>a</var>) == 1 - gammainc (<var>x</var>, <var>a</var>, "upper")
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dgamma.html#doc_002dgamma">gamma</a>, <a href="doc_002dlgamma.html#doc_002dlgamma">lgamma</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFgamma.html#XREFgamma">gamma</a>, <a href="XREFlgamma.html#XREFlgamma">lgamma</a>.
+
+        </blockquote></div>
 
 <!-- legendre scripts/specfun/legendre.m -->
-   <p><a name="doc_002dlegendre"></a>
+   <p><a name="XREFlegendre"></a>
 
 <div class="defun">
-&mdash; Function File: <var>l</var> = <b>legendre</b> (<var>n, x</var>)<var><a name="index-legendre-2132"></a></var><br>
-&mdash; Function File: <var>l</var> = <b>legendre</b> (<var>n, x, normalization</var>)<var><a name="index-legendre-2133"></a></var><br>
+&mdash; Function File: <var>l</var> = <b>legendre</b> (<var>n, x</var>)<var><a name="index-legendre-2287"></a></var><br>
+&mdash; Function File: <var>l</var> = <b>legendre</b> (<var>n, x, normalization</var>)<var><a name="index-legendre-2288"></a></var><br>
 <blockquote><p>Compute the Legendre function of degree <var>n</var> and order
 <var>m</var> = 0 <small class="dots">...</small> N.  The optional argument, <var>normalization</var>,
 may be one of <code>"unnorm"</code>, <code>"sch"</code>, or <code>"norm"</code>. 
@@ -541,16 +558,17 @@ to the unnormalized Legendre functions by the following:
 </pre>
         </blockquote></div>
 
-   <p><a name="doc_002dgammaln"></a><!-- lgamma libinterp/corefcn/mappers.cc -->
-<a name="doc_002dlgamma"></a>
+   <p><a name="XREFgammaln"></a><!-- lgamma libinterp/corefcn/mappers.cc -->
+<a name="XREFlgamma"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>lgamma</b> (<var>x</var>)<var><a name="index-lgamma-2134"></a></var><br>
-&mdash; Mapping Function:  <b>gammaln</b> (<var>x</var>)<var><a name="index-gammaln-2135"></a></var><br>
+&mdash; Mapping Function:  <b>lgamma</b> (<var>x</var>)<var><a name="index-lgamma-2289"></a></var><br>
+&mdash; Mapping Function:  <b>gammaln</b> (<var>x</var>)<var><a name="index-gammaln-2290"></a></var><br>
 <blockquote><p>Return the natural logarithm of the gamma function of <var>x</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgamma.html#doc_002dgamma">gamma</a>, <a href="doc_002dgammainc.html#doc_002dgammainc">gammainc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgamma.html#XREFgamma">gamma</a>, <a href="XREFgammainc.html#XREFgammainc">gammainc</a>.
+
+        </blockquote></div>
 
    </body></html>
 

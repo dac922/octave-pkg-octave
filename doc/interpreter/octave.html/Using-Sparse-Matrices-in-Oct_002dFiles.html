@@ -34,9 +34,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Sparse-Matrices-in-Oct_002dFiles.html#S
 <h5 class="subsubsection">A.1.6.3 Using Sparse Matrices in Oct-Files</h5>
 
 <p>Most of the same operators and functions on sparse matrices that are
-available from the Octave are equally available with oct-files. 
+available from the Octave command line are also available within oct-files. 
 The basic means of extracting a sparse matrix from an <code>octave_value</code>
-and returning them as an <code>octave_value</code>, can be seen in the
+and returning it as an <code>octave_value</code>, can be seen in the
 following example.
 
 <pre class="example">     octave_value_list retval;
@@ -50,7 +50,7 @@ following example.
      retval(1) = scm;
      retval(0) = sm;
 </pre>
-   <p>The conversion to an octave-value is handled by the sparse
+   <p>The conversion to an <code>octave_value</code> is handled by the sparse
 <code>octave_value</code> constructors, and so no special care is needed.
 
    </body></html>

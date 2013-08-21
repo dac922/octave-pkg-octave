@@ -77,7 +77,7 @@ this condition can also be written as a boolean index.  For instance,
 instead of
 
 <pre class="example">     for i = 1:n
-       if a(i) &gt; 5
+       if (a(i) &gt; 5)
          a(i) -= 20
        endif
      endfor
@@ -94,10 +94,10 @@ simple inline functions, the <code>vectorize</code> function can do this
 automatically.
 
 <!-- vectorize libinterp/octave-value/ov-fcn-inline.cc -->
-   <p><a name="doc_002dvectorize"></a>
+   <p><a name="XREFvectorize"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>vectorize</b> (<var>fun</var>)<var><a name="index-vectorize-2324"></a></var><br>
+&mdash; Built-in Function:  <b>vectorize</b> (<var>fun</var>)<var><a name="index-vectorize-2479"></a></var><br>
 <blockquote><p>Create a vectorized version of the inline function <var>fun</var>
 by replacing all occurrences of <code>*</code>, <code>/</code>, etc., with
 <code>.*</code>, <code>./</code>, etc.
@@ -111,8 +111,9 @@ is expected.
           quadv (fcn, 0, 3)
              &rArr; 6
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dinline.html#doc_002dinline">inline</a>, <a href="doc_002dformula.html#doc_002dformula">formula</a>, <a href="doc_002dargnames.html#doc_002dargnames">argnames</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFinline.html#XREFinline">inline</a>, <a href="XREFformula.html#XREFformula">formula</a>, <a href="XREFargnames.html#XREFargnames">argnames</a>.
+
+        </blockquote></div>
 
    <p>Also exploit broadcasting in these elementwise operators both to avoid
 looping and unnecessary intermediate memory allocations. 

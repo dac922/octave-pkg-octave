@@ -35,13 +35,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Strings.html#Strings">Strings</a>
 <h3 class="section">5.2 Character Arrays</h3>
 
 <p>The string representation used by Octave is an array of characters, so
-internally the string "dddddddddd" is actually a row vector of length 10
-containing the value 100 in all places (100 is the ASCII code of "d").  This
-lends itself to the obvious generalization to character matrices.  Using a
-matrix of characters, it is possible to represent a collection of same-length
-strings in one variable.  The convention used in Octave is that each row in a
-character matrix is a separate string, but letting each column represent a
-string is equally possible.
+internally the string <code>"dddddddddd"</code> is actually a row vector
+of length 10 containing the value 100 in all places (100 is the ASCII code of
+<code>"d"</code>).  This lends itself to the obvious generalization to character
+matrices.  Using a matrix of characters, it is possible to represent a
+collection of same-length strings in one variable.  The convention used in
+Octave is that each row in a character matrix is a separate string, but letting
+each column represent a string is equally possible.
 
    <p>The easiest way to create a character matrix is to put several strings
 together into a matrix.
@@ -54,14 +54,15 @@ together into a matrix.
 matrix.
 
 <!-- ischar libinterp/corefcn/strfns.cc -->
-   <p><a name="doc_002dischar"></a>
+   <p><a name="XREFischar"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ischar</b> (<var>x</var>)<var><a name="index-ischar-346"></a></var><br>
+&mdash; Built-in Function:  <b>ischar</b> (<var>x</var>)<var><a name="index-ischar-356"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a character array.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002discellstr.html#doc_002discellstr">iscellstr</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisfloat.html#XREFisfloat">isfloat</a>, <a href="XREFisinteger.html#XREFisinteger">isinteger</a>, <a href="XREFislogical.html#XREFislogical">islogical</a>, <a href="XREFisnumeric.html#XREFisnumeric">isnumeric</a>, <a href="XREFiscellstr.html#XREFiscellstr">iscellstr</a>, <a href="XREFisa.html#XREFisa">isa</a>.
+
+        </blockquote></div>
 
    <p>To test if an object is a string (i.e., a character vector and not a character
 matrix) you can use the <code>ischar</code> function in combination with the
@@ -83,12 +84,12 @@ string.  It is possible to use a different character than the
 blank character using the <code>string_fill_char</code> function.
 
 <!-- string_fill_char libinterp/parse-tree/pt-mat.cc -->
-   <p><a name="doc_002dstring_005ffill_005fchar"></a>
+   <p><a name="XREFstring_005ffill_005fchar"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>string_fill_char</b> ()<var><a name="index-string_005ffill_005fchar-347"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>string_fill_char</b> (<var>new_val</var>)<var><a name="index-string_005ffill_005fchar-348"></a></var><br>
-&mdash; Built-in Function:  <b>string_fill_char</b> (<var>new_val, "local"</var>)<var><a name="index-string_005ffill_005fchar-349"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>string_fill_char</b> ()<var><a name="index-string_005ffill_005fchar-357"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>string_fill_char</b> (<var>new_val</var>)<var><a name="index-string_005ffill_005fchar-358"></a></var><br>
+&mdash; Built-in Function:  <b>string_fill_char</b> (<var>new_val, "local"</var>)<var><a name="index-string_005ffill_005fchar-359"></a></var><br>
 <blockquote><p>Query or set the internal variable used to pad all rows of a character
 matrix to the same length.  It must be a single character.  The default
 value is <code>" "</code> (a single space).  For example:
@@ -99,9 +100,9 @@ value is <code>" "</code> (a single space).  For example:
                     "areXXXX"
                     "strings"
 </pre>
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
    <p>This shows a problem with character matrices.  It simply isn't possible to

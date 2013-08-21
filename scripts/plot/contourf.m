@@ -18,35 +18,35 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn  {Function File} {[@var{c}, @var{h}] =} contourf (@var{x}, @var{y}, @var{z}, @var{lvl})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@var{x}, @var{y}, @var{z}, @var{n})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@var{x}, @var{y}, @var{z})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@var{z}, @var{n})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@var{z}, @var{lvl})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@var{z})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@var{ax}, @dots{})
-## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@dots{}, @var{"property"}, @var{val})
-## Compute and plot filled contours of the matrix @var{z}.
-## Parameters @var{x}, @var{y} and @var{n} or @var{lvl} are optional.
+## @deftypefn  {Function File} {} contourf (@var{z})
+## @deftypefnx {Function File} {} contourf (@var{z}, @var{vn})
+## @deftypefnx {Function File} {} contourf (@var{x}, @var{y}, @var{z})
+## @deftypefnx {Function File} {} contourf (@var{x}, @var{y}, @var{z}, @var{vn})
+## @deftypefnx {Function File} {} contourf (@dots{}, @var{style})
+## @deftypefnx {Function File} {} contourf (@var{hax}, @dots{})
+## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contourf (@dots{})
+## Create a 2-D contour plot with filled intervals.
 ##
-## The return value @var{c} is a 2xn matrix containing the contour lines
-## as described in the help to the contourc function.
+## Plot level curves (contour lines) of the matrix @var{z} and fill the region
+## between lines with colors from the current colormap.
 ##
-## The return value @var{h} is handle-vector to the patch objects creating
-## the filled contours.
+## The level curves are taken from the contour matrix @var{c} computed by
+## @code{contourc} for the same arguments; see the latter for their
+## interpretation.
 ##
-## If @var{x} and @var{y} are omitted they are taken as the row/column
-## index of @var{z}.  @var{n} is a scalar denoting the number of lines
-## to compute.  Alternatively @var{lvl} is a vector containing the
-## contour levels.  If only one value (e.g., lvl0) is wanted, set
-## @var{lvl} to [lvl0, lvl0].  If both @var{n} or @var{lvl} are omitted
-## a default value of 10 contour level is assumed.
+## The appearance of contour lines can be defined with a line style @var{style}
+## in the same manner as @code{plot}.  Only line style and color are used;
+## Any markers defined by @var{style} are ignored.
 ##
-## If provided, the filled contours are added to the axes object
-## @var{ax} instead of the current axis.
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
-## The following example plots filled contours of the @code{peaks}
-## function.
+## The optional output @var{c} are the contour levels in @code{contourc} format.
+##
+## The optional return value @var{h} is a graphics handle to the hggroup
+## comprising the contour lines.
+##
+## The following example plots filled contours of the @code{peaks} function.
 ##
 ## @example
 ## @group
@@ -54,7 +54,7 @@
 ## contourf (x, y, z, -7:9)
 ## @end group
 ## @end example
-## @seealso{contour, contourc, patch}
+## @seealso{ezcontourf, contour, contourc, contour3, clabel, meshc, surfc, caxis, colormap, plot}
 ## @end deftypefn
 
 ## Author: Kai Habel <kai.habel@gmx.de>
@@ -62,16 +62,21 @@
 
 function [c, h] = contourf (varargin)
 
-  [xh, varargin] = __plt_get_axis_arg__ ("contour", varargin{:});
+  [hax, varargin] = __plt_get_axis_arg__ ("contour", varargin{:});
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (xh);
-    newplot ();
-    [ctmp, htmp] = __contour__ (xh, "none", "fill", "on",
+    hax = newplot (hax);
+    
+    [ctmp, htmp] = __contour__ (hax, "none", "fill", "on",
                                 "linecolor", "black", varargin{:});
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
   if (nargout > 0)
@@ -87,6 +92,7 @@ endfunction
 %! colormap ('default');
 %! [x, y, z] = peaks (50);
 %! contourf (x, y, z, -7:9);
+%! title ({'contourf() plot (filled contour lines)'; 'Z = peaks()'});
 
 %!demo
 %! clf;
@@ -95,4 +101,14 @@ endfunction
 %! [X, Y] = pol2cart (theta, r);
 %! Z = sin (2*theta) .* (1-r);
 %! contourf (X, Y, abs (Z), 10);
+%! title ({'contourf() plot'; 'polar fcn: Z = sin (2*theta) * (1-r)'});
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! x = linspace (-2, 2);
+%! [x, y] = meshgrid (x);
+%! z = sqrt (x.^2 + y.^2) ./ (x.^2 + y.^2 + 1);
+%! contourf (x, y, z, [0.4, 0.4]);
+%! title ('Hole should be filled with the background color');
 

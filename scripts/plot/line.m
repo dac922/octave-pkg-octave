@@ -19,29 +19,46 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} line ()
 ## @deftypefnx {Function File} {} line (@var{x}, @var{y})
+## @deftypefnx {Function File} {} line (@var{x}, @var{y}, @var{property}, @var{value}, @dots{})
 ## @deftypefnx {Function File} {} line (@var{x}, @var{y}, @var{z})
 ## @deftypefnx {Function File} {} line (@var{x}, @var{y}, @var{z}, @var{property}, @var{value}, @dots{})
-## Create line object from @var{x} and @var{y} and insert in current
-## axes object.  Return a handle (or vector of handles) to the line
-## objects created.
+## @deftypefnx {Function File} {} line (@var{property}, @var{value}, @dots{})
+## @deftypefnx {Function File} {} line (@var{hax}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} line (@dots{})
+## Create line object from @var{x} and @var{y} (and possibly @var{z}) and
+## insert in the current axes.
 ##
-## Multiple property-value pairs may be specified for the line, but they
+## Multiple property-value pairs may be specified for the line object, but they
 ## must appear in pairs.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a graphics handle (or vector of handles)
+## to the line objects created.
+##
+## @seealso{image, patch, rectangle, surface, text}
 ## @end deftypefn
 
 ## Author: jwe
 
 function h = line (varargin)
 
-  ## make a default line object, and make it the current axes for
-  ## the current figure.
-  tmp = __line__ (gca (), varargin{:});
+  ## Get axis argument which may be in a 'parent' PROP/VAL pair
+  [hax, varargin] = __plt_get_axis_arg__ ("line", varargin{:});
+
+  if (isempty (hax))
+    hax = gca ();
+  endif
+
+  htmp = __line__ (hax, varargin{:});
 
   if (nargout > 0)
-    h = tmp;
+    h = htmp;
   endif
 
 endfunction
+
 
 %!demo
 %! clf
@@ -49,14 +66,14 @@ endfunction
 %! y1 = cos (x);
 %! y2 = sin (x);
 %! subplot (3,1,1);
-%! args = {"color", "b", "marker", "s"};
-%! line ([x(:), x(:)], [y1(:), y2(:)], args{:})
-%! title ("Test broadcasting for line()")
+%!  args = {'color', 'b', 'marker', 's'};
+%!  line ([x(:), x(:)], [y1(:), y2(:)], args{:});
+%!  title ('Test broadcasting for line()');
 %! subplot (3,1,2);
-%! line (x(:), [y1(:), y2(:)], args{:})
+%!  line (x(:), [y1(:), y2(:)], args{:});
 %! subplot (3,1,3);
-%! line ([x(:), x(:)+pi/2], y1(:), args{:})
-%! xlim ([0 10])
+%!  line ([x(:), x(:)+pi/2], y1(:), args{:});
+%!  xlim ([0 10]);
 
 %!test
 %! hf = figure ("visible", "off");

@@ -36,10 +36,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 <h4 class="subsection">A.1.12 Exception and Error Handling in Oct-Files</h4>
 
 <p>Another important feature of Octave is its ability to react to the user
-typing <kbd>Control-C</kbd> even during calculations.  This ability is based on the
+typing &lt;Control-C&gt; even during calculations.  This ability is based on the
 C++ exception handler, where memory allocated by the C++ new/delete
 methods are automatically released when the exception is treated.  When
-writing an oct-file, to allow Octave to treat the user typing <kbd>Control-C</kbd>,
+writing an oct-file, to allow Octave to treat the user typing &lt;Control-C&gt;,
 the <code>OCTAVE_QUIT</code><!-- /@w --> macro is supplied.  For example:
 
 <pre class="example">     for (octave_idx_type i = 0; i &lt; a.nelem (); i++)
@@ -49,9 +49,9 @@ the <code>OCTAVE_QUIT</code><!-- /@w --> macro is supplied.  For example:
        }
 </pre>
    <p>The presence of the <code>OCTAVE_QUIT</code><!-- /@w --> macro in the inner loop allows
-Octave to treat the user request with the <kbd>Control-C</kbd>.  Without this macro,
+Octave to treat the user request with the &lt;Control-C&gt;.  Without this macro,
 the user must either wait for the function to return before the interrupt is
-processed, or press <kbd>Control-C</kbd> three times to force Octave to exit.
+processed, or press &lt;Control-C&gt; three times to force Octave to exit.
 
    <p>The <code>OCTAVE_QUIT</code><!-- /@w --> macro does impose a very small speed penalty, and so
 for loops that are known to be small it might not make sense to include
@@ -82,15 +82,16 @@ example of the use of this mechanism is
      #include &lt;octave/unwind-prot.h>
      
      void
-     err_hand (const char *fmt, ...)
+     my_err_handler (const char *fmt, ...)
      {
        // Do nothing!!
      }
      
      DEFUN_DLD (unwinddemo, args, nargout, "Unwind Demo")
      {
-       int nargin = args.length ();
        octave_value retval;
+       int nargin = args.length ();
+     
        if (nargin &lt; 2)
          print_usage ();
        else
@@ -100,11 +101,13 @@ example of the use of this mechanism is
      
            if (! error_state)
              {
-               unwind_protect::begin_frame ("Funwinddemo");
-               unwind_protect_ptr (current_liboctave_warning_handler);
-               set_liboctave_warning_handler (err_hand);
+               // Declare unwind_protect frame which lasts as long as
+               // the variable frame has scope.
+               unwind_protect frame;
+               frame.protect_var (current_liboctave_warning_handler);
+     
+               set_liboctave_warning_handler (my_err_handler);
                retval = octave_value (quotient (a, b));
-               unwind_protect::run_frame ("Funwinddemo");
              }
          }
        return retval;
@@ -120,7 +123,7 @@ example of the use of this mechanism is
      &rArr; warning: division by zero
         Inf
 </pre>
-   <p>The division by zero (and in fact all warnings) is disabled in the
+   <p>The warning for division by zero (and in fact all warnings) are disabled in the
 <code>unwinddemo</code> function.
 
    </body></html>

@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Diagonal-and-Permutation-Matrices.html#
 <hr>
 </div>
 
-<h3 class="section">21.4 Some Examples of Usage</h3>
+<h3 class="section">21.4 Examples of Usage</h3>
 
 <p>The following can be used to solve a linear system <code>A*x = b</code>
 using the pivoted LU&nbsp;factorization:
@@ -45,8 +45,7 @@ using the pivoted LU&nbsp;factorization:
 <pre class="example">       s = norm (X, "columns");
        X /= diag (s);
 </pre>
-   <p class="noindent">The same can also be accomplished with broadcasting
-(see <a href="Broadcasting.html#Broadcasting">Broadcasting</a>):
+   <p class="noindent">The same can also be accomplished with broadcasting (see <a href="Broadcasting.html#Broadcasting">Broadcasting</a>):
 
 <pre class="example">       s = norm (X, "columns");
        X ./= s;

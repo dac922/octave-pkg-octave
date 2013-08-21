@@ -34,32 +34,32 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Expressions.html#Expressions">Expressio
 
 <h3 class="section">8.3 Arithmetic Operators</h3>
 
-<p><a name="index-arithmetic-operators-561"></a><a name="index-operators_002c-arithmetic-562"></a><a name="index-addition-563"></a><a name="index-subtraction-564"></a><a name="index-multiplication-565"></a><a name="index-matrix-multiplication-566"></a><a name="index-division-567"></a><a name="index-quotient-568"></a><a name="index-negation-569"></a><a name="index-unary-minus-570"></a><a name="index-exponentiation-571"></a><a name="index-transpose-572"></a><a name="index-Hermitian-operator-573"></a><a name="index-transpose_002c-complex_002dconjugate-574"></a><a name="index-complex_002dconjugate-transpose-575"></a>
+<p><a name="index-arithmetic-operators-573"></a><a name="index-operators_002c-arithmetic-574"></a><a name="index-addition-575"></a><a name="index-subtraction-576"></a><a name="index-multiplication-577"></a><a name="index-matrix-multiplication-578"></a><a name="index-division-579"></a><a name="index-quotient-580"></a><a name="index-negation-581"></a><a name="index-unary-minus-582"></a><a name="index-exponentiation-583"></a><a name="index-transpose-584"></a><a name="index-Hermitian-operator-585"></a><a name="index-transpose_002c-complex_002dconjugate-586"></a><a name="index-complex_002dconjugate-transpose-587"></a>
 The following arithmetic operators are available, and work on scalars
 and matrices.  The element-by-element operators and functions broadcast
 (see <a href="Broadcasting.html#Broadcasting">Broadcasting</a>).
 
      <dl>
-<dt><var>x</var> + <var>y</var><dd><a name="index-g_t_002b-576"></a>Addition.  If both operands are matrices, the number of rows and columns
+<dt><var>x</var> + <var>y</var><dd><a name="index-g_t_002b-588"></a>Addition.  If both operands are matrices, the number of rows and columns
 must both agree, or they must be broadcastable to the same shape.
 
-     <br><dt><var>x</var> .+ <var>y</var><dd><a name="index-g_t_002e_002b-577"></a>Element-by-element addition.  This operator is equivalent to <code>+</code>.
+     <br><dt><var>x</var> .+ <var>y</var><dd><a name="index-g_t_002e_002b-589"></a>Element-by-element addition.  This operator is equivalent to <code>+</code>.
 
-     <br><dt><var>x</var> - <var>y</var><dd><a name="index-g_t_002d-578"></a>Subtraction.  If both operands are matrices, the number of rows and
+     <br><dt><var>x</var> - <var>y</var><dd><a name="index-g_t_002d-590"></a>Subtraction.  If both operands are matrices, the number of rows and
 columns of both must agree, or they must be broadcastable to the same
 shape.
 
      <br><dt><var>x</var> .- <var>y</var><dd>Element-by-element subtraction.  This operator is equivalent to <code>-</code>.
 
-     <br><dt><var>x</var> * <var>y</var><dd><a name="index-g_t_002a-579"></a>Matrix multiplication.  The number of columns of <var>x</var> must agree with
+     <br><dt><var>x</var> * <var>y</var><dd><a name="index-g_t_002a-591"></a>Matrix multiplication.  The number of columns of <var>x</var> must agree with
 the number of rows of <var>y</var>, or they must be broadcastable to the same
 shape.
 
-     <br><dt><var>x</var> .* <var>y</var><dd><a name="index-g_t_002e_002a-580"></a>Element-by-element multiplication.  If both operands are matrices, the
+     <br><dt><var>x</var> .* <var>y</var><dd><a name="index-g_t_002e_002a-592"></a>Element-by-element multiplication.  If both operands are matrices, the
 number of rows and columns must both agree, or they must be
 broadcastable to the same shape.
 
-     <br><dt><var>x</var> / <var>y</var><dd><a name="index-g_t_002f-581"></a>Right division.  This is conceptually equivalent to the expression
+     <br><dt><var>x</var> / <var>y</var><dd><a name="index-g_t_002f-593"></a>Right division.  This is conceptually equivalent to the expression
 
      <pre class="example">          (inverse (y') * x')'
 </pre>
@@ -68,9 +68,9 @@ broadcastable to the same shape.
      <p>If the system is not square, or if the coefficient matrix is singular,
 a minimum norm solution is computed.
 
-     <br><dt><var>x</var> ./ <var>y</var><dd><a name="index-g_t_002e_002f-582"></a>Element-by-element right division.
+     <br><dt><var>x</var> ./ <var>y</var><dd><a name="index-g_t_002e_002f-594"></a>Element-by-element right division.
 
-     <br><dt><var>x</var> \ <var>y</var><dd><a name="index-g_t_005c-583"></a>Left division.  This is conceptually equivalent to the expression
+     <br><dt><var>x</var> \ <var>y</var><dd><a name="index-g_t_005c-595"></a>Left division.  This is conceptually equivalent to the expression
 
      <pre class="example">          inverse (x) * y
 </pre>
@@ -79,10 +79,10 @@ a minimum norm solution is computed.
      <p>If the system is not square, or if the coefficient matrix is singular,
 a minimum norm solution is computed.
 
-     <br><dt><var>x</var> .\ <var>y</var><dd><a name="index-g_t_002e_005c-584"></a>Element-by-element left division.  Each element of <var>y</var> is divided
+     <br><dt><var>x</var> .\ <var>y</var><dd><a name="index-g_t_002e_005c-596"></a>Element-by-element left division.  Each element of <var>y</var> is divided
 by each corresponding element of <var>x</var>.
 
-     <br><dt><var>x</var> ^ <var>y</var><dt><var>x</var> ** <var>y</var><dd><a name="index-g_t_002a_002a-585"></a><a name="index-g_t_005e-586"></a>Power operator.  If <var>x</var> and <var>y</var> are both scalars, this operator
+     <br><dt><var>x</var> ^ <var>y</var><dt><var>x</var> ** <var>y</var><dd><a name="index-g_t_002a_002a-597"></a><a name="index-g_t_005e-598"></a>Power operator.  If <var>x</var> and <var>y</var> are both scalars, this operator
 returns <var>x</var> raised to the power <var>y</var>.  If <var>x</var> is a scalar and
 <var>y</var> is a square matrix, the result is computed using an eigenvalue
 expansion.  If <var>x</var> is a square matrix, the result is computed by
@@ -92,7 +92,7 @@ expansion if <var>y</var> is not an integer.  An error results if both
 
      <p>The implementation of this operator needs to be improved.
 
-     <br><dt><var>x</var> .^ <var>y</var><dt><var>x</var> .** <var>y</var><dd><a name="index-g_t_002e_002a_002a-587"></a><a name="index-g_t_002e_005e-588"></a>Element-by-element power operator.  If both operands are matrices, the
+     <br><dt><var>x</var> .^ <var>y</var><dt><var>x</var> .** <var>y</var><dd><a name="index-g_t_002e_002a_002a-599"></a><a name="index-g_t_002e_005e-600"></a>Element-by-element power operator.  If both operands are matrices, the
 number of rows and columns must both agree, or they must be
 broadcastable to the same shape.  If several complex results are
 possible, the one with smallest non-negative argument (angle) is taken. 
@@ -100,17 +100,17 @@ This rule may return a complex root even when a real root is also possible.
 Use <code>realpow</code>, <code>realsqrt</code>, <code>cbrt</code>, or <code>nthroot</code> if a
 real result is preferred.
 
-     <br><dt>-<var>x</var><dd><a name="index-g_t_002d-589"></a>Negation.
+     <br><dt>-<var>x</var><dd><a name="index-g_t_002d-601"></a>Negation.
 
-     <br><dt>+<var>x</var><dd><a name="index-g_t_002b-590"></a>Unary plus.  This operator has no effect on the operand.
+     <br><dt>+<var>x</var><dd><a name="index-g_t_002b-602"></a>Unary plus.  This operator has no effect on the operand.
 
-     <br><dt><var>x</var>'<dd><a name="index-g_t_0027-591"></a>Complex conjugate transpose.  For real arguments, this operator is the
+     <br><dt><var>x</var>'<dd><a name="index-g_t_0027-603"></a>Complex conjugate transpose.  For real arguments, this operator is the
 same as the transpose operator.  For complex arguments, this operator is
 equivalent to the expression
 
      <pre class="example">          conj (x.')
 </pre>
-     <br><dt><var>x</var>.'<dd><a name="index-g_t_002e_0027-592"></a>Transpose. 
+     <br><dt><var>x</var>.'<dd><a name="index-g_t_002e_0027-604"></a>Transpose. 
 </dl>
 
    <p>Note that because Octave's element-by-element operators begin with a
@@ -133,77 +133,83 @@ lexer, which usually prefers to break the input into tokens by
 preferring the longest possible match at any given point, it is more
 useful in this case.
 
-   <p><a name="index-g_t_0027-593"></a><!-- ctranspose libinterp/interpfcn/data.cc -->
-<a name="doc_002dctranspose"></a>
+   <p><a name="index-g_t_0027-605"></a><!-- ctranspose libinterp/corefcn/data.cc -->
+<a name="XREFctranspose"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ctranspose</b> (<var>x</var>)<var><a name="index-ctranspose-594"></a></var><br>
+&mdash; Built-in Function:  <b>ctranspose</b> (<var>x</var>)<var><a name="index-ctranspose-606"></a></var><br>
 <blockquote><p>Return the complex conjugate transpose of <var>x</var>. 
 This function and <code>x'</code> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtranspose.html#doc_002dtranspose">transpose</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtranspose.html#XREFtranspose">transpose</a>.
 
-   <p><a name="index-g_t_002e_005c-595"></a><!-- ldivide libinterp/interpfcn/data.cc -->
-<a name="doc_002dldivide"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002e_005c-607"></a><!-- ldivide libinterp/corefcn/data.cc -->
+<a name="XREFldivide"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ldivide</b> (<var>x, y</var>)<var><a name="index-ldivide-596"></a></var><br>
+&mdash; Built-in Function:  <b>ldivide</b> (<var>x, y</var>)<var><a name="index-ldivide-608"></a></var><br>
 <blockquote><p>Return the element-by-element left division of <var>x</var> and <var>y</var>. 
 This function and <code>x&nbsp;.\&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>, <a href="doc_002dmldivide.html#doc_002dmldivide">mldivide</a>, <a href="doc_002dtimes.html#doc_002dtimes">times</a>, <a href="doc_002dplus.html#doc_002dplus">plus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrdivide.html#XREFrdivide">rdivide</a>, <a href="XREFmldivide.html#XREFmldivide">mldivide</a>, <a href="XREFtimes.html#XREFtimes">times</a>, <a href="XREFplus.html#XREFplus">plus</a>.
 
-   <p><a name="index-g_t_002d-597"></a><!-- minus libinterp/interpfcn/data.cc -->
-<a name="doc_002dminus"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002d-609"></a><!-- minus libinterp/corefcn/data.cc -->
+<a name="XREFminus"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>minus</b> (<var>x, y</var>)<var><a name="index-minus-598"></a></var><br>
+&mdash; Built-in Function:  <b>minus</b> (<var>x, y</var>)<var><a name="index-minus-610"></a></var><br>
 <blockquote><p>This function and <code>x&nbsp;-&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dplus.html#doc_002dplus">plus</a>, <a href="doc_002duminus.html#doc_002duminus">uminus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFplus.html#XREFplus">plus</a>, <a href="XREFuminus.html#XREFuminus">uminus</a>.
 
-   <p><a name="index-g_t_005c-599"></a><!-- mldivide libinterp/interpfcn/data.cc -->
-<a name="doc_002dmldivide"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_005c-611"></a><!-- mldivide libinterp/corefcn/data.cc -->
+<a name="XREFmldivide"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>mldivide</b> (<var>x, y</var>)<var><a name="index-mldivide-600"></a></var><br>
+&mdash; Built-in Function:  <b>mldivide</b> (<var>x, y</var>)<var><a name="index-mldivide-612"></a></var><br>
 <blockquote><p>Return the matrix left division of <var>x</var> and <var>y</var>. 
 This function and <code>x&nbsp;\&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmrdivide.html#doc_002dmrdivide">mrdivide</a>, <a href="doc_002dldivide.html#doc_002dldivide">ldivide</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmrdivide.html#XREFmrdivide">mrdivide</a>, <a href="XREFldivide.html#XREFldivide">ldivide</a>, <a href="XREFrdivide.html#XREFrdivide">rdivide</a>.
 
-   <p><a name="index-g_t_002a_002a-601"></a><a name="index-g_t_005e-602"></a><!-- mpower libinterp/interpfcn/data.cc -->
-<a name="doc_002dmpower"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002a_002a-613"></a><a name="index-g_t_005e-614"></a><!-- mpower libinterp/corefcn/data.cc -->
+<a name="XREFmpower"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>mpower</b> (<var>x, y</var>)<var><a name="index-mpower-603"></a></var><br>
+&mdash; Built-in Function:  <b>mpower</b> (<var>x, y</var>)<var><a name="index-mpower-615"></a></var><br>
 <blockquote><p>Return the matrix power operation of <var>x</var> raised to the <var>y</var> power. 
 This function and <code>x&nbsp;^&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpower.html#doc_002dpower">power</a>, <a href="doc_002dmtimes.html#doc_002dmtimes">mtimes</a>, <a href="doc_002dplus.html#doc_002dplus">plus</a>, <a href="doc_002dminus.html#doc_002dminus">minus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpower.html#XREFpower">power</a>, <a href="XREFmtimes.html#XREFmtimes">mtimes</a>, <a href="XREFplus.html#XREFplus">plus</a>, <a href="XREFminus.html#XREFminus">minus</a>.
 
-   <p><a name="index-g_t_002f-604"></a><!-- mrdivide libinterp/interpfcn/data.cc -->
-<a name="doc_002dmrdivide"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002f-616"></a><!-- mrdivide libinterp/corefcn/data.cc -->
+<a name="XREFmrdivide"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>mrdivide</b> (<var>x, y</var>)<var><a name="index-mrdivide-605"></a></var><br>
+&mdash; Built-in Function:  <b>mrdivide</b> (<var>x, y</var>)<var><a name="index-mrdivide-617"></a></var><br>
 <blockquote><p>Return the matrix right division of <var>x</var> and <var>y</var>. 
 This function and <code>x&nbsp;/&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmldivide.html#doc_002dmldivide">mldivide</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>, <a href="doc_002dplus.html#doc_002dplus">plus</a>, <a href="doc_002dminus.html#doc_002dminus">minus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmldivide.html#XREFmldivide">mldivide</a>, <a href="XREFrdivide.html#XREFrdivide">rdivide</a>, <a href="XREFplus.html#XREFplus">plus</a>, <a href="XREFminus.html#XREFminus">minus</a>.
 
-   <p><a name="index-g_t_002a-606"></a><!-- mtimes libinterp/interpfcn/data.cc -->
-<a name="doc_002dmtimes"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002a-618"></a><!-- mtimes libinterp/corefcn/data.cc -->
+<a name="XREFmtimes"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>mtimes</b> (<var>x, y</var>)<var><a name="index-mtimes-607"></a></var><br>
-&mdash; Built-in Function:  <b>mtimes</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-mtimes-608"></a></var><br>
+&mdash; Built-in Function:  <b>mtimes</b> (<var>x, y</var>)<var><a name="index-mtimes-619"></a></var><br>
+&mdash; Built-in Function:  <b>mtimes</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-mtimes-620"></a></var><br>
 <blockquote><p>Return the matrix multiplication product of inputs. 
 This function and <code>x&nbsp;*&nbsp;y</code><!-- /@w --> are equivalent. 
 If more arguments are given, the multiplication is applied
@@ -213,15 +219,16 @@ cumulatively from left to right:
 </pre>
         <p>At least one argument is required.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtimes.html#doc_002dtimes">times</a>, <a href="doc_002dplus.html#doc_002dplus">plus</a>, <a href="doc_002dminus.html#doc_002dminus">minus</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>, <a href="doc_002dmrdivide.html#doc_002dmrdivide">mrdivide</a>, <a href="doc_002dmldivide.html#doc_002dmldivide">mldivide</a>, <a href="doc_002dmpower.html#doc_002dmpower">mpower</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtimes.html#XREFtimes">times</a>, <a href="XREFplus.html#XREFplus">plus</a>, <a href="XREFminus.html#XREFminus">minus</a>, <a href="XREFrdivide.html#XREFrdivide">rdivide</a>, <a href="XREFmrdivide.html#XREFmrdivide">mrdivide</a>, <a href="XREFmldivide.html#XREFmldivide">mldivide</a>, <a href="XREFmpower.html#XREFmpower">mpower</a>.
 
-   <p><a name="index-g_t_002b-609"></a><!-- plus libinterp/interpfcn/data.cc -->
-<a name="doc_002dplus"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002b-621"></a><!-- plus libinterp/corefcn/data.cc -->
+<a name="XREFplus"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>plus</b> (<var>x, y</var>)<var><a name="index-plus-610"></a></var><br>
-&mdash; Built-in Function:  <b>plus</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-plus-611"></a></var><br>
+&mdash; Built-in Function:  <b>plus</b> (<var>x, y</var>)<var><a name="index-plus-622"></a></var><br>
+&mdash; Built-in Function:  <b>plus</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-plus-623"></a></var><br>
 <blockquote><p>This function and <code>x&nbsp;+&nbsp;y</code><!-- /@w --> are equivalent. 
 If more arguments are given, the summation is applied
 cumulatively from left to right:
@@ -230,14 +237,15 @@ cumulatively from left to right:
 </pre>
         <p>At least one argument is required.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dminus.html#doc_002dminus">minus</a>, <a href="doc_002duplus.html#doc_002duplus">uplus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFminus.html#XREFminus">minus</a>, <a href="XREFuplus.html#XREFuplus">uplus</a>.
 
-   <p><a name="index-g_t_002e_002a_002a-612"></a><a name="index-g_t_002e_005e-613"></a><!-- power libinterp/interpfcn/data.cc -->
-<a name="doc_002dpower"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002e_002a_002a-624"></a><a name="index-g_t_002e_005e-625"></a><!-- power libinterp/corefcn/data.cc -->
+<a name="XREFpower"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>power</b> (<var>x, y</var>)<var><a name="index-power-614"></a></var><br>
+&mdash; Built-in Function:  <b>power</b> (<var>x, y</var>)<var><a name="index-power-626"></a></var><br>
 <blockquote><p>Return the element-by-element operation of <var>x</var> raised to the
 <var>y</var> power.  If several complex results are possible,
 returns the one with smallest non-negative argument (angle).  Use
@@ -246,26 +254,28 @@ real result is preferred.
 
         <p>This function and <code>x&nbsp;.^&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmpower.html#doc_002dmpower">mpower</a>, <a href="doc_002drealpow.html#doc_002drealpow">realpow</a>, <a href="doc_002drealsqrt.html#doc_002drealsqrt">realsqrt</a>, <a href="doc_002dcbrt.html#doc_002dcbrt">cbrt</a>, <a href="doc_002dnthroot.html#doc_002dnthroot">nthroot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmpower.html#XREFmpower">mpower</a>, <a href="XREFrealpow.html#XREFrealpow">realpow</a>, <a href="XREFrealsqrt.html#XREFrealsqrt">realsqrt</a>, <a href="XREFcbrt.html#XREFcbrt">cbrt</a>, <a href="XREFnthroot.html#XREFnthroot">nthroot</a>.
 
-   <p><a name="index-g_t_002e_002f-615"></a><!-- rdivide libinterp/interpfcn/data.cc -->
-<a name="doc_002drdivide"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002e_002f-627"></a><!-- rdivide libinterp/corefcn/data.cc -->
+<a name="XREFrdivide"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rdivide</b> (<var>x, y</var>)<var><a name="index-rdivide-616"></a></var><br>
+&mdash; Built-in Function:  <b>rdivide</b> (<var>x, y</var>)<var><a name="index-rdivide-628"></a></var><br>
 <blockquote><p>Return the element-by-element right division of <var>x</var> and <var>y</var>. 
 This function and <code>x&nbsp;./&nbsp;y</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dldivide.html#doc_002dldivide">ldivide</a>, <a href="doc_002dmrdivide.html#doc_002dmrdivide">mrdivide</a>, <a href="doc_002dtimes.html#doc_002dtimes">times</a>, <a href="doc_002dplus.html#doc_002dplus">plus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFldivide.html#XREFldivide">ldivide</a>, <a href="XREFmrdivide.html#XREFmrdivide">mrdivide</a>, <a href="XREFtimes.html#XREFtimes">times</a>, <a href="XREFplus.html#XREFplus">plus</a>.
 
-   <p><a name="index-g_t_002e_002a-617"></a><!-- times libinterp/interpfcn/data.cc -->
-<a name="doc_002dtimes"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002e_002a-629"></a><!-- times libinterp/corefcn/data.cc -->
+<a name="XREFtimes"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>times</b> (<var>x, y</var>)<var><a name="index-times-618"></a></var><br>
-&mdash; Built-in Function:  <b>times</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-times-619"></a></var><br>
+&mdash; Built-in Function:  <b>times</b> (<var>x, y</var>)<var><a name="index-times-630"></a></var><br>
+&mdash; Built-in Function:  <b>times</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-times-631"></a></var><br>
 <blockquote><p>Return the element-by-element multiplication product of inputs. 
 This function and <code>x&nbsp;.*&nbsp;y</code><!-- /@w --> are equivalent. 
 If more arguments are given, the multiplication is applied
@@ -275,39 +285,43 @@ cumulatively from left to right:
 </pre>
         <p>At least one argument is required.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmtimes.html#doc_002dmtimes">mtimes</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmtimes.html#XREFmtimes">mtimes</a>, <a href="XREFrdivide.html#XREFrdivide">rdivide</a>.
 
-   <p><a name="index-g_t_002e_0027-620"></a><!-- transpose libinterp/interpfcn/data.cc -->
-<a name="doc_002dtranspose"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002e_0027-632"></a><!-- transpose libinterp/corefcn/data.cc -->
+<a name="XREFtranspose"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>transpose</b> (<var>x</var>)<var><a name="index-transpose-621"></a></var><br>
+&mdash; Built-in Function:  <b>transpose</b> (<var>x</var>)<var><a name="index-transpose-633"></a></var><br>
 <blockquote><p>Return the transpose of <var>x</var>. 
 This function and <code>x.'</code> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dctranspose.html#doc_002dctranspose">ctranspose</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFctranspose.html#XREFctranspose">ctranspose</a>.
 
-   <p><a name="index-g_t_002d-622"></a><!-- uminus libinterp/interpfcn/data.cc -->
-<a name="doc_002duminus"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002d-634"></a><!-- uminus libinterp/corefcn/data.cc -->
+<a name="XREFuminus"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>uminus</b> (<var>x</var>)<var><a name="index-uminus-623"></a></var><br>
+&mdash; Built-in Function:  <b>uminus</b> (<var>x</var>)<var><a name="index-uminus-635"></a></var><br>
 <blockquote><p>This function and <code>-&nbsp;x</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duplus.html#doc_002duplus">uplus</a>, <a href="doc_002dminus.html#doc_002dminus">minus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuplus.html#XREFuplus">uplus</a>, <a href="XREFminus.html#XREFminus">minus</a>.
 
-   <p><a name="index-g_t_002b-624"></a><!-- uplus libinterp/interpfcn/data.cc -->
-<a name="doc_002duplus"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_002b-636"></a><!-- uplus libinterp/corefcn/data.cc -->
+<a name="XREFuplus"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>uplus</b> (<var>x</var>)<var><a name="index-uplus-625"></a></var><br>
+&mdash; Built-in Function:  <b>uplus</b> (<var>x</var>)<var><a name="index-uplus-637"></a></var><br>
 <blockquote><p>This function and <code>+&nbsp;x</code><!-- /@w --> are equivalent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duminus.html#doc_002duminus">uminus</a>, <a href="doc_002dplus.html#doc_002dplus">plus</a>, <a href="doc_002dminus.html#doc_002dminus">minus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuminus.html#XREFuminus">uminus</a>, <a href="XREFplus.html#XREFplus">plus</a>, <a href="XREFminus.html#XREFminus">minus</a>.
+
+        </blockquote></div>
 
    </body></html>
 

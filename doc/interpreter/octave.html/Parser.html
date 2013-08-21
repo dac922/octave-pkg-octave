@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Grammar-and-Parser.html#Grammar-and-Par
 
 <h3 class="section">I.2 Parser</h3>
 
-<p><a name="index-parser-3839"></a>
+<p><a name="index-parser-4034"></a>
 The parser has a number of variables that affect its internal operation. 
 These variables are generally documented in the manual alongside the code that
 they affect.  For example, <code>allow_noninteger_range_as_index</code> is discussed
@@ -43,14 +43,14 @@ in the section on index expressions.
 periodic evaluation.  <code>remove_input_event_hook</code> will stop a user function
 from being evaluated periodically.
 
-<!-- add_input_event_hook libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dadd_005finput_005fevent_005fhook"></a>
+<!-- add_input_event_hook libinterp/corefcn/input.cc -->
+   <p><a name="XREFadd_005finput_005fevent_005fhook"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>id</var> = <b>add_input_event_hook</b> (<var>fcn</var>)<var><a name="index-add_005finput_005fevent_005fhook-3840"></a></var><br>
-&mdash; Built-in Function: <var>id</var> = <b>add_input_event_hook</b> (<var>fcn, data</var>)<var><a name="index-add_005finput_005fevent_005fhook-3841"></a></var><br>
-<blockquote><p>Add the named function or function handle <var>fcn</var> to the list of functions to call
-periodically when Octave is waiting for input.  The function should
+&mdash; Built-in Function: <var>id</var> = <b>add_input_event_hook</b> (<var>fcn</var>)<var><a name="index-add_005finput_005fevent_005fhook-4035"></a></var><br>
+&mdash; Built-in Function: <var>id</var> = <b>add_input_event_hook</b> (<var>fcn, data</var>)<var><a name="index-add_005finput_005fevent_005fhook-4036"></a></var><br>
+<blockquote><p>Add the named function or function handle <var>fcn</var> to the list of functions
+to call periodically when Octave is waiting for input.  The function should
 have the form
 
      <pre class="example">          <var>fcn</var> (<var>data</var>)
@@ -61,40 +61,42 @@ arguments.
         <p>The returned identifier may be used to remove the function handle from
 the list of input hook functions.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dremove_005finput_005fevent_005fhook.html#doc_002dremove_005finput_005fevent_005fhook">remove_input_event_hook</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFremove_005finput_005fevent_005fhook.html#XREFremove_005finput_005fevent_005fhook">remove_input_event_hook</a>.
 
-<!-- remove_input_event_hook libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dremove_005finput_005fevent_005fhook"></a>
+        </blockquote></div>
+
+<!-- remove_input_event_hook libinterp/corefcn/input.cc -->
+   <p><a name="XREFremove_005finput_005fevent_005fhook"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>name</var>)<var><a name="index-remove_005finput_005fevent_005fhook-3842"></a></var><br>
-&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>fcn_id</var>)<var><a name="index-remove_005finput_005fevent_005fhook-3843"></a></var><br>
+&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>name</var>)<var><a name="index-remove_005finput_005fevent_005fhook-4037"></a></var><br>
+&mdash; Built-in Function:  <b>remove_input_event_hook</b> (<var>fcn_id</var>)<var><a name="index-remove_005finput_005fevent_005fhook-4038"></a></var><br>
 <blockquote><p>Remove the named function or function handle with the given identifier
 from the list of functions to call periodically when Octave is waiting
 for input.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dadd_005finput_005fevent_005fhook.html#doc_002dadd_005finput_005fevent_005fhook">add_input_event_hook</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFadd_005finput_005fevent_005fhook.html#XREFadd_005finput_005fevent_005fhook">add_input_event_hook</a>.
+
+        </blockquote></div>
 
    <p>Finally, when the parser cannot identify an input token it calls a particular
-function to handle this.  By default, this is the function "unimplemented"
-which makes suggestions about possible Octave substitutes for <span class="sc">matlab</span>
-functions.
+function to handle this.  By default, this is the function
+<code>"unimplemented"</code> which makes suggestions about possible Octave
+substitutes for <span class="sc">matlab</span> functions.
 
-<!-- missing_function_hook libinterp/interpfcn/variables.cc -->
-   <p><a name="doc_002dmissing_005ffunction_005fhook"></a>
+<!-- missing_function_hook libinterp/corefcn/variables.cc -->
+   <p><a name="XREFmissing_005ffunction_005fhook"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>missing_function_hook</b> ()<var><a name="index-missing_005ffunction_005fhook-3844"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>missing_function_hook</b> (<var>new_val</var>)<var><a name="index-missing_005ffunction_005fhook-3845"></a></var><br>
-&mdash; Built-in Function:  <b>missing_function_hook</b> (<var>new_val, "local"</var>)<var><a name="index-missing_005ffunction_005fhook-3846"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>missing_function_hook</b> ()<var><a name="index-missing_005ffunction_005fhook-4039"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>missing_function_hook</b> (<var>new_val</var>)<var><a name="index-missing_005ffunction_005fhook-4040"></a></var><br>
+&mdash; Built-in Function:  <b>missing_function_hook</b> (<var>new_val, "local"</var>)<var><a name="index-missing_005ffunction_005fhook-4041"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the function to call when
 an unknown identifier is requested.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->

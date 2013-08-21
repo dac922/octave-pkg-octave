@@ -44,20 +44,20 @@ can also be used for starting subprocesses, but you should probably only
 use them if you can't find any way to do what you need with the
 higher-level functions.
 
-<!-- system libinterp/interpfcn/toplev.cc -->
-   <p><a name="doc_002dsystem"></a>
+<!-- system libinterp/corefcn/toplev.cc -->
+   <p><a name="XREFsystem"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>system</b> (<var>"string"</var>)<var><a name="index-system-3520"></a></var><br>
-&mdash; Built-in Function:  <b>system</b> (<var>"string", return_output</var>)<var><a name="index-system-3521"></a></var><br>
-&mdash; Built-in Function:  <b>system</b> (<var>"string", return_output, type</var>)<var><a name="index-system-3522"></a></var><br>
-&mdash; Built-in Function: [<var>status</var>, <var>output</var>] = <b>system</b> (<var><small class="dots">...</small></var>)<var><a name="index-system-3523"></a></var><br>
+&mdash; Built-in Function:  <b>system</b> (<var>"string"</var>)<var><a name="index-system-3712"></a></var><br>
+&mdash; Built-in Function:  <b>system</b> (<var>"string", return_output</var>)<var><a name="index-system-3713"></a></var><br>
+&mdash; Built-in Function:  <b>system</b> (<var>"string", return_output, type</var>)<var><a name="index-system-3714"></a></var><br>
+&mdash; Built-in Function: [<var>status</var>, <var>output</var>] = <b>system</b> (<var><small class="dots">...</small></var>)<var><a name="index-system-3715"></a></var><br>
 <blockquote><p>Execute a shell command specified by <var>string</var>. 
-If the optional argument <var>type</var> is "async", the process
+If the optional argument <var>type</var> is <code>"async"</code>, the process
 is started in the background and the process ID of the child process
 is returned immediately.  Otherwise, the child process is started and
 Octave waits until it exits.  If the <var>type</var> argument is omitted, it
-defaults to the value "sync".
+defaults to the value <code>"sync"</code>.
 
         <p>If <var>system</var> is called with one or more output arguments, or if the
 optional argument <var>return_output</var> is true and the subprocess is started
@@ -85,78 +85,83 @@ variable <code>status</code> to the integer &lsquo;<samp><span class="samp">2</s
         <p>For commands run asynchronously, <var>status</var> is the process id of the
 command shell that is started to run the command.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunix.html#doc_002dunix">unix</a>, <a href="doc_002ddos.html#doc_002ddos">dos</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFunix.html#XREFunix">unix</a>, <a href="XREFdos.html#XREFdos">dos</a>.
+
+        </blockquote></div>
 
 <!-- unix scripts/miscellaneous/unix.m -->
-   <p><a name="doc_002dunix"></a>
+   <p><a name="XREFunix"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>unix</b> (<var>"command"</var>)<var><a name="index-unix-3524"></a></var><br>
-&mdash; Function File: <var>status</var> = <b>unix</b> (<var>"command"</var>)<var><a name="index-unix-3525"></a></var><br>
-&mdash; Function File: [<var>status</var>, <var>text</var>] = <b>unix</b> (<var>"command"</var>)<var><a name="index-unix-3526"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>unix</b> (<var>"command", "-echo"</var>)<var><a name="index-unix-3527"></a></var><br>
+&mdash; Function File:  <b>unix</b> (<var>"command"</var>)<var><a name="index-unix-3716"></a></var><br>
+&mdash; Function File: <var>status</var> = <b>unix</b> (<var>"command"</var>)<var><a name="index-unix-3717"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>text</var>] = <b>unix</b> (<var>"command"</var>)<var><a name="index-unix-3718"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>unix</b> (<var>"command", "-echo"</var>)<var><a name="index-unix-3719"></a></var><br>
 <blockquote><p>Execute a system command if running under a Unix-like operating
 system, otherwise do nothing.  Return the exit status of the program
 in <var>status</var> and any output from the command in <var>text</var>. 
-When called with no output argument, or the "-echo" argument is
+When called with no output argument, or the <code>"-echo"</code> argument is
 given, then <var>text</var> is also sent to standard output.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddos.html#doc_002ddos">dos</a>, <a href="doc_002dsystem.html#doc_002dsystem">system</a>, <a href="doc_002disunix.html#doc_002disunix">isunix</a>, <a href="doc_002dispc.html#doc_002dispc">ispc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdos.html#XREFdos">dos</a>, <a href="XREFsystem.html#XREFsystem">system</a>, <a href="XREFisunix.html#XREFisunix">isunix</a>, <a href="XREFispc.html#XREFispc">ispc</a>.
+
+        </blockquote></div>
 
 <!-- dos scripts/miscellaneous/dos.m -->
-   <p><a name="doc_002ddos"></a>
+   <p><a name="XREFdos"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>dos</b> (<var>"command"</var>)<var><a name="index-dos-3528"></a></var><br>
-&mdash; Function File: <var>status</var> = <b>dos</b> (<var>"command"</var>)<var><a name="index-dos-3529"></a></var><br>
-&mdash; Function File: [<var>status</var>, <var>text</var>] = <b>dos</b> (<var>"command"</var>)<var><a name="index-dos-3530"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>dos</b> (<var>"command", "-echo"</var>)<var><a name="index-dos-3531"></a></var><br>
+&mdash; Function File:  <b>dos</b> (<var>"command"</var>)<var><a name="index-dos-3720"></a></var><br>
+&mdash; Function File: <var>status</var> = <b>dos</b> (<var>"command"</var>)<var><a name="index-dos-3721"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>text</var>] = <b>dos</b> (<var>"command"</var>)<var><a name="index-dos-3722"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>dos</b> (<var>"command", "-echo"</var>)<var><a name="index-dos-3723"></a></var><br>
 <blockquote><p>Execute a system command if running under a Windows-like operating
 system, otherwise do nothing.  Return the exit status of the program
 in <var>status</var> and any output from the command in <var>text</var>. 
-When called with no output argument, or the "-echo" argument is
+When called with no output argument, or the <code>"-echo"</code> argument is
 given, then <var>text</var> is also sent to standard output.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunix.html#doc_002dunix">unix</a>, <a href="doc_002dsystem.html#doc_002dsystem">system</a>, <a href="doc_002disunix.html#doc_002disunix">isunix</a>, <a href="doc_002dispc.html#doc_002dispc">ispc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFunix.html#XREFunix">unix</a>, <a href="XREFsystem.html#XREFsystem">system</a>, <a href="XREFisunix.html#XREFisunix">isunix</a>, <a href="XREFispc.html#XREFispc">ispc</a>.
+
+        </blockquote></div>
 
 <!-- perl scripts/miscellaneous/perl.m -->
-   <p><a name="doc_002dperl"></a>
+   <p><a name="XREFperl"></a>
 
 <div class="defun">
-&mdash; Function File: <var>output</var> = <b>perl</b> (<var>scriptfile</var>)<var><a name="index-perl-3532"></a></var><br>
-&mdash; Function File: <var>output</var> = <b>perl</b> (<var>scriptfile, argument1, argument2, <small class="dots">...</small></var>)<var><a name="index-perl-3533"></a></var><br>
-&mdash; Function File: [<var>output</var>, <var>status</var>] = <b>perl</b> (<var><small class="dots">...</small></var>)<var><a name="index-perl-3534"></a></var><br>
+&mdash; Function File: <var>output</var> = <b>perl</b> (<var>scriptfile</var>)<var><a name="index-perl-3724"></a></var><br>
+&mdash; Function File: <var>output</var> = <b>perl</b> (<var>scriptfile, argument1, argument2, <small class="dots">...</small></var>)<var><a name="index-perl-3725"></a></var><br>
+&mdash; Function File: [<var>output</var>, <var>status</var>] = <b>perl</b> (<var><small class="dots">...</small></var>)<var><a name="index-perl-3726"></a></var><br>
 <blockquote><p>Invoke Perl script <var>scriptfile</var>, possibly with a list of command line
 arguments.  Return output in <var>output</var> and optional status in
 <var>status</var>.  If <var>scriptfile</var> is not an absolute file name it is
 is searched for in the current directory and then in the Octave loadpath.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsystem.html#doc_002dsystem">system</a>, <a href="doc_002dpython.html#doc_002dpython">python</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsystem.html#XREFsystem">system</a>, <a href="XREFpython.html#XREFpython">python</a>.
+
+        </blockquote></div>
 
 <!-- python scripts/miscellaneous/python.m -->
-   <p><a name="doc_002dpython"></a>
+   <p><a name="XREFpython"></a>
 
 <div class="defun">
-&mdash; Function File: <var>output</var> = <b>python</b> (<var>scriptfile</var>)<var><a name="index-python-3535"></a></var><br>
-&mdash; Function File: <var>output</var> = <b>python</b> (<var>scriptfile, argument1, argument2, <small class="dots">...</small></var>)<var><a name="index-python-3536"></a></var><br>
-&mdash; Function File: [<var>output</var>, <var>status</var>] = <b>python</b> (<var><small class="dots">...</small></var>)<var><a name="index-python-3537"></a></var><br>
+&mdash; Function File: <var>output</var> = <b>python</b> (<var>scriptfile</var>)<var><a name="index-python-3727"></a></var><br>
+&mdash; Function File: <var>output</var> = <b>python</b> (<var>scriptfile, argument1, argument2, <small class="dots">...</small></var>)<var><a name="index-python-3728"></a></var><br>
+&mdash; Function File: [<var>output</var>, <var>status</var>] = <b>python</b> (<var><small class="dots">...</small></var>)<var><a name="index-python-3729"></a></var><br>
 <blockquote><p>Invoke Python script <var>scriptfile</var>, possibly with a list of command line
 arguments.  Return output in <var>output</var> and optional status in
 <var>status</var>.  If <var>scriptfile</var> is not an absolute file name it is
 is searched for in the current directory and then in the Octave loadpath.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsystem.html#doc_002dsystem">system</a>, <a href="doc_002dperl.html#doc_002dperl">perl</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsystem.html#XREFsystem">system</a>, <a href="XREFperl.html#XREFperl">perl</a>.
 
-<!-- popen libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dpopen"></a>
+        </blockquote></div>
+
+<!-- popen libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFpopen"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>fid</var> = <b>popen</b> (<var>command, mode</var>)<var><a name="index-popen-3538"></a></var><br>
+&mdash; Built-in Function: <var>fid</var> = <b>popen</b> (<var>command, mode</var>)<var><a name="index-popen-3730"></a></var><br>
 <blockquote><p>Start a process and create a pipe.  The name of the command to run is
 given by <var>command</var>.  The file identifier corresponding to the input
 or output stream of the process is returned in <var>fid</var>.  The argument
@@ -183,20 +188,20 @@ open for writing.
 </pre>
         </blockquote></div>
 
-<!-- pclose libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dpclose"></a>
+<!-- pclose libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFpclose"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>pclose</b> (<var>fid</var>)<var><a name="index-pclose-3539"></a></var><br>
+&mdash; Built-in Function:  <b>pclose</b> (<var>fid</var>)<var><a name="index-pclose-3731"></a></var><br>
 <blockquote><p>Close a file identifier that was opened by <code>popen</code>.  You may also
 use <code>fclose</code> for the same purpose. 
 </p></blockquote></div>
 
 <!-- popen2 libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dpopen2"></a>
+   <p><a name="XREFpopen2"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>in</var>, <var>out</var>, <var>pid</var>] = <b>popen2</b> (<var>command, args</var>)<var><a name="index-popen2-3540"></a></var><br>
+&mdash; Built-in Function: [<var>in</var>, <var>out</var>, <var>pid</var>] = <b>popen2</b> (<var>command, args</var>)<var><a name="index-popen2-3732"></a></var><br>
 <blockquote><p>Start a subprocess with two-way communication.  The name of the process
 is given by <var>command</var>, and <var>args</var> is an array of strings
 containing options for the command.  The file identifiers for the input
@@ -231,38 +236,41 @@ contains the process ID of the subprocess.  Otherwise, <var>pid</var> is
              -| some
              -| are
 </pre>
-        <p>Note that <code>popen2</code>, unlike <code>popen</code>, will not "reap" the
+        <p>Note that <code>popen2</code>, unlike <code>popen</code>, will not <code>"reap"</code> the
 child process.  If you don't use <code>waitpid</code> to check the child's
 exit status, it will linger until Octave exits. 
 </p></blockquote></div>
 
-<!-- EXEC_PATH libinterp/interpfcn/defaults.cc -->
-   <p><a name="doc_002dEXEC_005fPATH"></a>
+<!-- EXEC_PATH libinterp/corefcn/defaults.cc -->
+   <p><a name="XREFEXEC_005fPATH"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>EXEC_PATH</b> ()<var><a name="index-EXEC_005fPATH-3541"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>EXEC_PATH</b> (<var>new_val</var>)<var><a name="index-EXEC_005fPATH-3542"></a></var><br>
-&mdash; Built-in Function:  <b>EXEC_PATH</b> (<var>new_val, "local"</var>)<var><a name="index-EXEC_005fPATH-3543"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>EXEC_PATH</b> ()<var><a name="index-EXEC_005fPATH-3733"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>EXEC_PATH</b> (<var>new_val</var>)<var><a name="index-EXEC_005fPATH-3734"></a></var><br>
+&mdash; Built-in Function:  <b>EXEC_PATH</b> (<var>new_val, "local"</var>)<var><a name="index-EXEC_005fPATH-3735"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies a colon separated
 list of directories to append to the shell PATH when executing external
 programs.  The initial value of is taken from the environment variable
 <samp><span class="env">OCTAVE_EXEC_PATH</span></samp><!-- /@w -->, but that value can be overridden by
 the command line argument <samp><span class="option">--exec-path PATH</span></samp>.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-</p></blockquote></div>
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFIMAGE_005fPATH.html#XREFIMAGE_005fPATH">IMAGE_PATH</a>, <a href="XREFOCTAVE_005fHOME.html#XREFOCTAVE_005fHOME">OCTAVE_HOME</a>.
+
+        </blockquote></div>
 
    <p>In most cases, the following functions simply decode their arguments and
 make the corresponding Unix system calls.  For a complete example of how
 they can be used, look at the definition of the function <code>popen2</code>.
 
 <!-- fork libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dfork"></a>
+   <p><a name="XREFfork"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>pid</var>, <var>msg</var>] = <b>fork</b> ()<var><a name="index-fork-3544"></a></var><br>
+&mdash; Built-in Function: [<var>pid</var>, <var>msg</var>] = <b>fork</b> ()<var><a name="index-fork-3736"></a></var><br>
 <blockquote><p>Create a copy of the current process.
 
         <p>Fork can return one of the following values:
@@ -281,10 +289,10 @@ action.  A system dependent error message will be waiting in <var>msg</var>.
         </p></blockquote></div>
 
 <!-- exec libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dexec"></a>
+   <p><a name="XREFexec"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>exec</b> (<var>file, args</var>)<var><a name="index-exec-3545"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>exec</b> (<var>file, args</var>)<var><a name="index-exec-3737"></a></var><br>
 <blockquote><p>Replace current process with a new process.  Calling <code>exec</code> without
 first calling <code>fork</code> will terminate your current Octave process and
 replace it with the program named by <var>file</var>.  For example,
@@ -299,10 +307,10 @@ error message.
 </p></blockquote></div>
 
 <!-- pipe libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dpipe"></a>
+   <p><a name="XREFpipe"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>read_fd</var>, <var>write_fd</var>, <var>err</var>, <var>msg</var>] = <b>pipe</b> ()<var><a name="index-pipe-3546"></a></var><br>
+&mdash; Built-in Function: [<var>read_fd</var>, <var>write_fd</var>, <var>err</var>, <var>msg</var>] = <b>pipe</b> ()<var><a name="index-pipe-3738"></a></var><br>
 <blockquote><p>Create a pipe and return the reading and writing ends of the pipe
 into <var>read_fd</var> and <var>write_fd</var> respectively.
 
@@ -312,10 +320,10 @@ system-dependent error message.
 </p></blockquote></div>
 
 <!-- dup2 libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002ddup2"></a>
+   <p><a name="XREFdup2"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>dup2</b> (<var>old, new</var>)<var><a name="index-dup2-3547"></a></var><br>
+&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>dup2</b> (<var>old, new</var>)<var><a name="index-dup2-3739"></a></var><br>
 <blockquote><p>Duplicate a file descriptor.
 
         <p>If successful, <var>fid</var> is greater than zero and contains the new file
@@ -324,10 +332,10 @@ system-dependent error message.
 </p></blockquote></div>
 
 <!-- waitpid libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dwaitpid"></a>
+   <p><a name="XREFwaitpid"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>pid</var>, <var>status</var>, <var>msg</var>] = <b>waitpid</b> (<var>pid, options</var>)<var><a name="index-waitpid-3548"></a></var><br>
+&mdash; Built-in Function: [<var>pid</var>, <var>status</var>, <var>msg</var>] = <b>waitpid</b> (<var>pid, options</var>)<var><a name="index-waitpid-3740"></a></var><br>
 <blockquote><p>Wait for process <var>pid</var> to terminate.  The <var>pid</var> argument can be:
 
           <dl>
@@ -361,180 +369,192 @@ be less than zero and <var>msg</var> will contain a system-dependent error
 message.  The value of <var>status</var> contains additional system-dependent
 information about the subprocess that exited.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dWCONTINUE.html#doc_002dWCONTINUE">WCONTINUE</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWNOHANG.html#doc_002dWNOHANG">WNOHANG</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWUNTRACED.html#doc_002dWUNTRACED">WUNTRACED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFWCONTINUE.html#XREFWCONTINUE">WCONTINUE</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWNOHANG.html#XREFWNOHANG">WNOHANG</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWUNTRACED.html#XREFWUNTRACED">WUNTRACED</a>.
+
+        </blockquote></div>
 
 <!-- WCONTINUE libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWCONTINUE"></a>
+   <p><a name="XREFWCONTINUE"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WCONTINUE</b> ()<var><a name="index-WCONTINUE-3549"></a></var><br>
+&mdash; Built-in Function:  <b>WCONTINUE</b> ()<var><a name="index-WCONTINUE-3741"></a></var><br>
 <blockquote><p>Return the numerical value of the option argument that may be
 passed to <code>waitpid</code> to indicate that it should also return
 if a stopped child has been resumed by delivery of a <code>SIGCONT</code>
 signal.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWNOHANG.html#doc_002dWNOHANG">WNOHANG</a>, <a href="doc_002dWUNTRACED.html#doc_002dWUNTRACED">WUNTRACED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWNOHANG.html#XREFWNOHANG">WNOHANG</a>, <a href="XREFWUNTRACED.html#XREFWUNTRACED">WUNTRACED</a>.
+
+        </blockquote></div>
 
 <!-- WCOREDUMP libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWCOREDUMP"></a>
+   <p><a name="XREFWCOREDUMP"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WCOREDUMP</b> (<var>status</var>)<var><a name="index-WCOREDUMP-3550"></a></var><br>
+&mdash; Built-in Function:  <b>WCOREDUMP</b> (<var>status</var>)<var><a name="index-WCOREDUMP-3742"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return true if the
 child produced a core dump.  This function should only be employed if
 <code>WIFSIGNALED</code> returned true.  The macro used to implement this
 function is not specified in POSIX.1-2001 and is not available on some
 Unix implementations (e.g., AIX, SunOS).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WEXITSTATUS libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWEXITSTATUS"></a>
+   <p><a name="XREFWEXITSTATUS"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WEXITSTATUS</b> (<var>status</var>)<var><a name="index-WEXITSTATUS-3551"></a></var><br>
+&mdash; Built-in Function:  <b>WEXITSTATUS</b> (<var>status</var>)<var><a name="index-WEXITSTATUS-3743"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return the exit
 status of the child.  This function should only be employed if
 <code>WIFEXITED</code> returned true.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WIFCONTINUED libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWIFCONTINUED"></a>
+   <p><a name="XREFWIFCONTINUED"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WIFCONTINUED</b> (<var>status</var>)<var><a name="index-WIFCONTINUED-3552"></a></var><br>
+&mdash; Built-in Function:  <b>WIFCONTINUED</b> (<var>status</var>)<var><a name="index-WIFCONTINUED-3744"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return true if the
 child process was resumed by delivery of <code>SIGCONT</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>.
+
+        </blockquote></div>
 
 <!-- WIFSIGNALED libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWIFSIGNALED"></a>
+   <p><a name="XREFWIFSIGNALED"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WIFSIGNALED</b> (<var>status</var>)<var><a name="index-WIFSIGNALED-3553"></a></var><br>
+&mdash; Built-in Function:  <b>WIFSIGNALED</b> (<var>status</var>)<var><a name="index-WIFSIGNALED-3745"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return true if the
 child process was terminated by a signal.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WIFSTOPPED libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWIFSTOPPED"></a>
+   <p><a name="XREFWIFSTOPPED"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WIFSTOPPED</b> (<var>status</var>)<var><a name="index-WIFSTOPPED-3554"></a></var><br>
+&mdash; Built-in Function:  <b>WIFSTOPPED</b> (<var>status</var>)<var><a name="index-WIFSTOPPED-3746"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return true if the
 child process was stopped by delivery of a signal; this is only
 possible if the call was done using <code>WUNTRACED</code> or when the child
 is being traced (see ptrace(2)).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WIFEXITED libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWIFEXITED"></a>
+   <p><a name="XREFWIFEXITED"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WIFEXITED</b> (<var>status</var>)<var><a name="index-WIFEXITED-3555"></a></var><br>
+&mdash; Built-in Function:  <b>WIFEXITED</b> (<var>status</var>)<var><a name="index-WIFEXITED-3747"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return true if the
 child terminated normally.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WNOHANG libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWNOHANG"></a>
+   <p><a name="XREFWNOHANG"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WNOHANG</b> ()<var><a name="index-WNOHANG-3556"></a></var><br>
+&mdash; Built-in Function:  <b>WNOHANG</b> ()<var><a name="index-WNOHANG-3748"></a></var><br>
 <blockquote><p>Return the numerical value of the option argument that may be
 passed to <code>waitpid</code> to indicate that it should return its
 status immediately instead of waiting for a process to exit.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWUNTRACED.html#doc_002dWUNTRACED">WUNTRACED</a>, <a href="doc_002dWCONTINUE.html#doc_002dWCONTINUE">WCONTINUE</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWUNTRACED.html#XREFWUNTRACED">WUNTRACED</a>, <a href="XREFWCONTINUE.html#XREFWCONTINUE">WCONTINUE</a>.
+
+        </blockquote></div>
 
 <!-- WSTOPSIG libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWSTOPSIG"></a>
+   <p><a name="XREFWSTOPSIG"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WSTOPSIG</b> (<var>status</var>)<var><a name="index-WSTOPSIG-3557"></a></var><br>
+&mdash; Built-in Function:  <b>WSTOPSIG</b> (<var>status</var>)<var><a name="index-WSTOPSIG-3749"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return the number of
 the signal which caused the child to stop.  This function should only
 be employed if <code>WIFSTOPPED</code> returned true.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWTERMSIG.html#doc_002dWTERMSIG">WTERMSIG</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWTERMSIG.html#XREFWTERMSIG">WTERMSIG</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WTERMSIG libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWTERMSIG"></a>
+   <p><a name="XREFWTERMSIG"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WTERMSIG</b> (<var>status</var>)<var><a name="index-WTERMSIG-3558"></a></var><br>
+&mdash; Built-in Function:  <b>WTERMSIG</b> (<var>status</var>)<var><a name="index-WTERMSIG-3750"></a></var><br>
 <blockquote><p>Given <var>status</var> from a call to <code>waitpid</code>, return the number of
 the signal that caused the child process to terminate.  This function
 should only be employed if <code>WIFSIGNALED</code> returned true.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWIFEXITED.html#doc_002dWIFEXITED">WIFEXITED</a>, <a href="doc_002dWEXITSTATUS.html#doc_002dWEXITSTATUS">WEXITSTATUS</a>, <a href="doc_002dWIFSIGNALED.html#doc_002dWIFSIGNALED">WIFSIGNALED</a>, <a href="doc_002dWCOREDUMP.html#doc_002dWCOREDUMP">WCOREDUMP</a>, <a href="doc_002dWIFSTOPPED.html#doc_002dWIFSTOPPED">WIFSTOPPED</a>, <a href="doc_002dWSTOPSIG.html#doc_002dWSTOPSIG">WSTOPSIG</a>, <a href="doc_002dWIFCONTINUED.html#doc_002dWIFCONTINUED">WIFCONTINUED</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWIFEXITED.html#XREFWIFEXITED">WIFEXITED</a>, <a href="XREFWEXITSTATUS.html#XREFWEXITSTATUS">WEXITSTATUS</a>, <a href="XREFWIFSIGNALED.html#XREFWIFSIGNALED">WIFSIGNALED</a>, <a href="XREFWCOREDUMP.html#XREFWCOREDUMP">WCOREDUMP</a>, <a href="XREFWIFSTOPPED.html#XREFWIFSTOPPED">WIFSTOPPED</a>, <a href="XREFWSTOPSIG.html#XREFWSTOPSIG">WSTOPSIG</a>, <a href="XREFWIFCONTINUED.html#XREFWIFCONTINUED">WIFCONTINUED</a>.
+
+        </blockquote></div>
 
 <!-- WUNTRACED libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dWUNTRACED"></a>
+   <p><a name="XREFWUNTRACED"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>WUNTRACED</b> ()<var><a name="index-WUNTRACED-3559"></a></var><br>
+&mdash; Built-in Function:  <b>WUNTRACED</b> ()<var><a name="index-WUNTRACED-3751"></a></var><br>
 <blockquote><p>Return the numerical value of the option argument that may be
 passed to <code>waitpid</code> to indicate that it should also return
 if the child process has stopped but is not traced via the
 <code>ptrace</code> system call
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwaitpid.html#doc_002dwaitpid">waitpid</a>, <a href="doc_002dWNOHANG.html#doc_002dWNOHANG">WNOHANG</a>, <a href="doc_002dWCONTINUE.html#doc_002dWCONTINUE">WCONTINUE</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitpid.html#XREFwaitpid">waitpid</a>, <a href="XREFWNOHANG.html#XREFWNOHANG">WNOHANG</a>, <a href="XREFWCONTINUE.html#XREFWCONTINUE">WCONTINUE</a>.
+
+        </blockquote></div>
 
 <!-- fcntl libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dfcntl"></a>
+   <p><a name="XREFfcntl"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>fcntl</b> (<var>fid, request, arg</var>)<var><a name="index-fcntl-3560"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>fcntl</b> (<var>fid, request, arg</var>)<var><a name="index-fcntl-3752"></a></var><br>
 <blockquote><p>Change the properties of the open file <var>fid</var>.  The following values
 may be passed as <var>request</var>:
 
           <dl>
-<dt><code>F_DUPFD</code><a name="index-F_005fDUPFD-3561"></a><dd>Return a duplicate file descriptor.
+<dt><code>F_DUPFD</code><a name="index-F_005fDUPFD-3753"></a><dd>Return a duplicate file descriptor.
 
-          <br><dt><code>F_GETFD</code><a name="index-F_005fGETFD-3562"></a><dd>Return the file descriptor flags for <var>fid</var>.
+          <br><dt><code>F_GETFD</code><a name="index-F_005fGETFD-3754"></a><dd>Return the file descriptor flags for <var>fid</var>.
 
-          <br><dt><code>F_SETFD</code><a name="index-F_005fSETFD-3563"></a><dd>Set the file descriptor flags for <var>fid</var>.
+          <br><dt><code>F_SETFD</code><a name="index-F_005fSETFD-3755"></a><dd>Set the file descriptor flags for <var>fid</var>.
 
-          <br><dt><code>F_GETFL</code><a name="index-F_005fGETFL-3564"></a><dd>Return the file status flags for <var>fid</var>.  The following codes may be
+          <br><dt><code>F_GETFL</code><a name="index-F_005fGETFL-3756"></a><dd>Return the file status flags for <var>fid</var>.  The following codes may be
 returned (some of the flags may be undefined on some systems).
 
                <dl>
-<dt><code>O_RDONLY</code><a name="index-O_005fRDONLY-3565"></a><dd>Open for reading only.
+<dt><code>O_RDONLY</code><a name="index-O_005fRDONLY-3757"></a><dd>Open for reading only.
 
-               <br><dt><code>O_WRONLY</code><a name="index-O_005fWRONLY-3566"></a><dd>Open for writing only.
+               <br><dt><code>O_WRONLY</code><a name="index-O_005fWRONLY-3758"></a><dd>Open for writing only.
 
-               <br><dt><code>O_RDWR</code><a name="index-O_005fRDWR-3567"></a><dd>Open for reading and writing.
+               <br><dt><code>O_RDWR</code><a name="index-O_005fRDWR-3759"></a><dd>Open for reading and writing.
 
-               <br><dt><code>O_APPEND</code><a name="index-O_005fAPPEND-3568"></a><dd>Append on each write.
+               <br><dt><code>O_APPEND</code><a name="index-O_005fAPPEND-3760"></a><dd>Append on each write.
 
-               <br><dt><code>O_CREAT</code><a name="index-O_005fCREAT-3569"></a><dd>Create the file if it does not exist.
+               <br><dt><code>O_CREAT</code><a name="index-O_005fCREAT-3761"></a><dd>Create the file if it does not exist.
 
-               <br><dt><code>O_NONBLOCK</code><a name="index-O_005fNONBLOCK-3570"></a><dd>Non-blocking mode.
+               <br><dt><code>O_NONBLOCK</code><a name="index-O_005fNONBLOCK-3762"></a><dd>Non-blocking mode.
 
-               <br><dt><code>O_SYNC</code><a name="index-O_005fSYNC-3571"></a><dd>Wait for writes to complete.
+               <br><dt><code>O_SYNC</code><a name="index-O_005fSYNC-3763"></a><dd>Wait for writes to complete.
 
-               <br><dt><code>O_ASYNC</code><a name="index-O_005fASYNC-3572"></a><dd>Asynchronous I/O. 
+               <br><dt><code>O_ASYNC</code><a name="index-O_005fASYNC-3764"></a><dd>Asynchronous I/O. 
 </dl>
 
-          <br><dt><code>F_SETFL</code><a name="index-F_005fSETFL-3573"></a><dd>Set the file status flags for <var>fid</var> to the value specified by
+          <br><dt><code>F_SETFL</code><a name="index-F_005fSETFL-3765"></a><dd>Set the file status flags for <var>fid</var> to the value specified by
 <var>arg</var>.  The only flags that can be changed are <code>O_APPEND</code><!-- /@w --> and
 <code>O_NONBLOCK</code><!-- /@w -->. 
 </dl>
@@ -545,10 +565,10 @@ system-dependent error message.
 </p></blockquote></div>
 
 <!-- kill libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dkill"></a>
+   <p><a name="XREFkill"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>kill</b> (<var>pid, sig</var>)<var><a name="index-kill-3574"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>kill</b> (<var>pid, sig</var>)<var><a name="index-kill-3766"></a></var><br>
 <blockquote><p>Send signal <var>sig</var> to process <var>pid</var>.
 
         <p>If <var>pid</var> is positive, then signal <var>sig</var> is sent to <var>pid</var>.
@@ -568,11 +588,11 @@ performed.
         <p>Return 0 if successful, otherwise return -1. 
 </p></blockquote></div>
 
-<!-- SIG libinterp/interpfcn/sighandlers.cc -->
-   <p><a name="doc_002dSIG"></a>
+<!-- SIG libinterp/corefcn/sighandlers.cc -->
+   <p><a name="XREFSIG"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>SIG</b> ()<var><a name="index-SIG-3575"></a></var><br>
+&mdash; Built-in Function:  <b>SIG</b> ()<var><a name="index-SIG-3767"></a></var><br>
 <blockquote><p>Return a structure containing Unix signal names and their defined values. 
 </p></blockquote></div>
 

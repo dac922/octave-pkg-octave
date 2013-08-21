@@ -30,60 +30,63 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Graphics-Toolkits.html#Graphics-Toolkit
 
 <h5 class="subsubsection">15.4.7.1 Customizing Toolkit Behavior</h5>
 
-<p><a name="index-toolkit-customization-1671"></a>
+<p><a name="index-toolkit-customization-1814"></a>
 The specific behavior of the backend toolkit may be modified using the
 following utility functions.  Note: Not all functions apply to every
 graphics toolkit.
 
 <!-- gnuplot_binary scripts/plot/gnuplot_binary.m -->
-   <p><a name="doc_002dgnuplot_005fbinary"></a>
+   <p><a name="XREFgnuplot_005fbinary"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>prog</var>, <var>args</var>] = <b>gnuplot_binary</b> ()<var><a name="index-gnuplot_005fbinary-1672"></a></var><br>
-&mdash; Loadable Function: [<var>old_prog</var>, <var>old_args</var>] = <b>gnuplot_binary</b> (<var>new_prog, arg1, <small class="dots">...</small></var>)<var><a name="index-gnuplot_005fbinary-1673"></a></var><br>
+&mdash; Loadable Function: [<var>prog</var>, <var>args</var>] = <b>gnuplot_binary</b> ()<var><a name="index-gnuplot_005fbinary-1815"></a></var><br>
+&mdash; Loadable Function: [<var>old_prog</var>, <var>old_args</var>] = <b>gnuplot_binary</b> (<var>new_prog, arg1, <small class="dots">...</small></var>)<var><a name="index-gnuplot_005fbinary-1816"></a></var><br>
 <blockquote><p>Query or set the name of the program invoked by the plot command
 when the graphics toolkit is set to "gnuplot".  Additional arguments to
 pass to the external plotting program may also be given. 
 The default value is <code>"gnuplot"</code> with no additional arguments. 
 See <a href="Installation.html#Installation">Installation</a>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgraphics_005ftoolkit.html#doc_002dgraphics_005ftoolkit">graphics_toolkit</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgraphics_005ftoolkit.html#XREFgraphics_005ftoolkit">graphics_toolkit</a>.
+
+        </blockquote></div>
 
 <!-- gui_mode libinterp/dldfcn/__init_fltk__.cc -->
-   <p><a name="doc_002dgui_005fmode"></a>
+   <p><a name="XREFgui_005fmode"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>mode</var> = <b>gui_mode</b> ()<var><a name="index-gui_005fmode-1674"></a></var><br>
-&mdash; Built-in Function:  <b>gui_mode</b> (<var>mode</var>)<var><a name="index-gui_005fmode-1675"></a></var><br>
+&mdash; Built-in Function: <var>mode</var> = <b>gui_mode</b> ()<var><a name="index-gui_005fmode-1817"></a></var><br>
+&mdash; Built-in Function:  <b>gui_mode</b> (<var>mode</var>)<var><a name="index-gui_005fmode-1818"></a></var><br>
 <blockquote><p>Query or set the GUI mode for the current graphics toolkit. 
 The <var>mode</var> argument can be one of the following strings:
 
           <dl>
-<dt>'2d'<dd>Allows panning and zooming of current axes.
+<dt><code>"2d"</code><dd>Allows panning and zooming of current axes.
 
-          <br><dt>'3d'<dd>Allows rotating and zooming of current axes.
+          <br><dt><code>"3d"</code><dd>Allows rotating and zooming of current axes.
 
-          <br><dt>'none'<dd>Mouse inputs have no effect. 
+          <br><dt><code>"none"</code><dd>Mouse inputs have no effect. 
 </dl>
 
         <p>This function is currently implemented only for the FLTK graphics toolkit.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmouse_005fwheel_005fzoom.html#doc_002dmouse_005fwheel_005fzoom">mouse_wheel_zoom</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmouse_005fwheel_005fzoom.html#XREFmouse_005fwheel_005fzoom">mouse_wheel_zoom</a>.
+
+        </blockquote></div>
 
 <!-- mouse_wheel_zoom libinterp/dldfcn/__init_fltk__.cc -->
-   <p><a name="doc_002dmouse_005fwheel_005fzoom"></a>
+   <p><a name="XREFmouse_005fwheel_005fzoom"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>speed</var> = <b>mouse_wheel_zoom</b> ()<var><a name="index-mouse_005fwheel_005fzoom-1676"></a></var><br>
-&mdash; Built-in Function:  <b>mouse_wheel_zoom</b> (<var>speed</var>)<var><a name="index-mouse_005fwheel_005fzoom-1677"></a></var><br>
+&mdash; Built-in Function: <var>speed</var> = <b>mouse_wheel_zoom</b> ()<var><a name="index-mouse_005fwheel_005fzoom-1819"></a></var><br>
+&mdash; Built-in Function:  <b>mouse_wheel_zoom</b> (<var>speed</var>)<var><a name="index-mouse_005fwheel_005fzoom-1820"></a></var><br>
 <blockquote><p>Query or set the mouse wheel zoom factor.
 
         <p>This function is currently implemented only for the FLTK graphics toolkit.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgui_005fmode.html#doc_002dgui_005fmode">gui_mode</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgui_005fmode.html#XREFgui_005fmode">gui_mode</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->

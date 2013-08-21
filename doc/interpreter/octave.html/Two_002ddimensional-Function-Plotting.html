@@ -48,169 +48,216 @@ example,
 legend displaying the name of the plotted function.
 
 <!-- fplot scripts/plot/fplot.m -->
-   <p><a name="doc_002dfplot"></a>
+   <p><a name="XREFfplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fplot</b> (<var>fn, limits</var>)<var><a name="index-fplot-1262"></a></var><br>
-&mdash; Function File:  <b>fplot</b> (<var>fn, limits, tol</var>)<var><a name="index-fplot-1263"></a></var><br>
-&mdash; Function File:  <b>fplot</b> (<var>fn, limits, n</var>)<var><a name="index-fplot-1264"></a></var><br>
-&mdash; Function File:  <b>fplot</b> (<var><small class="dots">...</small>, fmt</var>)<var><a name="index-fplot-1265"></a></var><br>
-<blockquote><p>Plot a function <var>fn</var> within defined limits. 
-<var>fn</var> is a function handle, inline function, or string
-containing the name of the function to evaluate. 
-The limits of the plot are given by <var>limits</var> of the form
-<code>[</code><var>xlo</var><code>, </code><var>xhi</var><code>]</code> or <code>[</code><var>xlo</var><code>, </code><var>xhi</var><code>,
-</code><var>ylo</var><code>, </code><var>yhi</var><code>]</code>.  <var>tol</var> is the default tolerance to use for the
-plot, and if <var>tol</var> is an integer it is assumed that it defines the
-number points to use in the plot.  The <var>fmt</var> argument is passed
-to the plot command.
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits</var>)<var><a name="index-fplot-1312"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits, tol</var>)<var><a name="index-fplot-1313"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits, n</var>)<var><a name="index-fplot-1314"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits, fmt</var>)<var><a name="index-fplot-1315"></a></var><br>
+&mdash; Function File:  <b>fplot</b> (<var>fn, limits, tol, n, fmt</var>)<var><a name="index-fplot-1316"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>fplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-fplot-1317"></a></var><br>
+<blockquote><p>Plot a function <var>fn</var> within the range defined by <var>limits</var>.
 
-     <pre class="example">          fplot ("cos", [0, 2*pi])
+        <p><var>fn</var> is a function handle, inline function, or string
+containing the name of the function to evaluate. 
+The limits of the plot are of the form <code>[</code><var>xlo</var><code>, </code><var>xhi</var><code>]</code> or
+<code>[</code><var>xlo</var><code>, </code><var>xhi</var><code>, </code><var>ylo</var><code>, </code><var>yhi</var><code>]</code>. 
+The next three arguments are all optional and any number of them may be
+given in any order. 
+<var>tol</var> is the relative tolerance to use for the plot and defaults
+to 2e-3 (.2%). 
+<var>n</var> is the minimum number of points to use.  When <var>n</var> is
+specified, the maximum stepsize will be
+<var>xhi</var><code> - </code><var>xlo</var><code> / </code><var>n</var>.  More than <var>n</var> points may still
+be used in order to meet the relative tolerance requirement. 
+The <var>fmt</var> argument specifies the linestyle to be used by the plot
+command.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
+
+        <p>With no output arguments the results are immediately plotted.  With two
+output arguments the 2-D plot data is returned.  The data can subsequently
+be plotted manually with <code>plot (</code><var>x</var><code>, </code><var>y</var><code>)</code>.
+
+        <p>Example:
+
+     <pre class="example">          fplot (@cos, [0, 2*pi])
           fplot ("[cos(x), sin(x)]", [0, 2*pi])
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>. 
-</p></blockquote></div>
+        <p>Note: <code>fplot</code> works best with continuous functions.  Functions with
+discontinuities are unlikely to plot well.  This restriction may be removed
+in the future.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFplot.html#XREFplot">plot</a>.
+
+        </blockquote></div>
 
    <p>Other functions that can create two-dimensional plots directly from a
 function include <code>ezplot</code>, <code>ezcontour</code>, <code>ezcontourf</code> and
 <code>ezpolar</code>.
 
 <!-- ezplot scripts/plot/ezplot.m -->
-   <p><a name="doc_002dezplot"></a>
+   <p><a name="XREFezplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezplot</b> (<var>f</var>)<var><a name="index-ezplot-1266"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var>fx, fy</var>)<var><a name="index-ezplot-1267"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezplot-1268"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezplot-1269"></a></var><br>
-&mdash; Function File:  <b>ezplot</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezplot-1270"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezplot-1271"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>f</var>)<var><a name="index-ezplot-1318"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>f2v</var>)<var><a name="index-ezplot-1319"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>fx, fy</var>)<var><a name="index-ezplot-1320"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezplot-1321"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezplot-1322"></a></var><br>
+&mdash; Function File:  <b>ezplot</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezplot-1323"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezplot-1324"></a></var><br>
 <blockquote>
-        <p>Plot the curve defined by <var>f</var> in two dimensions.  The function
-<var>f</var> may be a string, inline function or function handle and can
-have either one or two variables.  If <var>f</var> has one variable, then
+        <p>Plot the 2-D curve defined by the function <var>f</var>.
+
+        <p>The function <var>f</var> may be a string, inline function, or function handle
+and can have either one or two variables.  If <var>f</var> has one variable, then
 the function is plotted over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code>
 with 500 points.
 
-        <p>If <var>f</var> has two variables then <var>f</var><code>(</code><var>x</var><code>,</code><var>y</var><code>) = 0</code>
-is calculated over the meshed domain <code>-2*pi &lt; </code><var>x</var><code> | </code><var>y</var><code>
-&lt; 2*pi</code> with 60 by 60 in the mesh.  For example:
+        <p>If <var>f2v</var> is a function of two variables then the implicit function
+<var>f</var><code>(</code><var>x</var><code>,</code><var>y</var><code>) = 0</code> is calculated over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
+
+        <p>For example:
 
      <pre class="example">          ezplot (@(<var>x</var>, <var>y</var>) <var>x</var>.^2 - <var>y</var>.^2 - 1)
 </pre>
-        <p>If two functions are passed as strings, inline functions or function
-handles, then the parametric function
+        <p>If two functions are passed as inputs then the parametric function
 
      <pre class="example">          <var>x</var> = <var>fx</var> (<var>t</var>)
           <var>y</var> = <var>fy</var> (<var>t</var>)
 </pre>
-        <p class="noindent">is plotted over the domain <code>-2*pi &lt; </code><var>t</var><code> &lt; 2*pi</code> with 500
-points.
+        <p class="noindent">is plotted over the domain <code>-2*pi &lt;= </code><var>t</var><code> &lt;= 2*pi</code> with 500 points.
 
         <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of <var>x</var>, <var>y</var> and <var>t</var>.  If it is a four element
-vector, then the minimum and maximum values of <var>x</var> and <var>t</var>
-are determined by the first two elements and the minimum and maximum
-of <var>y</var> by the second pair of elements.
+values of both <var>x</var> and <var>y</var>, or <var>t</var> for a parametric plot.  If
+<var>dom</var> is a four element vector, then the minimum and maximum values are
+<code>[xmin xmax ymin ymax]</code>.
 
         <p><var>n</var> is a scalar defining the number of points to use in plotting
 the function.
 
-        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>, <a href="doc_002dezplot3.html#doc_002dezplot3">ezplot3</a>. 
-</p></blockquote></div>
+        <p>The optional return value <var>h</var> is a vector of graphics handles to
+the created line objects.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFplot.html#XREFplot">plot</a>, <a href="XREFezplot3.html#XREFezplot3">ezplot3</a>, <a href="XREFezpolar.html#XREFezpolar">ezpolar</a>, <a href="XREFezcontour.html#XREFezcontour">ezcontour</a>, <a href="XREFezcontourf.html#XREFezcontourf">ezcontourf</a>, <a href="XREFezmesh.html#XREFezmesh">ezmesh</a>, <a href="XREFezmeshc.html#XREFezmeshc">ezmeshc</a>, <a href="XREFezsurf.html#XREFezsurf">ezsurf</a>, <a href="XREFezsurfc.html#XREFezsurfc">ezsurfc</a>.
+
+        </blockquote></div>
 
 <!-- ezcontour scripts/plot/ezcontour.m -->
-   <p><a name="doc_002dezcontour"></a>
+   <p><a name="XREFezcontour"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezcontour</b> (<var>f</var>)<var><a name="index-ezcontour-1272"></a></var><br>
-&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontour-1273"></a></var><br>
-&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontour-1274"></a></var><br>
-&mdash; Function File:  <b>ezcontour</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezcontour-1275"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezcontour</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontour-1276"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var>f</var>)<var><a name="index-ezcontour-1325"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontour-1326"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontour-1327"></a></var><br>
+&mdash; Function File:  <b>ezcontour</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezcontour-1328"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezcontour</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontour-1329"></a></var><br>
 <blockquote>
-        <p>Plot the contour lines of a function.  <var>f</var> is a string, inline function
-or function handle with two arguments defining the function.  By default the
-plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code> and <code>-2*pi &lt;
-</code><var>y</var><code> &lt; 2*pi</code> with 60 points in each dimension.
+        <p>Plot the contour lines of a function.
+
+        <p><var>f</var> is a string, inline function, or function handle with two arguments
+defining the function.  By default the plot is over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
 
         <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
-then the minimum and maximum value of <var>x</var> and <var>y</var> are specify
-separately.
+values of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
+then the minimum and maximum values are <code>[xmin xmax ymin ymax]</code>.
 
         <p><var>n</var> is a scalar defining the number of points to use in each dimension.
 
-        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
-
-     <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
-          ezcontour (f, [-3, 3]);
-</pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezcontourf.html#doc_002dezcontourf">ezcontourf</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
-</p></blockquote></div>
-
-<!-- ezcontourf scripts/plot/ezcontourf.m -->
-   <p><a name="doc_002dezcontourf"></a>
-
-<div class="defun">
-&mdash; Function File:  <b>ezcontourf</b> (<var>f</var>)<var><a name="index-ezcontourf-1277"></a></var><br>
-&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontourf-1278"></a></var><br>
-&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontourf-1279"></a></var><br>
-&mdash; Function File:  <b>ezcontourf</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezcontourf-1280"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezcontourf</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontourf-1281"></a></var><br>
-<blockquote>
-        <p>Plot the filled contour lines of a function.  <var>f</var> is a string, inline
-function or function handle with two arguments defining the function.  By
-default the plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code> and
-<code>-2*pi &lt; </code><var>y</var><code> &lt; 2*pi</code> with 60 points in each dimension.
-
-        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
-then the minimum and maximum value of <var>x</var> and <var>y</var> are specify
-separately.
-
-        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
-
-        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
-
-     <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
-          ezcontourf (f, [-3, 3]);
-</pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezcontour.html#doc_002dezcontour">ezcontour</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
-</p></blockquote></div>
-
-<!-- ezpolar scripts/plot/ezpolar.m -->
-   <p><a name="doc_002dezpolar"></a>
-
-<div class="defun">
-&mdash; Function File:  <b>ezpolar</b> (<var>f</var>)<var><a name="index-ezpolar-1282"></a></var><br>
-&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezpolar-1283"></a></var><br>
-&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezpolar-1284"></a></var><br>
-&mdash; Function File:  <b>ezpolar</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezpolar-1285"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezpolar</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezpolar-1286"></a></var><br>
-<blockquote>
-        <p>Plot a function in polar coordinates.  The function <var>f</var> is
-a string, inline function, or function handle with a single argument. 
-The expected form of the function is
-<var>rho</var><code> = </code><var>f</var><code>(</code><var>theta</var><code>)</code>. 
-By default the plot is over the domain <code>0 &lt; </code><var>theta</var><code> &lt; 2*pi</code> with 60
-points.
-
-        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-values of <var>theta</var>.  <var>n</var> is a scalar defining the number of points to
-use.  If the optional input <var>hax</var> is given then the plot is placed into
-the specified axes rather than the current axes.
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
         <p>Example:
 
-     <pre class="example">          ezpolar (@(t) 1 + sin (t));
+     <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
+          ezcontour (f, [-3, 3]);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolar.html#doc_002dpolar">polar</a>, <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFcontour.html#XREFcontour">contour</a>, <a href="XREFezcontourf.html#XREFezcontourf">ezcontourf</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezmeshc.html#XREFezmeshc">ezmeshc</a>, <a href="XREFezsurfc.html#XREFezsurfc">ezsurfc</a>.
+
+        </blockquote></div>
+
+<!-- ezcontourf scripts/plot/ezcontourf.m -->
+   <p><a name="XREFezcontourf"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>ezcontourf</b> (<var>f</var>)<var><a name="index-ezcontourf-1330"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezcontourf-1331"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezcontourf-1332"></a></var><br>
+&mdash; Function File:  <b>ezcontourf</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezcontourf-1333"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezcontourf</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezcontourf-1334"></a></var><br>
+<blockquote>
+        <p>Plot the filled contour lines of a function.
+
+        <p><var>f</var> is a string, inline function, or function handle with two arguments
+defining the function.  By default the plot is over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
+
+        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
+values of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
+then the minimum and maximum values are <code>[xmin xmax ymin ymax]</code>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
+
+        <p>Example:
+
+     <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
+          ezcontourf (f, [-3, 3]);
+</pre>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFcontourf.html#XREFcontourf">contourf</a>, <a href="XREFezcontour.html#XREFezcontour">ezcontour</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezmeshc.html#XREFezmeshc">ezmeshc</a>, <a href="XREFezsurfc.html#XREFezsurfc">ezsurfc</a>.
+
+        </blockquote></div>
+
+<!-- ezpolar scripts/plot/ezpolar.m -->
+   <p><a name="XREFezpolar"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>ezpolar</b> (<var>f</var>)<var><a name="index-ezpolar-1335"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezpolar-1336"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezpolar-1337"></a></var><br>
+&mdash; Function File:  <b>ezpolar</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezpolar-1338"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezpolar</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezpolar-1339"></a></var><br>
+<blockquote>
+        <p>Plot a 2-D function in polar coordinates.
+
+        <p>The function <var>f</var> is a string, inline function, or function handle with
+a single argument.  The expected form of the function is
+<var>rho</var><code> = </code><var>f</var><code>(</code><var>theta</var><code>)</code>. 
+By default the plot is over the domain <code>0 &lt;= </code><var>theta</var><code> &lt;= 2*pi</code>
+with 500 points.
+
+        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
+values of <var>theta</var>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in plotting
+the function.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created plot.
+
+        <p>Example:
+
+     <pre class="example">          ezpolar (@(t) sin (5/4 * t), [0, 8*pi]);
+</pre>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFpolar.html#XREFpolar">polar</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -21,8 +21,9 @@
 ## @deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} copyfile (@var{f1}, @var{f2}, 'f')
 ## Copy the file @var{f1} to the new name @var{f2}.  The name @var{f1}
 ## may contain globbing patterns.  If @var{f1} expands to multiple file
-## names, @var{f2} must be a directory.  If the force flag 'f' is given then
-## existing destination files will be overwritten without prompting.
+## names, @var{f2} must be a directory.  If the force flag @qcode{'f'} is
+## given then existing destination files will be overwritten without
+## prompting.
 ##
 ## If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
 ## character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
@@ -62,7 +63,7 @@ function [status, msg, msgid] = copyfile (f1, f2, force)
     endif
 
     if (nargin == 3 && strcmp (force, "f"))
-      cmd = cstrcat (cmd, " ", cmd_force_flag);
+      cmd = [cmd " " cmd_force_flag];
     endif
 
     ## If f1 isn't a cellstr convert it to one.

@@ -1,21 +1,28 @@
-/* Copyright (C) 2009 P.L. Lucas
- * Copyright (C) 2012 Jacob Dawid <jacob.dawid@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
- */
+/*
+
+Copyright (C) 2009 P.L. Lucas
+Copyright (C) 2012 Jacob Dawid
+
+This file is part of Octave.
+
+Octave is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 3 of the License, or (at your
+option) any later version.
+
+Octave is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License
+along with Octave; see the file COPYING.  If not, see
+<http://www.gnu.org/licenses/>.
+
+*/
+
+// Author: P. L. Lucas
+// Author: Jacob Dawid <jacob.dawid@gmail.com>
 
 #include <QStringList>
 #include <QIODevice>
@@ -49,6 +56,8 @@ public:
   QString get_info_path ();
   QString search_node (const QString& node);
   QString global_search (const QString& text, int maxFounds);
+
+  QString find_ref (const QString &name);
 
   /** Checks if this node is reference. If node is reference, it will be returned its position
     * in text, else  it will be returned -1.

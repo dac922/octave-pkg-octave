@@ -53,6 +53,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "terminal-dock-widget.h"
 #include "documentation-dock-widget.h"
 #include "octave-qt-link.h"
+#include "octave-dock-widget.h"
 #include "find-files-dialog.h"
 
 /**
@@ -81,6 +82,8 @@ signals:
   void new_file_signal (const QString&);
   void open_file_signal (const QString&);
 
+  void show_doc_signal (const QString&);
+
   void insert_debugger_pointer_signal (const QString& file, int line);
   void delete_debugger_pointer_signal (const QString& file, int line);
   void update_breakpoint_marker_signal (bool insert, const QString& file,
@@ -88,6 +91,8 @@ signals:
 
   void copyClipboard_signal (void);
   void pasteClipboard_signal (void);
+
+  void set_widget_shortcuts_signal (bool);
 
 public slots:
   void report_status_message (const QString& statusMessage);
@@ -168,9 +173,20 @@ public slots:
                                  const QString &dirname,
                                  const QString& multimode);
 
+  void handle_show_doc (const QString &file);
+
   // find files dialog 
   void find_files(const QString &startdir=QDir::currentPath());
   void find_files_finished(int);
+
+  // setting global shortcuts
+  void set_global_shortcuts (bool enable);
+
+  // handling the clipboard
+  void clipboard_has_changed (QClipboard::Mode);
+  void clear_clipboard ();
+
+
 protected:
   void closeEvent (QCloseEvent * closeEvent);
 
@@ -249,6 +265,19 @@ private:
   documentation_dock_widget *doc_browser_window;
   file_editor_interface *editor_window;
   workspace_view *workspace_window;
+  QList<octave_dock_widget *> dock_widget_list ()
+  {
+    QList<octave_dock_widget *> list = QList<octave_dock_widget *> ();
+    list.append (static_cast<octave_dock_widget *> (command_window));
+    list.append (static_cast<octave_dock_widget *> (history_window));
+    list.append (static_cast<octave_dock_widget *> (file_browser_window));
+    list.append (static_cast<octave_dock_widget *> (doc_browser_window));
+#ifdef HAVE_QSCINTILLA
+    list.append (static_cast<octave_dock_widget *> (editor_window));
+#endif
+    list.append (static_cast<octave_dock_widget *> (workspace_window));
+    return list;
+  }
 
   QToolBar *_main_tool_bar;
   QMenu *_debug_menu;
@@ -264,7 +293,11 @@ private:
 
   QAction *_copy_action;
   QAction *_paste_action;
+  QAction *_clear_clipboard_action;
   QAction *_undo_action;
+
+  QAction *_find_files_action;
+  QAction *_exit_action;
 
   // Toolbars.
   QComboBox *_current_directory_combo_box;
@@ -279,6 +312,8 @@ private:
   octave_main_thread *_octave_main_thread;
 
   octave_qt_link *_octave_qt_link;
+
+  QClipboard *_clipboard;
 
   // Flag for closing whole application.
   bool _closing;

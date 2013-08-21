@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Basics.html#Basics">Basics</a>
 <hr>
 </div>
 
-<h4 class="subsection">22.1.3 Finding out Information about Sparse Matrices</h4>
+<h4 class="subsection">22.1.3 Finding Information about Sparse Matrices</h4>
 
 <p>There are a number of functions that allow information concerning
 sparse matrices to be obtained.  The most basic of these is
@@ -51,53 +51,56 @@ the columns of a sparse matrix including the number of elements, the
 mean and the variance of each column.
 
 <!-- issparse libinterp/corefcn/sparse.cc -->
-   <p><a name="doc_002dissparse"></a>
+   <p><a name="XREFissparse"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>issparse</b> (<var>x</var>)<var><a name="index-issparse-2400"></a></var><br>
+&mdash; Built-in Function:  <b>issparse</b> (<var>x</var>)<var><a name="index-issparse-2564"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a sparse matrix.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>.
 
-<!-- nnz libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dnnz"></a>
+        </blockquote></div>
+
+<!-- nnz libinterp/corefcn/data.cc -->
+   <p><a name="XREFnnz"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>scalar</var> = <b>nnz</b> (<var>a</var>)<var><a name="index-nnz-2401"></a></var><br>
+&mdash; Built-in Function: <var>scalar</var> = <b>nnz</b> (<var>a</var>)<var><a name="index-nnz-2565"></a></var><br>
 <blockquote><p>Return the number of non zero elements in <var>a</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>, <a href="doc_002dnzmax.html#doc_002dnzmax">nzmax</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsparse.html#XREFsparse">sparse</a>, <a href="XREFnzmax.html#XREFnzmax">nzmax</a>.
+
+        </blockquote></div>
 
 <!-- nonzeros scripts/sparse/nonzeros.m -->
-   <p><a name="doc_002dnonzeros"></a>
+   <p><a name="XREFnonzeros"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nonzeros</b> (<var>s</var>)<var><a name="index-nonzeros-2402"></a></var><br>
+&mdash; Function File:  <b>nonzeros</b> (<var>s</var>)<var><a name="index-nonzeros-2566"></a></var><br>
 <blockquote><p>Return a vector of the non-zero values of the sparse matrix <var>s</var>. 
 </p></blockquote></div>
 
-<!-- nzmax libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dnzmax"></a>
+<!-- nzmax libinterp/corefcn/data.cc -->
+   <p><a name="XREFnzmax"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>scalar</var> = <b>nzmax</b> (<var>SM</var>)<var><a name="index-nzmax-2403"></a></var><br>
+&mdash; Built-in Function: <var>scalar</var> = <b>nzmax</b> (<var>SM</var>)<var><a name="index-nzmax-2567"></a></var><br>
 <blockquote><p>Return the amount of storage allocated to the sparse matrix <var>SM</var>. 
 Note that Octave tends to crop unused memory at the first opportunity
 for sparse objects.  There are some cases of user created sparse objects
 where the value returned by <dfn>nzmax</dfn> will not be the same as <dfn>nnz</dfn>,
 but in general they will give the same result.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnnz.html#doc_002dnnz">nnz</a>, <a href="doc_002dspalloc.html#doc_002dspalloc">spalloc</a>, <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnnz.html#XREFnnz">nnz</a>, <a href="XREFspalloc.html#XREFspalloc">spalloc</a>, <a href="XREFsparse.html#XREFsparse">sparse</a>.
+
+        </blockquote></div>
 
 <!-- spstats scripts/sparse/spstats.m -->
-   <p><a name="doc_002dspstats"></a>
+   <p><a name="XREFspstats"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S</var>)<var><a name="index-spstats-2404"></a></var><br>
-&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S, j</var>)<var><a name="index-spstats-2405"></a></var><br>
+&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S</var>)<var><a name="index-spstats-2568"></a></var><br>
+&mdash; Function File: [<var>count</var>, <var>mean</var>, <var>var</var>] = <b>spstats</b> (<var>S, j</var>)<var><a name="index-spstats-2569"></a></var><br>
 <blockquote><p>Return the stats for the non-zero elements of the sparse matrix <var>S</var>. 
 <var>count</var> is the number of non-zeros in each column, <var>mean</var>
 is the mean of the non-zeros in each column, and <var>var</var> is the
@@ -111,7 +114,7 @@ this case, bins can contain data values of zero, whereas with
 
    <p>When solving linear equations involving sparse matrices Octave
 determines the means to solve the equation based on the type of the
-matrix as discussed in <a href="Sparse-Linear-Algebra.html#Sparse-Linear-Algebra">Sparse Linear Algebra</a>.  Octave probes the
+matrix (see <a href="Sparse-Linear-Algebra.html#Sparse-Linear-Algebra">Sparse Linear Algebra</a>).  Octave probes the
 matrix type when the div (/) or ldiv (\) operator is first used with
 the matrix and then caches the type.  However the <dfn>matrix_type</dfn>
 function can be used to determine the type of the sparse matrix prior
@@ -179,59 +182,62 @@ graphically by the command <code>treeplot (etree (A))</code> if <code>A</code> i
 symmetric or <code>treeplot (etree (A+A'))</code> otherwise.
 
 <!-- spy scripts/sparse/spy.m -->
-   <p><a name="doc_002dspy"></a>
+   <p><a name="XREFspy"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>spy</b> (<var>x</var>)<var><a name="index-spy-2406"></a></var><br>
-&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, markersize</var>)<var><a name="index-spy-2407"></a></var><br>
-&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, line_spec</var>)<var><a name="index-spy-2408"></a></var><br>
+&mdash; Function File:  <b>spy</b> (<var>x</var>)<var><a name="index-spy-2570"></a></var><br>
+&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, markersize</var>)<var><a name="index-spy-2571"></a></var><br>
+&mdash; Function File:  <b>spy</b> (<var><small class="dots">...</small>, line_spec</var>)<var><a name="index-spy-2572"></a></var><br>
 <blockquote><p>Plot the sparsity pattern of the sparse matrix <var>x</var>.  If the argument
 <var>markersize</var> is given as a scalar value, it is used to determine the
 point size in the plot.  If the string <var>line_spec</var> is given it is
 passed to <code>plot</code> and determines the appearance of the plot.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot.html#doc_002dplot">plot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFplot.html#XREFplot">plot</a>.
+
+        </blockquote></div>
 
 <!-- etree libinterp/dldfcn/colamd.cc -->
-   <p><a name="doc_002detree"></a>
+   <p><a name="XREFetree"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S</var>)<var><a name="index-etree-2409"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2410"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>q</var>] = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2411"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S</var>)<var><a name="index-etree-2573"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2574"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>q</var>] = <b>etree</b> (<var>S, typ</var>)<var><a name="index-etree-2575"></a></var><br>
 <blockquote>
         <p>Return the elimination tree for the matrix <var>S</var>.  By default <var>S</var>
 is assumed to be symmetric and the symmetric elimination tree is
 returned.  The argument <var>typ</var> controls whether a symmetric or
 column elimination tree is returned.  Valid values of <var>typ</var> are
-"sym" or "col", for symmetric or column elimination tree respectively
+<code>"sym"</code> or <code>"col"</code>, for symmetric or column elimination tree
+respectively.
 
         <p>Called with a second argument, <code>etree</code> also returns the postorder
 permutations on the tree. 
 </p></blockquote></div>
 
 <!-- etreeplot scripts/sparse/etreeplot.m -->
-   <p><a name="doc_002detreeplot"></a>
+   <p><a name="XREFetreeplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>etreeplot</b> (<var>A</var>)<var><a name="index-etreeplot-2412"></a></var><br>
-&mdash; Function File:  <b>etreeplot</b> (<var>A, node_style, edge_style</var>)<var><a name="index-etreeplot-2413"></a></var><br>
+&mdash; Function File:  <b>etreeplot</b> (<var>A</var>)<var><a name="index-etreeplot-2576"></a></var><br>
+&mdash; Function File:  <b>etreeplot</b> (<var>A, node_style, edge_style</var>)<var><a name="index-etreeplot-2577"></a></var><br>
 <blockquote><p>Plot the elimination tree of the matrix <var>A</var> or
 <var>A</var><code>+</code><var>A</var><code>'</code> if <var>A</var> in not symmetric.  The optional
 parameters <var>node_style</var> and <var>edge_style</var> define the output
 style.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtreeplot.html#doc_002dtreeplot">treeplot</a>, <a href="doc_002dgplot.html#doc_002dgplot">gplot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtreeplot.html#XREFtreeplot">treeplot</a>, <a href="XREFgplot.html#XREFgplot">gplot</a>.
+
+        </blockquote></div>
 
 <!-- gplot scripts/sparse/gplot.m -->
-   <p><a name="doc_002dgplot"></a>
+   <p><a name="XREFgplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2414"></a></var><br>
-&mdash; Function File:  <b>gplot</b> (<var>A, xy, line_style</var>)<var><a name="index-gplot-2415"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2416"></a></var><br>
+&mdash; Function File:  <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2578"></a></var><br>
+&mdash; Function File:  <b>gplot</b> (<var>A, xy, line_style</var>)<var><a name="index-gplot-2579"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>gplot</b> (<var>A, xy</var>)<var><a name="index-gplot-2580"></a></var><br>
 <blockquote><p>Plot a graph defined by <var>A</var> and <var>xy</var> in the graph theory
 sense.  <var>A</var> is the adjacency matrix of the array to be plotted
 and <var>xy</var> is an <var>n</var>-by-2 matrix containing the coordinates of
@@ -242,29 +248,31 @@ the plot.  Called with no output arguments the graph is plotted
 directly.  Otherwise, return the coordinates of the plot in <var>x</var>
 and <var>y</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtreeplot.html#doc_002dtreeplot">treeplot</a>, <a href="doc_002detreeplot.html#doc_002detreeplot">etreeplot</a>, <a href="doc_002dspy.html#doc_002dspy">spy</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtreeplot.html#XREFtreeplot">treeplot</a>, <a href="XREFetreeplot.html#XREFetreeplot">etreeplot</a>, <a href="XREFspy.html#XREFspy">spy</a>.
+
+        </blockquote></div>
 
 <!-- treeplot scripts/sparse/treeplot.m -->
-   <p><a name="doc_002dtreeplot"></a>
+   <p><a name="XREFtreeplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>treeplot</b> (<var>tree</var>)<var><a name="index-treeplot-2417"></a></var><br>
-&mdash; Function File:  <b>treeplot</b> (<var>tree, node_style, edge_style</var>)<var><a name="index-treeplot-2418"></a></var><br>
+&mdash; Function File:  <b>treeplot</b> (<var>tree</var>)<var><a name="index-treeplot-2581"></a></var><br>
+&mdash; Function File:  <b>treeplot</b> (<var>tree, node_style, edge_style</var>)<var><a name="index-treeplot-2582"></a></var><br>
 <blockquote><p>Produce a graph of tree or forest.  The first argument is vector of
 predecessors, optional parameters <var>node_style</var> and <var>edge_style</var>
 define the output style.  The complexity of the algorithm is O(n) in
 terms of is time and memory requirements.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002detreeplot.html#doc_002detreeplot">etreeplot</a>, <a href="doc_002dgplot.html#doc_002dgplot">gplot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFetreeplot.html#XREFetreeplot">etreeplot</a>, <a href="XREFgplot.html#XREFgplot">gplot</a>.
+
+        </blockquote></div>
 
 <!-- treelayout scripts/sparse/treelayout.m -->
-   <p><a name="doc_002dtreelayout"></a>
+   <p><a name="XREFtreelayout"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>treelayout</b> (<var>tree</var>)<var><a name="index-treelayout-2419"></a></var><br>
-&mdash; Function File:  <b>treelayout</b> (<var>tree, permutation</var>)<var><a name="index-treelayout-2420"></a></var><br>
+&mdash; Function File:  <b>treelayout</b> (<var>tree</var>)<var><a name="index-treelayout-2583"></a></var><br>
+&mdash; Function File:  <b>treelayout</b> (<var>tree, permutation</var>)<var><a name="index-treelayout-2584"></a></var><br>
 <blockquote><p>treelayout lays out a tree or a forest.  The first argument <var>tree</var> is a
 vector of
 predecessors, optional parameter <var>permutation</var> is an optional postorder
@@ -272,8 +280,9 @@ permutation.
 The complexity of the algorithm is O(n) in
 terms of time and memory requirements.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002detreeplot.html#doc_002detreeplot">etreeplot</a>, <a href="doc_002dgplot.html#doc_002dgplot">gplot</a>, <a href="doc_002dtreeplot.html#doc_002dtreeplot">treeplot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFetreeplot.html#XREFetreeplot">etreeplot</a>, <a href="XREFgplot.html#XREFgplot">gplot</a>, <a href="XREFtreeplot.html#XREFtreeplot">treeplot</a>.
+
+        </blockquote></div>
 
    </body></html>
 

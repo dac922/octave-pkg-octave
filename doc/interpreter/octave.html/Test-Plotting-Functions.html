@@ -30,38 +30,52 @@ Up:&nbsp;<a rel="up" accesskey="u" href="High_002dLevel-Plotting.html#High_002dL
 <hr>
 </div>
 
-<h4 class="subsection">15.2.11 Test Plotting Functions</h4>
+<h4 class="subsection">15.2.10 Test Plotting Functions</h4>
 
 <p>The functions <code>sombrero</code> and <code>peaks</code> provide a way to check
 that plotting is working.  Typing either <code>sombrero</code> or <code>peaks</code>
 at the Octave prompt should display a three-dimensional plot.
 
 <!-- sombrero scripts/plot/sombrero.m -->
-   <p><a name="doc_002dsombrero"></a>
+   <p><a name="XREFsombrero"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>sombrero</b> (<var>n</var>)<var><a name="index-sombrero-1549"></a></var><br>
-<blockquote><p>Produce the familiar three-dimensional sombrero plot using <var>n</var>
-grid lines.  If <var>n</var> is omitted, a value of 41 is assumed.
+&mdash; Function File:  <b>sombrero</b> ()<var><a name="index-sombrero-1638"></a></var><br>
+&mdash; Function File:  <b>sombrero</b> (<var>n</var>)<var><a name="index-sombrero-1639"></a></var><br>
+&mdash; Function File: <var>z</var> = <b>sombrero</b> (<var><small class="dots">...</small></var>)<var><a name="index-sombrero-1640"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>sombrero</b> (<var><small class="dots">...</small></var>)<var><a name="index-sombrero-1641"></a></var><br>
+<blockquote><p>Plot the familiar 3-D sombrero function.
 
         <p>The function plotted is
 
      <pre class="example">          z = sin (sqrt (x^2 + y^2)) / (sqrt (x^2 + y^2))
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>, <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>. 
-</p></blockquote></div>
+        <p>Called without a return argument, <code>sombrero</code> plots the surface of the
+above function over the meshgrid [-8,8] using <code>surf</code>.
+
+        <p>If <var>n</var> is a scalar the plot is made with <var>n</var> grid lines. 
+The default value for <var>n</var> is 41.
+
+        <p>When called with output arguments, return the data for the function
+evaluated over the meshgrid.  This can subsequently be plotted with
+<code>surf (</code><var>x</var><code>, </code><var>y</var><code>, </code><var>z</var><code>)</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpeaks.html#XREFpeaks">peaks</a>, <a href="XREFmeshgrid.html#XREFmeshgrid">meshgrid</a>, <a href="XREFmesh.html#XREFmesh">mesh</a>, <a href="XREFsurf.html#XREFsurf">surf</a>.
+
+        </blockquote></div>
 
 <!-- peaks scripts/plot/peaks.m -->
-   <p><a name="doc_002dpeaks"></a>
+   <p><a name="XREFpeaks"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>peaks</b> ()<var><a name="index-peaks-1550"></a></var><br>
-&mdash; Function File:  <b>peaks</b> (<var>n</var>)<var><a name="index-peaks-1551"></a></var><br>
-&mdash; Function File:  <b>peaks</b> (<var>x, y</var>)<var><a name="index-peaks-1552"></a></var><br>
-&mdash; Function File: <var>z</var> = <b>peaks</b> (<var><small class="dots">...</small></var>)<var><a name="index-peaks-1553"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>peaks</b> (<var><small class="dots">...</small></var>)<var><a name="index-peaks-1554"></a></var><br>
-<blockquote><p>Generate a function with lots of local maxima and minima.  The function
-has the form
+&mdash; Function File:  <b>peaks</b> ()<var><a name="index-peaks-1642"></a></var><br>
+&mdash; Function File:  <b>peaks</b> (<var>n</var>)<var><a name="index-peaks-1643"></a></var><br>
+&mdash; Function File:  <b>peaks</b> (<var>x, y</var>)<var><a name="index-peaks-1644"></a></var><br>
+&mdash; Function File: <var>z</var> = <b>peaks</b> (<var><small class="dots">...</small></var>)<var><a name="index-peaks-1645"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>peaks</b> (<var><small class="dots">...</small></var>)<var><a name="index-peaks-1646"></a></var><br>
+<blockquote><p>Plot a function with lots of local maxima and minima.
+
+        <p>The function has the form
 
      <pre class="verbatim">     f(x,y) = 3*(1-x)^2*exp(-x^2 - (y+1)^2) ...
               - 10*(x/5 - x^3 - y^5)*exp(-x^2-y^2) ...
@@ -69,16 +83,23 @@ has the form
 </pre>
 
         <p>Called without a return argument, <code>peaks</code> plots the surface of the
-above function using <code>mesh</code>.  If <var>n</var> is a scalar, the <code>peaks</code>
-returns the values of the above function on a <var>n</var>-by-<var>n</var> mesh over
-the range <code>[-3,3]</code>.  The default value for <var>n</var> is 49.
+above function using <code>surf</code>.
 
-        <p>If <var>n</var> is a vector, then it represents the <var>x</var> and <var>y</var> values
-of the grid on which to calculate the above function.  The <var>x</var> and
-<var>y</var> values can be specified separately.
+        <p>If <var>n</var> is a scalar, <code>peaks</code> plots the value of the above
+function on an <var>n</var>-by-<var>n</var> mesh over the range [-3,3].  The
+default value for <var>n</var> is 49.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsurf.html#doc_002dsurf">surf</a>, <a href="doc_002dmesh.html#doc_002dmesh">mesh</a>, <a href="doc_002dmeshgrid.html#doc_002dmeshgrid">meshgrid</a>. 
-</p></blockquote></div>
+        <p>If <var>n</var> is a vector, then it represents the grid values over which
+to calculate the function.  If <var>x</var> and <var>y</var> are specified then
+the function value is calculated over the specified grid of vertices.
+
+        <p>When called with output arguments, return the data for the function
+evaluated over the meshgrid.  This can subsequently be plotted with
+<code>surf (</code><var>x</var><code>, </code><var>y</var><code>, </code><var>z</var><code>)</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsombrero.html#XREFsombrero">sombrero</a>, <a href="XREFmeshgrid.html#XREFmeshgrid">meshgrid</a>, <a href="XREFmesh.html#XREFmesh">mesh</a>, <a href="XREFsurf.html#XREFsurf">surf</a>.
+
+        </blockquote></div>
 
    </body></html>
 

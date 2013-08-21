@@ -78,6 +78,7 @@ FIRfilter.m in the class directory.
        f = class (f, "FIRfilter", p);
      endfunction
 </pre>
+     
 </pre>
    <p>As before, the leading comments provide command-line documentation for
 the class constructor.  This constructor is very similar to the
@@ -138,7 +139,7 @@ underlying struct are private by default, we could provide a mechanism
 to access the fields.  The <code>subsref</code> method may be used for both.
 
 <pre class="example"><pre class="verbatim">     function out = subsref (f, x)
-       switch x.type
+       switch (x.type)
          case "()"
            n = f.polynomial;
            out = filter (n.poly, 1, x.subs{1});
@@ -154,8 +155,9 @@ to access the fields.  The <code>subsref</code> method may be used for both.
        endswitch
      endfunction
 </pre>
+     
 </pre>
-   <p>The "()" case allows us to filter data using the polynomial provided
+   <p>The <code>"()"</code> case allows us to filter data using the polynomial provided
 to the constructor.
 
 <pre class="example">     octave:2&gt; f = FIRfilter (polynomial ([1 1 1]/3));
@@ -169,7 +171,7 @@ to the constructor.
         1.00000
         1.00000
 </pre>
-   <p>The "." case allows us to view the contents of the polynomial field.
+   <p>The <code>"."</code> case allows us to view the contents of the polynomial field.
 
 <pre class="example">     octave:1&gt; f = FIRfilter (polynomial ([1 1 1]/3));
      octave:2&gt; f.polynomial
@@ -230,6 +232,7 @@ constructor for this case might be
        f = class (f, "FIRfilter");
      endfunction
 </pre>
+     
 </pre>
    <p>For our example, the remaining class methods remain unchanged.
 

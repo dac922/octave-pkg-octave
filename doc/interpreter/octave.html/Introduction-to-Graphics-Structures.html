@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Graphics-Data-Structures.html#Graphics-
 
 <h4 class="subsection">15.3.1 Introduction to Graphics Structures</h4>
 
-<p><a name="index-introduction-to-graphics-structures-1556"></a><a name="doc_002dgraphics-structures"></a>The graphics functions use pointers, which are of class graphics_handle, in
+<p><a name="index-introduction-to-graphics-structures-1648"></a><a name="XREFgraphics-structures"></a>The graphics functions use pointers, which are of class graphics_handle, in
 order to address the data structures which control graphical displays.  A
 graphics handle may point any one of a number of different object types.  The
 objects are the graphics data structures.  The types of objects are:
@@ -50,7 +50,7 @@ functions <code>area</code>, <code>bar</code>, <code>barh</code>, <code>contour<
 <code>contourf</code>, <code>contour3</code>, <code>surf</code>, <code>mesh</code>, <code>surfc</code>,
 <code>meshc</code>, <code>errorbar</code>, <code>quiver</code>, <code>quiver3</code>, <code>scatter</code>,
 <code>scatter3</code>, <code>stair</code>, <code>stem</code>, <code>stem3</code> each return a handle
-as documented in <a href="doc_002ddatasources.html#doc_002ddatasources">Data Sources</a>.
+as documented in <a href="XREFdatasources.html#XREFdatasources">Data Sources</a>.
 
    <p>The graphics objects are arranged in a hierarchy:
 
@@ -65,23 +65,24 @@ as documented in <a href="doc_002ddatasources.html#doc_002ddatasources">Data Sou
 <code>line</code>, <code>text</code>, <code>patch</code>,
 <code>surface</code>, and <code>image</code> objects.
 
-   <p>Graphics handles may be distinguished from function handles (<a href="Function-Handles.html#Function-Handles">Function Handles</a>) by means of the function <code>ishandle</code>.  <code>ishandle</code> returns
-true if its argument is a handle of a graphics object.  In addition, the figure
-object may be tested using <code>isfigure</code>.  <code>isfigure</code> returns true only
-if its argument is a handle of a figure. ishghandle() is synonymous with
-ishandle().  The <code>whos</code> function can be used to show the object type of
-each currently defined graphics handle.  (Note: this is not true today, but it
-is, I hope, considered an error in whos.  It may be better to have whos just
-show graphics_handle as the class, and provide a new function which, given a
+   <p>Graphics handles may be distinguished from function handles
+(see <a href="Function-Handles.html#Function-Handles">Function Handles</a>) by means of the function <code>ishandle</code>. 
+<code>ishandle</code> returns true if its argument is a handle of a graphics object. 
+In addition, the figure object may be tested using <code>isfigure</code>. 
+<code>isfigure</code> returns true only if its argument is a handle of a figure.  The
+<code>whos</code> function can be used to show the object type of each currently
+defined graphics handle.  (Note: this is not true today, but it is, I hope,
+considered an error in whos.  It may be better to have whos just show
+graphics_handle as the class, and provide a new function which, given a
 graphics handle, returns its object type.  This could generalize the ishandle()
 functions and, in fact, replace them.)
 
-   <p>The <code>get</code> and <code>set</code> commands are
-used to obtain and set the values of properties of graphics objects.  In
-addition, the <code>get</code> command may be used to obtain property names.
+   <p>The <code>get</code> and <code>set</code> commands are used to obtain and set the values of
+properties of graphics objects.  In addition, the <code>get</code> command may be
+used to obtain property names.
 
-   <p>For example, the property "type" of the graphics object pointed to by the
-graphics handle h may be displayed by:
+   <p>For example, the property <code>"type"</code> of the graphics object pointed to by
+the graphics handle h may be displayed by:
 
 <pre class="example">     get (h, "type")
 </pre>
@@ -90,7 +91,7 @@ where h is a handle of a graphics object.  If only the names of the
 allowed properties are wanted they may be displayed by:
 <code>get (h, "")</code>.
 
-   <p>Thus, for example,
+   <p>Thus, for example:
 
 <pre class="smallexample">     h = figure ();
      get (h, "type")
@@ -113,7 +114,7 @@ allowed properties are wanted they may be displayed by:
      color                 paperposition        windowbuttondownfcn
      colormap              paperpositionmode    windowbuttonmotionfcn
      createfcn             papersize            windowbuttonupfcn
-     currentaxes           papertype            windowbuttonwheelfcn
+     currentaxes           papertype            windowscrollwheelfcn
      currentcharacter      paperunits           windowstyle
      currentobject         parent               wvisual
      currentpoint          pointer              wvisualmode
@@ -127,17 +128,18 @@ allowed properties are wanted they may be displayed by:
 <code>get (0, "")</code>.
 
    <p>The uses of <code>get</code> and <code>set</code> are further explained in
-<a href="doc_002dget.html#doc_002dget">get</a>, <a href="doc_002dset.html#doc_002dset">set</a>.
+<a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>.
 
 <!-- isprop scripts/plot/isprop.m -->
-   <p><a name="doc_002disprop"></a>
+   <p><a name="XREFisprop"></a>
 
 <div class="defun">
-&mdash; Function File: <var>res</var> = <b>isprop</b> (<var>h, prop</var>)<var><a name="index-isprop-1557"></a></var><br>
+&mdash; Function File: <var>res</var> = <b>isprop</b> (<var>h, prop</var>)<var><a name="index-isprop-1649"></a></var><br>
 <blockquote><p>Return true if <var>prop</var> is a property of the object with handle <var>h</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dget.html#doc_002dget">get</a>, <a href="doc_002dset.html#doc_002dset">set</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>.
+
+        </blockquote></div>
 
    </body></html>
 

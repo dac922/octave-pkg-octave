@@ -921,6 +921,27 @@ tree_evaluator::visit_try_catch_command (tree_try_catch_command& cmd)
 
           buffer_error_messages--;
 
+          tree_identifier *expr_id = cmd.identifier ();
+          octave_lvalue ult;
+
+          if (expr_id)
+            {
+
+              octave_scalar_map err;
+
+              ult = expr_id->lvalue ();
+
+              if (error_state)
+                return;
+
+              err.assign ("message", last_error_message ());
+              err.assign ("identifier", last_error_id ());
+
+              if (! error_state)
+                ult.assign (octave_value::op_asn_eq, err);
+
+            }
+
           if (catch_code)
             catch_code->accept (*this);
         }
@@ -1238,9 +1259,9 @@ Query or set the internal limit on the number of times a function may\n\
 be called recursively.  If the limit is exceeded, an error message is\n\
 printed and control returns to the top level.\n\
 \n\
-When called from inside a function with the \"local\" option, the variable is\n\
-changed locally for the function and any subroutines it calls.  The original\n\
-variable value is restored when exiting the function.\n\
+When called from inside a function with the @qcode{\"local\"} option, the\n\
+variable is changed locally for the function and any subroutines it calls.\n\
+The original variable value is restored when exiting the function.\n\
 @end deftypefn")
 {
   return SET_INTERNAL_VARIABLE (max_recursion_depth);
@@ -1268,9 +1289,9 @@ output from a function is suppressed.  If this option is disabled,\n\
 Octave will display the results produced by evaluating expressions\n\
 within a function body that are not terminated with a semicolon.\n\
 \n\
-When called from inside a function with the \"local\" option, the variable is\n\
-changed locally for the function and any subroutines it calls.  The original\n\
-variable value is restored when exiting the function.\n\
+When called from inside a function with the @qcode{\"local\"} option, the\n\
+variable is changed locally for the function and any subroutines it calls.\n\
+The original variable value is restored when exiting the function.\n\
 @end deftypefn")
 {
   return SET_INTERNAL_VARIABLE (silent_functions);

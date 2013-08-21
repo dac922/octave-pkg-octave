@@ -42,11 +42,11 @@ point must be provided.  This also has the consequence that
 convergence is not guaranteed even if a solution exists.
 
 <!-- fsolve scripts/optimization/fsolve.m -->
-   <p><a name="doc_002dfsolve"></a>
+   <p><a name="XREFfsolve"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fsolve</b> (<var>fcn, x0, options</var>)<var><a name="index-fsolve-2364"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>fvec</var>, <var>info</var>, <var>output</var>, <var>fjac</var>] = <b>fsolve</b> (<var>fcn, <small class="dots">...</small></var>)<var><a name="index-fsolve-2365"></a></var><br>
+&mdash; Function File:  <b>fsolve</b> (<var>fcn, x0, options</var>)<var><a name="index-fsolve-2528"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fvec</var>, <var>info</var>, <var>output</var>, <var>fjac</var>] = <b>fsolve</b> (<var>fcn, <small class="dots">...</small></var>)<var><a name="index-fsolve-2529"></a></var><br>
 <blockquote><p>Solve a system of nonlinear equations defined by the function <var>fcn</var>. 
 <var>fcn</var> should accept a vector (array) defining the unknown variables,
 and return a vector of left-hand sides of the equations.  Right-hand sides
@@ -74,12 +74,11 @@ according to the column norms of the (estimated) Jacobian.  As a result,
 TolF becomes scaling-independent.  By default, this option is off, because
 it may sometimes deliver unexpected (though mathematically correct) results.
 
-        <p>If <code>"Updating"</code> is "on", the function will attempt to use Broyden
-updates to update the Jacobian, in order to reduce the amount of Jacobian
-calculations. 
-If your user function always calculates the Jacobian (regardless of number
-of output arguments), this option provides no advantage and should be set to
-false.
+        <p>If <code>"Updating"</code> is <code>"on"</code>, the function will attempt to use
+Broyden updates to update the Jacobian, in order to reduce the
+amount of Jacobian calculations.  If your user function always calculates the
+Jacobian (regardless of number of output arguments), this option provides
+no advantage and should be set to false.
 
         <p><code>"ComplexEqn"</code> is <code>"on"</code>, <code>fsolve</code> will attempt to solve
 complex equations in complex variables, assuming that the equations possess a
@@ -144,8 +143,9 @@ example how this can be achieved follows:
           
           fsolve (@user_func, x0, optimset ("OutputFcn", @user_func, ...))
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfzero.html#doc_002dfzero">fzero</a>, <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFfzero.html#XREFfzero">fzero</a>, <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
+
+        </blockquote></div>
 
    <p>The following is a complete example.  To solve the set of equations
 
@@ -208,12 +208,12 @@ analytically as
    <p class="noindent">which gives the same solution as before.
 
 <!-- fzero scripts/optimization/fzero.m -->
-   <p><a name="doc_002dfzero"></a>
+   <p><a name="XREFfzero"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fzero</b> (<var>fun, x0</var>)<var><a name="index-fzero-2366"></a></var><br>
-&mdash; Function File:  <b>fzero</b> (<var>fun, x0, options</var>)<var><a name="index-fzero-2367"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] = <b>fzero</b> (<var><small class="dots">...</small></var>)<var><a name="index-fzero-2368"></a></var><br>
+&mdash; Function File:  <b>fzero</b> (<var>fun, x0</var>)<var><a name="index-fzero-2530"></a></var><br>
+&mdash; Function File:  <b>fzero</b> (<var>fun, x0, options</var>)<var><a name="index-fzero-2531"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] = <b>fzero</b> (<var><small class="dots">...</small></var>)<var><a name="index-fzero-2532"></a></var><br>
 <blockquote><p>Find a zero of a univariate function.
 
         <p><var>fun</var> is a function handle, inline function, or string
@@ -232,7 +232,7 @@ is not successful, the function fails.
 Currently, <code>fzero</code>
 recognizes these options: <code>"FunValCheck"</code>, <code>"OutputFcn"</code>,
 <code>"TolX"</code>, <code>"MaxIter"</code>, <code>"MaxFunEvals"</code>. 
-For a description of these options, see <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>.
+For a description of these options, see <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
 
         <p>On exit, the function returns <var>x</var>, the approximate zero point
 and <var>fval</var>, the function value thereof. 
@@ -269,8 +269,9 @@ The algorithm may have converged to a singular point.
  A two-element vector with the final bracketing of the zero along the y-axis. 
 </ul>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>, <a href="doc_002dfsolve.html#doc_002dfsolve">fsolve</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFoptimset.html#XREFoptimset">optimset</a>, <a href="XREFfsolve.html#XREFfsolve">fsolve</a>.
+
+        </blockquote></div>
 
    </body></html>
 

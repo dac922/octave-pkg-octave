@@ -35,14 +35,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <p>The documentation of an oct-file is the fourth string parameter of the
 <code>DEFUN_DLD</code><!-- /@w --> macro.  This string can be formatted in the same manner
-as the help strings for user functions (<a href="Documentation-Tips.html#Documentation-Tips">Documentation Tips</a>),
+as the help strings for user functions (see <a href="Documentation-Tips.html#Documentation-Tips">Documentation Tips</a>),
 however there are some issue that are particular to the formatting of
 help strings within oct-files.
 
    <p>The major issue is that the help string will typically be longer than a
-single line of text, and so the formatting of long help strings need to
-be taken into account.  There are several manners in which to treat this
-issue, but the most common is illustrated in the following example,
+single line of text, and so the formatting of long help strings needs to
+be taken into account.  There are several possible solutions, but the most
+common is illustrated in the following example,
 
 <pre class="example">     DEFUN_DLD (do_what_i_want, args, nargout,
        "-*- texinfo -*-\n\
@@ -54,30 +54,27 @@ issue, but the most common is illustrated in the following example,
      ...
      }
 </pre>
-   <p class="noindent">where, as can be seen, end line of text within the help string is
-terminated by <code>\n\</code> which is an embedded new-line in the string
-together with a C++ string continuation character.  Note that the final
-<code>\</code> must be the last character on the line.
+   <p class="noindent">where, as can be seen, each line of text is terminated by <code>\n\</code>
+which is an embedded new-line in the string together with a C++ string
+continuation character.  Note that the final <code>\</code> must be the last
+character on the line.
 
-   <p>Octave also includes the ability to embed the test and demonstration
-code for a function within the code itself (<a href="Test-and-Demo-Functions.html#Test-and-Demo-Functions">Test and Demo Functions</a>). 
+   <p>Octave also includes the ability to embed test and demonstration
+code for a function within the code itself (see <a href="Test-and-Demo-Functions.html#Test-and-Demo-Functions">Test and Demo Functions</a>). 
 This can be used from within oct-files (or in fact any file) with
-certain provisos.  Firstly, the test and demo functions of Octave look
-for a <code>%!</code> as the first characters on a new-line to identify test
-and demonstration code.  This is equally a requirement for
-oct-files.  Furthermore the test and demonstration code must be included
-in a comment block of the compiled code to avoid it being interpreted by
-the compiler.  Finally, the Octave test and demonstration code must have
-access to the source code of the oct-file and not just the compiled code
-as the tests are stripped from the compiled code.  An example in an
-oct-file might be
+certain provisos.  First, the test and demo functions of Octave look
+for <code>%!</code> as the first two characters of a line to identify test
+and demonstration code.  This is a requirement for oct-files as well. 
+In addition, the test and demonstration code must be wrapped in a comment
+block to avoid it being interpreted by the compiler.  Finally, the Octave
+test and demonstration code must have access to the original source code
+of the oct-file and not just the compiled code as the tests are stripped
+from the compiled code.  An example in an oct-file might be
 
 <pre class="example">     /*
-     
+     %!assert (sin ([1,2]), [sin(1),sin(2)])
      %!error (sin ())
      %!error (sin (1,1))
-     %!assert (sin ([1,2]),[sin(1),sin(2)])
-     
      */
 </pre>
    <!-- @node Application Programming Interface for Oct-Files -->

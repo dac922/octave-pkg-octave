@@ -34,26 +34,27 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Three_002dDimensional-Plots.html#Three_
 
 <p>For three-dimensional plots the aspect ratio can be set for data with
 <code>daspect</code> and for the plot box with <code>pbaspect</code>. 
-See <a href="Axis-Configuration.html#Axis-Configuration">Axis Configuration</a> for controlling the x-, y-, and z-limits for
+See <a href="Axis-Configuration.html#Axis-Configuration">Axis Configuration</a>, for controlling the x-, y-, and z-limits for
 plotting.
 
 <!-- daspect scripts/plot/daspect.m -->
-   <p><a name="doc_002ddaspect"></a>
+   <p><a name="XREFdaspect"></a>
 
 <div class="defun">
-&mdash; Function File: <var>data_aspect_ratio</var> = <b>daspect</b> ()<var><a name="index-daspect-1377"></a></var><br>
-&mdash; Function File:  <b>daspect</b> (<var>data_aspect_ratio</var>)<var><a name="index-daspect-1378"></a></var><br>
-&mdash; Function File:  <b>daspect</b> (<var>mode</var>)<var><a name="index-daspect-1379"></a></var><br>
-&mdash; Function File: <var>data_aspect_ratio_mode</var> = <b>daspect</b> (<var>"mode"</var>)<var><a name="index-daspect-1380"></a></var><br>
-&mdash; Function File:  <b>daspect</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-daspect-1381"></a></var><br>
-<blockquote><p>Query or set the data aspect ratio of the current axes.  The aspect
-ratio is a normalized 3-element vector representing the span of the x, y,
-and z-axis limits.
+&mdash; Function File: <var>data_aspect_ratio</var> = <b>daspect</b> ()<var><a name="index-daspect-1467"></a></var><br>
+&mdash; Function File:  <b>daspect</b> (<var>data_aspect_ratio</var>)<var><a name="index-daspect-1468"></a></var><br>
+&mdash; Function File:  <b>daspect</b> (<var>mode</var>)<var><a name="index-daspect-1469"></a></var><br>
+&mdash; Function File: <var>data_aspect_ratio_mode</var> = <b>daspect</b> (<var>"mode"</var>)<var><a name="index-daspect-1470"></a></var><br>
+&mdash; Function File:  <b>daspect</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-daspect-1471"></a></var><br>
+<blockquote><p>Query or set the data aspect ratio of the current axes.
+
+        <p>The aspect ratio is a normalized 3-element vector representing the span of
+the x, y, and z-axis limits.
 
         <p><code>(daspect (</code><var>mode</var><code>))</code>
 
         <p>Set the data aspect ratio mode of the current axes.  <var>mode</var> is
-either "auto" or "manual".
+either <code>"auto"</code> or <code>"manual"</code>.
 
         <p><code>daspect ("mode")</code>
 
@@ -63,27 +64,29 @@ either "auto" or "manual".
 
         <p>Operate on the axes in handle <var>hax</var> instead of the current axes.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daxis.html#doc_002daxis">axis</a>, <a href="doc_002dpbaspect.html#doc_002dpbaspect">pbaspect</a>, <a href="doc_002dxlim.html#doc_002dxlim">xlim</a>, <a href="doc_002dylim.html#doc_002dylim">ylim</a>, <a href="doc_002dzlim.html#doc_002dzlim">zlim</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaxis.html#XREFaxis">axis</a>, <a href="XREFpbaspect.html#XREFpbaspect">pbaspect</a>, <a href="XREFxlim.html#XREFxlim">xlim</a>, <a href="XREFylim.html#XREFylim">ylim</a>, <a href="XREFzlim.html#XREFzlim">zlim</a>.
+
+        </blockquote></div>
 
 <!-- pbaspect scripts/plot/pbaspect.m -->
-   <p><a name="doc_002dpbaspect"></a>
+   <p><a name="XREFpbaspect"></a>
 
 <div class="defun">
-&mdash; Function File: <var>plot_box_aspect_ratio</var> = <b>pbaspect</b> ( )<var><a name="index-pbaspect-1382"></a></var><br>
-&mdash; Function File:  <b>pbaspect</b> (<var>plot_box_aspect_ratio</var>)<var><a name="index-pbaspect-1383"></a></var><br>
-&mdash; Function File:  <b>pbaspect</b> (<var>mode</var>)<var><a name="index-pbaspect-1384"></a></var><br>
-&mdash; Function File: <var>plot_box_aspect_ratio_mode</var> = <b>pbaspect</b> (<var>"mode"</var>)<var><a name="index-pbaspect-1385"></a></var><br>
-&mdash; Function File:  <b>pbaspect</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-pbaspect-1386"></a></var><br>
+&mdash; Function File: <var>plot_box_aspect_ratio</var> = <b>pbaspect</b> ( )<var><a name="index-pbaspect-1472"></a></var><br>
+&mdash; Function File:  <b>pbaspect</b> (<var>plot_box_aspect_ratio</var>)<var><a name="index-pbaspect-1473"></a></var><br>
+&mdash; Function File:  <b>pbaspect</b> (<var>mode</var>)<var><a name="index-pbaspect-1474"></a></var><br>
+&mdash; Function File: <var>plot_box_aspect_ratio_mode</var> = <b>pbaspect</b> (<var>"mode"</var>)<var><a name="index-pbaspect-1475"></a></var><br>
+&mdash; Function File:  <b>pbaspect</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-pbaspect-1476"></a></var><br>
 <blockquote>
-        <p>Query or set the plot box aspect ratio of the current axes.  The aspect
-ratio is a normalized 3-element vector representing the rendered lengths of
-the x, y, and z axes.
+        <p>Query or set the plot box aspect ratio of the current axes.
+
+        <p>The aspect ratio is a normalized 3-element vector representing the rendered
+lengths of the x, y, and z axes.
 
         <p><code>pbaspect(</code><var>mode</var><code>)</code>
 
         <p>Set the plot box aspect ratio mode of the current axes.  <var>mode</var> is
-either "auto" or "manual".
+either <code>"auto"</code> or <code>"manual"</code>.
 
         <p><code>pbaspect ("mode")</code>
 
@@ -93,8 +96,9 @@ either "auto" or "manual".
 
         <p>Operate on the axes in handle <var>hax</var> instead of the current axes.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daxis.html#doc_002daxis">axis</a>, <a href="doc_002ddaspect.html#doc_002ddaspect">daspect</a>, <a href="doc_002dxlim.html#doc_002dxlim">xlim</a>, <a href="doc_002dylim.html#doc_002dylim">ylim</a>, <a href="doc_002dzlim.html#doc_002dzlim">zlim</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaxis.html#XREFaxis">axis</a>, <a href="XREFdaspect.html#XREFdaspect">daspect</a>, <a href="XREFxlim.html#XREFxlim">xlim</a>, <a href="XREFylim.html#XREFylim">ylim</a>, <a href="XREFzlim.html#XREFzlim">zlim</a>.
+
+        </blockquote></div>
 
    </body></html>
 

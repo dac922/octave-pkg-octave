@@ -37,12 +37,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Debugging.html#Debugging">Debugging</a>
 <p>Breakpoints can be set in any Octave function, using the <code>dbstop</code>
 function.
 
-<!-- dbstop libinterp/interpfcn/debug.cc -->
-   <p><a name="doc_002ddbstop"></a>
+<!-- dbstop libinterp/corefcn/debug.cc -->
+   <p><a name="XREFdbstop"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func"</var>)<var><a name="index-dbstop-877"></a></var><br>
-&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbstop-878"></a></var><br>
+&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func"</var>)<var><a name="index-dbstop-890"></a></var><br>
+&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func", line</var>)<var><a name="index-dbstop-891"></a></var><br>
+&mdash; Built-in Function: <var>rline</var> = <b>dbstop</b> (<var>"func", line1, line2, <small class="dots">...</small></var>)<var><a name="index-dbstop-892"></a></var><br>
 <blockquote><p>Set a breakpoint in function <var>func</var>.
 
         <p>Arguments are
@@ -64,8 +65,9 @@ the line is not executable.  For example, if a breakpoint attempted on a
 blank line then Octave will set the real breakpoint at the
 next executable line.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbclear.html#doc_002ddbclear">dbclear</a>, <a href="doc_002ddbstatus.html#doc_002ddbstatus">dbstatus</a>, <a href="doc_002ddbstep.html#doc_002ddbstep">dbstep</a>, <a href="doc_002ddebug_005fon_005ferror.html#doc_002ddebug_005fon_005ferror">debug_on_error</a>, <a href="doc_002ddebug_005fon_005fwarning.html#doc_002ddebug_005fon_005fwarning">debug_on_warning</a>, <a href="doc_002ddebug_005fon_005finterrupt.html#doc_002ddebug_005fon_005finterrupt">debug_on_interrupt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbclear.html#XREFdbclear">dbclear</a>, <a href="XREFdbstatus.html#XREFdbstatus">dbstatus</a>, <a href="XREFdbstep.html#XREFdbstep">dbstep</a>, <a href="XREFdebug_005fon_005ferror.html#XREFdebug_005fon_005ferror">debug_on_error</a>, <a href="XREFdebug_005fon_005fwarning.html#XREFdebug_005fon_005fwarning">debug_on_warning</a>, <a href="XREFdebug_005fon_005finterrupt.html#XREFdebug_005fon_005finterrupt">debug_on_interrupt</a>.
+
+        </blockquote></div>
 
 <p class="noindent">Note that breakpoints cannot be set in built-in functions
 (e.g., <code>sin</code>, etc.) or dynamically loaded function (i.e., oct-files).  To
@@ -75,19 +77,19 @@ the breakpoint will be set to the first executable statement in the
 function.  For example:
 
 <pre class="example">     dbstop ("asind", 1)
-     &rArr; 28
+     &rArr; 29
 </pre>
-   <p class="noindent">Note that the return value of <code>27</code> means that the breakpoint was
-effectively set to line 27.  The status of breakpoints in a function can
+   <p class="noindent">Note that the return value of <code>29</code> means that the breakpoint was
+effectively set to line 29.  The status of breakpoints in a function can
 be queried with the <code>dbstatus</code> function.
 
-<!-- dbstatus libinterp/interpfcn/debug.cc -->
-   <p><a name="doc_002ddbstatus"></a>
+<!-- dbstatus libinterp/corefcn/debug.cc -->
+   <p><a name="XREFdbstatus"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dbstatus</b> ()<var><a name="index-dbstatus-879"></a></var><br>
-&mdash; Built-in Function: <var>brk_list</var> = <b>dbstatus</b> ()<var><a name="index-dbstatus-880"></a></var><br>
-&mdash; Built-in Function: <var>brk_list</var> = <b>dbstatus</b> (<var>"func"</var>)<var><a name="index-dbstatus-881"></a></var><br>
+&mdash; Built-in Function:  <b>dbstatus</b> ()<var><a name="index-dbstatus-893"></a></var><br>
+&mdash; Built-in Function: <var>brk_list</var> = <b>dbstatus</b> ()<var><a name="index-dbstatus-894"></a></var><br>
+&mdash; Built-in Function: <var>brk_list</var> = <b>dbstatus</b> (<var>"func"</var>)<var><a name="index-dbstatus-895"></a></var><br>
 <blockquote><p>Report the location of active breakpoints.
 
         <p>When called with no input or output arguments, print the list of
@@ -107,25 +109,29 @@ following fields.
           <br><dt>line<dd>A line number, or vector of line numbers, with a breakpoint. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbclear.html#doc_002ddbclear">dbclear</a>, <a href="doc_002ddbwhere.html#doc_002ddbwhere">dbwhere</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbclear.html#XREFdbclear">dbclear</a>, <a href="XREFdbwhere.html#XREFdbwhere">dbwhere</a>.
 
-<p class="noindent">Taking the above as an example, <code>dbstatus ("asind")</code> should return
-28.  The breakpoints can then be cleared with the <code>dbclear</code> function
+        </blockquote></div>
 
-<!-- dbclear libinterp/interpfcn/debug.cc -->
-   <p><a name="doc_002ddbclear"></a>
+<p class="noindent">Reusing the previous example, <code>dbstatus ("asind")</code> will return
+29.  The breakpoints listed can then be cleared with the <code>dbclear</code>
+function.
+
+<!-- dbclear libinterp/corefcn/debug.cc -->
+   <p><a name="XREFdbclear"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dbclear</b> (<var>"func"</var>)<var><a name="index-dbclear-882"></a></var><br>
-&mdash; Built-in Function:  <b>dbclear</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbclear-883"></a></var><br>
+&mdash; Built-in Function:  <b>dbclear</b> (<var>"func"</var>)<var><a name="index-dbclear-896"></a></var><br>
+&mdash; Built-in Function:  <b>dbclear</b> (<var>"func", line, <small class="dots">...</small></var>)<var><a name="index-dbclear-897"></a></var><br>
+&mdash; Built-in Function:  <b>dbclear</b> (<var>line, <small class="dots">...</small></var>)<var><a name="index-dbclear-898"></a></var><br>
 <blockquote><p>Delete a breakpoint in the function <var>func</var>.
 
         <p>Arguments are
 
           <dl>
 <dt><var>func</var><dd>Function name as a string variable.  When already in debug
-mode this should be left out and only the line should be given.
+mode this argument should be omitted and only the line number should be
+given.
 
           <br><dt><var>line</var><dd>Line number from which to remove a breakpoint.  Multiple
 lines may be given as separate arguments or as a vector. 
@@ -136,15 +142,16 @@ in the named function are cleared.
 
         <p>If the requested line is not a breakpoint no action is performed.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbstop.html#doc_002ddbstop">dbstop</a>, <a href="doc_002ddbstatus.html#doc_002ddbstatus">dbstatus</a>, <a href="doc_002ddbwhere.html#doc_002ddbwhere">dbwhere</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbstop.html#XREFdbstop">dbstop</a>, <a href="XREFdbstatus.html#XREFdbstatus">dbstatus</a>, <a href="XREFdbwhere.html#XREFdbwhere">dbwhere</a>.
 
-<p class="noindent">These functions can be used to clear all the breakpoints in a function.  For
-example:
+        </blockquote></div>
+
+<p class="noindent">These functions can be used together to clear all the breakpoints in a
+particular function.  For example:
 
 <pre class="example">     dbclear ("asind", dbstatus ("asind"));
 </pre>
-   <p>A breakpoint can be set in a subfunction.  For example if a file contains
+   <p>A breakpoint may also be set in a subfunction.  For example, if a file contains
 the functions
 
 <pre class="example">     function y = func1 (x)
@@ -166,12 +173,12 @@ subfunctions from the file containing them.
    <p>Another simple way of setting a breakpoint in an Octave script is the
 use of the <code>keyboard</code> function.
 
-<!-- keyboard libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dkeyboard"></a>
+<!-- keyboard libinterp/corefcn/input.cc -->
+   <p><a name="XREFkeyboard"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>keyboard</b> ()<var><a name="index-keyboard-884"></a></var><br>
-&mdash; Built-in Function:  <b>keyboard</b> (<var>"prompt"</var>)<var><a name="index-keyboard-885"></a></var><br>
+&mdash; Built-in Function:  <b>keyboard</b> ()<var><a name="index-keyboard-899"></a></var><br>
+&mdash; Built-in Function:  <b>keyboard</b> (<var>"prompt"</var>)<var><a name="index-keyboard-900"></a></var><br>
 <blockquote><p>This function is normally used for simple debugging.  When the
 <code>keyboard</code> function is executed, Octave prints a prompt and waits
 for user input.  The input strings are then evaluated and the results
@@ -183,11 +190,12 @@ The <code>keyboard</code> function does not return an exit status.
         <p>If <code>keyboard</code> is invoked without arguments, a default prompt of
 &lsquo;<samp><span class="samp">debug&gt; </span></samp>&rsquo; is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbcont.html#doc_002ddbcont">dbcont</a>, <a href="doc_002ddbquit.html#doc_002ddbquit">dbquit</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbcont.html#XREFdbcont">dbcont</a>, <a href="XREFdbquit.html#XREFdbquit">dbquit</a>.
+
+        </blockquote></div>
 
 <p class="noindent">The <code>keyboard</code> function is typically placed in a script at the
-point where the user desires that the execution is stopped.  It
+point where the user desires that the execution be stopped.  It
 automatically sets the running script into the debug mode.
 
    </body></html>

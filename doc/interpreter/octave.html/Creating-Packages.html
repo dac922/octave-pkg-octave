@@ -65,7 +65,7 @@ into <samp><span class="file">package/ONEWS</span></samp>.
 
      <br><dt><code>package/ONEWS</code><dd>This is an optional file describing old entries from the <samp><span class="file">NEWS</span></samp> file.
 
-     <p><a name="index-PKG_005fADD-3730"></a><a name="doc_002dPKG_005fADD"></a><br><dt><code>package/PKG_ADD</code><dd>An optional file that includes commands that are run when the package
+     <p><a name="index-PKG_005fADD-3922"></a><a name="XREFPKG_005fADD"></a><br><dt><code>package/PKG_ADD</code><dd>An optional file that includes commands that are run when the package
 is added to the users path.  Note that <code>PKG_ADD</code><!-- /@w --> directives in the
 source code of the package will also be added to this file by the
 Octave package manager.  Note that symbolic links are to be avoided in
@@ -81,21 +81,28 @@ a typical use for this file is the replacement of the symbolic link
      <p class="noindent">See <a href="PKG_005fADD-and-PKG_005fDEL-Directives.html#PKG_005fADD-and-PKG_005fDEL-Directives">PKG_ADD and PKG_DEL Directives</a>, for details on <code>PKG_ADD</code><!-- /@w -->
 directives.
 
-     <p><a name="index-PKG_005fDEL-3731"></a><a name="doc_002dPKG_005fDEL"></a><br><dt><code>package/PKG_DEL</code><dd>An optional file that includes commands that are run when the package
+     <p><a name="index-PKG_005fDEL-3923"></a><a name="XREFPKG_005fDEL"></a><br><dt><code>package/PKG_DEL</code><dd>An optional file that includes commands that are run when the package
 is removed from the users path.  Note that <code>PKG_DEL</code><!-- /@w --> directives in
 the source code of the package will also be added to this file by the
 Octave package manager. 
 See <a href="PKG_005fADD-and-PKG_005fDEL-Directives.html#PKG_005fADD-and-PKG_005fDEL-Directives">PKG_ADD and PKG_DEL Directives</a>, for details on <code>PKG_DEL</code><!-- /@w -->
 directives.
 
-     <br><dt><code>package/pre_install.m</code><dd>This is an optional script that is run prior to the installation of a
-package.
+     <br><dt><code>package/pre_install.m</code><dd>This is an optional function that is run prior to the installation of a
+package.  This function is called with a single argument, a struct with
+fields names after the data in the <samp><span class="file">DESCRIPTION</span></samp>, and the paths where
+the package functions will be installed.
 
-     <br><dt><code>package/post_install.m</code><dd>This is an optional script that is run after the installation of a
-package.
+     <br><dt><code>package/post_install.m</code><dd>This is an optional function that is run after the installation of a
+package.  This function is called with a single argument, a struct with
+fields names after the data in the <samp><span class="file">DESCRIPTION</span></samp>, and the paths where
+the package functions were installed.
 
-     <br><dt><code>package/on_uninstall.m</code><dd>This is an optional script that is run prior to the removal of a
-package. 
+     <br><dt><code>package/on_uninstall.m</code><dd>This is an optional function that is run prior to the removal of a
+package.  This function is called with a single argument, a struct with
+fields names after the data in the <samp><span class="file">DESCRIPTION</span></samp>, the paths where
+the package functions are installed, and whether the package is currently
+loaded. 
 </dl>
 
    <p>Besides the above mentioned files, a package can also contain on or

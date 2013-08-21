@@ -35,9 +35,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.5 Structures in Oct-Files</h4>
 
-<p>A structure in Octave is map between a number of fields represented and
+<p>A structure in Octave is a map between a number of fields represented and
 their values.  The Standard Template Library <code>map</code> class is used,
-with the pair consisting of a <code>std::string</code> and an octave
+with the pair consisting of a <code>std::string</code> and an Octave
 <code>Cell</code> variable.
 
    <p>A simple example demonstrating the use of structures within oct-files is
@@ -45,14 +45,15 @@ with the pair consisting of a <code>std::string</code> and an octave
 <pre class="example"><pre class="verbatim">     #include &lt;octave/oct.h>
      #include &lt;octave/ov-struct.h>
      
-     DEFUN_DLD (structdemo, args, , "Struct demo.")
+     DEFUN_DLD (structdemo, args, , "Struct Demo")
      {
-       int nargin = args.length ();
        octave_value retval;
+       int nargin = args.length ();
      
        if (args.length () == 2)
          {
            octave_scalar_map arg0 = args(0).scalar_map_value ();
+           //octave_map arg0 = args(0).map_value ();
      
            if (! error_state)
              {
@@ -61,6 +62,7 @@ with the pair consisting of a <code>std::string</code> and an octave
                if (! error_state)
                  {
                    octave_value tmp = arg0.contents (arg1);
+                   //octave_value tmp = arg0.contents (arg1)(0);
      
                    if (tmp.is_defined ())
                      {
@@ -71,21 +73,20 @@ with the pair consisting of a <code>std::string</code> and an octave
                        retval = octave_value (st);
                      }
                    else
-                     error ("sruct does not contain field named '%s'\n",
+                     error ("structdemo: struct does not have a field named '%s'\n",
                             arg1.c_str ());
                  }
                else
-                 error ("expecting character string as second argument");
+                 error ("structdemo: ARG2 must be a character string");
              }
            else
-             error ("expecting struct as first argument");
+             error ("structdemo: ARG1 must be a struct");
          }
        else
          print_usage ();
      
        return retval;
      }
-     
 </pre>
      
 </pre>
@@ -95,19 +96,23 @@ with the pair consisting of a <code>std::string</code> and an octave
      structdemo (x, "b")
      &rArr; selected = test
 </pre>
-   <p>The commented code above demonstrates how to iterate over all of the
-fields of the structure, where as the following code demonstrates finding
-a particular field in a more concise manner.
+   <p>The example above specifically uses the <code>octave_scalar_map</code> class which
+is for representing a single struct.  For structure arrays the
+<code>octave_map</code> class is used instead.  The commented code shows how the
+demo could be modified to handle a structure array.  In that case the
+<code>contents</code> method returns a <code>Cell</code> which may have more than one
+element.  Therefore, to obtain the underlying <code>octave_value</code> in
+this single-struct example we write
 
-   <p>As can be seen the <code>contents</code> method of the <code>Octave_map</code> class
-returns a <code>Cell</code> which allows structure arrays to be represented. 
-Therefore, to obtain the underlying <code>octave_value</code> we write
-
-<pre class="example">     octave_value tmp = arg0.contents (p1) (0);
+<pre class="example">     octave_value tmp = arg0.contents (arg1)(0);
 </pre>
-   <p class="noindent">where the trailing (0) is the () operator on the <code>Cell</code> object.  We
-can equally iterate of the elements of the Cell array to address the
-elements of the structure array.
+   <p class="noindent">where the trailing (0) is the () operator on the <code>Cell</code> object.  If
+this were a true structure array with multiple elements we could iterate
+over the elements using the () operator.
+
+   <p>Structures are a relatively complex data container and there are more
+functions available in <samp><span class="file">oct-map.h</span></samp> which make coding with them easier
+than relying on just <code>contents</code>.
 
    </body></html>
 

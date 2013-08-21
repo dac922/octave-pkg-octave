@@ -6,7 +6,7 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution" title="Vectorization and Faster Code Execution">
-<link rel="prev" href="Accumulation.html#Accumulation" title="Accumulation">
+<link rel="prev" href="JIT-Compiler.html#JIT-Compiler" title="JIT Compiler">
 <link rel="next" href="Examples.html#Examples" title="Examples">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
@@ -27,14 +27,14 @@
 <a name="Miscellaneous-Techniques"></a>
 <p>
 Next:&nbsp;<a rel="next" accesskey="n" href="Examples.html#Examples">Examples</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Accumulation.html#Accumulation">Accumulation</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="JIT-Compiler.html#JIT-Compiler">JIT Compiler</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution">Vectorization and Faster Code Execution</a>
 <hr>
 </div>
 
-<h3 class="section">19.5 Miscellaneous Techniques</h3>
+<h3 class="section">19.6 Miscellaneous Techniques</h3>
 
-<p><a name="index-execution-speed-2356"></a><a name="index-speedups-2357"></a><a name="index-optimization-2358"></a>
+<p><a name="index-execution-speed-2520"></a><a name="index-speedups-2521"></a><a name="index-optimization-2522"></a>
 Here are some other ways of improving the execution speed of Octave
 programs.
 
@@ -46,7 +46,7 @@ a matrix variable is used multiple times as an index, checking the
 indices (and internal conversion to integers) is only done once.
 
      <li>Be aware of lazy copies (copy-on-write). 
-<a name="index-copy_002don_002dwrite-2359"></a><a name="index-COW-2360"></a><a name="index-memory-management-2361"></a>When a copy of an object is created, the data is not immediately copied, but
+<a name="index-copy_002don_002dwrite-2523"></a><a name="index-COW-2524"></a><a name="index-memory-management-2525"></a>When a copy of an object is created, the data is not immediately copied, but
 rather shared.  The actual copying is postponed until the copied data needs to
 be modified.  For example:
 
@@ -81,7 +81,7 @@ cell or struct element, and possibly economizes them.  For example:
 
      <pre class="example">          a = zeros (1000); # create a 1000x1000 matrix
           b = a(:,10:100);  # lazy slice
-          a = []; # the original a array is still allocated
+          a = []; # the original "a" array is still allocated
           c{1} = b; # b is reallocated at this point
 </pre>
      <li>Avoid deep recursion. 

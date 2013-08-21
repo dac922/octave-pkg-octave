@@ -90,7 +90,7 @@ DIST_COMMON = $(srcdir)/@ftp/module.mk $(srcdir)/Makefile.am \
 	$(srcdir)/statistics/tests/module.mk \
 	$(srcdir)/strings/module.mk $(srcdir)/testfun/module.mk \
 	$(srcdir)/time/module.mk $(srcdir)/ui/module.mk \
-	$(top_srcdir)/build-aux/common.mk mkinstalldirs
+	$(top_srcdir)/build-aux/common.mk
 @AMCOND_HAVE_JAVA_TRUE@am__append_1 = java/octave.jar
 subdir = scripts
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -201,7 +201,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/xstrndup.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/build-aux/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -1542,6 +1542,10 @@ ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
+ac_ct_LRELEASE = @ac_ct_LRELEASE@
+ac_ct_MOC = @ac_ct_MOC@
+ac_ct_RCC = @ac_ct_RCC@
+ac_ct_UIC = @ac_ct_UIC@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -1846,8 +1850,11 @@ deprecated_FCN_FILES = \
   deprecated/cor.m \
   deprecated/corrcoef.m \
   deprecated/cut.m \
+  deprecated/default_save_options.m \
   deprecated/java_debug.m \
   deprecated/error_text.m \
+  deprecated/gen_doc_cache.m \
+  deprecated/isequalwithequalnans.m \
   deprecated/isstr.m \
   deprecated/java_convert_matrix.m \
   deprecated/java_get.m \
@@ -1858,7 +1865,9 @@ deprecated_FCN_FILES = \
   deprecated/javafields.m \
   deprecated/javamethods.m \
   deprecated/polyderiv.m \
-  deprecated/setstr.m \
+  deprecated/re_read_readline_init_file.m \
+  deprecated/read_readline_init_file.m \
+  deprecated/saving_history.m \
   deprecated/shell_cmd.m \
   deprecated/studentize.m \
   deprecated/sylvester_matrix.m
@@ -1875,6 +1884,7 @@ elfun_FCN_FILES = \
   elfun/asecd.m \
   elfun/asech.m \
   elfun/asind.m \
+  elfun/atan2d.m \
   elfun/atand.m \
   elfun/cosd.m \
   elfun/cot.m \
@@ -1935,7 +1945,7 @@ general_FCN_FILES = \
   general/iscolumn.m \
   general/isdir.m \
   general/isequal.m \
-  general/isequalwithequalnans.m \
+  general/isequaln.m \
   general/isrow.m \
   general/isscalar.m \
   general/issquare.m \
@@ -1999,7 +2009,7 @@ help_FCN_FILES = \
   help/__makeinfo__.m \
   help/__unimplemented__.m \
   help/doc.m \
-  help/gen_doc_cache.m \
+  help/doc_cache_create.m \
   help/get_first_help_sentence.m \
   help/help.m \
   help/lookfor.m \
@@ -2009,6 +2019,11 @@ help_FCN_FILES = \
   $(help_PRIVATE_FCN_FILES)
 
 image_PRIVATE_FCN_FILES = \
+  image/private/__imfinfo__.m \
+  image/private/__imread__.m \
+  image/private/__imwrite__.m \
+  image/private/imageIO.m \
+  image/private/imwrite_filename.m \
   image/private/ind2x.m
 
 image_FCN_FILES = \
@@ -2033,6 +2048,7 @@ image_FCN_FILES = \
   image/image.m \
   image/imagesc.m \
   image/imfinfo.m \
+  image/imformats.m \
   image/imread.m \
   image/imshow.m \
   image/imwrite.m \
@@ -2143,6 +2159,7 @@ miscellaneous_FCN_FILES = \
   miscellaneous/copyfile.m \
   miscellaneous/debug.m \
   miscellaneous/delete.m \
+  miscellaneous/desktop.m \
   miscellaneous/dir.m \
   miscellaneous/dos.m \
   miscellaneous/dump_prefs.m \
@@ -2387,6 +2404,7 @@ plot_FCN_FILES = \
   plot/hidden.m \
   plot/hist.m \
   plot/hold.m \
+  plot/isaxes.m \
   plot/isfigure.m \
   plot/ishghandle.m \
   plot/ishold.m \
@@ -2524,6 +2542,8 @@ prefs_FCN_FILES = \
   prefs/addpref.m \
   prefs/getpref.m \
   prefs/ispref.m \
+  prefs/prefdir.m \
+  prefs/preferences.m \
   prefs/rmpref.m \
   prefs/setpref.m \
   $(prefs_PRIVATE_FCN_FILES)
@@ -2587,6 +2607,7 @@ sparse_FCN_FILES = \
   sparse/bicgstab.m \
   sparse/cgs.m \
   sparse/colperm.m \
+  sparse/eigs.m \
   sparse/etreeplot.m \
   sparse/gmres.m \
   sparse/gplot.m \
@@ -2819,6 +2840,7 @@ strings_FCN_FILES = \
   strings/base2dec.m \
   strings/bin2dec.m \
   strings/blanks.m \
+  strings/cstrcat.m \
   strings/deblank.m \
   strings/dec2base.m \
   strings/dec2bin.m \
@@ -2829,16 +2851,16 @@ strings_FCN_FILES = \
   strings/isletter.m \
   strings/isstrprop.m \
   strings/mat2str.m \
+  strings/ostrsplit.m \
   strings/regexptranslate.m \
   strings/rindex.m \
-  strings/strsplit.m \
   strings/str2num.m \
   strings/strcat.m \
-  strings/cstrcat.m \
   strings/strchr.m \
   strings/strjoin.m \
   strings/strjust.m \
   strings/strmatch.m \
+  strings/strsplit.m \
   strings/strtok.m \
   strings/strtrim.m \
   strings/strtrunc.m \

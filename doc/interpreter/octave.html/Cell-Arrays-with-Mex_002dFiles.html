@@ -35,22 +35,22 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Mex_002dFiles.html#Mex_002dFiles">Mex-F
 
 <h4 class="subsection">A.2.4 Cell Arrays with Mex-Files</h4>
 
-<p>We can perform exactly the same operations in Cell arrays in mex-files
-as we can in oct-files.  An example that reduplicates the functional of
-the <samp><span class="file">celldemo.cc</span></samp> oct-file in a mex-file is given by
-<samp><span class="file">mycell.c</span></samp> as below
+<p>One can perform exactly the same operations on Cell arrays in mex-files
+as in oct-files.  An example that reduplicates the function of
+the <samp><span class="file">celldemo.cc</span></samp> oct-file in a mex-file is given by <samp><span class="file">mycell.c</span></samp>
+as shown below.
 
 <pre class="example"><pre class="verbatim">     #include "mex.h"
      
      void
-     mexFunction (int nlhs, mxArray* plhs[], int nrhs, 
-                  const mxArray* prhs[])
+     mexFunction (int nlhs, mxArray* plhs[],
+                  int nrhs, const mxArray* prhs[])
      {
        mwSize n;
        mwIndex i;
      
        if (nrhs != 1 || ! mxIsCell (prhs[0]))
-         mexErrMsgTxt ("expects cell");
+         mexErrMsgTxt ("ARG1 must be a cell");
      
        n = mxGetNumberOfElements (prhs[0]);
        n = (n > nlhs ? nlhs : n);
@@ -59,9 +59,9 @@ the <samp><span class="file">celldemo.cc</span></samp> oct-file in a mex-file is
          plhs[i] = mxDuplicateArray (mxGetCell (prhs[0], i));
      }
 </pre>
+     
 </pre>
-   <p class="noindent">which as can be seen below has exactly the same behavior as the oct-file
-version.
+   <p class="noindent">The output is identical to the oct-file version as well.
 
 <pre class="example">     [b1, b2, b3] = mycell ({1, [1, 2], "test"})
      &rArr;
@@ -74,8 +74,8 @@ version.
 </pre>
    <p>Note in the example the use of the <code>mxDuplicateArray</code> function.  This
 is needed as the <code>mxArray</code> pointer returned by <code>mxGetCell</code>
-might be deallocated.  The inverse function to <code>mxGetCell</code> is
-<code>mcSetCell</code> and is defined as
+might be deallocated.  The inverse function to <code>mxGetCell</code>, used for
+setting Cell values, is <code>mxSetCell</code> and is defined as
 
 <pre class="example">     void mxSetCell (mxArray *ptr, int idx, mxArray *val);
 </pre>

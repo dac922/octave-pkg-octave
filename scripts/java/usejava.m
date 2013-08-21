@@ -1,5 +1,5 @@
 ## Copyright (C) 2012 Rik Wehbring
-## Parts Copyright (C) 2012 Philip Nienhuis <prnienhuis@users.sf.net>
+## Parts Copyright (C) 2012 Philip Nienhuis
 ##
 ## This file is part of Octave.
 ##
@@ -24,26 +24,29 @@
 ## Possible features are:
 ##
 ## @table @asis
-## @item "awt"
+## @item @qcode{"awt"}
 ## Abstract Window Toolkit for GUIs.
 ##
-## @item "desktop"
+## @item @qcode{"desktop"}
 ## Interactive desktop is running.
 ##
-## @item "jvm"
+## @item @qcode{"jvm"}
 ## Java Virtual Machine.
 ##
-## @item "swing"
+## @item @qcode{"swing"}
 ## Swing components for lightweight GUIs.
 ## @end table
 ##
 ## @code{usejava} determines if specific Java features are available in an
 ## Octave session.  This function is provided for scripts which may alter
-## their behavior based on the availability of Java.  The feature "desktop"
-## always returns @code{false} as Octave has no Java-based desktop.  Other
-## features may be available if Octave was compiled with the Java Interface
-## and Java is installed.
+## their behavior based on the availability of Java.  The feature
+## @qcode{"desktop"} always returns @code{false} as Octave has no Java-based
+## desktop.  Other features may be available if Octave was compiled with the
+## Java Interface and Java is installed.
 ## @end deftypefn
+
+## Author: Rik Wehbring
+## Author: Philip Nienhuis <prnienhuis@users.sf.net>
 
 function retval = usejava (feature)
 

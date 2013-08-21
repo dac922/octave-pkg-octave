@@ -55,7 +55,7 @@ once.
      -|        image *|   1.0.0 | /home/jwe/octave/image-1.0.0
 </pre>
    <p class="noindent">In this case only version 1.0.0 of the <code>image</code> package is
-installed.  The '*' character next to the package name shows that the
+installed.  The <code>'*'</code> character next to the package name shows that the
 image package is loaded and ready for use.
 
    <p>It is possible to remove a package from the system using the
@@ -86,11 +86,11 @@ it may not function correctly.  Because of this it is not recommended
 to disable dependency checking.
 
 <!-- pkg scripts/pkg/pkg.m -->
-   <p><a name="doc_002dpkg"></a>
+   <p><a name="XREFpkg"></a>
 
 <div class="defun">
-&mdash; Command:  <b>pkg</b><var> command pkg_name<a name="index-pkg-3728"></a></var><br>
-&mdash; Command:  <b>pkg</b><var> command option pkg_name<a name="index-pkg-3729"></a></var><br>
+&mdash; Command:  <b>pkg</b><var> command pkg_name<a name="index-pkg-3920"></a></var><br>
+&mdash; Command:  <b>pkg</b><var> command option pkg_name<a name="index-pkg-3921"></a></var><br>
 <blockquote><p>Manage packages (groups of add-on functions) for Octave.  Different actions
 are available depending on the value of <var>command</var>.
 
@@ -173,13 +173,14 @@ and those which were installed by the system administrator.
 
           <pre class="example">               [user_packages, system_packages] = pkg ("list")
 </pre>
-          <p>The option "-forge" lists packages available at the Octave-Forge repository. 
-This requires an internet connection and the cURL library.  For example:
+          <p>The option <code>"-forge"</code> lists packages available at the Octave-Forge
+repository.  This requires an internet connection and the cURL library. 
+For example:
 
           <pre class="example">               oct_forge_pkgs = pkg ("list", "-forge")
 </pre>
           <br><dt>&lsquo;<samp><span class="samp">describe</span></samp>&rsquo;<dd>Show a short description of the named installed packages, with the option
-"-verbose" also list functions provided by the package.  For example,
+<code>"-verbose"</code> also list functions provided by the package.  For example,
 
           <pre class="example">               pkg describe -verbose all
 </pre>
@@ -195,8 +196,9 @@ error, unless a second output is requested:
 
           <pre class="example">               [desc, flag] = pkg ("describe", "secs1d", "image")
 </pre>
-          <p class="noindent"><var>flag</var> will take one of the values "Not installed", "Loaded" or
-"Not loaded" for each of the named packages.
+          <p class="noindent"><var>flag</var> will take one of the values <code>"Not installed"</code>,
+<code>"Loaded"</code>, or
+<code>"Not loaded"</code> for each of the named packages.
 
           <br><dt>&lsquo;<samp><span class="samp">prefix</span></samp>&rsquo;<dd>Set the installation prefix directory.  For example,
 

@@ -51,26 +51,26 @@ function pr_out = printd (obj, filename)
   ## It seems best to only use convert for image output.  Its ps and pdf
   ## are badly rendered.
   opt = lower (opt);
-  switch opt
-    case {"pdf"}
+  switch (opt)
+    case "pdf"
       enscr = sprintf (
                        "enscript --no-header -o %s.ps %s ; ps2pdf %s.ps %s.pdf; mv %s.pdf %s;exit",...
                        tempf, tempf, tempf, tempf, tempf, filename);
       system (enscr);
       delete ([tempf ".ps"]);
-    case {"ps"}
+    case "ps"
       enscr = sprintf ("enscript --no-header -o %s %s ; exit", filename, tempf);
       system (enscr);
-    case {"eps"}
+    case "eps"
       enscr = sprintf (
                        "enscript --no-header -o %s.ps %s ; ps2eps --ignoreBB %s.ps; mv %s.eps %s; exit",...
                        tempf, tempf, tempf, tempf, filename);
       system (enscr);
       delete ([tempf ".ps"]);
-    case {"txt"}
+    case "txt"
       enscr = sprintf ("cp %s %s", tempf, filename);
       system (enscr);
-    case {"jpg" "jpeg"}
+    case {"jpg", "jpeg"}
       enscr = sprintf ("convert -trim txt:%s  jpg:%s", tempf, filename);
       system (enscr);
     otherwise
@@ -84,18 +84,19 @@ function pr_out = printd (obj, filename)
   pr_out =  sprintf ("%s file %s written\n", opt, filename);
 endfunction
 
+
 %!demo
 %! r2 = char (
-%! "stem step: 10, data: unsorted.",
-%! "Hinges:    lo: 12, hi: 42"     ,
-%! "   1 | 22118"                  ,
-%! "   2 | 28"                     ,
-%! "   3 | 98"                     ,
-%! "   4 | 244"                    ,
-%! "   5 | 2"                      );
-%! printd (r2, "test_p.txt");
-%! system ("cat test_p.txt");
-%! delete ("test_p.txt");
+%! 'stem step: 10, data: unsorted.',
+%! 'Hinges:    lo: 12, hi: 42'     ,
+%! '   1 | 22118'                  ,
+%! '   2 | 28'                     ,
+%! '   3 | 98'                     ,
+%! '   4 | 244'                    ,
+%! '   5 | 2'                      );
+%! printd (r2, 'test_p.txt');
+%! system ('cat test_p.txt');
+%! delete ('test_p.txt');
 
 %!test
 %! r2 = char (
@@ -110,6 +111,5 @@ endfunction
 %! r4 = fileread ("test_p.txt");
 %! delete ("test_p.txt");
 %! r2 = disp (r2);
-%! assert (r4, r2)
-
+%! assert (r4, r2);
 

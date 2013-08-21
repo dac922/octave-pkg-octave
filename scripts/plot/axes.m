@@ -19,8 +19,22 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} axes ()
 ## @deftypefnx {Function File} {} axes (@var{property}, @var{value}, @dots{})
-## @deftypefnx {Function File} {} axes (@var{h})
-## Create an axes object and return a handle to it.
+## @deftypefnx {Function File} {} axes (@var{hax})
+## @deftypefnx {Function File} {@var{h} =} axes (@dots{})
+## Create an axes object and return a handle to it, or set the current
+## axes to @var{hax}.
+##
+## Called without any arguments, or with @var{property}/@var{value} pairs,
+## construct a new axes.  For accepted properties and corresponding
+## values, @pxref{XREFset,,set}.
+##
+## Called with a single axes handle argument @var{hax}, the function makes
+## @var{hax} the current axis.  It also restacks the axes in the
+## corresponding figure so that @var{hax} is the first entry in the list
+## of children.  This causes @var{hax} to be displayed on top of any other
+## axes objects (Z-order stacking).
+## 
+## @seealso {gca, set, get}
 ## @end deftypefn
 
 ## Author: jwe
@@ -36,27 +50,32 @@ function h = axes (varargin)
     else
       cf = gcf ();
     endif
-    tmp = __go_axes__ (cf, varargin{:});
-    if (__is_handle_visible__ (tmp))
-      set (ancestor (cf, "figure"), "currentaxes", tmp);
+    htmp = __go_axes__ (cf, varargin{:});
+    if (__is_handle_visible__ (htmp))
+      set (ancestor (cf, "figure"), "currentaxes", htmp);
     endif
   else
-    ## arg is axes handle.
-    tmp = varargin{1};
-    if (length (tmp) == 1 && ishandle (tmp)
-        && strcmp (get (tmp, "type"), "axes"))
-      if (__is_handle_visible__ (tmp))
-        parent = ancestor (tmp, "figure");
+    ## ARG is axes handle.
+    htmp = varargin{1};
+    if (isscalar (htmp) && isaxes (htmp))
+      if (__is_handle_visible__ (htmp))
+        parent = ancestor (htmp, "figure");
         set (0, "currentfigure", parent);
-        set (parent, "currentaxes", tmp);
+        set (parent, "currentaxes", htmp);
+
+        ## restack
+        ch = get (parent, "children")(:);
+        idx = (ch == htmp);
+        ch = [ch(idx); ch(!idx)];
+        set (parent, "children", ch);
       endif
     else
-      error ("axes: expecting argument to be a scalar axes handle");
+      error ("axes: H must be a scalar axes handle");
     endif
   endif
 
   if (nargout > 0)
-    h = tmp;
+    h = htmp;
   endif
 
 endfunction

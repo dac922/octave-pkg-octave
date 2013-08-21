@@ -37,12 +37,12 @@ whether any or all of the elements of a matrix satisfy some condition.
 The <code>find</code> function is also useful in determining which elements of
 a matrix meet a specified condition.
 
-<!-- any libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dany"></a>
+<!-- any libinterp/corefcn/data.cc -->
+   <p><a name="XREFany"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>any</b> (<var>x</var>)<var><a name="index-any-1678"></a></var><br>
-&mdash; Built-in Function:  <b>any</b> (<var>x, dim</var>)<var><a name="index-any-1679"></a></var><br>
+&mdash; Built-in Function:  <b>any</b> (<var>x</var>)<var><a name="index-any-1821"></a></var><br>
+&mdash; Built-in Function:  <b>any</b> (<var>x, dim</var>)<var><a name="index-any-1822"></a></var><br>
 <blockquote><p>For a vector argument, return true (logical 1) if any element of the vector
 is nonzero.
 
@@ -59,15 +59,16 @@ corresponding column of the matrix are nonzero.  For example:
      <pre class="example">          any (eye (2, 4), 2)
            &rArr; [ 1; 1 ]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dall.html#doc_002dall">all</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFall.html#XREFall">all</a>.
 
-<!-- all libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dall"></a>
+        </blockquote></div>
+
+<!-- all libinterp/corefcn/data.cc -->
+   <p><a name="XREFall"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>all</b> (<var>x</var>)<var><a name="index-all-1680"></a></var><br>
-&mdash; Built-in Function:  <b>all</b> (<var>x, dim</var>)<var><a name="index-all-1681"></a></var><br>
+&mdash; Built-in Function:  <b>all</b> (<var>x</var>)<var><a name="index-all-1823"></a></var><br>
+&mdash; Built-in Function:  <b>all</b> (<var>x, dim</var>)<var><a name="index-all-1824"></a></var><br>
 <blockquote><p>For a vector argument, return true (logical 1) if all elements of the vector
 are nonzero.
 
@@ -81,8 +82,9 @@ corresponding column of the matrix are nonzero.  For example:
         <p>If the optional argument <var>dim</var> is supplied, work along dimension
 <var>dim</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dany.html#doc_002dany">any</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFany.html#XREFany">any</a>.
+
+        </blockquote></div>
 
    <p>Since the comparison operators (see <a href="Comparison-Ops.html#Comparison-Ops">Comparison Ops</a>) return matrices
 of ones and zeros, it is easy to test a matrix for many things, not just
@@ -99,11 +101,11 @@ than 0.9.
 <code>all (all (condition))</code>.
 
 <!-- xor scripts/miscellaneous/xor.m -->
-   <p><a name="doc_002dxor"></a>
+   <p><a name="XREFxor"></a>
 
 <div class="defun">
-&mdash; Mapping Function: <var>z</var> = <b>xor</b> (<var>x, y</var>)<var><a name="index-xor-1682"></a></var><br>
-<blockquote><p>Return the `exclusive or' of the entries of <var>x</var> and <var>y</var>. 
+&mdash; Mapping Function: <var>z</var> = <b>xor</b> (<var>x, y</var>)<var><a name="index-xor-1825"></a></var><br>
+<blockquote><p>Return the <dfn>exclusive or</dfn> of the entries of <var>x</var> and <var>y</var>. 
 For boolean expressions <var>x</var> and <var>y</var>,
 <code>xor (</code><var>x</var><code>, </code><var>y</var><code>)</code> is true if and only if one of <var>x</var> or
 <var>y</var> is true.  Otherwise, for <var>x</var> and <var>y</var> both true or both
@@ -118,16 +120,17 @@ false, <code>xor</code> returns false.
 <br></td></tr><tr align="left"><td valign="top" width="44%"></td><td valign="top" width="3%">1 </td><td valign="top" width="5%">1 </td><td valign="top" width="3%">0 </td><td valign="top" width="44%">
         <br></td></tr></table>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dand.html#doc_002dand">and</a>, <a href="doc_002dor.html#doc_002dor">or</a>, <a href="doc_002dnot.html#doc_002dnot">not</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFand.html#XREFand">and</a>, <a href="XREFor.html#XREFor">or</a>, <a href="XREFnot.html#XREFnot">not</a>.
 
-<!-- diff libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002ddiff"></a>
+        </blockquote></div>
+
+<!-- diff libinterp/corefcn/data.cc -->
+   <p><a name="XREFdiff"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>diff</b> (<var>x</var>)<var><a name="index-diff-1683"></a></var><br>
-&mdash; Built-in Function:  <b>diff</b> (<var>x, k</var>)<var><a name="index-diff-1684"></a></var><br>
-&mdash; Built-in Function:  <b>diff</b> (<var>x, k, dim</var>)<var><a name="index-diff-1685"></a></var><br>
+&mdash; Built-in Function:  <b>diff</b> (<var>x</var>)<var><a name="index-diff-1826"></a></var><br>
+&mdash; Built-in Function:  <b>diff</b> (<var>x, k</var>)<var><a name="index-diff-1827"></a></var><br>
+&mdash; Built-in Function:  <b>diff</b> (<var>x, k, dim</var>)<var><a name="index-diff-1828"></a></var><br>
 <blockquote><p>If <var>x</var> is a vector of length n, <code>diff (</code><var>x</var><code>)</code> is the
 vector of first differences
  <var>x</var>(2) - <var>x</var>(1), <small class="dots">...</small>, <var>x</var>(n) - <var>x</var>(n-1).
@@ -148,14 +151,15 @@ stated with the optional variable <var>dim</var>.  In this case the
 In the case where <var>k</var> exceeds <code>size (</code><var>x</var><code>, </code><var>dim</var><code>)</code>
 an empty matrix is returned.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsort.html#doc_002dsort">sort</a>, <a href="doc_002dmerge.html#doc_002dmerge">merge</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsort.html#XREFsort">sort</a>, <a href="XREFmerge.html#XREFmerge">merge</a>.
+
+        </blockquote></div>
 
 <!-- isinf libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002disinf"></a>
+   <p><a name="XREFisinf"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isinf</b> (<var>x</var>)<var><a name="index-isinf-1686"></a></var><br>
+&mdash; Mapping Function:  <b>isinf</b> (<var>x</var>)<var><a name="index-isinf-1829"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>x</var> are
 are infinite and false where they are not. 
 For example:
@@ -163,14 +167,15 @@ For example:
      <pre class="example">          isinf ([13, Inf, NA, NaN])
                 &rArr; [ 0, 1, 0, 0 ]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002disfinite.html#doc_002disfinite">isfinite</a>, <a href="doc_002disnan.html#doc_002disnan">isnan</a>, <a href="doc_002disna.html#doc_002disna">isna</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFisfinite.html#XREFisfinite">isfinite</a>, <a href="XREFisnan.html#XREFisnan">isnan</a>, <a href="XREFisna.html#XREFisna">isna</a>.
+
+        </blockquote></div>
 
 <!-- isnan libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002disnan"></a>
+   <p><a name="XREFisnan"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isnan</b> (<var>x</var>)<var><a name="index-isnan-1687"></a></var><br>
+&mdash; Mapping Function:  <b>isnan</b> (<var>x</var>)<var><a name="index-isnan-1830"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>x</var> are
 NaN values and false where they are not. 
 NA values are also considered NaN values.  For example:
@@ -178,15 +183,16 @@ NA values are also considered NaN values.  For example:
      <pre class="example">          isnan ([13, Inf, NA, NaN])
                 &rArr; [ 0, 0, 1, 1 ]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002disna.html#doc_002disna">isna</a>, <a href="doc_002disinf.html#doc_002disinf">isinf</a>, <a href="doc_002disfinite.html#doc_002disfinite">isfinite</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFisna.html#XREFisna">isna</a>, <a href="XREFisinf.html#XREFisinf">isinf</a>, <a href="XREFisfinite.html#XREFisfinite">isfinite</a>.
+
+        </blockquote></div>
 
 <!-- isfinite libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002disfinite"></a>
+   <p><a name="XREFisfinite"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>isfinite</b> (<var>x</var>)<var><a name="index-isfinite-1688"></a></var><br>
-&mdash; Mapping Function:  <b>finite</b> (<var>x</var>)<var><a name="index-finite-1689"></a></var><br>
+&mdash; Mapping Function:  <b>isfinite</b> (<var>x</var>)<var><a name="index-isfinite-1831"></a></var><br>
+&mdash; Mapping Function:  <b>finite</b> (<var>x</var>)<var><a name="index-finite-1832"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>x</var> are
 finite values and false where they are not. 
 For example:
@@ -194,14 +200,15 @@ For example:
      <pre class="example">          finite ([13, Inf, NA, NaN])
                &rArr; [ 1, 0, 0, 0 ]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002disinf.html#doc_002disinf">isinf</a>, <a href="doc_002disnan.html#doc_002disnan">isnan</a>, <a href="doc_002disna.html#doc_002disna">isna</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFisinf.html#XREFisinf">isinf</a>, <a href="XREFisnan.html#XREFisnan">isnan</a>, <a href="XREFisna.html#XREFisna">isna</a>.
+
+        </blockquote></div>
 
 <!-- common_size scripts/general/common_size.m -->
-   <p><a name="doc_002dcommon_005fsize"></a>
+   <p><a name="XREFcommon_005fsize"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>err</var>, <var>y1</var>, <small class="dots">...</small>] = <b>common_size</b> (<var>x1, <small class="dots">...</small></var>)<var><a name="index-common_005fsize-1690"></a></var><br>
+&mdash; Function File: [<var>err</var>, <var>y1</var>, <small class="dots">...</small>] = <b>common_size</b> (<var>x1, <small class="dots">...</small></var>)<var><a name="index-common_005fsize-1833"></a></var><br>
 <blockquote><p>Determine if all input arguments are either scalar or of common
 size.  If so, <var>err</var> is zero, and <var>yi</var> is a matrix of the
 common size with all entries equal to <var>xi</var> if this is a scalar or
@@ -218,14 +225,14 @@ be scalars or of common size.
 </p></blockquote></div>
 
 <!-- find libinterp/corefcn/find.cc -->
-   <p><a name="doc_002dfind"></a>
+   <p><a name="XREFfind"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>idx</var> = <b>find</b> (<var>x</var>)<var><a name="index-find-1691"></a></var><br>
-&mdash; Built-in Function: <var>idx</var> = <b>find</b> (<var>x, n</var>)<var><a name="index-find-1692"></a></var><br>
-&mdash; Built-in Function: <var>idx</var> = <b>find</b> (<var>x, n, direction</var>)<var><a name="index-find-1693"></a></var><br>
-&mdash; Built-in Function: [i, j] = <b>find</b> (<var><small class="dots">...</small></var>)<var><a name="index-find-1694"></a></var><br>
-&mdash; Built-in Function: [i, j, v] = <b>find</b> (<var><small class="dots">...</small></var>)<var><a name="index-find-1695"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>find</b> (<var>x</var>)<var><a name="index-find-1834"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>find</b> (<var>x, n</var>)<var><a name="index-find-1835"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>find</b> (<var>x, n, direction</var>)<var><a name="index-find-1836"></a></var><br>
+&mdash; Built-in Function: [i, j] = <b>find</b> (<var><small class="dots">...</small></var>)<var><a name="index-find-1837"></a></var><br>
+&mdash; Built-in Function: [i, j, v] = <b>find</b> (<var><small class="dots">...</small></var>)<var><a name="index-find-1838"></a></var><br>
 <blockquote><p>Return a vector of indices of nonzero elements of a matrix, as a row if
 <var>x</var> is a row vector or as a column otherwise.  To obtain a single index
 for each matrix element, Octave pretends that the columns of a matrix form
@@ -252,9 +259,10 @@ containing the nonzero values.  For example:
         <p>If two inputs are given, <var>n</var> indicates the maximum number of
 elements to find from the beginning of the matrix or vector.
 
-        <p>If three inputs are given, <var>direction</var> should be one of "first" or
-"last", requesting only the first or last <var>n</var> indices, respectively. 
-However, the indices are always returned in ascending order.
+        <p>If three inputs are given, <var>direction</var> should be one of
+<code>"first"</code> or <code>"last"</code>, requesting only the first or last
+<var>n</var> indices, respectively.  However, the indices are always returned in
+ascending order.
 
         <p>Note that this function is particularly useful for sparse matrices, as
 it extracts the non-zero elements as vectors, which can then be used to
@@ -264,15 +272,16 @@ create the original matrix.  For example:
           [i, j, v] = find (a);
           b = sparse (i, j, v, sz(1), sz(2));
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dnonzeros.html#doc_002dnonzeros">nonzeros</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFnonzeros.html#XREFnonzeros">nonzeros</a>.
+
+        </blockquote></div>
 
 <!-- lookup libinterp/corefcn/lookup.cc -->
-   <p><a name="doc_002dlookup"></a>
+   <p><a name="XREFlookup"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>idx</var> = <b>lookup</b> (<var>table, y</var>)<var><a name="index-lookup-1696"></a></var><br>
-&mdash; Built-in Function: <var>idx</var> = <b>lookup</b> (<var>table, y, opt</var>)<var><a name="index-lookup-1697"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>lookup</b> (<var>table, y</var>)<var><a name="index-lookup-1839"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>lookup</b> (<var>table, y, opt</var>)<var><a name="index-lookup-1840"></a></var><br>
 <blockquote><p>Lookup values in a sorted table.  Usually used as a prelude to
 interpolation.
 

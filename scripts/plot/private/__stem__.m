@@ -32,20 +32,23 @@ function h = __stem__ (have_z, varargin)
     caller = "stem";
   endif
 
-  [ax, varargin, nargin] = __plt_get_axis_arg__ (caller, varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ (caller, varargin{:});
 
   [x, y, z, dofill, llc, ls, mmc, ms, varargin] = ...
       check_stem_arg (have_z, varargin{:});
 
-  oldax = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (ax);
-    hold_state = get (ax, "nextplot");
-    newplot ();
-    h = [];
+    hax = newplot (hax);
+    hold_state = get (hax, "nextplot");
+    set (hax, "nextplot", "add");
 
+    h = [];
     nx = rows (x);
-    for i = 1: columns (x)
+    for i = 1 : columns (x)
       if (have_z)
         xt = x(:)';
         xt = [xt; xt; NaN(1, nx)](:);
@@ -60,13 +63,9 @@ function h = __stem__ (have_z, varargin)
         yt = [zeros(1, nx); yt; NaN(1, nx)](:);
       endif
 
-      hg  = hggroup ();
+      hg = hggroup ();
       h = [h; hg];
       args = __add_datasource__ (caller, hg, {"x", "y", "z"}, varargin{:});
-
-      if (i == 1)
-        set (ax, "nextplot", "add");
-      endif
 
       if (isempty (llc))
         lc = __next_line_color__ ();
@@ -87,23 +86,23 @@ function h = __stem__ (have_z, varargin)
       endif
 
       if (have_z)
-        h_stems = plot3 (xt, yt, zt, "color", lc, "linestyle", ls,
+        h_stems = plot3 (hax, xt, yt, zt, "color", lc, "linestyle", ls,
                          "parent", hg, x, y, z, "color", mc,
-                         "marker",  ms, "linestyle", "none",
+                         "marker", ms, "linestyle", "none",
                          "markerfacecolor", fc, "parent", hg);
 
         h_baseline = [];
       else
-        h_stems = plot (xt, yt, "color", lc, "linestyle", ls,
+        h_stems = plot (hax, xt, yt, "color", lc, "linestyle", ls,
                         "parent", hg, x(:,i), y(:, i), "color", mc, "marker",
                         ms, "linestyle", "none", "markerfacecolor",
                         fc, "parent", hg);
 
-        x_axis_range = get (ax, "xlim");
-        h_baseline = line (x_axis_range, [0, 0], "color", [0, 0, 0]);
+        x_axis_range = get (hax, "xlim");
+        h_baseline = line (hax, x_axis_range, [0, 0], "color", [0, 0, 0]);
         set (h_baseline, "handlevisibility", "off");
         set (h_baseline, "xliminclude", "off");
-        addlistener (ax, "xlim", @update_xlim);
+        addlistener (hax, "xlim", @update_xlim);
         addlistener (h_baseline, "ydata", @update_baseline);
         addlistener (h_baseline, "visible", @update_baseline);
       endif
@@ -113,7 +112,7 @@ function h = __stem__ (have_z, varargin)
       addproperty ("basevalue", hg, "data", 0);
       addproperty ("baseline", hg, "data", h_baseline);
 
-      if (!have_z)
+      if (! have_z)
         addlistener (hg, "showbaseline", @show_baseline);
         addlistener (hg, "basevalue", @move_baseline);
       endif
@@ -152,10 +151,17 @@ function h = __stem__ (have_z, varargin)
       endif
     endfor
 
+    if (! strcmp (hold_state, "add") && have_z)
+      set (hax, "view", [-37.5 30]);  # 3D view
+    endif
+    set (hax, "nextplot", hold_state);
+
   unwind_protect_cleanup
-    set (ax, "nextplot", hold_state);
-    axes (oldax);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
 endfunction
 
 function [x, y, z, dofill, lc, ls, mc, ms, newargs] = check_stem_arg (have_z, varargin)
@@ -531,27 +537,31 @@ function update_data (h, d)
   z = get (h, "zdata");
 
   if (!isempty (z) && size_equal (x, y, z))
-    error ("stem3: inconsistent size of x, y and z");
-  elseif (numel (x) != numel (y))
-    error ("stem: inconsistent size of x and y");
-  else
-    bl = get (h, "basevalue");
-    nx = numel (x);
-    x = x(:)';
-    xt = [x; x; NaN(1, nx)](:);
-    if (! isempty (z))
-      y = y(:)';
-      yt = [y; y; NaN(1, nx)](:);
-      z = z(:)';
-      zt = [bl * ones(1, nx); z; NaN(1, nx)](:);
-    else
-      y = y(:)';
-      yt = [bl * ones(1, nx); y; NaN(1, nx)](:);
-      zt = [];
-    endif
-
-    kids = get (h, "children");
-    set (kids(2), "xdata", xt, "ydata", yt, "zdata", zt);
-    set (kids(1), "xdata", x, "ydata", y, "zdata", z);
+    sz = min ([size(x); size(y); size(z)]);
+    x = x(1:sz(1),1:sz(2));
+    y = y(1:sz(1),1:sz(2));
+    z = z(1:sz(1),1:sz(2));
+  elseif (numel (x) != numel (y));
+    sz = min ([size(x); size(y)]);
+    x = x(1:sz(1),1:sz(2));
+    y = y(1:sz(1),1:sz(2));
   endif
+  bl = get (h, "basevalue");
+  nx = numel (x);
+  x = x(:)';
+  xt = [x; x; NaN(1, nx)](:);
+  if (! isempty (z))
+    y = y(:)';
+    yt = [y; y; NaN(1, nx)](:);
+    z = z(:)';
+    zt = [bl * ones(1, nx); z; NaN(1, nx)](:);
+  else
+    y = y(:)';
+    yt = [bl * ones(1, nx); y; NaN(1, nx)](:);
+    zt = [];
+  endif
+
+  kids = get (h, "children");
+  set (kids(2), "xdata", xt, "ydata", yt, "zdata", zt);
+  set (kids(1), "xdata", x, "ydata", y, "zdata", z);
 endfunction

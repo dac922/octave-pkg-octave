@@ -45,13 +45,13 @@ used when reading a file.
      # Do the actual I/O here...
      fclose (fid);
 </pre>
-   <!-- fopen libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfopen"></a>
+   <!-- fopen libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfopen"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>fopen</b> (<var>name, mode, arch</var>)<var><a name="index-fopen-1022"></a></var><br>
-&mdash; Built-in Function: <var>fid_list</var> = <b>fopen</b> (<var>"all"</var>)<var><a name="index-fopen-1023"></a></var><br>
-&mdash; Built-in Function: [<var>file</var>, <var>mode</var>, <var>arch</var>] = <b>fopen</b> (<var>fid</var>)<var><a name="index-fopen-1024"></a></var><br>
+&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>fopen</b> (<var>name, mode, arch</var>)<var><a name="index-fopen-1040"></a></var><br>
+&mdash; Built-in Function: <var>fid_list</var> = <b>fopen</b> (<var>"all"</var>)<var><a name="index-fopen-1041"></a></var><br>
+&mdash; Built-in Function: [<var>file</var>, <var>mode</var>, <var>arch</var>] = <b>fopen</b> (<var>fid</var>)<var><a name="index-fopen-1042"></a></var><br>
 <blockquote><p>The first form of the <code>fopen</code> function opens the named file with
 the specified mode (read-write, read-only, etc.) and architecture
 interpretation (IEEE big endian, IEEE little endian, etc.), and returns
@@ -100,14 +100,14 @@ discarded.
 file. 
 </dl>
 
-        <p>Append a "t" to the mode string to open the file in text mode or a
-"b" to open in binary mode.  On Windows and Macintosh systems, text
+        <p>Append a <code>"t"</code> to the mode string to open the file in text mode or a
+<code>"b"</code> to open in binary mode.  On Windows and Macintosh systems, text
 mode reading and writing automatically converts linefeeds to the
 appropriate line end character for the system (carriage-return linefeed
 on Windows, carriage-return on Macintosh).  The default if no mode is
 specified is binary mode.
 
-        <p>Additionally, you may append a "z" to the mode string to open a
+        <p>Additionally, you may append a <code>"z"</code> to the mode string to open a
 gzipped file for reading or writing.  For this to be successful, you
 must also open the file in binary mode.
 
@@ -131,31 +131,34 @@ for the file.  Valid values for <var>arch</var> are:
      <p class="noindent">however, conversions are currently only supported for &lsquo;<samp><span class="samp">native</span></samp>&rsquo;
 &lsquo;<samp><span class="samp">ieee-be</span></samp>&rsquo;, and &lsquo;<samp><span class="samp">ieee-le</span></samp>&rsquo; formats.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfclose.html#doc_002dfclose">fclose</a>, <a href="doc_002dfgets.html#doc_002dfgets">fgets</a>, <a href="doc_002dfgetl.html#doc_002dfgetl">fgetl</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfputs.html#doc_002dfputs">fputs</a>, <a href="doc_002dfdisp.html#doc_002dfdisp">fdisp</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>, <a href="doc_002dfskipl.html#doc_002dfskipl">fskipl</a>, <a href="doc_002dfseek.html#doc_002dfseek">fseek</a>, <a href="doc_002dfrewind.html#doc_002dfrewind">frewind</a>, <a href="doc_002dftell.html#doc_002dftell">ftell</a>, <a href="doc_002dfeof.html#doc_002dfeof">feof</a>, <a href="doc_002dferror.html#doc_002dferror">ferror</a>, <a href="doc_002dfclear.html#doc_002dfclear">fclear</a>, <a href="doc_002dfflush.html#doc_002dfflush">fflush</a>, <a href="doc_002dfreport.html#doc_002dfreport">freport</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfclose.html#XREFfclose">fclose</a>, <a href="XREFfgets.html#XREFfgets">fgets</a>, <a href="XREFfgetl.html#XREFfgetl">fgetl</a>, <a href="XREFfscanf.html#XREFfscanf">fscanf</a>, <a href="XREFfread.html#XREFfread">fread</a>, <a href="XREFfputs.html#XREFfputs">fputs</a>, <a href="XREFfdisp.html#XREFfdisp">fdisp</a>, <a href="XREFfprintf.html#XREFfprintf">fprintf</a>, <a href="XREFfwrite.html#XREFfwrite">fwrite</a>, <a href="XREFfskipl.html#XREFfskipl">fskipl</a>, <a href="XREFfseek.html#XREFfseek">fseek</a>, <a href="XREFfrewind.html#XREFfrewind">frewind</a>, <a href="XREFftell.html#XREFftell">ftell</a>, <a href="XREFfeof.html#XREFfeof">feof</a>, <a href="XREFferror.html#XREFferror">ferror</a>, <a href="XREFfclear.html#XREFfclear">fclear</a>, <a href="XREFfflush.html#XREFfflush">fflush</a>, <a href="XREFfreport.html#XREFfreport">freport</a>.
 
-<!-- fclose libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfclose"></a>
+        </blockquote></div>
+
+<!-- fclose libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfclose"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fclose</b> (<var>fid</var>)<var><a name="index-fclose-1025"></a></var><br>
-&mdash; Built-in Function:  <b>fclose</b> (<var>"all"</var>)<var><a name="index-fclose-1026"></a></var><br>
+&mdash; Built-in Function:  <b>fclose</b> (<var>fid</var>)<var><a name="index-fclose-1043"></a></var><br>
+&mdash; Built-in Function:  <b>fclose</b> (<var>"all"</var>)<var><a name="index-fclose-1044"></a></var><br>
 <blockquote><p>Close the specified file.  If successful, <code>fclose</code> returns 0,
 otherwise, it returns -1.  The second form of the <code>fclose</code> call closes
 all open files except <code>stdout</code>, <code>stderr</code>, and <code>stdin</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>, <a href="doc_002dfreport.html#doc_002dfreport">freport</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfopen.html#XREFfopen">fopen</a>, <a href="XREFfreport.html#XREFfreport">freport</a>.
+
+        </blockquote></div>
 
 <!-- is_valid_file_id scripts/io/is_valid_file_id.m -->
-   <p><a name="doc_002dis_005fvalid_005ffile_005fid"></a>
+   <p><a name="XREFis_005fvalid_005ffile_005fid"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>is_valid_file_id</b> (<var>fid</var>)<var><a name="index-is_005fvalid_005ffile_005fid-1027"></a></var><br>
+&mdash; Function File:  <b>is_valid_file_id</b> (<var>fid</var>)<var><a name="index-is_005fvalid_005ffile_005fid-1045"></a></var><br>
 <blockquote><p>Return true if <var>fid</var> refers to an open file.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfopen.html#XREFfopen">fopen</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Functions-and-Scripts.html#Functions-an
 
 <h3 class="section">11.2 Defining Functions</h3>
 
-<p><a name="index-g_t_0040code_007bfunction_007d-statement-752"></a><a name="index-g_t_0040code_007bendfunction_007d-statement-753"></a>
+<p><a name="index-g_t_0040code_007bfunction_007d-statement-764"></a><a name="index-g_t_0040code_007bendfunction_007d-statement-765"></a>
 In its simplest form, the definition of a function named <var>name</var>
 looks like this:
 
@@ -58,7 +58,7 @@ on your terminal (assuming that it is possible to do so):
      endfunction
 </pre>
    <p>The <code>printf</code> statement (see <a href="Input-and-Output.html#Input-and-Output">Input and Output</a>) simply tells
-Octave to print the string <code>"\a"</code>.  The special character &lsquo;<samp><span class="samp">\a</span></samp>&rsquo;
+Octave to print the string <code>"a"</code>.  The special character &lsquo;<samp><span class="samp">\a</span></samp>&rsquo;
 stands for the alert character (ASCII 7).  See <a href="Strings.html#Strings">Strings</a>.
 
    <p>Once this function is defined, you can ask Octave to evaluate it by
@@ -176,11 +176,11 @@ To avoid such problems and to provide useful messages, we check for both
 possibilities and issue our own error message.
 
 <!-- nargin libinterp/octave-value/ov-usr-fcn.cc -->
-   <p><a name="doc_002dnargin"></a>
+   <p><a name="XREFnargin"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nargin</b> ()<var><a name="index-nargin-754"></a></var><br>
-&mdash; Built-in Function:  <b>nargin</b> (<var>fcn</var>)<var><a name="index-nargin-755"></a></var><br>
+&mdash; Built-in Function:  <b>nargin</b> ()<var><a name="index-nargin-766"></a></var><br>
+&mdash; Built-in Function:  <b>nargin</b> (<var>fcn</var>)<var><a name="index-nargin-767"></a></var><br>
 <blockquote><p>Within a function, return the number of arguments passed to the function. 
 At the top level, return the number of command line arguments passed to
 Octave.
@@ -190,33 +190,34 @@ return the declared number of arguments that the function can accept.
 If the last argument is <var>varargin</var> the returned value is negative. 
 This feature does not work on builtin functions.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002dnthargout.html#doc_002dnthargout">nthargout</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnargout.html#XREFnargout">nargout</a>, <a href="XREFvarargin.html#XREFvarargin">varargin</a>, <a href="XREFisargout.html#XREFisargout">isargout</a>, <a href="XREFvarargout.html#XREFvarargout">varargout</a>, <a href="XREFnthargout.html#XREFnthargout">nthargout</a>.
+
+        </blockquote></div>
 
 <!-- inputname scripts/miscellaneous/inputname.m -->
-   <p><a name="doc_002dinputname"></a>
+   <p><a name="XREFinputname"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>inputname</b> (<var>n</var>)<var><a name="index-inputname-756"></a></var><br>
+&mdash; Function File:  <b>inputname</b> (<var>n</var>)<var><a name="index-inputname-768"></a></var><br>
 <blockquote><p>Return the name of the <var>n</var>-th argument to the calling function. 
 If the argument is not a simple variable name, return an empty string. 
 </p></blockquote></div>
 
 <!-- silent_functions libinterp/parse-tree/pt-eval.cc -->
-   <p><a name="doc_002dsilent_005ffunctions"></a>
+   <p><a name="XREFsilent_005ffunctions"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>silent_functions</b> ()<var><a name="index-silent_005ffunctions-757"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>silent_functions</b> (<var>new_val</var>)<var><a name="index-silent_005ffunctions-758"></a></var><br>
-&mdash; Built-in Function:  <b>silent_functions</b> (<var>new_val, "local"</var>)<var><a name="index-silent_005ffunctions-759"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>silent_functions</b> ()<var><a name="index-silent_005ffunctions-769"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>silent_functions</b> (<var>new_val</var>)<var><a name="index-silent_005ffunctions-770"></a></var><br>
+&mdash; Built-in Function:  <b>silent_functions</b> (<var>new_val, "local"</var>)<var><a name="index-silent_005ffunctions-771"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether internal
 output from a function is suppressed.  If this option is disabled,
 Octave will display the results produced by evaluating expressions
 within a function body that are not terminated with a semicolon.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
    </body></html>

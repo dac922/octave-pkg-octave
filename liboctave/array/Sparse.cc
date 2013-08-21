@@ -1575,6 +1575,14 @@ Sparse<T>::index (const idx_vector& idx_i, const idx_vector& idx_j, bool resize_
       else
         gripe_index_out_of_range (2, 2, idx_j.extent (nc), nc);
     }
+  else if (nr == 1 && nc == 1)
+    {
+      // Scalars stored as sparse matrices occupy more memory than 
+      // a scalar, so let's just convert the matrix to full, index, 
+      // and sparsify the result.
+
+      retval = Sparse<T> (array_value ().index (idx_i, idx_j));
+    }
   else if (idx_i.is_colon ())
     {
       // Great, we're just manipulating columns. This is going to be quite
@@ -2615,7 +2623,7 @@ Sparse<T>::array_value () const
  *
 
 %!function x = set_slice (x, dim, slice, arg)
-%!  switch dim
+%!  switch (dim)
 %!    case 11
 %!      x(slice) = 2;
 %!    case 21
@@ -2628,7 +2636,7 @@ Sparse<T>::array_value () const
 %!endfunction
 
 %!function x = set_slice2 (x, dim, slice)
-%!  switch dim
+%!  switch (dim)
 %!    case 11
 %!      x(slice) = 2 * ones (size (slice));
 %!    case 21
@@ -2784,6 +2792,23 @@ bug #35570:
 %! s = sparse ([], [], [], 1, 1);
 %! s(1,:) = [];
 %! assert (s, sparse ([], [], [], 0, 1));
+
+## Test (bug #37321)
+%!test a=sparse (0,0); assert (all (a) == sparse ([1]));
+%!test a=sparse (0,1); assert (all (a) == sparse ([1]));
+%!test a=sparse (1,0); assert (all (a) == sparse ([1]));
+%!test a=sparse (1,0); assert (all (a,2) == sparse ([1]));
+%!test a=sparse (1,0); assert (size (all (a,1)), [1 0]);
+%!test a=sparse (1,1);
+%! assert (all (a) == sparse ([0]));
+%! assert (size (all (a)), [1 1]);
+%!test a=sparse (2,1);
+%! assert (all (a) == sparse ([0]));
+%! assert (size (all (a)), [1 1]);
+%!test a=sparse (1,2);
+%! assert (all (a) == sparse ([0]));
+%! assert (size (all (a)), [1 1]);
+%!test a=sparse (2,2); assert (isequal (all (a), sparse ([0 0])));
 
 */
 

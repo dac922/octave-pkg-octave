@@ -17,9 +17,13 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} errorbar (@var{args})
-## This function produces two-dimensional plots with errorbars.  Many
-## different combinations of arguments are possible.  The simplest form is
+## @deftypefn  {Function File} {} errorbar (@var{args})
+## @deftypefnx {Function File} {} errorbar (@var{hax}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} errorbar (@dots{})
+## Create a 2-D with errorbars.
+##
+## Many different combinations of arguments are possible.  The simplest
+## form is
 ##
 ## @example
 ## errorbar (@var{y}, @var{ey})
@@ -75,6 +79,12 @@
 ## Set boxxyerrorbars plot style.
 ## @end table
 ##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a handle to the hggroup object
+## representing the data plot and errorbars.
+##
 ## Examples:
 ##
 ## @example
@@ -109,30 +119,34 @@
 ## produces an xyerrorbar plot of @var{y} versus @var{x} in which
 ## @var{x} errorbars are drawn from @var{x}-@var{lx} to @var{x}+@var{ux}
 ## and @var{y} errorbars from @var{y}-@var{ly} to @var{y}+@var{uy}.
-## @seealso{semilogxerr, semilogyerr, loglogerr}
+## @seealso{semilogxerr, semilogyerr, loglogerr, plot}
 ## @end deftypefn
 
 ## Created: 18.7.2000
 ## Author: Teemu Ikonen <tpikonen@pcu.helsinki.fi>
 ## Keywords: errorbar, plotting
 
-function retval = errorbar (varargin)
+function h = errorbar (varargin)
 
-  [h, varargin] = __plt_get_axis_arg__ ("errorbar", varargin{:});
+  [hax, varargin] = __plt_get_axis_arg__ ("errorbar", varargin{:});
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
+    hax = newplot (hax);
 
-    tmp = __errcomm__ ("errorbar", h, varargin{:});
-
-    if (nargout > 0)
-      retval = tmp;
-    endif
+    htmp = __errcomm__ ("errorbar", hax, varargin{:});
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
+  if (nargout > 0)
+    h = htmp;
+  endif
 
 endfunction
 
@@ -142,35 +156,44 @@ endfunction
 %! rand_1x11_data1 = [0.82712, 0.50325, 0.35613, 0.77089, 0.20474, 0.69160, 0.30858, 0.88225, 0.35187, 0.14168, 0.54270];
 %! rand_1x11_data2 = [0.506375, 0.330106, 0.017982, 0.859270, 0.140641, 0.327839, 0.275886, 0.162453, 0.807592, 0.318509, 0.921112];
 %! errorbar (0:10, rand_1x11_data1, 0.25*rand_1x11_data2);
+%! title ('errorbar() with Y errorbars');
 
 %!demo
 %! clf;
 %! rand_1x11_data3 = [0.423650, 0.142331, 0.213195, 0.129301, 0.975891, 0.012872, 0.635327, 0.338829, 0.764997, 0.401798, 0.551850];
 %! rand_1x11_data4 = [0.682566, 0.456342, 0.132390, 0.341292, 0.108633, 0.601553, 0.040455, 0.146665, 0.309187, 0.586291, 0.540149];
 %! errorbar (0:10, rand_1x11_data3, rand_1x11_data4, '>');
+%! title ('errorbar() with X errorbars');
 
 %!demo
 %! clf;
 %! x = 0:0.5:2*pi;
-%! err = x/100;
+%! err = x/30;
 %! y1 = sin (x);
 %! y2 = cos (x);
-%! hg = errorbar (x, y1, err, '~', x, y2, err, '>');
+%! errorbar (x, y1, err, '~', x, y2, err, '>');
+%! legend ("Y errbar", "X errbar");
+%! title ('errorbar() with 2 datasets');
+
 
 %!demo
 %! clf;
 %! x = 0:0.5:2*pi;
-%! err = x/100;
+%! err = x/30;
 %! y1 = sin (x);
 %! y2 = cos (x);
-%! hg = errorbar (x, y1, err, err, '#r', x, y2, err, err, '#~');
+%! errorbar (x, y1, err, err, '#r', x, y2, err, err, '#~');
+%! legend ("X errbox", "Y errbox");
+%! title ('errorbar() with error boxes');
 
 %!demo
 %! clf;
 %! x = 0:0.5:2*pi;
-%! err = x/100;
+%! err = x/30;
 %! y1 = sin (x);
 %! y2 = cos (x);
-%! hg = errorbar (x, y1, err, err, err, err, '~>', ...
-%!                x, y2, err, err, err, err, '#~>-*');
+%! errorbar (x, y1, err, err, err, err, '~>', ...
+%!           x, y2, err, err, err, err, '#~>-*');
+%! legend ("X-Y errbars", "X-Y errboxes");
+%! title ('errorbar() with X-Y errorbars and error boxes');
 

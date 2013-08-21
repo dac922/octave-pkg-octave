@@ -55,21 +55,21 @@ If a warning has such an ID the user can enable and disable this warning
 as will be described in the next section.  To assign an ID to a warning,
 simply call <code>warning</code> with two string arguments, where the first
 is the identification string, and the second is the actual warning.  Note
-that warning IDs are in the format "NAMESPACE:WARNING-NAME".  The namespace
-"Octave" is used for Octave's own warnings.  Any other string is available
-as a namespace for user's own warnings.
+that warning IDs are in the format <code>"NAMESPACE:WARNING-NAME"</code>.  The
+namespace <code>"Octave"</code> is used for Octave's own warnings.  Any other string
+is available as a namespace for user's own warnings.
 
-<!-- warning libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002dwarning"></a>
+<!-- warning libinterp/corefcn/error.cc -->
+   <p><a name="XREFwarning"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>warning</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-warning-855"></a></var><br>
-&mdash; Built-in Function:  <b>warning</b> (<var>id, template, <small class="dots">...</small></var>)<var><a name="index-warning-856"></a></var><br>
-&mdash; Built-in Function:  <b>warning</b> (<var>"on", id</var>)<var><a name="index-warning-857"></a></var><br>
-&mdash; Built-in Function:  <b>warning</b> (<var>"off", id</var>)<var><a name="index-warning-858"></a></var><br>
-&mdash; Built-in Function:  <b>warning</b> (<var>"query", id</var>)<var><a name="index-warning-859"></a></var><br>
-&mdash; Built-in Function:  <b>warning</b> (<var>"error", id</var>)<var><a name="index-warning-860"></a></var><br>
-&mdash; Built-in Function:  <b>warning</b> (<var>state, id, "local"</var>)<var><a name="index-warning-861"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-warning-868"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>id, template, <small class="dots">...</small></var>)<var><a name="index-warning-869"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>"on", id</var>)<var><a name="index-warning-870"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>"off", id</var>)<var><a name="index-warning-871"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>"query", id</var>)<var><a name="index-warning-872"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>"error", id</var>)<var><a name="index-warning-873"></a></var><br>
+&mdash; Built-in Function:  <b>warning</b> (<var>state, id, "local"</var>)<var><a name="index-warning-874"></a></var><br>
 <blockquote><p>Format the optional arguments under the control of the template string
 <var>template</var> using the same rules as the <code>printf</code> family of
 functions (see <a href="Formatted-Output.html#Formatted-Output">Formatted Output</a>) and print the resulting message
@@ -81,59 +81,61 @@ to go on.
 
         <p>The optional message identifier allows users to enable or disable
 warnings tagged by <var>id</var>.  A message identifier is of the form
-"NAMESPACE:WARNING-NAME".  Octave's own warnings use the "Octave"
-namespace (see <a href="doc_002dwarning_005fids.html#doc_002dwarning_005fids">doc-warning_ids</a>).  The special identifier &lsquo;<samp><span class="samp">"all"</span></samp>&rsquo;
+"NAMESPACE:WARNING-NAME".  Octave's own warnings use the <code>"Octave"</code>
+namespace (see <a href="XREFwarning_005fids.html#XREFwarning_005fids">XREFwarning_ids</a>).  The special identifier <code>"all"</code>
 may be used to set the state of all warnings.
 
-        <p>If the first argument is &lsquo;<samp><span class="samp">"on"</span></samp>&rsquo; or &lsquo;<samp><span class="samp">"off"</span></samp>&rsquo;, set the state
-of a particular warning using the identifier <var>id</var>.  If the first
-argument is &lsquo;<samp><span class="samp">"query"</span></samp>&rsquo;, query the state of this warning instead. 
-If the identifier is omitted, a value of &lsquo;<samp><span class="samp">"all"</span></samp>&rsquo; is assumed.  If
-you set the state of a warning to &lsquo;<samp><span class="samp">"error"</span></samp>&rsquo;, the warning named by
-<var>id</var> is handled as if it were an error instead.  So, for example, the
-following handles all warnings as errors:
+        <p>If the first argument is <code>"on"</code> or <code>"off"</code>,
+set the state of a particular warning using the identifier <var>id</var>.  If the
+first argument is <code>"query"</code>, query the state of this warning
+instead.  If the identifier is omitted, a value of <code>"all"</code> is
+assumed.  If you set the state of a warning to <code>"error"</code>, the
+warning named by <var>id</var> is handled as if it were an error instead.  So,
+for example, the following handles all warnings as errors:
 
      <pre class="example">          warning ("error");
 </pre>
-        <p>If the state is &lsquo;<samp><span class="samp">"on"</span></samp>&rsquo;, &lsquo;<samp><span class="samp">"off"</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">"error"</span></samp>&rsquo;
-and the third argument is &lsquo;<samp><span class="samp">"local"</span></samp>&rsquo;, then the warning state
+        <p>If the state is <code>"on"</code>, <code>"off"</code>, or <code>"error"</code>
+and the third argument is <code>"local"</code>, then the warning state
 will be set temporarily, until the end of the current function. 
 Changes to warning states that are set locally affect the current
 function and all functions called from the current scope.  The
 previous warning state is restored on return from the current
-function.  The "local" option is ignored if used in the top-level
+function.  The <code>"local"</code> option is ignored if used in the top-level
 workspace.
 
         <p>Implementation Note: For compatibility with <span class="sc">matlab</span>, escape
-sequences (e.g., "\n" =&gt; newline) are processed in <var>template</var>
+sequences (e.g., <code>"n"</code> =&gt; newline) are processed in <var>template</var>
 regardless of whether <var>template</var> has been defined within single quotes
 as long as there are two or more input arguments. 
 Use a second backslash to stop interpolation of the escape sequence (e.g.,
 "\\n") or use the <code>regexptranslate</code> function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwarning_005fids.html#doc_002dwarning_005fids">warning_ids</a>, <a href="doc_002dlastwarn.html#doc_002dlastwarn">lastwarn</a>, <a href="doc_002derror.html#doc_002derror">error</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwarning_005fids.html#XREFwarning_005fids">warning_ids</a>, <a href="XREFlastwarn.html#XREFlastwarn">lastwarn</a>, <a href="XREFerror.html#XREFerror">error</a>.
 
-<!-- lastwarn libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002dlastwarn"></a>
+        </blockquote></div>
+
+<!-- lastwarn libinterp/corefcn/error.cc -->
+   <p><a name="XREFlastwarn"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>msg</var>, <var>msgid</var>] = <b>lastwarn</b> ()<var><a name="index-lastwarn-862"></a></var><br>
-&mdash; Built-in Function:  <b>lastwarn</b> (<var>msg</var>)<var><a name="index-lastwarn-863"></a></var><br>
-&mdash; Built-in Function:  <b>lastwarn</b> (<var>msg, msgid</var>)<var><a name="index-lastwarn-864"></a></var><br>
+&mdash; Built-in Function: [<var>msg</var>, <var>msgid</var>] = <b>lastwarn</b> ()<var><a name="index-lastwarn-875"></a></var><br>
+&mdash; Built-in Function:  <b>lastwarn</b> (<var>msg</var>)<var><a name="index-lastwarn-876"></a></var><br>
+&mdash; Built-in Function:  <b>lastwarn</b> (<var>msg, msgid</var>)<var><a name="index-lastwarn-877"></a></var><br>
 <blockquote><p>Query or set the last warning message.  When called without input arguments,
 return the last warning message and message identifier.  With one
 argument, set the last warning message to <var>msg</var>.  With two arguments,
 also set the last message identifier.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwarning.html#doc_002dwarning">warning</a>, <a href="doc_002dlasterror.html#doc_002dlasterror">lasterror</a>, <a href="doc_002dlasterr.html#doc_002dlasterr">lasterr</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwarning.html#XREFwarning">warning</a>, <a href="XREFlasterror.html#XREFlasterror">lasterror</a>, <a href="XREFlasterr.html#XREFlasterr">lasterr</a>.
+
+        </blockquote></div>
 
    <p>The functions distributed with Octave can issue one of the following
 warnings.
 
 <!-- warning_ids scripts/miscellaneous/warning_ids.m -->
-   <p><a name="doc_002dwarning_005fids"></a><a name="index-warning-ids-865"></a>
+   <p><a name="XREFwarning_005fids"></a><a name="index-warning-ids-878"></a>
      <dl>
 <dt><code>Octave:abbreviated-property-match</code><dd>By default, the <code>Octave:abbreviated-property-match</code> warning is enabled.
 
@@ -249,7 +251,7 @@ By default, the <code>Octave:imag-to-real</code> warning is disabled.
 compatibility problems with <span class="sc">matlab</span>. 
 By default, the <code>Octave:matlab-incompatible</code> warning is disabled. 
 The &ndash;traditional or &ndash;braindead startup options for Octave may also
-be of use, See <a href="Command-Line-Options.html#Command-Line-Options">Command Line Options</a>.
+be of use, see <a href="Command-Line-Options.html#Command-Line-Options">Command Line Options</a>.
 
      <br><dt><code>Octave:md5sum-file-in-path</code><dd>By default, the <code>Octave:md5sum-file-in-path</code> warning is enabled.
 

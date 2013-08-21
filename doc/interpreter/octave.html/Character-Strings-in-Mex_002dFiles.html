@@ -38,34 +38,33 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Mex_002dFiles.html#Mex_002dFiles">Mex-F
 <p>As mex-files do not make the distinction between single and double
 quoted strings within Octave, there is perhaps less complexity in the
 use of strings and character matrices in mex-files.  An example of their
-use, that parallels the demo in <samp><span class="file">stringdemo.cc</span></samp>, is given in the
-file <samp><span class="file">mystring.c</span></samp>, as seen below.
+use that parallels the demo in <samp><span class="file">stringdemo.cc</span></samp> is given in the
+file <samp><span class="file">mystring.c</span></samp>, as shown below.
 
 <pre class="example"><pre class="verbatim">     #include &lt;string.h>
      #include "mex.h"
      
      void
-     mexFunction (int nlhs, mxArray *plhs[], int nrhs, 
-                  const mxArray *prhs[])
+     mexFunction (int nlhs, mxArray *plhs[],
+                  int nrhs, const mxArray *prhs[])
      {
-       mwIndex i, j;
        mwSize m, n;
+       mwIndex i, j;
        mxChar *pi, *po;
      
        if (nrhs != 1 || ! mxIsChar (prhs[0]) || 
            mxGetNumberOfDimensions (prhs[0]) > 2)
-         mexErrMsgTxt ("expecting char matrix");
+         mexErrMsgTxt ("ARG1 must be a char matrix");
      
        m = mxGetM (prhs[0]);
        n = mxGetN (prhs[0]);
        pi = mxGetChars (prhs[0]);
-       plhs[0] = mxCreateNumericMatrix (m, n, mxCHAR_CLASS, 
-                                        mxREAL);
+       plhs[0] = mxCreateNumericMatrix (m, n, mxCHAR_CLASS, mxREAL);
        po = mxGetChars (plhs[0]);
      
        for (j = 0; j &lt; n; j++)
          for (i = 0; i &lt; m; i++)
-           po [j*m + m - 1 - i] = pi [j*m + i];
+           po[j*m + m - 1 - i] = pi[j*m + i];
      }
 </pre>
      

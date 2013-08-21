@@ -33,16 +33,16 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Test-and-Demo-Functions.html#Test-and-D
 <h3 class="section">B.1 Test Functions</h3>
 
 <!-- test scripts/testfun/test.m -->
-<p><a name="doc_002dtest"></a>
+<p><a name="XREFtest"></a>
 
 <div class="defun">
-&mdash; Command:  <b>test</b><var> name<a name="index-test-3750"></a></var><br>
-&mdash; Command:  <b>test</b><var> name quiet|normal|verbose<a name="index-test-3751"></a></var><br>
-&mdash; Function File:  <b>test</b> (<var>"name", "quiet|normal|verbose", fid</var>)<var><a name="index-test-3752"></a></var><br>
-&mdash; Function File:  <b>test</b> ([]<var>, "explain", fid</var>)<var><a name="index-test-3753"></a></var><br>
-&mdash; Function File: <var>success</var> = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3754"></a></var><br>
-&mdash; Function File: [<var>n</var>, <var>max</var>] = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3755"></a></var><br>
-&mdash; Function File: [<var>code</var>, <var>idx</var>] = <b>test</b> (<var>"name", "grabdemo"</var>)<var><a name="index-test-3756"></a></var><br>
+&mdash; Command:  <b>test</b><var> name<a name="index-test-3945"></a></var><br>
+&mdash; Command:  <b>test</b><var> name quiet|normal|verbose<a name="index-test-3946"></a></var><br>
+&mdash; Function File:  <b>test</b> (<var>"name", "quiet|normal|verbose", fid</var>)<var><a name="index-test-3947"></a></var><br>
+&mdash; Function File:  <b>test</b> ([]<var>, "explain", fid</var>)<var><a name="index-test-3948"></a></var><br>
+&mdash; Function File: <var>success</var> = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3949"></a></var><br>
+&mdash; Function File: [<var>n</var>, <var>max</var>] = <b>test</b> (<var><small class="dots">...</small></var>)<var><a name="index-test-3950"></a></var><br>
+&mdash; Function File: [<var>code</var>, <var>idx</var>] = <b>test</b> (<var>"name", "grabdemo"</var>)<var><a name="index-test-3951"></a></var><br>
 <blockquote>
         <p>Perform tests from the first file in the loadpath matching <var>name</var>. 
 <code>test</code> can be called as a command or as a function.  Called with
@@ -53,12 +53,12 @@ after the first error is encountered.
 output is selected.
 
           <dl>
-<dt>"quiet"<dd> Don't report all the tests as they happen, just the errors.
+<dt><code>"quiet"</code><dd> Don't report all the tests as they happen, just the errors.
 
-          <br><dt>"normal"<dd>Report all tests as they happen, but don't do tests which require
+          <br><dt><code>"normal"</code><dd>Report all tests as they happen, but don't do tests which require
 user interaction.
 
-          <br><dt>"verbose"<dd>Do tests which require user interaction. 
+          <br><dt><code>"verbose"</code><dd>Do tests which require user interaction. 
 </dl>
 
         <p>The argument <var>fid</var> can be used to allow batch processing.  Errors
@@ -74,16 +74,18 @@ true if all of the tests were successful.  Called with two output arguments
 <var>n</var> and <var>max</var>, the number of successful tests and the total number
 of tests in the file <var>name</var> are returned.
 
-        <p>If the second argument is the string "grabdemo", the contents of the demo
-blocks are extracted but not executed.  Code for all code blocks is
-concatenated and returned as <var>code</var> with <var>idx</var> being a vector of
-positions of the ends of the demo blocks.
+        <p>If the second argument is the string <code>"grabdemo"</code>, the contents of
+the demo blocks are extracted but not executed.  Code for all code blocks
+is concatenated and returned as <var>code</var> with <var>idx</var> being a vector
+of positions of the ends of the demo blocks.
 
-        <p>If the second argument is "explain", then <var>name</var> is ignored and an
-explanation of the line markers used is written to the file <var>fid</var>.
+        <p>If the second argument is <code>"explain"</code>, then <var>name</var> is ignored
+and an explanation of the line markers used is written to the file
+<var>fid</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dassert.html#doc_002dassert">assert</a>, <a href="doc_002dfail.html#doc_002dfail">fail</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002ddemo.html#doc_002ddemo">demo</a>, <a href="doc_002dexample.html#doc_002dexample">example</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFassert.html#XREFassert">assert</a>, <a href="XREFfail.html#XREFfail">fail</a>, <a href="XREFerror.html#XREFerror">error</a>, <a href="XREFdemo.html#XREFdemo">demo</a>, <a href="XREFexample.html#XREFexample">example</a>.
+
+        </blockquote></div>
 
    <p><code>test</code> scans the named script file looking for lines which start
 with the identifier &lsquo;<samp><span class="samp">%!</span></samp>&rsquo;.  The prefix is stripped off and the rest
@@ -342,14 +344,14 @@ path and the user will have to remember to type
 <code>test ("funcname.cc")</code>.
 
 <!-- assert scripts/testfun/assert.m -->
-   <p><a name="doc_002dassert"></a>
+   <p><a name="XREFassert"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>assert</b> (<var>cond</var>)<var><a name="index-assert-3757"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>cond, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3758"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>cond, msg_id, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3759"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>observed, expected</var>)<var><a name="index-assert-3760"></a></var><br>
-&mdash; Function File:  <b>assert</b> (<var>observed, expected, tol</var>)<var><a name="index-assert-3761"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond</var>)<var><a name="index-assert-3952"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3953"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>cond, msg_id, errmsg, <small class="dots">...</small></var>)<var><a name="index-assert-3954"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>observed, expected</var>)<var><a name="index-assert-3955"></a></var><br>
+&mdash; Function File:  <b>assert</b> (<var>observed, expected, tol</var>)<var><a name="index-assert-3956"></a></var><br>
 <blockquote>
         <p>Produce an error if the specified condition is not met.  <code>assert</code> can
 be called in three different ways.
@@ -370,19 +372,22 @@ an error if <code>abs (</code><var>observed</var><code> - </code><var>expected</
 If <var>tol</var> is negative then it is a relative tolerance which will produce
 an error if <code>abs (</code><var>observed</var><code> - </code><var>expected</var><code>) &gt;
 abs (</code><var>tol</var><code> * </code><var>expected</var><code>)</code>.  If <var>expected</var> is zero <var>tol</var> will
-always be interpreted as an absolute tolerance. 
+always be interpreted as an absolute tolerance.  If <var>tol</var> is not scalar
+its dimensions must agree with those of <var>observed</var> and <var>expected</var>
+and tests are performed on an element-wise basis. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtest.html#doc_002dtest">test</a>, <a href="doc_002dfail.html#doc_002dfail">fail</a>, <a href="doc_002derror.html#doc_002derror">error</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtest.html#XREFtest">test</a>, <a href="XREFfail.html#XREFfail">fail</a>, <a href="XREFerror.html#XREFerror">error</a>.
+
+        </blockquote></div>
 
 <!-- fail scripts/testfun/fail.m -->
-   <p><a name="doc_002dfail"></a>
+   <p><a name="XREFfail"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fail</b> (<var>code</var>)<var><a name="index-fail-3762"></a></var><br>
-&mdash; Function File:  <b>fail</b> (<var>code, pattern</var>)<var><a name="index-fail-3763"></a></var><br>
-&mdash; Function File:  <b>fail</b> (<var>code, "warning", pattern</var>)<var><a name="index-fail-3764"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code</var>)<var><a name="index-fail-3957"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code, pattern</var>)<var><a name="index-fail-3958"></a></var><br>
+&mdash; Function File:  <b>fail</b> (<var>code, "warning", pattern</var>)<var><a name="index-fail-3959"></a></var><br>
 <blockquote>
         <p>Return true if <var>code</var> fails with an error message matching
 <var>pattern</var>, otherwise produce an error.  Note that <var>code</var>
@@ -409,8 +414,9 @@ the message produced is:
 <code>fail (</code><var>code</var><code>, </code><var>pattern</var><code>)</code>, but produces an error if no
 warning is given during code execution or if the code fails.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dassert.html#doc_002dassert">assert</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFassert.html#XREFassert">assert</a>.
+
+        </blockquote></div>
 
    </body></html>
 

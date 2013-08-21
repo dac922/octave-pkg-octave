@@ -7,7 +7,7 @@
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution" title="Vectorization and Faster Code Execution">
 <link rel="prev" href="Function-Application.html#Function-Application" title="Function Application">
-<link rel="next" href="Miscellaneous-Techniques.html#Miscellaneous-Techniques" title="Miscellaneous Techniques">
+<link rel="next" href="JIT-Compiler.html#JIT-Compiler" title="JIT Compiler">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -26,7 +26,7 @@
 <div class="node">
 <a name="Accumulation"></a>
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Miscellaneous-Techniques.html#Miscellaneous-Techniques">Miscellaneous Techniques</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="JIT-Compiler.html#JIT-Compiler">JIT Compiler</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="Function-Application.html#Function-Application">Function Application</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution">Vectorization and Faster Code Execution</a>
 <hr>
@@ -39,11 +39,11 @@ of an array when performing a computation, accumulation functions can be
 useful.
 
 <!-- accumarray scripts/general/accumarray.m -->
-   <p><a name="doc_002daccumarray"></a>
+   <p><a name="XREFaccumarray"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, sz, func, fillval, issparse</var>)<var><a name="index-accumarray-2353"></a></var><br>
-&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, <small class="dots">...</small></var>)<var><a name="index-accumarray-2354"></a></var><br>
+&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, sz, func, fillval, issparse</var>)<var><a name="index-accumarray-2508"></a></var><br>
+&mdash; Function File:  <b>accumarray</b> (<var>subs, vals, <small class="dots">...</small></var>)<var><a name="index-accumarray-2509"></a></var><br>
 <blockquote>
         <p>Create an array by accumulating the elements of a vector into the
 positions defined by their subscripts.  The subscripts are defined by
@@ -85,7 +85,7 @@ instead.
 that in the first column counts how many occurrences each number in
 the second column has, taken from the vector <var>x</var>.  Note the usage
 of <code>unique</code>  for assigning to all repeated elements of <var>x</var>
-the same index (see <a href="doc_002dunique.html#doc_002dunique">doc-unique</a>).
+the same index (see <a href="XREFunique.html#XREFunique">unique</a>).
 
      <pre class="example">          <var>x</var> = [91, 92, 90, 92, 90, 89, 91, 89, 90, 100, 100, 100];
           [<var>u</var>, ~, <var>j</var>] = unique (<var>x</var>);
@@ -108,7 +108,7 @@ the default value (zero) appears in the output:
           &rArr; ans(:,:,2) = [0, 0, 0; 206, 0, 208]
 </pre>
         <p>The sparse option can be used as an alternative to the <code>sparse</code>
-constructor (see <a href="doc_002dsparse.html#doc_002dsparse">doc-sparse</a>).  Thus
+constructor (see <a href="XREFsparse.html#XREFsparse">sparse</a>).  Thus
 
      <pre class="example">          sparse (<var>i</var>, <var>j</var>, <var>sv</var>)
 </pre>
@@ -130,14 +130,15 @@ Note that for general reduction function the interpreter overhead can
 play a major part and it may be more efficient to do multiple
 accumarray calls and compute the results in a vectorized manner.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daccumdim.html#doc_002daccumdim">accumdim</a>, <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaccumdim.html#XREFaccumdim">accumdim</a>, <a href="XREFunique.html#XREFunique">unique</a>, <a href="XREFsparse.html#XREFsparse">sparse</a>.
+
+        </blockquote></div>
 
 <!-- accumdim scripts/general/accumdim.m -->
-   <p><a name="doc_002daccumdim"></a>
+   <p><a name="XREFaccumdim"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>accumdim</b> (<var>subs, vals, dim, n, func, fillval</var>)<var><a name="index-accumdim-2355"></a></var><br>
+&mdash; Function File:  <b>accumdim</b> (<var>subs, vals, dim, n, func, fillval</var>)<var><a name="index-accumdim-2510"></a></var><br>
 <blockquote><p>Create an array by accumulating the slices of an array into the
 positions defined by their subscripts along a specified dimension. 
 The subscripts are defined by the index vector <var>subs</var>. 
@@ -170,8 +171,9 @@ value allows these values to be defined.
                                       -5,  -3, -13])
           &rArr; [-10,-11,-1;-15,-3,5]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002daccumarray.html#doc_002daccumarray">accumarray</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFaccumarray.html#XREFaccumarray">accumarray</a>.
+
+        </blockquote></div>
 
    </body></html>
 

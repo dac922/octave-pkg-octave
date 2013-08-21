@@ -93,6 +93,7 @@ our polynomial might look like
        endif
      endfunction
 </pre>
+     
 </pre>
    <p>Note that the return value of the constructor must be the output of
 the <code>class</code> function called with the first argument being a
@@ -126,46 +127,49 @@ class.
        &rArr; 1
 </pre>
    <!-- isobject libinterp/octave-value/ov-class.cc -->
-   <p><a name="doc_002disobject"></a>
+   <p><a name="XREFisobject"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isobject</b> (<var>x</var>)<var><a name="index-isobject-3255"></a></var><br>
+&mdash; Built-in Function:  <b>isobject</b> (<var>x</var>)<var><a name="index-isobject-3440"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a class object.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dtypeinfo.html#doc_002dtypeinfo">typeinfo</a>, <a href="doc_002disa.html#doc_002disa">isa</a>, <a href="doc_002dismethod.html#doc_002dismethod">ismethod</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFclass.html#XREFclass">class</a>, <a href="XREFtypeinfo.html#XREFtypeinfo">typeinfo</a>, <a href="XREFisa.html#XREFisa">isa</a>, <a href="XREFismethod.html#XREFismethod">ismethod</a>.
+
+        </blockquote></div>
 
 <p class="noindent">The available methods of a class can be displayed with the
 <code>methods</code> function.
 
 <!-- methods scripts/general/methods.m -->
-   <p><a name="doc_002dmethods"></a>
+   <p><a name="XREFmethods"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>methods</b> (<var>obj</var>)<var><a name="index-methods-3256"></a></var><br>
-&mdash; Function File:  <b>methods</b> (<var>"classname"</var>)<var><a name="index-methods-3257"></a></var><br>
-&mdash; Function File: <var>mtds</var> = <b>methods</b> (<var><small class="dots">...</small></var>)<var><a name="index-methods-3258"></a></var><br>
+&mdash; Function File:  <b>methods</b> (<var>obj</var>)<var><a name="index-methods-3441"></a></var><br>
+&mdash; Function File:  <b>methods</b> (<var>"classname"</var>)<var><a name="index-methods-3442"></a></var><br>
+&mdash; Function File: <var>mtds</var> = <b>methods</b> (<var><small class="dots">...</small></var>)<var><a name="index-methods-3443"></a></var><br>
 <blockquote>
         <p>Return a cell array containing the names of the methods for the
 object <var>obj</var> or the named class <var>classname</var>. 
 <var>obj</var> may be an Octave class object or a Java object.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfieldnames.html#XREFfieldnames">fieldnames</a>.
+
+        </blockquote></div>
 
 <p class="noindent">To inquire whether a particular method is available to a user class, the
 <code>ismethod</code> function can be used.
 
 <!-- ismethod libinterp/octave-value/ov-class.cc -->
-   <p><a name="doc_002dismethod"></a>
+   <p><a name="XREFismethod"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ismethod</b> (<var>x, method</var>)<var><a name="index-ismethod-3259"></a></var><br>
+&mdash; Built-in Function:  <b>ismethod</b> (<var>x, method</var>)<var><a name="index-ismethod-3444"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a class object and the string <var>method</var>
 is a method of this class.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disobject.html#doc_002disobject">isobject</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisobject.html#XREFisobject">isobject</a>.
+
+        </blockquote></div>
 
 <p class="noindent">For example:
 

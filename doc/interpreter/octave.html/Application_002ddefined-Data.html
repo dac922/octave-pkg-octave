@@ -35,54 +35,61 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Advanced-Plotting.html#Advanced-Plottin
 
 <h4 class="subsection">15.4.5 Application-defined Data</h4>
 
-<p><a name="index-application_002ddefined-data-1623"></a>
+<p><a name="index-application_002ddefined-data-1764"></a>
 Octave has a provision for attaching application-defined data to a graphics
 handle.  The data can be anything which is meaningful to the application, and
 will be completely ignored by Octave.
 
 <!-- setappdata scripts/miscellaneous/setappdata.m -->
-   <p><a name="doc_002dsetappdata"></a>
+   <p><a name="XREFsetappdata"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setappdata</b> (<var>h, name, value</var>)<var><a name="index-setappdata-1624"></a></var><br>
+&mdash; Function File:  <b>setappdata</b> (<var>h, name, value</var>)<var><a name="index-setappdata-1765"></a></var><br>
 <blockquote><p>Set the named application data to <var>value</var> for the object(s) with
 handle(s) <var>h</var>.  If the application data with the specified name does
-not exist, it is created. 
-</p></blockquote></div>
+not exist, it is created.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgetappdata.html#XREFgetappdata">getappdata</a>, <a href="XREFguidata.html#XREFguidata">guidata</a>, <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>, <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>.
+
+        </blockquote></div>
 
 <!-- getappdata scripts/miscellaneous/getappdata.m -->
-   <p><a name="doc_002dgetappdata"></a>
+   <p><a name="XREFgetappdata"></a>
 
 <div class="defun">
-&mdash; Function File: <var>value</var> = <b>getappdata</b> (<var>h, name</var>)<var><a name="index-getappdata-1625"></a></var><br>
-&mdash; Function File: <var>appdata</var> = <b>getappdata</b> (<var>h</var>)<var><a name="index-getappdata-1626"></a></var><br>
+&mdash; Function File: <var>value</var> = <b>getappdata</b> (<var>h, name</var>)<var><a name="index-getappdata-1766"></a></var><br>
+&mdash; Function File: <var>appdata</var> = <b>getappdata</b> (<var>h</var>)<var><a name="index-getappdata-1767"></a></var><br>
 <blockquote>
         <p>Return the <var>value</var> for named application data for the object(s) with
 handle(s) <var>h</var>.
 
         <p><code>getappdata(</code><var>h</var><code>)</code> returns a structure, <var>appdata</var>, whose fields
-correspond to the appdata properties. 
-</p></blockquote></div>
+correspond to the appdata properties.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsetappdata.html#XREFsetappdata">setappdata</a>, <a href="XREFguidata.html#XREFguidata">guidata</a>, <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>, <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>.
+
+        </blockquote></div>
 
 <!-- rmappdata scripts/miscellaneous/rmappdata.m -->
-   <p><a name="doc_002drmappdata"></a>
+   <p><a name="XREFrmappdata"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rmappdata</b> (<var>h, name</var>)<var><a name="index-rmappdata-1627"></a></var><br>
+&mdash; Function File:  <b>rmappdata</b> (<var>h, name</var>)<var><a name="index-rmappdata-1768"></a></var><br>
 <blockquote><p>Delete the named application data for the object(s) with
 handle(s) <var>h</var>. 
 </p></blockquote></div>
 
 <!-- isappdata scripts/miscellaneous/isappdata.m -->
-   <p><a name="doc_002disappdata"></a>
+   <p><a name="XREFisappdata"></a>
 
 <div class="defun">
-&mdash; Function File: <var>V</var> = <b>isappdata</b> (<var>h, name</var>)<var><a name="index-isappdata-1628"></a></var><br>
+&mdash; Function File: <var>V</var> = <b>isappdata</b> (<var>h, name</var>)<var><a name="index-isappdata-1769"></a></var><br>
 <blockquote><p>Return true if the named application data, <var>name</var>, exists for the
 object with handle <var>h</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetappdata.html#doc_002dgetappdata">getappdata</a>, <a href="doc_002dsetappdata.html#doc_002dsetappdata">setappdata</a>, <a href="doc_002drmappdata.html#doc_002drmappdata">rmappdata</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgetappdata.html#XREFgetappdata">getappdata</a>, <a href="XREFsetappdata.html#XREFsetappdata">setappdata</a>, <a href="XREFrmappdata.html#XREFrmappdata">rmappdata</a>.
+
+        </blockquote></div>
 
    </body></html>
 

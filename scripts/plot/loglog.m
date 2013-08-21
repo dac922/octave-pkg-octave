@@ -19,13 +19,17 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} loglog (@var{y})
 ## @deftypefnx {Function File} {} loglog (@var{x}, @var{y})
-## @deftypefnx {Function File} {} loglog (@var{x}, @var{y}, @var{property}, @var{value}, @dots{})
+## @deftypefnx {Function File} {} loglog (@var{x}, @var{y}, @var{prop}, @var{value}, @dots{})
 ## @deftypefnx {Function File} {} loglog (@var{x}, @var{y}, @var{fmt})
-## @deftypefnx {Function File} {} loglog (@var{h}, @dots{})
+## @deftypefnx {Function File} {} loglog (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} loglog (@dots{})
-## Produce a two-dimensional plot using log scales for both axes.  See
-## the documentation of @code{plot} for a description of the arguments
+## Produce a 2-D plot using logarithmic scales for both axes.
+##
+## See the documentation of @code{plot} for a description of the arguments
 ## that @code{loglog} will accept.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
 ## The optional return value @var{h} is a graphics handle to the created plot.
 ## @seealso{plot, semilogx, semilogy}
@@ -33,32 +37,37 @@
 
 ## Author: jwe
 
-function retval = loglog (varargin)
+function h = loglog (varargin)
 
-  [h, varargin, nargs] = __plt_get_axis_arg__ ("loglog", varargin{:});
+  [hax, varargin, nargs] = __plt_get_axis_arg__ ("loglog", varargin{:});
 
   if (nargs < 1)
     print_usage ();
   endif
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
+    hax = newplot (hax);
 
-    set (h, "xscale", "log", "yscale", "log");
-    if (any( strcmp (get (gca, "nextplot"), {"new", "replace"})))
-      set (h, "xminortick", "on", "yminortick", "on");
+    set (hax, "xscale", "log", "yscale", "log");
+    if (! ishold (hax))
+      set (hax, "xminortick", "on", "yminortick", "on");
     endif
 
-    tmp = __plt__ ("loglog", h, varargin{:});
+    htmp = __plt__ ("loglog", hax, varargin{:});
 
-    if (nargout > 0)
-      retval = tmp;
-    endif
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
+  if (nargout > 0)
+    h = htmp;
+  endif
 
 endfunction
 
@@ -69,6 +78,7 @@ endfunction
 %! x = sort ((t .* (1 + rand (size (t)))) .^ 2);
 %! y = (t .* (1 + rand (size (t)))) .^ 2;
 %! loglog (x, y);
+%! title ({'loglog() plot', 'Both axes are logarithmic'});
 
 %!demo
 %! clf;

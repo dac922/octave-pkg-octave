@@ -49,7 +49,7 @@ methods which return results to Octave.
 
 @cindex object, creating a Java object
 @c javaObject libinterp/octave-value/ov-java.cc
-@anchor{doc-javaObject}
+@anchor{XREFjavaObject}
 @deftypefn  {Built-in Function} {@var{jobj} =} javaObject (@var{classname})
 @deftypefnx {Built-in Function} {@var{jobj} =} javaObject (@var{classname}, @var{arg1}, @dots{})
 Create a Java object of class @var{classsname}, by calling the class
@@ -65,7 +65,7 @@ x = javaObject ("java.lang.StringBuffer", "Initial string")
 @end group
 @end example
 
-@seealso{@ref{doc-javaMethod,,javaMethod}, @ref{doc-javaArray,,javaArray}}
+@seealso{@ref{XREFjavaMethod,,javaMethod}, @ref{XREFjavaArray,,javaArray}}
 @end deftypefn
 
 
@@ -82,16 +82,16 @@ to get fields from Java object.
 to set fields from Java object.
 
 @c isjava libinterp/octave-value/ov-java.cc
-@anchor{doc-isjava}
+@anchor{XREFisjava}
 @deftypefn {Built-in Function} {} isjava (@var{x})
 Return true if @var{x} is a Java object.
-@seealso{@ref{doc-class,,class}, @ref{doc-typeinfo,,typeinfo}, @ref{doc-isa,,isa}, @ref{doc-javaObject,,javaObject}}
+@seealso{@ref{XREFclass,,class}, @ref{XREFtypeinfo,,typeinfo}, @ref{XREFisa,,isa}, @ref{XREFjavaObject,,javaObject}}
 @end deftypefn
 
 
 @cindex array, creating a Java array
 @c javaArray scripts/java/javaArray.m
-@anchor{doc-javaArray}
+@anchor{XREFjavaArray}
 @deftypefn  {Function File} {@var{jary} =} javaArray (@var{classname}, @var{sz})
 @deftypefnx {Function File} {@var{jary} =} javaArray (@var{classname}, @var{m}, @var{n}, @dots{})
 
@@ -113,13 +113,13 @@ jary = javaArray ("java.lang.String", 2, 2);
 jary(1,1) = "Hello";
 @end group
 @end example
-@seealso{@ref{doc-javaObject,,javaObject}}
+@seealso{@ref{XREFjavaObject,,javaObject}}
 @end deftypefn
 
 
 @cindex method, invoking a method of a Java object
 @c javaMethod libinterp/octave-value/ov-java.cc
-@anchor{doc-javaMethod}
+@anchor{XREFjavaMethod}
 @deftypefn  {Built-in Function} {@var{ret} =} javaMethod (@var{methodname}, @var{obj})
 @deftypefnx {Built-in Function} {@var{ret} =} javaMethod (@var{methodname}, @var{obj}, @var{arg1}, @dots{})
 Invoke the method @var{methodname} on the Java object @var{obj} with the
@@ -138,7 +138,7 @@ equivalent
 @end group
 @end example
 
-@seealso{@ref{doc-methods,,methods}, @ref{doc-javaObject,,javaObject}}
+@seealso{@ref{XREFmethods,,methods}, @ref{XREFjavaObject,,javaObject}}
 @end deftypefn
 
 
@@ -157,7 +157,7 @@ code to execute.
 @cindex classpath, static
 @cindex static classpath
 @c javaclasspath scripts/java/javaclasspath.m
-@anchor{doc-javaclasspath}
+@anchor{XREFjavaclasspath}
 @deftypefn  {Function File} {} javaclasspath ()
 @deftypefnx {Function File} {@var{dpath} =} javaclasspath ()
 @deftypefnx {Function File} {[@var{dpath}, @var{spath}] =} javaclasspath ()
@@ -182,16 +182,16 @@ the second will be contain the static classpath.
 If called with a single input parameter @var{what}:
 
 @table @asis
-@item "-dynamic"
+@item @qcode{"-dynamic"}
 Return the dynamic classpath.
 
-@item "-static"
+@item @qcode{"-static"}
 Return the static classpath.
 
-@item "-all"
+@item @qcode{"-all"}
 Return both the static and dynamic classpath in a single cellstr.
 @end table
-@seealso{@ref{doc-javaaddpath,,javaaddpath}, @ref{doc-javarmpath,,javarmpath}}
+@seealso{@ref{XREFjavaaddpath,,javaaddpath}, @ref{XREFjavarmpath,,javarmpath}}
 @end deftypefn
 
 
@@ -201,28 +201,28 @@ Return both the static and dynamic classpath in a single cellstr.
 @cindex classpath, dynamic
 @cindex dynamic classpath, adding new path
 @c javaaddpath scripts/java/javaaddpath.m
-@anchor{doc-javaaddpath}
+@anchor{XREFjavaaddpath}
 @deftypefn  {Function File} {} javaaddpath (@var{clspath})
 @deftypefnx {Function File} {} javaaddpath (@var{clspath1}, @dots{})
 Add @var{clspath} to the dynamic class path of the Java virtual
 machine.  @var{clspath} may either be a directory where @file{.class}
 files are found, or a @file{.jar} file containing Java classes.
 Multiple paths may be added at once by specifying additional arguments.
-@seealso{@ref{doc-javarmpath,,javarmpath}, @ref{doc-javaclasspath,,javaclasspath}}
+@seealso{@ref{XREFjavarmpath,,javarmpath}, @ref{XREFjavaclasspath,,javaclasspath}}
 @end deftypefn
 
 
 @cindex classpath, removing path
 @cindex path, removing from classpath
 @c javarmpath scripts/java/javarmpath.m
-@anchor{doc-javarmpath}
+@anchor{XREFjavarmpath}
 @deftypefn  {Function File} {} javarmpath (@var{clspath})
 @deftypefnx {Function File} {} javarmpath (@var{clspath1}, @dots{})
 Remove @var{clspath} from the dynamic class path of the Java virtual
 machine.  @var{clspath} may either be a directory where @file{.class}
 files are found, or a @file{.jar} file containing Java classes.
 Multiple paths may be removed at once by specifying additional arguments.
-@seealso{@ref{doc-javaaddpath,,javaaddpath}, @ref{doc-javaclasspath,,javaclasspath}}
+@seealso{@ref{XREFjavaaddpath,,javaaddpath}, @ref{XREFjavaclasspath,,javaclasspath}}
 @end deftypefn
 
 
@@ -230,38 +230,38 @@ The following four functions provide information and control over the interface
 between Octave and the Java Virtual Machine.
 
 @c usejava scripts/java/usejava.m
-@anchor{doc-usejava}
+@anchor{XREFusejava}
 @deftypefn {Function File} {} usejava (@var{feature})
 Return true if the Java element @var{feature} is available.
 
 Possible features are:
 
 @table @asis
-@item "awt"
+@item @qcode{"awt"}
 Abstract Window Toolkit for GUIs.
 
-@item "desktop"
+@item @qcode{"desktop"}
 Interactive desktop is running.
 
-@item "jvm"
+@item @qcode{"jvm"}
 Java Virtual Machine.
 
-@item "swing"
+@item @qcode{"swing"}
 Swing components for lightweight GUIs.
 @end table
 
 @code{usejava} determines if specific Java features are available in an
 Octave session.  This function is provided for scripts which may alter
-their behavior based on the availability of Java.  The feature "desktop"
-always returns @code{false} as Octave has no Java-based desktop.  Other
-features may be available if Octave was compiled with the Java Interface
-and Java is installed.
+their behavior based on the availability of Java.  The feature
+@qcode{"desktop"} always returns @code{false} as Octave has no Java-based
+desktop.  Other features may be available if Octave was compiled with the
+Java Interface and Java is installed.
 @end deftypefn
 
 
 @cindex memory, displaying Java memory status
 @c javamem scripts/java/javamem.m
-@anchor{doc-javamem}
+@anchor{XREFjavamem}
 @deftypefn  {Function File} {} javamem ()
 @deftypefnx {Function File} {@var{jmem} =} javamem ()
 Show the current memory usage of the Java virtual machine (JVM)
@@ -280,7 +280,8 @@ The maximum allowable memory usage can be configured using the file
 @file{java.opts}.  The directory where this file resides is
 determined by the environment variable @w{@env{OCTAVE_JAVA_DIR}}.
 If unset, the directory where @file{javaaddpath.m} resides is used instead
-(typically @file{@env{OCTAVE_HOME}/share/octave/@env{OCTAVE_VERSION}/m/java/}
+(typically
+@file{@w{@env{OCTAVE_HOME}}/share/octave/@w{@env{OCTAVE_VERSION}}/m/java/}
 
 @file{java.opts} is a plain text file with one option per line.  The
 default initial memory size and default maximum memory size (which
@@ -305,22 +306,22 @@ management.
 
 
 @c java_matrix_autoconversion libinterp/octave-value/ov-java.cc
-@anchor{doc-java_matrix_autoconversion}
+@anchor{XREFjava_matrix_autoconversion}
 @deftypefn  {Built-in Function} {@var{val} =} java_matrix_autoconversion ()
 @deftypefnx {Built-in Function} {@var{old_val} =} java_matrix_autoconversion (@var{new_val})
 @deftypefnx {Built-in Function} {} java_matrix_autoconversion (@var{new_val}, "local")
 Query or set the internal variable that controls whether Java arrays are
 automatically converted to Octave matrices.  The default value is false.
 
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
-@seealso{@ref{doc-java_unsigned_autoconversion,,java_unsigned_autoconversion}, @ref{doc-debug_java,,debug_java}}
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
+@seealso{@ref{XREFjava_unsigned_autoconversion,,java_unsigned_autoconversion}, @ref{XREFdebug_java,,debug_java}}
 @end deftypefn
 
 
 @c java_unsigned_autoconversion libinterp/octave-value/ov-java.cc
-@anchor{doc-java_unsigned_autoconversion}
+@anchor{XREFjava_unsigned_autoconversion}
 @deftypefn  {Built-in Function} {@var{val} =} java_unsigned_autoconversion ()
 @deftypefnx {Built-in Function} {@var{old_val} =} java_unsigned_autoconversion (@var{new_val})
 @deftypefnx {Built-in Function} {} java_unsigned_autoconversion (@var{new_val}, "local")
@@ -329,15 +330,15 @@ converted when @code{java_matrix_autoconversion} is enabled.  When enabled,
 Java arrays of class Byte or Integer are converted to matrices of class
 uint8 or uint32 respectively.  The default value is true.
 
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
-@seealso{@ref{doc-java_matrix_autoconversion,,java_matrix_autoconversion}, @ref{doc-debug_java,,debug_java}}
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
+@seealso{@ref{XREFjava_matrix_autoconversion,,java_matrix_autoconversion}, @ref{XREFdebug_java,,debug_java}}
 @end deftypefn
 
 
 @c debug_java libinterp/octave-value/ov-java.cc
-@anchor{doc-debug_java}
+@anchor{XREFdebug_java}
 @deftypefn  {Built-in Function} {@var{val} =} debug_java ()
 @deftypefnx {Built-in Function} {@var{old_val} =} debug_java (@var{new_val})
 @deftypefnx {Built-in Function} {} debug_java (@var{new_val}, "local")
@@ -345,10 +346,10 @@ Query or set the internal variable that determines whether extra debugging
 information regarding the initialization of the JVM and any Java exceptions
 is printed.
 
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
-@seealso{@ref{doc-java_matrix_autoconversion,,java_matrix_autoconversion}, @ref{doc-java_unsigned_autoconversion,,java_unsigned_autoconversion}}
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
+@seealso{@ref{XREFjava_matrix_autoconversion,,java_matrix_autoconversion}, @ref{XREFjava_unsigned_autoconversion,,java_unsigned_autoconversion}}
 @end deftypefn
 
 
@@ -360,29 +361,29 @@ of dialog box.
 
 @cindex dialog, displaying a warning dialog
 @c msgbox scripts/ui/msgbox.m
-@anchor{doc-msgbox}
+@anchor{XREFmsgbox}
 @deftypefn  {Function File} {@var{h} =} msgbox (@var{msg})
 @deftypefnx {Function File} {@var{h} =} msgbox (@var{msg}, @var{title})
 @deftypefnx {Function File} {@var{h} =} msgbox (@var{msg}, @var{title}, @var{icon})
 Display @var{msg} using a message dialog box. 
 
 The message may have multiple lines separated by newline characters
-(@code{"\n"}), or it may be a cellstr array with one element for each
+(@qcode{"\n"}), or it may be a cellstr array with one element for each
 line.  The optional input @var{title} (character string) can be used to
 decorate the dialog caption.
 
 The optional argument @var{icon} selects a dialog icon. 
-It can be one of @code{"none"} (default), @code{"error"}, @code{"help"}, or
-@code{"warn"}.
+It can be one of @qcode{"none"} (default), @qcode{"error"},
+@qcode{"help"}, or @qcode{"warn"}.
 
 The return value is always 1.
-@seealso{@ref{doc-errordlg,,errordlg}, @ref{doc-helpdlg,,helpdlg}, @ref{doc-inputdlg,,inputdlg}, @ref{doc-listdlg,,listdlg}, @ref{doc-questdlg,,questdlg}, @ref{doc-warndlg,,warndlg}}
+@seealso{@ref{XREFerrordlg,,errordlg}, @ref{XREFhelpdlg,,helpdlg}, @ref{XREFinputdlg,,inputdlg}, @ref{XREFlistdlg,,listdlg}, @ref{XREFquestdlg,,questdlg}, @ref{XREFwarndlg,,warndlg}}
 @end deftypefn
 
 
 @cindex dialog, displaying an error dialog
 @c errordlg scripts/ui/errordlg.m
-@anchor{doc-errordlg}
+@anchor{XREFerrordlg}
 @deftypefn  {Function File} {@var{h} =} errordlg (@var{msg})
 @deftypefnx {Function File} {@var{h} =} errordlg (@var{msg}, @var{title})
 Display @var{msg} using an error dialog box.
@@ -390,16 +391,16 @@ Display @var{msg} using an error dialog box.
 The message may have multiple lines separated by newline characters
 ("\n"), or it may be a cellstr array with one element for each
 line.  The optional input @var{title} (character string) can be used to
-set the dialog caption.  The default title is "Error Dialog".
+set the dialog caption.  The default title is @qcode{"Error Dialog"}.
 
 The return value is always 1.
-@seealso{@ref{doc-helpdlg,,helpdlg}, @ref{doc-inputdlg,,inputdlg}, @ref{doc-listdlg,,listdlg}, @ref{doc-msgbox,,msgbox}, @ref{doc-questdlg,,questdlg}, @ref{doc-warndlg,,warndlg}}
+@seealso{@ref{XREFhelpdlg,,helpdlg}, @ref{XREFinputdlg,,inputdlg}, @ref{XREFlistdlg,,listdlg}, @ref{XREFmsgbox,,msgbox}, @ref{XREFquestdlg,,questdlg}, @ref{XREFwarndlg,,warndlg}}
 @end deftypefn
 
 
 @cindex dialog, displaying a help dialog
 @c helpdlg scripts/ui/helpdlg.m
-@anchor{doc-helpdlg}
+@anchor{XREFhelpdlg}
 @deftypefn  {Function File} {@var{h} =} helpdlg (@var{msg})
 @deftypefnx {Function File} {@var{h} =} helpdlg (@var{msg}, @var{title})
 Display @var{msg} in a help dialog box.
@@ -407,16 +408,16 @@ Display @var{msg} in a help dialog box.
 The message may have multiple lines separated by newline characters
 ("\n"), or it may be a cellstr array with one element for each
 line.  The optional input @var{title} (character string) can be used to
-set the dialog caption.  The default title is "Help Dialog".
+set the dialog caption.  The default title is @qcode{"Help Dialog"}.
 
 The return value is always 1.
-@seealso{@ref{doc-errordlg,,errordlg}, @ref{doc-inputdlg,,inputdlg}, @ref{doc-listdlg,,listdlg}, @ref{doc-msgbox,,msgbox}, @ref{doc-questdlg,,questdlg}, @ref{doc-warndlg,,warndlg}}
+@seealso{@ref{XREFerrordlg,,errordlg}, @ref{XREFinputdlg,,inputdlg}, @ref{XREFlistdlg,,listdlg}, @ref{XREFmsgbox,,msgbox}, @ref{XREFquestdlg,,questdlg}, @ref{XREFwarndlg,,warndlg}}
 @end deftypefn
 
 
 @cindex dialog, displaying an input dialog
 @c inputdlg scripts/ui/inputdlg.m
-@anchor{doc-inputdlg}
+@anchor{XREFinputdlg}
 @deftypefn  {Function File} {@var{cstr} =} inputdlg (@var{prompt})
 @deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title})
 @deftypefnx {Function File} {@var{cstr} =} inputdlg (@var{prompt}, @var{title}, @var{rowscols})
@@ -432,7 +433,8 @@ Inputs:
 A cell array with strings labeling each text field.  This input is required. 
 
 @item title
-String to use for the caption of the dialog.  The default is "Input Dialog".
+String to use for the caption of the dialog.  The default is @qcode{"Input
+Dialog"}.
 
 @item rowscols
 Specifies the size of the text fields and can take three forms:
@@ -454,13 +456,13 @@ rows to use and the second column specifies the text field width.
 A list of default values to place in each text fields.  It must be
 a cell array of strings with the same size as @var{prompt}.
 @end table
-@seealso{@ref{doc-errordlg,,errordlg}, @ref{doc-helpdlg,,helpdlg}, @ref{doc-listdlg,,listdlg}, @ref{doc-msgbox,,msgbox}, @ref{doc-questdlg,,questdlg}, @ref{doc-warndlg,,warndlg}}
+@seealso{@ref{XREFerrordlg,,errordlg}, @ref{XREFhelpdlg,,helpdlg}, @ref{XREFlistdlg,,listdlg}, @ref{XREFmsgbox,,msgbox}, @ref{XREFquestdlg,,questdlg}, @ref{XREFwarndlg,,warndlg}}
 @end deftypefn
 
 
 @cindex dialog, displaying a list dialog
 @c listdlg scripts/ui/listdlg.m
-@anchor{doc-listdlg}
+@anchor{XREFlistdlg}
 @deftypefn {Function File} {[@var{sel}, @var{ok}] =} listdlg (@var{key}, @var{value}, @dots{})
 Return user inputs from a list dialog box in a vector of 
 selection indices @var{sel} and a flag @var{ok} indicating how the
@@ -471,37 +473,37 @@ empty.
 The indices in @var{sel} are 1-based.
 
 The arguments are specified in form of @var{key}, @var{value} pairs. 
-The "ListString" argument pair must be specified.
+The @qcode{"ListString"} argument pair must be specified.
 
 Valid @var{key} and @var{value} pairs are:
 
 @table @asis
-@item "ListString"
+@item @qcode{"ListString"}
 a cell array of strings comprising the content of the list.
 
-@item "SelectionMode"
-can be either "Single" or "Multiple" (default).
+@item @qcode{"SelectionMode"}
+can be either @qcode{"Single"} or @qcode{"Multiple"} (default).
 
-@item "ListSize"
+@item @qcode{"ListSize"}
 a vector with two elements @var{width} and @var{height} defining
 the size of the list field in pixels.  Default is [160 300].
 
-@item "InitialValue"
+@item @qcode{"InitialValue"}
 a vector containing 1-based indices of preselected elements.  Default
 is 1 (first item).
 
-@item "Name"
+@item @qcode{"Name"}
 a string to be used as the dialog caption.  Default is "".
 
-@item "PromptString"
+@item @qcode{"PromptString"}
 a cell array of strings to be displayed above the list field.  Default
 is @{@}.
 
-@item "OKString"
-a string used to label the OK button.  Default is "OK".
+@item @qcode{"OKString"}
+a string used to label the OK button.  Default is @qcode{"OK"}.
 
-@item "CancelString"
-a string used to label the Cancel button.  Default is "Cancel".
+@item @qcode{"CancelString"}
+a string used to label the Cancel button.  Default is @qcode{"Cancel"}.
 @end table
 
 Example:
@@ -518,13 +520,13 @@ endif
 @end group
 @end example
 
-@seealso{@ref{doc-errordlg,,errordlg}, @ref{doc-helpdlg,,helpdlg}, @ref{doc-inputdlg,,inputdlg}, @ref{doc-msgbox,,msgbox}, @ref{doc-questdlg,,questdlg}, @ref{doc-warndlg,,warndlg}}
+@seealso{@ref{XREFerrordlg,,errordlg}, @ref{XREFhelpdlg,,helpdlg}, @ref{XREFinputdlg,,inputdlg}, @ref{XREFmsgbox,,msgbox}, @ref{XREFquestdlg,,questdlg}, @ref{XREFwarndlg,,warndlg}}
 @end deftypefn
 
 
 @cindex dialog, displaying a question dialog
 @c questdlg scripts/ui/questdlg.m
-@anchor{doc-questdlg}
+@anchor{XREFquestdlg}
 @deftypefn  {Function File} {@var{btn} =} questdlg (@var{msg})
 @deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title})
 @deftypefnx {Function File} {@var{btn} =} questdlg (@var{msg}, @var{title}, @var{default})
@@ -546,18 +548,19 @@ It must match one of the strings given in @var{btn1}, @var{btn2}, or
 @var{btn3}.
 
 If only @var{msg} and @var{title} are specified, three buttons with
-the default captions "Yes", "No", and "Cancel" are used.
+the default captions @qcode{"Yes"}, @qcode{"No"}, and @qcode{"Cancel"} are
+used.
 
 If only two button captions, @var{btn1} and @var{btn2}, are specified 
 the dialog will have only these two buttons.
 
-@seealso{@ref{doc-errordlg,,errordlg}, @ref{doc-helpdlg,,helpdlg}, @ref{doc-inputdlg,,inputdlg}, @ref{doc-listdlg,,listdlg}, @ref{doc-warndlg,,warndlg}}
+@seealso{@ref{XREFerrordlg,,errordlg}, @ref{XREFhelpdlg,,helpdlg}, @ref{XREFinputdlg,,inputdlg}, @ref{XREFlistdlg,,listdlg}, @ref{XREFwarndlg,,warndlg}}
 @end deftypefn
 
 
 @cindex dialog, displaying a warning dialog
 @c warndlg scripts/ui/warndlg.m
-@anchor{doc-warndlg}
+@anchor{XREFwarndlg}
 @deftypefn  {Function File} {@var{h} =} warndlg (@var{msg})
 @deftypefnx {Function File} {@var{h} =} warndlg (@var{msg}, @var{title})
 Display @var{msg} using a warning dialog box. 
@@ -565,9 +568,9 @@ Display @var{msg} using a warning dialog box.
 The message may have multiple lines separated by newline characters
 ("\n"), or it may be a cellstr array with one element for each
 line.  The optional input @var{title} (character string) can be used to
-set the dialog caption.  The default title is "Warning Dialog".
+set the dialog caption.  The default title is @qcode{"Warning Dialog"}.
 
-@seealso{@ref{doc-helpdlg,,helpdlg}, @ref{doc-inputdlg,,inputdlg}, @ref{doc-listdlg,,listdlg}, @ref{doc-questdlg,,questdlg}}
+@seealso{@ref{XREFhelpdlg,,helpdlg}, @ref{XREFinputdlg,,inputdlg}, @ref{XREFlistdlg,,listdlg}, @ref{XREFquestdlg,,questdlg}}
 @end deftypefn
 
 
@@ -580,13 +583,13 @@ set the dialog caption.  The default title is "Warning Dialog".
 * How to make Java classes available?::
 * How to create an instance of a Java class?::
 * How can I handle memory limitations?::
-* Which @TeX{} symbols are implemented in the dialog functions?::
+* Which @TeX{} symbols are implemented in dialog functions?::
 @end menu
 
 @c ------------------------------------------------------------------------
 @node How to distinguish between Octave and Matlab?
 @subsection How to distinguish between Octave and Matlab?
-@anchor{doc-FAQ}
+@anchor{XREFFAQ}
 @c - index -
 @cindex Octave and @sc{matlab}, how to distinguish between
 @c - index -
@@ -669,7 +672,7 @@ on a 'per user' basis.
 @item Finally, Octave looks for a next occurrence of file
 @file{javaclasspath.txt} in the m-files directory where Octave Java functions 
 live.  This is where @file{javaclasspath.m} resides, usually something like
-@file{@env{OCTAVE_HOME}/share/octave/@env{OCTAVE_VERSION}/m/java/}.  You can
+@file{@w{@env{OCTAVE_HOME}}/share/octave/@w{@env{OCTAVE_VERSION}}/m/java/}.  You can
 find this directory by executing the command
 
 @example
@@ -751,7 +754,7 @@ Passenger = javaObject ('package.FirstClass', row, seat);
 In order to execute Java code Octave creates a Java Virtual Machine (JVM).
 Such a JVM allocates a fixed amount of initial memory and may expand this pool
 up to a fixed maximum memory limit.  The default values depend on the Java
-version (see @ref{doc-javamem,,javamem}).  The memory pool is shared by all
+version (@pxref{XREFjavamem,,javamem}).  The memory pool is shared by all
 Java objects running in the JVM@.  This strict memory limit is intended mainly
 to avoid that runaway applications inside web browsers or in enterprise servers
 can consume all memory and crash the system.  When the maximum memory limit is
@@ -765,7 +768,7 @@ You can specify options for the creation of the JVM inside a file named
 The directory where the Java options file is located is specified by the
 environment variable @w{@env{OCTAVE_JAVA_DIR}}.  If unset the directory where
 @file{javaclasspath.m} resides is used instead (typically
-@file{@env{OCTAVE_HOME}/share/octave/@env{OCTAVE_VERSION}/m/java/}).  You can
+@file{@w{@env{OCTAVE_HOME}}/share/octave/@w{@env{OCTAVE_VERSION}}/m/java/}).  You can
 find this directory by executing
 
 @example
@@ -820,8 +823,8 @@ ans = 12.34
 @seealso{javamem}
 
 @c ------------------------------------------------------------------------
-@node Which @TeX{} symbols are implemented in the dialog functions?
-@subsection Which @TeX{} symbols are implemented in the dialog functions?
+@node Which @TeX{} symbols are implemented in dialog functions?
+@subsection Which @TeX{} symbols are implemented in dialog functions?
 @c - index -
 @cindex symbols, translation table
 @cindex @TeX{} symbols, translation table

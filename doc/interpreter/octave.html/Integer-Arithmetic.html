@@ -50,10 +50,10 @@ result is often floored to the nearest integer.  So, the result of
 <code>int32 (5) ./ int32 (8)</code> is <code>1</code>.
 
 <!-- idivide scripts/general/idivide.m -->
-   <p><a name="doc_002didivide"></a>
+   <p><a name="XREFidivide"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>idivide</b> (<var>x, y, op</var>)<var><a name="index-idivide-300"></a></var><br>
+&mdash; Function File:  <b>idivide</b> (<var>x, y, op</var>)<var><a name="index-idivide-309"></a></var><br>
 <blockquote><p>Integer division with different rounding rules.
 
         <p>The standard behavior of integer division such as <var>a</var><code> ./ </code><var>b</var>
@@ -64,16 +64,16 @@ part of the division as determined by the <var>op</var> flag.  <var>op</var> is
 a string with one of the values:
 
           <dl>
-<dt>"fix"<dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
+<dt><code>"fix"</code><dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
 towards zero.
 
-          <br><dt>"round"<dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
+          <br><dt><code>"round"</code><dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
 towards the nearest integer.
 
-          <br><dt>"floor"<dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
+          <br><dt><code>"floor"</code><dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
 towards negative infinity.
 
-          <br><dt>"ceil"<dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
+          <br><dt><code>"ceil"</code><dd>Calculate <var>a</var><code> ./ </code><var>b</var> with the fractional part rounded
 towards positive infinity. 
 </dl>
 
@@ -89,8 +89,9 @@ An example demonstrating these rounding rules is
           idivide (int8 ([-3, 3]), int8 (4), "ceil")
             &rArr; int8 ([0, 1])
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dldivide.html#doc_002dldivide">ldivide</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFldivide.html#XREFldivide">ldivide</a>, <a href="XREFrdivide.html#XREFrdivide">rdivide</a>.
+
+        </blockquote></div>
 
    </body></html>
 

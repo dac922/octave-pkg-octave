@@ -43,6 +43,7 @@ modified versions.
 <li><a name="toc_Preface" href="Preface.html#Preface">Preface</a>
 <ul>
 <li><a href="Acknowledgements.html#Acknowledgements">Acknowledgements</a>
+<li><a href="Citing-Octave-in-Publications.html#Citing-Octave-in-Publications">Citing Octave in Publications</a>
 <li><a href="How-You-Can-Contribute-to-Octave.html#How-You-Can-Contribute-to-Octave">How You Can Contribute to Octave</a>
 <li><a href="Distribution.html#Distribution">Distribution</a>
 </li></ul>
@@ -70,7 +71,6 @@ modified versions.
 <ul>
 <li><a href="A-Sample-Function-Description.html#A-Sample-Function-Description">1.3.5.1 A Sample Function Description</a>
 <li><a href="A-Sample-Command-Description.html#A-Sample-Command-Description">1.3.5.2 A Sample Command Description</a>
-<li><a href="A-Sample-Variable-Description.html#A-Sample-Variable-Description">1.3.5.3 A Sample Variable Description</a>
 </li></ul>
 </li></ul>
 </li></ul>
@@ -140,7 +140,7 @@ modified versions.
 <li><a href="Creating-Strings.html#Creating-Strings">5.3 Creating Strings</a>
 <ul>
 <li><a href="Concatenating-Strings.html#Concatenating-Strings">5.3.1 Concatenating Strings</a>
-<li><a href="Conversion-of-Numerical-Data-to-Strings.html#Conversion-of-Numerical-Data-to-Strings">5.3.2 Conversion of Numerical Data to Strings</a>
+<li><a href="Converting-Numerical-Data-to-Strings.html#Converting-Numerical-Data-to-Strings">5.3.2 Converting Numerical Data to Strings</a>
 </li></ul>
 <li><a href="Comparing-Strings.html#Comparing-Strings">5.4 Comparing Strings</a>
 <li><a href="Manipulating-Strings.html#Manipulating-Strings">5.5 Manipulating Strings</a>
@@ -160,7 +160,7 @@ modified versions.
 <li><a href="Cell-Arrays.html#Cell-Arrays">6.2 Cell Arrays</a>
 <ul>
 <li><a href="Basic-Usage-of-Cell-Arrays.html#Basic-Usage-of-Cell-Arrays">6.2.1 Basic Usage of Cell Arrays</a>
-<li><a href="Creating-Cell-Arrays.html#Creating-Cell-Arrays">6.2.2 Creating Cell Array</a>
+<li><a href="Creating-Cell-Arrays.html#Creating-Cell-Arrays">6.2.2 Creating Cell Arrays</a>
 <li><a href="Indexing-Cell-Arrays.html#Indexing-Cell-Arrays">6.2.3 Indexing Cell Arrays</a>
 <li><a href="Cell-Arrays-of-Strings.html#Cell-Arrays-of-Strings">6.2.4 Cell Arrays of Strings</a>
 <li><a href="Processing-Data-in-Cell-Arrays.html#Processing-Data-in-Cell-Arrays">6.2.5 Processing Data in Cell Arrays</a>
@@ -244,7 +244,7 @@ modified versions.
 <li><a href="Function-Precedence.html#Function-Precedence">11.9.7 Function Precedence</a>
 </li></ul>
 <li><a href="Script-Files.html#Script-Files">11.10 Script Files</a>
-<li><a href="Function-Handles-Inline-Functions-and-Anonymous-Functions.html#Function-Handles-Inline-Functions-and-Anonymous-Functions">11.11 Function Handles, Inline Functions, and Anonymous Functions</a>
+<li><a href="Function-Handles-Anonymous-Functions-Inline-Functions.html#Function-Handles-Anonymous-Functions-Inline-Functions">11.11 Function Handles, Anonymous Functions, Inline Functions</a>
 <ul>
 <li><a href="Function-Handles.html#Function-Handles">11.11.1 Function Handles</a>
 <li><a href="Anonymous-Functions.html#Anonymous-Functions">11.11.2 Anonymous Functions</a>
@@ -334,19 +334,19 @@ modified versions.
 <li><a href="Plot-Annotations.html#Plot-Annotations">15.2.3 Plot Annotations</a>
 <li><a href="Multiple-Plots-on-One-Page.html#Multiple-Plots-on-One-Page">15.2.4 Multiple Plots on One Page</a>
 <li><a href="Multiple-Plot-Windows.html#Multiple-Plot-Windows">15.2.5 Multiple Plot Windows</a>
-<li><a href="Use-of-axis_002c-line_002c-and-patch-Functions.html#Use-of-axis_002c-line_002c-and-patch-Functions">15.2.6 Use of axis, line, and patch Functions</a>
-<li><a href="Manipulation-of-Plot-Windows.html#Manipulation-of-Plot-Windows">15.2.7 Manipulation of Plot Windows</a>
-<li><a href="Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property.html#Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property">15.2.8 Use of the <code>interpreter</code> Property</a>
-<li><a href="Printing-and-Saving-Plots.html#Printing-and-Saving-Plots">15.2.9 Printing and Saving Plots</a>
-<li><a href="Interacting-with-Plots.html#Interacting-with-Plots">15.2.10 Interacting with Plots</a>
-<li><a href="Test-Plotting-Functions.html#Test-Plotting-Functions">15.2.11 Test Plotting Functions</a>
+<li><a href="Manipulation-of-Plot-Windows.html#Manipulation-of-Plot-Windows">15.2.6 Manipulation of Plot Windows</a>
+<li><a href="Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property.html#Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property">15.2.7 Use of the <code>interpreter</code> Property</a>
+<li><a href="Printing-and-Saving-Plots.html#Printing-and-Saving-Plots">15.2.8 Printing and Saving Plots</a>
+<li><a href="Interacting-with-Plots.html#Interacting-with-Plots">15.2.9 Interacting with Plots</a>
+<li><a href="Test-Plotting-Functions.html#Test-Plotting-Functions">15.2.10 Test Plotting Functions</a>
 </li></ul>
 <li><a href="Graphics-Data-Structures.html#Graphics-Data-Structures">15.3 Graphics Data Structures</a>
 <ul>
 <li><a href="Introduction-to-Graphics-Structures.html#Introduction-to-Graphics-Structures">15.3.1 Introduction to Graphics Structures</a>
 <li><a href="Graphics-Objects.html#Graphics-Objects">15.3.2 Graphics Objects</a>
 <ul>
-<li><a href="Graphics-Objects.html#Graphics-Objects">15.3.2.1 Handle Functions</a>
+<li><a href="Graphics-Objects.html#Graphics-Objects">15.3.2.1 Creating Graphics Objects</a>
+<li><a href="Graphics-Objects.html#Graphics-Objects">15.3.2.2 Handle Functions</a>
 </li></ul>
 <li><a href="Graphics-Object-Properties.html#Graphics-Object-Properties">15.3.3 Graphics Object Properties</a>
 <ul>
@@ -425,8 +425,9 @@ modified versions.
 </li></ul>
 <li><a href="Function-Application.html#Function-Application">19.3 Function Application</a>
 <li><a href="Accumulation.html#Accumulation">19.4 Accumulation</a>
-<li><a href="Miscellaneous-Techniques.html#Miscellaneous-Techniques">19.5 Miscellaneous Techniques</a>
-<li><a href="Examples.html#Examples">19.6 Examples</a>
+<li><a href="JIT-Compiler.html#JIT-Compiler">19.5 JIT Compiler</a>
+<li><a href="Miscellaneous-Techniques.html#Miscellaneous-Techniques">19.6 Miscellaneous Techniques</a>
+<li><a href="Examples.html#Examples">19.7 Examples</a>
 </li></ul>
 <li><a name="toc_Nonlinear-Equations" href="Nonlinear-Equations.html#Nonlinear-Equations">20 Nonlinear Equations</a>
 <ul>
@@ -435,13 +436,13 @@ modified versions.
 </li></ul>
 <li><a name="toc_Diagonal-and-Permutation-Matrices" href="Diagonal-and-Permutation-Matrices.html#Diagonal-and-Permutation-Matrices">21 Diagonal and Permutation Matrices</a>
 <ul>
-<li><a href="Basic-Usage.html#Basic-Usage">21.1 Creating and Manipulating Diagonal and Permutation Matrices</a>
+<li><a href="Basic-Usage.html#Basic-Usage">21.1 Creating and Manipulating Diagonal/Permutation Matrices</a>
 <ul>
 <li><a href="Creating-Diagonal-Matrices.html#Creating-Diagonal-Matrices">21.1.1 Creating Diagonal Matrices</a>
 <li><a href="Creating-Permutation-Matrices.html#Creating-Permutation-Matrices">21.1.2 Creating Permutation Matrices</a>
 <li><a href="Explicit-and-Implicit-Conversions.html#Explicit-and-Implicit-Conversions">21.1.3 Explicit and Implicit Conversions</a>
 </li></ul>
-<li><a href="Matrix-Algebra.html#Matrix-Algebra">21.2 Linear Algebra with Diagonal and Permutation Matrices</a>
+<li><a href="Matrix-Algebra.html#Matrix-Algebra">21.2 Linear Algebra with Diagonal/Permutation Matrices</a>
 <ul>
 <li><a href="Expressions-Involving-Diagonal-Matrices.html#Expressions-Involving-Diagonal-Matrices">21.2.1 Expressions Involving Diagonal Matrices</a>
 <li><a href="Expressions-Involving-Permutation-Matrices.html#Expressions-Involving-Permutation-Matrices">21.2.2 Expressions Involving Permutation Matrices</a>
@@ -451,26 +452,26 @@ modified versions.
 <li><a href="Diagonal-Matrix-Functions.html#Diagonal-Matrix-Functions">21.3.1 Diagonal Matrix Functions</a>
 <li><a href="Permutation-Matrix-Functions.html#Permutation-Matrix-Functions">21.3.2 Permutation Matrix Functions</a>
 </li></ul>
-<li><a href="Example-Code.html#Example-Code">21.4 Some Examples of Usage</a>
-<li><a href="Zeros-Treatment.html#Zeros-Treatment">21.5 The Differences in Treatment of Zero Elements</a>
+<li><a href="Example-Code.html#Example-Code">21.4 Examples of Usage</a>
+<li><a href="Zeros-Treatment.html#Zeros-Treatment">21.5 Differences in Treatment of Zero Elements</a>
 </li></ul>
 <li><a name="toc_Sparse-Matrices" href="Sparse-Matrices.html#Sparse-Matrices">22 Sparse Matrices</a>
 <ul>
-<li><a href="Basics.html#Basics">22.1 The Creation and Manipulation of Sparse Matrices</a>
+<li><a href="Basics.html#Basics">22.1 Creation and Manipulation of Sparse Matrices</a>
 <ul>
 <li><a href="Storage-of-Sparse-Matrices.html#Storage-of-Sparse-Matrices">22.1.1 Storage of Sparse Matrices</a>
 <li><a href="Creating-Sparse-Matrices.html#Creating-Sparse-Matrices">22.1.2 Creating Sparse Matrices</a>
-<li><a href="Information.html#Information">22.1.3 Finding out Information about Sparse Matrices</a>
+<li><a href="Information.html#Information">22.1.3 Finding Information about Sparse Matrices</a>
 <li><a href="Operators-and-Functions.html#Operators-and-Functions">22.1.4 Basic Operators and Functions on Sparse Matrices</a>
 <ul>
 <li><a href="Sparse-Functions.html#Sparse-Functions">22.1.4.1 Sparse Functions</a>
-<li><a href="Return-Types-of-Operators-and-Functions.html#Return-Types-of-Operators-and-Functions">22.1.4.2 The Return Types of Operators and Functions</a>
+<li><a href="Return-Types-of-Operators-and-Functions.html#Return-Types-of-Operators-and-Functions">22.1.4.2 Return Types of Operators and Functions</a>
 <li><a href="Mathematical-Considerations.html#Mathematical-Considerations">22.1.4.3 Mathematical Considerations</a>
 </li></ul>
 </li></ul>
 <li><a href="Sparse-Linear-Algebra.html#Sparse-Linear-Algebra">22.2 Linear Algebra on Sparse Matrices</a>
-<li><a href="Iterative-Techniques.html#Iterative-Techniques">22.3 Iterative Techniques applied to sparse matrices</a>
-<li><a href="Real-Life-Example.html#Real-Life-Example">22.4 Real Life Example of the use of Sparse Matrices</a>
+<li><a href="Iterative-Techniques.html#Iterative-Techniques">22.3 Iterative Techniques Applied to Sparse Matrices</a>
+<li><a href="Real-Life-Example.html#Real-Life-Example">22.4 Real Life Example using Sparse Matrices</a>
 </li></ul>
 <li><a name="toc_Numerical-Integration" href="Numerical-Integration.html#Numerical-Integration">23 Numerical Integration</a>
 <ul>
@@ -572,6 +573,7 @@ modified versions.
 <ul>
 <li><a href="FTP-Objects.html#FTP-Objects">36.4.1 FTP Objects</a>
 <li><a href="URL-Manipulation.html#URL-Manipulation">36.4.2 URL Manipulation</a>
+<li><a href="Base64-and-Binary-Data-Transmission.html#Base64-and-Binary-Data-Transmission">36.4.3 Base64 and Binary Data Transmission</a>
 </li></ul>
 <li><a href="Controlling-Subprocesses.html#Controlling-Subprocesses">36.5 Controlling Subprocesses</a>
 <li><a href="Process-ID-Information.html#Process-ID-Information">36.6 Process, Group, and User IDs</a>
@@ -592,7 +594,7 @@ modified versions.
 <li><a href="How-to-make-Java-classes-available_003f.html#How-to-make-Java-classes-available_003f">37.3.2 How to make Java classes available to Octave?</a>
 <li><a href="How-to-create-an-instance-of-a-Java-class_003f.html#How-to-create-an-instance-of-a-Java-class_003f">37.3.3 How to create an instance of a Java class?</a>
 <li><a href="How-can-I-handle-memory-limitations_003f.html#How-can-I-handle-memory-limitations_003f">37.3.4 How can I handle memory limitations?</a>
-<li><a href="Which-TeX-symbols-are-implemented-in-the-dialog-functions_003f.html#Which-TeX-symbols-are-implemented-in-the-dialog-functions_003f">37.3.5 Which TeX symbols are implemented in the dialog functions?</a>
+<li><a href="Which-TeX-symbols-are-implemented-in-dialog-functions_003f.html#Which-TeX-symbols-are-implemented-in-dialog-functions_003f">37.3.5 Which TeX symbols are implemented in dialog functions?</a>
 </li></ul>
 </li></ul>
 <li><a name="toc_Packages" href="Packages.html#Packages">38 Packages</a>
@@ -607,7 +609,7 @@ modified versions.
 <li><a href="PKG_005fADD-and-PKG_005fDEL-Directives.html#PKG_005fADD-and-PKG_005fDEL-Directives">38.4.3 PKG_ADD and PKG_DEL Directives</a>
 </li></ul>
 </li></ul>
-<li><a name="toc_Dynamically-Linked-Functions" href="Dynamically-Linked-Functions.html#Dynamically-Linked-Functions">Appendix A Dynamically Linked Functions</a>
+<li><a name="toc_External-Code-Interface" href="External-Code-Interface.html#External-Code-Interface">Appendix A External Code Interface</a>
 <ul>
 <li><a href="Oct_002dFiles.html#Oct_002dFiles">A.1 Oct-Files</a>
 <ul>
@@ -618,7 +620,7 @@ modified versions.
 <li><a href="Structures-in-Oct_002dFiles.html#Structures-in-Oct_002dFiles">A.1.5 Structures in Oct-Files</a>
 <li><a href="Sparse-Matrices-in-Oct_002dFiles.html#Sparse-Matrices-in-Oct_002dFiles">A.1.6 Sparse Matrices in Oct-Files</a>
 <ul>
-<li><a href="Array-and-Sparse-Differences.html#Array-and-Sparse-Differences">A.1.6.1 The Differences between the Array and Sparse Classes</a>
+<li><a href="Array-and-Sparse-Class-Differences.html#Array-and-Sparse-Class-Differences">A.1.6.1 Array and Sparse Class Differences</a>
 <li><a href="Creating-Sparse-Matrices-in-Oct_002dFiles.html#Creating-Sparse-Matrices-in-Oct_002dFiles">A.1.6.2 Creating Sparse Matrices in Oct-Files</a>
 <li><a href="Using-Sparse-Matrices-in-Oct_002dFiles.html#Using-Sparse-Matrices-in-Oct_002dFiles">A.1.6.3 Using Sparse Matrices in Oct-Files</a>
 </li></ul>
@@ -720,7 +722,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
 
 <p>This manual documents how to run, install and port GNU Octave, as well
 as its new features and incompatibilities, and how to report bugs. 
-It corresponds to GNU Octave version 3.7.5.
+It corresponds to GNU Octave version 3.7.6.
 
 <!--  -->
 <ul class="menu">
@@ -763,7 +765,7 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="System-Utilities.html#System-Utilities">System Utilities</a>
 <li><a href="Java-Interface.html#Java-Interface">Java Interface</a>
 <li><a href="Packages.html#Packages">Packages</a>
-<li><a href="Dynamically-Linked-Functions.html#Dynamically-Linked-Functions">Dynamically Linked Functions</a>
+<li><a href="External-Code-Interface.html#External-Code-Interface">External Code Interface</a>
 <li><a href="Test-and-Demo-Functions.html#Test-and-Demo-Functions">Test and Demo Functions</a>
 <li><a href="Tips-and-Standards.html#Tips-and-Standards">Tips and Standards</a>
 <li><a href="Contributing-Guidelines.html#Contributing-Guidelines">Contributing Guidelines</a>
@@ -785,6 +787,7 @@ It corresponds to GNU Octave version 3.7.5.
 </p>
 <ul class="menu">
 <li><a href="Acknowledgements.html#Acknowledgements">Acknowledgements</a>
+<li><a href="Citing-Octave-in-Publications.html#Citing-Octave-in-Publications">Citing Octave in Publications</a>
 <li><a href="How-You-Can-Contribute-to-Octave.html#How-You-Can-Contribute-to-Octave">How You Can Contribute to Octave</a>
 <li><a href="Distribution.html#Distribution">Distribution</a>
 
@@ -815,7 +818,6 @@ It corresponds to GNU Octave version 3.7.5.
 <ul class="menu">
 <li><a href="A-Sample-Function-Description.html#A-Sample-Function-Description">A Sample Function Description</a>
 <li><a href="A-Sample-Command-Description.html#A-Sample-Command-Description">A Sample Command Description</a>
-<li><a href="A-Sample-Variable-Description.html#A-Sample-Variable-Description">A Sample Variable Description</a>
 
 </li></ul>
 <p>Getting Started
@@ -928,7 +930,7 @@ It corresponds to GNU Octave version 3.7.5.
 </p>
 <ul class="menu">
 <li><a href="Concatenating-Strings.html#Concatenating-Strings">Concatenating Strings</a>
-<li><a href="Conversion-of-Numerical-Data-to-Strings.html#Conversion-of-Numerical-Data-to-Strings">Conversion of Numerical Data to Strings</a>
+<li><a href="Converting-Numerical-Data-to-Strings.html#Converting-Numerical-Data-to-Strings">Converting Numerical Data to Strings</a>
 
 </li></ul>
 <p>Data Containers
@@ -1068,7 +1070,7 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="Default-Arguments.html#Default-Arguments">Default Arguments</a>
 <li><a href="Function-Files.html#Function-Files">Function Files</a>
 <li><a href="Script-Files.html#Script-Files">Script Files</a>
-<li><a href="Function-Handles-Inline-Functions-and-Anonymous-Functions.html#Function-Handles-Inline-Functions-and-Anonymous-Functions">Function Handles Inline Functions and Anonymous Functions</a>
+<li><a href="Function-Handles-Anonymous-Functions-Inline-Functions.html#Function-Handles-Anonymous-Functions-Inline-Functions">Function Handles Anonymous Functions Inline Functions</a>
 <li><a href="Commands.html#Commands">Commands</a>
 <li><a href="Organization-of-Functions.html#Organization-of-Functions">Organization of Functions</a>
 
@@ -1086,7 +1088,7 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="Function-Precedence.html#Function-Precedence">Function Precedence</a>
 
 </li></ul>
-<p>Function Handles Inline Functions and Anonymous Functions
+<p>Function Handles Anonymous Functions Inline Functions
 
 </p>
 <ul class="menu">
@@ -1208,7 +1210,6 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="Plot-Annotations.html#Plot-Annotations">Plot Annotations</a>
 <li><a href="Multiple-Plots-on-One-Page.html#Multiple-Plots-on-One-Page">Multiple Plots on One Page</a>
 <li><a href="Multiple-Plot-Windows.html#Multiple-Plot-Windows">Multiple Plot Windows</a>
-<li><a href="Use-of-axis_002c-line_002c-and-patch-Functions.html#Use-of-axis_002c-line_002c-and-patch-Functions">Use of axis, line, and patch Functions</a>
 <li><a href="Manipulation-of-Plot-Windows.html#Manipulation-of-Plot-Windows">Manipulation of Plot Windows</a>
 <li><a href="Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property.html#Use-of-the-_003ccode_003einterpreter_003c_002fcode_003e-Property">Use of the <code>interpreter</code> Property</a>
 <li><a href="Printing-and-Saving-Plots.html#Printing-and-Saving-Plots">Printing and Saving Plots</a>
@@ -1340,6 +1341,7 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="Broadcasting.html#Broadcasting">Broadcasting</a>:                Broadcasting operations
 <li><a href="Function-Application.html#Function-Application">Function Application</a>:        Applying functions to arrays, cells, and structs
 <li><a href="Accumulation.html#Accumulation">Accumulation</a>:                Accumulation functions
+<li><a href="JIT-Compiler.html#JIT-Compiler">JIT Compiler</a>:                Just-In-Time Compiler for loops
 <li><a href="Miscellaneous-Techniques.html#Miscellaneous-Techniques">Miscellaneous Techniques</a>:    Other techniques for speeding up code
 <li><a href="Examples.html#Examples">Examples</a>
 
@@ -1356,11 +1358,11 @@ It corresponds to GNU Octave version 3.7.5.
 
 </p>
 <ul class="menu">
-<li><a href="Basic-Usage.html#Basic-Usage">Basic Usage</a>:           Creation and Manipulation of Diagonal and Permutation Matrices
-<li><a href="Matrix-Algebra.html#Matrix-Algebra">Matrix Algebra</a>:        Linear Algebra with Diagonal and Permutation Matrices
+<li><a href="Basic-Usage.html#Basic-Usage">Basic Usage</a>:           Creation and Manipulation of Diagonal/Permutation Matrices
+<li><a href="Matrix-Algebra.html#Matrix-Algebra">Matrix Algebra</a>:        Linear Algebra with Diagonal/Permutation Matrices
 <li><a href="Function-Support.html#Function-Support">Function Support</a>:      Functions That Are Aware of These Matrices
-<li><a href="Example-Code.html#Example-Code">Example Code</a>:          Some Examples of Usage
-<li><a href="Zeros-Treatment.html#Zeros-Treatment">Zeros Treatment</a>:       The Differences in Treatment of Zero Elements
+<li><a href="Example-Code.html#Example-Code">Example Code</a>:          Examples of Usage
+<li><a href="Zeros-Treatment.html#Zeros-Treatment">Zeros Treatment</a>:       Differences in Treatment of Zero Elements
 
 </li></ul>
 <p>Basic Usage
@@ -1575,6 +1577,7 @@ It corresponds to GNU Octave version 3.7.5.
 <ul class="menu">
 <li><a href="FTP-Objects.html#FTP-Objects">FTP Objects</a>
 <li><a href="URL-Manipulation.html#URL-Manipulation">URL Manipulation</a>
+<li><a href="Base64-and-Binary-Data-Transmission.html#Base64-and-Binary-Data-Transmission">Base64 and Binary Data Transmission</a>
 
 </li></ul>
 <p>Java Interface
@@ -1594,7 +1597,7 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="How-to-make-Java-classes-available_003f.html#How-to-make-Java-classes-available_003f">How to make Java classes available?</a>
 <li><a href="How-to-create-an-instance-of-a-Java-class_003f.html#How-to-create-an-instance-of-a-Java-class_003f">How to create an instance of a Java class?</a>
 <li><a href="How-can-I-handle-memory-limitations_003f.html#How-can-I-handle-memory-limitations_003f">How can I handle memory limitations?</a>
-<li><a href="Which-TeX-symbols-are-implemented-in-the-dialog-functions_003f.html#Which-TeX-symbols-are-implemented-in-the-dialog-functions_003f">Which TeX symbols are implemented in the dialog functions?</a>
+<li><a href="Which-TeX-symbols-are-implemented-in-dialog-functions_003f.html#Which-TeX-symbols-are-implemented-in-dialog-functions_003f">Which TeX symbols are implemented in dialog functions?</a>
 
 </li></ul>
 <p>Packages
@@ -1616,7 +1619,7 @@ It corresponds to GNU Octave version 3.7.5.
 <li><a href="PKG_005fADD-and-PKG_005fDEL-Directives.html#PKG_005fADD-and-PKG_005fDEL-Directives">PKG_ADD and PKG_DEL Directives</a>
 
 </li></ul>
-<p>Dynamically Linked Functions
+<p>External Code Interface
 
 </p>
 <ul class="menu">
@@ -1648,7 +1651,7 @@ It corresponds to GNU Octave version 3.7.5.
 
 </p>
 <ul class="menu">
-<li><a href="Array-and-Sparse-Differences.html#Array-and-Sparse-Differences">Array and Sparse Differences</a>
+<li><a href="Array-and-Sparse-Class-Differences.html#Array-and-Sparse-Class-Differences">Array and Sparse Class Differences</a>
 <li><a href="Creating-Sparse-Matrices-in-Oct_002dFiles.html#Creating-Sparse-Matrices-in-Oct_002dFiles">Creating Sparse Matrices in Oct-Files</a>
 <li><a href="Using-Sparse-Matrices-in-Oct_002dFiles.html#Using-Sparse-Matrices-in-Oct_002dFiles">Using Sparse Matrices in Oct-Files</a>
 

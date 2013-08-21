@@ -58,6 +58,8 @@ along with Octave; see the file COPYING.  If not, see
 // Whether to optimize subsasgn method calls.
 static bool Voptimize_subsasgn_calls = true;
 
+// The character to fill with when creating string arrays.
+extern char Vstring_fill_char;   // see pt-mat.cc
 
 std::map<std::string, octave_value>
 octave_user_code::subfunctions (void) const
@@ -698,7 +700,7 @@ octave_user_function::bind_automatic_vars
       // which might be redefined in a function.  Keep the old argn name
       // for backward compatibility of functions that use it directly.
 
-      symbol_table::force_assign ("argn", arg_names);
+      symbol_table::force_assign ("argn", charMatrix (arg_names, Vstring_fill_char));
       symbol_table::force_assign (".argn.", Cell (arg_names));
 
       symbol_table::mark_hidden (".argn.");
@@ -976,9 +978,9 @@ Query or set the internal flag for subsasgn method call optimizations.\n\
 If true, Octave will attempt to eliminate the redundant copying when calling\n\
 subsasgn method of a user-defined class.\n\
 \n\
-When called from inside a function with the \"local\" option, the variable is\n\
-changed locally for the function and any subroutines it calls.  The original\n\
-variable value is restored when exiting the function.\n\
+When called from inside a function with the @qcode{\"local\"} option, the\n\
+variable is changed locally for the function and any subroutines it calls.  \n\
+The original variable value is restored when exiting the function.\n\
 @end deftypefn")
 {
   return SET_INTERNAL_VARIABLE (optimize_subsasgn_calls);

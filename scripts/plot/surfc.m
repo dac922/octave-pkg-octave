@@ -17,59 +17,97 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} surfc (@var{x}, @var{y}, @var{z})
-## Plot a surface and contour given matrices @var{x}, and @var{y} from
-## @code{meshgrid} and a matrix @var{z} corresponding to the @var{x} and
-## @var{y} coordinates of the mesh.  If @var{x} and @var{y} are vectors,
-## then a typical vertex is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus,
-## columns of @var{z} correspond to different @var{x} values and rows of
-## @var{z} correspond to different @var{y} values.
-## @seealso{meshgrid, surf, contour}
+## @deftypefn  {Function File} {} surfc (@var{x}, @var{y}, @var{z})
+## @deftypefnx {Function File} {} surfc (@var{z})
+## @deftypefnx {Function File} {} surfc (@dots{}, @var{c})
+## @deftypefnx {Function File} {} surfc (@dots{}, @var{prop}, @var{val}, @dots{})
+## @deftypefnx {Function File} {} surfc (@var{hax}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} surfc (@dots{})
+## Plot a 3-D surface mesh with underlying contour lines.
+##
+## The surface mesh is plotted using shaded rectangles.  The vertices of the
+## rectangles [@var{x}, @var{y}] are typically the output of @code{meshgrid}.
+## over a 2-D rectangular region in the x-y plane.  @var{z} determines the
+## height above the plane of each vertex.  If only a single @var{z} matrix is
+## given, then it is plotted over the meshgrid
+## @code{@var{x} = 1:columns (@var{z}), @var{y} = 1:rows (@var{z})}.
+## Thus, columns of @var{z} correspond to different @var{x} values and rows
+## of @var{z} correspond to different @var{y} values.
+##
+## The color of the surface is computed by linearly scaling the @var{Z} values
+## to fit the range of the current colormap.  Use @code{caxis} and/or
+## change the colormap to control the appearance.
+##
+## Optionally, the color of the surface can be specified independently of
+## @var{z} by supplying a color matrix, @var{c}.
+##
+## Any property/value pairs are passed directly to the underlying surface
+## object.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a graphics handle to the created
+## surface object.
+##
+## Note: The exact appearance of the surface can be controlled with the
+## @code{shading} command or by using @code{set} to control surface object
+## properties.
+## @seealso{ezsurfc, surf, surfl, surfnorm, trisurf, contour, mesh, surface, meshgrid, hidden, shading, colormap, caxis}
 ## @end deftypefn
 
 function h = surfc (varargin)
 
-  newplot ();
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("surfc", varargin{:});
 
-  tmp = surface (varargin{:});
-
-  ax = get (tmp, "parent");
-
-  set (tmp, "facecolor", "flat");
-
-  if (! ishold ())
-    set (ax, "view", [-37.5, 30],
-         "xgrid", "on", "ygrid", "on", "zgrid", "on");
+  if (nargin < 1)
+    print_usage ();
   endif
 
-  drawnow ();
-  zmin = get (ax, "zlim")(1);
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
+  unwind_protect
+    hax = newplot (hax);
+    
+    htmp = surface (varargin{:});
 
-  # don't pass axis handle and/or string arguments to __contour__()
-  stop_idx = nargin;
-  for i = 2 : nargin
-    if (ischar (varargin{i}))
-      stop_idx = i - 1;
-      break;
+    set (htmp, "facecolor", "flat");
+    if (! ishold ())
+      set (hax, "view", [-37.5, 30],
+                "xgrid", "on", "ygrid", "on", "zgrid", "on",
+                "xlimmode", "manual", "ylimmode", "manual");
     endif
-  endfor
 
-  start_idx = 1;
-  if (ishandle (varargin{1}))
-    start_idx = 2;
-  endif
+    drawnow ();
 
-  if (stop_idx - start_idx == 1 || stop_idx - start_idx == 3)
-    #don't pass a color matrix c to __contour__
-    stop_idx -= 1;
-  endif
+    # don't pass string arguments to __contour__()
+    stop_idx = find (cellfun ("isclass", varargin, "char"), 1);
+    if (isempty (stop_idx))
+      stop_idx = nargin;
+    else
+      stop_idx--;
+    endif
 
-  [c, tmp2] = __contour__ (ax, zmin, varargin{start_idx:stop_idx});
+    if (stop_idx - 1 == 1 || stop_idx - 1 == 3)
+      ## Don't pass a color matrix c to __contour__
+      stop_idx -= 1;
+    endif
 
-  tmp = [tmp; tmp2];
+    zmin = get (hax, "zlim")(1);
+    [~, htmp2] = __contour__ (hax, zmin, varargin{1:stop_idx});
+
+    htmp = [htmp; htmp2];
+
+  unwind_protect_cleanup
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
+  end_unwind_protect
 
   if (nargout > 0)
-    h = tmp;
+    h = htmp;
   endif
 
 endfunction
@@ -78,16 +116,19 @@ endfunction
 %!demo
 %! clf;
 %! colormap ('default');
-%! [~,~,Z] = peaks ();
+%! Z = peaks ();
 %! surfc (Z);
+%! title ('surfc() combines surf/contour plots');
 
 %!demo
 %! clf;
 %! colormap ('default');
-%! [~,~,Z] = sombrero ();
+%! Z = sombrero ();
 %! [Fx,Fy] = gradient (Z);
 %! surfc (Z, Fx+Fy);
 %! shading interp;
+%! title ({'surfc() plot of sombrero() function'; ...
+%!         'facecolor is interpolated, color determined by gradient of Z'});
 
 %!demo
 %! clf;
@@ -96,4 +137,6 @@ endfunction
 %! [~,Fy] = gradient (Z);
 %! surfc (X,Y,Z,Fy);
 %! shading interp;
+%! title ({'surfc() plot of peaks() function'; ...
+%!         'facecolor is interpolated, color determined by Y-gradient of Z'});
 

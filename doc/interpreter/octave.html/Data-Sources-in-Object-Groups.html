@@ -32,27 +32,30 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Object-Groups.html#Object-Groups">Objec
 
 <h5 class="subsubsection">15.4.6.1 Data Sources in Object Groups</h5>
 
-<p><a name="index-data-sources-in-object-groups-1638"></a><a name="doc_002ddatasources"></a>All of the group objects contain data source parameters.  There are
+<p><a name="index-data-sources-in-object-groups-1781"></a><a name="XREFdatasources"></a>All of the group objects contain data source parameters.  There are
 string parameters that contain an expression that is evaluated to update
 the relevant data property of the group when the <code>refreshdata</code>
 function is called.
 
 <!-- refreshdata scripts/plot/refreshdata.m -->
-   <p><a name="doc_002drefreshdata"></a>
+   <p><a name="XREFrefreshdata"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>refreshdata</b> ()<var><a name="index-refreshdata-1639"></a></var><br>
-&mdash; Function File:  <b>refreshdata</b> (<var>h</var>)<var><a name="index-refreshdata-1640"></a></var><br>
-&mdash; Function File:  <b>refreshdata</b> (<var>h, workspace</var>)<var><a name="index-refreshdata-1641"></a></var><br>
+&mdash; Function File:  <b>refreshdata</b> ()<var><a name="index-refreshdata-1782"></a></var><br>
+&mdash; Function File:  <b>refreshdata</b> (<var>h</var>)<var><a name="index-refreshdata-1783"></a></var><br>
+&mdash; Function File:  <b>refreshdata</b> (<var>h, workspace</var>)<var><a name="index-refreshdata-1784"></a></var><br>
 <blockquote><p>Evaluate any &lsquo;<samp><span class="samp">datasource</span></samp>&rsquo; properties of the current figure and update
-the plot if the corresponding data has changed.  If called with one or more
-arguments <var>h</var> is a scalar or array of figure handles to refresh.  The
-optional second argument <var>workspace</var> can take the following values.
+the plot if the corresponding data has changed.
+
+        <p>If the first argument <var>h</var> is a list of graphic handles, then operate
+on these objects rather than the current figure returned by <code>gcf</code>.
+
+        <p>The optional second argument <var>workspace</var> can take the following values:
 
           <dl>
-<dt>"base"<dd>Evaluate the datasource properties in the base workspace.  (default).
+<dt><code>"base"</code><dd>Evaluate the datasource properties in the base workspace.  (default).
 
-          <br><dt>"caller"<dd>Evaluate the datasource properties in the workspace of the function
+          <br><dt><code>"caller"</code><dd>Evaluate the datasource properties in the workspace of the function
 that called <code>refreshdata</code>. 
 </dl>
 
@@ -69,7 +72,7 @@ that called <code>refreshdata</code>.
 </pre>
         </blockquote></div>
 
-   <p><a name="doc_002dlinkdata"></a><!-- add the description of the linkdata function here when it is written -->
+   <p><a name="XREFlinkdata"></a><!-- add the description of the linkdata function here when it is written -->
 <!-- remove the explicit anchor when you add the corresponding @DOCSTRING -->
 <!-- command -->
 

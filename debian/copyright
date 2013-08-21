@@ -112,11 +112,11 @@ Copyright: Andrew D. Fernandes <adfernan@cnd.mcgill.ca>
            2011-2012 Sébastien Villemot <sebastien@debian.org>
 License: GPL-3+           
 
-Files: libcruft/amos/*
-       libcruft/dassl/*
-       libcruft/fftpack/*
-       libcruft/slatec-err/*
-       libcruft/slatec-fn/*
+Files: liboctave/cruft/amos/*
+       liboctave/cruft/dassl/*
+       liboctave/cruft/fftpack/*
+       liboctave/cruft/slatec-err/*
+       liboctave/cruft/slatec-fn/*
 Copyright: none
 License: public-domain
  The Library is in the public domain and distributed by the Energy Science
@@ -129,15 +129,15 @@ Comment:
  Note that the AMOS library is part of SLATEC and is therefore covered by the
  same license.
 
-Files: libcruft/daspk/*
+Files: liboctave/cruft/daspk/*
 Copyright: none
 License: public-domain
  Work performed under the auspices of the U.S. Department of Energy
  by Lawrence Livermore National Laboratory under contract number 
  W-7405-Eng-48.
 
-Files: libcruft/lapack-xtra/*
-       libcruft/blas-xtra/xerbla.f
+Files: liboctave/cruft/lapack-xtra/*
+       liboctave/cruft/blas-xtra/xerbla.f
 Copyright: 1992-2006 The University of Tennessee
 License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
@@ -168,7 +168,7 @@ License: BSD-3-clause
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
 
-Files: libcruft/opdepack/*
+Files: liboctave/cruft/opdepack/*
 Copyright: none
 License: public-domain
  Written by Alan C. Hindmarsh
@@ -180,7 +180,7 @@ License: public-domain
  were written at LLNL. All are in the Public Domain and are freely available
  from the CASC Software Download Site.
 
-Files: libcruft/quadpack/*
+Files: liboctave/cruft/quadpack/*
 Copyright: none
 License: public-domain
  QUADPACK originated from a joint project of R. Piessens and E. de
@@ -188,7 +188,7 @@ License: public-domain
  C. Überhuber (Inst. Fuer Math.- Techn.U.Wien, Austria), and D. Kahaner
  (Nation. Bur. of Standards- Washington D.C., U.S.A.). 
 
-Files: libcruft/ranlib/*
+Files: liboctave/cruft/ranlib/*
 Copyright: none
 License: public-domain
  We place the Randlib code that we have written in the public domain.  

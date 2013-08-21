@@ -323,6 +323,8 @@ public:
 
     void setSelection(const QString &t);
 
+    QString selectedText ();
+
     /**
      * Reimplemented.  Has no effect.  Use setVTFont() to change the font
      * used to draw characters in the display.
@@ -473,6 +475,12 @@ signals:
    void sendStringToEmu(const char*);
 
    void tripleClicked( const QString& text );
+
+   /**
+    * Emitted when focus changes
+    */
+   void set_global_shortcuts_signal (bool);
+
 
 protected:
     virtual bool event( QEvent * );

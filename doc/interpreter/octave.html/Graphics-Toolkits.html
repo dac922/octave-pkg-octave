@@ -32,65 +32,64 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Advanced-Plotting.html#Advanced-Plottin
 
 <h4 class="subsection">15.4.7 Graphics Toolkits</h4>
 
-<p><a name="index-graphics-toolkits-1662"></a><a name="index-toolkits_002c-graphics-1663"></a>
+<p><a name="index-graphics-toolkits-1805"></a><a name="index-toolkits_002c-graphics-1806"></a>
 <!-- graphics_toolkit scripts/plot/graphics_toolkit.m -->
-<a name="doc_002dgraphics_005ftoolkit"></a>
+<a name="XREFgraphics_005ftoolkit"></a>
 
 <div class="defun">
-&mdash; Function File: <var>name</var> = <b>graphics_toolkit</b> ()<var><a name="index-graphics_005ftoolkit-1664"></a></var><br>
-&mdash; Function File: <var>name</var> = <b>graphics_toolkit</b> (<var>hlist</var>)<var><a name="index-graphics_005ftoolkit-1665"></a></var><br>
-&mdash; Function File:  <b>graphics_toolkit</b> (<var>name</var>)<var><a name="index-graphics_005ftoolkit-1666"></a></var><br>
-&mdash; Function File:  <b>graphics_toolkit</b> (<var>hlist, name</var>)<var><a name="index-graphics_005ftoolkit-1667"></a></var><br>
-<blockquote><p>Return the default graphics toolkit.  The default graphics toolkit value
-is assigned to new figures.
+&mdash; Function File: <var>name</var> = <b>graphics_toolkit</b> ()<var><a name="index-graphics_005ftoolkit-1807"></a></var><br>
+&mdash; Function File: <var>name</var> = <b>graphics_toolkit</b> (<var>hlist</var>)<var><a name="index-graphics_005ftoolkit-1808"></a></var><br>
+&mdash; Function File:  <b>graphics_toolkit</b> (<var>name</var>)<var><a name="index-graphics_005ftoolkit-1809"></a></var><br>
+&mdash; Function File:  <b>graphics_toolkit</b> (<var>hlist, name</var>)<var><a name="index-graphics_005ftoolkit-1810"></a></var><br>
+<blockquote><p>Query or set the default graphics toolkit which is assigned to new
+figures.
 
-        <p><code>graphics_toolkit (</code><var>hlist</var><code>)</code>
+        <p>With no inputs, return the current default graphics toolkit.  If the input
+is a list of figure graphic handles, <var>hlist</var>, then return the name
+of the graphics toolkit in use for each figure.
 
-        <p>Return the graphics toolkits for the figures with handles <var>hlist</var>.
+        <p>When called with a single input <var>name</var> set the default graphics toolkit
+to <var>name</var>.  If the toolkit is not already loaded, it is initialized by
+calling the function <code>__init_</code><var>name</var><code>__</code>.  If the first input
+is a list of figure handles, <var>hlist</var>, then the graphics toolkit is set
+to <var>name</var> for these figures only.
 
-        <p><code>graphics_toolkit (</code><var>name</var><code>)</code>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFavailable_005fgraphics_005ftoolkits.html#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
 
-        <p>Set the default graphics toolkit to <var>name</var>.  If the toolkit is not
-already loaded, it is initialized by calling the function
-<code>__init_</code><var>name</var><code>__</code>.
+        </blockquote></div>
 
-        <p><code>graphics_toolkit (</code><var>hlist</var><code>, </code><var>name</var><code>)</code>
-
-        <p>Set the graphics toolkit for the figures with handles <var>hlist</var> to
-<var>name</var>.
-
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002davailable_005fgraphics_005ftoolkits.html#doc_002davailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>. 
-</p></blockquote></div>
-
-<!-- available_graphics_toolkits libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002davailable_005fgraphics_005ftoolkits"></a>
+<!-- available_graphics_toolkits libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFavailable_005fgraphics_005ftoolkits"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>available_graphics_toolkits</b> ()<var><a name="index-available_005fgraphics_005ftoolkits-1668"></a></var><br>
+&mdash; Built-in Function:  <b>available_graphics_toolkits</b> ()<var><a name="index-available_005fgraphics_005ftoolkits-1811"></a></var><br>
 <blockquote><p>Return a cell array of registered graphics toolkits.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgraphics_005ftoolkit.html#doc_002dgraphics_005ftoolkit">graphics_toolkit</a>, <a href="doc_002dregister_005fgraphics_005ftoolkit.html#doc_002dregister_005fgraphics_005ftoolkit">register_graphics_toolkit</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgraphics_005ftoolkit.html#XREFgraphics_005ftoolkit">graphics_toolkit</a>, <a href="XREFregister_005fgraphics_005ftoolkit.html#XREFregister_005fgraphics_005ftoolkit">register_graphics_toolkit</a>.
 
-<!-- loaded_graphics_toolkits libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002dloaded_005fgraphics_005ftoolkits"></a>
+        </blockquote></div>
+
+<!-- loaded_graphics_toolkits libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFloaded_005fgraphics_005ftoolkits"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>loaded_graphics_toolkits</b> ()<var><a name="index-loaded_005fgraphics_005ftoolkits-1669"></a></var><br>
+&mdash; Built-in Function:  <b>loaded_graphics_toolkits</b> ()<var><a name="index-loaded_005fgraphics_005ftoolkits-1812"></a></var><br>
 <blockquote><p>Return a cell array of the currently loaded graphics toolkits.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002davailable_005fgraphics_005ftoolkits.html#doc_002davailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFavailable_005fgraphics_005ftoolkits.html#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
 
-<!-- register_graphics_toolkit libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002dregister_005fgraphics_005ftoolkit"></a>
+        </blockquote></div>
+
+<!-- register_graphics_toolkit libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFregister_005fgraphics_005ftoolkit"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>register_graphics_toolkit</b> (<var>toolkit</var>)<var><a name="index-register_005fgraphics_005ftoolkit-1670"></a></var><br>
+&mdash; Built-in Function:  <b>register_graphics_toolkit</b> (<var>toolkit</var>)<var><a name="index-register_005fgraphics_005ftoolkit-1813"></a></var><br>
 <blockquote><p>List <var>toolkit</var> as an available graphics toolkit.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002davailable_005fgraphics_005ftoolkits.html#doc_002davailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFavailable_005fgraphics_005ftoolkits.html#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+
+        </blockquote></div>
 
 <ul class="menu">
 <li><a accesskey="1" href="Customizing-Toolkit-Behavior.html#Customizing-Toolkit-Behavior">Customizing Toolkit Behavior</a>

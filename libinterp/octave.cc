@@ -150,24 +150,25 @@ static std::string exec_path;
 static std::string image_path;
 
 // If TRUE, ignore the window system even if it is available.
-// (--no-window-system)
+// (--no-window-system, -W)
 static bool no_window_system = false;
 
 // Usage message
 static const char *usage_string =
-  "octave [-HVdfhiqvx] [--debug] [--echo-commands] [--eval CODE]\n\
-       [--exec-path path] [--force-gui] [--help] [--image-path path]\n\
+  "octave [-HVWdfhiqvx] [--debug] [--debug-jit] [--doc-cache-file file]\n\
+       [--echo-commands] [--eval CODE] [--exec-path path]\n\
+       [--force-gui] [--help] [--image-path path]\n\
        [--info-file file] [--info-program prog] [--interactive]\n\
-       [--jit-debugging] [--line-editing] [--no-gui] [--no-history]\n\
+       [--line-editing] [--no-gui] [--no-history]\n\
        [--no-init-file] [--no-init-path] [--no-jit-compiler]\n\
        [--no-line-editing] [--no-site-file] [--no-window-system]\n\
-       [-p path] [--path path] [--silent] [--traditional]\n\
-       [--verbose] [--version] [file]";
+       [--norc] [-p path] [--path path] [--persist] [--silent]\n\
+       [--traditional] [--verbose] [--version] [file]";
 
 // This is here so that it's more likely that the usage message and
 // the real set of options will agree.  Note: the '+' must come first
 // to prevent getopt from permuting arguments!
-static const char *short_opts = "+HVdfhip:qvx";
+static const char *short_opts = "+HWVdfhip:qvx";
 
 // The code to evaluate at startup (--eval CODE)
 static std::string code_to_eval;
@@ -191,7 +192,7 @@ static bool traditional = false;
 #define IMAGE_PATH_OPTION 6
 #define INFO_FILE_OPTION 7
 #define INFO_PROG_OPTION 8
-#define JIT_DEBUGGING_OPTION 9
+#define DEBUG_JIT_OPTION 9
 #define LINE_EDITING_OPTION 10
 #define NO_GUI_OPTION 11
 #define NO_INIT_FILE_OPTION 12
@@ -199,14 +200,14 @@ static bool traditional = false;
 #define NO_JIT_COMPILER_OPTION 14
 #define NO_LINE_EDITING_OPTION 15
 #define NO_SITE_FILE_OPTION 16
-#define NO_WINDOW_SYSTEM_OPTION 17
-#define PERSIST_OPTION 18
-#define TEXI_MACROS_FILE_OPTION 19
-#define TRADITIONAL_OPTION 20
+#define PERSIST_OPTION 17
+#define TEXI_MACROS_FILE_OPTION 18
+#define TRADITIONAL_OPTION 19
 struct option long_opts[] = {
   { "braindead",                no_argument,       0, TRADITIONAL_OPTION },
   { "built-in-docstrings-file", required_argument, 0, BUILT_IN_DOCSTRINGS_FILE_OPTION },
   { "debug",                    no_argument,       0, 'd' },
+  { "debug-jit",                no_argument,       0, DEBUG_JIT_OPTION },
   { "doc-cache-file",           required_argument, 0, DOC_CACHE_FILE_OPTION },
   { "echo-commands",            no_argument,       0, 'x' },
   { "eval",                     required_argument, 0, EVAL_OPTION },
@@ -217,7 +218,6 @@ struct option long_opts[] = {
   { "info-file",                required_argument, 0, INFO_FILE_OPTION },
   { "info-program",             required_argument, 0, INFO_PROG_OPTION },
   { "interactive",              no_argument,       0, 'i' },
-  { "jit-debugging",            no_argument,       0, JIT_DEBUGGING_OPTION },
   { "line-editing",             no_argument,       0, LINE_EDITING_OPTION },
   { "no-gui",                   no_argument,       0, NO_GUI_OPTION },
   { "no-history",               no_argument,       0, 'H' },
@@ -226,7 +226,7 @@ struct option long_opts[] = {
   { "no-jit-compiler",          no_argument,       0, NO_JIT_COMPILER_OPTION },
   { "no-line-editing",          no_argument,       0, NO_LINE_EDITING_OPTION },
   { "no-site-file",             no_argument,       0, NO_SITE_FILE_OPTION },
-  { "no-window-system",         no_argument,       0, NO_WINDOW_SYSTEM_OPTION },
+  { "no-window-system",         no_argument,       0, 'W' },
   { "norc",                     no_argument,       0, 'f' },
   { "path",                     required_argument, 0, 'p' },
   { "persist",                  no_argument,       0, PERSIST_OPTION },
@@ -522,7 +522,9 @@ Usage: octave [options] [FILE]\n\
 \n\
 Options:\n\
 \n\
+  --built-in-docstrings-file FILE Use docs for built-ins from FILE.\n\
   --debug, -d             Enter parser debugging mode.\n\
+  --debug-jit             Enable JIT compiler debugging/tracing.\n\
   --doc-cache-file FILE   Use doc cache file FILE.\n\
   --echo-commands, -x     Echo commands as they are executed.\n\
   --eval CODE             Evaluate CODE.  Exit when done unless --persist.\n\
@@ -533,7 +535,6 @@ Options:\n\
   --info-file FILE        Use top-level info file FILE.\n\
   --info-program PROGRAM  Use PROGRAM for reading info files.\n\
   --interactive, -i       Force interactive behavior.\n\
-  --jit-debug             Enable JIT compiler debugging/tracing.\n\
   --line-editing          Force readline use for command-line editing.\n\
   --no-gui                Disable the graphical user interface.\n\
   --no-history, -H        Don't save commands to the history list\n\
@@ -542,11 +543,11 @@ Options:\n\
   --no-jit-compiler       Disable the JIT compiler.\n\
   --no-line-editing       Don't use readline for command-line editing.\n\
   --no-site-file          Don't read the site-wide octaverc file.\n\
-  --no-window-system      Disable window system, including graphics.\n\
+  --no-window-system, -W  Disable window system, including graphics.\n\
   --norc, -f              Don't read any initialization files.\n\
   --path PATH, -p PATH    Add PATH to head of function search path.\n\
   --persist               Go interactive after --eval or reading from FILE.\n\
-  --silent, -q            Don't print message at startup.\n\
+  --silent, --quiet, -q   Don't print message at startup.\n\
   --texi-macros-file FILE Use Texinfo macros in FILE for makeinfo command.\n\
   --traditional           Set variables for closer MATLAB compatibility.\n\
   --verbose, -V           Enable verbose output in some cases.\n\
@@ -625,7 +626,7 @@ maximum_braindamage (void)
   Fbeep_on_error (octave_value (true));
   Fconfirm_recursive_rmdir (octave_value (false));
   Fcrash_dumps_octave_core (octave_value (false));
-  Fdefault_save_options (octave_value ("-mat-binary"));
+  Fsave_default_options (octave_value ("-mat-binary"));
   Fdo_braindead_shortcircuit_evaluation (octave_value (true));
   Ffixed_point_format (octave_value (true));
   Fhistory_timestamp_format_string (octave_value ("%%-- %D %I:%M %p --%%"));
@@ -681,8 +682,12 @@ octave_process_command_line (int argc, char **argv)
           break;
 
         case 'H':
-          Fsaving_history (octave_value (false));
+          Fhistory_save (octave_value (false));
           read_history_file = false;
+          break;
+
+        case 'W':
+          no_window_system = true;
           break;
 
         case 'V':
@@ -771,8 +776,8 @@ octave_process_command_line (int argc, char **argv)
             Finfo_program (octave_value (optarg));
           break;
 
-        case JIT_DEBUGGING_OPTION:
-          Fenable_jit_debugging (octave_value (true));
+        case DEBUG_JIT_OPTION:
+          Fdebug_jit (octave_value (true));
           break;
 
         case LINE_EDITING_OPTION:
@@ -792,7 +797,7 @@ octave_process_command_line (int argc, char **argv)
           break;
 
         case NO_JIT_COMPILER_OPTION:
-          Fenable_jit_compiler (octave_value (false));
+          Fjit_enable (octave_value (false));
           break;
 
         case NO_LINE_EDITING_OPTION:
@@ -801,10 +806,6 @@ octave_process_command_line (int argc, char **argv)
 
         case NO_SITE_FILE_OPTION:
           read_site_files = 0;
-          break;
-
-        case NO_WINDOW_SYSTEM_OPTION:
-          no_window_system = true;
           break;
 
         case PERSIST_OPTION:
@@ -960,7 +961,11 @@ octave_execute_interpreter (void)
       int parse_status = execute_eval_option_code (code_to_eval);
 
       if (! (persist || remaining_args > 0))
-        clean_up_and_exit (parse_status || error_state ? 1 : 0);
+        {
+          quitting_gracefully = true;
+
+          clean_up_and_exit (parse_status || error_state ? 1 : 0);
+        }
     }
 
   if (remaining_args > 0)

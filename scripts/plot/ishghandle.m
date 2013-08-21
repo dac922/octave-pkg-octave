@@ -19,6 +19,10 @@
 ## -*- texinfo -*-
 ## @deftypefn {Function File} {} ishghandle (@var{h})
 ## Return true if @var{h} is a graphics handle and false otherwise.
+##
+## This function is equivalent to @code{ishandle} and is provided for
+## compatibility with @sc{matlab}.
+## @seealso{ishandle}
 ## @end deftypefn
 
 function retval = ishghandle (h)
@@ -48,7 +52,7 @@ endfunction
 %!   t = text;
 %!   assert (ishghandle (t));
 %!   assert (! ishghandle (-t));
-%!   i = image;
+%!   i = image ([1]);
 %!   assert (ishghandle (i));
 %!   assert (! ishghandle (-i));
 %!   hg = hggroup;

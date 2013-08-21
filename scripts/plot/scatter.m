@@ -20,30 +20,42 @@
 ## @deftypefn  {Function File} {} scatter (@var{x}, @var{y})
 ## @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s})
 ## @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s}, @var{c})
-## @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s}, @var{c}, @var{style})
-## @deftypefnx {Function File} {} scatter (@var{x}, @var{y}, @var{s}, @var{c}, @var{prop}, @var{val})
+## @deftypefnx {Function File} {} scatter (@dots{}, @var{style})
 ## @deftypefnx {Function File} {} scatter (@dots{}, "filled")
-## @deftypefnx {Function File} {} scatter (@var{h}, @dots{})
+## @deftypefnx {Function File} {} scatter (@dots{}, @var{prop}, @var{val}, @dots{})
+## @deftypefnx {Function File} {} scatter (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} scatter (@dots{})
+## Draw a 2-D scatter plot.
 ##
-## Plot a scatter plot of the data.  A marker is plotted at each point
-## defined by the points in the vectors @var{x} and @var{y}.  The size of
-## the markers used is determined by the @var{s}, which can be a scalar,
-## a vector of the same length of @var{x} and @var{y}.  If @var{s} is not
-## given or is an empty matrix, then the default value of 8 points is used.
+## A marker is plotted at each point defined by the coordinates in the vectors
+## @var{x} and  @var{y}.
+##
+## The size of the markers is determined by @var{s}, which can be a scalar
+## or a vector of the same length as @var{x} and @var{y}.  If @var{s}
+## is not given, or is an empty matrix, then a default value of 8 points is
+## used.
 ##
 ## The color of the markers is determined by @var{c}, which can be a string
-## defining a fixed color; a 3-element vector giving the red, green,and blue
+## defining a fixed color; a 3-element vector giving the red, green, and blue
 ## components of the color; a vector of the same length as @var{x} that gives
-## a scaled index into the current colormap; or a @var{n}-by-3 matrix defining
-## the colors of each of the markers individually.
+## a scaled index into the current colormap; or an @nospell{Nx3} matrix defining
+## the RGB color of each marker individually.
 ##
 ## The marker to use can be changed with the @var{style} argument, that is a
 ## string defining a marker in the same manner as the @code{plot} command.
-## If the argument @code{"filled"} is given then the markers as filled.  All
-## additional arguments are passed to the underlying patch command.
+## If no marker is specified it defaults to @qcode{"o"} or circles.
+## If the argument @qcode{"filled"} is given then the markers are filled.
 ##
-## The optional return value @var{h} provides a handle to the patch object
+## Additional property/value pairs are passed directly to the underlying
+## patch object.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a graphics handle to the created patch
+## object.
+## 
+## Example:
 ##
 ## @example
 ## @group
@@ -53,28 +65,33 @@
 ## @end group
 ## @end example
 ##
-## @seealso{plot, patch, scatter3}
+## @seealso{scatter3, patch, plot}
 ## @end deftypefn
 
 function retval = scatter (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("scatter", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("scatter", varargin{:});
 
   if (nargin < 2)
     print_usage ();
   else
-    oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
     unwind_protect
-      axes (h);
-      newplot ();
-      tmp = __scatter__ (h, 2, "scatter", varargin{:});
+      hax = newplot (hax);
+      
+      htmp = __scatter__ (hax, 2, "scatter", varargin{:});
     unwind_protect_cleanup
-      axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
     end_unwind_protect
   endif
 
   if (nargout > 0)
-    retval = tmp;
+    retval = htmp;
   endif
 
 endfunction
@@ -85,7 +102,7 @@ endfunction
 %! x = randn (100, 1);
 %! y = randn (100, 1);
 %! scatter (x, y, 'r');
-%! title ('Scatter plot with red bubbles');
+%! title ('scatter() plot with red bubbles');
 
 %!demo
 %! clf;
@@ -93,34 +110,15 @@ endfunction
 %! y = randn (100, 1);
 %! c = x .* y;
 %! scatter (x, y, 20, c, 'filled');
-%! title ('Scatter with colors');
+%! title ('scatter() with colored filled bubbles');
 
 %!demo
 %! clf;
 %! x = randn (100, 1);
 %! y = randn (100, 1);
 %! scatter (x, y, [], sqrt (x.^2 + y.^2));
-%! title ('Scatter plot with bubble color determined by distance from origin');
-
-%!demo
-%! clf;
-%! rand_10x1_data1 = [0.171577, 0.404796, 0.025469, 0.335309, 0.047814, 0.898480, 0.639599, 0.700247, 0.497798, 0.737940];
-%! rand_10x1_data2 = [0.75495, 0.83991, 0.80850, 0.73603, 0.19360, 0.72573, 0.69371, 0.74388, 0.13837, 0.54143];
-%! x = rand_10x1_data1;
-%! y = rand_10x1_data2;
-%! s = 10 - 10*log (x.^2 + y.^2);
-%! h = scatter (x, y, s, s, 's', 'filled');
-%! title ({'Scatter plot with filled square markers', ...
-%!         'size and color of markers determined by algorithm'});
-
-%!demo
-%! clf;
-%! rand_10x1_data3 = [0.42262, 0.51623, 0.65992, 0.14999, 0.68385, 0.55929, 0.52251, 0.92204, 0.19762, 0.93726];
-%! rand_10x1_data4 = [0.020207, 0.527193, 0.443472, 0.061683, 0.370277, 0.947349, 0.249591, 0.666304, 0.134247, 0.920356];
-%! x = rand_10x1_data3;
-%! y = rand_10x1_data4;
-%! s = 10 - 10*log (x.^2 + y.^2);
-%! h = scatter (x, y, [], 'r', 's', 'filled');
+%! title ({'scatter() plot'; ...
+%!         'bubble color determined by distance from origin'});
 
 %!demo
 %! clf;
@@ -130,6 +128,30 @@ endfunction
 %! y = rand_10x1_data6;
 %! s = 10 - 10*log (x.^2 + y.^2);
 %! h = scatter (x, y, [], 'r', 's');
+%! title ({'scatter() plot'; ...
+%!         'marker is square, color is red'});
+
+%!demo
+%! clf;
+%! rand_10x1_data3 = [0.42262, 0.51623, 0.65992, 0.14999, 0.68385, 0.55929, 0.52251, 0.92204, 0.19762, 0.93726];
+%! rand_10x1_data4 = [0.020207, 0.527193, 0.443472, 0.061683, 0.370277, 0.947349, 0.249591, 0.666304, 0.134247, 0.920356];
+%! x = rand_10x1_data3;
+%! y = rand_10x1_data4;
+%! s = 10 - 10*log (x.^2 + y.^2);
+%! h = scatter (x, y, [], 'r', 's', 'filled');
+%! title ({'scatter() plot'; ...
+%!         'marker is square, marker is filled, color is red'});
+
+%!demo
+%! clf;
+%! rand_10x1_data1 = [0.171577, 0.404796, 0.025469, 0.335309, 0.047814, 0.898480, 0.639599, 0.700247, 0.497798, 0.737940];
+%! rand_10x1_data2 = [0.75495, 0.83991, 0.80850, 0.73603, 0.19360, 0.72573, 0.69371, 0.74388, 0.13837, 0.54143];
+%! x = rand_10x1_data1;
+%! y = rand_10x1_data2;
+%! s = 10 - 10*log (x.^2 + y.^2);
+%! h = scatter (x, y, s, s, 's', 'filled');
+%! title ({'scatter() plot with filled square markers', ...
+%!         'size and color of markers determined by algorithm'});
 
 %!demo
 %! clf;

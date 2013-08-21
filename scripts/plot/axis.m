@@ -23,9 +23,9 @@
 ## @deftypefnx {Function File} {} axis ([@var{x}_lo @var{x}_hi @var{y}_lo @var{y}_hi @var{z}_lo @var{z}_hi])
 ## @deftypefnx {Function File} {} axis (@var{option})
 ## @deftypefnx {Function File} {} axis (@dots{}, @var{option})
-## @deftypefnx {Function File} {} axis (@var{h}, @dots{})
+## @deftypefnx {Function File} {} axis (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{limits} =} axis ()
-## Set axis limits for plots.
+## Set axis limits and appearance.
 ##
 ## The argument @var{limits} should be a 2-, 4-, or 6-element vector.  The
 ## first and second elements specify the lower and upper limits for the
@@ -34,7 +34,8 @@
 ##
 ## Without any arguments, @code{axis} turns autoscaling on.
 ##
-## With one output argument, @code{x = axis} returns the current axes.
+## With one output argument, @code{@var{limits} = axis} returns the current
+## axis limits.
 ##
 ## The vector argument specifying limits is optional, and additional
 ## string arguments may be used to specify various axis properties.  For
@@ -59,97 +60,103 @@
 ## The following options control the aspect ratio of the axes.
 ##
 ## @table @asis
-## @item "square"
+## @item @qcode{"square"}
 ## Force a square aspect ratio.
 ##
-## @item "equal"
+## @item @qcode{"equal"}
 ## Force x distance to equal y-distance.
 ##
-## @item "normal"
-## Restore the balance.
+## @item @qcode{"normal"}
+## Restore default aspect ratio.
 ## @end table
 ##
 ## @noindent
 ## The following options control the way axis limits are interpreted.
 ##
 ## @table @asis
-## @item "auto"
+## @item @qcode{"auto"}
 ## Set the specified axes to have nice limits around the data
 ## or all if no axes are specified.
 ##
-## @item "manual"
+## @item @qcode{"manual"}
 ## Fix the current axes limits.
 ##
-## @item "tight"
+## @item @qcode{"tight"}
 ## Fix axes to the limits of the data.
-## @end table
 ##
-## @noindent
-## The option @code{"image"} is equivalent to @code{"tight"} and
-## @code{"equal"}.
+## @item @qcode{"image"}
+## Equivalent to @qcode{"tight"} and @qcode{"equal"}.
+## @end table
 ##
 ## @noindent
 ## The following options affect the appearance of tic marks.
 ##
 ## @table @asis
-## @item "on"
+## @item @qcode{"on"}
 ## Turn tic marks and labels on for all axes.
 ##
-## @item "off"
+## @item @qcode{"off"}
 ## Turn tic marks off for all axes.
 ##
-## @item "tic[xyz]"
+## @item @qcode{"tic[xyz]"}
 ## Turn tic marks on for all axes, or turn them on for the
 ## specified axes and off for the remainder.
 ##
-## @item "label[xyz]"
+## @item @qcode{"label[xyz]"}
 ## Turn tic labels on for all axes, or turn them on for the
 ## specified axes and off for the remainder.
 ##
-## @item "nolabel"
+## @item @qcode{"nolabel"}
 ## Turn tic labels off for all axes.
 ## @end table
 ##
 ## Note, if there are no tic marks for an axis, there can be no labels.
 ##
 ## @noindent
-## The following options affect the direction of increasing values on
-## the axes.
+## The following options affect the direction of increasing values on the axes.
 ##
 ## @table @asis
-## @item "ij"
+## @item @qcode{"ij"}
 ## Reverse y-axis, so lower values are nearer the top.
 ##
-## @item "xy"
+## @item @qcode{"xy"}
 ## Restore y-axis, so higher values are nearer the top.
 ## @end table
 ##
-## If an axes handle is passed as the first argument, then operate on
-## this axes rather than the current axes.
+## If the first argument @var{hax} is an axes handle, then operate on
+## this axes rather than the current axes returned by @code{gca}.
+##
+## @seealso{xlim, ylim, zlim, daspect, pbaspect, box, grid}
 ## @end deftypefn
 
 ## Author: jwe
 
-function varargout = axis (varargin)
+function limits = axis (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("axis", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("axis", varargin{:});
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    varargout = cell (max (nargin == 0, nargout), 1);
-    if (isempty (varargout))
-      __axis__ (h, varargin{:});
+    if (isempty (hax))
+      hax = gca ();
+    endif
+    if (nargin == 0)
+      limits = __axis__ (hax, varargin{:});
     else
-      [varargout{:}] = __axis__ (h, varargin{:});
+      __axis__ (hax, varargin{:});
     endif
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
 endfunction
 
-function curr_axis = __axis__ (ca, ax, varargin)
+function limits = __axis__ (ca, ax, varargin)
 
   if (nargin == 1)
     if (nargout == 0)
@@ -159,10 +166,10 @@ function curr_axis = __axis__ (ca, ax, varargin)
       ylim = get (ca, "ylim");
       view = get (ca, "view");
       if (view(2) == 90)
-        curr_axis = [xlim, ylim];
+        limits = [xlim, ylim];
       else
         zlim = get (ca, "zlim");
-        curr_axis = [xlim, ylim, zlim];
+        limits = [xlim, ylim, zlim];
       endif
     endif
 
@@ -344,11 +351,27 @@ endfunction
 
 function __do_tight_option__ (ca)
 
-  set (ca,
-       "xlim", __get_tight_lims__ (ca, "x"),
-       "ylim", __get_tight_lims__ (ca, "y"));
+  xlim = __get_tight_lims__ (ca, "x");
+  if (all (xlim == 0))
+    xlim = eps () * [-1 1];
+  elseif (diff (xlim == 0))
+    xlim = xlim .* (1 + eps () * [-1, 1]);
+  endif
+  ylim = __get_tight_lims__ (ca, "y");
+  if (all (ylim == 0))
+    ylim = eps () * [-1 1];
+  elseif (diff (ylim == 0))
+    ylim = ylim .* (1 + eps () * [-1, 1]);
+  endif
+  set (ca, "xlim", xlim, "ylim", ylim)
   if (__calc_dimensions__ (ca) > 2)
-    set (ca, "zlim", __get_tight_lims__ (ca, "z"));
+    zlim = __get_tight_lims__ (ca, "z");
+    if (all (zlim == 0))
+      zlim = eps () * [-1 1];
+    elseif (diff (zlim == 0))
+      zlim = zlim .* (1 + eps () * [-1, 1]);
+    endif
+    set (ca, "zlim", zlim);
   endif
 
 endfunction
@@ -471,7 +494,7 @@ endfunction
 %!  axis ('autox');
 %!
 %! subplot (325);
-%!  plot (t, x, ';sine [0:2p];');
+%!  plot (t, x, ';sine [0:2pi];');
 %!  title ('axes at [3 6 0 1], then autoy');
 %!  axis ([3,6,0,1]);
 %!  axis ('autoy');
@@ -486,7 +509,7 @@ endfunction
 %! x = 0:0.1:10;
 %! plot (x, sin(x));
 %! axis image;
-%! title ('image');
+%! title ({'image', 'equivalent to "tight" & "equal"'});
 
 %!demo
 %! clf;
@@ -518,20 +541,20 @@ endfunction
 %! x = -10:0.1:10;
 %! y = sin (x)./(1 + abs (x)) + 0.1*x - 0.4;
 %! plot (x, y);
-%! title ('no plot box');
 %! set (gca, 'xaxislocation', 'zero');
 %! set (gca, 'yaxislocation', 'zero');
 %! box off;
+%! title ({'no plot box', 'xaxislocation = zero, yaxislocation = zero'});
 
 %!demo
 %! clf;
 %! x = -10:0.1:10;
 %! y = sin (x)./(1+abs (x)) + 0.1*x - 0.4;
 %! plot (x, y);
-%! title ('no plot box');
 %! set (gca, 'xaxislocation', 'zero');
 %! set (gca, 'yaxislocation', 'left');
 %! box off;
+%! title ({'no plot box', 'xaxislocation = zero, yaxislocation = left'});
 
 %!demo
 %! clf;
@@ -542,26 +565,27 @@ endfunction
 %! set (gca, 'xaxislocation', 'zero');
 %! set (gca, 'yaxislocation', 'right');
 %! box off;
+%! title ({'no plot box', 'xaxislocation = zero, yaxislocation = right'});
 
 %!demo
 %! clf;
 %! x = -10:0.1:10;
 %! y = sin (x)./(1+abs (x)) + 0.1*x - 0.4;
 %! plot (x, y);
-%! title ('no plot box');
 %! set (gca, 'xaxislocation', 'bottom');
 %! set (gca, 'yaxislocation', 'zero');
 %! box off;
+%! title ({'no plot box', 'xaxislocation = bottom, yaxislocation = zero'});
 
 %!demo
 %! clf;
 %! x = -10:0.1:10;
 %! y = sin (x)./(1+abs (x)) + 0.1*x - 0.4;
 %! plot (x, y);
-%! title ('no plot box');
 %! set (gca, 'xaxislocation', 'top');
 %! set (gca, 'yaxislocation', 'zero');
 %! box off;
+%! title ({'no plot box', 'xaxislocation = top, yaxislocation = zero'});
 
 %!test
 %! hf = figure ("visible", "off");

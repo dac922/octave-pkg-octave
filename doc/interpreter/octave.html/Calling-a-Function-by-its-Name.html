@@ -72,16 +72,16 @@ Newton's method.
 functions and should not be taken too seriously.  In addition to using a
 more robust algorithm, any serious code would check the number and type
 of all the arguments, ensure that the supplied function really was a
-function, etc.  See <a href="Predicates-for-Numeric-Objects.html#Predicates-for-Numeric-Objects">Predicates for Numeric Objects</a>, for example,
+function, etc.  See <a href="Predicates-for-Numeric-Objects.html#Predicates-for-Numeric-Objects">Predicates for Numeric Objects</a>,
 for a list of predicates for numeric objects, and see <a href="Status-of-Variables.html#Status-of-Variables">Status of Variables</a>, for a description of the <code>exist</code> function.
 
 <!-- feval libinterp/parse-tree/oct-parse.cc -->
-   <p><a name="doc_002dfeval"></a>
+   <p><a name="XREFfeval"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>feval</b> (<var>name, <small class="dots">...</small></var>)<var><a name="index-feval-712"></a></var><br>
+&mdash; Built-in Function:  <b>feval</b> (<var>name, <small class="dots">...</small></var>)<var><a name="index-feval-724"></a></var><br>
 <blockquote><p>Evaluate the function named <var>name</var>.  Any arguments after the first
-are passed on to the named function.  For example,
+are passed as inputs to the named function.  For example,
 
      <pre class="example">          feval ("acos", -1)
                &rArr; 3.1416
@@ -101,27 +101,29 @@ offer.  For example,
               &rArr; 2.7183
 </pre>
         <p class="noindent">are equivalent ways to call the function referred to by <var>f</var>.  If it
-cannot be predicted beforehand that <var>f</var> is a function handle or the
-function name in a string, <code>feval</code> can be used instead. 
+cannot be predicted beforehand whether <var>f</var> is a function handle,
+function name in a string, or inline function then <code>feval</code> can be used
+instead. 
 </p></blockquote></div>
 
    <p>A similar function <code>run</code> exists for calling user script files, that
 are not necessarily on the user path
 
 <!-- run scripts/miscellaneous/run.m -->
-   <p><a name="doc_002drun"></a>
+   <p><a name="XREFrun"></a>
 
 <div class="defun">
-&mdash; Command:  <b>run</b><var> script<a name="index-run-713"></a></var><br>
-&mdash; Function File:  <b>run</b> (<var>script</var>)<var><a name="index-run-714"></a></var><br>
+&mdash; Command:  <b>run</b><var> script<a name="index-run-725"></a></var><br>
+&mdash; Function File:  <b>run</b> (<var>script</var>)<var><a name="index-run-726"></a></var><br>
 <blockquote><p>Run scripts in the current workspace that are not necessarily on the
 path.  If <var>script</var> is the script to run, including its path, then
 <code>run</code> changes the directory to the directory where <var>script</var> is
 found.  <code>run</code> then executes the script, and returns to the original
 directory.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsystem.html#doc_002dsystem">system</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsystem.html#XREFsystem">system</a>.
+
+        </blockquote></div>
 
    </body></html>
 

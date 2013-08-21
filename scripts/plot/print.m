@@ -21,17 +21,18 @@
 ## @deftypefnx {Function File} {} print (@var{options})
 ## @deftypefnx {Function File} {} print (@var{filename}, @var{options})
 ## @deftypefnx {Function File} {} print (@var{h}, @var{filename}, @var{options})
-## Print a plot, or save it to a file.  Both output formatted for 
-## printing (PDF and PostScript), and many bitmapped and vector
-## image formats are supported.
+## Print a plot, or save it to a file.
+##
+## Both output formatted for printing (PDF and PostScript), and many bitmapped
+## and vector image formats are supported.
 ##
 ## @var{filename} defines the name of the output file.  If the
 ## file name has no suffix, one is inferred from the specified
 ## device and appended to the file name.  If no filename is
 ## specified, the output is sent to the printer.
 ##
-## @var{h} specifies the figure handle.  If no handle is specified
-## the handle for the current figure is used.
+## @var{h} specifies the handle of the figure to print.  If no handle is
+## specified the current figure is used.
 ##
 ## For output to a printer, PostScript file, or PDF file,
 ## the paper size is specified by the figure's @code{papersize}
@@ -56,25 +57,25 @@
 ##
 ## @item -G@var{ghostscript_command}
 ##   Specify the command for calling Ghostscript.  For Unix and Windows
-## the defaults are 'gs' and 'gswin32c', respectively.
+## the defaults are @qcode{"gs"} and @qcode{"gswin32c"}, respectively.
 ##
-## @item -color
+## @item  -color
 ## @itemx -mono
-##   Monochrome or color output.
+##   Color or monochrome output.
 ##
-## @item -solid
+## @item  -solid
 ## @itemx -dashed
 ##   Force all lines to be solid or dashed, respectively.
 ##
-## @item -portrait
+## @item  -portrait
 ## @itemx -landscape
 ##   Specify the orientation of the plot for printed output.  For
 ## non-printed output the aspect ratio of the output corresponds to
-## the plot area defined by the "paperposition" property in the
-## orientation specified.  This options is equivalent to changing
-## the figure's "paperorientation" property.
+## the plot area defined by the @qcode{"paperposition"} property in the
+## orientation specified.  This option is equivalent to changing
+## the figure's @qcode{"paperorientation"} property.
 ##
-## @item -TextAlphaBits=@var{n}
+## @item  -TextAlphaBits=@var{n}
 ## @itemx -GraphicsAlphaBits=@var{n}
 ##   Octave is able to produce output for various printers, bitmaps, and
 ## vector formats by using Ghostscript.
@@ -88,21 +89,21 @@
 ## and is one of:
 ##
 ##   @table @code
-##   @item ps
+##   @item  ps
 ##   @itemx ps2
 ##   @itemx psc
 ##   @itemx psc2
-##     Postscript (level 1 and 2, mono and color).  The FLTK graphics
-## toolkit generates Postscript level 3.0.
+##     PostScript (level 1 and 2, mono and color).  The FLTK graphics
+## toolkit generates PostScript level 3.0.
 ##
-##   @item eps
+##   @item  eps
 ##   @itemx eps2
 ##   @itemx epsc
 ##   @itemx epsc2
-##     Encapsulated postscript (level 1 and 2, mono and color).  The FLTK
-## graphic toolkit generates Postscript level 3.0.
+##     Encapsulated PostScript (level 1 and 2, mono and color).  The FLTK
+## graphic toolkit generates PostScript level 3.0.
 ##
-##   @item tex
+##   @item  tex
 ##   @itemx epslatex
 ##   @itemx epslatexstandalone
 ##   @itemx pstex
@@ -119,18 +120,18 @@
 ##     Generate a @LaTeX{} file using PGF/TikZ@.  For the FLTK toolkit
 ## the result is PGF.
 ##
-##   @item ill
+##   @item  ill
 ##   @itemx aifm
 ##     Adobe Illustrator (Obsolete for Gnuplot versions > 4.2)
 ##
-##   @item cdr
+##   @item  cdr
 ##   @itemx @nospell{corel}
 ##     CorelDraw
 ##
 ##   @item dxf
 ##     AutoCAD
 ##
-##   @item emf
+##   @item  emf
 ##   @itemx meta
 ##     Microsoft Enhanced Metafile
 ##
@@ -149,7 +150,7 @@
 ##   @item png
 ##     Portable network graphics
 ##
-##   @item jpg
+##   @item  jpg
 ##   @itemx jpeg
 ##     JPEG image
 ##
@@ -167,7 +168,7 @@
 ##   @end table
 ##
 ##   If the device is omitted, it is inferred from the file extension,
-## or if there is no filename it is sent to the printer as postscript.
+## or if there is no filename it is sent to the printer as PostScript.
 ##
 ## @item -d@var{ghostscript_device}
 ##   Additional devices are supported by Ghostscript.
@@ -175,7 +176,7 @@
 ##
 ##   @table @code
 ##   @item ljet2p
-##     HP LaserJet IIP
+##     HP LaserJet @nospell{IIP}
 ##
 ##   @item ljet3
 ##     HP LaserJet III
@@ -199,24 +200,25 @@
 ##     Produces pdf output from eps
 ##   @end table
 ##
-##   For a complete list, type `system ("gs -h")' to see what formats
+##   For a complete list, type @code{system ("gs -h")} to see what formats
 ## and devices are available.
 ##
 ##   When Ghostscript output is sent to a printer the size is determined
-## by the figure's "papersize" property.  When the output
+## by the figure's @qcode{"papersize"} property.  When the output
 ## is sent to a file the size is determined by the plot box defined by
-## the figure's "paperposition" property.
+## the figure's @qcode{"paperposition"} property.
 ##
 ## @item -append
-##   Append Postscript or PDF output to a pre-existing file of the same type.
+##   Append PostScript or PDF output to a pre-existing file of the same type.
 ##
 ## @item -r@var{NUM}
 ##   Resolution of bitmaps in pixels per inch.  For both metafiles and
 ## SVG the default is the screen resolution; for other formats it is 150 dpi.
-## To specify screen resolution, use "-r0".
+## To specify screen resolution, use @qcode{"-r0"}.
 ##
-## @item -tight
-##   Force a tight bounding box for eps files.
+## @item  -loose
+## @itemx -tight
+##   Force a tight or loose bounding box for eps files.  The default is loose.
 ##
 ## @item -@var{preview}
 ##   Add a preview to eps files.  Supported formats are:
@@ -239,11 +241,11 @@
 ##   Plot size in pixels for EMF, GIF, JPEG, PBM, PNG, and SVG@.  For
 ## PS, EPS, PDF, and other vector formats the plot size is in points.
 ## This option is equivalent to changing the size of the plot box
-## associated with the "paperposition" property.  When using the command form
-## of the print function you must quote the @var{xsize},@var{ysize}
-## option.  For example, by writing @w{"-S640,480"}.
+## associated with the @qcode{"paperposition"} property.  When using the
+## command form of the print function you must quote the
+## @var{xsize},@var{ysize} option.  For example, by writing @w{"-S640,480"}.
 ##
-## @item -F@var{fontname}
+## @item  -F@var{fontname}
 ## @itemx -F@var{fontname}:@var{size}
 ## @itemx -F:@var{size}
 ##   Use @var{fontname} and/or @var{fontsize} for all text.
@@ -263,18 +265,17 @@
 ## @end group
 ## @end example
 ##
-## Example: Print to an HP Deskjet 550C.
+## Example: Print to an HP DeskJet 550C.
 ##
 ## @example
 ## @group
-## figure (1);
 ## clf ();
 ## surf (peaks);
 ## print -dcdj550
 ## @end group
 ## @end example
 ##
-## @seealso{figure, orient, saveas}
+## @seealso{saveas, orient, figure}
 ## @end deftypefn
 
 function print (varargin)
@@ -292,7 +293,7 @@ function print (varargin)
   endif
 
   orig_figure = get (0, "currentfigure");
-  figure (opts.figure);
+  set (0, "currentfigure", opts.figure);
 
   if (opts.append_to_file)
     [~, ~, ext] = fileparts (opts.ghostscript.output);
@@ -410,10 +411,10 @@ function print (varargin)
 
     ## call the graphcis toolkit print script
     switch (get (opts.figure, "__graphics_toolkit__"))
-    case "gnuplot"
-      opts = __gnuplot_print__ (opts);
-    otherwise
-      opts = __fltk_print__ (opts);
+      case "gnuplot"
+        opts = __gnuplot_print__ (opts);
+      otherwise
+        opts = __fltk_print__ (opts);
     endswitch
 
   unwind_protect_cleanup
@@ -436,7 +437,7 @@ function print (varargin)
   end_unwind_protect
 
   if (isfigure (orig_figure))
-    figure (orig_figure);
+    set (0, "currentfigure", orig_figure);
   endif
 
 endfunction
@@ -495,19 +496,19 @@ function cmd = epstool (opts, filein, fileout)
       if (opts.tight_flag)
         cmd = "--copy --bbox";
       elseif (! isempty (opts.preview))
-        switch opts.preview
-        case "tiff"
-          cmd = sprintf ("--add-%s-preview --device tiffg3", opts.preview);
-        case {"tiff6u", "tiff6p", "metafile"}
-          cmd = sprintf ("--add-%s-preview --device bmpgray", opts.preview);
-        case {"tiff4", "interchange"}
-          cmd = sprintf ("--add-%s-preview", opts.preview);
-        case "pict"
-          cmd = sprintf ("--add-%s-preview --mac-single", opts.preview);
-        otherwise
-          error ("print:invalidpreview",
-                 "print.m: epstool cannot include preview for format '%s'",
-                 opts.preview);
+        switch (opts.preview)
+          case "tiff"
+            cmd = sprintf ("--add-%s-preview --device tiffg3", opts.preview);
+          case {"tiff6u", "tiff6p", "metafile"}
+            cmd = sprintf ("--add-%s-preview --device bmpgray", opts.preview);
+          case {"tiff4", "interchange"}
+            cmd = sprintf ("--add-%s-preview", opts.preview);
+          case "pict"
+            cmd = sprintf ("--add-%s-preview --mac-single", opts.preview);
+          otherwise
+            error ("print:invalidpreview",
+                   "print.m: epstool cannot include preview for format '%s'",
+                   opts.preview);
         endswitch
         if (! isempty (opts.ghostscript.resolution))
           cmd = sprintf ("%s --dpi %d", cmd, opts.ghostscript.resolution);
@@ -617,16 +618,16 @@ function latex_standalone (opts)
     opts.name = opts.name(1:n-1);
   endif
   latexfile = strcat (opts.name, ".tex");
-  switch opts.devopt
-  case {"pdflatexstandalone"}
-    packages = "\\usepackage{graphicx,color}";
-    graphicsfile = strcat (opts.name, "-inc.pdf");
-  case {"pslatexstandalone"}
-    packages = "\\usepackage{epsfig,color}";
-    graphicsfile = strcat (opts.name, "-inc.ps");
-  otherwise
-    packages = "\\usepackage{epsfig,color}";
-    graphicsfile = strcat (opts.name, "-inc.eps");
+  switch (opts.devopt)
+    case {"pdflatexstandalone"}
+      packages = "\\usepackage{graphicx,color}";
+      graphicsfile = strcat (opts.name, "-inc.pdf");
+    case {"pslatexstandalone"}
+      packages = "\\usepackage{epsfig,color}";
+      graphicsfile = strcat (opts.name, "-inc.ps");
+    otherwise
+      packages = "\\usepackage{epsfig,color}";
+      graphicsfile = strcat (opts.name, "-inc.eps");
   endswitch
   papersize = sprintf ("\\usepackage[papersize={%.2fbp,%.2fbp},text={%.2fbp,%.2fbp}]{geometry}",
                        opts.canvas_size, opts.canvas_size);

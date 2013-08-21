@@ -20,12 +20,23 @@
 ## @deftypefn  {Command} {} figure
 ## @deftypefnx {Command} {} figure @var{n}
 ## @deftypefnx {Function File} {} figure (@var{n})
-## @deftypefnx {Function File} {} figure (@var{n}, "@var{property}", @var{value}, @dots{})
-## Set the current plot window to plot window @var{n}.  If no arguments are
-## specified, the next available window number is chosen.
+## @deftypefnx {Function File} {} figure (@dots{}, "@var{property}", @var{value}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} figure (@var{dots})
+## Create a new figure window for plotting.
 ##
-## Multiple property-value pairs may be specified for the figure, but they
-## must appear in pairs.
+## If no arguments are specified, a new figure with the next available number
+## is created.
+##
+## If called with an integer @var{n}, and no such numbered figure exists, then
+## a new figure with the specified number is created.  If the figure already
+## exists then it is made visible and becomes the current figure for plotting.
+## 
+## Multiple property-value pairs may be specified for the figure object, but
+## they must appear in pairs.
+##
+## The optional return value @var{h} is a graphics handle to the created figure
+## object.
+## @seealso{axes, gcf, clf, close}
 ## @end deftypefn
 
 ## Author: jwe, Bill Denney
@@ -34,60 +45,63 @@ function h = figure (varargin)
 
   nargs = nargin;
 
-  f = NaN;
-
-  init_new_figure = false;
-  if (mod (nargs, 2) == 1)
-    tmp = varargin{1};
-    if (ischar (tmp))
-      tmp = str2double (tmp);
+  if (mod (nargs, 2) == 0)
+    f = NaN;
+    init_new_figure = true;
+  else
+    arg = varargin{1};
+    if (ischar (arg))
+      arg = str2double (arg);
     endif
-    if (isfigure (tmp))
-      f = tmp;
+    if (isfigure (arg))
+      f = arg;
+      init_new_figure = false;
       varargin(1) = [];
       nargs--;
-    elseif (isnumeric (tmp) && tmp > 0 && tmp == fix (tmp))
-      f = tmp;
+    elseif (isnumeric (arg) && isscalar (arg) && arg > 0 && arg == fix (arg))
+      f = arg;
       init_new_figure = true;
       varargin(1) = [];
       nargs--;
     else
-      error ("figure: expecting figure handle or figure number");
+      error ("figure: N must be figure handle or figure number");
     endif
+  endif
+
+  if (rem (nargs, 2) == 1)
+    error ("figure: PROPERTY/VALUE arguments must be in pairs");
   endif
 
   ## Check to see if we already have a figure on the screen.  If we do,
   ## then update it if it is different from the figure we are creating
   ## or switching to.
-  cf = get (0, "currentfigure");   # Can't use gcf () because it calls figure ()
+  cf = get (0, "currentfigure");   # Can't use gcf () because it calls figure()
   if (! isempty (cf) && cf != 0)
-    if (isnan (f) || cf != f)
+    if (init_new_figure || cf != f)
       drawnow ();
     endif
   endif
 
-  if (rem (nargs, 2) == 0)
-    if (isnan (f) || init_new_figure)
-      if (ismac () && strcmp (graphics_toolkit (), "fltk"))
-        ## FIXME - Hack for fltk-aqua to work around bug #31931
-        f = __go_figure__ (f);
-        drawnow ();
-        if (! isempty (varargin))
-          set (f, varargin{:});
-        endif
-      else
-        f = __go_figure__ (f, varargin{:});
+  if (init_new_figure)
+    if (ismac () && strcmp (graphics_toolkit (), "fltk"))
+      ## FIXME: Hack for fltk-aqua to work around bug #31931
+      f = __go_figure__ (f);
+      drawnow ();
+      if (! isempty (varargin))
+        set (f, varargin{:});
       endif
-    elseif (nargs > 0)
-      set (f, varargin{:});
+    else
+      f = __go_figure__ (f, varargin{:});
     endif
-    set (0, "currentfigure", f);
-  else
-    print_usage ();
+    __add_default_menu__ (f);
+  elseif (nargs > 0)
+    set (f, varargin{:});
   endif
 
-  if (strcmp (get (f, "__graphics_toolkit__"), "fltk"))
-    __add_default_menu__ (f);
+  set (0, "currentfigure", f);
+  ## When switching to figure N, make figure visible and on top of stack.
+  if (! init_new_figure)
+    set (f, "visible", "on");
   endif
 
   if (nargout > 0)
@@ -100,9 +114,14 @@ endfunction
 %!test
 %! hf = figure ("visible", "off");
 %! unwind_protect
-%!   assert (gcf, hf);
+%!   assert (hf, gcf);
 %!   assert (isfigure (hf));
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect
+
+%!error <N must be figure handle or figure number> figure ({1})
+%!error <N must be figure handle or figure number> figure ([1 2])
+%!error <N must be figure handle or figure number> figure (-1)
+%!error <N must be figure handle or figure number> figure (1.5)
 

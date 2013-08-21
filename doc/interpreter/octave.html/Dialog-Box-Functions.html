@@ -37,73 +37,76 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Java-Interface.html#Java-Interface">Jav
 <p>The following functions all use the Java Interface to provide some form
 of dialog box.
 
-   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3687"></a><!-- msgbox scripts/ui/msgbox.m -->
-<a name="doc_002dmsgbox"></a>
+   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3879"></a><!-- msgbox scripts/ui/msgbox.m -->
+<a name="XREFmsgbox"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg</var>)<var><a name="index-msgbox-3688"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title</var>)<var><a name="index-msgbox-3689"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title, icon</var>)<var><a name="index-msgbox-3690"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg</var>)<var><a name="index-msgbox-3880"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title</var>)<var><a name="index-msgbox-3881"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>msgbox</b> (<var>msg, title, icon</var>)<var><a name="index-msgbox-3882"></a></var><br>
 <blockquote><p>Display <var>msg</var> using a message dialog box.
 
         <p>The message may have multiple lines separated by newline characters
-(<code>"\n"</code>), or it may be a cellstr array with one element for each
+(<code>"n"</code>), or it may be a cellstr array with one element for each
 line.  The optional input <var>title</var> (character string) can be used to
 decorate the dialog caption.
 
         <p>The optional argument <var>icon</var> selects a dialog icon. 
-It can be one of <code>"none"</code> (default), <code>"error"</code>, <code>"help"</code>, or
-<code>"warn"</code>.
+It can be one of <code>"none"</code> (default), <code>"error"</code>,
+<code>"help"</code>, or <code>"warn"</code>.
 
         <p>The return value is always 1.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFerrordlg.html#XREFerrordlg">errordlg</a>, <a href="XREFhelpdlg.html#XREFhelpdlg">helpdlg</a>, <a href="XREFinputdlg.html#XREFinputdlg">inputdlg</a>, <a href="XREFlistdlg.html#XREFlistdlg">listdlg</a>, <a href="XREFquestdlg.html#XREFquestdlg">questdlg</a>, <a href="XREFwarndlg.html#XREFwarndlg">warndlg</a>.
 
-   <p><a name="index-dialog_002c-displaying-an-error-dialog-3691"></a><!-- errordlg scripts/ui/errordlg.m -->
-<a name="doc_002derrordlg"></a>
+        </blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-an-error-dialog-3883"></a><!-- errordlg scripts/ui/errordlg.m -->
+<a name="XREFerrordlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg</var>)<var><a name="index-errordlg-3692"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg, title</var>)<var><a name="index-errordlg-3693"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg</var>)<var><a name="index-errordlg-3884"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>errordlg</b> (<var>msg, title</var>)<var><a name="index-errordlg-3885"></a></var><br>
 <blockquote><p>Display <var>msg</var> using an error dialog box.
 
         <p>The message may have multiple lines separated by newline characters
 ("\n"), or it may be a cellstr array with one element for each
 line.  The optional input <var>title</var> (character string) can be used to
-set the dialog caption.  The default title is "Error Dialog".
+set the dialog caption.  The default title is <code>"Error Dialog"</code>.
 
         <p>The return value is always 1.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhelpdlg.html#XREFhelpdlg">helpdlg</a>, <a href="XREFinputdlg.html#XREFinputdlg">inputdlg</a>, <a href="XREFlistdlg.html#XREFlistdlg">listdlg</a>, <a href="XREFmsgbox.html#XREFmsgbox">msgbox</a>, <a href="XREFquestdlg.html#XREFquestdlg">questdlg</a>, <a href="XREFwarndlg.html#XREFwarndlg">warndlg</a>.
 
-   <p><a name="index-dialog_002c-displaying-a-help-dialog-3694"></a><!-- helpdlg scripts/ui/helpdlg.m -->
-<a name="doc_002dhelpdlg"></a>
+        </blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-help-dialog-3886"></a><!-- helpdlg scripts/ui/helpdlg.m -->
+<a name="XREFhelpdlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg</var>)<var><a name="index-helpdlg-3695"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg, title</var>)<var><a name="index-helpdlg-3696"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg</var>)<var><a name="index-helpdlg-3887"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>helpdlg</b> (<var>msg, title</var>)<var><a name="index-helpdlg-3888"></a></var><br>
 <blockquote><p>Display <var>msg</var> in a help dialog box.
 
         <p>The message may have multiple lines separated by newline characters
 ("\n"), or it may be a cellstr array with one element for each
 line.  The optional input <var>title</var> (character string) can be used to
-set the dialog caption.  The default title is "Help Dialog".
+set the dialog caption.  The default title is <code>"Help Dialog"</code>.
 
         <p>The return value is always 1.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFerrordlg.html#XREFerrordlg">errordlg</a>, <a href="XREFinputdlg.html#XREFinputdlg">inputdlg</a>, <a href="XREFlistdlg.html#XREFlistdlg">listdlg</a>, <a href="XREFmsgbox.html#XREFmsgbox">msgbox</a>, <a href="XREFquestdlg.html#XREFquestdlg">questdlg</a>, <a href="XREFwarndlg.html#XREFwarndlg">warndlg</a>.
 
-   <p><a name="index-dialog_002c-displaying-an-input-dialog-3697"></a><!-- inputdlg scripts/ui/inputdlg.m -->
-<a name="doc_002dinputdlg"></a>
+        </blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-an-input-dialog-3889"></a><!-- inputdlg scripts/ui/inputdlg.m -->
+<a name="XREFinputdlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt</var>)<var><a name="index-inputdlg-3698"></a></var><br>
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title</var>)<var><a name="index-inputdlg-3699"></a></var><br>
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols</var>)<var><a name="index-inputdlg-3700"></a></var><br>
-&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols, defaults</var>)<var><a name="index-inputdlg-3701"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt</var>)<var><a name="index-inputdlg-3890"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title</var>)<var><a name="index-inputdlg-3891"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols</var>)<var><a name="index-inputdlg-3892"></a></var><br>
+&mdash; Function File: <var>cstr</var> = <b>inputdlg</b> (<var>prompt, title, rowscols, defaults</var>)<var><a name="index-inputdlg-3893"></a></var><br>
 <blockquote><p>Return user input from a multi-textfield dialog box in a cell array
 of strings, or an empty cell array if the dialog is closed by the
 Cancel button.
@@ -113,7 +116,8 @@ Cancel button.
           <dl>
 <dt><var>prompt</var><dd>A cell array with strings labeling each text field.  This input is required.
 
-          <br><dt><var>title</var><dd>String to use for the caption of the dialog.  The default is "Input Dialog".
+          <br><dt><var>title</var><dd>String to use for the caption of the dialog.  The default is <code>"Input
+Dialog"</code>.
 
           <br><dt><var>rowscols</var><dd>Specifies the size of the text fields and can take three forms:
 
@@ -134,14 +138,15 @@ rows to use and the second column specifies the text field width.
 a cell array of strings with the same size as <var>prompt</var>. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFerrordlg.html#XREFerrordlg">errordlg</a>, <a href="XREFhelpdlg.html#XREFhelpdlg">helpdlg</a>, <a href="XREFlistdlg.html#XREFlistdlg">listdlg</a>, <a href="XREFmsgbox.html#XREFmsgbox">msgbox</a>, <a href="XREFquestdlg.html#XREFquestdlg">questdlg</a>, <a href="XREFwarndlg.html#XREFwarndlg">warndlg</a>.
 
-   <p><a name="index-dialog_002c-displaying-a-list-dialog-3702"></a><!-- listdlg scripts/ui/listdlg.m -->
-<a name="doc_002dlistdlg"></a>
+        </blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-list-dialog-3894"></a><!-- listdlg scripts/ui/listdlg.m -->
+<a name="XREFlistdlg"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>sel</var>, <var>ok</var>] = <b>listdlg</b> (<var>key, value, <small class="dots">...</small></var>)<var><a name="index-listdlg-3703"></a></var><br>
+&mdash; Function File: [<var>sel</var>, <var>ok</var>] = <b>listdlg</b> (<var>key, value, <small class="dots">...</small></var>)<var><a name="index-listdlg-3895"></a></var><br>
 <blockquote><p>Return user inputs from a list dialog box in a vector of
 selection indices <var>sel</var> and a flag <var>ok</var> indicating how the
 user closed the dialog box.  The value of <var>ok</var> is 1 if the user
@@ -151,29 +156,29 @@ empty.
         <p>The indices in <var>sel</var> are 1-based.
 
         <p>The arguments are specified in form of <var>key</var>, <var>value</var> pairs. 
-The "ListString" argument pair must be specified.
+The <code>"ListString"</code> argument pair must be specified.
 
         <p>Valid <var>key</var> and <var>value</var> pairs are:
 
           <dl>
-<dt>"ListString"<dd>a cell array of strings comprising the content of the list.
+<dt><code>"ListString"</code><dd>a cell array of strings comprising the content of the list.
 
-          <br><dt>"SelectionMode"<dd>can be either "Single" or "Multiple" (default).
+          <br><dt><code>"SelectionMode"</code><dd>can be either <code>"Single"</code> or <code>"Multiple"</code> (default).
 
-          <br><dt>"ListSize"<dd>a vector with two elements <var>width</var> and <var>height</var> defining
+          <br><dt><code>"ListSize"</code><dd>a vector with two elements <var>width</var> and <var>height</var> defining
 the size of the list field in pixels.  Default is [160 300].
 
-          <br><dt>"InitialValue"<dd>a vector containing 1-based indices of preselected elements.  Default
+          <br><dt><code>"InitialValue"</code><dd>a vector containing 1-based indices of preselected elements.  Default
 is 1 (first item).
 
-          <br><dt>"Name"<dd>a string to be used as the dialog caption.  Default is "".
+          <br><dt><code>"Name"</code><dd>a string to be used as the dialog caption.  Default is "".
 
-          <br><dt>"PromptString"<dd>a cell array of strings to be displayed above the list field.  Default
+          <br><dt><code>"PromptString"</code><dd>a cell array of strings to be displayed above the list field.  Default
 is {}.
 
-          <br><dt>"OKString"<dd>a string used to label the OK button.  Default is "OK".
+          <br><dt><code>"OKString"</code><dd>a string used to label the OK button.  Default is <code>"OK"</code>.
 
-          <br><dt>"CancelString"<dd>a string used to label the Cancel button.  Default is "Cancel". 
+          <br><dt><code>"CancelString"</code><dd>a string used to label the Cancel button.  Default is <code>"Cancel"</code>. 
 </dl>
 
         <p>Example:
@@ -186,18 +191,19 @@ is {}.
             endfor
           endif
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dmsgbox.html#doc_002dmsgbox">msgbox</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFerrordlg.html#XREFerrordlg">errordlg</a>, <a href="XREFhelpdlg.html#XREFhelpdlg">helpdlg</a>, <a href="XREFinputdlg.html#XREFinputdlg">inputdlg</a>, <a href="XREFmsgbox.html#XREFmsgbox">msgbox</a>, <a href="XREFquestdlg.html#XREFquestdlg">questdlg</a>, <a href="XREFwarndlg.html#XREFwarndlg">warndlg</a>.
 
-   <p><a name="index-dialog_002c-displaying-a-question-dialog-3704"></a><!-- questdlg scripts/ui/questdlg.m -->
-<a name="doc_002dquestdlg"></a>
+        </blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-question-dialog-3896"></a><!-- questdlg scripts/ui/questdlg.m -->
+<a name="XREFquestdlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg</var>)<var><a name="index-questdlg-3705"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title</var>)<var><a name="index-questdlg-3706"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, default</var>)<var><a name="index-questdlg-3707"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, default</var>)<var><a name="index-questdlg-3708"></a></var><br>
-&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, btn3, default</var>)<var><a name="index-questdlg-3709"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg</var>)<var><a name="index-questdlg-3897"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title</var>)<var><a name="index-questdlg-3898"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, default</var>)<var><a name="index-questdlg-3899"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, default</var>)<var><a name="index-questdlg-3900"></a></var><br>
+&mdash; Function File: <var>btn</var> = <b>questdlg</b> (<var>msg, title, btn1, btn2, btn3, default</var>)<var><a name="index-questdlg-3901"></a></var><br>
 <blockquote><p>Display <var>msg</var> using a question dialog box and return the caption
 of the activated button.
 
@@ -214,29 +220,32 @@ It must match one of the strings given in <var>btn1</var>, <var>btn2</var>, or
 <var>btn3</var>.
 
         <p>If only <var>msg</var> and <var>title</var> are specified, three buttons with
-the default captions "Yes", "No", and "Cancel" are used.
+the default captions <code>"Yes"</code>, <code>"No"</code>, and <code>"Cancel"</code> are
+used.
 
         <p>If only two button captions, <var>btn1</var> and <var>btn2</var>, are specified
 the dialog will have only these two buttons.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002derrordlg.html#doc_002derrordlg">errordlg</a>, <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dwarndlg.html#doc_002dwarndlg">warndlg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFerrordlg.html#XREFerrordlg">errordlg</a>, <a href="XREFhelpdlg.html#XREFhelpdlg">helpdlg</a>, <a href="XREFinputdlg.html#XREFinputdlg">inputdlg</a>, <a href="XREFlistdlg.html#XREFlistdlg">listdlg</a>, <a href="XREFwarndlg.html#XREFwarndlg">warndlg</a>.
 
-   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3710"></a><!-- warndlg scripts/ui/warndlg.m -->
-<a name="doc_002dwarndlg"></a>
+        </blockquote></div>
+
+   <p><a name="index-dialog_002c-displaying-a-warning-dialog-3902"></a><!-- warndlg scripts/ui/warndlg.m -->
+<a name="XREFwarndlg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg</var>)<var><a name="index-warndlg-3711"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg, title</var>)<var><a name="index-warndlg-3712"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg</var>)<var><a name="index-warndlg-3903"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>warndlg</b> (<var>msg, title</var>)<var><a name="index-warndlg-3904"></a></var><br>
 <blockquote><p>Display <var>msg</var> using a warning dialog box.
 
         <p>The message may have multiple lines separated by newline characters
 ("\n"), or it may be a cellstr array with one element for each
 line.  The optional input <var>title</var> (character string) can be used to
-set the dialog caption.  The default title is "Warning Dialog".
+set the dialog caption.  The default title is <code>"Warning Dialog"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelpdlg.html#doc_002dhelpdlg">helpdlg</a>, <a href="doc_002dinputdlg.html#doc_002dinputdlg">inputdlg</a>, <a href="doc_002dlistdlg.html#doc_002dlistdlg">listdlg</a>, <a href="doc_002dquestdlg.html#doc_002dquestdlg">questdlg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhelpdlg.html#XREFhelpdlg">helpdlg</a>, <a href="XREFinputdlg.html#XREFinputdlg">inputdlg</a>, <a href="XREFlistdlg.html#XREFlistdlg">listdlg</a>, <a href="XREFquestdlg.html#XREFquestdlg">questdlg</a>.
+
+        </blockquote></div>
 
 <!--  -->
    </body></html>

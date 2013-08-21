@@ -36,41 +36,39 @@ function configure_make (desc, packdir, verbose)
             "OCTAVE"; octave_binary;
             "INSTALLDIR"; desc.dir};
     scenv = sprintf ("%s=\"%s\" ", cenv{:});
+
     ## Configure.
     if (exist (fullfile (src, "configure"), "file"))
       flags = "";
       if (isempty (getenv ("CC")))
-        flags = cstrcat (flags, " CC=\"", mkoctfile ("-p", "CC"), "\"");
+        flags = [flags ' CC="' mkoctfile("-p", "CC") '"'];
       endif
       if (isempty (getenv ("CXX")))
-        flags = cstrcat (flags, " CXX=\"", mkoctfile ("-p", "CXX"), "\"");
+        flags = [flags ' CXX="' mkoctfile("-p", "CXX") '"'];
       endif
       if (isempty (getenv ("AR")))
-        flags = cstrcat (flags, " AR=\"", mkoctfile ("-p", "AR"), "\"");
+        flags = [flags ' AR="' mkoctfile("-p", "AR") '"'];
       endif
       if (isempty (getenv ("RANLIB")))
-        flags = cstrcat (flags, " RANLIB=\"", mkoctfile ("-p", "RANLIB"), "\"");
+        flags = [flags ' RANLIB="' mkoctfile("-p", "RANLIB") '"'];
       endif
-      [status, output] = shell (cstrcat ("cd '", src, "'; ", scenv,
-                                         "./configure --prefix=\"",
-                                         desc.dir, "\"", flags));
+      cmd = ["cd '" src "'; " ...
+             scenv "./configure --prefix=\"" desc.dir "\"" flags];
+      [status, output] = shell (cmd, verbose);
       if (status != 0)
         rmdir (desc.dir, "s");
-        error ("the configure script returned the following error: %s", output);
-      elseif (verbose)
-        printf ("%s", output);
+        disp (output);
+        error ("pkg: error running the configure script for %s.", desc.name);
       endif
-
     endif
 
     ## Make.
     if (exist (fullfile (src, "Makefile"), "file"))
-      [status, output] = shell (cstrcat (scenv, "make -C '", src, "'"));
+      [status, output] = shell ([scenv "make -C '" src "'"], verbose);
       if (status != 0)
         rmdir (desc.dir, "s");
-        error ("'make' returned the following error: %s", output);
-      elseif (verbose)
-        printf ("%s", output);
+        disp (output);
+        error ("pkg: error running `make' for the %s package.", desc.name);
       endif
     endif
 
@@ -91,7 +89,7 @@ function configure_make (desc, packdir, verbose)
       if (filenames(end) == "\n")
         filenames(end) = [];
       endif
-      filenames = strtrim (strsplit (filenames, "\n", false));
+      filenames = strtrim (ostrsplit (filenames, "\n"));
       delete_idx =  [];
       for i = 1:length (filenames)
         if (! all (isspace (filenames{i})))

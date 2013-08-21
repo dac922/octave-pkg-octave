@@ -319,6 +319,10 @@ TerminalView::TerminalView(QWidget *parent)
   _gridLayout->setMargin(0);
 
   setLayout( _gridLayout );
+
+  connect (this, SIGNAL (set_global_shortcuts_signal (bool)),
+           parent->parent (), SLOT (set_global_shortcuts (bool)));
+
 }
 
 TerminalView::~TerminalView()
@@ -1058,6 +1062,8 @@ void TerminalView::paintEvent( QPaintEvent* pe )
 
 void TerminalView::focusInEvent(QFocusEvent *focusEvent)
 {
+  emit set_global_shortcuts_signal (false);  // disable some shortcuts
+
   setBlinkingCursorState(true);
   updateImage();
   repaint();
@@ -1068,6 +1074,8 @@ void TerminalView::focusInEvent(QFocusEvent *focusEvent)
 
 void TerminalView::focusOutEvent(QFocusEvent *focusEvent)
 {
+  emit set_global_shortcuts_signal (true);  // re-enable shortcuts
+
   // Force the cursor to be redrawn.
   _cursorBlinking = true;
   setBlinkingCursorState(false);
@@ -2260,16 +2268,13 @@ void TerminalView::setSelection(const QString& t)
 
 void TerminalView::copyClipboard()
 {
-  if ( !_screenWindow )
+  if ( !_screenWindow || !hasFocus())
     return;
 
   QString text = _screenWindow->selectedText(_preserveLineBreaks);
 
   if (text.isEmpty ())
     {
-      // FIXME -- interrupt is only appropriate here if CTRL-C is bound
-      // to the copy action.  How can we determine that?
-
       ::raise (SIGINT);
     }
   else
@@ -2278,7 +2283,10 @@ void TerminalView::copyClipboard()
 
 void TerminalView::pasteClipboard()
 {
-  emitSelection(false,false);
+  if(hasFocus ())
+    {
+      emitSelection(false,false);
+    }
 }
 
 void TerminalView::pasteSelection()
@@ -2697,4 +2705,10 @@ void TerminalView::setLineSpacing(uint i)
 {
   _lineSpacing = i;
   setVTFont(font()); // Trigger an update.
+}
+
+QString TerminalView::selectedText ()
+{
+  QString text = _screenWindow->selectedText (_preserveLineBreaks);
+  return text;
 }

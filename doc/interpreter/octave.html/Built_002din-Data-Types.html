@@ -33,7 +33,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Data-Types.html#Data-Types">Data Types<
 
 <h3 class="section">3.1 Built-in Data Types</h3>
 
-<p><a name="index-data-types_002c-built_002din-217"></a><a name="index-built_002din-data-types-218"></a>
+<p><a name="index-data-types_002c-built_002din-226"></a><a name="index-built_002din-data-types-227"></a>
 The standard built-in data types are real and complex scalars and
 matrices, ranges, character strings, a data structure type, and cell
 arrays.  Additional built-in data types may be added in future versions. 
@@ -45,55 +45,59 @@ type and contribute it for distribution in a future release of Octave.
 use of the following functions.
 
 <!-- class libinterp/octave-value/ov-class.cc -->
-   <p><a name="doc_002dclass"></a>
+   <p><a name="XREFclass"></a>
 
 <div class="defun">
-&mdash; Function File: <var>classname</var> = <b>class</b> (<var>obj</var>)<var><a name="index-class-219"></a></var><br>
-&mdash; Function File:  <b>class</b> (<var>s, id</var>)<var><a name="index-class-220"></a></var><br>
-&mdash; Function File:  <b>class</b> (<var>s, id, p, <small class="dots">...</small></var>)<var><a name="index-class-221"></a></var><br>
+&mdash; Function File: <var>classname</var> = <b>class</b> (<var>obj</var>)<var><a name="index-class-228"></a></var><br>
+&mdash; Function File:  <b>class</b> (<var>s, id</var>)<var><a name="index-class-229"></a></var><br>
+&mdash; Function File:  <b>class</b> (<var>s, id, p, <small class="dots">...</small></var>)<var><a name="index-class-230"></a></var><br>
 <blockquote><p>Return the class of the object <var>obj</var> or create a class with
 fields from structure <var>s</var> and name (string) <var>id</var>.  Additional
 arguments name a list of parent classes from which the new class is
 derived.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtypeinfo.html#doc_002dtypeinfo">typeinfo</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtypeinfo.html#XREFtypeinfo">typeinfo</a>, <a href="XREFisa.html#XREFisa">isa</a>.
+
+        </blockquote></div>
 
 <!-- isa scripts/general/isa.m -->
-   <p><a name="doc_002disa"></a>
+   <p><a name="XREFisa"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isa</b> (<var>obj, classname</var>)<var><a name="index-isa-222"></a></var><br>
+&mdash; Function File:  <b>isa</b> (<var>obj, classname</var>)<var><a name="index-isa-231"></a></var><br>
 <blockquote><p>Return true if <var>obj</var> is an object from the class <var>classname</var>.
 
         <p><var>classname</var> may also be one of the following class categories:
 
           <dl>
-<dt>"float"<dd>Floating point value comprising classes "double" and "single".
+<dt><code>"float"</code><dd>Floating point value comprising classes <code>"double"</code> and
+<code>"single"</code>.
 
-          <br><dt>"integer"<dd>Integer value comprising classes (u)int8, (u)int16, (u)int32, (u)int64.
+          <br><dt><code>"integer"</code><dd>Integer value comprising classes (u)int8, (u)int16, (u)int32, (u)int64.
 
-          <br><dt>"numeric"<dd>Numeric value comprising either a floating point or integer value. 
+          <br><dt><code>"numeric"</code><dd>Numeric value comprising either a floating point or integer value. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dtypeinfo.html#doc_002dtypeinfo">typeinfo</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFclass.html#XREFclass">class</a>, <a href="XREFtypeinfo.html#XREFtypeinfo">typeinfo</a>.
+
+        </blockquote></div>
 
 <!-- cast scripts/miscellaneous/cast.m -->
-   <p><a name="doc_002dcast"></a>
+   <p><a name="XREFcast"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cast</b> (<var>val, type</var>)<var><a name="index-cast-223"></a></var><br>
+&mdash; Function File:  <b>cast</b> (<var>val, type</var>)<var><a name="index-cast-232"></a></var><br>
 <blockquote><p>Convert <var>val</var> to data type <var>type</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dint8.html#doc_002dint8">int8</a>, <a href="doc_002duint8.html#doc_002duint8">uint8</a>, <a href="doc_002dint16.html#doc_002dint16">int16</a>, <a href="doc_002duint16.html#doc_002duint16">uint16</a>, <a href="doc_002dint32.html#doc_002dint32">int32</a>, <a href="doc_002duint32.html#doc_002duint32">uint32</a>, <a href="doc_002dint64.html#doc_002dint64">int64</a>, <a href="doc_002duint64.html#doc_002duint64">uint64</a>, <a href="doc_002ddouble.html#doc_002ddouble">double</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFint8.html#XREFint8">int8</a>, <a href="XREFuint8.html#XREFuint8">uint8</a>, <a href="XREFint16.html#XREFint16">int16</a>, <a href="XREFuint16.html#XREFuint16">uint16</a>, <a href="XREFint32.html#XREFint32">int32</a>, <a href="XREFuint32.html#XREFuint32">uint32</a>, <a href="XREFint64.html#XREFint64">int64</a>, <a href="XREFuint64.html#XREFuint64">uint64</a>, <a href="XREFdouble.html#XREFdouble">double</a>.
+
+        </blockquote></div>
 
 <!-- typecast libinterp/corefcn/typecast.cc -->
-   <p><a name="doc_002dtypecast"></a>
+   <p><a name="XREFtypecast"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>typecast</b> (<var>x, class</var>)<var><a name="index-typecast-224"></a></var><br>
+&mdash; Built-in Function:  <b>typecast</b> (<var>x, class</var>)<var><a name="index-typecast-233"></a></var><br>
 <blockquote><p>Return a new array <var>y</var> resulting from interpreting the data of
 <var>x</var> in memory as data of the numeric class <var>class</var>.  Both the class
 of <var>x</var> and <var>class</var> must be one of the built-in numeric classes:
@@ -119,10 +123,10 @@ consecutive pairs of real numbers.  The sizes of integer types are given by
 their bit counts.  Both logical and char are typically one byte wide;
 however, this is not guaranteed by C++.  If your system is IEEE conformant,
 single and double should be 4 bytes and 8 bytes wide, respectively. 
-"logical" is not allowed for <var>class</var>.  If the input is a row vector,
-the return value is a row vector, otherwise it is a column vector.  If the
-bit length of <var>x</var> is not divisible by that of <var>class</var>, an error
-occurs.
+<code>"logical"</code> is not allowed for <var>class</var>.  If the input is a row
+vector, the return value is a row vector, otherwise it is a column vector. 
+If the bit length of <var>x</var> is not divisible by that of <var>class</var>, an
+error occurs.
 
         <p>An example of the use of typecast on a little-endian machine is
 
@@ -130,28 +134,30 @@ occurs.
           typecast (<var>x</var>, "uint8")
           &rArr; [   1,   0, 255, 255]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcast.html#doc_002dcast">cast</a>, <a href="doc_002dbitunpack.html#doc_002dbitunpack">bitunpack</a>, <a href="doc_002dbitpack.html#doc_002dbitpack">bitpack</a>, <a href="doc_002dswapbytes.html#doc_002dswapbytes">swapbytes</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFcast.html#XREFcast">cast</a>, <a href="XREFbitunpack.html#XREFbitunpack">bitunpack</a>, <a href="XREFbitpack.html#XREFbitpack">bitpack</a>, <a href="XREFswapbytes.html#XREFswapbytes">swapbytes</a>.
+
+        </blockquote></div>
 
 <!-- swapbytes scripts/miscellaneous/swapbytes.m -->
-   <p><a name="doc_002dswapbytes"></a>
+   <p><a name="XREFswapbytes"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>swapbytes</b> (<var>x</var>)<var><a name="index-swapbytes-225"></a></var><br>
+&mdash; Function File:  <b>swapbytes</b> (<var>x</var>)<var><a name="index-swapbytes-234"></a></var><br>
 <blockquote><p>Swap the byte order on values, converting from little endian to big
 endian and vice versa.  For example:
 
      <pre class="example">          swapbytes (uint16 (1:4))
           &rArr; [   256   512   768  1024]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dtypecast.html#doc_002dtypecast">typecast</a>, <a href="doc_002dcast.html#doc_002dcast">cast</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFtypecast.html#XREFtypecast">typecast</a>, <a href="XREFcast.html#XREFcast">cast</a>.
+
+        </blockquote></div>
 
 <!-- bitpack libinterp/corefcn/typecast.cc -->
-   <p><a name="doc_002dbitpack"></a>
+   <p><a name="XREFbitpack"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>y</var> = <b>bitpack</b> (<var>x, class</var>)<var><a name="index-bitpack-226"></a></var><br>
+&mdash; Built-in Function: <var>y</var> = <b>bitpack</b> (<var>x, class</var>)<var><a name="index-bitpack-235"></a></var><br>
 <blockquote><p>Return a new array <var>y</var> resulting from interpreting an array
 <var>x</var> as raw bit patterns for data of the numeric class <var>class</var>. 
 <var>class</var> must be one of the built-in numeric classes:
@@ -174,14 +180,15 @@ increasing order of significance, i.e., <code>x(1)</code> is bit 0, <code>x(2)</
 bit 1, etc.  The result is a row vector if <var>x</var> is a row vector, otherwise
 it is a column vector.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbitunpack.html#doc_002dbitunpack">bitunpack</a>, <a href="doc_002dtypecast.html#doc_002dtypecast">typecast</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbitunpack.html#XREFbitunpack">bitunpack</a>, <a href="XREFtypecast.html#XREFtypecast">typecast</a>.
+
+        </blockquote></div>
 
 <!-- bitunpack libinterp/corefcn/typecast.cc -->
-   <p><a name="doc_002dbitunpack"></a>
+   <p><a name="XREFbitunpack"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>y</var> = <b>bitunpack</b> (<var>x</var>)<var><a name="index-bitunpack-227"></a></var><br>
+&mdash; Built-in Function: <var>y</var> = <b>bitunpack</b> (<var>x</var>)<var><a name="index-bitunpack-236"></a></var><br>
 <blockquote><p>Return an array <var>y</var> corresponding to the raw bit patterns of
 <var>x</var>.  <var>x</var> must belong to one of the built-in numeric classes:
 
@@ -200,8 +207,9 @@ it is a column vector.
         <p>The result is a row vector if <var>x</var> is a row vector; otherwise, it is a
 column vector.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbitpack.html#doc_002dbitpack">bitpack</a>, <a href="doc_002dtypecast.html#doc_002dtypecast">typecast</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbitpack.html#XREFbitpack">bitpack</a>, <a href="XREFtypecast.html#XREFtypecast">typecast</a>.
+
+        </blockquote></div>
 
 <ul class="menu">
 <li><a accesskey="1" href="Numeric-Objects.html#Numeric-Objects">Numeric Objects</a>

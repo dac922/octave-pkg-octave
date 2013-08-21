@@ -25,8 +25,8 @@
 
 function retval = prefsfile ()
 
-  retval = "~/.octave_prefs";
-
+  retval = [prefdir() filesep() ".octave_prefs"];
+  
 endfunction
 
 %% Testing these functions will require some care to avoid wiping out

@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Statements.html#Statements">Statements<
 
 <h3 class="section">10.2 The switch Statement</h3>
 
-<p><a name="index-g_t_0040code_007bswitch_007d-statement-724"></a><a name="index-g_t_0040code_007bcase_007d-statement-725"></a><a name="index-g_t_0040code_007botherwise_007d-statement-726"></a><a name="index-g_t_0040code_007bendswitch_007d-statement-727"></a>
+<p><a name="index-g_t_0040code_007bswitch_007d-statement-736"></a><a name="index-g_t_0040code_007bcase_007d-statement-737"></a><a name="index-g_t_0040code_007botherwise_007d-statement-738"></a><a name="index-g_t_0040code_007bendswitch_007d-statement-739"></a>
 It is very common to take different actions depending on the value of
 one variable.  This is possible using the <code>if</code> statement in the
 following way
@@ -68,7 +68,7 @@ used.
 
    <p>The general form of the <code>switch</code> statement is
 
-<pre class="example">     switch <var>expression</var>
+<pre class="example">     switch (<var>expression</var>)
        case <var>label</var>
          <var>command_list</var>
        case <var>label</var>
@@ -92,7 +92,7 @@ is executed if <em>any</em> of the elements of the cell array match
 &lsquo;<samp><span class="samp">Variable is either 6 or 7</span></samp>&rsquo;.
 
 <pre class="example">     A = 7;
-     switch A
+     switch (A)
        case { 6, 7 }
          printf ("variable is either 6 or 7\n");
        otherwise

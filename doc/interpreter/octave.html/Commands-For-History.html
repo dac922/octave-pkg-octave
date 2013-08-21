@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Command-Line-Editing.html#Command-Line-
 
 <h4 class="subsection">2.4.5 Commands For Manipulating The History</h4>
 
-<p><a name="index-command-history-140"></a><a name="index-input-history-141"></a><a name="index-history-of-commands-142"></a>
+<p><a name="index-command-history-146"></a><a name="index-input-history-147"></a><a name="index-history-of-commands-148"></a>
 Octave normally keeps track of the commands you type so that you can
 recall previous commands to edit or execute them again.  When you exit
 Octave, the most recent commands you have typed, up to the number
@@ -72,14 +72,14 @@ of <kbd>C-p</kbd> and <kbd>C-n</kbd> to move through the history list.
 list, Octave provides three functions for viewing, editing, and
 re-running chunks of commands from the history list.
 
-<!-- history libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dhistory"></a>
+<!-- history libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFhistory"></a>
 
 <div class="defun">
-&mdash; Command:  <b>history</b><var><a name="index-history-143"></a></var><br>
-&mdash; Command:  <b>history</b><var> opt1 <small class="dots">...</small><a name="index-history-144"></a></var><br>
-&mdash; Built-in Function: <var>h</var> = <b>history</b> ()<var><a name="index-history-145"></a></var><br>
-&mdash; Built-in Function: <var>h</var> = <b>history</b> (<var>opt1, <small class="dots">...</small></var>)<var><a name="index-history-146"></a></var><br>
+&mdash; Command:  <b>history</b><var><a name="index-history-149"></a></var><br>
+&mdash; Command:  <b>history</b><var> opt1 <small class="dots">...</small><a name="index-history-150"></a></var><br>
+&mdash; Built-in Function: <var>h</var> = <b>history</b> ()<var><a name="index-history-151"></a></var><br>
+&mdash; Built-in Function: <var>h</var> = <b>history</b> (<var>opt1, <small class="dots">...</small></var>)<var><a name="index-history-152"></a></var><br>
 <blockquote><p>If invoked with no arguments, <code>history</code> displays a list of commands
 that you have executed.  Valid options are:
 
@@ -107,13 +107,13 @@ typed without displaying line numbers, use the command
 argument as a cell string and will not be output to screen. 
 </p></blockquote></div>
 
-<!-- edit_history libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dedit_005fhistory"></a>
+<!-- edit_history libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFedit_005fhistory"></a>
 
 <div class="defun">
-&mdash; Command:  <b>edit_history</b><var><a name="index-edit_005fhistory-147"></a></var><br>
-&mdash; Command:  <b>edit_history</b><var> cmd_number<a name="index-edit_005fhistory-148"></a></var><br>
-&mdash; Command:  <b>edit_history</b><var> first last<a name="index-edit_005fhistory-149"></a></var><br>
+&mdash; Command:  <b>edit_history</b><var><a name="index-edit_005fhistory-153"></a></var><br>
+&mdash; Command:  <b>edit_history</b><var> cmd_number<a name="index-edit_005fhistory-154"></a></var><br>
+&mdash; Command:  <b>edit_history</b><var> first last<a name="index-edit_005fhistory-155"></a></var><br>
 <blockquote><p>Edit the history list using the editor named by the variable
 <samp><span class="env">EDITOR</span></samp><!-- /@w -->.
 
@@ -139,16 +139,17 @@ The following are equivalent and edit the most recently executed command.
 last command reverses the list of commands before they are placed in the
 buffer to be edited.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drun_005fhistory.html#doc_002drun_005fhistory">run_history</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrun_005fhistory.html#XREFrun_005fhistory">run_history</a>.
 
-<!-- run_history libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002drun_005fhistory"></a>
+        </blockquote></div>
+
+<!-- run_history libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFrun_005fhistory"></a>
 
 <div class="defun">
-&mdash; Command:  <b>run_history</b><var><a name="index-run_005fhistory-150"></a></var><br>
-&mdash; Command:  <b>run_history</b><var> cmd_number<a name="index-run_005fhistory-151"></a></var><br>
-&mdash; Command:  <b>run_history</b><var> first last<a name="index-run_005fhistory-152"></a></var><br>
+&mdash; Command:  <b>run_history</b><var><a name="index-run_005fhistory-156"></a></var><br>
+&mdash; Command:  <b>run_history</b><var> cmd_number<a name="index-run_005fhistory-157"></a></var><br>
+&mdash; Command:  <b>run_history</b><var> first last<a name="index-run_005fhistory-158"></a></var><br>
 <blockquote><p>Run commands from the history list.
 
         <p>When invoked with no arguments, run the previously executed command;
@@ -180,35 +181,37 @@ For example:
            2
            1
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dedit_005fhistory.html#doc_002dedit_005fhistory">edit_history</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFedit_005fhistory.html#XREFedit_005fhistory">edit_history</a>.
+
+        </blockquote></div>
 
 <p class="noindent">Octave also allows you customize the details of when, where, and how history
 is saved.
 
-<!-- saving_history libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dsaving_005fhistory"></a>
+<!-- history_save libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFhistory_005fsave"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>saving_history</b> ()<var><a name="index-saving_005fhistory-153"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>saving_history</b> (<var>new_val</var>)<var><a name="index-saving_005fhistory-154"></a></var><br>
-&mdash; Built-in Function:  <b>saving_history</b> (<var>new_val, "local"</var>)<var><a name="index-saving_005fhistory-155"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>history_save</b> ()<var><a name="index-history_005fsave-159"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>history_save</b> (<var>new_val</var>)<var><a name="index-history_005fsave-160"></a></var><br>
+&mdash; Built-in Function:  <b>history_save</b> (<var>new_val, "local"</var>)<var><a name="index-history_005fsave-161"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether commands entered
 on the command line are saved in the history file.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhistory_005fcontrol.html#doc_002dhistory_005fcontrol">history_control</a>, <a href="doc_002dhistory_005ffile.html#doc_002dhistory_005ffile">history_file</a>, <a href="doc_002dhistory_005fsize.html#doc_002dhistory_005fsize">history_size</a>, <a href="doc_002dhistory_005ftimestamp_005fformat_005fstring.html#doc_002dhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhistory_005fcontrol.html#XREFhistory_005fcontrol">history_control</a>, <a href="XREFhistory_005ffile.html#XREFhistory_005ffile">history_file</a>, <a href="XREFhistory_005fsize.html#XREFhistory_005fsize">history_size</a>, <a href="XREFhistory_005ftimestamp_005fformat_005fstring.html#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>.
 
-<!-- history_control libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dhistory_005fcontrol"></a>
+        </blockquote></div>
+
+<!-- history_control libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFhistory_005fcontrol"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>history_control</b> ()<var><a name="index-history_005fcontrol-156"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>history_control</b> (<var>new_val</var>)<var><a name="index-history_005fcontrol-157"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>history_control</b> ()<var><a name="index-history_005fcontrol-162"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>history_control</b> (<var>new_val</var>)<var><a name="index-history_005fcontrol-163"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies how commands are saved
 to the history list.  The default value is an empty character string,
 but may be overridden by the environment variable
@@ -224,45 +227,48 @@ A value of <code>ignoreboth</code> is shorthand for <code>ignorespace</code> and
 matching the current line to be removed from the history list before that
 line is saved.  Any value not in the above list is ignored.  If
 <code>history_control</code> is the empty string, all commands are saved on
-the history list, subject to the value of <code>saving_history</code>.
+the history list, subject to the value of <code>history_save</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhistory_005ffile.html#doc_002dhistory_005ffile">history_file</a>, <a href="doc_002dhistory_005fsize.html#doc_002dhistory_005fsize">history_size</a>, <a href="doc_002dhistory_005ftimestamp_005fformat_005fstring.html#doc_002dhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>, <a href="doc_002dsaving_005fhistory.html#doc_002dsaving_005fhistory">saving_history</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhistory_005ffile.html#XREFhistory_005ffile">history_file</a>, <a href="XREFhistory_005fsize.html#XREFhistory_005fsize">history_size</a>, <a href="XREFhistory_005ftimestamp_005fformat_005fstring.html#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>, <a href="XREFhistory_005fsave.html#XREFhistory_005fsave">history_save</a>.
 
-<!-- history_file libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dhistory_005ffile"></a>
+        </blockquote></div>
+
+<!-- history_file libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFhistory_005ffile"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>history_file</b> ()<var><a name="index-history_005ffile-158"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>history_file</b> (<var>new_val</var>)<var><a name="index-history_005ffile-159"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>history_file</b> ()<var><a name="index-history_005ffile-164"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>history_file</b> (<var>new_val</var>)<var><a name="index-history_005ffile-165"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the name of the
 file used to store command history.  The default value is
 <samp><span class="file">~/.octave_hist</span></samp>, but may be overridden by the environment
 variable <samp><span class="env">OCTAVE_HISTFILE</span></samp><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhistory_005fsize.html#doc_002dhistory_005fsize">history_size</a>, <a href="doc_002dsaving_005fhistory.html#doc_002dsaving_005fhistory">saving_history</a>, <a href="doc_002dhistory_005ftimestamp_005fformat_005fstring.html#doc_002dhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhistory_005fsize.html#XREFhistory_005fsize">history_size</a>, <a href="XREFhistory_005fsave.html#XREFhistory_005fsave">history_save</a>, <a href="XREFhistory_005ftimestamp_005fformat_005fstring.html#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>.
 
-<!-- history_size libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dhistory_005fsize"></a>
+        </blockquote></div>
+
+<!-- history_size libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFhistory_005fsize"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>history_size</b> ()<var><a name="index-history_005fsize-160"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>history_size</b> (<var>new_val</var>)<var><a name="index-history_005fsize-161"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>history_size</b> ()<var><a name="index-history_005fsize-166"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>history_size</b> (<var>new_val</var>)<var><a name="index-history_005fsize-167"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies how many entries
 to store in the history file.  The default value is <code>1000</code>,
 but may be overridden by the environment variable <samp><span class="env">OCTAVE_HISTSIZE</span></samp><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhistory_005ffile.html#doc_002dhistory_005ffile">history_file</a>, <a href="doc_002dhistory_005ftimestamp_005fformat_005fstring.html#doc_002dhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>, <a href="doc_002dsaving_005fhistory.html#doc_002dsaving_005fhistory">saving_history</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhistory_005ffile.html#XREFhistory_005ffile">history_file</a>, <a href="XREFhistory_005ftimestamp_005fformat_005fstring.html#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>, <a href="XREFhistory_005fsave.html#XREFhistory_005fsave">history_save</a>.
 
-<!-- history_timestamp_format_string libinterp/interpfcn/oct-hist.cc -->
-   <p><a name="doc_002dhistory_005ftimestamp_005fformat_005fstring"></a>
+        </blockquote></div>
+
+<!-- history_timestamp_format_string libinterp/corefcn/oct-hist.cc -->
+   <p><a name="XREFhistory_005ftimestamp_005fformat_005fstring"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>history_timestamp_format_string</b> ()<var><a name="index-history_005ftimestamp_005fformat_005fstring-162"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>history_timestamp_format_string</b> (<var>new_val</var>)<var><a name="index-history_005ftimestamp_005fformat_005fstring-163"></a></var><br>
-&mdash; Built-in Function:  <b>history_timestamp_format_string</b> (<var>new_val, "local"</var>)<var><a name="index-history_005ftimestamp_005fformat_005fstring-164"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>history_timestamp_format_string</b> ()<var><a name="index-history_005ftimestamp_005fformat_005fstring-168"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>history_timestamp_format_string</b> (<var>new_val</var>)<var><a name="index-history_005ftimestamp_005fformat_005fstring-169"></a></var><br>
+&mdash; Built-in Function:  <b>history_timestamp_format_string</b> (<var>new_val, "local"</var>)<var><a name="index-history_005ftimestamp_005fformat_005fstring-170"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the format string
 for the comment line that is written to the history file when Octave
 exits.  The format string is passed to <code>strftime</code>.  The default
@@ -270,32 +276,34 @@ value is
 
      <pre class="example">          "# Octave VERSION, %a %b %d %H:%M:%S %Y %Z &lt;USER@HOST&gt;"
 </pre>
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrftime.html#doc_002dstrftime">strftime</a>, <a href="doc_002dhistory_005ffile.html#doc_002dhistory_005ffile">history_file</a>, <a href="doc_002dhistory_005fsize.html#doc_002dhistory_005fsize">history_size</a>, <a href="doc_002dsaving_005fhistory.html#doc_002dsaving_005fhistory">saving_history</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstrftime.html#XREFstrftime">strftime</a>, <a href="XREFhistory_005ffile.html#XREFhistory_005ffile">history_file</a>, <a href="XREFhistory_005fsize.html#XREFhistory_005fsize">history_size</a>, <a href="XREFhistory_005fsave.html#XREFhistory_005fsave">history_save</a>.
 
-<!-- EDITOR libinterp/interpfcn/defaults.cc -->
-   <p><a name="doc_002dEDITOR"></a>
+        </blockquote></div>
+
+<!-- EDITOR libinterp/corefcn/defaults.cc -->
+   <p><a name="XREFEDITOR"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>EDITOR</b> ()<var><a name="index-EDITOR-165"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>EDITOR</b> (<var>new_val</var>)<var><a name="index-EDITOR-166"></a></var><br>
-&mdash; Built-in Function:  <b>EDITOR</b> (<var>new_val, "local"</var>)<var><a name="index-EDITOR-167"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>EDITOR</b> ()<var><a name="index-EDITOR-171"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>EDITOR</b> (<var>new_val</var>)<var><a name="index-EDITOR-172"></a></var><br>
+&mdash; Built-in Function:  <b>EDITOR</b> (<var>new_val, "local"</var>)<var><a name="index-EDITOR-173"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies the editor to
 use with the <code>edit_history</code> command.  The default value is taken from
 the environment variable <samp><span class="env">EDITOR</span></samp><!-- /@w --> when Octave starts.  If the
 environment variable is not initialized, <samp><span class="env">EDITOR</span></samp><!-- /@w --> will be set to
 <code>"emacs"</code>.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dedit_005fhistory.html#doc_002dedit_005fhistory">edit_history</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFedit_005fhistory.html#XREFedit_005fhistory">edit_history</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>Base64 and Binary Data Transmission - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Networking-Utilities.html#Networking-Utilities" title="Networking Utilities">
+<link rel="prev" href="URL-Manipulation.html#URL-Manipulation" title="URL Manipulation">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Base64-and-Binary-Data-Transmission"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="URL-Manipulation.html#URL-Manipulation">URL Manipulation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Networking-Utilities.html#Networking-Utilities">Networking Utilities</a>
+<hr>
+</div>
+
+<h4 class="subsection">36.4.3 Base64 and Binary Data Transmission</h4>
+
+<p>Some transmission channels can not accept binary data.  It is customary to
+encode binary data in Base64 for transmission and to decode the data upon
+reception.
+
+<!-- base64_encode libinterp/corefcn/data.cc -->
+   <p><a name="XREFbase64_005fencode"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>s</var> = <b>base64_encode</b> (<var>x</var>)<var><a name="index-base64_005fencode-3709"></a></var><br>
+<blockquote><p>Encode a double matrix or array <var>x</var> into the base64 format string
+<var>s</var>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbase64_005fdecode.html#XREFbase64_005fdecode">base64_decode</a>.
+
+        </blockquote></div>
+
+<!-- base64_decode libinterp/corefcn/data.cc -->
+   <p><a name="XREFbase64_005fdecode"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>x</var> = <b>base64_decode</b> (<var>s</var>)<var><a name="index-base64_005fdecode-3710"></a></var><br>
+&mdash; Built-in Function: <var>x</var> = <b>base64_decode</b> (<var>s, dims</var>)<var><a name="index-base64_005fdecode-3711"></a></var><br>
+<blockquote><p>Decode the double matrix or array <var>x</var> from the base64 encoded string
+<var>s</var>.  The optional input parameter <var>dims</var> should be a vector
+containing the dimensions of the decoded array.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbase64_005fencode.html#XREFbase64_005fencode">base64_encode</a>.
+
+        </blockquote></div>
+
+   </body></html>
+

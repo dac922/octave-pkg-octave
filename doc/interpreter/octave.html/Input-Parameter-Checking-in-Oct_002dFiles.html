@@ -35,37 +35,38 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.11 Input Parameter Checking in Oct-Files</h4>
 
-<p>As oct-files are compiled functions they have the possibility of causing
-Octave to abort abnormally.  It is therefore important that
-each and every function has the minimum of parameter
-checking needed to ensure that Octave behaves well.
+<p>As oct-files are compiled functions they open up the possibility of
+crashing Octave through careless function calls or memory faults. 
+It is quite important that each and every function have a sufficient level
+of parameter checking to ensure that Octave behaves well.
 
    <p>The minimum requirement, as previously discussed, is to check the number
-of input arguments before using them to avoid referencing a non existent
-argument.  However, it some case this might not be sufficient as the
-underlying code imposes further constraints.  For example an external
+of input arguments before using them to avoid referencing a non-existent
+argument.  However, in some cases this might not be sufficient as the
+underlying code imposes further constraints.  For example, an external
 function call might be undefined if the input arguments are not
-integers, or if one of the arguments is zero.  Therefore, oct-files often
-need additional input parameter checking.
+integers, or if one of the arguments is zero, or if the input is complex
+and a real value was expected.  Therefore, oct-files often need additional
+input parameter checking.
 
-   <p>There are several functions within Octave that might be useful for the
+   <p>There are several functions within Octave that can be useful for the
 purposes of parameter checking.  These include the methods of the
-octave_value class like <code>is_real_matrix</code>, etc., but equally include
-more specialized functions.  Some of the more common ones are
-demonstrated in the following example.
+octave_value class like <code>is_real_matrix</code>, <code>is_numeric_type</code>, etc. 
+Often, with a knowledge of the Octave m-file language, you can guess at what
+the corresponding C++ routine will.  In addition there are some more
+specialized input validation functions of which a few are demonstrated below.
 
 <pre class="example"><pre class="verbatim">     #include &lt;octave/oct.h>
      
-     DEFUN_DLD (paramdemo, args, nargout,
-                "Parameter Check Demo.")
+     DEFUN_DLD (paramdemo, args, nargout, "Parameter Check Demo")
      {
-       int nargin = args.length ();
        octave_value retval;
+       int nargin = args.length ();
      
        if (nargin != 1)
          print_usage ();
        else if (nargout != 0)
-         error ("paramdemo: function has no output arguments");
+         error ("paramdemo: OUTPUT argument required");
        else
          {
            NDArray m = args(0).array_value ();
@@ -77,14 +78,11 @@ demonstrated in the following example.
            if (m.any_element_is_inf_or_nan ())
              octave_stdout &lt;&lt; "  includes Inf or NaN values\n";
            if (m.any_element_not_one_or_zero ())
-             octave_stdout &lt;&lt;
-               "  includes other values than 1 and 0\n";
+             octave_stdout &lt;&lt; "  includes other values than 1 and 0\n";
            if (m.all_elements_are_int_or_inf_or_nan ())
-             octave_stdout &lt;&lt;
-               "  includes only int, Inf or NaN values\n";
+             octave_stdout &lt;&lt; "  includes only int, Inf or NaN values\n";
            if (m.all_integers (min_val, max_val))
-             octave_stdout &lt;&lt;
-               "  includes only integers in [-10,10]\n";
+             octave_stdout &lt;&lt; "  includes only integers in [-10,10]\n";
          }
        return retval;
      }

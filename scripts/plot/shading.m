@@ -18,58 +18,82 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} shading (@var{type})
-## @deftypefnx {Function File} {} shading (@var{ax}, @dots{})
-## Set the shading of surface or patch graphic objects.  Valid arguments
-## for @var{type} are
+## @deftypefnx {Function File} {} shading (@var{hax}, @var{type})
+## Set the shading of patch or surface graphic objects.
+##
+## Valid arguments for @var{type} are
 ##
 ## @table @asis
-## @item "flat"
+## @item @qcode{"flat"}
 ## Single colored patches with invisible edges.
 ##
-## @item "faceted"
+## @item @qcode{"faceted"}
 ## Single colored patches with visible edges.
 ##
-## @item "interp"
+## @item @qcode{"interp"}
 ## Color between patch vertices are interpolated and the patch edges are
 ## invisible.
 ## @end table
 ##
-## If @var{ax} is given the shading is applied to axis @var{ax} instead
-## of the current axis.
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+## @seealso{fill, mesh, patch, pcolor, surf, surface, hidden}
 ## @end deftypefn
 
 ## Author: Kai Habel <kai.habel@gmx.de>
 
 function shading (varargin)
 
-  [ax, varargin] = __plt_get_axis_arg__ ("shading", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("shading", varargin{:});
 
-  if (nargin != 1 && nargin != 2)
+  if (nargin != 1)
     print_usage ();
   endif
 
   mode = varargin{1};
 
-  h1 = findobj (ax, "type", "patch");
-  h2 = findobj (ax, "type", "surface");
+  if (isempty (hax))
+    hax = gca ();
+  endif
 
-  obj = [h1(:); h2(:)];
+  ## Find all patch and surface objects that are descendants of hax
+  ## and  which are not part of a contour plot hggroup.
+  hlist = [];
+  kids = get (hax, "children");
+  while (! isempty (kids))
+    types = get (kids, "type");
+    hlist = [hlist; kids(strcmp(types, "patch"))];
+    hlist = [hlist; kids(strcmp(types, "surface"))];
+    parents = kids(strcmp (types, "axes"));
+    hglist = kids(strcmp (types, "hggroup"));
+    for i = 1 : numel (hglist)
+      props = get (hglist(i));
+      if (! isfield (props, "levelstep"))
+        parents(end+1) = hglist(i); 
+      endif
+    endfor
+    kids = get (parents, "children");
+  endwhile
 
-  for n = 1:numel (obj)
-    h = obj(n);
-    if (strcmpi (mode, "flat"))
-      set (h, "facecolor", "flat");
-      set (h, "edgecolor", "none");
-    elseif (strcmpi (mode, "interp"))
-      set (h, "facecolor", "interp");
-      set (h, "edgecolor", "none");
-    elseif (strcmpi (mode, "faceted"))
-      set (h, "facecolor", "flat");
-      set (h, "edgecolor", [0 0 0]);
-    else
-      error ("shading: unknown argument");
-    endif
-  endfor
+  ## FIXME: This is the old, simple code.
+  ##        Unfortunately, it also shades contour plots which is not desirable.
+  ##hp = findobj (hax, "type", "patch");
+  ##hs = findobj (hax, "type", "surface");
+  ##hlist = [hp(:); hs(:)];
+
+  switch (lower (mode))
+    case "flat"
+      set (hlist, "facecolor", "flat");
+      set (hlist, "edgecolor", "none");
+    case "interp"
+      set (hlist, "facecolor", "interp");
+      set (hlist, "edgecolor", "none");
+    case "faceted"
+      set (hlist, "facecolor", "flat");
+      set (hlist, "edgecolor", [0 0 0]);
+    otherwise
+      error ('shading: Invalid MODE "%s"', mode);
+  endswitch
 
 endfunction
 

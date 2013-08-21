@@ -33,29 +33,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="GUI-Development.html#GUI-Development">G
 
 <h3 class="section">35.4 User-Defined Preferences</h3>
 
-<!-- addpref scripts/prefs/addpref.m -->
-<p><a name="doc_002daddpref"></a>
-
-<div class="defun">
-&mdash; Function File:  <b>addpref</b> (<var>group, pref, val</var>)<var><a name="index-addpref-3364"></a></var><br>
-<blockquote><p>Add a preference <var>pref</var> and associated value <var>val</var> to the
-named preference group <var>group</var>.
-
-        <p>The named preference group must be a character string.
-
-        <p>The preference <var>pref</var> may be a character string or a cell array
-of character strings.  The corresponding value <var>val</var> may be any
-value, or, if <var>pref</var> is a cell array of strings, <var>val</var>
-must be a cell array of values with the same size as <var>pref</var>.
-
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
-</p></blockquote></div>
-
 <!-- getpref scripts/prefs/getpref.m -->
-   <p><a name="doc_002dgetpref"></a>
+<p><a name="XREFgetpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>getpref</b> (<var>group, pref, default</var>)<var><a name="index-getpref-3365"></a></var><br>
+&mdash; Function File:  <b>getpref</b> (<var>group, pref, default</var>)<var><a name="index-getpref-3549"></a></var><br>
 <blockquote><p>Return the preference value corresponding to the named preference
 <var>pref</var> in the preference group <var>group</var>.
 
@@ -76,34 +58,56 @@ structure of preferences for the preference group <var>group</var>.
         <p>If no arguments are specified, return a structure containing all
 groups of preferences and their values.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaddpref.html#XREFaddpref">addpref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>, <a href="XREFispref.html#XREFispref">ispref</a>, <a href="XREFrmpref.html#XREFrmpref">rmpref</a>.
 
-<!-- ispref scripts/prefs/ispref.m -->
-   <p><a name="doc_002dispref"></a>
+        </blockquote></div>
+
+<!-- setpref scripts/prefs/setpref.m -->
+   <p><a name="XREFsetpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ispref</b> (<var>group, pref</var>)<var><a name="index-ispref-3366"></a></var><br>
-<blockquote><p>Return true if the named preference <var>pref</var> exists in the
+&mdash; Function File:  <b>setpref</b> (<var>group, pref, val</var>)<var><a name="index-setpref-3550"></a></var><br>
+<blockquote><p>Set a preference <var>pref</var> to the given <var>val</var> in the named
 preference group <var>group</var>.
 
         <p>The named preference group must be a character string.
 
         <p>The preference <var>pref</var> may be a character string or a cell array
-of character strings.
+of character strings.  The corresponding value <var>val</var> may be any
+value, or, if <var>pref</var> is a cell array of strings, <var>val</var>
+must be a cell array of values with the same size as <var>pref</var>.
 
-        <p>If <var>pref</var> is not specified, return true if the preference
-group <var>group</var> exists.
+        <p>If the named preference or group does not exist, it is added.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>, <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaddpref.html#XREFaddpref">addpref</a>, <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFispref.html#XREFispref">ispref</a>, <a href="XREFrmpref.html#XREFrmpref">rmpref</a>.
 
-<!-- rmpref scripts/prefs/rmpref.m -->
-   <p><a name="doc_002drmpref"></a>
+        </blockquote></div>
+
+<!-- addpref scripts/prefs/addpref.m -->
+   <p><a name="XREFaddpref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rmpref</b> (<var>group</var>)<var><a name="index-rmpref-3367"></a></var><br>
-&mdash; Function File:  <b>rmpref</b> (<var>group, pref</var>)<var><a name="index-rmpref-3368"></a></var><br>
+&mdash; Function File:  <b>addpref</b> (<var>group, pref, val</var>)<var><a name="index-addpref-3551"></a></var><br>
+<blockquote><p>Add a preference <var>pref</var> and associated value <var>val</var> to the
+named preference group <var>group</var>.
+
+        <p>The named preference group must be a character string.
+
+        <p>The preference <var>pref</var> may be a character string or a cell array
+of character strings.  The corresponding value <var>val</var> may be any
+value, or, if <var>pref</var> is a cell array of strings, <var>val</var>
+must be a cell array of values with the same size as <var>pref</var>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsetpref.html#XREFsetpref">setpref</a>, <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFispref.html#XREFispref">ispref</a>, <a href="XREFrmpref.html#XREFrmpref">rmpref</a>.
+
+        </blockquote></div>
+
+<!-- rmpref scripts/prefs/rmpref.m -->
+   <p><a name="XREFrmpref"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>rmpref</b> (<var>group</var>)<var><a name="index-rmpref-3552"></a></var><br>
+&mdash; Function File:  <b>rmpref</b> (<var>group, pref</var>)<var><a name="index-rmpref-3553"></a></var><br>
 <blockquote><p>Remove the named preference <var>pref</var> from the preference group
 <var>group</var>.
 
@@ -117,27 +121,58 @@ of strings.
 
         <p>It is an error to remove a nonexistent preference or group.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002dsetpref.html#doc_002dsetpref">setpref</a>, <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaddpref.html#XREFaddpref">addpref</a>, <a href="XREFispref.html#XREFispref">ispref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>, <a href="XREFgetpref.html#XREFgetpref">getpref</a>.
 
-<!-- setpref scripts/prefs/setpref.m -->
-   <p><a name="doc_002dsetpref"></a>
+        </blockquote></div>
+
+<!-- ispref scripts/prefs/ispref.m -->
+   <p><a name="XREFispref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setpref</b> (<var>group, pref, val</var>)<var><a name="index-setpref-3369"></a></var><br>
-<blockquote><p>Set a preference <var>pref</var> to the given <var>val</var> in the named
+&mdash; Function File:  <b>ispref</b> (<var>group, pref</var>)<var><a name="index-ispref-3554"></a></var><br>
+<blockquote><p>Return true if the named preference <var>pref</var> exists in the
 preference group <var>group</var>.
 
         <p>The named preference group must be a character string.
 
         <p>The preference <var>pref</var> may be a character string or a cell array
-of character strings.  The corresponding value <var>val</var> may be any
-value, or, if <var>pref</var> is a cell array of strings, <var>val</var>
-must be a cell array of values with the same size as <var>pref</var>.
+of character strings.
 
-        <p>If the named preference or group does not exist, it is added.
+        <p>If <var>pref</var> is not specified, return true if the preference
+group <var>group</var> exists.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002daddpref.html#doc_002daddpref">addpref</a>, <a href="doc_002dgetpref.html#doc_002dgetpref">getpref</a>, <a href="doc_002dispref.html#doc_002dispref">ispref</a>, <a href="doc_002drmpref.html#doc_002drmpref">rmpref</a>. 
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFaddpref.html#XREFaddpref">addpref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>, <a href="XREFrmpref.html#XREFrmpref">rmpref</a>.
+
+        </blockquote></div>
+
+<!-- prefdir scripts/prefs/prefdir.m -->
+   <p><a name="XREFprefdir"></a>
+
+<div class="defun">
+&mdash; Command:  <b>prefdir</b><var><a name="index-prefdir-3555"></a></var><br>
+&mdash; Command: <var>dir</var> = <b>prefdir</b><var><a name="index-prefdir-3556"></a></var><br>
+<blockquote><p>Return the directory that contains the preferences for Octave.
+
+        <p>Examples:
+
+        <p>Display the preferences directory
+
+     <pre class="example">          prefdir
+</pre>
+        <p>Change to the preferences folder
+
+     <pre class="example">          cd (prefdir)
+</pre>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>, <a href="XREFaddpref.html#XREFaddpref">addpref</a>, <a href="XREFrmpref.html#XREFrmpref">rmpref</a>, <a href="XREFispref.html#XREFispref">ispref</a>.
+
+        </blockquote></div>
+
+<!-- preferences scripts/prefs/preferences.m -->
+   <p><a name="XREFpreferences"></a>
+
+<div class="defun">
+&mdash; Command:  <b>preferences</b><var><a name="index-preferences-3557"></a></var><br>
+<blockquote><p>Display the GUI preferences dialog window for Octave. 
 </p></blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->

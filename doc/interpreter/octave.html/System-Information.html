@@ -35,11 +35,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="System-Utilities.html#System-Utilities"
 <h3 class="section">36.11 System Information</h3>
 
 <!-- computer scripts/miscellaneous/computer.m -->
-<p><a name="doc_002dcomputer"></a>
+<p><a name="XREFcomputer"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>c</var>, <var>maxsize</var>, <var>endian</var>] = <b>computer</b> ()<var><a name="index-computer-3604"></a></var><br>
-&mdash; Function File: <var>arch</var> = <b>computer</b> (<var>"arch"</var>)<var><a name="index-computer-3605"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>maxsize</var>, <var>endian</var>] = <b>computer</b> ()<var><a name="index-computer-3796"></a></var><br>
+&mdash; Function File: <var>arch</var> = <b>computer</b> (<var>"arch"</var>)<var><a name="index-computer-3797"></a></var><br>
 <blockquote><p>Print or return a string of the form <var>cpu</var>-<var>vendor</var>-<var>os</var>
 that identifies the kind of computer Octave is running on.  If invoked
 with an output argument, the value is returned instead of printed.  For
@@ -64,10 +64,10 @@ running.
 </p></blockquote></div>
 
 <!-- uname libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002duname"></a>
+   <p><a name="XREFuname"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>uts</var>, <var>err</var>, <var>msg</var>] = <b>uname</b> ()<var><a name="index-uname-3606"></a></var><br>
+&mdash; Built-in Function: [<var>uts</var>, <var>err</var>, <var>msg</var>] = <b>uname</b> ()<var><a name="index-uname-3798"></a></var><br>
 <blockquote><p>Return system information in the structure.  For example:
 
      <pre class="example">          uname ()
@@ -85,11 +85,11 @@ system-dependent error message.
 </p></blockquote></div>
 
 <!-- nproc libinterp/corefcn/nproc.cc -->
-   <p><a name="doc_002dnproc"></a>
+   <p><a name="XREFnproc"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nproc</b> ()<var><a name="index-nproc-3607"></a></var><br>
-&mdash; Built-in Function:  <b>nproc</b> (<var>query</var>)<var><a name="index-nproc-3608"></a></var><br>
+&mdash; Built-in Function:  <b>nproc</b> ()<var><a name="index-nproc-3799"></a></var><br>
+&mdash; Built-in Function:  <b>nproc</b> (<var>query</var>)<var><a name="index-nproc-3800"></a></var><br>
 <blockquote><p>Return the current number of available processors.
 
         <p>If called with the optional argument <var>query</var>, modify how processors
@@ -106,105 +106,113 @@ variable.
         </p></blockquote></div>
 
 <!-- ispc scripts/miscellaneous/ispc.m -->
-   <p><a name="doc_002dispc"></a>
+   <p><a name="XREFispc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ispc</b> ()<var><a name="index-ispc-3609"></a></var><br>
+&mdash; Function File:  <b>ispc</b> ()<var><a name="index-ispc-3801"></a></var><br>
 <blockquote><p>Return true if Octave is running on a Windows system and false otherwise.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disunix.html#doc_002disunix">isunix</a>, <a href="doc_002dismac.html#doc_002dismac">ismac</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisunix.html#XREFisunix">isunix</a>, <a href="XREFismac.html#XREFismac">ismac</a>.
+
+        </blockquote></div>
 
 <!-- isunix scripts/miscellaneous/isunix.m -->
-   <p><a name="doc_002disunix"></a>
+   <p><a name="XREFisunix"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isunix</b> ()<var><a name="index-isunix-3610"></a></var><br>
+&mdash; Function File:  <b>isunix</b> ()<var><a name="index-isunix-3802"></a></var><br>
 <blockquote><p>Return true if Octave is running on a Unix-like system and false otherwise.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dismac.html#doc_002dismac">ismac</a>, <a href="doc_002dispc.html#doc_002dispc">ispc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFismac.html#XREFismac">ismac</a>, <a href="XREFispc.html#XREFispc">ispc</a>.
+
+        </blockquote></div>
 
 <!-- ismac scripts/miscellaneous/ismac.m -->
-   <p><a name="doc_002dismac"></a>
+   <p><a name="XREFismac"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ismac</b> ()<var><a name="index-ismac-3611"></a></var><br>
+&mdash; Function File:  <b>ismac</b> ()<var><a name="index-ismac-3803"></a></var><br>
 <blockquote><p>Return true if Octave is running on a Mac OS X system and false otherwise.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disunix.html#doc_002disunix">isunix</a>, <a href="doc_002dispc.html#doc_002dispc">ispc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisunix.html#XREFisunix">isunix</a>, <a href="XREFispc.html#XREFispc">ispc</a>.
 
-<!-- isieee libinterp/interpfcn/sysdep.cc -->
-   <p><a name="doc_002disieee"></a>
+        </blockquote></div>
+
+<!-- isieee libinterp/corefcn/sysdep.cc -->
+   <p><a name="XREFisieee"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isieee</b> ()<var><a name="index-isieee-3612"></a></var><br>
+&mdash; Built-in Function:  <b>isieee</b> ()<var><a name="index-isieee-3804"></a></var><br>
 <blockquote><p>Return true if your computer <em>claims</em> to conform to the IEEE standard
 for floating point calculations.  No actual tests are performed. 
 </p></blockquote></div>
 
 <!-- isdeployed scripts/miscellaneous/isdeployed.m -->
-   <p><a name="doc_002disdeployed"></a>
+   <p><a name="XREFisdeployed"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isdeployed</b> ()<var><a name="index-isdeployed-3613"></a></var><br>
+&mdash; Function File:  <b>isdeployed</b> ()<var><a name="index-isdeployed-3805"></a></var><br>
 <blockquote><p>Return true if the current program has been compiled and is running
 separately from the Octave interpreter and false if it is running in
 the Octave interpreter.  Currently, this function always returns
 false in Octave. 
 </p></blockquote></div>
 
-<!-- OCTAVE_HOME libinterp/interpfcn/defaults.cc -->
-   <p><a name="doc_002dOCTAVE_005fHOME"></a>
+<!-- OCTAVE_HOME libinterp/corefcn/defaults.cc -->
+   <p><a name="XREFOCTAVE_005fHOME"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>OCTAVE_HOME</b> ()<var><a name="index-OCTAVE_005fHOME-3614"></a></var><br>
-<blockquote><p>Return the name of the top-level Octave installation directory. 
-</p></blockquote></div>
+&mdash; Built-in Function:  <b>OCTAVE_HOME</b> ()<var><a name="index-OCTAVE_005fHOME-3806"></a></var><br>
+<blockquote><p>Return the name of the top-level Octave installation directory.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFEXEC_005fPATH.html#XREFEXEC_005fPATH">EXEC_PATH</a>, <a href="XREFIMAGE_005fPATH.html#XREFIMAGE_005fPATH">IMAGE_PATH</a>.
+
+        </blockquote></div>
 
 <!-- matlabroot scripts/path/matlabroot.m -->
-   <p><a name="doc_002dmatlabroot"></a>
+   <p><a name="XREFmatlabroot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>matlabroot</b> ()<var><a name="index-matlabroot-3615"></a></var><br>
+&mdash; Function File:  <b>matlabroot</b> ()<var><a name="index-matlabroot-3807"></a></var><br>
 <blockquote><p>Return the name of the top-level Octave installation directory.
 
         <p>This is an alias for the function <code>OCTAVE_HOME</code><!-- /@w --> provided
 for compatibility.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dOCTAVE_005fHOME.html#doc_002dOCTAVE_005fHOME">OCTAVE_HOME</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFOCTAVE_005fHOME.html#XREFOCTAVE_005fHOME">OCTAVE_HOME</a>.
 
-<!-- OCTAVE_VERSION libinterp/interpfcn/defaults.cc -->
-   <p><a name="doc_002dOCTAVE_005fVERSION"></a>
+        </blockquote></div>
+
+<!-- OCTAVE_VERSION libinterp/corefcn/defaults.cc -->
+   <p><a name="XREFOCTAVE_005fVERSION"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>OCTAVE_VERSION</b> ()<var><a name="index-OCTAVE_005fVERSION-3616"></a></var><br>
+&mdash; Built-in Function:  <b>OCTAVE_VERSION</b> ()<var><a name="index-OCTAVE_005fVERSION-3808"></a></var><br>
 <blockquote><p>Return the version number of Octave, as a string. 
 </p></blockquote></div>
 
 <!-- version scripts/miscellaneous/version.m -->
-   <p><a name="doc_002dversion"></a>
+   <p><a name="XREFversion"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>version</b> ()<var><a name="index-version-3617"></a></var><br>
+&mdash; Function File:  <b>version</b> ()<var><a name="index-version-3809"></a></var><br>
 <blockquote><p>Return the version number of Octave, as a string.
 
         <p>This is an alias for the function <samp><span class="env">OCTAVE_VERSION</span></samp><!-- /@w --> provided for
-compatibility
+compatibility.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dOCTAVE_005fVERSION.html#doc_002dOCTAVE_005fVERSION">OCTAVE_VERSION</a>.. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFOCTAVE_005fVERSION.html#XREFOCTAVE_005fVERSION">OCTAVE_VERSION</a>.
+
+        </blockquote></div>
 
 <!-- ver scripts/miscellaneous/ver.m -->
-   <p><a name="doc_002dver"></a>
+   <p><a name="XREFver"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ver</b> ()<var><a name="index-ver-3618"></a></var><br>
-&mdash; Function File: v = <b>ver</b> ()<var><a name="index-ver-3619"></a></var><br>
-&mdash; Function File: v = <b>ver</b> (<var>"Octave"</var>)<var><a name="index-ver-3620"></a></var><br>
-&mdash; Function File: v = <b>ver</b> (<var>package</var>)<var><a name="index-ver-3621"></a></var><br>
+&mdash; Function File:  <b>ver</b> ()<var><a name="index-ver-3810"></a></var><br>
+&mdash; Function File: v = <b>ver</b> ()<var><a name="index-ver-3811"></a></var><br>
+&mdash; Function File: v = <b>ver</b> (<var>"Octave"</var>)<var><a name="index-ver-3812"></a></var><br>
+&mdash; Function File: v = <b>ver</b> (<var>package</var>)<var><a name="index-ver-3813"></a></var><br>
 <blockquote>
         <p>Display a header containing the current Octave version number, license
 string, and operating system followed by a list of installed packages,
@@ -233,69 +241,70 @@ The structure includes the following fields.
 
         <p>Return version information for <var>package</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dversion.html#doc_002dversion">version</a>, <a href="doc_002doctave_005fconfig_005finfo.html#doc_002doctave_005fconfig_005finfo">octave_config_info</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFversion.html#XREFversion">version</a>, <a href="XREFoctave_005fconfig_005finfo.html#XREFoctave_005fconfig_005finfo">octave_config_info</a>.
+
+        </blockquote></div>
 
 <!-- compare_versions scripts/miscellaneous/compare_versions.m -->
-   <p><a name="doc_002dcompare_005fversions"></a>
+   <p><a name="XREFcompare_005fversions"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>compare_versions</b> (<var>v1, v2, operator</var>)<var><a name="index-compare_005fversions-3622"></a></var><br>
+&mdash; Function File:  <b>compare_versions</b> (<var>v1, v2, operator</var>)<var><a name="index-compare_005fversions-3814"></a></var><br>
 <blockquote><p>Compare two version strings using the given <var>operator</var>.
 
         <p>This function assumes that versions <var>v1</var> and <var>v2</var> are
 arbitrarily long strings made of numeric and period characters
-possibly followed by an arbitrary string (e.g., "1.2.3", "0.3",
-"0.1.2+", or "1.2.3.4-test1").
+possibly followed by an arbitrary string (e.g., <code>"1.2.3"</code>,
+<code>"0.3"</code>, <code>"0.1.2+"</code>, or <code>"1.2.3.4-test1"</code>).
 
         <p>The version is first split into numeric and character portions
-and then the parts are padded to be the same length (i.e., "1.1" would be
-padded to be "1.1.0" when being compared with "1.1.1", and
-separately, the character parts of the strings are padded with
-nulls).
+and then the parts are padded to be the same length (i.e., <code>"1.1"</code>
+would be padded to be <code>"1.1.0"</code> when being compared with
+<code>"1.1.1"</code>, and separately, the character parts of the strings are
+padded with nulls).
 
         <p>The operator can be any logical operator from the set
 
           <ul>
-<li>"=="
+<li><code>"=="</code>
 equal
 
-          <li>"&lt;"
+          <li><code>"&lt;"</code>
 less than
 
-          <li>"&lt;="
+          <li><code>"&lt;="</code>
 less than or equal to
 
-          <li>"&gt;"
+          <li><code>"&gt;"</code>
 greater than
 
-          <li>"&gt;="
+          <li><code>"&gt;="</code>
 greater than or equal to
 
-          <li>"!="
+          <li><code>"!="</code>
 not equal
 
-          <li>"~="
+          <li><code>"~="</code>
 not equal
 </ul>
 
-        <p>Note that version "1.1-test2" will compare as greater than
-"1.1-test10".  Also, since the numeric part is compared first, "a"
-compares less than "1a" because the second string starts with a
-numeric part even though <code>double ("a")</code> is greater than
+        <p>Note that version <code>"1.1-test2"</code> will compare as greater than
+<code>"1.1-test10"</code>.  Also, since the numeric part is compared first,
+<code>"a"</code> compares less than <code>"1a"</code> because the second string
+starts with a numeric part even though <code>double ("a")</code> is greater than
 <code>double ("1").</code>
 </p></blockquote></div>
 
 <!-- license scripts/miscellaneous/license.m -->
-   <p><a name="doc_002dlicense"></a>
+   <p><a name="XREFlicense"></a>
 
 <div class="defun">
-&mdash; Command:  <b>license</b><var><a name="index-license-3623"></a></var><br>
-&mdash; Function File:  <b>license</b> (<var>"inuse"</var>)<var><a name="index-license-3624"></a></var><br>
-&mdash; Function File: <var>retval</var> = <b>license</b> (<var>"inuse"</var>)<var><a name="index-license-3625"></a></var><br>
-&mdash; Function File: <var>retval</var> = <b>license</b> (<var>"test", feature</var>)<var><a name="index-license-3626"></a></var><br>
-&mdash; Function File:  <b>license</b> (<var>"test", feature, toggle</var>)<var><a name="index-license-3627"></a></var><br>
-&mdash; Function File: <var>retval</var> = <b>license</b> (<var>"checkout", feature</var>)<var><a name="index-license-3628"></a></var><br>
+&mdash; Command:  <b>license</b><var><a name="index-license-3815"></a></var><br>
+&mdash; Function File:  <b>license</b> (<var>"inuse"</var>)<var><a name="index-license-3816"></a></var><br>
+&mdash; Function File: <var>retval</var> = <b>license</b> (<var>"inuse"</var>)<var><a name="index-license-3817"></a></var><br>
+&mdash; Function File: <var>retval</var> = <b>license</b> (<var>"test", feature</var>)<var><a name="index-license-3818"></a></var><br>
+&mdash; Function File:  <b>license</b> (<var>"test", feature, toggle</var>)<var><a name="index-license-3819"></a></var><br>
+&mdash; Function File: <var>retval</var> = <b>license</b> (<var>"checkout", feature</var>)<var><a name="index-license-3820"></a></var><br>
 <blockquote>
         <p>Display the license of Octave.
 
@@ -319,10 +328,10 @@ insensitive and only the first 27 characters are checked.
 <var>toggle</var>, which may be one of:
 
           <dl>
-<dt>"enable"<dd>Future tests for the specified license of <var>feature</var> are conducted
+<dt><code>"enable"</code><dd>Future tests for the specified license of <var>feature</var> are conducted
 as usual.
 
-          <br><dt>"disable"<dd>Future tests for the specified license of <var>feature</var> return 0. 
+          <br><dt><code>"disable"</code><dd>Future tests for the specified license of <var>feature</var> return 0. 
 </dl>
 
         <p><var>retval</var><code> = license ("checkout", </code><var>feature</var><code>)</code>
@@ -332,15 +341,16 @@ on failure.
 
         <p>This function is provided for compatibility with <span class="sc">matlab</span>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dver.html#doc_002dver">ver</a>, <a href="doc_002dversion.html#doc_002dversion">version</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFver.html#XREFver">ver</a>, <a href="XREFversion.html#XREFversion">version</a>.
 
-<!-- octave_config_info libinterp/interpfcn/toplev.cc -->
-   <p><a name="doc_002doctave_005fconfig_005finfo"></a>
+        </blockquote></div>
+
+<!-- octave_config_info libinterp/corefcn/toplev.cc -->
+   <p><a name="XREFoctave_005fconfig_005finfo"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>octave_config_info</b> ()<var><a name="index-octave_005fconfig_005finfo-3629"></a></var><br>
-&mdash; Built-in Function:  <b>octave_config_info</b> (<var>option</var>)<var><a name="index-octave_005fconfig_005finfo-3630"></a></var><br>
+&mdash; Built-in Function:  <b>octave_config_info</b> ()<var><a name="index-octave_005fconfig_005finfo-3821"></a></var><br>
+&mdash; Built-in Function:  <b>octave_config_info</b> (<var>option</var>)<var><a name="index-octave_005fconfig_005finfo-3822"></a></var><br>
 <blockquote><p>Return a structure containing configuration and installation
 information for Octave.
 
@@ -350,10 +360,10 @@ specified option.
         </blockquote></div>
 
 <!-- getrusage libinterp/corefcn/getrusage.cc -->
-   <p><a name="doc_002dgetrusage"></a>
+   <p><a name="XREFgetrusage"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>getrusage</b> ()<var><a name="index-getrusage-3631"></a></var><br>
+&mdash; Built-in Function:  <b>getrusage</b> ()<var><a name="index-getrusage-3823"></a></var><br>
 <blockquote><p>Return a structure containing a number of statistics about the current
 Octave process.  Not all fields are available on all systems.  If it is
 not possible to get CPU time statistics, the CPU time slots are set to

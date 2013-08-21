@@ -36,7 +36,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 <h4 class="subsection">A.1.10 Allocating Local Memory in Oct-Files</h4>
 
 <p>Allocating memory within an oct-file might seem easy as the C++
-new/delete operators can be used.  However, in that case care must be
+new/delete operators can be used.  However, in that case great care must be
 taken to avoid memory leaks.  The preferred manner in which to allocate
 memory for use locally is to use the <code>OCTAVE_LOCAL_BUFFER</code><!-- /@w --> macro. 
 An example of its use is
@@ -45,6 +45,9 @@ An example of its use is
 </pre>
    <p class="noindent">that returns a pointer <code>tmp</code> of type <code>double *</code> of length
 <code>len</code>.
+
+   <p>In this case Octave itself will worry about reference counting and variable
+scope and will properly free memory without programmer intervention.
 
    </body></html>
 

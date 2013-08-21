@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Sparse-Matrices.html#Sparse-Matrices">S
 <hr>
 </div>
 
-<h3 class="section">22.3 Iterative Techniques applied to sparse matrices</h3>
+<h3 class="section">22.3 Iterative Techniques Applied to Sparse Matrices</h3>
 
 <p>The left division <code>\</code> and right division <code>/</code> operators,
 discussed in the previous section, use direct solvers to resolve a
@@ -41,11 +41,11 @@ linear equation of the form <var>x</var><code> = </code><var>A</var><code> \ </c
 functions to solve sparse linear equations using iterative techniques.
 
 <!-- pcg scripts/sparse/pcg.m -->
-   <p><a name="doc_002dpcg"></a>
+   <p><a name="XREFpcg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>pcg</b> (<var>A, b, tol, maxit, m1, m2, x0, <small class="dots">...</small></var>)<var><a name="index-pcg-2497"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>, <var>eigest</var>] = <b>pcg</b> (<var><small class="dots">...</small></var>)<var><a name="index-pcg-2498"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>pcg</b> (<var>A, b, tol, maxit, m1, m2, x0, <small class="dots">...</small></var>)<var><a name="index-pcg-2661"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>, <var>eigest</var>] = <b>pcg</b> (<var><small class="dots">...</small></var>)<var><a name="index-pcg-2662"></a></var><br>
 <blockquote>
         <p>Solve the linear system of equations <var>A</var><code> * </code><var>x</var><code> = </code><var>b</var>
 by means of the Preconditioned Conjugate Gradient iterative
@@ -197,20 +197,22 @@ parameter <var>k</var>.
 <li>C.T. Kelley, <cite>Iterative Methods for Linear and Nonlinear Equations</cite>,
 SIAM, 1995. (the base PCG algorithm)
 
-          <li>Y. Saad, <cite>Iterative Methods for Sparse Linear Systems</cite>, PWS 1996. 
-(condition number estimate from PCG) Revised version of this book is
-available online at <a href="http://www-users.cs.umn.edu/~saad/books.html">http://www-users.cs.umn.edu/~saad/books.html</a>
+          <li>Y. Saad, <cite>Iterative Methods for Sparse Linear Systems</cite>,
+PWS 1996. (condition number estimate from PCG)
+Revised version of this book is available online at
+<a href="http://www-users.cs.umn.edu/~saad/books.html">http://www-users.cs.umn.edu/~saad/books.html</a>
              </ol>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>, <a href="doc_002dpcr.html#doc_002dpcr">pcr</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsparse.html#XREFsparse">sparse</a>, <a href="XREFpcr.html#XREFpcr">pcr</a>.
+
+        </blockquote></div>
 
 <!-- pcr scripts/sparse/pcr.m -->
-   <p><a name="doc_002dpcr"></a>
+   <p><a name="XREFpcr"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>pcr</b> (<var>A, b, tol, maxit, m, x0, <small class="dots">...</small></var>)<var><a name="index-pcr-2499"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>pcr</b> (<var><small class="dots">...</small></var>)<var><a name="index-pcr-2500"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>pcr</b> (<var>A, b, tol, maxit, m, x0, <small class="dots">...</small></var>)<var><a name="index-pcr-2663"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>pcr</b> (<var><small class="dots">...</small></var>)<var><a name="index-pcr-2664"></a></var><br>
 <blockquote>
         <p>Solve the linear system of equations <var>A</var><code> * </code><var>x</var><code> = </code><var>b</var>
 by means of the Preconditioned Conjugate Residuals iterative
@@ -328,8 +330,9 @@ parameter <var>k</var>.
         <p>[1] W. Hackbusch, <cite>Iterative Solution of Large Sparse Systems of
      Equations</cite>, section 9.5.4; Springer, 1994
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsparse.html#XREFsparse">sparse</a>, <a href="XREFpcg.html#XREFpcg">pcg</a>.
+
+        </blockquote></div>
 
    <p>The speed with which an iterative solver converges to a solution can be
 accelerated with the use of a pre-conditioning matrix <var>M</var>.  In this
@@ -338,17 +341,17 @@ case the linear equation <var>M</var><code>^-1 * </code><var>x</var><code> = </c
 are partial factorizations of the original matrix.
 
 <!-- luinc libinterp/corefcn/luinc.cc -->
-   <p><a name="doc_002dluinc"></a>
+   <p><a name="XREFluinc"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>luinc</b> (<var>A, '0'</var>)<var><a name="index-luinc-2501"></a></var><br>
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>luinc</b> (<var>A, droptol</var>)<var><a name="index-luinc-2502"></a></var><br>
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>luinc</b> (<var>A, opts</var>)<var><a name="index-luinc-2503"></a></var><br>
-<blockquote><p><a name="index-LU-decomposition-2504"></a>Produce the incomplete LU&nbsp;factorization of the sparse matrix <var>A</var>. 
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>luinc</b> (<var>A, '0'</var>)<var><a name="index-luinc-2665"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>luinc</b> (<var>A, droptol</var>)<var><a name="index-luinc-2666"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>luinc</b> (<var>A, opts</var>)<var><a name="index-luinc-2667"></a></var><br>
+<blockquote><p><a name="index-LU-decomposition-2668"></a>Produce the incomplete LU&nbsp;factorization of the sparse matrix <var>A</var>. 
 Two types of incomplete factorization are possible, and the type
 is determined by the second argument to <code>luinc</code>.
 
-        <p>Called with a second argument of '0', the zero-level incomplete
+        <p>Called with a second argument of <code>'0'</code>, the zero-level incomplete
 LU&nbsp;factorization is produced.  This creates a factorization of <var>A</var>
 where the position of the non-zero arguments correspond to the same
 positions as in the matrix <var>A</var>.
@@ -388,11 +391,12 @@ range are ignored.
         <p>All other fields in <var>opts</var> are ignored.  The outputs from <code>luinc</code>
 are the same as for <code>lu</code>.
 
-        <p>Given the string argument "vector", <code>luinc</code> returns the values of
-<var>p</var> <var>q</var> as vector values.
+        <p>Given the string argument <code>"vector"</code>, <code>luinc</code> returns the
+values of <var>p</var> <var>q</var> as vector values.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>, <a href="doc_002dlu.html#doc_002dlu">lu</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsparse.html#XREFsparse">sparse</a>, <a href="XREFlu.html#XREFlu">lu</a>.
+
+        </blockquote></div>
 
    </body></html>
 

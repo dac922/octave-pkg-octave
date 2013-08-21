@@ -39,16 +39,16 @@ The most basic function for this is the <code>imshow</code> function that
 shows the image given in the first input argument.
 
 <!-- imshow scripts/image/imshow.m -->
-   <p><a name="doc_002dimshow"></a>
+   <p><a name="XREFimshow"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>imshow</b> (<var>im</var>)<var><a name="index-imshow-3122"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>im, limits</var>)<var><a name="index-imshow-3123"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>im, map</var>)<var><a name="index-imshow-3124"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>rgb, <small class="dots">...</small></var>)<var><a name="index-imshow-3125"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>filename</var>)<var><a name="index-imshow-3126"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var><small class="dots">...</small>, string_param1, value1, <small class="dots">...</small></var>)<var><a name="index-imshow-3127"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>imshow</b> (<var><small class="dots">...</small></var>)<var><a name="index-imshow-3128"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>im</var>)<var><a name="index-imshow-3308"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>im, limits</var>)<var><a name="index-imshow-3309"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>im, map</var>)<var><a name="index-imshow-3310"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>rgb, <small class="dots">...</small></var>)<var><a name="index-imshow-3311"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var>filename</var>)<var><a name="index-imshow-3312"></a></var><br>
+&mdash; Function File:  <b>imshow</b> (<var><small class="dots">...</small>, string_param1, value1, <small class="dots">...</small></var>)<var><a name="index-imshow-3313"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>imshow</b> (<var><small class="dots">...</small></var>)<var><a name="index-imshow-3314"></a></var><br>
 <blockquote><p>Display the image <var>im</var>, where <var>im</var> can be a 2-dimensional
 (grayscale image) or a 3-dimensional (RGB image) matrix.
 
@@ -68,22 +68,23 @@ shown.
 <var>value1</var>.  <var>string_param1</var> can be any of the following:
 
           <dl>
-<dt>"displayrange"<dd><var>value1</var> is the display range as described above. 
+<dt><code>"displayrange"</code><dd><var>value1</var> is the display range as described above. 
 </dl>
 
         <p>The optional return value <var>h</var> is a graphics handle to the image.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dimage.html#doc_002dimage">image</a>, <a href="doc_002dimagesc.html#doc_002dimagesc">imagesc</a>, <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>, <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimage.html#XREFimage">image</a>, <a href="XREFimagesc.html#XREFimagesc">imagesc</a>, <a href="XREFcolormap.html#XREFcolormap">colormap</a>, <a href="XREFgray2ind.html#XREFgray2ind">gray2ind</a>, <a href="XREFrgb2ind.html#XREFrgb2ind">rgb2ind</a>.
+
+        </blockquote></div>
 
 <!-- image scripts/image/image.m -->
-   <p><a name="doc_002dimage"></a>
+   <p><a name="XREFimage"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>image</b> (<var>img</var>)<var><a name="index-image-3129"></a></var><br>
-&mdash; Function File:  <b>image</b> (<var>x, y, img</var>)<var><a name="index-image-3130"></a></var><br>
-&mdash; Function File:  <b>image</b> (<var><small class="dots">...</small>, "property", value, <small class="dots">...</small></var>)<var><a name="index-image-3131"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>image</b> (<var><small class="dots">...</small></var>)<var><a name="index-image-3132"></a></var><br>
+&mdash; Function File:  <b>image</b> (<var>img</var>)<var><a name="index-image-3315"></a></var><br>
+&mdash; Function File:  <b>image</b> (<var>x, y, img</var>)<var><a name="index-image-3316"></a></var><br>
+&mdash; Function File:  <b>image</b> (<var><small class="dots">...</small>, "property", value, <small class="dots">...</small></var>)<var><a name="index-image-3317"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>image</b> (<var><small class="dots">...</small></var>)<var><a name="index-image-3318"></a></var><br>
 <blockquote><p>Display a matrix as an indexed color image.
 
         <p>The elements of <var>img</var> are indices into the current colormap. 
@@ -102,27 +103,28 @@ or earlier.
 upper left.  For ordinary plots, the origin is located in the lower
 left.  Octave handles this inversion by plotting the data normally,
 and then reversing the direction of the y-axis by setting the
-<code>ydir</code> property to "reverse".  This has implications whenever
+<code>ydir</code> property to <code>"reverse"</code>.  This has implications whenever
 an image and an ordinary plot need to be overlaid.  The recommended
 solution is to display the image and then plot the reversed ydata
 using, for example, <code>flipud (ydata)</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dimshow.html#doc_002dimshow">imshow</a>, <a href="doc_002dimagesc.html#doc_002dimagesc">imagesc</a>, <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimshow.html#XREFimshow">imshow</a>, <a href="XREFimagesc.html#XREFimagesc">imagesc</a>, <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- imagesc scripts/image/imagesc.m -->
-   <p><a name="doc_002dimagesc"></a>
+   <p><a name="XREFimagesc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>imagesc</b> (<var>img</var>)<var><a name="index-imagesc-3133"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var>x, y, img</var>)<var><a name="index-imagesc-3134"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var><small class="dots">...</small>, climits</var>)<var><a name="index-imagesc-3135"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-imagesc-3136"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>imagesc</b> (<var><small class="dots">...</small></var>)<var><a name="index-imagesc-3137"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var>img</var>)<var><a name="index-imagesc-3319"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var>x, y, img</var>)<var><a name="index-imagesc-3320"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var><small class="dots">...</small>, climits</var>)<var><a name="index-imagesc-3321"></a></var><br>
+&mdash; Function File:  <b>imagesc</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-imagesc-3322"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>imagesc</b> (<var><small class="dots">...</small></var>)<var><a name="index-imagesc-3323"></a></var><br>
 <blockquote><p>Display a scaled version of the matrix <var>img</var> as a color image.  The
 colormap is scaled so that the entries of the matrix occupy the entire
 colormap.  If <var>climits</var><code> = [</code><var>lo</var><code>, </code><var>hi</var><code>]</code> is given, then that
-range is set to the "clim" of the current axes.
+range is set to the <code>"clim"</code> of the current axes.
 
         <p>The axis values corresponding to the matrix elements are specified in
 <var>x</var> and <var>y</var>, either as pairs giving the minimum and maximum
@@ -131,8 +133,9 @@ of the matrix <var>img</var>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the image.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dimage.html#doc_002dimage">image</a>, <a href="doc_002dimshow.html#doc_002dimshow">imshow</a>, <a href="doc_002dcaxis.html#doc_002dcaxis">caxis</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimage.html#XREFimage">image</a>, <a href="XREFimshow.html#XREFimshow">imshow</a>, <a href="XREFcaxis.html#XREFcaxis">caxis</a>.
+
+        </blockquote></div>
 
    </body></html>
 

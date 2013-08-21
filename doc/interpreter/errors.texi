@@ -75,8 +75,8 @@ When the @code{error} function is called, it prints the given message
 and returns to the Octave prompt.  This means that no code following
 a call to @code{error} will be executed.
 
-@c error libinterp/interpfcn/error.cc
-@anchor{doc-error}
+@c error libinterp/corefcn/error.cc
+@anchor{XREFerror}
 @deftypefn  {Built-in Function} {} error (@var{template}, @dots{})
 @deftypefnx {Built-in Function} {} error (@var{id}, @var{template}, @dots{})
 Format the optional arguments under the control of the template string
@@ -131,13 +131,34 @@ error: nargin != 1
 @end group
 @end example
 
+A null string ("") input to @code{error} will be ignored and the code
+will continue running as if the statement were a NOP@.  This is for
+compatibility with @sc{matlab}.  It also makes it possible to write code such
+as
+
+@example
+@group
+err_msg = "";
+if (CONDITION 1)
+  err_msg = "CONDITION 1 found";
+elseif (CONDITION2)
+  err_msg = "CONDITION 2 found";
+@dots{}
+endif
+error (err_msg);
+@end group
+@end example
+
+@noindent
+which will only stop execution if an error has been found.
+
 Implementation Note: For compatibility with @sc{matlab}, escape
-sequences (e.g., "\n" => newline) are processed in @var{template}
+sequences (e.g., @qcode{"\n"} => newline) are processed in @var{template}
 regardless of whether @var{template} has been defined within single quotes
 as long as there are two or more input arguments.
 Use a second backslash to stop interpolation of the escape sequence (e.g.,
 "\\n") or use the @code{regexptranslate} function.
-@seealso{@ref{doc-warning,,warning}, @ref{doc-lasterror,,lasterror}}
+@seealso{@ref{XREFwarning,,warning}, @ref{XREFlasterror,,lasterror}}
 @end deftypefn
 
 
@@ -191,18 +212,18 @@ f ()
 @end example
 
 @c print_usage scripts/help/print_usage.m
-@anchor{doc-print_usage}
+@anchor{XREFprint_usage}
 @deftypefn  {Function File} {} print_usage ()
 @deftypefnx {Function File} {} print_usage (@var{name})
 Print the usage message for a function.  When called with no input arguments
 the @code{print_usage} function displays the usage message of the currently
 executing function.
-@seealso{@ref{doc-help,,help}}
+@seealso{@ref{XREFhelp,,help}}
 @end deftypefn
 
 
-@c usage libinterp/interpfcn/error.cc
-@anchor{doc-usage}
+@c usage libinterp/corefcn/error.cc
+@anchor{XREFusage}
 @deftypefn {Built-in Function} {} usage (@var{msg})
 Print the message @var{msg}, prefixed by the string @samp{usage: }, and
 set Octave's internal error state such that control will return to the
@@ -232,24 +253,24 @@ to check for the proper number of arguments.
 
 
 @c beep scripts/io/beep.m
-@anchor{doc-beep}
+@anchor{XREFbeep}
 @deftypefn {Function File} {} beep ()
 Produce a beep from the speaker (or visual bell).
-@seealso{@ref{doc-puts,,puts}, @ref{doc-fputs,,fputs}, @ref{doc-printf,,printf}, @ref{doc-fprintf,,fprintf}}
+@seealso{@ref{XREFputs,,puts}, @ref{XREFfputs,,fputs}, @ref{XREFprintf,,printf}, @ref{XREFfprintf,,fprintf}}
 @end deftypefn
 
 
-@c beep_on_error libinterp/interpfcn/error.cc
-@anchor{doc-beep_on_error}
+@c beep_on_error libinterp/corefcn/error.cc
+@anchor{XREFbeep_on_error}
 @deftypefn  {Built-in Function} {@var{val} =} beep_on_error ()
 @deftypefnx {Built-in Function} {@var{old_val} =} beep_on_error (@var{new_val})
 @deftypefnx {Built-in Function} {} beep_on_error (@var{new_val}, "local")
 Query or set the internal variable that controls whether Octave will try
 to ring the terminal bell before printing an error message.
 
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
 @end deftypefn
 
 
@@ -297,8 +318,8 @@ endfor
 @end group
 @end example
 
-@c lasterror libinterp/interpfcn/error.cc
-@anchor{doc-lasterror}
+@c lasterror libinterp/corefcn/error.cc
+@anchor{XREFlasterror}
 @deftypefn  {Built-in Function} {@var{lasterr} =} lasterror ()
 @deftypefnx {Built-in Function} {} lasterror (@var{err})
 @deftypefnx {Built-in Function} {} lasterror ("reset")
@@ -306,29 +327,29 @@ Query or set the last error message structure.  When called without
 arguments, return a structure containing the last error message and other
 information related to this error.  The elements of the structure are:
 
-@table @asis
-@item 'message'
+@table @code
+@item message
 The text of the last error message
 
-@item 'identifier'
+@item identifier
 The message identifier of this error message
 
-@item 'stack'
+@item stack
 A structure containing information on where the message occurred.  This may
 be an empty structure if the information cannot
 be obtained.  The fields of the structure are:
 
-@table @asis
-@item 'file'
+@table @code
+@item file
 The name of the file where the error occurred
 
-@item 'name'
+@item name
 The name of function in which the error occurred
 
-@item 'line'
+@item line
 The line number at which the error occurred
 
-@item 'column'
+@item column
 An optional field with the column number at which the error occurred
 @end table
 @end table
@@ -337,14 +358,14 @@ The last error structure may be set by passing a scalar structure, @var{err},
 as input.  Any fields of @var{err} that match those above are set while any
 unspecified fields are initialized with default values.
 
-If @code{lasterror} is called with the argument "reset", all fields are
-set to their default values.
-@seealso{@ref{doc-lasterr,,lasterr}, @ref{doc-error,,error}, @ref{doc-lastwarn,,lastwarn}}
+If @code{lasterror} is called with the argument @qcode{"reset"}, all
+fields are set to their default values.
+@seealso{@ref{XREFlasterr,,lasterr}, @ref{XREFerror,,error}, @ref{XREFlastwarn,,lastwarn}}
 @end deftypefn
 
 
-@c lasterr libinterp/interpfcn/error.cc
-@anchor{doc-lasterr}
+@c lasterr libinterp/corefcn/error.cc
+@anchor{XREFlasterr}
 @deftypefn  {Built-in Function} {[@var{msg}, @var{msgid}] =} lasterr ()
 @deftypefnx {Built-in Function} {} lasterr (@var{msg})
 @deftypefnx {Built-in Function} {} lasterr (@var{msg}, @var{msgid})
@@ -352,7 +373,7 @@ Query or set the last error message.  When called without input arguments,
 return the last error message and message identifier.  With one
 argument, set the last error message to @var{msg}.  With two arguments,
 also set the last message identifier.
-@seealso{@ref{doc-lasterror,,lasterror}, @ref{doc-error,,error}, @ref{doc-lastwarn,,lastwarn}}
+@seealso{@ref{XREFlasterror,,lasterror}, @ref{XREFerror,,error}, @ref{XREFlastwarn,,lastwarn}}
 @end deftypefn
 
 
@@ -361,11 +382,11 @@ If an error has such an ID the user can catch this error
 as will be shown in the next example.  To assign an ID to an error,
 simply call @code{error} with two string arguments, where the first
 is the identification string, and the second is the actual error.  Note
-that error IDs are in the format "NAMESPACE:ERROR-NAME".  The namespace
-"Octave" is used for Octave's own errors.  Any other string is available
+that error IDs are in the format @qcode{"NAMESPACE:ERROR-NAME"}.  The namespace
+@qcode{"Octave"} is used for Octave's own errors.  Any other string is available
 as a namespace for user's own errors.
 
-The next example counts indexing errors. The errors are catched using the
+The next example counts indexing errors.  The errors are caught using the
 field identifier of the structure returned by the function @code{lasterror}.
 
 @example
@@ -388,7 +409,7 @@ The functions distributed with Octave can issue one of the following
 errors.
 
 @c error_ids scripts/miscellaneous/error_ids.m
-@anchor{doc-error_ids}
+@anchor{XREFerror_ids}
 @cindex error ids
 
 @table @code
@@ -412,10 +433,11 @@ for arrays, non-existent field of a structure.
 Indicates that memory couldn't be allocated.
 
 @item Octave:undefined-function
-Indicates a call to a function that is not defined. The function may
+Indicates a call to a function that is not defined.  The function may
 exist but Octave is unable to find it in the search path.
 
 @end table
+
 
 
 When an error has been handled it is possible to raise it again.  This
@@ -443,22 +465,22 @@ endfor
 @end group
 @end example
 
-@c rethrow libinterp/interpfcn/error.cc
-@anchor{doc-rethrow}
+@c rethrow libinterp/corefcn/error.cc
+@anchor{XREFrethrow}
 @deftypefn {Built-in Function} {} rethrow (@var{err})
 Reissue a previous error as defined by @var{err}.  @var{err} is a structure
-that must contain at least the 'message' and 'identifier' fields.  @var{err}
-can also contain a field 'stack' that gives information on the assumed
-location of the error.  Typically @var{err} is returned from
-@code{lasterror}.
-@seealso{@ref{doc-lasterror,,lasterror}, @ref{doc-lasterr,,lasterr}, @ref{doc-error,,error}}
+that must contain at least the @qcode{"message"} and @qcode{"identifier"}
+fields.  @var{err} can also contain a field @qcode{"stack"} that gives
+information on the assumed location of the error.  Typically @var{err} is
+returned from @code{lasterror}.
+@seealso{@ref{XREFlasterror,,lasterror}, @ref{XREFlasterr,,lasterr}, @ref{XREFerror,,error}}
 @end deftypefn
 
 
 @c FIXME: I have no idea what the rest of the functions are used for...
 
-@c errno libinterp/interpfcn/utils.cc
-@anchor{doc-errno}
+@c errno libinterp/corefcn/utils.cc
+@anchor{XREFerrno}
 @deftypefn  {Built-in Function} {@var{err} =} errno ()
 @deftypefnx {Built-in Function} {@var{err} =} errno (@var{val})
 @deftypefnx {Built-in Function} {@var{err} =} errno (@var{name})
@@ -469,8 +491,8 @@ if @var{name} is not found.
 @end deftypefn
 
 
-@c errno_list libinterp/interpfcn/utils.cc
-@anchor{doc-errno_list}
+@c errno_list libinterp/corefcn/utils.cc
+@anchor{XREFerrno_list}
 @deftypefn {Built-in Function} {} errno_list ()
 Return a structure containing the system-dependent errno values.
 @end deftypefn
@@ -507,7 +529,7 @@ endfunction  # rand generator state restored by onCleanup
 @end example
 
 @c onCleanup libinterp/octave-value/ov-oncleanup.cc
-@anchor{doc-onCleanup}
+@anchor{XREFonCleanup}
 @deftypefn {Built-in Function} {@var{c} =} onCleanup (@var{action})
 Create a special object that executes a given function upon destruction.
 If the object is copied to multiple variables (or cell or struct array
@@ -570,12 +592,12 @@ If a warning has such an ID the user can enable and disable this warning
 as will be described in the next section.  To assign an ID to a warning,
 simply call @code{warning} with two string arguments, where the first
 is the identification string, and the second is the actual warning.  Note
-that warning IDs are in the format "NAMESPACE:WARNING-NAME".  The namespace
-"Octave" is used for Octave's own warnings.  Any other string is available
-as a namespace for user's own warnings.
+that warning IDs are in the format @qcode{"NAMESPACE:WARNING-NAME"}.  The
+namespace @qcode{"Octave"} is used for Octave's own warnings.  Any other string
+is available as a namespace for user's own warnings.
 
-@c warning libinterp/interpfcn/error.cc
-@anchor{doc-warning}
+@c warning libinterp/corefcn/error.cc
+@anchor{XREFwarning}
 @deftypefn  {Built-in Function} {} warning (@var{template}, @dots{})
 @deftypefnx {Built-in Function} {} warning (@var{id}, @var{template}, @dots{})
 @deftypefnx {Built-in Function} {} warning ("on", @var{id})
@@ -594,17 +616,17 @@ to go on.
 
 The optional message identifier allows users to enable or disable
 warnings tagged by @var{id}.  A message identifier is of the form
-"NAMESPACE:WARNING-NAME".  Octave's own warnings use the "Octave"
-namespace (@pxref{doc-warning_ids}).  The special identifier @samp{"all"}
+"NAMESPACE:WARNING-NAME".  Octave's own warnings use the @qcode{"Octave"}
+namespace (@pxref{XREFwarning_ids}).  The special identifier @qcode{"all"}
 may be used to set the state of all warnings.
 
-If the first argument is @samp{"on"} or @samp{"off"}, set the state
-of a particular warning using the identifier @var{id}.  If the first
-argument is @samp{"query"}, query the state of this warning instead.
-If the identifier is omitted, a value of @samp{"all"} is assumed.  If
-you set the state of a warning to @samp{"error"}, the warning named by
-@var{id} is handled as if it were an error instead.  So, for example, the
-following handles all warnings as errors:
+If the first argument is @qcode{"on"} or @qcode{"off"},
+set the state of a particular warning using the identifier @var{id}.  If the
+first argument is @qcode{"query"}, query the state of this warning
+instead.  If the identifier is omitted, a value of @qcode{"all"} is
+assumed.  If you set the state of a warning to @qcode{"error"}, the
+warning named by @var{id} is handled as if it were an error instead.  So,
+for example, the following handles all warnings as errors:
 
 @example
 @group
@@ -612,27 +634,27 @@ warning ("error");
 @end group
 @end example
 
-If the state is @samp{"on"}, @samp{"off"}, or @samp{"error"}
-and the third argument is @samp{"local"}, then the warning state
+If the state is @qcode{"on"}, @qcode{"off"}, or @qcode{"error"}
+and the third argument is @qcode{"local"}, then the warning state
 will be set temporarily, until the end of the current function.
 Changes to warning states that are set locally affect the current
 function and all functions called from the current scope.  The
 previous warning state is restored on return from the current
-function.  The "local" option is ignored if used in the top-level
+function.  The @qcode{"local"} option is ignored if used in the top-level
 workspace.
 
 Implementation Note: For compatibility with @sc{matlab}, escape
-sequences (e.g., "\n" => newline) are processed in @var{template}
+sequences (e.g., @qcode{"\n"} => newline) are processed in @var{template}
 regardless of whether @var{template} has been defined within single quotes
 as long as there are two or more input arguments.
 Use a second backslash to stop interpolation of the escape sequence (e.g.,
 "\\n") or use the @code{regexptranslate} function.
-@seealso{@ref{doc-warning_ids,,warning_ids}, @ref{doc-lastwarn,,lastwarn}, @ref{doc-error,,error}}
+@seealso{@ref{XREFwarning_ids,,warning_ids}, @ref{XREFlastwarn,,lastwarn}, @ref{XREFerror,,error}}
 @end deftypefn
 
 
-@c lastwarn libinterp/interpfcn/error.cc
-@anchor{doc-lastwarn}
+@c lastwarn libinterp/corefcn/error.cc
+@anchor{XREFlastwarn}
 @deftypefn  {Built-in Function} {[@var{msg}, @var{msgid}] =} lastwarn ()
 @deftypefnx {Built-in Function} {} lastwarn (@var{msg})
 @deftypefnx {Built-in Function} {} lastwarn (@var{msg}, @var{msgid})
@@ -640,7 +662,7 @@ Query or set the last warning message.  When called without input arguments,
 return the last warning message and message identifier.  With one
 argument, set the last warning message to @var{msg}.  With two arguments,
 also set the last message identifier.
-@seealso{@ref{doc-warning,,warning}, @ref{doc-lasterror,,lasterror}, @ref{doc-lasterr,,lasterr}}
+@seealso{@ref{XREFwarning,,warning}, @ref{XREFlasterror,,lasterror}, @ref{XREFlasterr,,lasterr}}
 @end deftypefn
 
 
@@ -648,7 +670,7 @@ The functions distributed with Octave can issue one of the following
 warnings.
 
 @c warning_ids scripts/miscellaneous/warning_ids.m
-@anchor{doc-warning_ids}
+@anchor{XREFwarning_ids}
 @cindex warning ids
 
 @table @code
@@ -809,7 +831,7 @@ Print warnings for Octave language features that may cause
 compatibility problems with @sc{matlab}.
 By default, the @code{Octave:matlab-incompatible} warning is disabled.
 The --traditional or --braindead startup options for Octave may also
-be of use, @xref{Command Line Options}.
+be of use, @pxref{Command Line Options}.
 
 @item Octave:md5sum-file-in-path
 By default, the @code{Octave:md5sum-file-in-path} warning is enabled.
@@ -967,12 +989,13 @@ By default, the @code{Octave:variable-switch-label} warning is disabled.
 @end table
 
 
+
 @node Enabling and Disabling Warnings
 @subsection Enabling and Disabling Warnings
 
 The @code{warning} function also allows you to control which warnings
 are actually printed to the screen.  If the @code{warning} function
-is called with a string argument that is either @code{"on"} or @code{"off"}
+is called with a string argument that is either @qcode{"on"} or @qcode{"off"}
 all warnings will be enabled or disabled.
 
 It is also possible to enable and disable individual warnings through

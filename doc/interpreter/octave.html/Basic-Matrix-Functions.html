@@ -35,14 +35,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Lin
 <h3 class="section">18.2 Basic Matrix Functions</h3>
 
 <!-- balance libinterp/corefcn/balance.cc -->
-<p><a name="doc_002dbalance"></a>
+<p><a name="XREFbalance"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A</var>)<var><a name="index-balance-2200"></a></var><br>
-&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2201"></a></var><br>
-&mdash; Built-in Function: [<var>DD</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2202"></a></var><br>
-&mdash; Built-in Function: [<var>D</var>, <var>P</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2203"></a></var><br>
-&mdash; Built-in Function: [<var>CC</var>, <var>DD</var>, <var>AA</var>, <var>BB</var>] = <b>balance</b> (<var>A, B, opt</var>)<var><a name="index-balance-2204"></a></var><br>
+&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A</var>)<var><a name="index-balance-2355"></a></var><br>
+&mdash; Built-in Function: <var>AA</var> = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2356"></a></var><br>
+&mdash; Built-in Function: [<var>DD</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2357"></a></var><br>
+&mdash; Built-in Function: [<var>D</var>, <var>P</var>, <var>AA</var>] = <b>balance</b> (<var>A, opt</var>)<var><a name="index-balance-2358"></a></var><br>
+&mdash; Built-in Function: [<var>CC</var>, <var>DD</var>, <var>AA</var>, <var>BB</var>] = <b>balance</b> (<var>A, B, opt</var>)<var><a name="index-balance-2359"></a></var><br>
 <blockquote>
         <p>Compute <var>AA</var><code> = </code><var>DD</var><code> \ </code><var>A</var><code> * </code><var>DD</var> in which <var>AA</var>
 is a matrix whose row and column norms are roughly equal in magnitude, and
@@ -65,9 +65,9 @@ in <var>DD</var> for the algebraic eigenvalue problem.
         <p>The eigenvalue balancing option <var>opt</var> may be one of:
 
           <dl>
-<dt>"noperm", "S"<dd>Scale only; do not permute.
+<dt><code>"noperm"</code>, <code>"S"</code><dd>Scale only; do not permute.
 
-          <br><dt>"noscal", "P"<dd>Permute only; do not scale. 
+          <br><dt><code>"noscal"</code>, <code>"P"</code><dd>Permute only; do not scale. 
 </dl>
 
         <p>Algebraic eigenvalue balancing uses standard <span class="sc">lapack</span> routines.
@@ -77,30 +77,38 @@ in <var>DD</var> for the algebraic eigenvalue problem.
 </p></blockquote></div>
 
 <!-- cond scripts/linear-algebra/cond.m -->
-   <p><a name="doc_002dcond"></a>
+   <p><a name="XREFcond"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cond</b> (<var>A</var>)<var><a name="index-cond-2205"></a></var><br>
-&mdash; Function File:  <b>cond</b> (<var>A, p</var>)<var><a name="index-cond-2206"></a></var><br>
+&mdash; Function File:  <b>cond</b> (<var>A</var>)<var><a name="index-cond-2360"></a></var><br>
+&mdash; Function File:  <b>cond</b> (<var>A, p</var>)<var><a name="index-cond-2361"></a></var><br>
 <blockquote><p>Compute the <var>p</var>-norm condition number of a matrix.
 
-        <p><code>cond (</code><var>A</var><code>)</code> is ## defined as
+        <p><code>cond (</code><var>A</var><code>)</code> is defined as
 <code>norm (</code><var>A</var><code>, </code><var>p</var><code>) * norm (inv (</code><var>A</var><code>), </code><var>p</var><code>)</code>.
 
-        <p>By default <var>p</var><code> = 2</code> is used which implies a (relatively slow)
+        <p>By default, <var>p</var><code> = 2</code> is used which implies a (relatively slow)
 singular value decomposition.  Other possible selections are
 <var>p</var><code> = 1, Inf, "fro"</code> which are generally faster.  See
 <code>norm</code> for a full discussion of possible <var>p</var> values.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcondest.html#doc_002dcondest">condest</a>, <a href="doc_002drcond.html#doc_002drcond">rcond</a>, <a href="doc_002dnorm.html#doc_002dnorm">norm</a>, <a href="doc_002dsvd.html#doc_002dsvd">svd</a>. 
-</p></blockquote></div>
+        <p>The condition number of a matrix quantifies the sensitivity of the matrix
+inversion operation when small changes are made to matrix elements.  Ideally
+the condition number will be close to 1.  When the number is large this
+indicates small changes (such as underflow or round-off error) will produce
+large changes in the resulting output.  In such cases the solution results
+from numerical computing are not likely to be accurate.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcondest.html#XREFcondest">condest</a>, <a href="XREFrcond.html#XREFrcond">rcond</a>, <a href="XREFnorm.html#XREFnorm">norm</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- det libinterp/corefcn/det.cc -->
-   <p><a name="doc_002ddet"></a>
+   <p><a name="XREFdet"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>det</b> (<var>A</var>)<var><a name="index-det-2207"></a></var><br>
-&mdash; Built-in Function: [<var>d</var>, <var>rcond</var>] = <b>det</b> (<var>A</var>)<var><a name="index-det-2208"></a></var><br>
+&mdash; Built-in Function:  <b>det</b> (<var>A</var>)<var><a name="index-det-2362"></a></var><br>
+&mdash; Built-in Function: [<var>d</var>, <var>rcond</var>] = <b>det</b> (<var>A</var>)<var><a name="index-det-2363"></a></var><br>
 <blockquote><p>Compute the determinant of <var>A</var>.
 
         <p>Return an estimate of the reciprocal condition number if requested.
@@ -112,17 +120,18 @@ singular value decomposition.  Other possible selections are
 For that, use any of the condition number functions: <code>cond</code>,
 <code>condest</code>, <code>rcond</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcond.html#doc_002dcond">cond</a>, <a href="doc_002dcondest.html#doc_002dcondest">condest</a>, <a href="doc_002drcond.html#doc_002drcond">rcond</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcond.html#XREFcond">cond</a>, <a href="XREFcondest.html#XREFcondest">condest</a>, <a href="XREFrcond.html#XREFrcond">rcond</a>.
+
+        </blockquote></div>
 
 <!-- eig libinterp/corefcn/eig.cc -->
-   <p><a name="doc_002deig"></a>
+   <p><a name="XREFeig"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2209"></a></var><br>
-&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2210"></a></var><br>
-&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2211"></a></var><br>
-&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2212"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2364"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2365"></a></var><br>
+&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A</var>)<var><a name="index-eig-2366"></a></var><br>
+&mdash; Built-in Function: [<var>V</var>, <var>lambda</var>] = <b>eig</b> (<var>A, B</var>)<var><a name="index-eig-2367"></a></var><br>
 <blockquote><p>Compute the eigenvalues (and optionally the eigenvectors) of a matrix
 or a pair of matrices
 
@@ -132,15 +141,16 @@ matrices, if they are real or complex and if they are symmetric
 
         <p>The eigenvalues returned by <code>eig</code> are not ordered.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002deigs.html#doc_002deigs">eigs</a>, <a href="doc_002dsvd.html#doc_002dsvd">svd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeigs.html#XREFeigs">eigs</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- givens libinterp/corefcn/givens.cc -->
-   <p><a name="doc_002dgivens"></a>
+   <p><a name="XREFgivens"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>g</var> = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2213"></a></var><br>
-&mdash; Built-in Function: [<var>c</var>, <var>s</var>] = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2214"></a></var><br>
+&mdash; Built-in Function: <var>g</var> = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2368"></a></var><br>
+&mdash; Built-in Function: [<var>c</var>, <var>s</var>] = <b>givens</b> (<var>x, y</var>)<var><a name="index-givens-2369"></a></var><br>
 <blockquote><p>Return a 2 by 2 orthogonal matrix
 <var>g</var><code> = [</code><var>c</var> <var>s</var><code>; -</code><var>s</var><code>' </code><var>c</var><code>]</code> such that
 <var>g</var><code> [</code><var>x</var><code>; </code><var>y</var><code>] = [*; 0]</code> with <var>x</var> and <var>y</var> scalars.
@@ -154,24 +164,25 @@ matrices, if they are real or complex and if they are symmetric
         </blockquote></div>
 
 <!-- planerot scripts/linear-algebra/planerot.m -->
-   <p><a name="doc_002dplanerot"></a>
+   <p><a name="XREFplanerot"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>g</var>, <var>y</var>] = <b>planerot</b> (<var>x</var>)<var><a name="index-planerot-2215"></a></var><br>
+&mdash; Function File: [<var>g</var>, <var>y</var>] = <b>planerot</b> (<var>x</var>)<var><a name="index-planerot-2370"></a></var><br>
 <blockquote><p>Given a two-element column vector, returns the
 2 by 2 orthogonal matrix
 <var>G</var> such that
 <var>y</var><code> = </code><var>g</var><code> * </code><var>x</var> and <var>y</var><code>(2) = 0</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgivens.html#doc_002dgivens">givens</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgivens.html#XREFgivens">givens</a>.
+
+        </blockquote></div>
 
 <!-- inv libinterp/corefcn/inv.cc -->
-   <p><a name="doc_002dinv"></a>
+   <p><a name="XREFinv"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>x</var> = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2216"></a></var><br>
-&mdash; Built-in Function: [<var>x</var>, <var>rcond</var>] = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2217"></a></var><br>
+&mdash; Built-in Function: <var>x</var> = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2371"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>rcond</var>] = <b>inv</b> (<var>A</var>)<var><a name="index-inv-2372"></a></var><br>
 <blockquote><p>Compute the inverse of the square matrix <var>A</var>.  Return an estimate
 of the reciprocal condition number if requested, otherwise warn of an
 ill-conditioned matrix if the reciprocal condition number is small.
@@ -186,58 +197,60 @@ systems of equations (<var>A</var>*x = b) with
 matrix requiring significantly more storage.  Avoid forming the inverse
 of a sparse matrix if possible.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dldivide.html#doc_002dldivide">ldivide</a>, <a href="doc_002drdivide.html#doc_002drdivide">rdivide</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFldivide.html#XREFldivide">ldivide</a>, <a href="XREFrdivide.html#XREFrdivide">rdivide</a>.
+
+        </blockquote></div>
 
 <!-- matrix_type libinterp/corefcn/matrix_type.cc -->
-   <p><a name="doc_002dmatrix_005ftype"></a>
+   <p><a name="XREFmatrix_005ftype"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A</var>)<var><a name="index-matrix_005ftype-2218"></a></var><br>
-&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A, "nocompute"</var>)<var><a name="index-matrix_005ftype-2219"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, type</var>)<var><a name="index-matrix_005ftype-2220"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "upper", perm</var>)<var><a name="index-matrix_005ftype-2221"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "lower", perm</var>)<var><a name="index-matrix_005ftype-2222"></a></var><br>
-&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "banded", nl, nu</var>)<var><a name="index-matrix_005ftype-2223"></a></var><br>
+&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A</var>)<var><a name="index-matrix_005ftype-2373"></a></var><br>
+&mdash; Built-in Function: <var>type</var> = <b>matrix_type</b> (<var>A, "nocompute"</var>)<var><a name="index-matrix_005ftype-2374"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, type</var>)<var><a name="index-matrix_005ftype-2375"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "upper", perm</var>)<var><a name="index-matrix_005ftype-2376"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "lower", perm</var>)<var><a name="index-matrix_005ftype-2377"></a></var><br>
+&mdash; Built-in Function: <var>A</var> = <b>matrix_type</b> (<var>A, "banded", nl, nu</var>)<var><a name="index-matrix_005ftype-2378"></a></var><br>
 <blockquote><p>Identify the matrix type or mark a matrix as a particular type.  This allows
 more rapid solutions of linear equations involving <var>A</var> to be performed. 
 Called with a single argument, <code>matrix_type</code> returns the type of the
 matrix and caches it for future use.  Called with more than one argument,
 <code>matrix_type</code> allows the type of the matrix to be defined.
 
-        <p>If the option "nocompute" is given, the function will not attempt to guess
-the type if it is still unknown.  This is useful for debugging purposes.
+        <p>If the option <code>"nocompute"</code> is given, the function will not attempt
+to guess the type if it is still unknown.  This is useful for debugging
+purposes.
 
         <p>The possible matrix types depend on whether the matrix is full or sparse, and
 can be one of the following
 
           <dl>
-<dt>"unknown"<dd>Remove any previously cached matrix type, and mark type as unknown.
+<dt><code>"unknown"</code><dd>Remove any previously cached matrix type, and mark type as unknown.
 
-          <br><dt>"full"<dd>Mark the matrix as full.
+          <br><dt><code>"full"</code><dd>Mark the matrix as full.
 
-          <br><dt>"positive definite"<dd>Probable full positive definite matrix.
+          <br><dt><code>"positive definite"</code><dd>Probable full positive definite matrix.
 
-          <br><dt>"diagonal"<dd>Diagonal matrix.  (Sparse matrices only)
+          <br><dt><code>"diagonal"</code><dd>Diagonal matrix.  (Sparse matrices only)
 
-          <br><dt>"permuted diagonal"<dd>Permuted Diagonal matrix.  The permutation does not need to be specifically
+          <br><dt><code>"permuted diagonal"</code><dd>Permuted Diagonal matrix.  The permutation does not need to be specifically
 indicated, as the structure of the matrix explicitly gives this.  (Sparse
 matrices only)
 
-          <br><dt>"upper"<dd>Upper triangular.  If the optional third argument <var>perm</var> is given, the
+          <br><dt><code>"upper"</code><dd>Upper triangular.  If the optional third argument <var>perm</var> is given, the
 matrix is assumed to be a permuted upper triangular with the permutations
 defined by the vector <var>perm</var>.
 
-          <br><dt>"lower"<dd>Lower triangular.  If the optional third argument <var>perm</var> is given, the
+          <br><dt><code>"lower"</code><dd>Lower triangular.  If the optional third argument <var>perm</var> is given, the
 matrix is assumed to be a permuted lower triangular with the permutations
 defined by the vector <var>perm</var>.
 
-          <br><dt>"banded"<dt>"banded positive definite"<dd>Banded matrix with the band size of <var>nl</var> below the diagonal and <var>nu</var>
+          <br><dt><code>"banded"</code><dt><code>"banded positive definite"</code><dd>Banded matrix with the band size of <var>nl</var> below the diagonal and <var>nu</var>
 above it.  If <var>nl</var> and <var>nu</var> are 1, then the matrix is tridiagonal and
 treated with specialized code.  In addition the matrix can be marked as
 probably a positive definite.  (Sparse matrices only)
 
-          <br><dt>"singular"<dd>The matrix is assumed to be singular and will be treated with a minimum norm
+          <br><dt><code>"singular"</code><dd>The matrix is assumed to be singular and will be treated with a minimum norm
 solution.
 
         </dl>
@@ -258,13 +271,13 @@ LU&nbsp;factorization.  Once the matrix has been factorized,
 <code>matrix_type</code> will return the correct classification of the matrix. 
 </p></blockquote></div>
 
-<!-- norm libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dnorm"></a>
+<!-- norm libinterp/corefcn/data.cc -->
+   <p><a name="XREFnorm"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>norm</b> (<var>A</var>)<var><a name="index-norm-2224"></a></var><br>
-&mdash; Built-in Function:  <b>norm</b> (<var>A, p</var>)<var><a name="index-norm-2225"></a></var><br>
-&mdash; Built-in Function:  <b>norm</b> (<var>A, p, opt</var>)<var><a name="index-norm-2226"></a></var><br>
+&mdash; Built-in Function:  <b>norm</b> (<var>A</var>)<var><a name="index-norm-2379"></a></var><br>
+&mdash; Built-in Function:  <b>norm</b> (<var>A, p</var>)<var><a name="index-norm-2380"></a></var><br>
+&mdash; Built-in Function:  <b>norm</b> (<var>A, p, opt</var>)<var><a name="index-norm-2381"></a></var><br>
 <blockquote><p>Compute the p-norm of the matrix <var>A</var>.  If the second argument is
 missing, <code>p = 2</code> is assumed.
 
@@ -275,11 +288,11 @@ missing, <code>p = 2</code> is assumed.
 
           <br><dt><var>p</var> = <code>2</code><dd>Largest singular value of <var>A</var>.
 
-          <br><dt><var>p</var> = <code>Inf</code> or <code>"inf"</code><dd><a name="index-infinity-norm-2227"></a>Infinity norm, the largest row sum of the absolute values of <var>A</var>.
+          <br><dt><var>p</var> = <code>Inf</code> or <code>"inf"</code><dd><a name="index-infinity-norm-2382"></a>Infinity norm, the largest row sum of the absolute values of <var>A</var>.
 
-          <br><dt><var>p</var> = <code>"fro"</code><dd><a name="index-Frobenius-norm-2228"></a>Frobenius norm of <var>A</var>, <code>sqrt (sum (diag (</code><var>A</var><code>' * </code><var>A</var><code>)))</code>.
+          <br><dt><var>p</var> = <code>"fro"</code><dd><a name="index-Frobenius-norm-2383"></a>Frobenius norm of <var>A</var>, <code>sqrt (sum (diag (</code><var>A</var><code>' * </code><var>A</var><code>)))</code>.
 
-          <br><dt>other <var>p</var>, <var>p</var><code> &gt; 1</code><dd><a name="index-general-p_002dnorm-2229"></a>maximum <code>norm (A*x, p)</code> such that <code>norm (x, p) == 1</code>
+          <br><dt>other <var>p</var>, <var>p</var><code> &gt; 1</code><dd><a name="index-general-p_002dnorm-2384"></a>maximum <code>norm (A*x, p)</code> such that <code>norm (x, p) == 1</code>
 </dl>
 
         <p>If <var>A</var> is a vector or a scalar:
@@ -300,18 +313,19 @@ missing, <code>p = 2</code> is assumed.
 
         <p>If <var>opt</var> is the value <code>"rows"</code>, treat each row as a vector and
 compute its norm.  The result is returned as a column vector. 
-Similarly, if <var>opt</var> is <code>"columns"</code> or <code>"cols"</code> then compute
-the norms of each column and return a row vector.
+Similarly, if <var>opt</var> is <code>"columns"</code> or <code>"cols"</code> then
+compute the norms of each column and return a row vector.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcond.html#doc_002dcond">cond</a>, <a href="doc_002dsvd.html#doc_002dsvd">svd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcond.html#XREFcond">cond</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- null scripts/linear-algebra/null.m -->
-   <p><a name="doc_002dnull"></a>
+   <p><a name="XREFnull"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>null</b> (<var>A</var>)<var><a name="index-null-2230"></a></var><br>
-&mdash; Function File:  <b>null</b> (<var>A, tol</var>)<var><a name="index-null-2231"></a></var><br>
+&mdash; Function File:  <b>null</b> (<var>A</var>)<var><a name="index-null-2385"></a></var><br>
+&mdash; Function File:  <b>null</b> (<var>A, tol</var>)<var><a name="index-null-2386"></a></var><br>
 <blockquote><p>Return an orthonormal basis of the null space of <var>A</var>.
 
         <p>The dimension of the null space is taken as the number of singular
@@ -320,15 +334,16 @@ is missing, it is computed as
 
      <pre class="example">          max (size (<var>A</var>)) * max (svd (<var>A</var>)) * eps
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dorth.html#doc_002dorth">orth</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREForth.html#XREForth">orth</a>.
+
+        </blockquote></div>
 
 <!-- orth scripts/linear-algebra/orth.m -->
-   <p><a name="doc_002dorth"></a>
+   <p><a name="XREForth"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>orth</b> (<var>A</var>)<var><a name="index-orth-2232"></a></var><br>
-&mdash; Function File:  <b>orth</b> (<var>A, tol</var>)<var><a name="index-orth-2233"></a></var><br>
+&mdash; Function File:  <b>orth</b> (<var>A</var>)<var><a name="index-orth-2387"></a></var><br>
+&mdash; Function File:  <b>orth</b> (<var>A, tol</var>)<var><a name="index-orth-2388"></a></var><br>
 <blockquote><p>Return an orthonormal basis of the range space of <var>A</var>.
 
         <p>The dimension of the range space is taken as the number of singular
@@ -337,14 +352,15 @@ missing, it is computed as
 
      <pre class="example">          max (size (<var>A</var>)) * max (svd (<var>A</var>)) * eps
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dnull.html#doc_002dnull">null</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFnull.html#XREFnull">null</a>.
+
+        </blockquote></div>
 
 <!-- mgorth libinterp/corefcn/mgorth.cc -->
-   <p><a name="doc_002dmgorth"></a>
+   <p><a name="XREFmgorth"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>y</var>, <var>h</var>] = <b>mgorth</b> (<var>x, v</var>)<var><a name="index-mgorth-2234"></a></var><br>
+&mdash; Built-in Function: [<var>y</var>, <var>h</var>] = <b>mgorth</b> (<var>x, v</var>)<var><a name="index-mgorth-2389"></a></var><br>
 <blockquote><p>Orthogonalize a given column vector <var>x</var> with respect to a set of
 orthonormal vectors comprising the columns of <var>v</var>
 using the modified Gram-Schmidt method. 
@@ -357,11 +373,11 @@ On exit, <var>y</var> is a unit vector such that:
         </blockquote></div>
 
 <!-- pinv libinterp/corefcn/pinv.cc -->
-   <p><a name="doc_002dpinv"></a>
+   <p><a name="XREFpinv"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>pinv</b> (<var>x</var>)<var><a name="index-pinv-2235"></a></var><br>
-&mdash; Built-in Function:  <b>pinv</b> (<var>x, tol</var>)<var><a name="index-pinv-2236"></a></var><br>
+&mdash; Built-in Function:  <b>pinv</b> (<var>x</var>)<var><a name="index-pinv-2390"></a></var><br>
+&mdash; Built-in Function:  <b>pinv</b> (<var>x, tol</var>)<var><a name="index-pinv-2391"></a></var><br>
 <blockquote><p>Return the pseudoinverse of <var>x</var>.  Singular values less than
 <var>tol</var> are ignored.
 
@@ -373,27 +389,47 @@ On exit, <var>y</var> is a unit vector such that:
 </p></blockquote></div>
 
 <!-- rank scripts/linear-algebra/rank.m -->
-   <p><a name="doc_002drank"></a>
+   <p><a name="XREFrank"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rank</b> (<var>A</var>)<var><a name="index-rank-2237"></a></var><br>
-&mdash; Function File:  <b>rank</b> (<var>A, tol</var>)<var><a name="index-rank-2238"></a></var><br>
-<blockquote><p>Compute the rank of <var>A</var>, using the singular value decomposition. 
-The rank is taken to be the number of singular values of <var>A</var> that
+&mdash; Function File:  <b>rank</b> (<var>A</var>)<var><a name="index-rank-2392"></a></var><br>
+&mdash; Function File:  <b>rank</b> (<var>A, tol</var>)<var><a name="index-rank-2393"></a></var><br>
+<blockquote><p>Compute the rank of matrix <var>A</var>, using the singular value decomposition.
+
+        <p>The rank is taken to be the number of singular values of <var>A</var> that
 are greater than the specified tolerance <var>tol</var>.  If the second
 argument is omitted, it is taken to be
 
      <pre class="example">          tol = max (size (<var>A</var>)) * sigma(1) * eps;
 </pre>
         <p class="noindent">where <code>eps</code> is machine precision and <code>sigma(1)</code> is the largest
-singular value of <var>A</var>. 
-</p></blockquote></div>
+singular value of <var>A</var>.
+
+        <p>The rank of a matrix is the number of linearly independent rows or
+columns and determines how many particular solutions exist to a system
+of equations.  Use <code>null</code> for finding the remaining homogenous
+solutions.
+
+        <p>Example:
+
+     <pre class="example">          x = [1 2 3
+               4 5 6
+               7 8 9];
+          rank (x)
+            &rArr; 2
+</pre>
+        <p class="noindent">The number of linearly independent rows is only 2 because the final row
+is a linear combination of -1*row1 + 2*row2.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnull.html#XREFnull">null</a>, <a href="XREFsprank.html#XREFsprank">sprank</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- rcond libinterp/corefcn/rcond.cc -->
-   <p><a name="doc_002drcond"></a>
+   <p><a name="XREFrcond"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>c</var> = <b>rcond</b> (<var>A</var>)<var><a name="index-rcond-2239"></a></var><br>
+&mdash; Built-in Function: <var>c</var> = <b>rcond</b> (<var>A</var>)<var><a name="index-rcond-2394"></a></var><br>
 <blockquote><p>Compute the 1-norm estimate of the reciprocal condition number as returned
 by <span class="sc">lapack</span>.  If the matrix is well-conditioned then <var>c</var> will be near
 1 and if the matrix is poorly conditioned it will be close to zero.
@@ -402,24 +438,31 @@ by <span class="sc">lapack</span>.  If the matrix is well-conditioned then <var>
 <code>condest (</code><var>A</var><code>)</code> or <code>rcond (full (</code><var>A</var><code>))</code> should be used
 instead.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcond.html#doc_002dcond">cond</a>, <a href="doc_002dcondest.html#doc_002dcondest">condest</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcond.html#XREFcond">cond</a>, <a href="XREFcondest.html#XREFcondest">condest</a>.
+
+        </blockquote></div>
 
 <!-- trace scripts/linear-algebra/trace.m -->
-   <p><a name="doc_002dtrace"></a>
+   <p><a name="XREFtrace"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>trace</b> (<var>A</var>)<var><a name="index-trace-2240"></a></var><br>
-<blockquote><p>Compute the trace of <var>A</var>, <code>sum (diag (</code><var>A</var><code>))</code>. 
-</p></blockquote></div>
+&mdash; Function File:  <b>trace</b> (<var>A</var>)<var><a name="index-trace-2395"></a></var><br>
+<blockquote><p>Compute the trace of <var>A</var>, the sum of the elements along the main
+diagonal.
+
+        <p>The implementation is straightforward: <code>sum (diag (</code><var>A</var><code>))</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeig.html#XREFeig">eig</a>.
+
+        </blockquote></div>
 
 <!-- rref scripts/linear-algebra/rref.m -->
-   <p><a name="doc_002drref"></a>
+   <p><a name="XREFrref"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rref</b> (<var>A</var>)<var><a name="index-rref-2241"></a></var><br>
-&mdash; Function File:  <b>rref</b> (<var>A, tol</var>)<var><a name="index-rref-2242"></a></var><br>
-&mdash; Function File: [<var>r</var>, <var>k</var>] = <b>rref</b> (<var><small class="dots">...</small></var>)<var><a name="index-rref-2243"></a></var><br>
+&mdash; Function File:  <b>rref</b> (<var>A</var>)<var><a name="index-rref-2396"></a></var><br>
+&mdash; Function File:  <b>rref</b> (<var>A, tol</var>)<var><a name="index-rref-2397"></a></var><br>
+&mdash; Function File: [<var>r</var>, <var>k</var>] = <b>rref</b> (<var><small class="dots">...</small></var>)<var><a name="index-rref-2398"></a></var><br>
 <blockquote><p>Return the reduced row echelon form of <var>A</var>.  <var>tol</var> defaults
 to <code>eps * max (size (</code><var>A</var><code>)) * norm (</code><var>A</var><code>, inf)</code>.
 

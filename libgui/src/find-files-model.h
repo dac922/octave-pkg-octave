@@ -31,6 +31,8 @@ along with Octave; see the file COPYING.  If not, see
 
 class find_files_model : public QAbstractListModel
 {
+  Q_OBJECT
+
 public:
   find_files_model(QObject *p=0);
   ~find_files_model ();
@@ -48,11 +50,14 @@ public:
   QVariant headerData (int section, Qt::Orientation orientation,
                        int role = Qt::DisplayRole) const;
 
+  void sort (int column, Qt::SortOrder order=Qt::AscendingOrder);
+
   QFileInfo fileInfo (const QModelIndex & p) const;
   QIcon     fileIcon (const QModelIndex &p) const;
 private:
   QList<QFileInfo> _files;
   QStringList _columnNames;
+  int _sortorder;
 };
 
 #endif // find_files_model_h

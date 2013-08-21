@@ -33,11 +33,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Polynomial-Manipulations.html#Polynomia
 <h3 class="section">28.6 Miscellaneous Functions</h3>
 
 <!-- poly scripts/polynomial/poly.m -->
-<p><a name="doc_002dpoly"></a>
+<p><a name="XREFpoly"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>poly</b> (<var>A</var>)<var><a name="index-poly-2955"></a></var><br>
-&mdash; Function File:  <b>poly</b> (<var>x</var>)<var><a name="index-poly-2956"></a></var><br>
+&mdash; Function File:  <b>poly</b> (<var>A</var>)<var><a name="index-poly-3119"></a></var><br>
+&mdash; Function File:  <b>poly</b> (<var>x</var>)<var><a name="index-poly-3120"></a></var><br>
 <blockquote><p>If <var>A</var> is a square N-by-N matrix, <code>poly (</code><var>A</var><code>)</code>
 is the row vector of the coefficients of <code>det (z * eye (N) - A)</code>,
 the characteristic polynomial of <var>A</var>.  For example,
@@ -59,16 +59,17 @@ That is, if <var>c</var> is a polynomial, then the elements of <var>d</var><code
 roots (poly (</code><var>c</var><code>))</code> are contained in <var>c</var>.  The vectors <var>c</var> and
 <var>d</var> are not identical, however, due to sorting and numerical errors.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFroots.html#XREFroots">roots</a>, <a href="XREFeig.html#XREFeig">eig</a>.
+
+        </blockquote></div>
 
 <!-- polyout scripts/polynomial/polyout.m -->
-   <p><a name="doc_002dpolyout"></a>
+   <p><a name="XREFpolyout"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>polyout</b> (<var>c</var>)<var><a name="index-polyout-2957"></a></var><br>
-&mdash; Function File:  <b>polyout</b> (<var>c, x</var>)<var><a name="index-polyout-2958"></a></var><br>
-&mdash; Function File: <var>str</var> = <b>polyout</b> (<var><small class="dots">...</small></var>)<var><a name="index-polyout-2959"></a></var><br>
+&mdash; Function File:  <b>polyout</b> (<var>c</var>)<var><a name="index-polyout-3121"></a></var><br>
+&mdash; Function File:  <b>polyout</b> (<var>c, x</var>)<var><a name="index-polyout-3122"></a></var><br>
+&mdash; Function File: <var>str</var> = <b>polyout</b> (<var><small class="dots">...</small></var>)<var><a name="index-polyout-3123"></a></var><br>
 <blockquote><p>Write formatted polynomial
 
      <pre class="example">          c(x) = c(1) * x^n + ... + c(n) x + c(n+1)
@@ -76,19 +77,21 @@ roots (poly (</code><var>c</var><code>))</code> are contained in <var>c</var>.  
         <p>and return it as a string or write it to the screen (if <var>nargout</var> is
 zero).  <var>x</var> defaults to the string <code>"s"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyreduce.html#doc_002dpolyreduce">polyreduce</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpolyreduce.html#XREFpolyreduce">polyreduce</a>.
+
+        </blockquote></div>
 
 <!-- polyreduce scripts/polynomial/polyreduce.m -->
-   <p><a name="doc_002dpolyreduce"></a>
+   <p><a name="XREFpolyreduce"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>polyreduce</b> (<var>c</var>)<var><a name="index-polyreduce-2960"></a></var><br>
+&mdash; Function File:  <b>polyreduce</b> (<var>c</var>)<var><a name="index-polyreduce-3124"></a></var><br>
 <blockquote><p>Reduce a polynomial coefficient vector to a minimum number of terms by
 stripping off any leading zeros.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpolyout.html#doc_002dpolyout">polyout</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpolyout.html#XREFpolyout">polyout</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 2007-2012 John W. Eaton -->

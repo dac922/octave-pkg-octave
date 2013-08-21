@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+<title>External Code Interface - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Packages.html#Packages" title="Packages">
+<link rel="next" href="Test-and-Demo-Functions.html#Test-and-Demo-Functions" title="Test and Demo Functions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="External-Code-Interface"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Test-and-Demo-Functions.html#Test-and-Demo-Functions">Test and Demo Functions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Packages.html#Packages">Packages</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="appendix">Appendix A External Code Interface</h2>
+
+<p><a name="index-dynamic_002dlinking-3924"></a><a name="index-Dynamically-Linked-Functions-3925"></a><a name="index-Octave-API-3926"></a>
+“The sum of human wisdom is not contained in any one language"
+  &mdash;Ezra Pound
+
+   <p>Octave is a fantastic language for solving many problems in science and
+engineering.  However, it is not the only computer language and there
+are times when you may want to use code written in other languages. 
+Good reasons for doing so include: 1) not re-inventing the wheel; existing
+function libraries which have been thoroughly tested and debugged or
+large scale simulation codebases are a good example, 2) accessing unique
+capabilities of a different language; for example the well-known regular
+expression functions of Perl (but don't do that because <code>regexp</code>
+already exists in Octave).
+
+   <p>Performance should generally <strong>not</strong> be a reason for using compiled
+extensions.  Although compiled extensions can run faster, particularly
+if they replace a loop in Octave code, this is almost never the best path
+to take.  First, there are many techniques to speed up Octave performance while
+remaining within the language.  Second, Octave is a high-level language that
+makes it easy to perform common mathematical tasks.  Giving that up means
+shifting the focus from solving the real problem to solving a computer
+programming problem.  It means returning to low-level constructs such as
+pointers, memory management, mathematical overflow/underflow, etc.  Because
+of the low level nature, and the fact that the compiled code is executed outside
+of Octave, there is the very real possibility of crashing the interpreter and
+losing work.
+
+   <p>Before going further, you should first determine if you really need to bother
+writing code outside of Octave.
+
+     <ul>
+<li>Can I get the same functionality using the Octave scripting language alone?
+
+     <p>Even when a function already exists outside the language, it may be
+better to simply reproduce the behavior in an m-file rather than attempt to
+interface to the outside code.
+
+     <li>Is the code thoroughly optimized for Octave?
+
+     <p>If performance is an issue you should always start with the in-language
+techniques for getting better performance.  Chief among these is vectorization
+(see <a href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution">Vectorization and Faster Code Execution</a>) which not only makes the
+code concise and more understandable but improves performance (10X-100X). 
+If loops must be used, make sure that the allocation of space for variables
+takes place outside the loops using an assignment to a matrix of the right
+size, or zeros.
+
+     <li>Does the code make as much use as possible of existing built-in library
+routines?
+
+     <p>These routines are highly optimized and many do not carry the overhead
+of being interpreted.
+
+     <li>Does writing a dynamically linked function represent a useful investment
+of your time, relative to staying in Octave?
+
+     <p>It will take time to learn Octave's interface for external code and
+there will inevitably be issues with tools such as compilers. 
+</ul>
+
+   <p>With that said, Octave offers a versatile interface for including chunks
+of compiled code as dynamically linked extensions.  These dynamically linked
+functions can be called from the interpreter in the same manner as any
+ordinary function.  The interface is bi-directional and external code can
+call Octave functions (like <code>plot</code>) which otherwise might be very
+difficult to develop.
+
+   <p>The interface is centered around supporting the languages C++, C, and Fortran. 
+Octave itself is written in C++ and can call external C++/C code through its
+native oct-file interface.  The C language is also supported through the
+mex-file interface for compatibility with <span class="sc">matlab</span>.  Fortran code is easiest
+to reach through the oct-file interface.
+
+   <p>Because many other languages provide C or C++ APIs it is relatively simple
+to build bridges between Octave and other languages.  This is also a way to
+bridge to hardware resources which often have device drivers written in C.
+
+<ul class="menu">
+<li><a accesskey="1" href="Oct_002dFiles.html#Oct_002dFiles">Oct-Files</a>
+<li><a accesskey="2" href="Mex_002dFiles.html#Mex_002dFiles">Mex-Files</a>
+<li><a accesskey="3" href="Standalone-Programs.html#Standalone-Programs">Standalone Programs</a>
+</ul>
+
+   </body></html>
+

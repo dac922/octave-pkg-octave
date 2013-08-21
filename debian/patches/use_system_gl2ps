@@ -6,7 +6,7 @@ Description: Use libgl2ps-dev as packaged in Debian
  one will do for now.
 Forwarded: not-needed
 Author: Thomas Weber <tweber@debian.org>
---- a/libinterp/interp-core/gl2ps.c
+--- a/libinterp/corefcn/gl2ps.c
 +++ /dev/null
 @@ -1,6078 +0,0 @@
 -/*
@@ -6087,7 +6087,7 @@ Author: Thomas Weber <tweber@debian.org>
 -  else
 -    return "Unknown format";
 -}
---- a/libinterp/interp-core/gl2ps.h
+--- a/libinterp/corefcn/gl2ps.h
 +++ /dev/null
 @@ -1,200 +0,0 @@
 -/*
@@ -6290,8 +6290,8 @@ Author: Thomas Weber <tweber@debian.org>
 -#endif
 -
 -#endif /* __GL2PS_H__ */
---- a/libinterp/interp-core/xgl2ps.c
-+++ b/libinterp/interp-core/xgl2ps.c
+--- a/libinterp/corefcn/xgl2ps.c
++++ b/libinterp/corefcn/xgl2ps.c
 @@ -31,6 +31,6 @@
  
  #if defined (HAVE_OPENGL)
@@ -6300,8 +6300,8 @@ Author: Thomas Weber <tweber@debian.org>
 +#include <gl2ps.c>
  
  #endif
---- a/libinterp/interp-core/gl2ps-renderer.cc
-+++ b/libinterp/interp-core/gl2ps-renderer.cc
+--- a/libinterp/corefcn/gl2ps-renderer.cc
++++ b/libinterp/corefcn/gl2ps-renderer.cc
 @@ -32,7 +32,7 @@
  #include "oct-locbuf.h"
  
@@ -6310,9 +6310,9 @@ Author: Thomas Weber <tweber@debian.org>
 +#include <gl2ps.h>
  
  void
- glps_renderer::draw (const graphics_object& go)
---- a/libinterp/interp-core/gl2ps-renderer.h
-+++ b/libinterp/interp-core/gl2ps-renderer.h
+ glps_renderer::draw (const graphics_object& go, const std::string print_cmd)
+--- a/libinterp/corefcn/gl2ps-renderer.h
++++ b/libinterp/corefcn/gl2ps-renderer.h
 @@ -24,7 +24,7 @@
  #define gl2ps_renderer_h 1
  
@@ -6322,33 +6322,34 @@ Author: Thomas Weber <tweber@debian.org>
  
  class
  OCTINTERP_API
---- a/libinterp/interp-core/module.mk
-+++ b/libinterp/interp-core/module.mk
-@@ -1,6 +1,5 @@
+--- a/libinterp/corefcn/module.mk
++++ b/libinterp/corefcn/module.mk
+@@ -1,7 +1,6 @@
  EXTRA_DIST += \
-   interp-core/module.mk \
--  interp-core/gl2ps.c \
-   interp-core/mxarray.in.h \
-   interp-core/oct-errno.in.cc
+   corefcn/module.mk \
+   corefcn/defaults.in.h \
+-  corefcn/gl2ps.c \
+   corefcn/graphics.in.h \
+   corefcn/mxarray.in.h \
+   corefcn/oct-errno.in.cc
+@@ -54,7 +53,6 @@
+   corefcn/file-io.h \
+   corefcn/gl-render.h \
+   corefcn/gl2ps-renderer.h \
+-  corefcn/gl2ps.h \
+   corefcn/gripes.h \
+   corefcn/help.h \
+   corefcn/hook-fcn.h \
+@@ -119,8 +117,7 @@
+ C_COREFCN_SRC = \
+   corefcn/cutils.c \
+   corefcn/matherr.c \
+-  corefcn/siglist.c \
+-  corefcn/xgl2ps.c
++  corefcn/siglist.c
  
-@@ -23,7 +22,6 @@
-   interp-core/event-queue.h \
-   interp-core/gl-render.h \
-   interp-core/gl2ps-renderer.h \
--  interp-core/gl2ps.h \
-   interp-core/gripes.h \
-   interp-core/ls-ascii-helper.h \
-   interp-core/ls-hdf5.h \
-@@ -70,8 +69,7 @@
- C_INTERP_CORE_SRC = \
-   interp-core/cutils.c \
-   interp-core/matherr.c \
--  interp-core/siglist.c \
-+  interp-core/siglist.c
--  interp-core/xgl2ps.c
- 
- INTERP_CORE_SRC = \
-   interp-core/Cell.cc \
+ COREFCN_SRC = \
+   corefcn/Cell.cc \
 --- a/configure.ac
 +++ b/configure.ac
 @@ -1148,6 +1148,16 @@

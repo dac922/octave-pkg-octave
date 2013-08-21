@@ -32,9 +32,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="High_002dLevel-Plotting.html#High_002dL
 <hr>
 </div>
 
-<h4 class="subsection">15.2.9 Printing and Saving Plots</h4>
+<h4 class="subsection">15.2.8 Printing and Saving Plots</h4>
 
-<p><a name="index-printing-plots-1531"></a><a name="index-saving-plots-1532"></a>
+<p><a name="index-printing-plots-1615"></a><a name="index-saving-plots-1616"></a>
 The <code>print</code> command allows you to send plots to you printer and
 to save plots in a variety of formats.  For example,
 
@@ -48,24 +48,25 @@ to save plots in a variety of formats.  For example,
 <samp><span class="file">foo.eps</span></samp>.
 
 <!-- print scripts/plot/print.m -->
-   <p><a name="doc_002dprint"></a>
+   <p><a name="XREFprint"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>print</b> ()<var><a name="index-print-1533"></a></var><br>
-&mdash; Function File:  <b>print</b> (<var>options</var>)<var><a name="index-print-1534"></a></var><br>
-&mdash; Function File:  <b>print</b> (<var>filename, options</var>)<var><a name="index-print-1535"></a></var><br>
-&mdash; Function File:  <b>print</b> (<var>h, filename, options</var>)<var><a name="index-print-1536"></a></var><br>
-<blockquote><p>Print a plot, or save it to a file.  Both output formatted for
-printing (PDF and PostScript), and many bitmapped and vector
-image formats are supported.
+&mdash; Function File:  <b>print</b> ()<var><a name="index-print-1617"></a></var><br>
+&mdash; Function File:  <b>print</b> (<var>options</var>)<var><a name="index-print-1618"></a></var><br>
+&mdash; Function File:  <b>print</b> (<var>filename, options</var>)<var><a name="index-print-1619"></a></var><br>
+&mdash; Function File:  <b>print</b> (<var>h, filename, options</var>)<var><a name="index-print-1620"></a></var><br>
+<blockquote><p>Print a plot, or save it to a file.
+
+        <p>Both output formatted for printing (PDF and PostScript), and many bitmapped
+and vector image formats are supported.
 
         <p><var>filename</var> defines the name of the output file.  If the
 file name has no suffix, one is inferred from the specified
 device and appended to the file name.  If no filename is
 specified, the output is sent to the printer.
 
-        <p><var>h</var> specifies the figure handle.  If no handle is specified
-the handle for the current figure is used.
+        <p><var>h</var> specifies the handle of the figure to print.  If no handle is
+specified the current figure is used.
 
         <p>For output to a printer, PostScript file, or PDF file,
 the paper size is specified by the figure's <code>papersize</code>
@@ -87,17 +88,17 @@ default is the current figure.
 <var>filename</var> is specified.
 
           <br><dt><code>-G</code><var>ghostscript_command</var><dd>  Specify the command for calling Ghostscript.  For Unix and Windows
-the defaults are 'gs' and 'gswin32c', respectively.
+the defaults are <code>"gs"</code> and <code>"gswin32c"</code>, respectively.
 
-          <br><dt><code>-color</code><dt><code>-mono</code><dd>  Monochrome or color output.
+          <br><dt><code>-color</code><dt><code>-mono</code><dd>  Color or monochrome output.
 
           <br><dt><code>-solid</code><dt><code>-dashed</code><dd>  Force all lines to be solid or dashed, respectively.
 
           <br><dt><code>-portrait</code><dt><code>-landscape</code><dd>  Specify the orientation of the plot for printed output.  For
 non-printed output the aspect ratio of the output corresponds to
-the plot area defined by the "paperposition" property in the
-orientation specified.  This options is equivalent to changing
-the figure's "paperorientation" property.
+the plot area defined by the <code>"paperposition"</code> property in the
+orientation specified.  This option is equivalent to changing
+the figure's <code>"paperorientation"</code> property.
 
           <br><dt><code>-TextAlphaBits=</code><var>n</var><dt><code>-GraphicsAlphaBits=</code><var>n</var><dd>  Octave is able to produce output for various printers, bitmaps, and
 vector formats by using Ghostscript. 
@@ -110,11 +111,11 @@ Allowed values for <var>N</var> are 1, 2, or 4.
 and is one of:
 
                <dl>
-<dt><code>ps</code><dt><code>ps2</code><dt><code>psc</code><dt><code>psc2</code><dd>    Postscript (level 1 and 2, mono and color).  The FLTK graphics
-toolkit generates Postscript level 3.0.
+<dt><code>ps</code><dt><code>ps2</code><dt><code>psc</code><dt><code>psc2</code><dd>    PostScript (level 1 and 2, mono and color).  The FLTK graphics
+toolkit generates PostScript level 3.0.
 
-               <br><dt><code>eps</code><dt><code>eps2</code><dt><code>epsc</code><dt><code>epsc2</code><dd>    Encapsulated postscript (level 1 and 2, mono and color).  The FLTK
-graphic toolkit generates Postscript level 3.0.
+               <br><dt><code>eps</code><dt><code>eps2</code><dt><code>epsc</code><dt><code>epsc2</code><dd>    Encapsulated PostScript (level 1 and 2, mono and color).  The FLTK
+graphic toolkit generates PostScript level 3.0.
 
                <br><dt><code>tex</code><dt><code>epslatex</code><dt><code>epslatexstandalone</code><dt><code>pstex</code><dt><code>pslatex</code><dt><code>pdflatex</code><dd>    Generate a LaTeX (or TeX) file for labels and eps/ps/pdf
 for graphics.  The file produced by <code>epslatexstandalone</code> can be
@@ -157,7 +158,7 @@ the figure.  (default is <samp><span class="option">-textnormal</span></samp>)
 </dl>
 
           <p>If the device is omitted, it is inferred from the file extension,
-or if there is no filename it is sent to the printer as postscript.
+or if there is no filename it is sent to the printer as PostScript.
 
           <br><dt><code>-d</code><var>ghostscript_device</var><dd>  Additional devices are supported by Ghostscript. 
 Some examples are;
@@ -180,21 +181,21 @@ Some examples are;
                <br><dt><code>pdfwrite</code><dd>    Produces pdf output from eps
 </dl>
 
-          <p>For a complete list, type `system ("gs -h")' to see what formats
+          <p>For a complete list, type <code>system ("gs -h")</code> to see what formats
 and devices are available.
 
           <p>When Ghostscript output is sent to a printer the size is determined
-by the figure's "papersize" property.  When the output
+by the figure's <code>"papersize"</code> property.  When the output
 is sent to a file the size is determined by the plot box defined by
-the figure's "paperposition" property.
+the figure's <code>"paperposition"</code> property.
 
-          <br><dt><code>-append</code><dd>  Append Postscript or PDF output to a pre-existing file of the same type.
+          <br><dt><code>-append</code><dd>  Append PostScript or PDF output to a pre-existing file of the same type.
 
           <br><dt><code>-r</code><var>NUM</var><dd>  Resolution of bitmaps in pixels per inch.  For both metafiles and
 SVG the default is the screen resolution; for other formats it is 150 dpi. 
-To specify screen resolution, use "-r0".
+To specify screen resolution, use <code>"-r0"</code>.
 
-          <br><dt><code>-tight</code><dd>  Force a tight bounding box for eps files.
+          <br><dt><code>-loose</code><dt><code>-tight</code><dd>  Force a tight or loose bounding box for eps files.  The default is loose.
 
           <br><dt><code>-</code><var>preview</var><dd>  Add a preview to eps files.  Supported formats are:
 
@@ -211,9 +212,9 @@ To specify screen resolution, use "-r0".
           <br><dt><code>-S</code><var>xsize</var><code>,</code><var>ysize</var><dd>  Plot size in pixels for EMF, GIF, JPEG, PBM, PNG, and SVG.  For
 PS, EPS, PDF, and other vector formats the plot size is in points. 
 This option is equivalent to changing the size of the plot box
-associated with the "paperposition" property.  When using the command form
-of the print function you must quote the <var>xsize</var>,<var>ysize</var>
-option.  For example, by writing "-S640,480"<!-- /@w -->.
+associated with the <code>"paperposition"</code> property.  When using the
+command form of the print function you must quote the
+<var>xsize</var>,<var>ysize</var> option.  For example, by writing "-S640,480"<!-- /@w -->.
 
           <br><dt><code>-F</code><var>fontname</var><dt><code>-F</code><var>fontname</var><code>:</code><var>size</var><dt><code>-F:</code><var>size</var><dd>  Use <var>fontname</var> and/or <var>fontsize</var> for all text. 
 <var>fontname</var> is ignored for some devices: dxf, fig, hpgl, etc. 
@@ -228,31 +229,31 @@ option.  For example, by writing "-S640,480"<!-- /@w -->.
           surf (peaks);
           print -dsvg figure1.svg
 </pre>
-        <p>Example: Print to an HP Deskjet 550C.
+        <p>Example: Print to an HP DeskJet 550C.
 
-     <pre class="example">          figure (1);
-          clf ();
+     <pre class="example">          clf ();
           surf (peaks);
           print -dcdj550
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfigure.html#doc_002dfigure">figure</a>, <a href="doc_002dorient.html#doc_002dorient">orient</a>, <a href="doc_002dsaveas.html#doc_002dsaveas">saveas</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFsaveas.html#XREFsaveas">saveas</a>, <a href="XREForient.html#XREForient">orient</a>, <a href="XREFfigure.html#XREFfigure">figure</a>.
+
+        </blockquote></div>
 
 <!-- saveas scripts/plot/saveas.m -->
-   <p><a name="doc_002dsaveas"></a>
+   <p><a name="XREFsaveas"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>saveas</b> (<var>h, filename</var>)<var><a name="index-saveas-1537"></a></var><br>
-&mdash; Function File:  <b>saveas</b> (<var>h, filename, fmt</var>)<var><a name="index-saveas-1538"></a></var><br>
+&mdash; Function File:  <b>saveas</b> (<var>h, filename</var>)<var><a name="index-saveas-1621"></a></var><br>
+&mdash; Function File:  <b>saveas</b> (<var>h, filename, fmt</var>)<var><a name="index-saveas-1622"></a></var><br>
 <blockquote><p>Save graphic object <var>h</var> to the file <var>filename</var> in graphic
 format <var>fmt</var>.
 
         <p><var>fmt</var> should be one of the following formats:
 
           <dl>
-<dt><code>ps</code><dd>    Postscript
+<dt><code>ps</code><dd>    PostScript
 
-          <br><dt><code>eps</code><dd>    Encapsulated Postscript
+          <br><dt><code>eps</code><dd>    Encapsulated PostScript
 
           <br><dt><code>jpg</code><dd>    JPEG Image
 
@@ -271,23 +272,34 @@ The default format is <code>"pdf"</code>.
           surf (peaks);
           saveas (1, "figure1.png");
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dprint.html#doc_002dprint">print</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFprint.html#XREFprint">print</a>, <a href="XREForient.html#XREForient">orient</a>.
+
+        </blockquote></div>
 
 <!-- orient scripts/plot/orient.m -->
-   <p><a name="doc_002dorient"></a>
+   <p><a name="XREForient"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>orient</b> (<var>orientation</var>)<var><a name="index-orient-1539"></a></var><br>
-<blockquote><p>Set the default print orientation.  Valid values for
-<var>orientation</var> include <code>"landscape"</code>, <code>"portrait"</code>,
-and <code>"tall"</code>.
+&mdash; Function File:  <b>orient</b> (<var>orientation</var>)<var><a name="index-orient-1623"></a></var><br>
+&mdash; Function File:  <b>orient</b> (<var>hfig, orientation</var>)<var><a name="index-orient-1624"></a></var><br>
+&mdash; Function File: <var>orientation</var> = <b>orient</b> ()<var><a name="index-orient-1625"></a></var><br>
+&mdash; Function File: <var>orientation</var> = <b>orient</b> (<var>hfig</var>)<var><a name="index-orient-1626"></a></var><br>
+<blockquote><p>Query or set the default print orientation.
 
-        <p>The <code>"tall"</code> option sets the orientation to portait and fills
-the page with the plot, while leaving a 0.25in border.
+        <p>Valid values for <var>orientation</var> are <code>"landscape"</code>,
+<code>"portrait"</code>, and <code>"tall"</code>.
 
-        <p>If called with no arguments, return the default print orientation. 
-</p></blockquote></div>
+        <p>The <code>"tall"</code> option sets the orientation to portrait and fills
+the page with the plot, while leaving a 0.25 inch border.
+
+        <p>When called with no arguments, return the default print orientation.
+
+        <p>If the first argument <var>hfig</var> is a figure handle, then operate on this
+figure rather than the current figure returned by <code>gcf</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFprint.html#XREFprint">print</a>, <a href="XREFsaveas.html#XREFsaveas">saveas</a>.
+
+        </blockquote></div>
 
    </body></html>
 

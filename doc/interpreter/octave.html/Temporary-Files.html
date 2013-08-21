@@ -39,11 +39,11 @@ This is most commonly used when an external program launched from
 within Octave needs to access data.  When Octave exits all temporary
 files will be deleted, so this step need not be executed manually.
 
-<!-- mkstemp libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dmkstemp"></a>
+<!-- mkstemp libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFmkstemp"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>fid</var>, <var>name</var>, <var>msg</var>] = <b>mkstemp</b> (<var>template, delete</var>)<var><a name="index-mkstemp-1058"></a></var><br>
+&mdash; Built-in Function: [<var>fid</var>, <var>name</var>, <var>msg</var>] = <b>mkstemp</b> (<var>template, delete</var>)<var><a name="index-mkstemp-1076"></a></var><br>
 <blockquote><p>Return the file ID corresponding to a new temporary file with a unique
 name created from <var>template</var>.  The last six characters of <var>template</var>
 must be <code>XXXXXX</code> and these are replaced with a string that makes the
@@ -60,14 +60,15 @@ the file, and <var>msg</var> is an empty string.  Otherwise, <var>fid</var>
 is -1, <var>name</var> is empty, and <var>msg</var> contains a system-dependent
 error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtmpfile.html#doc_002dtmpfile">tmpfile</a>, <a href="doc_002dtmpnam.html#doc_002dtmpnam">tmpnam</a>, <a href="doc_002dP_005ftmpdir.html#doc_002dP_005ftmpdir">P_tmpdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtmpfile.html#XREFtmpfile">tmpfile</a>, <a href="XREFtmpnam.html#XREFtmpnam">tmpnam</a>, <a href="XREFP_005ftmpdir.html#XREFP_005ftmpdir">P_tmpdir</a>.
 
-<!-- tmpfile libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dtmpfile"></a>
+        </blockquote></div>
+
+<!-- tmpfile libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFtmpfile"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>tmpfile</b> ()<var><a name="index-tmpfile-1059"></a></var><br>
+&mdash; Built-in Function: [<var>fid</var>, <var>msg</var>] = <b>tmpfile</b> ()<var><a name="index-tmpfile-1077"></a></var><br>
 <blockquote><p>Return the file ID corresponding to a new temporary file with a unique
 name.  The file is opened in binary read/write (<code>"w+b"</code>) mode. 
 The file will be deleted automatically when it is closed or when Octave
@@ -77,17 +78,18 @@ exits.
 string.  Otherwise, <var>fid</var> is -1 and <var>msg</var> contains a
 system-dependent error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtmpnam.html#doc_002dtmpnam">tmpnam</a>, <a href="doc_002dmkstemp.html#doc_002dmkstemp">mkstemp</a>, <a href="doc_002dP_005ftmpdir.html#doc_002dP_005ftmpdir">P_tmpdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtmpnam.html#XREFtmpnam">tmpnam</a>, <a href="XREFmkstemp.html#XREFmkstemp">mkstemp</a>, <a href="XREFP_005ftmpdir.html#XREFP_005ftmpdir">P_tmpdir</a>.
 
-<!-- tmpnam libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dtmpnam"></a><!-- List other forms of function in documentation index -->
-<a name="index-octave_005ftmp_005ffile_005fname-1060"></a>
+        </blockquote></div>
+
+<!-- tmpnam libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFtmpnam"></a><!-- List other forms of function in documentation index -->
+<a name="index-octave_005ftmp_005ffile_005fname-1078"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>tmpnam</b> ()<var><a name="index-tmpnam-1061"></a></var><br>
-&mdash; Built-in Function:  <b>tmpnam</b> (<var>dir</var>)<var><a name="index-tmpnam-1062"></a></var><br>
-&mdash; Built-in Function:  <b>tmpnam</b> (<var>dir, prefix</var>)<var><a name="index-tmpnam-1063"></a></var><br>
+&mdash; Built-in Function:  <b>tmpnam</b> ()<var><a name="index-tmpnam-1079"></a></var><br>
+&mdash; Built-in Function:  <b>tmpnam</b> (<var>dir</var>)<var><a name="index-tmpnam-1080"></a></var><br>
+&mdash; Built-in Function:  <b>tmpnam</b> (<var>dir, prefix</var>)<var><a name="index-tmpnam-1081"></a></var><br>
 <blockquote><p>Return a unique temporary file name as a string.
 
         <p>If <var>prefix</var> is omitted, a value of <code>"oct-"</code> is used. 
@@ -97,8 +99,9 @@ directory for temporary files is used.  Since the named file is not
 opened, by <code>tmpnam</code>, it is possible (though relatively unlikely)
 that it will not be available by the time your program attempts to open it.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtmpfile.html#doc_002dtmpfile">tmpfile</a>, <a href="doc_002dmkstemp.html#doc_002dmkstemp">mkstemp</a>, <a href="doc_002dP_005ftmpdir.html#doc_002dP_005ftmpdir">P_tmpdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtmpfile.html#XREFtmpfile">tmpfile</a>, <a href="XREFmkstemp.html#XREFmkstemp">mkstemp</a>, <a href="XREFP_005ftmpdir.html#XREFP_005ftmpdir">P_tmpdir</a>.
+
+        </blockquote></div>
 
    </body></html>
 

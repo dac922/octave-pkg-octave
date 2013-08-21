@@ -17,10 +17,13 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} loglogerr (@var{args})
-## Produce two-dimensional plots on double logarithm axis with
-## errorbars.  Many different combinations of arguments are possible.
-## The most used form is
+## @deftypefn  {Function File} {} loglogerr (@var{args})
+## @deftypefnx {Function File} {} loglogerr (@var{hax}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} loglogerr (@dots{})
+## Produce 2-D plots on a double logarithm axis with errorbars.
+##
+## Many different combinations of arguments are possible.  The most common
+## form is
 ##
 ## @example
 ## loglogerr (@var{x}, @var{y}, @var{ey}, @var{fmt})
@@ -29,8 +32,11 @@
 ## @noindent
 ## which produces a double logarithm plot of @var{y} versus @var{x}
 ## with errors in the @var{y}-scale defined by @var{ey} and the plot
-## format defined by @var{fmt}.  See errorbar for available formats and
-## additional information.
+## format defined by @var{fmt}.  @xref{XREFerrorbar,,errorbar}, for available
+## formats and additional information.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ## @seealso{errorbar, semilogxerr, semilogyerr}
 ## @end deftypefn
 
@@ -38,25 +44,32 @@
 ## Author: Teemu Ikonen <tpikonen@pcu.helsinki.fi>
 ## Keywords: errorbar, plotting
 
-function retval = loglogerr (varargin)
+function h = loglogerr (varargin)
 
-  [h, varargin] = __plt_get_axis_arg__ ("loglogerr", varargin{:});
+  [hax, varargin] = __plt_get_axis_arg__ ("loglogerr", varargin{:});
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
+    hax = newplot (hax);
 
-    set (h, "xscale", "log", "yscale", "log");
-
-    tmp = __errcomm__ ("loglogerr", h, varargin{:});
-
-    if (nargout > 0)
-      retval = tmp;
+    set (hax, "xscale", "log", "yscale", "log");
+    if (! ishold (hax))
+      set (hax, "xminortick", "on", "yminortick", "on");
     endif
+    htmp = __errcomm__ ("loglogerr", hax, varargin{:});
+
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
+  if (nargout > 0)
+    h = htmp;
+  endif
 
 endfunction
 
@@ -69,4 +82,6 @@ endfunction
 %! eyl = 0.5*rand (size (y)) .* y;
 %! loglogerr (x, y, eyl, eyu, '#~x-');
 %! xlim (x([1, end]));
+%! title ({'loglogerr(): loglog() plot with errorbars', ...
+%!         'Both axes are logarithmic'});
 

@@ -38,29 +38,30 @@ return a string variable which can then be used with any command requiring
 a file name.
 
 <!-- uigetdir scripts/plot/uigetdir.m -->
-   <p><a name="doc_002duigetdir"></a>
+   <p><a name="XREFuigetdir"></a>
 
 <div class="defun">
-&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> ()<var><a name="index-uigetdir-3332"></a></var><br>
-&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path</var>)<var><a name="index-uigetdir-3333"></a></var><br>
-&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path, dialog_name</var>)<var><a name="index-uigetdir-3334"></a></var><br>
+&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> ()<var><a name="index-uigetdir-3517"></a></var><br>
+&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path</var>)<var><a name="index-uigetdir-3518"></a></var><br>
+&mdash; Function File: <var>dirname</var> = <b>uigetdir</b> (<var>init_path, dialog_name</var>)<var><a name="index-uigetdir-3519"></a></var><br>
 <blockquote><p>Open a GUI dialog for selecting a directory.  If <var>init_path</var> is not
 given the current working directory is used.  <var>dialog_name</var> may be
 used to customize the dialog title.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duigetfile.html#doc_002duigetfile">uigetfile</a>, <a href="doc_002duiputfile.html#doc_002duiputfile">uiputfile</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuigetfile.html#XREFuigetfile">uigetfile</a>, <a href="XREFuiputfile.html#XREFuiputfile">uiputfile</a>.
+
+        </blockquote></div>
 
 <!-- uigetfile scripts/plot/uigetfile.m -->
-   <p><a name="doc_002duigetfile"></a>
+   <p><a name="XREFuigetfile"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uigetfile</b> ()<var><a name="index-uigetfile-3335"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt</var>)<var><a name="index-uigetfile-3336"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uigetfile-3337"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uigetfile-3338"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "Position", </var>[<var>px py</var>])<var><a name="index-uigetfile-3339"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "MultiSelect", mode</var>)<var><a name="index-uigetfile-3340"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uigetfile</b> ()<var><a name="index-uigetfile-3520"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt</var>)<var><a name="index-uigetfile-3521"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uigetfile-3522"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uigetfile-3523"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "Position", </var>[<var>px py</var>])<var><a name="index-uigetfile-3524"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>uigetfile</b> (<var><small class="dots">...</small>, "MultiSelect", mode</var>)<var><a name="index-uigetfile-3525"></a></var><br>
 <blockquote>
         <p>Open a GUI dialog for selecting a file and return the filename <var>fname</var>,
 the path to this file <var>fpath</var>, and the filter index <var>fltidx</var>. 
@@ -68,11 +69,11 @@ the path to this file <var>fpath</var>, and the filter index <var>fltidx</var>.
 formats:
 
           <dl>
-<dt>"/path/to/filename.ext"<dd>If a filename is given then the file extension is extracted and used as
+<dt><code>"/path/to/filename.ext"</code><dd>If a filename is given then the file extension is extracted and used as
 filter.  In addition, the path is selected as current path and the filename
 is selected as default file.  Example: <code>uigetfile ("myfun.m")</code>
 
-          <br><dt>A single file extension "*.ext"<dd>Example: <code>uigetfile ("*.ext")</code>
+          <br><dt>A single file extension <code>"*.ext"</code><dd>Example: <code>uigetfile ("*.ext")</code>
 
           <br><dt>A 2-column cell array<dd>containing a file extension in the first column and a brief description
 in the second column. 
@@ -89,50 +90,53 @@ Formats"})</code>
 If <var>default_file</var> is given then it will be selected in the GUI dialog. 
 If, in addition, a path is given it is also used as current path.
 
-        <p>The screen position of the GUI dialog can be set using the "Position" key
-and a 2-element vector containing the pixel coordinates. 
-Two or more files can be selected when setting the "MultiSelect" key to "on". 
-In that case <var>fname</var> is a cell array containing the files.
+        <p>The screen position of the GUI dialog can be set using the
+<code>"Position"</code> key and a 2-element vector containing the pixel
+coordinates.  Two or more files can be selected when setting the
+<code>"MultiSelect"</code> key to <code>"on"</code>.  In that case <var>fname</var> is a
+cell array containing the files.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duiputfile.html#doc_002duiputfile">uiputfile</a>, <a href="doc_002duigetdir.html#doc_002duigetdir">uigetdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuiputfile.html#XREFuiputfile">uiputfile</a>, <a href="XREFuigetdir.html#XREFuigetdir">uigetdir</a>.
+
+        </blockquote></div>
 
 <!-- uiputfile scripts/plot/uiputfile.m -->
-   <p><a name="doc_002duiputfile"></a>
+   <p><a name="XREFuiputfile"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> ()<var><a name="index-uiputfile-3341"></a></var><br>
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt</var>)<var><a name="index-uiputfile-3342"></a></var><br>
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uiputfile-3343"></a></var><br>
-&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uiputfile-3344"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> ()<var><a name="index-uiputfile-3526"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt</var>)<var><a name="index-uiputfile-3527"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name</var>)<var><a name="index-uiputfile-3528"></a></var><br>
+&mdash; Function File: [<var>fname</var>, <var>fpath</var>, <var>fltidx</var>] = <b>uiputfile</b> (<var>flt, dialog_name, default_file</var>)<var><a name="index-uiputfile-3529"></a></var><br>
 <blockquote><p>Open a GUI dialog for selecting a file.  <var>flt</var> contains a (list of) file
 filter string(s) in one of the following formats:
 
           <dl>
-<dt><code>"/path/to/filename.ext"</code><dd>If a filename is given the file extension is
-extracted and used as filter. 
-In addition the path is selected as current path and the filename is selected
-as default file. 
-Example: uiputfile ("myfun.m");
+<dt><code>"/path/to/filename.ext"</code><dd>If a filename is given the file extension is extracted and used as filter. 
+In addition the path is selected as current path and the filename is
+selected as default file.  Example: <code>uiputfile ("myfun.m")</code>
 
           <br><dt><code>"*.ext"</code><dd>A single file extension. 
-Example: uiputfile ("*.ext");
+Example: <code>uiputfile ("*.ext")</code>
 
-          <br><dt><code>{"*.ext","My Description"}</code><dd>A 2-column cell array containing the file extension in the 1st column and
+          <br><dt><code>{"*.ext", "My Description"}</code><dd>A 2-column cell array containing the file extension in the 1st column and
 a brief description in the 2nd column. 
-Example: uiputfile ({"*.ext","My Description";"*.xyz","XYZ-Format"});
+Example: <code>uiputfile ({"*.ext","My Description";"*.xyz",
+"XYZ-Format"})</code>
 </dl>
 
         <p>The filter string can also contain a semicolon separated list of filter
 extensions. 
-Example: uiputfile ({"*.gif;*.png;*.jpg", "Supported Picture Formats"});
+Example: <code>uiputfile ({"*.gif;*.png;*.jpg",
+"Supported Picture Formats"})</code>
 
         <p><var>dialog_name</var> can be used to customize the dialog title. 
 If <var>default_file</var> is given it is preselected in the GUI dialog. 
 If, in addition, a path is given it is also used as current path.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duigetfile.html#doc_002duigetfile">uigetfile</a>, <a href="doc_002duigetdir.html#doc_002duigetdir">uigetdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuigetfile.html#XREFuigetfile">uigetfile</a>, <a href="XREFuigetdir.html#XREFuigetdir">uigetdir</a>.
+
+        </blockquote></div>
 
    </body></html>
 

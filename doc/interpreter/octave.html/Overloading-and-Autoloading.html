@@ -43,13 +43,29 @@ user overloading and call the default function associated with a specific
 type.  The <code>builtin</code> function exists for this purpose.
 
 <!-- builtin libinterp/parse-tree/oct-parse.cc -->
-   <p><a name="doc_002dbuiltin"></a>
+   <p><a name="XREFbuiltin"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<small class="dots">...</small>] <b>builtin</b> (<var>f, <small class="dots">...</small></var>)<var><a name="index-builtin-811"></a></var><br>
+&mdash; Loadable Function: [<small class="dots">...</small>] = <b>builtin</b> (<var>f, <small class="dots">...</small></var>)<var><a name="index-builtin-823"></a></var><br>
 <blockquote><p>Call the base function <var>f</var> even if <var>f</var> is overloaded to
-another function for the given type signature. 
-</p></blockquote></div>
+another function for the given type signature.
+
+        <p>This is normally useful when doing object-oriented programming and there
+is a requirement to call one of Octave's base functions rather than
+the overloaded one of a new class.
+
+        <p>A trivial example which redefines the <code>sin</code> function to be the
+<code>cos</code> function shows how <code>builtin</code> works.
+
+     <pre class="example">          sin (0)
+            &rArr; 0
+          function y = sin (x), y = cos (x); endfunction
+          sin (0)
+            &rArr; 1
+          builtin ("sin", 0)
+            &rArr; 0
+</pre>
+        </blockquote></div>
 
    <p>A single dynamically linked file might define several
 functions.  However, as Octave searches for functions based on the
@@ -66,10 +82,11 @@ amount of disk space used by Octave.  Instead Octave supplies the
 file a certain function will be found.
 
 <!-- autoload libinterp/parse-tree/oct-parse.cc -->
-   <p><a name="doc_002dautoload"></a>
+   <p><a name="XREFautoload"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>autoload</b> (<var>function, file</var>)<var><a name="index-autoload-812"></a></var><br>
+&mdash; Built-in Function:  <b>autoload</b> (<var>function, file</var>)<var><a name="index-autoload-824"></a></var><br>
+&mdash; Built-in Function:  <b>autoload</b> (<var><small class="dots">...</small>, "remove"</var>)<var><a name="index-autoload-825"></a></var><br>
 <blockquote><p>Define <var>function</var> to autoload from <var>file</var>.
 
         <p>The second argument, <var>file</var>, should be an absolute file name or
@@ -78,23 +95,27 @@ the autoload command was run.  <var>file</var> should not depend on the
 Octave load path.
 
         <p>Normally, calls to <code>autoload</code> appear in PKG_ADD script files that
-are evaluated when a directory is added to the Octave's load path.  To
+are evaluated when a directory is added to Octave's load path.  To
 avoid having to hardcode directory names in <var>file</var>, if <var>file</var>
 is in the same directory as the PKG_ADD script then
 
      <pre class="example">          autoload ("foo", "bar.oct");
 </pre>
         <p class="noindent">will load the function <code>foo</code> from the file <code>bar.oct</code>.  The above
-when <code>bar.oct</code> is not in the same directory or uses like
+usage when <code>bar.oct</code> is not in the same directory or usages such as
 
      <pre class="example">          autoload ("foo", file_in_loadpath ("bar.oct"))
 </pre>
-        <p class="noindent">are strongly discouraged, as their behavior might be unpredictable.
+        <p class="noindent">are strongly discouraged, as their behavior may be unpredictable.
 
         <p>With no arguments, return a structure containing the current autoload map.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dPKG_005fADD.html#doc_002dPKG_005fADD">PKG_ADD</a>. 
-</p></blockquote></div>
+        <p>If a third argument 'remove' is given, the function is cleared and
+not loaded anymore during the current Octave session.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFPKG_005fADD.html#XREFPKG_005fADD">PKG_ADD</a>.
+
+        </blockquote></div>
 
    </body></html>
 

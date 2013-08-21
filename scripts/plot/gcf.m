@@ -17,10 +17,11 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} gcf ()
-## Return the current figure handle.  If a figure does not exist, create
-## one and return its handle.  The handle may then be used to examine or
-## set properties of the figure.  For example,
+## @deftypefn {Function File} {@var{h} =} gcf ()
+## Return the current figure handle.
+##
+## If a figure does not exist, create one and return its handle.  The handle
+## may then be used to examine or set properties of the figure.  For example,
 ##
 ## @example
 ## @group
@@ -33,8 +34,8 @@
 ## @noindent
 ## plots a sine wave, finds the handle of the current figure, and then
 ## makes that figure invisible.  Setting the visible property of the
-## figure to @code{"on"} will cause it to be displayed again.
-## @seealso{get, set}
+## figure to @qcode{"on"} will cause it to be displayed again.
+## @seealso{gca, gco, gcbf, gcbo, get, set}
 ## @end deftypefn
 
 ## Author: jwe, Bill Denney
@@ -46,7 +47,7 @@ function h = gcf ()
     if (isempty (h) || h == 0)
       ## We only have a root figure object, so create a new figure
       ## object and make it the current figure.
-      h = figure (1);
+      h = figure ();
     endif
   else
     print_usage ();

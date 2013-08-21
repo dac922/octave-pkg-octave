@@ -71,13 +71,13 @@ variables.  For example:
            &rArr; 0.30022
 </pre>
    <!-- dblquad scripts/general/dblquad.m -->
-   <p><a name="doc_002ddblquad"></a>
+   <p><a name="XREFdblquad"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb</var>)<var><a name="index-dblquad-2537"></a></var><br>
-&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb, tol</var>)<var><a name="index-dblquad-2538"></a></var><br>
-&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb, tol, quadf</var>)<var><a name="index-dblquad-2539"></a></var><br>
-&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb, tol, quadf, <small class="dots">...</small></var>)<var><a name="index-dblquad-2540"></a></var><br>
+&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb</var>)<var><a name="index-dblquad-2701"></a></var><br>
+&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb, tol</var>)<var><a name="index-dblquad-2702"></a></var><br>
+&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb, tol, quadf</var>)<var><a name="index-dblquad-2703"></a></var><br>
+&mdash; Function File:  <b>dblquad</b> (<var>f, xa, xb, ya, yb, tol, quadf, <small class="dots">...</small></var>)<var><a name="index-dblquad-2704"></a></var><br>
 <blockquote><p>Numerically evaluate the double integral of <var>f</var>. 
 <var>f</var> is a function handle, inline function, or string
 containing the name of the function to evaluate.  The function <var>f</var> must
@@ -97,19 +97,21 @@ function to use.  Any choice but <code>quad</code> is available and the default
 is <code>quadcc</code>.
 
         <p>Additional arguments, are passed directly to <var>f</var>.  To use the default
-value for <var>tol</var> or <var>quadf</var> one may pass ':' or an empty matrix ([]).
+value for <var>tol</var> or <var>quadf</var> one may pass <code>':'</code> or an empty
+matrix ([]).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtriplequad.html#doc_002dtriplequad">triplequad</a>, <a href="doc_002dquad.html#doc_002dquad">quad</a>, <a href="doc_002dquadv.html#doc_002dquadv">quadv</a>, <a href="doc_002dquadl.html#doc_002dquadl">quadl</a>, <a href="doc_002dquadgk.html#doc_002dquadgk">quadgk</a>, <a href="doc_002dquadcc.html#doc_002dquadcc">quadcc</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtriplequad.html#XREFtriplequad">triplequad</a>, <a href="XREFquad.html#XREFquad">quad</a>, <a href="XREFquadv.html#XREFquadv">quadv</a>, <a href="XREFquadl.html#XREFquadl">quadl</a>, <a href="XREFquadgk.html#XREFquadgk">quadgk</a>, <a href="XREFquadcc.html#XREFquadcc">quadcc</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>.
+
+        </blockquote></div>
 
 <!-- triplequad scripts/general/triplequad.m -->
-   <p><a name="doc_002dtriplequad"></a>
+   <p><a name="XREFtriplequad"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb</var>)<var><a name="index-triplequad-2541"></a></var><br>
-&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb, tol</var>)<var><a name="index-triplequad-2542"></a></var><br>
-&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb, tol, quadf</var>)<var><a name="index-triplequad-2543"></a></var><br>
-&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb, tol, quadf, <small class="dots">...</small></var>)<var><a name="index-triplequad-2544"></a></var><br>
+&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb</var>)<var><a name="index-triplequad-2705"></a></var><br>
+&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb, tol</var>)<var><a name="index-triplequad-2706"></a></var><br>
+&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb, tol, quadf</var>)<var><a name="index-triplequad-2707"></a></var><br>
+&mdash; Function File:  <b>triplequad</b> (<var>f, xa, xb, ya, yb, za, zb, tol, quadf, <small class="dots">...</small></var>)<var><a name="index-triplequad-2708"></a></var><br>
 <blockquote><p>Numerically evaluate the triple integral of <var>f</var>. 
 <var>f</var> is a function handle, inline function, or string
 containing the name of the function to evaluate.  The function <var>f</var> must
@@ -129,10 +131,12 @@ function to use.  Any choice but <code>quad</code> is available and the default
 is <code>quadcc</code>.
 
         <p>Additional arguments, are passed directly to <var>f</var>.  To use the default
-value for <var>tol</var> or <var>quadf</var> one may pass ':' or an empty matrix ([]).
+value for <var>tol</var> or <var>quadf</var> one may pass <code>':'</code> or an empty
+matrix ([]).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddblquad.html#doc_002ddblquad">dblquad</a>, <a href="doc_002dquad.html#doc_002dquad">quad</a>, <a href="doc_002dquadv.html#doc_002dquadv">quadv</a>, <a href="doc_002dquadl.html#doc_002dquadl">quadl</a>, <a href="doc_002dquadgk.html#doc_002dquadgk">quadgk</a>, <a href="doc_002dquadcc.html#doc_002dquadcc">quadcc</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdblquad.html#XREFdblquad">dblquad</a>, <a href="XREFquad.html#XREFquad">quad</a>, <a href="XREFquadv.html#XREFquadv">quadv</a>, <a href="XREFquadl.html#XREFquadl">quadl</a>, <a href="XREFquadgk.html#XREFquadgk">quadgk</a>, <a href="XREFquadcc.html#XREFquadcc">quadcc</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>.
+
+        </blockquote></div>
 
    <p>The above mentioned approach works, but is fairly slow, and that problem
 increases exponentially with the dimensionality of the integral.  Another

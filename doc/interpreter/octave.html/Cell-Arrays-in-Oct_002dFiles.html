@@ -35,9 +35,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.4 Cell Arrays in Oct-Files</h4>
 
-<p>Octave's cell type is equally accessible within oct-files.  A cell
-array is just an array of <code>octave_value</code>s, and so each element of the cell
-array can then be treated just like any other <code>octave_value</code>.  A simple
+<p>Octave's cell type is also available from within oct-files.  A cell
+array is just an array of <code>octave_value</code>s, and thus each element of the
+cell array can be treated just like any other <code>octave_value</code>.  A simple
 example is
 
 <pre class="example"><pre class="verbatim">     #include &lt;octave/oct.h>
@@ -52,20 +52,24 @@ example is
          print_usage ();
        else
          {
-           Cell c = args (0).cell_value ();
+           Cell c = args(0).cell_value ();
            if (! error_state)
-             for (octave_idx_type i = 0; i &lt; c.nelem (); i++)
-               retval(i) = c.elem (i);
+             for (octave_idx_type i = 0; i &lt; c.numel (); i++)
+               {
+                 retval(i) = c(i);          // using operator syntax
+                 //retval(i) = c.elem (i);  // using method syntax
+               }
          }
      
        return retval;
      }
 </pre>
+     
 </pre>
    <p>Note that cell arrays are used less often in standard oct-files and so
-the <samp><span class="file">Cell.h</span></samp> header file must be explicitly included.  The rest of this
+the <samp><span class="file">Cell.h</span></samp> header file must be explicitly included.  The rest of the
 example extracts the <code>octave_value</code>s one by one from the cell array and
-returns be as individual return arguments.  For example consider
+returns them as individual return arguments.  For example:
 
 <pre class="example">     [b1, b2, b3] = celldemo ({1, [1, 2], "test"})
      &rArr;

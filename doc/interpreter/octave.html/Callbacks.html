@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Advanced-Plotting.html#Advanced-Plottin
 
 <h4 class="subsection">15.4.4 Callbacks</h4>
 
-<p><a name="index-callbacks-1619"></a>
+<p><a name="index-callbacks-1760"></a>
 Callback functions can be associated with graphics objects and triggered
 after certain events occur.  The basic structure of all callback function
 is
@@ -87,35 +87,39 @@ callback being called can be found with the <code>gcbo</code> and <code>gcbf</co
 functions.
 
 <!-- gcbo scripts/plot/gcbo.m -->
-   <p><a name="doc_002dgcbo"></a>
+   <p><a name="XREFgcbo"></a>
 
 <div class="defun">
-&mdash; Function File: <var>h</var> = <b>gcbo</b> ()<var><a name="index-gcbo-1620"></a></var><br>
-&mdash; Function File: [<var>h</var>, <var>fig</var>] = <b>gcbo</b> ()<var><a name="index-gcbo-1621"></a></var><br>
-<blockquote><p>Return a handle to the object whose callback is currently
-executing.  If no callback is executing, this function returns the
-empty matrix.  This handle is obtained from the root object property
-"CallbackObject".
+&mdash; Function File: <var>h</var> = <b>gcbo</b> ()<var><a name="index-gcbo-1761"></a></var><br>
+&mdash; Function File: [<var>h</var>, <var>fig</var>] = <b>gcbo</b> ()<var><a name="index-gcbo-1762"></a></var><br>
+<blockquote><p>Return a handle to the object whose callback is currently executing.
 
-        <p>Additionally return the handle of the figure containing the
-object whose callback is currently executing.  If no callback is
-executing, the second output is also set to the empty matrix.
+        <p>If no callback is executing, this function returns the empty matrix.  This
+handle is obtained from the root object property <code>"CallbackObject"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgcf.html#doc_002dgcf">gcf</a>, <a href="doc_002dgca.html#doc_002dgca">gca</a>, <a href="doc_002dgcbf.html#doc_002dgcbf">gcbf</a>. 
-</p></blockquote></div>
+        <p>When called with a second output argument, return the handle of the figure
+containing the object whose callback is currently executing.  If no callback
+is executing the second output is also set to the empty matrix.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgcbf.html#XREFgcbf">gcbf</a>, <a href="XREFgco.html#XREFgco">gco</a>, <a href="XREFgca.html#XREFgca">gca</a>, <a href="XREFgcf.html#XREFgcf">gcf</a>, <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>.
+
+        </blockquote></div>
 
 <!-- gcbf scripts/plot/gcbf.m -->
-   <p><a name="doc_002dgcbf"></a>
+   <p><a name="XREFgcbf"></a>
 
 <div class="defun">
-&mdash; Function File: <var>fig</var> = <b>gcbf</b> ()<var><a name="index-gcbf-1622"></a></var><br>
-<blockquote><p>Return a handle to the figure containing the object whose callback
-is currently executing.  If no callback is executing, this function
-returns the empty matrix.  The handle returned by this function is
-the same as the second output argument of gcbo.
+&mdash; Function File: <var>fig</var> = <b>gcbf</b> ()<var><a name="index-gcbf-1763"></a></var><br>
+<blockquote><p>Return a handle to the figure containing the object whose callback is
+currently executing.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgcf.html#doc_002dgcf">gcf</a>, <a href="doc_002dgca.html#doc_002dgca">gca</a>, <a href="doc_002dgcbo.html#doc_002dgcbo">gcbo</a>. 
-</p></blockquote></div>
+        <p>If no callback is executing, this function returns the empty matrix.  The
+handle returned by this function is the same as the second output argument
+of <code>gcbo</code>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgcbo.html#XREFgcbo">gcbo</a>, <a href="XREFgcf.html#XREFgcf">gcf</a>, <a href="XREFgco.html#XREFgco">gco</a>, <a href="XREFgca.html#XREFgca">gca</a>, <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>.
+
+        </blockquote></div>
 
    <p>Callbacks can equally be added to properties with the <code>addlistener</code>
 function described below.

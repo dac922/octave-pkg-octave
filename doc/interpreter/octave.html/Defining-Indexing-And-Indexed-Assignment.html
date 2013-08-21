@@ -42,10 +42,10 @@ polynomial at <var>n</var>.  The meaning of this subscripted referencing is
 determined by the <code>subsref</code> method.
 
 <!-- subsref libinterp/octave-value/ov.cc -->
-   <p><a name="doc_002dsubsref"></a>
+   <p><a name="XREFsubsref"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>subsref</b> (<var>val, idx</var>)<var><a name="index-subsref-3263"></a></var><br>
+&mdash; Built-in Function:  <b>subsref</b> (<var>val, idx</var>)<var><a name="index-subsref-3448"></a></var><br>
 <blockquote><p>Perform the subscripted element selection operation according to
 the subscript specified by <var>idx</var>.
 
@@ -74,13 +74,14 @@ a matrix
         <p>If <var>idx</var> is an empty structure array with fields &lsquo;<samp><span class="samp">type</span></samp>&rsquo;
 and &lsquo;<samp><span class="samp">subs</span></samp>&rsquo;, return <var>val</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>, <a href="doc_002dsubstruct.html#doc_002dsubstruct">substruct</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsubsasgn.html#XREFsubsasgn">subsasgn</a>, <a href="XREFsubstruct.html#XREFsubstruct">substruct</a>.
 
-   <p>For example we might decide that indexing with "()" evaluates the
-polynomial and indexing with "{}" returns the <var>n</var>-th coefficient (of
-<var>n</var>-th power).  In this case the <code>subsref</code> method of our polynomial
-class might look like
+        </blockquote></div>
+
+   <p>For example we might decide that indexing with <code>"()"</code> evaluates the
+polynomial and indexing with <code>"{}"</code> returns the <var>n</var>-th coefficient
+(of <var>n</var>-th power).  In this case the <code>subsref</code> method of our
+polynomial class might look like
 
 <pre class="example"><pre class="verbatim">     function b = subsref (a, s)
        if (isempty (s))
@@ -120,15 +121,16 @@ class might look like
        endif
      endfunction
 </pre>
+     
 </pre>
    <p>The equivalent functionality for subscripted assignments uses the
 <code>subsasgn</code> method.
 
 <!-- subsasgn libinterp/octave-value/ov.cc -->
-   <p><a name="doc_002dsubsasgn"></a>
+   <p><a name="XREFsubsasgn"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>subsasgn</b> (<var>val, idx, rhs</var>)<var><a name="index-subsasgn-3264"></a></var><br>
+&mdash; Built-in Function:  <b>subsasgn</b> (<var>val, idx, rhs</var>)<var><a name="index-subsasgn-3449"></a></var><br>
 <blockquote><p>Perform the subscripted assignment operation according to
 the subscript specified by <var>idx</var>.
 
@@ -154,23 +156,24 @@ of index values.
         <p>If <var>idx</var> is an empty structure array with fields &lsquo;<samp><span class="samp">type</span></samp>&rsquo;
 and &lsquo;<samp><span class="samp">subs</span></samp>&rsquo;, return <var>rhs</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubstruct.html#doc_002dsubstruct">substruct</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsubsref.html#XREFsubsref">subsref</a>, <a href="XREFsubstruct.html#XREFsubstruct">substruct</a>.
+
+        </blockquote></div>
 
 <!-- optimize_subsasgn_calls libinterp/octave-value/ov-usr-fcn.cc -->
-   <p><a name="doc_002doptimize_005fsubsasgn_005fcalls"></a>
+   <p><a name="XREFoptimize_005fsubsasgn_005fcalls"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>optimize_subsasgn_calls</b> ()<var><a name="index-optimize_005fsubsasgn_005fcalls-3265"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>optimize_subsasgn_calls</b> (<var>new_val</var>)<var><a name="index-optimize_005fsubsasgn_005fcalls-3266"></a></var><br>
-&mdash; Built-in Function:  <b>optimize_subsasgn_calls</b> (<var>new_val, "local"</var>)<var><a name="index-optimize_005fsubsasgn_005fcalls-3267"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>optimize_subsasgn_calls</b> ()<var><a name="index-optimize_005fsubsasgn_005fcalls-3450"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>optimize_subsasgn_calls</b> (<var>new_val</var>)<var><a name="index-optimize_005fsubsasgn_005fcalls-3451"></a></var><br>
+&mdash; Built-in Function:  <b>optimize_subsasgn_calls</b> (<var>new_val, "local"</var>)<var><a name="index-optimize_005fsubsasgn_005fcalls-3452"></a></var><br>
 <blockquote><p>Query or set the internal flag for subsasgn method call optimizations. 
 If true, Octave will attempt to eliminate the redundant copying when calling
 subsasgn method of a user-defined class.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
    <p>Note that the <code>subsref</code> and <code>subsasgn</code> methods always receive the
@@ -206,16 +209,16 @@ follows:
 and this is controlled with the <code>subsindex</code> function.
 
 <!-- subsindex scripts/general/subsindex.m -->
-   <p><a name="doc_002dsubsindex"></a>
+   <p><a name="XREFsubsindex"></a>
 
 <div class="defun">
-&mdash; Function File: <var>idx</var> = <b>subsindex</b> (<var>a</var>)<var><a name="index-subsindex-3268"></a></var><br>
+&mdash; Function File: <var>idx</var> = <b>subsindex</b> (<var>a</var>)<var><a name="index-subsindex-3453"></a></var><br>
 <blockquote><p>Convert an object to an index vector.  When <var>a</var> is a class object
 defined with a class constructor, then <code>subsindex</code> is the
 overloading method that allows the conversion of this class object to
 a valid indexing vector.  It is important to note that
 <code>subsindex</code> must return a zero-based real integer vector of the
-class "double".  For example, if the class constructor
+class <code>"double"</code>.  For example, if the class constructor
 
      <pre class="example">          function b = myclass (a)
             b = class (struct ("a", a), "myclass");
@@ -234,18 +237,19 @@ class "double".  For example, if the class constructor
           b(a)
           &rArr; 1  2  3  4
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFclass.html#XREFclass">class</a>, <a href="XREFsubsref.html#XREFsubsref">subsref</a>, <a href="XREFsubsasgn.html#XREFsubsasgn">subsasgn</a>.
+
+        </blockquote></div>
 
    <p>Finally, objects can equally be used like ranges, using the <code>colon</code>
 method
 
 <!-- colon scripts/general/colon.m -->
-   <p><a name="doc_002dcolon"></a>
+   <p><a name="XREFcolon"></a>
 
 <div class="defun">
-&mdash; Function File: <var>r</var> = <b>colon</b> (<var>a, b</var>)<var><a name="index-colon-3269"></a></var><br>
-&mdash; Function File: <var>r</var> = <b>colon</b> (<var>a, b, c</var>)<var><a name="index-colon-3270"></a></var><br>
+&mdash; Function File: <var>r</var> = <b>colon</b> (<var>a, b</var>)<var><a name="index-colon-3454"></a></var><br>
+&mdash; Function File: <var>r</var> = <b>colon</b> (<var>a, b, c</var>)<var><a name="index-colon-3455"></a></var><br>
 <blockquote><p>Method of a class to construct a range with the <code>:</code> operator.  For
 example:
 
@@ -253,8 +257,9 @@ example:
           b = myclass (...);
           c = a : b
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dclass.html#doc_002dclass">class</a>, <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFclass.html#XREFclass">class</a>, <a href="XREFsubsref.html#XREFsubsref">subsref</a>, <a href="XREFsubsasgn.html#XREFsubsasgn">subsasgn</a>.
+
+        </blockquote></div>
 
    </body></html>
 

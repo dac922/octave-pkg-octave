@@ -48,11 +48,11 @@ value of a variable without printing its name, use the function
    <p>The <code>format</code> command offers some control over the way Octave prints
 values with <code>disp</code> and through the normal echoing mechanism.
 
-<!-- disp libinterp/interpfcn/pr-output.cc -->
-   <p><a name="doc_002ddisp"></a>
+<!-- disp libinterp/corefcn/pr-output.cc -->
+   <p><a name="XREFdisp"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>disp</b> (<var>x</var>)<var><a name="index-disp-919"></a></var><br>
+&mdash; Built-in Function:  <b>disp</b> (<var>x</var>)<var><a name="index-disp-937"></a></var><br>
 <blockquote><p>Display the value of <var>x</var>.  For example:
 
      <pre class="example">          disp ("The value of pi is:"), disp (pi)
@@ -65,14 +65,15 @@ values with <code>disp</code> and through the normal echoing mechanism.
         <p>If an output value is requested, <code>disp</code> prints nothing and
 returns the formatted output in a string.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfdisp.html#doc_002dfdisp">fdisp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfdisp.html#XREFfdisp">fdisp</a>.
+
+        </blockquote></div>
 
 <!-- list_in_columns libinterp/corefcn/strfns.cc -->
-   <p><a name="doc_002dlist_005fin_005fcolumns"></a>
+   <p><a name="XREFlist_005fin_005fcolumns"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>list_in_columns</b> (<var>arg, width, prefix</var>)<var><a name="index-list_005fin_005fcolumns-920"></a></var><br>
+&mdash; Built-in Function:  <b>list_in_columns</b> (<var>arg, width, prefix</var>)<var><a name="index-list_005fin_005fcolumns-938"></a></var><br>
 <blockquote><p>Return a string containing the elements of <var>arg</var> listed in
 columns with an overall maximum width of <var>width</var> and optional
 prefix <var>prefix</var>.  The argument <var>arg</var> must be a cell array
@@ -98,26 +99,28 @@ For example:
           
                Total is 37 elements using 37 bytes
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dterminal_005fsize.html#doc_002dterminal_005fsize">terminal_size</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFterminal_005fsize.html#XREFterminal_005fsize">terminal_size</a>.
 
-<!-- terminal_size libinterp/interpfcn/pager.cc -->
-   <p><a name="doc_002dterminal_005fsize"></a>
+        </blockquote></div>
+
+<!-- terminal_size libinterp/corefcn/pager.cc -->
+   <p><a name="XREFterminal_005fsize"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>terminal_size</b> ()<var><a name="index-terminal_005fsize-921"></a></var><br>
+&mdash; Built-in Function:  <b>terminal_size</b> ()<var><a name="index-terminal_005fsize-939"></a></var><br>
 <blockquote><p>Return a two-element row vector containing the current size of the
 terminal window in characters (rows and columns).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlist_005fin_005fcolumns.html#doc_002dlist_005fin_005fcolumns">list_in_columns</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlist_005fin_005fcolumns.html#XREFlist_005fin_005fcolumns">list_in_columns</a>.
 
-<!-- format libinterp/interpfcn/pr-output.cc -->
-   <p><a name="doc_002dformat"></a>
+        </blockquote></div>
+
+<!-- format libinterp/corefcn/pr-output.cc -->
+   <p><a name="XREFformat"></a>
 
 <div class="defun">
-&mdash; Command:  <b>format</b><var><a name="index-format-922"></a></var><br>
-&mdash; Command:  <b>format</b><var> options<a name="index-format-923"></a></var><br>
+&mdash; Command:  <b>format</b><var><a name="index-format-940"></a></var><br>
+&mdash; Command:  <b>format</b><var> options<a name="index-format-941"></a></var><br>
 <blockquote><p>Reset or specify the format of the output produced by <code>disp</code> and
 Octave's normal echoing mechanism.  This command only affects the display
 of numbers but not how they are stored or computed.  To change the internal
@@ -244,8 +247,9 @@ matrices producing more compact output with more data per page.
 to produce a more readable output with less data per page.  (default). 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfixed_005fpoint_005fformat.html#doc_002dfixed_005fpoint_005fformat">fixed_point_format</a>, <a href="doc_002doutput_005fmax_005ffield_005fwidth.html#doc_002doutput_005fmax_005ffield_005fwidth">output_max_field_width</a>, <a href="doc_002doutput_005fprecision.html#doc_002doutput_005fprecision">output_precision</a>, <a href="doc_002dsplit_005flong_005frows.html#doc_002dsplit_005flong_005frows">split_long_rows</a>, <a href="doc_002drats.html#doc_002drats">rats</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfixed_005fpoint_005fformat.html#XREFfixed_005fpoint_005fformat">fixed_point_format</a>, <a href="XREFoutput_005fmax_005ffield_005fwidth.html#XREFoutput_005fmax_005ffield_005fwidth">output_max_field_width</a>, <a href="XREFoutput_005fprecision.html#XREFoutput_005fprecision">output_precision</a>, <a href="XREFsplit_005flong_005frows.html#XREFsplit_005flong_005frows">split_long_rows</a>, <a href="XREFrats.html#XREFrats">rats</a>.
+
+        </blockquote></div>
 
 <ul class="menu">
 <li><a accesskey="1" href="Paging-Screen-Output.html#Paging-Screen-Output">Paging Screen Output</a>

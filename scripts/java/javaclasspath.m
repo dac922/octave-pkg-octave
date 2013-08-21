@@ -42,13 +42,13 @@
 ## If called with a single input parameter @var{what}:
 ##
 ## @table @asis
-## @item "-dynamic"
+## @item @qcode{"-dynamic"}
 ## Return the dynamic classpath.
 ##
-## @item "-static"
+## @item @qcode{"-static"}
 ## Return the static classpath.
 ##
-## @item "-all"
+## @item @qcode{"-all"}
 ## Return both the static and dynamic classpath in a single cellstr.
 ## @end table
 ## @seealso{javaaddpath, javarmpath}
@@ -58,11 +58,11 @@ function varargout = javaclasspath (which)
 
   ## dynamic classpath
   dynamic_path = javaMethod ("getClassPath", "org.octave.ClassHelper");
-  dynamic_path_list = strsplit (dynamic_path, pathsep (), false);
+  dynamic_path_list = ostrsplit (dynamic_path, pathsep ());
 
   ## static classpath
   static_path = javaMethod ("getProperty", "java.lang.System", "java.class.path");
-  static_path_list = strsplit (static_path, pathsep (), false);
+  static_path_list = ostrsplit (static_path, pathsep ());
   if (numel (static_path_list) > 1)
     ## remove first element (which is .../octave.jar)
     static_path_list(1) = [];

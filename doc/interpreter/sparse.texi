@@ -25,7 +25,7 @@
 @set htmltex
 @end iftex
 
-@node Sparse Matrices 
+@node Sparse Matrices
 @chapter Sparse Matrices
 
 @menu
@@ -36,7 +36,7 @@
 @end menu
 
 @node Basics
-@section The Creation and Manipulation of Sparse Matrices
+@section Creation and Manipulation of Sparse Matrices
 
 The size of mathematical problems that can be treated at any particular
 time is generally limited by the available computing resources.  Both,
@@ -91,13 +91,13 @@ triplets, with two elements being their position in the array
 easy to grasp, but requires more storage than is strictly needed.
 
 The storage technique used within Octave is the compressed column
-format. It is similar to the Yale format.
+format.  It is similar to the Yale format.
 @footnote{@url{http://en.wikipedia.org/wiki/Sparse_matrix#Yale_format}}
 In this format the position of each element in a row and the data are
-stored as previously. However, if we assume that all elements in the
+stored as previously.  However, if we assume that all elements in the
 same column are stored adjacent in the computers memory, then we only
 need to store information on the number of non-zero elements in each
-column, rather than their positions. Thus assuming that the matrix has
+column, rather than their positions.  Thus assuming that the matrix has
 more non-zero elements than there are columns in the matrix, we win in
 terms of the amount of memory used.
 
@@ -224,7 +224,7 @@ creates a sparse (@var{n}+1)-by-(@var{n}+1) sparse matrix with a single
 diagonal defined.
 
 @c spdiags scripts/sparse/spdiags.m
-@anchor{doc-spdiags}
+@anchor{XREFspdiags}
 @deftypefn  {Function File} {[@var{b}, @var{c}] =} spdiags (@var{A})
 @deftypefnx {Function File} {@var{b} =} spdiags (@var{A}, @var{c})
 @deftypefnx {Function File} {@var{b} =} spdiags (@var{v}, @var{c}, @var{A})
@@ -262,7 +262,7 @@ spdiags (reshape (1:12, 4, 3), [-1 0 1], 5, 4)
 
 
 @c speye scripts/sparse/speye.m
-@anchor{doc-speye}
+@anchor{XREFspeye}
 @deftypefn  {Function File} {@var{y} =} speye (@var{m})
 @deftypefnx {Function File} {@var{y} =} speye (@var{m}, @var{n})
 @deftypefnx {Function File} {@var{y} =} speye (@var{sz})
@@ -278,7 +278,7 @@ is taken to be the size of the matrix to create.
 
 
 @c spones scripts/sparse/spones.m
-@anchor{doc-spones}
+@anchor{XREFspones}
 @deftypefn {Function File} {@var{r} =} spones (@var{S})
 Replace the non-zero entries of @var{S} with ones.  This creates a
 sparse matrix with the same structure as @var{S}.
@@ -286,7 +286,7 @@ sparse matrix with the same structure as @var{S}.
 
 
 @c sprand scripts/sparse/sprand.m
-@anchor{doc-sprand}
+@anchor{XREFsprand}
 @deftypefn  {Function File} {} sprand (@var{m}, @var{n}, @var{d})
 @deftypefnx {Function File} {} sprand (@var{s})
 Generate a random sparse matrix.  The size of the matrix will be
@@ -296,12 +296,12 @@ distributed between 0 and 1.
 
 If called with a single matrix argument, a random sparse matrix is
 generated wherever the matrix @var{S} is non-zero.
-@seealso{@ref{doc-sprandn,,sprandn}, @ref{doc-sprandsym,,sprandsym}}
+@seealso{@ref{XREFsprandn,,sprandn}, @ref{XREFsprandsym,,sprandsym}}
 @end deftypefn
 
 
 @c sprandn scripts/sparse/sprandn.m
-@anchor{doc-sprandn}
+@anchor{XREFsprandn}
 @deftypefn  {Function File} {} sprandn (@var{m}, @var{n}, @var{d})
 @deftypefnx {Function File} {} sprandn (@var{s})
 Generate a random sparse matrix.  The size of the matrix will be
@@ -311,12 +311,12 @@ distributed with mean of zero and variance 1.
 
 If called with a single matrix argument, a random sparse matrix is
 generated wherever the matrix @var{S} is non-zero.
-@seealso{@ref{doc-sprand,,sprand}, @ref{doc-sprandsym,,sprandsym}}
+@seealso{@ref{XREFsprand,,sprand}, @ref{XREFsprandsym,,sprandsym}}
 @end deftypefn
 
 
 @c sprandsym scripts/sparse/sprandsym.m
-@anchor{doc-sprandsym}
+@anchor{XREFsprandsym}
 @deftypefn  {Function File} {} sprandsym (@var{n}, @var{d})
 @deftypefnx {Function File} {} sprandsym (@var{s})
 Generate a symmetric random sparse matrix.  The size of the matrix will be
@@ -327,7 +327,7 @@ distributed with mean of zero and variance 1.
 If called with a single matrix argument, a random sparse matrix is
 generated wherever the matrix @var{S} is non-zero in its lower
 triangular part.
-@seealso{@ref{doc-sprand,,sprand}, @ref{doc-sprandn,,sprandn}}
+@seealso{@ref{XREFsprand,,sprand}, @ref{XREFsprandn,,sprandn}}
 @end deftypefn
 
 
@@ -395,17 +395,17 @@ important that code using to above structure should be vectorized
 as much as possible to minimize the number of assignments and reduce the
 number of memory allocations.
 
-@c full libinterp/interpfcn/data.cc
-@anchor{doc-full}
+@c full libinterp/corefcn/data.cc
+@anchor{XREFfull}
 @deftypefn {Built-in Function} {@var{FM} =} full (@var{SM})
 Return a full storage matrix from a sparse, diagonal, permutation matrix
 or a range.
-@seealso{@ref{doc-sparse,,sparse}}
+@seealso{@ref{XREFsparse,,sparse}}
 @end deftypefn
 
 
 @c spalloc libinterp/corefcn/sparse.cc
-@anchor{doc-spalloc}
+@anchor{XREFspalloc}
 @deftypefn {Built-in Function} {@var{s} =} spalloc (@var{m}, @var{n}, @var{nz})
 Create an @var{m}-by-@var{n} sparse matrix with pre-allocated space for at
 most @var{nz} nonzero elements.  This is useful for building the matrix
@@ -438,12 +438,12 @@ contiguous block of columns.
 
 The amount of pre-allocated memory for a given matrix may be queried using
 the function @code{nzmax}.
-@seealso{@ref{doc-nzmax,,nzmax}, @ref{doc-sparse,,sparse}}
+@seealso{@ref{XREFnzmax,,nzmax}, @ref{XREFsparse,,sparse}}
 @end deftypefn
 
 
 @c sparse libinterp/corefcn/sparse.cc
-@anchor{doc-sparse}
+@anchor{XREFsparse}
 @deftypefn  {Built-in Function} {@var{s} =} sparse (@var{a})
 @deftypefnx {Built-in Function} {@var{s} =} sparse (@var{i}, @var{j}, @var{sv}, @var{m}, @var{n}, @var{nzmax})
 @deftypefnx {Built-in Function} {@var{s} =} sparse (@var{i}, @var{j}, @var{sv})
@@ -476,20 +476,21 @@ s = sparse (i, j, s, m, n, "sum")
 @end group
 @end example
 
-Given the option "unique". if more than two values are specified for the
-same @var{i}, @var{j} indices, the last specified value will be used.
+Given the option @qcode{"unique"}, if more than two values are specified
+for the same @var{i}, @var{j} indices, the last specified value will be
+used.
 
 @code{sparse (@var{m}, @var{n})} is equivalent to
 @code{sparse ([], [], [], @var{m}, @var{n}, 0)}
 
 If any of @var{sv}, @var{i} or @var{j} are scalars, they are expanded
 to have a common size.
-@seealso{@ref{doc-full,,full}, @ref{doc-accumarray,,accumarray}}
+@seealso{@ref{XREFfull,,full}, @ref{XREFaccumarray,,accumarray}}
 @end deftypefn
 
 
 @c spconvert scripts/sparse/spconvert.m
-@anchor{doc-spconvert}
+@anchor{XREFspconvert}
 @deftypefn {Function File} {@var{x} =} spconvert (@var{m})
 This function converts for a simple sparse matrix format easily
 produced by other programs into Octave's internal sparse format.  The
@@ -502,12 +503,11 @@ be used to force a particular matrix size.
 
 The above problem of memory reallocation can be avoided in
 oct-files.  However, the construction of a sparse matrix from an oct-file
-is more complex than can be discussed here, and
-you are referred to chapter @ref{Dynamically Linked Functions}, to have
-a full description of the techniques involved.
+is more complex than can be discussed here.  @xref{External Code Interface},
+for a full description of the techniques involved.
 
 @node Information
-@subsection Finding out Information about Sparse Matrices
+@subsection Finding Information about Sparse Matrices
 
 There are a number of functions that allow information concerning
 sparse matrices to be obtained.  The most basic of these is
@@ -526,42 +526,42 @@ the columns of a sparse matrix including the number of elements, the
 mean and the variance of each column.
 
 @c issparse libinterp/corefcn/sparse.cc
-@anchor{doc-issparse}
+@anchor{XREFissparse}
 @deftypefn {Built-in Function} {} issparse (@var{x})
 Return true if @var{x} is a sparse matrix.
-@seealso{@ref{doc-ismatrix,,ismatrix}}
+@seealso{@ref{XREFismatrix,,ismatrix}}
 @end deftypefn
 
 
-@c nnz libinterp/interpfcn/data.cc
-@anchor{doc-nnz}
+@c nnz libinterp/corefcn/data.cc
+@anchor{XREFnnz}
 @deftypefn {Built-in Function} {@var{scalar} =} nnz (@var{a})
 Return the number of non zero elements in @var{a}.
-@seealso{@ref{doc-sparse,,sparse}, @ref{doc-nzmax,,nzmax}}
+@seealso{@ref{XREFsparse,,sparse}, @ref{XREFnzmax,,nzmax}}
 @end deftypefn
 
 
 @c nonzeros scripts/sparse/nonzeros.m
-@anchor{doc-nonzeros}
+@anchor{XREFnonzeros}
 @deftypefn {Function File} {} nonzeros (@var{s})
 Return a vector of the non-zero values of the sparse matrix @var{s}.
 @end deftypefn
 
 
-@c nzmax libinterp/interpfcn/data.cc
-@anchor{doc-nzmax}
+@c nzmax libinterp/corefcn/data.cc
+@anchor{XREFnzmax}
 @deftypefn {Built-in Function} {@var{scalar} =} nzmax (@var{SM})
 Return the amount of storage allocated to the sparse matrix @var{SM}.
 Note that Octave tends to crop unused memory at the first opportunity
 for sparse objects.  There are some cases of user created sparse objects
 where the value returned by @dfn{nzmax} will not be the same as @dfn{nnz},
 but in general they will give the same result.
-@seealso{@ref{doc-nnz,,nnz}, @ref{doc-spalloc,,spalloc}, @ref{doc-sparse,,sparse}}
+@seealso{@ref{XREFnnz,,nnz}, @ref{XREFspalloc,,spalloc}, @ref{XREFsparse,,sparse}}
 @end deftypefn
 
 
 @c spstats scripts/sparse/spstats.m
-@anchor{doc-spstats}
+@anchor{XREFspstats}
 @deftypefn  {Function File} {[@var{count}, @var{mean}, @var{var}] =} spstats (@var{S})
 @deftypefnx {Function File} {[@var{count}, @var{mean}, @var{var}] =} spstats (@var{S}, @var{j})
 Return the stats for the non-zero elements of the sparse matrix @var{S}.
@@ -578,7 +578,7 @@ this case, bins can contain data values of zero, whereas with
 
 When solving linear equations involving sparse matrices Octave
 determines the means to solve the equation based on the type of the
-matrix as discussed in @ref{Sparse Linear Algebra}.  Octave probes the
+matrix (@pxref{Sparse Linear Algebra}).  Octave probes the
 matrix type when the div (/) or ldiv (\) operator is first used with
 the matrix and then caches the type.  However the @dfn{matrix_type}
 function can be used to determine the type of the sparse matrix prior
@@ -627,7 +627,7 @@ One use of sparse matrices is in graph theory, where the
 interconnections between nodes are represented as an adjacency
 matrix.  That is, if the i-th node in a graph is connected to the j-th
 node.  Then the ij-th node (and in the case of undirected graphs the
-ji-th node) of the sparse adjacency matrix is non-zero.  If each node
+@nospell{ji-th} node) of the sparse adjacency matrix is non-zero.  If each node
 is then associated with a set of coordinates, then the @dfn{gplot}
 command can be used to graphically display the interconnections
 between nodes.
@@ -664,7 +664,7 @@ graphically by the command @code{treeplot (etree (A))} if @code{A} is
 symmetric or @code{treeplot (etree (A+A'))} otherwise.
 
 @c spy scripts/sparse/spy.m
-@anchor{doc-spy}
+@anchor{XREFspy}
 @deftypefn  {Function File} {} spy (@var{x})
 @deftypefnx {Function File} {} spy (@dots{}, @var{markersize})
 @deftypefnx {Function File} {} spy (@dots{}, @var{line_spec})
@@ -672,12 +672,12 @@ Plot the sparsity pattern of the sparse matrix @var{x}.  If the argument
 @var{markersize} is given as a scalar value, it is used to determine the
 point size in the plot.  If the string @var{line_spec} is given it is
 passed to @code{plot} and determines the appearance of the plot.
-@seealso{@ref{doc-plot,,plot}}
+@seealso{@ref{XREFplot,,plot}}
 @end deftypefn
 
 
 @c etree libinterp/dldfcn/colamd.cc
-@anchor{doc-etree}
+@anchor{XREFetree}
 @deftypefn  {Loadable Function} {@var{p} =} etree (@var{S})
 @deftypefnx {Loadable Function} {@var{p} =} etree (@var{S}, @var{typ})
 @deftypefnx {Loadable Function} {[@var{p}, @var{q}] =} etree (@var{S}, @var{typ})
@@ -686,7 +686,8 @@ Return the elimination tree for the matrix @var{S}.  By default @var{S}
 is assumed to be symmetric and the symmetric elimination tree is
 returned.  The argument @var{typ} controls whether a symmetric or
 column elimination tree is returned.  Valid values of @var{typ} are
-"sym" or "col", for symmetric or column elimination tree respectively
+@qcode{"sym"} or @qcode{"col"}, for symmetric or column elimination tree
+respectively.
 
 Called with a second argument, @code{etree} also returns the postorder
 permutations on the tree.
@@ -694,19 +695,19 @@ permutations on the tree.
 
 
 @c etreeplot scripts/sparse/etreeplot.m
-@anchor{doc-etreeplot}
+@anchor{XREFetreeplot}
 @deftypefn  {Function File} {} etreeplot (@var{A})
 @deftypefnx {Function File} {} etreeplot (@var{A}, @var{node_style}, @var{edge_style})
 Plot the elimination tree of the matrix @var{A} or
-@xcode{@var{A}+@var{A}'} if @var{A} in not symmetric.  The optional
+@tcode{@var{A}+@var{A}'} if @var{A} in not symmetric.  The optional
 parameters @var{node_style} and @var{edge_style} define the output
 style.
-@seealso{@ref{doc-treeplot,,treeplot}, @ref{doc-gplot,,gplot}}
+@seealso{@ref{XREFtreeplot,,treeplot}, @ref{XREFgplot,,gplot}}
 @end deftypefn
 
 
 @c gplot scripts/sparse/gplot.m
-@anchor{doc-gplot}
+@anchor{XREFgplot}
 @deftypefn  {Function File} {} gplot (@var{A}, @var{xy})
 @deftypefnx {Function File} {} gplot (@var{A}, @var{xy}, @var{line_style})
 @deftypefnx {Function File} {[@var{x}, @var{y}] =} gplot (@var{A}, @var{xy})
@@ -719,24 +720,24 @@ The optional parameter @var{line_style} defines the output style for
 the plot.  Called with no output arguments the graph is plotted
 directly.  Otherwise, return the coordinates of the plot in @var{x}
 and @var{y}.
-@seealso{@ref{doc-treeplot,,treeplot}, @ref{doc-etreeplot,,etreeplot}, @ref{doc-spy,,spy}}
+@seealso{@ref{XREFtreeplot,,treeplot}, @ref{XREFetreeplot,,etreeplot}, @ref{XREFspy,,spy}}
 @end deftypefn
 
 
 @c treeplot scripts/sparse/treeplot.m
-@anchor{doc-treeplot}
+@anchor{XREFtreeplot}
 @deftypefn  {Function File} {} treeplot (@var{tree})
 @deftypefnx {Function File} {} treeplot (@var{tree}, @var{node_style}, @var{edge_style})
 Produce a graph of tree or forest.  The first argument is vector of
 predecessors, optional parameters @var{node_style} and @var{edge_style}
 define the output style.  The complexity of the algorithm is O(n) in
 terms of is time and memory requirements.
-@seealso{@ref{doc-etreeplot,,etreeplot}, @ref{doc-gplot,,gplot}}
+@seealso{@ref{XREFetreeplot,,etreeplot}, @ref{XREFgplot,,gplot}}
 @end deftypefn
 
 
 @c treelayout scripts/sparse/treelayout.m
-@anchor{doc-treelayout}
+@anchor{XREFtreelayout}
 @deftypefn  {Function File} {} treelayout (@var{tree})
 @deftypefnx {Function File} {} treelayout (@var{tree}, @var{permutation})
 treelayout lays out a tree or a forest.  The first argument @var{tree} is a
@@ -745,7 +746,7 @@ predecessors, optional parameter @var{permutation} is an optional postorder
 permutation.
 The complexity of the algorithm is O(n) in
 terms of time and memory requirements.
-@seealso{@ref{doc-etreeplot,,etreeplot}, @ref{doc-gplot,,gplot}, @ref{doc-treeplot,,treeplot}}
+@seealso{@ref{XREFetreeplot,,etreeplot}, @ref{XREFgplot,,gplot}, @ref{XREFtreeplot,,treeplot}}
 @end deftypefn
 
 
@@ -753,9 +754,9 @@ terms of time and memory requirements.
 @subsection Basic Operators and Functions on Sparse Matrices
 
 @menu
-* Sparse Functions::            
-* Return Types of Operators and Functions::  
-* Mathematical Considerations::  
+* Sparse Functions::
+* Return Types of Operators and Functions::
+* Mathematical Considerations::
 @end menu
 
 @node Sparse Functions
@@ -815,7 +816,7 @@ supplied with these functions within Octave itself for further
 details.
 
 @node Return Types of Operators and Functions
-@subsubsection The Return Types of Operators and Functions
+@subsubsection Return Types of Operators and Functions
 
 The two basic reasons to use sparse matrices are to reduce the memory 
 usage and to not have to do calculations on zero elements.  The two are
@@ -873,7 +874,7 @@ always returns a sparse matrix, even if the memory used will be larger
 than its full representation.
 
 @c sparse_auto_mutate libinterp/octave-value/ov-base.cc
-@anchor{doc-sparse_auto_mutate}
+@anchor{XREFsparse_auto_mutate}
 @deftypefn  {Built-in Function} {@var{val} =} sparse_auto_mutate ()
 @deftypefnx {Built-in Function} {@var{old_val} =} sparse_auto_mutate (@var{new_val})
 @deftypefnx {Built-in Function} {} sparse_auto_mutate (@var{new_val}, "local")
@@ -895,9 +896,9 @@ typeinfo (s)
 @end group
 @end example
 
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
 @end deftypefn
 
 
@@ -911,8 +912,8 @@ The attempt has been made to make sparse matrices behave in exactly the
 same manner as there full counterparts.  However, there are certain differences
 and especially differences with other products sparse implementations.
 
-Firstly, the "./" and ".^" operators must be used with care.  Consider what
-the examples
+Firstly, the @qcode{"./"} and @qcode{".^"} operators must be used with care. 
+Consider what the examples
 
 @example
 @group
@@ -1040,7 +1041,7 @@ arguments as @code{[r, p, q] = chol (A); spy (r)}.
 
 @float Figure,fig:simplechol
 @center @image{spchol,4in}
-@caption{Structure of the un-permuted Cholesky@tie{}factorization of the above matrix.}
+@caption{Structure of the unpermuted Cholesky@tie{}factorization of the above matrix.}
 @end float
 
 @float Figure,fig:simplecholperm
@@ -1058,7 +1059,7 @@ and ldiv (\) operators, and so no the user does not need to explicitly
 reorder the matrix to maximize performance.
 
 @c amd libinterp/dldfcn/amd.cc
-@anchor{doc-amd}
+@anchor{XREFamd}
 @deftypefn  {Loadable Function} {@var{p} =} amd (@var{S})
 @deftypefnx {Loadable Function} {@var{p} =} amd (@var{S}, @var{opts})
 
@@ -1087,12 +1088,12 @@ absorption.  The default is not to perform aggressive absorption.
 The author of the code itself is Timothy A. Davis
 @email{davis@@cise.ufl.edu}, University of Florida (see
 @url{http://www.cise.ufl.edu/research/sparse/amd}).
-@seealso{@ref{doc-symamd,,symamd}, @ref{doc-colamd,,colamd}}
+@seealso{@ref{XREFsymamd,,symamd}, @ref{XREFcolamd,,colamd}}
 @end deftypefn
 
 
 @c ccolamd libinterp/dldfcn/ccolamd.cc
-@anchor{doc-ccolamd}
+@anchor{XREFccolamd}
 @deftypefn  {Loadable Function} {@var{p} =} ccolamd (@var{S})
 @deftypefnx {Loadable Function} {@var{p} =} ccolamd (@var{S}, @var{knobs})
 @deftypefnx {Loadable Function} {@var{p} =} ccolamd (@var{S}, @var{knobs}, @var{cmember})
@@ -1175,16 +1176,16 @@ the current version of @sc{ccolamd} (reserved for future use).
 
 The authors of the code itself are S. Larimore, T. Davis (Univ. of Florida)
 and S. Rajamanickam in collaboration with J. Bilbert and E. Ng.  Supported
-by the National Science Foundation (DMS-9504974, DMS-9803599, CCR-0203270),
-and a grant from Sandia National Lab.  See
-@url{http://www.cise.ufl.edu/research/sparse} for ccolamd, csymamd, amd,
-colamd, symamd, and other related orderings.
-@seealso{@ref{doc-colamd,,colamd}, @ref{doc-csymamd,,csymamd}}
+by the National Science Foundation
+@nospell{(DMS-9504974, DMS-9803599, CCR-0203270)}, and a grant from Sandia
+National Lab.  See @url{http://www.cise.ufl.edu/research/sparse} for
+ccolamd, csymamd, amd, colamd, symamd, and other related orderings.
+@seealso{@ref{XREFcolamd,,colamd}, @ref{XREFcsymamd,,csymamd}}
 @end deftypefn
 
 
 @c colamd libinterp/dldfcn/colamd.cc
-@anchor{doc-colamd}
+@anchor{XREFcolamd}
 @deftypefn  {Loadable Function} {@var{p} =} colamd (@var{S})
 @deftypefnx {Loadable Function} {@var{p} =} colamd (@var{S}, @var{knobs})
 @deftypefnx {Loadable Function} {[@var{p}, @var{stats}] =} colamd (@var{S})
@@ -1249,12 +1250,12 @@ Davis @email{davis@@cise.ufl.edu}, University of Florida.  The algorithm was
 developed in collaboration with John Gilbert, Xerox PARC, and Esmond
 Ng, Oak Ridge National Laboratory.  (see
 @url{http://www.cise.ufl.edu/research/sparse/colamd})
-@seealso{@ref{doc-colperm,,colperm}, @ref{doc-symamd,,symamd}, @ref{doc-ccolamd,,ccolamd}}
+@seealso{@ref{XREFcolperm,,colperm}, @ref{XREFsymamd,,symamd}, @ref{XREFccolamd,,ccolamd}}
 @end deftypefn
 
 
 @c colperm scripts/sparse/colperm.m
-@anchor{doc-colperm}
+@anchor{XREFcolperm}
 @deftypefn {Function File} {@var{p} =} colperm (@var{s})
 Return the column permutations such that the columns of
 @code{@var{s} (:, @var{p})} are ordered in terms of increase number
@@ -1265,7 +1266,7 @@ columns with increasing number of non zeros elements.
 
 
 @c csymamd libinterp/dldfcn/ccolamd.cc
-@anchor{doc-csymamd}
+@anchor{XREFcsymamd}
 @deftypefn  {Loadable Function} {@var{p} =} csymamd (@var{S})
 @deftypefnx {Loadable Function} {@var{p} =} csymamd (@var{S}, @var{knobs})
 @deftypefnx {Loadable Function} {@var{p} =} csymamd (@var{S}, @var{knobs}, @var{cmember})
@@ -1319,16 +1320,16 @@ the current version of @sc{ccolamd} (reserved for future use).
 
 The authors of the code itself are S. Larimore, T. Davis (Uni of Florida)
 and S. Rajamanickam in collaboration with J. Bilbert and E. Ng.  Supported
-by the National Science Foundation (DMS-9504974, DMS-9803599, CCR-0203270),
-and a grant from Sandia National Lab.  See
-@url{http://www.cise.ufl.edu/research/sparse} for ccolamd, csymamd, amd,
-colamd, symamd, and other related orderings.
-@seealso{@ref{doc-symamd,,symamd}, @ref{doc-ccolamd,,ccolamd}}
+by the National Science Foundation
+@nospell{(DMS-9504974, DMS-9803599, CCR-0203270)}, and a grant from Sandia
+National Lab.  See @url{http://www.cise.ufl.edu/research/sparse} for
+ccolamd, csymamd, amd, colamd, symamd, and other related orderings.
+@seealso{@ref{XREFsymamd,,symamd}, @ref{XREFccolamd,,ccolamd}}
 @end deftypefn
 
 
 @c dmperm libinterp/dldfcn/dmperm.cc
-@anchor{doc-dmperm}
+@anchor{XREFdmperm}
 @deftypefn  {Loadable Function} {@var{p} =} dmperm (@var{S})
 @deftypefnx {Loadable Function} {[@var{p}, @var{q}, @var{r}, @var{S}] =} dmperm (@var{S})
 
@@ -1346,12 +1347,12 @@ of the blocks.  If @var{S} is square then @code{@var{r} == @var{S}}.
 The method used is described in: A. Pothen & C.-J. Fan. @cite{Computing the
 Block Triangular Form of a Sparse Matrix}. ACM Trans. Math. Software,
 16(4):303-324, 1990.
-@seealso{@ref{doc-colamd,,colamd}, @ref{doc-ccolamd,,ccolamd}}
+@seealso{@ref{XREFcolamd,,colamd}, @ref{XREFccolamd,,ccolamd}}
 @end deftypefn
 
 
 @c symamd libinterp/dldfcn/colamd.cc
-@anchor{doc-symamd}
+@anchor{XREFsymamd}
 @deftypefn  {Loadable Function} {@var{p} =} symamd (@var{S})
 @deftypefnx {Loadable Function} {@var{p} =} symamd (@var{S}, @var{knobs})
 @deftypefnx {Loadable Function} {[@var{p}, @var{stats}] =} symamd (@var{S})
@@ -1411,12 +1412,12 @@ Davis @email{davis@@cise.ufl.edu}, University of Florida.  The algorithm was
 developed in collaboration with John Gilbert, Xerox PARC, and Esmond
 Ng, Oak Ridge National Laboratory.  (see
 @url{http://www.cise.ufl.edu/research/sparse/colamd})
-@seealso{@ref{doc-colperm,,colperm}, @ref{doc-colamd,,colamd}}
+@seealso{@ref{XREFcolperm,,colperm}, @ref{XREFcolamd,,colamd}}
 @end deftypefn
 
 
 @c symrcm libinterp/dldfcn/symrcm.cc
-@anchor{doc-symrcm}
+@anchor{XREFsymrcm}
 @deftypefn {Loadable Function} {@var{p} =} symrcm (@var{S})
 Return the symmetric reverse Cuthill-McKee permutation of @var{S}.
 @var{p} is a permutation vector such that
@@ -1437,7 +1438,7 @@ A. George, J.W.H. Liu. @cite{Computer Solution of Large Sparse
 Positive Definite Systems}, Prentice Hall Series in Computational
 Mathematics, ISBN 0-13-165274-5, 1981.
 
-@seealso{@ref{doc-colperm,,colperm}, @ref{doc-colamd,,colamd}, @ref{doc-symamd,,symamd}}
+@seealso{@ref{XREFcolperm,,colperm}, @ref{XREFcolamd,,colamd}, @ref{XREFsymamd,,symamd}}
 @end deftypefn
 
 
@@ -1501,20 +1502,20 @@ using @sc{umfpack}.
 a singular or near singular matrix, find a minimum norm solution using
 @sc{cxsparse}@footnote{The @sc{cholmod}, @sc{umfpack} and @sc{cxsparse} packages were
 written by Tim Davis and are available at
-http://www.cise.ufl.edu/research/sparse/}.
+@url{http://www.cise.ufl.edu/research/sparse/}}.
 @end enumerate
 
 The band density is defined as the number of non-zero values in the band
-divided by the total number of values in the full band. The banded
+divided by the total number of values in the full band.  The banded
 matrix solvers can be entirely disabled by using @dfn{spparms} to set
 @code{bandden} to 1 (i.e., @code{spparms ("bandden", 1)}).
 
 The QR@tie{}solver factorizes the problem with a Dulmage-Mendelsohn
 decomposition, to separate the problem into blocks that can be treated
 as over-determined, multiple well determined blocks, and a final
-over-determined block. For matrices with blocks of strongly connected
+over-determined block.  For matrices with blocks of strongly connected
 nodes this is a big win as LU@tie{}decomposition can be used for many
-blocks. It also significantly improves the chance of finding a solution
+blocks.  It also significantly improves the chance of finding a solution
 to over-determined problems rather than just returning a vector of
 @dfn{NaN}'s.
 
@@ -1535,7 +1536,7 @@ will lead to unpredictable results, and so @code{matrix_type} should be
 used with care.
 
 @c normest scripts/linear-algebra/normest.m
-@anchor{doc-normest}
+@anchor{XREFnormest}
 @deftypefn  {Function File} {@var{n} =} normest (@var{A})
 @deftypefnx {Function File} {@var{n} =} normest (@var{A}, @var{tol})
 @deftypefnx {Function File} {[@var{n}, @var{c}] =} normest (@dots{})
@@ -1551,7 +1552,7 @@ to the 2-norm is acceptable.
 
 
 @c onenormest scripts/linear-algebra/onenormest.m
-@anchor{doc-onenormest}
+@anchor{XREFonenormest}
 @deftypefn  {Function File} {[@var{est}, @var{v}, @var{w}, @var{iter}] =} onenormest (@var{A}, @var{t})
 @deftypefnx {Function File} {[@var{est}, @var{v}, @var{w}, @var{iter}] =} onenormest (@var{apply}, @var{apply_t}, @var{n}, @var{t})
 
@@ -1573,6 +1574,7 @@ and the number of iterations @var{iter}.  The number of
 iterations is limited to 10 and is at least 2.
 
 References:
+
 @itemize
 @item
 N.J. Higham and F. Tisseur, @cite{A Block Algorithm
@@ -1586,12 +1588,12 @@ for Matrix 1-Norm Estimation, with an Application to 1-Norm
 Pseudospectra}. @url{http://citeseer.ist.psu.edu/223007.html}
 @end itemize
 
-@seealso{@ref{doc-condest,,condest}, @ref{doc-norm,,norm}, @ref{doc-cond,,cond}}
+@seealso{@ref{XREFcondest,,condest}, @ref{XREFnorm,,norm}, @ref{XREFcond,,cond}}
 @end deftypefn
 
 
 @c condest scripts/linear-algebra/condest.m
-@anchor{doc-condest}
+@anchor{XREFcondest}
 @deftypefn  {Function File} {} condest (@var{A})
 @deftypefnx {Function File} {} condest (@var{A}, @var{t})
 @deftypefnx {Function File} {[@var{est}, @var{v}] =} condest (@dots{})
@@ -1631,6 +1633,7 @@ a vector @var{v} satisfying @code{norm (A*v, 1) == norm (A, 1) * norm
 approximate null vector.
 
 References:
+
 @itemize
 @item
 N.J. Higham and F. Tisseur, @cite{A Block Algorithm
@@ -1644,12 +1647,12 @@ for Matrix 1-Norm Estimation, with an Application to 1-Norm
 Pseudospectra}. @url{http://citeseer.ist.psu.edu/223007.html}
 @end itemize
 
-@seealso{@ref{doc-cond,,cond}, @ref{doc-norm,,norm}, @ref{doc-onenormest,,onenormest}}
+@seealso{@ref{XREFcond,,cond}, @ref{XREFnorm,,norm}, @ref{XREFonenormest,,onenormest}}
 @end deftypefn
 
 
 @c spparms libinterp/corefcn/spparms.cc
-@anchor{doc-spparms}
+@anchor{XREFspparms}
 @deftypefn  {Built-in Function} { } spparms ()
 @deftypefnx {Built-in Function} {@var{vals} =} spparms ()
 @deftypefnx {Built-in Function} {[@var{keys}, @var{vals}] =} spparms ()
@@ -1712,14 +1715,14 @@ Flag whether the @sc{umfpack} or mmd solvers are used for the LU, '\' and
 The value of individual keys can be set with
 @code{spparms (@var{key}, @var{val})}.
 The default values can be restored with the special keyword
-"defaults".  The special keyword "tight" can be used to set the mmd
-solvers to attempt a sparser solution at the potential cost of longer
-running time.
+@qcode{"defaults"}.  The special keyword @qcode{"tight"} can be used to
+set the mmd solvers to attempt a sparser solution at the potential cost of
+longer running time.
 @end deftypefn
 
 
 @c sprank libinterp/dldfcn/dmperm.cc
-@anchor{doc-sprank}
+@anchor{XREFsprank}
 @deftypefn {Loadable Function} {@var{p} =} sprank (@var{S})
 @cindex structural rank
 
@@ -1729,12 +1732,12 @@ a Dulmage-Mendelsohn permutation to block triangular form.  As such the
 numerical rank of the matrix @var{S} is bounded by
 @code{sprank (@var{S}) >= rank (@var{S})}.  Ignoring floating point errors
 @code{sprank (@var{S}) == rank (@var{S})}.
-@seealso{@ref{doc-dmperm,,dmperm}}
+@seealso{@ref{XREFdmperm,,dmperm}}
 @end deftypefn
 
 
 @c symbfact libinterp/dldfcn/symbfact.cc
-@anchor{doc-symbfact}
+@anchor{XREFsymbfact}
 @deftypefn  {Loadable Function} {[@var{count}, @var{h}, @var{parent}, @var{post}, @var{r}] =} symbfact (@var{S})
 @deftypefnx {Loadable Function} {[@dots{}] =} symbfact (@var{S}, @var{typ})
 @deftypefnx {Loadable Function} {[@dots{}] =} symbfact (@var{S}, @var{typ}, @var{mode})
@@ -1757,18 +1760,18 @@ Factorize @var{S}.  This is the default.
 Factorize @code{@var{S}' * @var{S}}.
 
 @item row
-Factorize @xcode{@var{S} * @var{S}'}.
+Factorize @tcode{@var{S} * @var{S}'}.
 
 @item lo
-Factorize @xcode{@var{S}'}
+Factorize @tcode{@var{S}'}
 @end table
 
 @item mode
 The default is to return the Cholesky@tie{}factorization for @var{r}, and if
-@var{mode} is 'L', the conjugate transpose of the Cholesky@tie{}factorization
-is returned.  The conjugate transpose version is faster and uses less
-memory, but returns the same values for @var{count}, @var{h}, @var{parent}
-and @var{post} outputs.
+@var{mode} is @qcode{'L'}, the conjugate transpose of the
+Cholesky@tie{}factorization is returned.  The conjugate transpose version is
+faster and uses less memory, but returns the same values for @var{count},
+@var{h}, @var{parent} and @var{post} outputs.
 @end table
 
 The output variables are
@@ -1794,7 +1797,7 @@ For non square matrices, the user can also utilize the @code{spaugment}
 function to find a least squares solution to a linear equation.
 
 @c spaugment scripts/sparse/spaugment.m
-@anchor{doc-spaugment}
+@anchor{XREFspaugment}
 @deftypefn {Function File} {@var{s} =} spaugment (@var{A}, @var{c})
 Create the augmented matrix of @var{A}.  This is given by
 
@@ -1855,28 +1858,28 @@ number of eigenvalues and eigenvectors based on a selection criteria
 and likewise for @code{svds} which calculates a limited number of
 singular values and vectors.
 
-@c eigs libinterp/dldfcn/eigs.cc
-@anchor{doc-eigs}
-@deftypefn  {Loadable Function} {@var{d} =} eigs (@var{A})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{k})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{k}, @var{sigma})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{k}, @var{sigma}, @var{opts})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{B})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{B}, @var{k})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{B}, @var{k}, @var{sigma})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{A}, @var{B}, @var{k}, @var{sigma}, @var{opts})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{B})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{k})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{B}, @var{k})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{k}, @var{sigma})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{B}, @var{k}, @var{sigma})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{k}, @var{sigma}, @var{opts})
-@deftypefnx {Loadable Function} {@var{d} =} eigs (@var{af}, @var{n}, @var{B}, @var{k}, @var{sigma}, @var{opts})
-@deftypefnx {Loadable Function} {[@var{V}, @var{d}] =} eigs (@var{A}, @dots{})
-@deftypefnx {Loadable Function} {[@var{V}, @var{d}] =} eigs (@var{af}, @var{n}, @dots{})
-@deftypefnx {Loadable Function} {[@var{V}, @var{d}, @var{flag}] =} eigs (@var{A}, @dots{})
-@deftypefnx {Loadable Function} {[@var{V}, @var{d}, @var{flag}] =} eigs (@var{af}, @var{n}, @dots{})
+@c eigs scripts/sparse/eigs.m
+@anchor{XREFeigs}
+@deftypefn  {Function File} {@var{d} =} eigs (@var{A})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{k})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{k}, @var{sigma})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{k}, @var{sigma}, @var{opts})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{B})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{B}, @var{k})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{B}, @var{k}, @var{sigma})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{A}, @var{B}, @var{k}, @var{sigma}, @var{opts})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{B})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{k})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{B}, @var{k})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{k}, @var{sigma})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{B}, @var{k}, @var{sigma})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{k}, @var{sigma}, @var{opts})
+@deftypefnx {Function File} {@var{d} =} eigs (@var{af}, @var{n}, @var{B}, @var{k}, @var{sigma}, @var{opts})
+@deftypefnx {Function File} {[@var{V}, @var{d}] =} eigs (@var{A}, @dots{})
+@deftypefnx {Function File} {[@var{V}, @var{d}] =} eigs (@var{af}, @var{n}, @dots{})
+@deftypefnx {Function File} {[@var{V}, @var{d}, @var{flag}] =} eigs (@var{A}, @dots{})
+@deftypefnx {Function File} {[@var{V}, @var{d}, @var{flag}] =} eigs (@var{af}, @var{n}, @dots{})
 Calculate a limited number of eigenvalues and eigenvectors of @var{A},
 based on a selection criteria.  The number of eigenvalues and eigenvectors to
 calculate is given by @var{k} and defaults to 6.
@@ -1910,32 +1913,32 @@ scalar, the @var{k} eigenvalues closest to @var{sigma} are returned.  If
 @var{sigma} is a string, it must have one of the following values.
 
 @table @asis
-@item "lm"
+@item @qcode{"lm"}
 Largest Magnitude (default).
 
-@item "sm"
+@item @qcode{"sm"}
 Smallest Magnitude.
 
-@item "la"
+@item @qcode{"la"}
 Largest Algebraic (valid only for real symmetric problems).
 
-@item "sa"
+@item @qcode{"sa"}
 Smallest Algebraic (valid only for real symmetric problems).
 
-@item "be"
+@item @qcode{"be"}
 Both Ends, with one more from the high-end if @var{k} is odd (valid only for
 real symmetric problems).
 
-@item "lr"
+@item @qcode{"lr"}
 Largest Real part (valid only for complex or unsymmetric problems).
 
-@item "sr"
+@item @qcode{"sr"}
 Smallest Real part (valid only for complex or unsymmetric problems).
 
-@item "li"
+@item @qcode{"li"}
 Largest Imaginary part (valid only for complex or unsymmetric problems).
 
-@item "si"
+@item @qcode{"si"}
 Smallest Imaginary part (valid only for complex or unsymmetric problems).
 @end table
 
@@ -2027,12 +2030,12 @@ This function is based on the @sc{arpack} package, written by R. Lehoucq,
 K. Maschhoff, D. Sorensen, and C. Yang.  For more information see
 @url{http://www.caam.rice.edu/software/ARPACK/}.
 
-@seealso{@ref{doc-eig,,eig}, @ref{doc-svds,,svds}}
+@seealso{@ref{XREFeig,,eig}, @ref{XREFsvds,,svds}}
 @end deftypefn
 
 
 @c svds scripts/sparse/svds.m
-@anchor{doc-svds}
+@anchor{XREFsvds}
 @deftypefn  {Function File} {@var{s} =} svds (@var{A})
 @deftypefnx {Function File} {@var{s} =} svds (@var{A}, @var{k})
 @deftypefnx {Function File} {@var{s} =} svds (@var{A}, @var{k}, @var{sigma})
@@ -2056,13 +2059,13 @@ of @var{A}.  The number of singular values to calculate is given by @var{k}
 and defaults to 6.
 
 The argument @var{sigma} specifies which singular values to find.  When
-@var{sigma} is the string 'L', the default, the largest singular values of
-@var{A} are found.  Otherwise, @var{sigma} must be a real scalar and the
-singular values closest to @var{sigma} are found.  As a corollary,
+@var{sigma} is the string @qcode{'L'}, the default, the largest singular
+values of @var{A} are found.  Otherwise, @var{sigma} must be a real scalar
+and the singular values closest to @var{sigma} are found.  As a corollary,
 @code{@var{sigma} = 0} finds the smallest singular values.  Note that for
-relatively small values of @var{sigma}, there is a chance that the requested
-number of singular values will not be found.  In that case @var{sigma}
-should be increased.
+relatively small values of @var{sigma}, there is a chance that the
+requested number of singular values will not be found.  In that case
+@var{sigma} should be increased.
 
 @var{opts} is a structure defining options that @code{svds} will pass
 to @code{eigs}.  The possible fields of this structure are documented in
@@ -2104,11 +2107,11 @@ norm (@var{A}*@var{v} - @var{u}*@var{s}, 1) <= @var{tol} * norm (@var{A}, 1)
 sparse matrix.  Otherwise, @code{svd (full (@var{A}))} will likely be more
 efficient.
 @end deftypefn
-@seealso{@ref{doc-svd,,svd}, @ref{doc-eigs,,eigs}}
+@seealso{@ref{XREFsvd,,svd}, @ref{XREFeigs,,eigs}}
 
 
 @node Iterative Techniques
-@section Iterative Techniques applied to sparse matrices
+@section Iterative Techniques Applied to Sparse Matrices
 
 The left division @code{\} and right division @code{/} operators,
 discussed in the previous section, use direct solvers to resolve a
@@ -2117,7 +2120,7 @@ linear equation of the form @code{@var{x} = @var{A} \ @var{b}} or
 functions to solve sparse linear equations using iterative techniques.
 
 @c pcg scripts/sparse/pcg.m
-@anchor{doc-pcg}
+@anchor{XREFpcg}
 @deftypefn  {Function File} {@var{x} =} pcg (@var{A}, @var{b}, @var{tol}, @var{maxit}, @var{m1}, @var{m2}, @var{x0}, @dots{})
 @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}, @var{eigest}] =} pcg (@dots{})
 
@@ -2307,17 +2310,18 @@ C.T. Kelley, @cite{Iterative Methods for Linear and Nonlinear Equations},
 SIAM, 1995. (the base PCG algorithm)
 
 @item
-Y. Saad, @cite{Iterative Methods for Sparse Linear Systems}, PWS 1996.
-(condition number estimate from PCG) Revised version of this book is
-available online at @url{http://www-users.cs.umn.edu/~saad/books.html}
+Y. Saad, @cite{Iterative Methods for Sparse Linear Systems}, 
+@nospell{PWS} 1996. (condition number estimate from PCG)
+Revised version of this book is available online at
+@url{http://www-users.cs.umn.edu/~saad/books.html}
 @end enumerate
 
-@seealso{@ref{doc-sparse,,sparse}, @ref{doc-pcr,,pcr}}
+@seealso{@ref{XREFsparse,,sparse}, @ref{XREFpcr,,pcr}}
 @end deftypefn
 
 
 @c pcr scripts/sparse/pcr.m
-@anchor{doc-pcr}
+@anchor{XREFpcr}
 @deftypefn  {Function File} {@var{x} =} pcr (@var{A}, @var{b}, @var{tol}, @var{maxit}, @var{m}, @var{x0}, @dots{})
 @deftypefnx {Function File} {[@var{x}, @var{flag}, @var{relres}, @var{iter}, @var{resvec}] =} pcr (@dots{})
 
@@ -2466,7 +2470,7 @@ References:
      [1] W. Hackbusch, @cite{Iterative Solution of Large Sparse Systems of
      Equations}, section 9.5.4; Springer, 1994
 
-@seealso{@ref{doc-sparse,,sparse}, @ref{doc-pcg,,pcg}}
+@seealso{@ref{XREFsparse,,sparse}, @ref{XREFpcg,,pcg}}
 @end deftypefn
 
 
@@ -2477,7 +2481,7 @@ case the linear equation @code{@var{M}^-1 * @var{x} = @var{M}^-1 *
 are partial factorizations of the original matrix.
 
 @c luinc libinterp/corefcn/luinc.cc
-@anchor{doc-luinc}
+@anchor{XREFluinc}
 @deftypefn  {Built-in Function} {[@var{L}, @var{U}, @var{P}, @var{Q}] =} luinc (@var{A}, '0')
 @deftypefnx {Built-in Function} {[@var{L}, @var{U}, @var{P}, @var{Q}] =} luinc (@var{A}, @var{droptol})
 @deftypefnx {Built-in Function} {[@var{L}, @var{U}, @var{P}, @var{Q}] =} luinc (@var{A}, @var{opts})
@@ -2486,7 +2490,7 @@ Produce the incomplete LU@tie{}factorization of the sparse matrix @var{A}.
 Two types of incomplete factorization are possible, and the type
 is determined by the second argument to @code{luinc}.
 
-Called with a second argument of '0', the zero-level incomplete
+Called with a second argument of @qcode{'0'}, the zero-level incomplete
 LU@tie{}factorization is produced.  This creates a factorization of @var{A}
 where the position of the non-zero arguments correspond to the same
 positions as in the matrix @var{A}.
@@ -2530,14 +2534,14 @@ range are ignored.
 All other fields in @var{opts} are ignored.  The outputs from @code{luinc}
 are the same as for @code{lu}.
 
-Given the string argument "vector", @code{luinc} returns the values of
-@var{p} @var{q} as vector values.
-@seealso{@ref{doc-sparse,,sparse}, @ref{doc-lu,,lu}}
+Given the string argument @qcode{"vector"}, @code{luinc} returns the
+values of @var{p} @var{q} as vector values.
+@seealso{@ref{XREFsparse,,sparse}, @ref{XREFlu,,lu}}
 @end deftypefn
 
 
 @node Real Life Example
-@section Real Life Example of the use of Sparse Matrices
+@section Real Life Example using Sparse Matrices
 
 A common application for sparse matrices is in the solution of Finite
 Element Models.  Finite element models allow numerical solution of

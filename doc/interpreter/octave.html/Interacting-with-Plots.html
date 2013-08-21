@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="High_002dLevel-Plotting.html#High_002dL
 <hr>
 </div>
 
-<h4 class="subsection">15.2.10 Interacting with Plots</h4>
+<h4 class="subsection">15.2.9 Interacting with Plots</h4>
 
 <p>The user can select points on a plot with the <code>ginput</code> function or
 selection the position at which to place text on the plot with the
@@ -40,87 +40,105 @@ selection the position at which to place text on the plot with the
 and populated with specific user commands via the <code>uimenu</code> function.
 
 <!-- ginput scripts/plot/ginput.m -->
-   <p><a name="doc_002dginput"></a>
+   <p><a name="XREFginput"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>buttons</var>] = <b>ginput</b> (<var>n</var>)<var><a name="index-ginput-1540"></a></var><br>
-<blockquote><p>Return which mouse buttons were pressed and keys were hit on the current
-figure.  If <var>n</var> is defined, then wait for <var>n</var> mouse clicks
-before returning.  If <var>n</var> is not defined, then <code>ginput</code> will
-loop until the return key &lt;RET&gt; is pressed. 
-</p></blockquote></div>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>buttons</var>] = <b>ginput</b> (<var>n</var>)<var><a name="index-ginput-1627"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>buttons</var>] = <b>ginput</b> ()<var><a name="index-ginput-1628"></a></var><br>
+<blockquote><p>Return the position and type of mouse button clicks and/or key strokes
+in the current figure window.
+
+        <p>If <var>n</var> is defined, then capture <var>n</var> events before returning. 
+When <var>n</var> is not defined <code>ginput</code> will loop until the return key
+&lt;RET&gt; is pressed.
+
+        <p>The return values <var>x</var>, <var>y</var> are the coordinates where the mouse
+was clicked in the units of the current axes.  The return value <var>button</var>
+is 1, 2, or 3 for the left, middle, or right button.  If a key is pressed
+the ASCII value is returned in <var>button</var>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgtext.html#XREFgtext">gtext</a>.
+
+        </blockquote></div>
 
 <!-- waitforbuttonpress scripts/plot/waitforbuttonpress.m -->
-   <p><a name="doc_002dwaitforbuttonpress"></a>
+   <p><a name="XREFwaitforbuttonpress"></a>
 
 <div class="defun">
-&mdash; Function File: <var>b</var> = <b>waitforbuttonpress</b> ()<var><a name="index-waitforbuttonpress-1541"></a></var><br>
-<blockquote><p>Wait for button or mouse press.over a figure window.  The value of
-<var>b</var> returns 0 if a mouse button was pressed or 1 is a key was
-pressed.
+&mdash; Function File:  <b>waitforbuttonpress</b> ()<var><a name="index-waitforbuttonpress-1629"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>waitforbuttonpress</b> ()<var><a name="index-waitforbuttonpress-1630"></a></var><br>
+<blockquote><p>Wait for mouse click or key press over the current figure window.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dginput.html#doc_002dginput">ginput</a>. 
-</p></blockquote></div>
+        <p>The return value of <var>b</var> is 0 if a mouse button was pressed or 1 if a
+key was pressed.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwaitfor.html#XREFwaitfor">waitfor</a>, <a href="XREFginput.html#XREFginput">ginput</a>.
+
+        </blockquote></div>
 
 <!-- gtext scripts/plot/gtext.m -->
-   <p><a name="doc_002dgtext"></a>
+   <p><a name="XREFgtext"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>gtext</b> (<var>s</var>)<var><a name="index-gtext-1542"></a></var><br>
-&mdash; Function File:  <b>gtext</b> (<var>{s1, s2, <small class="dots">...</small>}</var>)<var><a name="index-gtext-1543"></a></var><br>
-&mdash; Function File:  <b>gtext</b> (<var>{s1; s2; <small class="dots">...</small>}</var>)<var><a name="index-gtext-1544"></a></var><br>
-&mdash; Function File:  <b>gtext</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-gtext-1545"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>gtext</b> (<var><small class="dots">...</small></var>)<var><a name="index-gtext-1546"></a></var><br>
-<blockquote><p>Place text on the current figure using the mouse.  The text is defined
-by the string <var>s</var>.  If <var>s</var> is a cell string organized as a row
-vector then each string of the cell array is written to a separate line. 
-If <var>s</var> is organized as a column vector then one string element of the
-cell array is placed for every mouse click.  Additional inputs besides a
-string or cellstr are passed to the underlying text object as Property-value
-pairs.
+&mdash; Function File:  <b>gtext</b> (<var>s</var>)<var><a name="index-gtext-1631"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var>{s1, s2, <small class="dots">...</small>}</var>)<var><a name="index-gtext-1632"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var>{s1; s2; <small class="dots">...</small>}</var>)<var><a name="index-gtext-1633"></a></var><br>
+&mdash; Function File:  <b>gtext</b> (<var><small class="dots">...</small>, prop, val, <small class="dots">...</small></var>)<var><a name="index-gtext-1634"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>gtext</b> (<var><small class="dots">...</small></var>)<var><a name="index-gtext-1635"></a></var><br>
+<blockquote><p>Place text on the current figure using the mouse.
+
+        <p>The text is defined by the string <var>s</var>.  If <var>s</var> is a cell string
+organized as a row vector then each string of the cell array is written to a
+separate line.  If <var>s</var> is organized as a column vector then one string
+element of the cell array is placed for every mouse click.
+
+        <p>Optional property/value pairs are passed directly to the underlying text
+objects.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created
-text object.
+text object(s).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dginput.html#doc_002dginput">ginput</a>, <a href="doc_002dtext.html#doc_002dtext">text</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFginput.html#XREFginput">ginput</a>, <a href="XREFtext.html#XREFtext">text</a>.
+
+        </blockquote></div>
 
 <!-- uimenu scripts/plot/uimenu.m -->
-   <p><a name="doc_002duimenu"></a>
+   <p><a name="XREFuimenu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>uimenu</b> (<var>property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1547"></a></var><br>
-&mdash; Function File:  <b>uimenu</b> (<var>h, property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1548"></a></var><br>
-<blockquote><p>Create a uimenu object and return a handle to it.  If <var>h</var> is ommited
+&mdash; Function File:  <b>uimenu</b> (<var>property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1636"></a></var><br>
+&mdash; Function File:  <b>uimenu</b> (<var>h, property, value, <small class="dots">...</small></var>)<var><a name="index-uimenu-1637"></a></var><br>
+<blockquote><p>Create a uimenu object and return a handle to it.  If <var>h</var> is omitted
 then a top-level menu for the current figure is created.  If <var>h</var>
 is given then a submenu relative to <var>h</var> is created.
 
         <p>uimenu objects have the following specific properties:
 
           <dl>
-<dt>"accelerator"<dd>A string containing the key combination together with CTRL to execute this
-menu entry (e.g., "x" for CTRL+x).
+<dt><code>"accelerator"</code><dd>A string containing the key combination together with CTRL to execute this
+menu entry (e.g., <code>"x"</code> for CTRL+x).
 
-          <br><dt>"callback"<dd>Is the function called when this menu entry is executed.  It can be either a
-function string (e.g., "myfun"), a function handle (e.g., @myfun) or a cell
-array containing the function handle and arguments for the callback
-function (e.g., {@myfun, arg1, arg2}).
+          <br><dt><code>"callback"</code><dd>Is the function called when this menu entry is executed.  It can be either a
+function string (e.g., <code>"myfun"</code>), a function handle (e.g., @myfun)
+or a cell array containing the function handle and arguments for the
+callback function (e.g., {@myfun, arg1, arg2}).
 
-          <br><dt>"checked"<dd>Can be set "on" or "off".  Sets a mark at this menu entry.
+          <br><dt><code>"checked"</code><dd>Can be set <code>"on"</code> or <code>"off"</code>.  Sets a mark at this menu entry.
 
-          <br><dt>"enable"<dd>Can be set "on" or "off".  If disabled the menu entry cannot be selected
-and it is grayed out.
+          <br><dt><code>"enable"</code><dd>Can be set <code>"on"</code> or <code>"off"</code>.  If disabled the menu entry
+cannot be selected and it is grayed out.
 
-          <br><dt>"foregroundcolor"<dd>A color value setting the text color for this menu entry.
+          <br><dt><code>"foregroundcolor"</code><dd>A color value setting the text color for this menu entry.
 
-          <br><dt>"label"<dd>A string containing the label for this menu entry.  A "&amp;"-symbol can be
-used to mark the "accelerator" character (e.g., "E&amp;xit")
+          <br><dt><code>"label"</code><dd>A string containing the label for this menu entry.  A <code>"&amp;"</code>-symbol
+can be used to mark the <code>"accelerator"</code> character (e.g.,
+<code>"E&amp;xit"</code>)
 
-          <br><dt>"position"<dd>An scalar value containing the relative menu position.  The entry with the
+          <br><dt><code>"position"</code><dd>An scalar value containing the relative menu position.  The entry with the
 lowest value is at the first position starting from left or top.
 
-          <br><dt>"separator"<dd>Can be set "on" or "off".  If enabled it draws a separator line above the
-current position.  It is ignored for top level entries.
+          <br><dt><code>"separator"</code><dd>Can be set <code>"on"</code> or <code>"off"</code>.  If enabled it draws a separator
+line above the current position.  It is ignored for top level entries.
 
         </dl>
 
@@ -133,8 +151,9 @@ current position.  It is ignored for top level entries.
           uimenu (e, "label", "Toggle &amp;Grid", "accelerator", "g", ...
                      "callback", "grid (gca)");
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfigure.html#doc_002dfigure">figure</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFfigure.html#XREFfigure">figure</a>.
+
+        </blockquote></div>
 
    </body></html>
 

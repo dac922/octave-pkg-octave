@@ -1,3 +1,10 @@
+octave (3.7.6-1~ppa1~precise1) precise; urgency=low
+
+  * Import patch from mercurial that fixes a typo in plot functions
+    (cset 68bcac3c043a)
+
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 22 Aug 2013 01:25:27 +0200
+
 octave (3.7.6-0~ppa1~precise1) precise; urgency=low
 
   * Backport to precise

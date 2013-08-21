@@ -16,20 +16,18 @@
 ## along with Octave; see the file COPYING.  If not, see
 ## <http://www.gnu.org/licenses/>.
 
-%% test/octave.test/switch/switch-1.m
 %!test
 %! a = 1;
 %! b = 2;
 %! c = 3;
 %!
-%! switch 0 case 1 x = a; case 2 x = b; otherwise x = c; endswitch
-%! switch 1 case 1 y = a; case 2 y = b; otherwise y = c; endswitch
-%! switch 2 case 1 z = a; case 2 z = b; otherwise z = c; endswitch
-%! switch 3 case 1 p = a; case 2 p = b; otherwise p = c; endswitch
+%! switch (0) case 1 x = a; case 2 x = b; otherwise x = c; endswitch
+%! switch (1) case 1 y = a; case 2 y = b; otherwise y = c; endswitch
+%! switch (2) case 1 z = a; case 2 z = b; otherwise z = c; endswitch
+%! switch (3) case 1 p = a; case 2 p = b; otherwise p = c; endswitch
 %!
 %! assert (x == c && y == a && z == b && p == c);
 
-%% test/octave.test/switch/switch-2.m
 %!test
 %! a = 1;
 %! b = 2;
@@ -42,18 +40,17 @@
 %! for i = 0:3
 %! switch (i)
 %!   case a
-%!    x(k) = a;
+%!     x(k) = a;
 %!   case b
-%!    x(k) = b;
+%!     x(k) = b;
 %!   otherwise
-%!    x(k) = c;
+%!     x(k) = c;
 %!   endswitch
 %!   k++;
 %! endfor
 %!
 %! assert (all (x == [3, 1, 2, 3]));
 
-%% test/octave.test/switch/switch-3.m
 %!test
 %! a = 1;
 %! b = 2;
@@ -65,8 +62,8 @@
 %!
 %! for i = 0:3
 %!   switch (i)
-%!   case a
-%!    x(k) = a;
+%!     case a
+%!       x(k) = a;
 %!   endswitch
 %!   k++;
 %! endfor
@@ -76,20 +73,26 @@
 %!test
 %! a = 1;
 %!
-%! switch 1
-%! otherwise
-%!   a = 2;
+%! switch (1)
+%!   otherwise
+%!     a = 2;
 %! endswitch
 %!
 %! assert (a == 2);
 
 
-%% test/octave.test/switch/switch-4.m
 %!error <syntax error> eval ("switch endswitch")
 
-%% test/octave.test/switch/switch-5.m
 %!error <syntax error> eval ("switch case endswitch")
 
-%% test/octave.test/switch/switch-6.m
 %!error <syntax error> eval ("switch 1 default 1; endswitch")
 
+%% test parsing of single-quoted character string appearing immediately
+%% after a switch case
+%!test
+%! switch (1)
+%!   case 1
+%!     'foo';
+%!     x = 13;
+%! endswitch
+%! assert (x, 13);

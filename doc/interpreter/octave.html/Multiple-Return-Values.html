@@ -71,14 +71,14 @@ values distinct names.
 
    <p>It is possible to use the <code>nthargout</code> function to obtain only some
 of the return values or several at once in a cell array. 
-<a href="Cell-Array-Objects.html#Cell-Array-Objects">Cell Array Objects</a>
+See <a href="Cell-Array-Objects.html#Cell-Array-Objects">Cell Array Objects</a>.
 
 <!-- nthargout scripts/general/nthargout.m -->
-   <p><a name="doc_002dnthargout"></a>
+   <p><a name="XREFnthargout"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nthargout</b> (<var>n, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-760"></a></var><br>
-&mdash; Function File:  <b>nthargout</b> (<var>n, ntot, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-761"></a></var><br>
+&mdash; Function File:  <b>nthargout</b> (<var>n, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-772"></a></var><br>
+&mdash; Function File:  <b>nthargout</b> (<var>n, ntot, func, <small class="dots">...</small></var>)<var><a name="index-nthargout-773"></a></var><br>
 <blockquote><p>Return the <var>n</var>th output argument of function given by the
 function handle or string <var>func</var>.  Any arguments after <var>func</var>
 are passed to <var>func</var>.  The total number of arguments to call
@@ -109,8 +109,9 @@ in the following manner:
 
      <pre class="example">          <var>USV</var> = nthargout ([1:3], @svd, hilb (5));
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFnargin.html#XREFnargin">nargin</a>, <a href="XREFnargout.html#XREFnargout">nargout</a>, <a href="XREFvarargin.html#XREFvarargin">varargin</a>, <a href="XREFvarargout.html#XREFvarargout">varargout</a>, <a href="XREFisargout.html#XREFisargout">isargout</a>.
+
+        </blockquote></div>
 
    <p>In addition to setting <code>nargin</code> each time a function is called,
 Octave also automatically initializes <code>nargout</code> to the number of
@@ -147,11 +148,11 @@ example, calling the function
    <p class="noindent">along with a warning.
 
 <!-- nargout libinterp/octave-value/ov-usr-fcn.cc -->
-   <p><a name="doc_002dnargout"></a>
+   <p><a name="XREFnargout"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nargout</b> ()<var><a name="index-nargout-762"></a></var><br>
-&mdash; Built-in Function:  <b>nargout</b> (<var>fcn</var>)<var><a name="index-nargout-763"></a></var><br>
+&mdash; Built-in Function:  <b>nargout</b> ()<var><a name="index-nargout-774"></a></var><br>
+&mdash; Built-in Function:  <b>nargout</b> (<var>fcn</var>)<var><a name="index-nargout-775"></a></var><br>
 <blockquote><p>Within a function, return the number of values the caller expects to
 receive.  If called with the optional argument <var>fcn</var>, a function
 name or handle, return the number of declared output values that the
@@ -183,8 +184,9 @@ the returned value is negative.
 <code>nargout</code> does not work on builtin functions. 
 <code>nargout</code> returns -1 for all anonymous functions.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dvarargin.html#doc_002dvarargin">varargin</a>, <a href="doc_002disargout.html#doc_002disargout">isargout</a>, <a href="doc_002dvarargout.html#doc_002dvarargout">varargout</a>, <a href="doc_002dnthargout.html#doc_002dnthargout">nthargout</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnargin.html#XREFnargin">nargin</a>, <a href="XREFvarargin.html#XREFvarargin">varargin</a>, <a href="XREFisargout.html#XREFisargout">isargout</a>, <a href="XREFvarargout.html#XREFvarargout">varargout</a>, <a href="XREFnthargout.html#XREFnthargout">nthargout</a>.
+
+        </blockquote></div>
 
    <p>It is good practice at the head of a function to verify that it has been called
 correctly.  In Octave the following idiom is seen frequently
@@ -200,26 +202,27 @@ way to call the function whenever the number of inputs is wrong.
 <code>nargoutchk</code> are available which provide similar error checking.
 
 <!-- nargchk scripts/general/nargchk.m -->
-   <p><a name="doc_002dnargchk"></a>
+   <p><a name="XREFnargchk"></a>
 
 <div class="defun">
-&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargchk-764"></a></var><br>
-&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargchk-765"></a></var><br>
-&mdash; Function File: <var>msgstruct</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargchk-766"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargchk-776"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargchk-777"></a></var><br>
+&mdash; Function File: <var>msgstruct</var> = <b>nargchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargchk-778"></a></var><br>
 <blockquote><p>Return an appropriate error message string (or structure) if the
 number of inputs requested is invalid.
 
         <p>This is useful for checking to see that the number of input arguments
 supplied to a function is within an acceptable range.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargoutchk.html#doc_002dnargoutchk">nargoutchk</a>, <a href="doc_002dnarginchk.html#doc_002dnarginchk">narginchk</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnargoutchk.html#XREFnargoutchk">nargoutchk</a>, <a href="XREFnarginchk.html#XREFnarginchk">narginchk</a>, <a href="XREFerror.html#XREFerror">error</a>, <a href="XREFnargin.html#XREFnargin">nargin</a>, <a href="XREFnargout.html#XREFnargout">nargout</a>.
+
+        </blockquote></div>
 
 <!-- narginchk scripts/general/narginchk.m -->
-   <p><a name="doc_002dnarginchk"></a>
+   <p><a name="XREFnarginchk"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>narginchk</b> (<var>minargs, maxargs</var>)<var><a name="index-narginchk-767"></a></var><br>
+&mdash; Function File:  <b>narginchk</b> (<var>minargs, maxargs</var>)<var><a name="index-narginchk-779"></a></var><br>
 <blockquote><p>Check for correct number of arguments or generate an error message if
 the number of arguments in the calling function is outside the range
 <var>minargs</var> and <var>maxargs</var>.  Otherwise, do nothing.
@@ -230,17 +233,18 @@ values.  Zero, Inf and negative values are all allowed, and
 
         <p>Note that this function evaluates <code>nargin</code> on the caller.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargchk.html#doc_002dnargchk">nargchk</a>, <a href="doc_002dnargoutchk.html#doc_002dnargoutchk">nargoutchk</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnargchk.html#XREFnargchk">nargchk</a>, <a href="XREFnargoutchk.html#XREFnargoutchk">nargoutchk</a>, <a href="XREFerror.html#XREFerror">error</a>, <a href="XREFnargout.html#XREFnargout">nargout</a>, <a href="XREFnargin.html#XREFnargin">nargin</a>.
+
+        </blockquote></div>
 
 <!-- nargoutchk scripts/general/nargoutchk.m -->
-   <p><a name="doc_002dnargoutchk"></a>
+   <p><a name="XREFnargoutchk"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nargoutchk</b> (<var>minargs, maxargs</var>)<var><a name="index-nargoutchk-768"></a></var><br>
-&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargoutchk-769"></a></var><br>
-&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargoutchk-770"></a></var><br>
-&mdash; Function File: <var>msgstruct</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargoutchk-771"></a></var><br>
+&mdash; Function File:  <b>nargoutchk</b> (<var>minargs, maxargs</var>)<var><a name="index-nargoutchk-780"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs</var>)<var><a name="index-nargoutchk-781"></a></var><br>
+&mdash; Function File: <var>msgstr</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "string"</var>)<var><a name="index-nargoutchk-782"></a></var><br>
+&mdash; Function File: <var>msgstruct</var> = <b>nargoutchk</b> (<var>minargs, maxargs, nargs, "struct"</var>)<var><a name="index-nargoutchk-783"></a></var><br>
 <blockquote><p>Check for correct number of output arguments.
 
         <p>On the first form, returns an error unless the number of arguments in its
@@ -258,10 +262,11 @@ invalid.
         <p>This is useful for checking to see that the number of output
 arguments supplied to a function is within an acceptable range.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnargchk.html#doc_002dnargchk">nargchk</a>, <a href="doc_002dnarginchk.html#doc_002dnarginchk">narginchk</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dnargout.html#doc_002dnargout">nargout</a>, <a href="doc_002dnargin.html#doc_002dnargin">nargin</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnargchk.html#XREFnargchk">nargchk</a>, <a href="XREFnarginchk.html#XREFnarginchk">narginchk</a>, <a href="XREFerror.html#XREFerror">error</a>, <a href="XREFnargout.html#XREFnargout">nargout</a>, <a href="XREFnargin.html#XREFnargin">nargin</a>.
 
-   <p><a name="doc_002dvarargin"></a><a name="doc_002dvarargout"></a>
+        </blockquote></div>
+
+   <p><a name="XREFvarargin"></a><a name="XREFvarargout"></a>
 
    </body></html>
 

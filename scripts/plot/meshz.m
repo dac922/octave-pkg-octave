@@ -17,34 +17,64 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} meshz (@var{x}, @var{y}, @var{z})
-## Plot a curtain mesh given matrices @var{x}, and @var{y} from
-## @code{meshgrid} and a matrix @var{z} corresponding to the @var{x} and
-## @var{y} coordinates of the mesh.  If @var{x} and @var{y} are vectors,
-## then a typical vertex is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus,
-## columns of @var{z} correspond to different @var{x} values and rows of
-## @var{z} correspond to different @var{y} values.
-## @seealso{meshgrid, mesh, contour}
+## @deftypefn  {Function File} {} meshz (@var{x}, @var{y}, @var{z})
+## @deftypefnx {Function File} {} meshz (@var{z})
+## @deftypefnx {Function File} {} meshz (@dots{}, @var{c})
+## @deftypefnx {Function File} {} meshz (@dots{}, @var{prop}, @var{val}, @dots{})
+## @deftypefnx {Function File} {} meshz (@var{hax}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} meshz (@dots{})
+## Plot a 3-D wireframe mesh with a surrounding curtain.
+##
+## The wireframe mesh is plotted using rectangles.  The vertices of the
+## rectangles [@var{x}, @var{y}] are typically the output of @code{meshgrid}.
+## over a 2-D rectangular region in the x-y plane.  @var{z} determines the
+## height above the plane of each vertex.  If only a single @var{z} matrix is
+## given, then it is plotted over the meshgrid
+## @code{@var{x} = 1:columns (@var{z}), @var{y} = 1:rows (@var{z})}.
+## Thus, columns of @var{z} correspond to different @var{x} values and rows
+## of @var{z} correspond to different @var{y} values.
+##
+## The color of the mesh is computed by linearly scaling the @var{Z} values
+## to fit the range of the current colormap.  Use @code{caxis} and/or
+## change the colormap to control the appearance.
+##
+## Optionally the color of the mesh can be specified independently of @var{z}
+## by supplying a color matrix, @var{c}.
+##
+## Any property/value pairs are passed directly to the underlying surface
+## object.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a graphics handle to the created
+## surface object.
+##
+## @seealso{mesh, meshc, contour, surf, surface, waterfall, meshgrid, hidden, shading, colormap, caxis}
 ## @end deftypefn
 
-function retval = meshz (varargin)
+function h = meshz (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("meshz", varargin{:});
-
-  ioff = nargin + 1;
-  for i = 1:nargin
-    if (ischar (varargin{i}))
-      ioff = i;
-      break;
-    endif
-  endfor
-
-  ## Bundle C matrix back into varargin
-  if (ioff == 3 || ioff == 5)
-    ioff --;
+  if (! all (cellfun ("isreal", varargin)))
+    error ("meshz: X, Y, Z, C arguments must be real");
   endif
 
-  if (ioff == 2)
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("meshz", varargin{:});
+
+  ## Find where property/value pairs start
+  charidx = find (cellfun ("isclass", varargin, "char"), 1);
+
+  have_c = false;
+  if (isempty (charidx))
+    if (nargin == 2 || nargin == 4) 
+      have_c = true;
+      charidx = nargin;   # bundle C matrix back into varargin 
+    else
+      charidx = nargin + 1;
+    endif
+  endif
+
+  if (charidx == 2)
     z = varargin{1};
     [m, n] = size (z);
     x = 1:n;
@@ -55,34 +85,78 @@ function retval = meshz (varargin)
     z = varargin{3};
   endif
 
-
   if (isvector (x) && isvector (y))
     x = [x(1), x(:).', x(end)];
     y = [y(1); y(:); y(end)];
   else
-    x = [x(1, 1), x(1, :), x(1, end);
-         x(:, 1), x, x(:, end);
-         x(end, 1), x(end, :), x(end, end)];
-    y = [y(1, 1), y(1, :), y(1, end);
-         y(:, 1), y, y(:, end);
-         y(end, 1), y(end, :), y(end, end)];
+    x = [x(1,1), x(1,:), x(1,end);
+         x(:,1), x, x(:,end);
+         x(end,1), x(end,:), x(end,end)];
+    y = [y(1,1), y(1,:), y(1,end);
+         y(:,1), y, y(:,end);
+         y(end,1), y(end,:), y(end,end)];
   endif
 
   zref = min (z(isfinite (z)));
   z = [zref .* ones(1, columns(z) + 2);
        zref .* ones(rows(z), 1), z, zref .* ones(rows(z), 1);
-       zref.* ones(1, columns(z) + 2)];
+       zref .* ones(1, columns(z) + 2)];
 
-  oldh = gca ();
+  if (have_c)
+    c = varargin{charidx};
+    cref = min (c(isfinite (c)));
+    c = [cref .* ones(1, columns(c) + 2);
+         cref .* ones(rows(c), 1), c, cref .* ones(rows(c), 1);
+         cref .* ones(1, columns(c) + 2)];
+    varargin(charidx) = c;
+  endif
+    
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    tmp = mesh (x, y, z, varargin{ioff:end});
+    hax = newplot (hax);
+    htmp = mesh (x, y, z, varargin{charidx:end});
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
   if (nargout > 0)
-    retval = tmp;
+    h = htmp;
   endif
 
 endfunction
+
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! Z = peaks ();
+%! meshz (Z);
+%! title ('meshz() plot of peaks() function');
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! Z = peaks ();
+%! subplot (1,2,1)
+%!  mesh (Z);
+%!  daspect ([2.5, 2.5, 1]);
+%!  title ('mesh() plot');
+%! subplot (1,2,2)
+%!  meshz (Z);
+%!  daspect ([2.5, 2.5, 1]);
+%!  title ('meshz() plot');
+
+%!demo
+%! clf;
+%! colormap ('default');
+%! [X,Y,Z] = peaks ();
+%! [fx, fy] = gradient (Z); 
+%! C = sqrt (fx.^2 + fy.^2);
+%! meshz (X,Y,Z,C);
+%! title ('meshz() plot with color determined by gradient');
+

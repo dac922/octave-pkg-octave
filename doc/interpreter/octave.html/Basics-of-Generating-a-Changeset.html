@@ -62,7 +62,14 @@ you will also find help how to install Mercurial.
      # attach ../cool.diff to your bug report
 </pre>
    <p>You may want to get familiar with Mercurial queues to manage your
-changesets.  Here is a slightly more complex example using Mercurial
+changesets.  For working with queues you have to activate the extension
+mq with the following entry in Mercurial's configuration file
+<samp><span class="file">.hgrc</span></samp> (or <samp><span class="file">Mercurial.ini</span></samp> on Windows):
+
+<pre class="example">     [extensions]
+     mq=
+</pre>
+   <p>Here is a slightly more complex example using Mercurial
 queues, where work on two unrelated changesets is done in parallel and
 one of the changesets is updated after discussion on the bug tracker:
 
@@ -93,6 +100,48 @@ one of the changesets is updated after discussion on the bug tracker:
      hg export -o ../nasty2.diff tip
      # attach ../nasty2.diff to your bug report
 </pre>
+   <p>Mercurial has a more useful extensions that really should be enabled. 
+They are not enabled by default due to a number of factors
+(mostly because they don't work in all terminal types).
+
+   <p>The following entries in the <samp><span class="file">.hgrc</span></samp> are recommended
+
+<pre class="example">     [extensions]
+     graphlog=
+     color=
+     progress=
+     pager=
+</pre>
+   <p>For the color extension, default color and formatting
+of <code>hg status</code> can be modified by
+
+<pre class="example">     [color]
+     status.modified = magenta bold
+     status.added = green bold
+     status.removed = red bold
+     status.deleted = cyan bold
+     status.unknown = black  bold
+     status.ignored = black bold
+</pre>
+   <p>Sometimes a few further improvements for the pager extension are
+necessary.  The following options should not be enabled unless paging
+isn't working correctly:
+
+<pre class="example">     [pager]
+     # Some options for the less pager, see less(1) for their meaning.
+     pager = LESS='FSRX' less
+     
+     # Some commands that aren't paged by default; also enable paging
+     # for them
+     attend = tags, help, annotate, cat, diff, export, status, \
+              outgoing, incoming
+</pre>
+   <p>Enabling the described extensions should immediately lead to a difference
+when using the command line version of hg.  Of these options, the
+only one that enables a new command is graphlog.  It is recommanded
+that you use the command <code>hg glog</code> instead of <code>hg log</code> for a better
+feel what commits are being based on.
+
    <div class="footnote">
 <hr>
 <h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Please use the patch tracker only for patches which add new

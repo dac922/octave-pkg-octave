@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Expressions.html#Expressions">Expressio
 
 <h3 class="section">8.4 Comparison Operators</h3>
 
-<p><a name="index-comparison-expressions-626"></a><a name="index-expressions_002c-comparison-627"></a><a name="index-relational-operators-628"></a><a name="index-operators_002c-relational-629"></a><a name="index-less-than-operator-630"></a><a name="index-greater-than-operator-631"></a><a name="index-equality-operator-632"></a><a name="index-tests-for-equality-633"></a><a name="index-equality_002c-tests-for-634"></a>
+<p><a name="index-comparison-expressions-638"></a><a name="index-expressions_002c-comparison-639"></a><a name="index-relational-operators-640"></a><a name="index-operators_002c-relational-641"></a><a name="index-less-than-operator-642"></a><a name="index-greater-than-operator-643"></a><a name="index-equality-operator-644"></a><a name="index-tests-for-equality-645"></a><a name="index-equality_002c-tests-for-646"></a>
 <dfn>Comparison operators</dfn> compare numeric values for relationships
 such as equality.  They are written using
 <em>relational operators</em>.
@@ -53,22 +53,22 @@ other is a matrix, the scalar is compared to each element of the matrix
 in turn, and the result is the same size as the matrix.
 
      <dl>
-<dt><var>x</var><code> &lt; </code><var>y</var><dd><a name="index-g_t_003c-635"></a>True if <var>x</var> is less than <var>y</var>.
+<dt><var>x</var><code> &lt; </code><var>y</var><dd><a name="index-g_t_003c-647"></a>True if <var>x</var> is less than <var>y</var>.
 
-     <br><dt><var>x</var><code> &lt;= </code><var>y</var><dd><a name="index-g_t_003c_003d-636"></a>True if <var>x</var> is less than or equal to <var>y</var>.
+     <br><dt><var>x</var><code> &lt;= </code><var>y</var><dd><a name="index-g_t_003c_003d-648"></a>True if <var>x</var> is less than or equal to <var>y</var>.
 
-     <br><dt><var>x</var><code> == </code><var>y</var><dd><a name="index-g_t_003d_003d-637"></a>True if <var>x</var> is equal to <var>y</var>.
+     <br><dt><var>x</var><code> == </code><var>y</var><dd><a name="index-g_t_003d_003d-649"></a>True if <var>x</var> is equal to <var>y</var>.
 
-     <br><dt><var>x</var><code> &gt;= </code><var>y</var><dd><a name="index-g_t_003e_003d-638"></a>True if <var>x</var> is greater than or equal to <var>y</var>.
+     <br><dt><var>x</var><code> &gt;= </code><var>y</var><dd><a name="index-g_t_003e_003d-650"></a>True if <var>x</var> is greater than or equal to <var>y</var>.
 
-     <br><dt><var>x</var><code> &gt; </code><var>y</var><dd><a name="index-g_t_003e-639"></a>True if <var>x</var> is greater than <var>y</var>.
+     <br><dt><var>x</var><code> &gt; </code><var>y</var><dd><a name="index-g_t_003e-651"></a>True if <var>x</var> is greater than <var>y</var>.
 
-     <br><dt><var>x</var><code> != </code><var>y</var><dt><var>x</var><code> ~= </code><var>y</var><dd><a name="index-g_t_0021_003d-640"></a><a name="index-g_t_007e_003d-641"></a>True if <var>x</var> is not equal to <var>y</var>. 
+     <br><dt><var>x</var><code> != </code><var>y</var><dt><var>x</var><code> ~= </code><var>y</var><dd><a name="index-g_t_0021_003d-652"></a><a name="index-g_t_007e_003d-653"></a>True if <var>x</var> is not equal to <var>y</var>. 
 </dl>
 
    <p>For complex numbers, the following ordering is defined:
 <var>z1</var> &lt; <var>z2</var>
-iff
+if and only if
 
 <pre class="example">       abs (<var>z1</var>) &lt; abs (<var>z2</var>)
        || (abs (<var>z1</var>) == abs (<var>z2</var>) &amp;&amp; arg (<var>z1</var>) &lt; arg (<var>z2</var>))
@@ -81,88 +81,97 @@ parts.
 function, not with the comparison operators listed above. 
 See <a href="Strings.html#Strings">Strings</a>.
 
-   <p><a name="index-g_t_003d_003d-642"></a><!-- eq libinterp/interpfcn/data.cc -->
-<a name="doc_002deq"></a>
+   <p><a name="index-g_t_003d_003d-654"></a><!-- eq libinterp/corefcn/data.cc -->
+<a name="XREFeq"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>eq</b> (<var>x, y</var>)<var><a name="index-eq-643"></a></var><br>
+&mdash; Built-in Function:  <b>eq</b> (<var>x, y</var>)<var><a name="index-eq-655"></a></var><br>
 <blockquote><p>Return true if the two inputs are equal. 
 This function is equivalent to <code>x&nbsp;==&nbsp;y</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dne.html#doc_002dne">ne</a>, <a href="doc_002disequal.html#doc_002disequal">isequal</a>, <a href="doc_002dle.html#doc_002dle">le</a>, <a href="doc_002dge.html#doc_002dge">ge</a>, <a href="doc_002dgt.html#doc_002dgt">gt</a>, <a href="doc_002dne.html#doc_002dne">ne</a>, <a href="doc_002dlt.html#doc_002dlt">lt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFne.html#XREFne">ne</a>, <a href="XREFisequal.html#XREFisequal">isequal</a>, <a href="XREFle.html#XREFle">le</a>, <a href="XREFge.html#XREFge">ge</a>, <a href="XREFgt.html#XREFgt">gt</a>, <a href="XREFne.html#XREFne">ne</a>, <a href="XREFlt.html#XREFlt">lt</a>.
 
-   <p><a name="index-g_t_003e_003d-644"></a><!-- ge libinterp/interpfcn/data.cc -->
-<a name="doc_002dge"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_003e_003d-656"></a><!-- ge libinterp/corefcn/data.cc -->
+<a name="XREFge"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ge</b> (<var>x, y</var>)<var><a name="index-ge-645"></a></var><br>
+&mdash; Built-in Function:  <b>ge</b> (<var>x, y</var>)<var><a name="index-ge-657"></a></var><br>
 <blockquote><p>This function is equivalent to <code>x&nbsp;&gt;=&nbsp;y</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dle.html#doc_002dle">le</a>, <a href="doc_002deq.html#doc_002deq">eq</a>, <a href="doc_002dgt.html#doc_002dgt">gt</a>, <a href="doc_002dne.html#doc_002dne">ne</a>, <a href="doc_002dlt.html#doc_002dlt">lt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFle.html#XREFle">le</a>, <a href="XREFeq.html#XREFeq">eq</a>, <a href="XREFgt.html#XREFgt">gt</a>, <a href="XREFne.html#XREFne">ne</a>, <a href="XREFlt.html#XREFlt">lt</a>.
 
-   <p><a name="index-g_t_003e-646"></a><!-- gt libinterp/interpfcn/data.cc -->
-<a name="doc_002dgt"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_003e-658"></a><!-- gt libinterp/corefcn/data.cc -->
+<a name="XREFgt"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>gt</b> (<var>x, y</var>)<var><a name="index-gt-647"></a></var><br>
+&mdash; Built-in Function:  <b>gt</b> (<var>x, y</var>)<var><a name="index-gt-659"></a></var><br>
 <blockquote><p>This function is equivalent to <code>x&nbsp;&gt;&nbsp;y</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dle.html#doc_002dle">le</a>, <a href="doc_002deq.html#doc_002deq">eq</a>, <a href="doc_002dge.html#doc_002dge">ge</a>, <a href="doc_002dne.html#doc_002dne">ne</a>, <a href="doc_002dlt.html#doc_002dlt">lt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFle.html#XREFle">le</a>, <a href="XREFeq.html#XREFeq">eq</a>, <a href="XREFge.html#XREFge">ge</a>, <a href="XREFne.html#XREFne">ne</a>, <a href="XREFlt.html#XREFlt">lt</a>.
+
+        </blockquote></div>
 
 <!-- isequal scripts/general/isequal.m -->
-   <p><a name="doc_002disequal"></a>
+   <p><a name="XREFisequal"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isequal</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-isequal-648"></a></var><br>
+&mdash; Function File:  <b>isequal</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-isequal-660"></a></var><br>
 <blockquote><p>Return true if all of <var>x1</var>, <var>x2</var>, <small class="dots">...</small> are equal.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disequalwithequalnans.html#doc_002disequalwithequalnans">isequalwithequalnans</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisequaln.html#XREFisequaln">isequaln</a>.
 
-<!-- isequalwithequalnans scripts/general/isequalwithequalnans.m -->
-   <p><a name="doc_002disequalwithequalnans"></a>
+        </blockquote></div>
 
-<div class="defun">
-&mdash; Function File:  <b>isequalwithequalnans</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-isequalwithequalnans-649"></a></var><br>
-<blockquote><p>Assuming NaN == NaN, return true if all of <var>x1</var>, <var>x2</var>, <small class="dots">...</small>
-are equal.
-
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disequal.html#doc_002disequal">isequal</a>. 
-</p></blockquote></div>
-
-   <p><a name="index-g_t_003c_003d-650"></a><!-- le libinterp/interpfcn/data.cc -->
-<a name="doc_002dle"></a>
+<!-- isequaln scripts/general/isequaln.m -->
+   <p><a name="XREFisequaln"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>le</b> (<var>x, y</var>)<var><a name="index-le-651"></a></var><br>
+&mdash; Function File:  <b>isequaln</b> (<var>x1, x2, <small class="dots">...</small></var>)<var><a name="index-isequaln-661"></a></var><br>
+<blockquote><p>Return true if all of <var>x1</var>, <var>x2</var>, <small class="dots">...</small> are equal under the
+additional assumption that NaN == NaN (no comparison of NaN placeholders
+in dataset).
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisequal.html#XREFisequal">isequal</a>.
+
+        </blockquote></div>
+
+   <p><a name="index-g_t_003c_003d-662"></a><!-- le libinterp/corefcn/data.cc -->
+<a name="XREFle"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>le</b> (<var>x, y</var>)<var><a name="index-le-663"></a></var><br>
 <blockquote><p>This function is equivalent to <code>x&nbsp;&lt;=&nbsp;y</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002deq.html#doc_002deq">eq</a>, <a href="doc_002dge.html#doc_002dge">ge</a>, <a href="doc_002dgt.html#doc_002dgt">gt</a>, <a href="doc_002dne.html#doc_002dne">ne</a>, <a href="doc_002dlt.html#doc_002dlt">lt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeq.html#XREFeq">eq</a>, <a href="XREFge.html#XREFge">ge</a>, <a href="XREFgt.html#XREFgt">gt</a>, <a href="XREFne.html#XREFne">ne</a>, <a href="XREFlt.html#XREFlt">lt</a>.
 
-   <p><a name="index-g_t_003c-652"></a><!-- lt libinterp/interpfcn/data.cc -->
-<a name="doc_002dlt"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_003c-664"></a><!-- lt libinterp/corefcn/data.cc -->
+<a name="XREFlt"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>lt</b> (<var>x, y</var>)<var><a name="index-lt-653"></a></var><br>
+&mdash; Built-in Function:  <b>lt</b> (<var>x, y</var>)<var><a name="index-lt-665"></a></var><br>
 <blockquote><p>This function is equivalent to <code>x&nbsp;&lt;&nbsp;y</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dle.html#doc_002dle">le</a>, <a href="doc_002deq.html#doc_002deq">eq</a>, <a href="doc_002dge.html#doc_002dge">ge</a>, <a href="doc_002dgt.html#doc_002dgt">gt</a>, <a href="doc_002dne.html#doc_002dne">ne</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFle.html#XREFle">le</a>, <a href="XREFeq.html#XREFeq">eq</a>, <a href="XREFge.html#XREFge">ge</a>, <a href="XREFgt.html#XREFgt">gt</a>, <a href="XREFne.html#XREFne">ne</a>.
 
-   <p><a name="index-g_t_0021_003d-654"></a><a name="index-g_t_007e_003d-655"></a><!-- ne libinterp/interpfcn/data.cc -->
-<a name="doc_002dne"></a>
+        </blockquote></div>
+
+   <p><a name="index-g_t_0021_003d-666"></a><a name="index-g_t_007e_003d-667"></a><!-- ne libinterp/corefcn/data.cc -->
+<a name="XREFne"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ne</b> (<var>x, y</var>)<var><a name="index-ne-656"></a></var><br>
+&mdash; Built-in Function:  <b>ne</b> (<var>x, y</var>)<var><a name="index-ne-668"></a></var><br>
 <blockquote><p>Return true if the two inputs are not equal. 
 This function is equivalent to <code>x&nbsp;!=&nbsp;y</code><!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002deq.html#doc_002deq">eq</a>, <a href="doc_002disequal.html#doc_002disequal">isequal</a>, <a href="doc_002dle.html#doc_002dle">le</a>, <a href="doc_002dge.html#doc_002dge">ge</a>, <a href="doc_002dlt.html#doc_002dlt">lt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeq.html#XREFeq">eq</a>, <a href="XREFisequal.html#XREFisequal">isequal</a>, <a href="XREFle.html#XREFle">le</a>, <a href="XREFge.html#XREFge">ge</a>, <a href="XREFlt.html#XREFlt">lt</a>.
+
+        </blockquote></div>
 
    </body></html>
 

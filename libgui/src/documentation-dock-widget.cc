@@ -31,9 +31,35 @@ documentation_dock_widget::documentation_dock_widget (QWidget *p)
 {
   setObjectName ("DocumentationDockWidget");
   setWindowIcon (QIcon (":/actions/icons/logo.png"));
-  setWindowTitle (tr ("Documentation"));
+  set_title (tr ("Documentation"));
   setStatusTip (tr ("See the documentation for help."));
 
   _webinfo = new webinfo (this);
   setWidget (_webinfo);
+
+  connect (p, SIGNAL(show_doc_signal(const QString &)),
+   this, SLOT(showDoc(const QString &)));
+}
+
+void
+documentation_dock_widget::copyClipboard ()
+{
+  _webinfo->copyClipboard ();
+}
+void
+documentation_dock_widget::pasteClipboard ()
+{
+  _webinfo->pasteClipboard ();
+}
+void
+documentation_dock_widget::showDoc (const QString &name)
+{
+  // show the doc pane
+  if (!isVisible ())
+    setVisible (true);
+  setFocus ();
+  raise ();
+
+  _webinfo->load_ref (name);
+
 }

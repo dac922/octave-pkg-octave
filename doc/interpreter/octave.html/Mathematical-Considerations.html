@@ -36,8 +36,8 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Operators-and-Functions.html#Operators-
 same manner as there full counterparts.  However, there are certain differences
 and especially differences with other products sparse implementations.
 
-   <p>Firstly, the "./" and ".^" operators must be used with care.  Consider what
-the examples
+   <p>Firstly, the <code>"./"</code> and <code>".^"</code> operators must be used with care. 
+Consider what the examples
 
 <pre class="example">       s = speye (4);
        a1 = s .^ 2;
@@ -134,7 +134,7 @@ arguments as <code>[r, p, q] = chol (A); spy (r)</code>.
 
    <div class="float">
 <a name="fig_003asimplechol"></a><div align="center"><img src="spchol.png" alt="spchol.png"></div>
-   <p><strong class="float-caption">Figure 22.4: Structure of the un-permuted Cholesky&nbsp;factorization of the above matrix.</strong></p></div>
+   <p><strong class="float-caption">Figure 22.4: Structure of the unpermuted Cholesky&nbsp;factorization of the above matrix.</strong></p></div>
 
    <div class="float">
 <a name="fig_003asimplecholperm"></a><div align="center"><img src="spcholperm.png" alt="spcholperm.png"></div>
@@ -150,11 +150,11 @@ and ldiv (\) operators, and so no the user does not need to explicitly
 reorder the matrix to maximize performance.
 
 <!-- amd libinterp/dldfcn/amd.cc -->
-   <p><a name="doc_002damd"></a>
+   <p><a name="XREFamd"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>amd</b> (<var>S</var>)<var><a name="index-amd-2424"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>amd</b> (<var>S, opts</var>)<var><a name="index-amd-2425"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>amd</b> (<var>S</var>)<var><a name="index-amd-2588"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>amd</b> (<var>S, opts</var>)<var><a name="index-amd-2589"></a></var><br>
 <blockquote>
         <p>Return the approximate minimum degree permutation of a matrix.  This
 permutation such that the Cholesky&nbsp;factorization of <var>S</var><code>
@@ -180,17 +180,18 @@ absorption.  The default is not to perform aggressive absorption.
 <a href="mailto:davis@cise.ufl.edu">davis@cise.ufl.edu</a>, University of Florida (see
 <a href="http://www.cise.ufl.edu/research/sparse/amd">http://www.cise.ufl.edu/research/sparse/amd</a>).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsymamd.html#doc_002dsymamd">symamd</a>, <a href="doc_002dcolamd.html#doc_002dcolamd">colamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsymamd.html#XREFsymamd">symamd</a>, <a href="XREFcolamd.html#XREFcolamd">colamd</a>.
+
+        </blockquote></div>
 
 <!-- ccolamd libinterp/dldfcn/ccolamd.cc -->
-   <p><a name="doc_002dccolamd"></a>
+   <p><a name="XREFccolamd"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>ccolamd</b> (<var>S</var>)<var><a name="index-ccolamd-2426"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>ccolamd</b> (<var>S, knobs</var>)<var><a name="index-ccolamd-2427"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>ccolamd</b> (<var>S, knobs, cmember</var>)<var><a name="index-ccolamd-2428"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>ccolamd</b> (<var><small class="dots">...</small></var>)<var><a name="index-ccolamd-2429"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>ccolamd</b> (<var>S</var>)<var><a name="index-ccolamd-2590"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>ccolamd</b> (<var>S, knobs</var>)<var><a name="index-ccolamd-2591"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>ccolamd</b> (<var>S, knobs, cmember</var>)<var><a name="index-ccolamd-2592"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>ccolamd</b> (<var><small class="dots">...</small></var>)<var><a name="index-ccolamd-2593"></a></var><br>
 <blockquote>
         <p>Constrained column approximate minimum degree permutation. 
 <var>p</var><code> = ccolamd (</code><var>S</var><code>)</code> returns the column approximate minimum
@@ -264,22 +265,23 @@ the current version of <span class="sc">ccolamd</span> (reserved for future use)
 
         <p>The authors of the code itself are S. Larimore, T. Davis (Univ. of Florida)
 and S. Rajamanickam in collaboration with J. Bilbert and E. Ng.  Supported
-by the National Science Foundation (DMS-9504974, DMS-9803599, CCR-0203270),
-and a grant from Sandia National Lab.  See
-<a href="http://www.cise.ufl.edu/research/sparse">http://www.cise.ufl.edu/research/sparse</a> for ccolamd, csymamd, amd,
-colamd, symamd, and other related orderings.
+by the National Science Foundation
+(DMS-9504974, DMS-9803599, CCR-0203270), and a grant from Sandia
+National Lab.  See <a href="http://www.cise.ufl.edu/research/sparse">http://www.cise.ufl.edu/research/sparse</a> for
+ccolamd, csymamd, amd, colamd, symamd, and other related orderings.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolamd.html#doc_002dcolamd">colamd</a>, <a href="doc_002dcsymamd.html#doc_002dcsymamd">csymamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolamd.html#XREFcolamd">colamd</a>, <a href="XREFcsymamd.html#XREFcsymamd">csymamd</a>.
+
+        </blockquote></div>
 
 <!-- colamd libinterp/dldfcn/colamd.cc -->
-   <p><a name="doc_002dcolamd"></a>
+   <p><a name="XREFcolamd"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>colamd</b> (<var>S</var>)<var><a name="index-colamd-2430"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>colamd</b> (<var>S, knobs</var>)<var><a name="index-colamd-2431"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>colamd</b> (<var>S</var>)<var><a name="index-colamd-2432"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>colamd</b> (<var>S, knobs</var>)<var><a name="index-colamd-2433"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>colamd</b> (<var>S</var>)<var><a name="index-colamd-2594"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>colamd</b> (<var>S, knobs</var>)<var><a name="index-colamd-2595"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>colamd</b> (<var>S</var>)<var><a name="index-colamd-2596"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>colamd</b> (<var>S, knobs</var>)<var><a name="index-colamd-2597"></a></var><br>
 <blockquote>
         <p>Column approximate minimum degree permutation. 
 <var>p</var><code> = colamd (</code><var>S</var><code>)</code> returns the column approximate minimum
@@ -341,14 +343,15 @@ developed in collaboration with John Gilbert, Xerox PARC, and Esmond
 Ng, Oak Ridge National Laboratory.  (see
 <a href="http://www.cise.ufl.edu/research/sparse/colamd">http://www.cise.ufl.edu/research/sparse/colamd</a>)
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolperm.html#doc_002dcolperm">colperm</a>, <a href="doc_002dsymamd.html#doc_002dsymamd">symamd</a>, <a href="doc_002dccolamd.html#doc_002dccolamd">ccolamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolperm.html#XREFcolperm">colperm</a>, <a href="XREFsymamd.html#XREFsymamd">symamd</a>, <a href="XREFccolamd.html#XREFccolamd">ccolamd</a>.
+
+        </blockquote></div>
 
 <!-- colperm scripts/sparse/colperm.m -->
-   <p><a name="doc_002dcolperm"></a>
+   <p><a name="XREFcolperm"></a>
 
 <div class="defun">
-&mdash; Function File: <var>p</var> = <b>colperm</b> (<var>s</var>)<var><a name="index-colperm-2434"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>colperm</b> (<var>s</var>)<var><a name="index-colperm-2598"></a></var><br>
 <blockquote><p>Return the column permutations such that the columns of
 <var>s</var><code> (:, </code><var>p</var><code>)</code> are ordered in terms of increase number
 of non-zero elements.  If <var>s</var> is symmetric, then <var>p</var> is chosen
@@ -357,13 +360,13 @@ columns with increasing number of non zeros elements.
 </p></blockquote></div>
 
 <!-- csymamd libinterp/dldfcn/ccolamd.cc -->
-   <p><a name="doc_002dcsymamd"></a>
+   <p><a name="XREFcsymamd"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>csymamd</b> (<var>S</var>)<var><a name="index-csymamd-2435"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>csymamd</b> (<var>S, knobs</var>)<var><a name="index-csymamd-2436"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>csymamd</b> (<var>S, knobs, cmember</var>)<var><a name="index-csymamd-2437"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>csymamd</b> (<var><small class="dots">...</small></var>)<var><a name="index-csymamd-2438"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>csymamd</b> (<var>S</var>)<var><a name="index-csymamd-2599"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>csymamd</b> (<var>S, knobs</var>)<var><a name="index-csymamd-2600"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>csymamd</b> (<var>S, knobs, cmember</var>)<var><a name="index-csymamd-2601"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>csymamd</b> (<var><small class="dots">...</small></var>)<var><a name="index-csymamd-2602"></a></var><br>
 <blockquote>
         <p>For a symmetric positive definite matrix <var>S</var>, returns the permutation
 vector <var>p</var> such that <var>S</var><code>(</code><var>p</var><code>,</code><var>p</var><code>)</code> tends to have a
@@ -410,22 +413,23 @@ the current version of <span class="sc">ccolamd</span> (reserved for future use)
 
         <p>The authors of the code itself are S. Larimore, T. Davis (Uni of Florida)
 and S. Rajamanickam in collaboration with J. Bilbert and E. Ng.  Supported
-by the National Science Foundation (DMS-9504974, DMS-9803599, CCR-0203270),
-and a grant from Sandia National Lab.  See
-<a href="http://www.cise.ufl.edu/research/sparse">http://www.cise.ufl.edu/research/sparse</a> for ccolamd, csymamd, amd,
-colamd, symamd, and other related orderings.
+by the National Science Foundation
+(DMS-9504974, DMS-9803599, CCR-0203270), and a grant from Sandia
+National Lab.  See <a href="http://www.cise.ufl.edu/research/sparse">http://www.cise.ufl.edu/research/sparse</a> for
+ccolamd, csymamd, amd, colamd, symamd, and other related orderings.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsymamd.html#doc_002dsymamd">symamd</a>, <a href="doc_002dccolamd.html#doc_002dccolamd">ccolamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsymamd.html#XREFsymamd">symamd</a>, <a href="XREFccolamd.html#XREFccolamd">ccolamd</a>.
+
+        </blockquote></div>
 
 <!-- dmperm libinterp/dldfcn/dmperm.cc -->
-   <p><a name="doc_002ddmperm"></a>
+   <p><a name="XREFdmperm"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>dmperm</b> (<var>S</var>)<var><a name="index-dmperm-2439"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>q</var>, <var>r</var>, <var>S</var>] = <b>dmperm</b> (<var>S</var>)<var><a name="index-dmperm-2440"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>dmperm</b> (<var>S</var>)<var><a name="index-dmperm-2603"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>q</var>, <var>r</var>, <var>S</var>] = <b>dmperm</b> (<var>S</var>)<var><a name="index-dmperm-2604"></a></var><br>
 <blockquote>
-        <p><a name="index-Dulmage_002dMendelsohn-decomposition-2441"></a>Perform a Dulmage-Mendelsohn permutation of the sparse matrix <var>S</var>. 
+        <p><a name="index-Dulmage_002dMendelsohn-decomposition-2605"></a>Perform a Dulmage-Mendelsohn permutation of the sparse matrix <var>S</var>. 
 With a single output argument <code>dmperm</code> performs the row permutations
 <var>p</var> such that <var>S</var><code>(</code><var>p</var><code>,:)</code> has no zero elements on the
 diagonal.
@@ -439,17 +443,18 @@ of the blocks.  If <var>S</var> is square then <var>r</var><code> == </code><var
 Block Triangular Form of a Sparse Matrix</cite>. ACM Trans. Math. Software,
 16(4):303-324, 1990.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolamd.html#doc_002dcolamd">colamd</a>, <a href="doc_002dccolamd.html#doc_002dccolamd">ccolamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolamd.html#XREFcolamd">colamd</a>, <a href="XREFccolamd.html#XREFccolamd">ccolamd</a>.
+
+        </blockquote></div>
 
 <!-- symamd libinterp/dldfcn/colamd.cc -->
-   <p><a name="doc_002dsymamd"></a>
+   <p><a name="XREFsymamd"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>symamd</b> (<var>S</var>)<var><a name="index-symamd-2442"></a></var><br>
-&mdash; Loadable Function: <var>p</var> = <b>symamd</b> (<var>S, knobs</var>)<var><a name="index-symamd-2443"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>symamd</b> (<var>S</var>)<var><a name="index-symamd-2444"></a></var><br>
-&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>symamd</b> (<var>S, knobs</var>)<var><a name="index-symamd-2445"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>symamd</b> (<var>S</var>)<var><a name="index-symamd-2606"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>symamd</b> (<var>S, knobs</var>)<var><a name="index-symamd-2607"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>symamd</b> (<var>S</var>)<var><a name="index-symamd-2608"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>stats</var>] = <b>symamd</b> (<var>S, knobs</var>)<var><a name="index-symamd-2609"></a></var><br>
 <blockquote>
         <p>For a symmetric positive definite matrix <var>S</var>, returns the permutation
 vector p such that <var>S</var><code>(</code><var>p</var><code>, </code><var>p</var><code>)</code> tends to have a
@@ -506,14 +511,15 @@ developed in collaboration with John Gilbert, Xerox PARC, and Esmond
 Ng, Oak Ridge National Laboratory.  (see
 <a href="http://www.cise.ufl.edu/research/sparse/colamd">http://www.cise.ufl.edu/research/sparse/colamd</a>)
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolperm.html#doc_002dcolperm">colperm</a>, <a href="doc_002dcolamd.html#doc_002dcolamd">colamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolperm.html#XREFcolperm">colperm</a>, <a href="XREFcolamd.html#XREFcolamd">colamd</a>.
+
+        </blockquote></div>
 
 <!-- symrcm libinterp/dldfcn/symrcm.cc -->
-   <p><a name="doc_002dsymrcm"></a>
+   <p><a name="XREFsymrcm"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>p</var> = <b>symrcm</b> (<var>S</var>)<var><a name="index-symrcm-2446"></a></var><br>
+&mdash; Loadable Function: <var>p</var> = <b>symrcm</b> (<var>S</var>)<var><a name="index-symrcm-2610"></a></var><br>
 <blockquote><p>Return the symmetric reverse Cuthill-McKee permutation of <var>S</var>. 
 <var>p</var> is a permutation vector such that
 <var>S</var><code>(</code><var>p</var><code>, </code><var>p</var><code>)</code> tends to have its diagonal elements
@@ -533,8 +539,9 @@ Matrices</cite>. Proceedings of the 24th ACM National Conference, 157&ndash;172
 Positive Definite Systems</cite>, Prentice Hall Series in Computational
 Mathematics, ISBN 0-13-165274-5, 1981.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolperm.html#doc_002dcolperm">colperm</a>, <a href="doc_002dcolamd.html#doc_002dcolamd">colamd</a>, <a href="doc_002dsymamd.html#doc_002dsymamd">symamd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolperm.html#XREFcolperm">colperm</a>, <a href="XREFcolamd.html#XREFcolamd">colamd</a>, <a href="XREFsymamd.html#XREFsymamd">symamd</a>.
+
+        </blockquote></div>
 
    </body></html>
 

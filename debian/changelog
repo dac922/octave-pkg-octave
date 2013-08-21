@@ -1,8 +1,14 @@
-octave (3.7.5-0~ppa1~precise1) precise; urgency=low
+octave (3.7.6-0~ppa1~precise1) precise; urgency=low
 
   * Backport to precise
 
- -- Stefan Mahr <dac922@gmx.de>  Thu, 15 May 2013 17:29:31 +0200
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 22 Aug 2013 00:30:59 +0200
+
+octave (3.7.6-0~ppa1~raring1) raring; urgency=low
+
+  * Imported Unstable version 3.7.6
+  
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 22 Aug 2013 00:07:13 +0200
 
 octave (3.7.5-0~ppa1~raring1) raring; urgency=low
 

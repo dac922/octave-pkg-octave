@@ -43,14 +43,14 @@ different information about what is in memory, as the following shows.
           -|
           -| __nargin__  str
 </pre>
-   <!-- who libinterp/interpfcn/variables.cc -->
-   <p><a name="doc_002dwho"></a>
+   <!-- who libinterp/corefcn/variables.cc -->
+   <p><a name="XREFwho"></a>
 
 <div class="defun">
-&mdash; Command:  <b>who</b><var><a name="index-who-521"></a></var><br>
-&mdash; Command:  <b>who</b><var> pattern <small class="dots">...</small><a name="index-who-522"></a></var><br>
-&mdash; Command:  <b>who</b><var> option pattern <small class="dots">...</small><a name="index-who-523"></a></var><br>
-&mdash; Command: C = <b>who</b> (<var>"pattern", <small class="dots">...</small></var>)<var><a name="index-who-524"></a></var><br>
+&mdash; Command:  <b>who</b><var><a name="index-who-533"></a></var><br>
+&mdash; Command:  <b>who</b><var> pattern <small class="dots">...</small><a name="index-who-534"></a></var><br>
+&mdash; Command:  <b>who</b><var> option pattern <small class="dots">...</small><a name="index-who-535"></a></var><br>
+&mdash; Command: C = <b>who</b> (<var>"pattern", <small class="dots">...</small></var>)<var><a name="index-who-536"></a></var><br>
 <blockquote><p>List currently defined variables matching the given patterns.  Valid
 pattern syntax is the same as described for the <code>clear</code> command. 
 If no patterns are supplied, all variables are listed. 
@@ -73,17 +73,18 @@ from a file.
         <p>If called as a function, return a cell array of defined variable names
 matching the given patterns.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwhos.html#doc_002dwhos">whos</a>, <a href="doc_002disglobal.html#doc_002disglobal">isglobal</a>, <a href="doc_002disvarname.html#doc_002disvarname">isvarname</a>, <a href="doc_002dexist.html#doc_002dexist">exist</a>, <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwhos.html#XREFwhos">whos</a>, <a href="XREFisglobal.html#XREFisglobal">isglobal</a>, <a href="XREFisvarname.html#XREFisvarname">isvarname</a>, <a href="XREFexist.html#XREFexist">exist</a>, <a href="XREFregexp.html#XREFregexp">regexp</a>.
 
-<!-- whos libinterp/interpfcn/variables.cc -->
-   <p><a name="doc_002dwhos"></a>
+        </blockquote></div>
+
+<!-- whos libinterp/corefcn/variables.cc -->
+   <p><a name="XREFwhos"></a>
 
 <div class="defun">
-&mdash; Command:  <b>whos</b><var><a name="index-whos-525"></a></var><br>
-&mdash; Command:  <b>whos</b><var> pattern <small class="dots">...</small><a name="index-whos-526"></a></var><br>
-&mdash; Command:  <b>whos</b><var> option pattern <small class="dots">...</small><a name="index-whos-527"></a></var><br>
-&mdash; Command: S = <b>whos</b> (<var>"pattern", <small class="dots">...</small></var>)<var><a name="index-whos-528"></a></var><br>
+&mdash; Command:  <b>whos</b><var><a name="index-whos-537"></a></var><br>
+&mdash; Command:  <b>whos</b><var> pattern <small class="dots">...</small><a name="index-whos-538"></a></var><br>
+&mdash; Command:  <b>whos</b><var> option pattern <small class="dots">...</small><a name="index-whos-539"></a></var><br>
+&mdash; Command: S = <b>whos</b> (<var>"pattern", <small class="dots">...</small></var>)<var><a name="index-whos-540"></a></var><br>
 <blockquote><p>Provide detailed information on currently defined variables matching the
 given patterns.  Options and pattern syntax are the same as for the
 <code>who</code> command.  Extended information about each variable is
@@ -126,16 +127,17 @@ variable names matching the given patterns.  Fields in the structure
 describing each variable are: name, size, bytes, class, global, sparse,
 complex, nesting, persistent.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwho.html#doc_002dwho">who</a>, <a href="doc_002dwhos_005fline_005fformat.html#doc_002dwhos_005fline_005fformat">whos_line_format</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwho.html#XREFwho">who</a>, <a href="XREFwhos_005fline_005fformat.html#XREFwhos_005fline_005fformat">whos_line_format</a>.
 
-<!-- whos_line_format libinterp/interpfcn/variables.cc -->
-   <p><a name="doc_002dwhos_005fline_005fformat"></a>
+        </blockquote></div>
+
+<!-- whos_line_format libinterp/corefcn/variables.cc -->
+   <p><a name="XREFwhos_005fline_005fformat"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>whos_line_format</b> ()<var><a name="index-whos_005fline_005fformat-529"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>whos_line_format</b> (<var>new_val</var>)<var><a name="index-whos_005fline_005fformat-530"></a></var><br>
-&mdash; Built-in Function:  <b>whos_line_format</b> (<var>new_val, "local"</var>)<var><a name="index-whos_005fline_005fformat-531"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>whos_line_format</b> ()<var><a name="index-whos_005fline_005fformat-541"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>whos_line_format</b> (<var>new_val</var>)<var><a name="index-whos_005fline_005fformat-542"></a></var><br>
+&mdash; Built-in Function:  <b>whos_line_format</b> (<var>new_val, "local"</var>)<var><a name="index-whos_005fline_005fformat-543"></a></var><br>
 <blockquote><p>Query or set the format string used by the command <code>whos</code>.
 
         <p>A full format string is:
@@ -184,14 +186,15 @@ leftmost column.  <code>left-min</code> specifies the minimum field width to the
 left of the specified balance column.
 
         <p>The default format is
-<code>"  %a:4; %ln:6; %cs:16:6:1;  %rb:12;  %lc:-1;\n"</code>.
+<code>"  %a:4; %ln:6; %cs:16:6:1;  %rb:12;  %lc:-1;n"</code>.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwhos.html#doc_002dwhos">whos</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwhos.html#XREFwhos">whos</a>.
+
+        </blockquote></div>
 
    <p>Instead of displaying which variables are in memory, it is possible
 to determine if a given variable is available.  That way it is possible
@@ -202,11 +205,11 @@ variable.  The following example illustrates this.
        disp ("The program has no 'meaning'");
      endif
 </pre>
-   <!-- exist libinterp/interpfcn/variables.cc -->
-   <p><a name="doc_002dexist"></a>
+   <!-- exist libinterp/corefcn/variables.cc -->
+   <p><a name="XREFexist"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>exist</b> (<var>name, type</var>)<var><a name="index-exist-532"></a></var><br>
+&mdash; Built-in Function:  <b>exist</b> (<var>name, type</var>)<var><a name="index-exist-544"></a></var><br>
 <blockquote><p>Return 1 if the name exists as a variable, 2 if the name is an
 absolute file name, an ordinary file in Octave's <code>path</code>, or (after
 appending &lsquo;<samp><span class="samp">.m</span></samp>&rsquo;) a function file in Octave's <code>path</code>, 3 if the
@@ -226,17 +229,18 @@ other types of files, you should use some combination of the functions
 symbols of the specified type.  Valid types are
 
           <dl>
-<dt>"var"<dd>Check only for variables.
+<dt><code>"var"</code><dd>Check only for variables.
 
-          <br><dt>"builtin"<dd>Check only for built-in functions.
+          <br><dt><code>"builtin"</code><dd>Check only for built-in functions.
 
-          <br><dt>"file"<dd>Check only for files and directories.
+          <br><dt><code>"file"</code><dd>Check only for files and directories.
 
-          <br><dt>"dir"<dd>Check only for directories. 
+          <br><dt><code>"dir"</code><dd>Check only for directories. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfile_005fin_005floadpath.html#doc_002dfile_005fin_005floadpath">file_in_loadpath</a>, <a href="doc_002dfile_005fin_005fpath.html#doc_002dfile_005fin_005fpath">file_in_path</a>, <a href="doc_002dstat.html#doc_002dstat">stat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfile_005fin_005floadpath.html#XREFfile_005fin_005floadpath">file_in_loadpath</a>, <a href="XREFfile_005fin_005fpath.html#XREFfile_005fin_005fpath">file_in_path</a>, <a href="XREFstat.html#XREFstat">stat</a>.
+
+        </blockquote></div>
 
    <p>Usually Octave will manage the memory, but sometimes it can be practical
 to remove variables from memory manually.  This is usually needed when
@@ -250,11 +254,11 @@ program allocates a matrix that requires around 128 MB memory.
 it can be necessary to remove it manually from memory.  The <code>clear</code>
 function allows this.
 
-<!-- clear libinterp/interpfcn/variables.cc -->
-   <p><a name="doc_002dclear"></a>
+<!-- clear libinterp/corefcn/variables.cc -->
+   <p><a name="XREFclear"></a>
 
 <div class="defun">
-&mdash; Command:  <b>clear</b> [<var>options</var>]<var> pattern <small class="dots">...</small><a name="index-clear-533"></a></var><br>
+&mdash; Command:  <b>clear</b> [<var>options</var>]<var> pattern <small class="dots">...</small><a name="index-clear-545"></a></var><br>
 <blockquote><p>Delete the names matching the given patterns from the symbol table.  The
 pattern may contain the following special characters:
 
@@ -311,10 +315,10 @@ without the dash as well.
 </p></blockquote></div>
 
 <!-- pack scripts/miscellaneous/pack.m -->
-   <p><a name="doc_002dpack"></a>
+   <p><a name="XREFpack"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>pack</b> ()<var><a name="index-pack-534"></a></var><br>
+&mdash; Function File:  <b>pack</b> ()<var><a name="index-pack-546"></a></var><br>
 <blockquote><p>Consolidate workspace memory in <span class="sc">matlab</span>.  This function is provided for
 compatibility, but does nothing in Octave. 
 </p></blockquote></div>
@@ -324,12 +328,12 @@ file system can also be acquired from within Octave.  This is usually
 only useful during development of programs, and not within a program.
 
 <!-- type scripts/help/type.m -->
-   <p><a name="doc_002dtype"></a>
+   <p><a name="XREFtype"></a>
 
 <div class="defun">
-&mdash; Command:  <b>type</b><var> name <small class="dots">...</small><a name="index-type-535"></a></var><br>
-&mdash; Command:  <b>type</b><var> -q name <small class="dots">...</small><a name="index-type-536"></a></var><br>
-&mdash; Function File: dfns = <b>type</b> (<var>"name", <small class="dots">...</small></var>)<var><a name="index-type-537"></a></var><br>
+&mdash; Command:  <b>type</b><var> name <small class="dots">...</small><a name="index-type-547"></a></var><br>
+&mdash; Command:  <b>type</b><var> -q name <small class="dots">...</small><a name="index-type-548"></a></var><br>
+&mdash; Function File: dfns = <b>type</b> (<var>"name", <small class="dots">...</small></var>)<var><a name="index-type-549"></a></var><br>
 <blockquote><p>Display the definition of each <var>name</var> that refers to a function.
 
         <p>Normally also displays whether each <var>name</var> is user-defined or built-in;
@@ -341,29 +345,31 @@ definition of each requested function.
 </p></blockquote></div>
 
 <!-- which scripts/help/which.m -->
-   <p><a name="doc_002dwhich"></a>
+   <p><a name="XREFwhich"></a>
 
 <div class="defun">
-&mdash; Command:  <b>which</b><var> name <small class="dots">...</small><a name="index-which-538"></a></var><br>
+&mdash; Command:  <b>which</b><var> name <small class="dots">...</small><a name="index-which-550"></a></var><br>
 <blockquote><p>Display the type of each <var>name</var>.  If <var>name</var> is defined from a
 function file, the full name of the file is also displayed.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelp.html#doc_002dhelp">help</a>, <a href="doc_002dlookfor.html#doc_002dlookfor">lookfor</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhelp.html#XREFhelp">help</a>, <a href="XREFlookfor.html#XREFlookfor">lookfor</a>.
+
+        </blockquote></div>
 
 <!-- what scripts/miscellaneous/what.m -->
-   <p><a name="doc_002dwhat"></a>
+   <p><a name="XREFwhat"></a>
 
 <div class="defun">
-&mdash; Command:  <b>what</b><var><a name="index-what-539"></a></var><br>
-&mdash; Command:  <b>what</b><var> dir<a name="index-what-540"></a></var><br>
-&mdash; Function File: w = <b>what</b> (<var>dir</var>)<var><a name="index-what-541"></a></var><br>
+&mdash; Command:  <b>what</b><var><a name="index-what-551"></a></var><br>
+&mdash; Command:  <b>what</b><var> dir<a name="index-what-552"></a></var><br>
+&mdash; Function File: w = <b>what</b> (<var>dir</var>)<var><a name="index-what-553"></a></var><br>
 <blockquote><p>List the Octave specific files in directory <var>dir</var>.  If <var>dir</var> is
 not specified then the current directory is used.  If a return argument is
 requested, the files found are returned in the structure <var>w</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwhich.html#doc_002dwhich">which</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwhich.html#XREFwhich">which</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->

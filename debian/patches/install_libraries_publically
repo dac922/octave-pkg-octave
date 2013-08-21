@@ -19,7 +19,7 @@ Author: Thomas Weber <tweber@debian.org>
  
 --- a/libinterp/Makefile.am
 +++ b/libinterp/Makefile.am
-@@ -42,7 +42,8 @@
+@@ -40,7 +40,8 @@
  
  AM_CXXFLAGS += $(WARN_CXXFLAGS)
  

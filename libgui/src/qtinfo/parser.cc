@@ -1,21 +1,28 @@
-/* Copyright (C) 2009 P.L. Lucas
- * Copyright (C) 2012 Jacob Dawid <jacob.dawid@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
- */
+/*
+
+Copyright (C) 2009 P. L. Lucas
+Copyright (C) 2012 Jacob Dawid
+
+This file is part of Octave.
+
+Octave is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 3 of the License, or (at your
+option) any later version.
+
+Octave is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License
+along with Octave; see the file COPYING.  If not, see
+<http://www.gnu.org/licenses/>.
+
+*/
+
+// Author: P. L. Lucas
+// Author: Jacob Dawid <jacob.dawid@gmail.com>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -172,9 +179,29 @@ QString
 parser::get_next_node (QIODevice *io)
 {
   QString text;
+  QByteArray line, line_buffer;
+  char c;
+  int i;
+
   while (!io->atEnd ())
     {
-      QByteArray line = io->readLine ();
+      io->getChar (&c);
+      if (c)
+        { // first char is not equal 0
+          io->ungetChar (c);
+          line = io->readLine ();
+        }
+      else
+        { // 0 was read -> image -> text length changes
+          line_buffer = io->readLine ();  // image tag that is not needed
+          line = io->readLine ();         // firsts line of text message
+          for (i=1; i<line_buffer.size ()+6; i++)  // correct the size
+            line.insert (line.size ()-1,QByteArray(" "));   // by adding blanks
+        }
+
+      if (line.at (0) == '"' && line.size () == 5)  // end of image construct
+        line = " ";
+
       if (line.at(0) == 31)
         {
           break;
@@ -334,7 +361,9 @@ parser::node_text_to_html (const QString& text_arg, int anchorPos,
       info_to_html (text1);
       info_to_html (text2);
 
-      text = text1 + "<a name='" + anchor + "' /><img src=':/actions/icons/stop.png'>" + text2;
+      text = text1 + "<a name='" + anchor
+                   + "'/><img src=':/actions/icons/redled.png'><br>&nbsp;"
+                   + text2;
     }
   else
     {
@@ -364,7 +393,9 @@ parser::node_text_to_html (const QString& text_arg, int anchorPos,
   text.append (navigationLinks);
   text.prepend ("<html><body>\n");
   text.append ("</body></html>\n");
+
   return text;
+
 }
 
 void
@@ -585,3 +616,24 @@ parser::global_search (const QString& text, int max_founds)
   results.append ("</body></html>");
   return results;
 }
+
+QString 
+parser::find_ref (const QString &ref_name)
+{
+  QString text = "";
+
+  QHash<QString,node_position>::iterator it;
+  for (it=_ref_map.begin ();it!=_ref_map.end ();++it)
+    {
+      QString k = it.key ();
+      node_position p = it.value ();
+
+      if (k == "XREF" + ref_name)
+        {
+          // found ref, so return its name
+          text = "XREF" + ref_name;
+        }
+    }
+  return text;
+}
+

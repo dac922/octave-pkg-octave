@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Object-Groups.html#Object-Groups">Objec
 
 <h5 class="subsubsection">15.4.6.4 Contour Groups</h5>
 
-<p><a name="index-series-objects-1646"></a><a name="index-contour-series-1647"></a>
+<p><a name="index-series-objects-1789"></a><a name="index-contour-series-1790"></a>
 Contour group objects are created by the <code>contour</code>, <code>contourf</code>
 and <code>contour3</code> functions.  The are equally one of the handles returned
 by the <code>surfc</code> and <code>meshc</code> functions.  The properties of the contour
@@ -44,27 +44,27 @@ group are
 <dt><code>contourmatrix</code><dd>A read only property that contains the data return by <code>contourc</code> used to
 create the contours of the plot.
 
-     <br><dt><code>fill</code><dd>A radio property that can have the values "on" or "off" that flags whether the
-contours to plot are to be filled.
+     <br><dt><code>fill</code><dd>A radio property that can have the values <code>"on"</code> or <code>"off"</code> that
+flags whether the contours to plot are to be filled.
 
-     <br><dt><code>zlevelmode</code><dt><code>zlevel</code><dd>The radio property <code>zlevelmode</code> can have the values "none", "auto" or
-"manual".  When its value is "none" there is no z component to the plotted
-contours.  When its value is "auto" the z value of the plotted contours is
-at the same value as the contour itself.  If the value is "manual", then the
-z value at which to plot the contour is determined by the <code>zlevel</code>
-property.
+     <br><dt><code>zlevelmode</code><dt><code>zlevel</code><dd>The radio property <code>zlevelmode</code> can have the values <code>"none"</code>,
+<code>"auto"</code>, or <code>"manual"</code>.  When its value is <code>"none"</code> there is
+no z component to the plotted contours.  When its value is <code>"auto"</code> the z
+value of the plotted contours is at the same value as the contour itself.  If
+the value is <code>"manual"</code>, then the z value at which to plot the contour is
+determined by the <code>zlevel</code> property.
 
-     <br><dt><code>levellistmode</code><dt><code>levellist</code><dt><code>levelstepmode</code><dt><code>levelstep</code><dd>If <code>levellistmode</code> is "manual", then the levels at which to plot the
-contours is determined by <code>levellist</code>.  If <code>levellistmode</code> is
-set to "auto", then the distance between contours is determined by
-<code>levelstep</code>.  If both <code>levellistmode</code> and <code>levelstepmode</code>
-are set to "auto", then there are assumed to be 10 equal spaced contours.
+     <br><dt><code>levellistmode</code><dt><code>levellist</code><dt><code>levelstepmode</code><dt><code>levelstep</code><dd>If <code>levellistmode</code> is <code>"manual"</code>, then the levels at which to plot
+the contours is determined by <code>levellist</code>.  If <code>levellistmode</code> is set
+to <code>"auto"</code>, then the distance between contours is determined by
+<code>levelstep</code>.  If both <code>levellistmode</code> and <code>levelstepmode</code> are
+set to <code>"auto"</code>, then there are assumed to be 10 equal spaced contours.
 
-     <br><dt><code>textlistmode</code><dt><code>textlist</code><dt><code>textstepmode</code><dt><code>textstep</code><dd>If <code>textlistmode</code> is "manual", then the labeled contours
+     <br><dt><code>textlistmode</code><dt><code>textlist</code><dt><code>textstepmode</code><dt><code>textstep</code><dd>If <code>textlistmode</code> is <code>"manual"</code>, then the labeled contours
 is determined by <code>textlist</code>.  If <code>textlistmode</code> is set to
-"auto", then the distance between labeled contours is determined by
+<code>"auto"</code>, then the distance between labeled contours is determined by
 <code>textstep</code>.  If both <code>textlistmode</code> and <code>textstepmode</code>
-are set to "auto", then there are assumed to be 10 equal spaced
+are set to <code>"auto"</code>, then there are assumed to be 10 equal spaced
 labeled contours.
 
      <br><dt><code>showtext</code><dd>Flag whether the contour labels are shown or not.
@@ -76,9 +76,9 @@ labeled contours.
 <br><dt><code>linecolor</code><dd>The properties of the contour lines.  The properties <code>linewidth</code> and
 <code>linestyle</code> are similar to the corresponding properties for lines.  The
 property <code>linecolor</code> is a color property (see <a href="Colors.html#Colors">Colors</a>), that can also
-have the values of "none" or "auto".  If <code>linecolor</code> is "none", then no
-contour line is drawn.  If <code>linecolor</code> is "auto" then the line color is
-determined by the colormap.
+have the values of <code>"none"</code> or <code>"auto"</code>.  If <code>linecolor</code> is
+<code>"none"</code>, then no contour line is drawn.  If <code>linecolor</code> is
+<code>"auto"</code> then the line color is determined by the colormap.
 
      <br><dt><code>xdata</code><dt><code>ydata</code><dt><code>zdata</code><dd>The original x, y, and z data of the contour lines.
 

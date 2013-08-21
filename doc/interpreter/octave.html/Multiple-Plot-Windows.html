@@ -7,7 +7,7 @@
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="High_002dLevel-Plotting.html#High_002dLevel-Plotting" title="High-Level Plotting">
 <link rel="prev" href="Multiple-Plots-on-One-Page.html#Multiple-Plots-on-One-Page" title="Multiple Plots on One Page">
-<link rel="next" href="Use-of-axis_0040comma_007b_007d-line_0040comma_007b_007d-and-patch-Functions.html#Use-of-axis_0040comma_007b_007d-line_0040comma_007b_007d-and-patch-Functions" title="Use of axis@comma{} line@comma{} and patch Functions">
+<link rel="next" href="Manipulation-of-Plot-Windows.html#Manipulation-of-Plot-Windows" title="Manipulation of Plot Windows">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -26,7 +26,7 @@
 <div class="node">
 <a name="Multiple-Plot-Windows"></a>
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Use-of-axis_002c-line_002c-and-patch-Functions.html#Use-of-axis_002c-line_002c-and-patch-Functions">Use of axis, line, and patch Functions</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Manipulation-of-Plot-Windows.html#Manipulation-of-Plot-Windows">Manipulation of Plot Windows</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="Multiple-Plots-on-One-Page.html#Multiple-Plots-on-One-Page">Multiple Plots on One Page</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="High_002dLevel-Plotting.html#High_002dLevel-Plotting">High-Level Plotting</a>
 <hr>
@@ -46,19 +46,32 @@ For example,
 the second a cosine wave.  Figure numbers must be positive integers.
 
 <!-- figure scripts/plot/figure.m -->
-   <p><a name="doc_002dfigure"></a>
+   <p><a name="XREFfigure"></a>
 
 <div class="defun">
-&mdash; Command:  <b>figure</b><var><a name="index-figure-1471"></a></var><br>
-&mdash; Command:  <b>figure</b><var> n<a name="index-figure-1472"></a></var><br>
-&mdash; Function File:  <b>figure</b> (<var>n</var>)<var><a name="index-figure-1473"></a></var><br>
-&mdash; Function File:  <b>figure</b> (<var>n, "property", value, <small class="dots">...</small></var>)<var><a name="index-figure-1474"></a></var><br>
-<blockquote><p>Set the current plot window to plot window <var>n</var>.  If no arguments are
-specified, the next available window number is chosen.
+&mdash; Command:  <b>figure</b><var><a name="index-figure-1576"></a></var><br>
+&mdash; Command:  <b>figure</b><var> n<a name="index-figure-1577"></a></var><br>
+&mdash; Function File:  <b>figure</b> (<var>n</var>)<var><a name="index-figure-1578"></a></var><br>
+&mdash; Function File:  <b>figure</b> (<var><small class="dots">...</small>, "property", value, <small class="dots">...</small></var>)<var><a name="index-figure-1579"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>figure</b> (<var>dots</var>)<var><a name="index-figure-1580"></a></var><br>
+<blockquote><p>Create a new figure window for plotting.
 
-        <p>Multiple property-value pairs may be specified for the figure, but they
-must appear in pairs. 
-</p></blockquote></div>
+        <p>If no arguments are specified, a new figure with the next available number
+is created.
+
+        <p>If called with an integer <var>n</var>, and no such numbered figure exists, then
+a new figure with the specified number is created.  If the figure already
+exists then it is made visible and becomes the current figure for plotting.
+
+        <p>Multiple property-value pairs may be specified for the figure object, but
+they must appear in pairs.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created figure
+object.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFaxes.html#XREFaxes">axes</a>, <a href="XREFgcf.html#XREFgcf">gcf</a>, <a href="XREFclf.html#XREFclf">clf</a>, <a href="XREFclose.html#XREFclose">close</a>.
+
+        </blockquote></div>
 
    </body></html>
 

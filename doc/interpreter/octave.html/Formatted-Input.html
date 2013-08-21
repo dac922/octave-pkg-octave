@@ -39,12 +39,12 @@ functions to read formatted input.  There are two forms of each of these
 functions.  One can be used to extract vectors of data from a file, and
 the other is more `C-like'.
 
-<!-- fscanf libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfscanf"></a>
+<!-- fscanf libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfscanf"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, size</var>)<var><a name="index-fscanf-1045"></a></var><br>
-&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, "C"</var>)<var><a name="index-fscanf-1046"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, size</var>)<var><a name="index-fscanf-1063"></a></var><br>
+&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>] = <b>fscanf</b> (<var>fid, template, "C"</var>)<var><a name="index-fscanf-1064"></a></var><br>
 <blockquote><p>In the first form, read from <var>fid</var> according to <var>template</var>,
 returning the result in the matrix <var>val</var>.
 
@@ -76,44 +76,47 @@ conversions.
 
         <p>In the second form, read from <var>fid</var> according to <var>template</var>,
 with each conversion specifier in <var>template</var> corresponding to a
-single scalar return value.  This form is more `C-like', and also
+single scalar return value.  This form is more &ldquo;C-like&rdquo;, and also
 compatible with previous versions of Octave.  The number of successful
 conversions is returned in <var>count</var>
 
         <p>See the Formatted Input section of the GNU Octave manual for a
 complete description of the syntax of the template string.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfgets.html#doc_002dfgets">fgets</a>, <a href="doc_002dfgetl.html#doc_002dfgetl">fgetl</a>, <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dscanf.html#doc_002dscanf">scanf</a>, <a href="doc_002dsscanf.html#doc_002dsscanf">sscanf</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfgets.html#XREFfgets">fgets</a>, <a href="XREFfgetl.html#XREFfgetl">fgetl</a>, <a href="XREFfread.html#XREFfread">fread</a>, <a href="XREFscanf.html#XREFscanf">scanf</a>, <a href="XREFsscanf.html#XREFsscanf">sscanf</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- scanf libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dscanf"></a>
+        </blockquote></div>
+
+<!-- scanf libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFscanf"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>scanf</b> (<var>template, size</var>)<var><a name="index-scanf-1047"></a></var><br>
-&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>]] = <b>scanf</b> (<var>template, "C"</var>)<var><a name="index-scanf-1048"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>] = <b>scanf</b> (<var>template, size</var>)<var><a name="index-scanf-1065"></a></var><br>
+&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>]] = <b>scanf</b> (<var>template, "C"</var>)<var><a name="index-scanf-1066"></a></var><br>
 <blockquote><p>This is equivalent to calling <code>fscanf</code> with <var>fid</var> = <code>stdin</code>.
 
         <p>It is currently not useful to call <code>scanf</code> in interactive
 programs.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dsscanf.html#doc_002dsscanf">sscanf</a>, <a href="doc_002dprintf.html#doc_002dprintf">printf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfscanf.html#XREFfscanf">fscanf</a>, <a href="XREFsscanf.html#XREFsscanf">sscanf</a>, <a href="XREFprintf.html#XREFprintf">printf</a>.
 
-<!-- sscanf libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dsscanf"></a>
+        </blockquote></div>
+
+<!-- sscanf libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFsscanf"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>, <var>pos</var>] = <b>sscanf</b> (<var>string, template, size</var>)<var><a name="index-sscanf-1049"></a></var><br>
-&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>] = <b>sscanf</b> (<var>string, template, "C"</var>)<var><a name="index-sscanf-1050"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>, <var>errmsg</var>, <var>pos</var>] = <b>sscanf</b> (<var>string, template, size</var>)<var><a name="index-sscanf-1067"></a></var><br>
+&mdash; Built-in Function: [<var>v1</var>, <var>v2</var>, <small class="dots">...</small>, <var>count</var>, <var>errmsg</var>] = <b>sscanf</b> (<var>string, template, "C"</var>)<var><a name="index-sscanf-1068"></a></var><br>
 <blockquote><p>This is like <code>fscanf</code>, except that the characters are taken from the
 string <var>string</var> instead of from a stream.  Reaching the end of the
 string is treated as an end-of-file condition.  In addition to the values
 returned by <code>fscanf</code>, the index of the next character to be read
 is returned in <var>pos</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dscanf.html#doc_002dscanf">scanf</a>, <a href="doc_002dsprintf.html#doc_002dsprintf">sprintf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfscanf.html#XREFfscanf">fscanf</a>, <a href="XREFscanf.html#XREFscanf">scanf</a>, <a href="XREFsprintf.html#XREFsprintf">sprintf</a>.
+
+        </blockquote></div>
 
    <p>Calls to <code>scanf</code> are superficially similar to calls to
 <code>printf</code> in that arbitrary arguments are read under the control of
@@ -127,12 +130,12 @@ file, and there is no concept of precision for the numeric input
 conversions as there is for the corresponding output conversions. 
 Ordinarily, non-whitespace characters in the template are expected to
 match characters in the input stream exactly. 
-<a name="index-conversion-specifications-_0028_0040code_007bscanf_007d_0029-1051"></a>
+<a name="index-conversion-specifications-_0028_0040code_007bscanf_007d_0029-1069"></a>
 When a <dfn>matching failure</dfn> occurs, <code>scanf</code> returns immediately,
 leaving the first non-matching character as the next character to be
 read from the stream, and <code>scanf</code> returns all the items that were
 successfully converted. 
-<a name="index-matching-failure_002c-in-_0040code_007bscanf_007d-1052"></a>
+<a name="index-matching-failure_002c-in-_0040code_007bscanf_007d-1070"></a>
 The formatted input functions are not used as frequently as the
 formatted output functions.  Partly, this is because it takes some care
 to use them properly.  Another reason is that it is difficult to recover

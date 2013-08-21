@@ -36,19 +36,20 @@
 ## Convert an image in red-green-blue (RGB) color space to an indexed image.
 ##
 ## The input image @var{rgb} must be an N-dimensional RGB image
-## (MxNxO...x3 array) where M,N,O... are the image dimensions, and the
+## (@nospell{MxNxO}@dots{}x3 array) where M,N,O@dots{} are the image
+## dimensions, and the
 ## final dimension contains the values in the red, green and blue
-## channels. Alternatively, the red, green and blue color channels can
+## channels.  Alternatively, the red, green and blue color channels can
 ## be input as separate arrays @var{R}, @var{G} and  @var{B}.
 ##
 ## The input @var{map} defines the colormap to be used.  Alternatively,
 ## @var{n} or @var{tol} may be used to define the maximum number of
 ## colors to use in an automatically generated colormap.  @var{n} is
 ## related to @var{tol} by:  @var{n} = (floor (1/@var{tol}) + 1)^3;
-## @var{tol} must be >0 and <=1.
+## @var{tol} must be >0 and @leq{}1.
 ##
 ## @var{dither_option} is a string which enables or disables dithering:
-## 'dither' (default) or 'nodither'.
+## @qcode{"dither"} (default) or @qcode{"nodither"}.
 ##
 ## @seealso{ind2rgb, rgb2hsv, rgb2ntsc}
 ## @end deftypefn
@@ -65,7 +66,7 @@ function [x, map] = rgb2ind (varargin)
   else
 
     ## Test for dither_option, by checking if the final input is a string
-    if ischar (varargin{end})
+    if (ischar (varargin{end}))
       dither_option = varargin{end};
       dither_check  = true;
     else
@@ -142,14 +143,14 @@ function [x, map] = rgb2ind (varargin)
   
     ## If image is an ND array, convert it to a tiled 2D image
     ## before processing it with Graphicsmagick
-    if numel (sz)>3
+    if (numel (sz) > 3)
      rgb = reshape (rgb, [prod(sz(1:end-2)), sz(end-1), 3]);
     end
 
     ## Prepare the Graphicsmagick dithering option
-    if strcmp (dither_option, "nodither")
+    if (strcmp (dither_option, "nodither"))
       ditherstr = "+dither";
-    elseif strcmp (dither_option, "dither")
+    elseif (strcmp (dither_option, "dither"))
       ditherstr = "-dither";
     endif
       
@@ -199,6 +200,5 @@ endfunction
 
 %% Test input validation
 %!error rgb2ind ()
-%!error rgb2ind (1,2)
-%!error rgb2ind (1,2,3,4)
+%!error rgb2ind (1,2,3,4,5,6,7)
 

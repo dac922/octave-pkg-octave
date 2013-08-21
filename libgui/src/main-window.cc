@@ -77,7 +77,8 @@ main_window::main_window (QWidget *p)
     workspace_window (new workspace_view (this)),
     find_files_dlg (0),
     _octave_main_thread (0),
-    _octave_qt_link (0)
+    _octave_qt_link (0),
+    _clipboard (QApplication::clipboard ())
 {
   // We have to set up all our windows, before we finally launch octave.
   construct ();
@@ -139,7 +140,7 @@ void
 main_window::handle_save_workspace_request (void)
 {
   QString file =
-    QFileDialog::getSaveFileName (this, tr ("Save Workspace As"), ".");
+    QFileDialog::getSaveFileName (this, tr ("Save Workspace As"), ".", 0, 0, QFileDialog::DontUseNativeDialog);
 
   if (! file.isEmpty ())
     octave_link::post_event (this, &main_window::save_workspace_callback,
@@ -152,7 +153,7 @@ main_window::handle_load_workspace_request (const QString& file_arg)
   QString file = file_arg;
 
   if (file.isEmpty ())
-    file = QFileDialog::getOpenFileName (this, tr ("Load Workspace"), ".");
+    file = QFileDialog::getOpenFileName (this, tr ("Load Workspace"), ".", 0, 0, QFileDialog::DontUseNativeDialog);
 
   if (! file.isEmpty ())
     octave_link::post_event (this, &main_window::load_workspace_callback,
@@ -293,12 +294,11 @@ main_window::notice_settings (const QSettings *settings)
     }
 
   QString icon;
-  foreach (QObject *obj, children ())
+  foreach (octave_dock_widget *widget, dock_widget_list ())
     {
-      QString name = obj->objectName ();
-      if (obj->inherits ("QDockWidget") && ! name.isEmpty ())
-        { // if children is a dock widget with a name
-          QDockWidget *widget = qobject_cast<QDockWidget *> (obj);
+      QString name = widget->objectName ();
+      if (! name.isEmpty ())
+        { // if children has a name
           icon = widget_icon_data[icon_set_found].path; // prefix or octave-logo
           if (widget_icon_data[icon_set_found].name != "NONE")
             icon = icon + name + ".png"; // add widget name and ext.
@@ -355,7 +355,7 @@ void
 main_window::browse_for_directory (void)
 {
   QString dir
-    = QFileDialog::getExistingDirectory (this, tr ("Set working directory"));
+    = QFileDialog::getExistingDirectory (this, tr ("Set working directory"), 0, QFileDialog::DontUseNativeDialog);
 
   set_current_working_directory (dir);
 
@@ -543,36 +543,48 @@ main_window::read_settings (void)
 void
 main_window::set_window_layout (QSettings *settings)
 {
-  restoreState (settings->value ("MainWindow/windowState").toByteArray ());
-
-  settings->beginGroup ("DockWidgets");
+  QList<octave_dock_widget *> float_and_visible;
 
   // Restore the geometry of all dock-widgets
-  foreach (QObject *obj, children ())
+  foreach (octave_dock_widget *widget, dock_widget_list ())
     {
-      QString name = obj->objectName ();
+      QString name = widget->objectName ();
 
-      if (obj->inherits ("QDockWidget") && ! name.isEmpty ())
+      if (! name.isEmpty ())
         {
-          QDockWidget *widget = qobject_cast<QDockWidget *> (obj);
-          QVariant val = settings->value (name);
+          // If floating, make window from widget.
+          bool floating = settings->value
+              ("DockWidgets/" + name + "Floating", false).toBool ();
+          if (floating)
+            widget->make_window ();
+          else if (! widget->parent ())  // should not be floating but is
+            widget->make_widget (false); // no docking, just reparent
 
+          // restore geometry
+          QVariant val = settings->value (name);
           widget->restoreGeometry (val.toByteArray ());
 
-          // If floating, make window from widget.
-          bool floating = settings->value (name+"Floating", false).toBool ();
-          if (floating)
-            widget->setWindowFlags (Qt::Window);
-
-          // make widget visible if desired (setWindowFlags hides widget).
-          bool visible = settings->value (name+"Visible", true).toBool ();
-          widget->setVisible (visible);
+          // make widget visible if desired
+          bool visible = settings->value
+              ("DockWidgets/" + name + "Visible", true).toBool ();
+          if (floating && visible)              // floating and visible
+            float_and_visible.append (widget);  // not show before main win
+          else
+            {
+              widget->make_widget ();
+              widget->setVisible (visible);       // not floating -> show
+            }
         }
     }
 
-  settings->endGroup ();
-
+  restoreState (settings->value ("MainWindow/windowState").toByteArray ());
   restoreGeometry (settings->value ("MainWindow/geometry").toByteArray ());
+  show ();  // main window is ready and can be shown (as first window)
+
+  // show floating widgets after main win to ensure "Octave" in central menu
+  foreach (octave_dock_widget *widget, float_and_visible)
+     widget->setVisible (true);
+
 }
 
 void
@@ -586,24 +598,6 @@ main_window::write_settings (void)
     }
 
   settings->setValue ("MainWindow/geometry", saveGeometry ());
-  settings->beginGroup ("DockWidgets");
-  // saving the geometry of all widgets
-  foreach (QObject *obj, children())
-    {
-      QString name = obj->objectName ();
-      if (obj->inherits ("QDockWidget") && ! name.isEmpty ())
-        {
-          QDockWidget *widget = qobject_cast<QDockWidget *> (obj);
-          settings->setValue (name, widget->saveGeometry ());
-          bool floating = widget->isFloating ();
-          bool visible = widget->isVisible ();
-          settings->setValue (name+"Floating", floating);  // store floating state
-          settings->setValue (name+"Visible", visible);    // store visibility
-          if (floating)
-            widget->setWindowFlags (Qt::Widget); // if floating, recover the widget state such that the widget's
-        }                                       // state is correctly saved by the saveSate () below
-    }
-  settings->endGroup();
   settings->setValue ("MainWindow/windowState", saveState ());
   // write the list of recent used directories
   QStringList curr_dirs;
@@ -634,13 +628,34 @@ main_window::connect_visibility_changed (void)
 void
 main_window::copyClipboard (void)
 {
-  emit copyClipboard_signal ();
+  if (_current_directory_combo_box->hasFocus ())
+    {
+      QLineEdit * edit = _current_directory_combo_box->lineEdit ();
+      if (edit && edit->hasSelectedText ())
+        {
+          QClipboard *clipboard = QApplication::clipboard ();
+          clipboard->setText (edit->selectedText ()); 
+        }
+    } 
+  else
+    emit copyClipboard_signal ();
 }
 
 void
 main_window::pasteClipboard (void)
 {
-  emit pasteClipboard_signal ();
+  if (_current_directory_combo_box->hasFocus ())
+    {
+      QLineEdit * edit = _current_directory_combo_box->lineEdit ();
+      QClipboard *clipboard = QApplication::clipboard ();
+      QString str =  clipboard->text ();
+      if (edit && str.length () > 0)
+        {
+          edit->insert (str); 
+        }
+    } 
+  else
+    emit pasteClipboard_signal ();
 }
 
 // Connect the signals emitted when the Octave thread wants to create
@@ -796,6 +811,12 @@ main_window::construct (void)
   connect (file_browser_window, SIGNAL (load_file_signal (const QString&)),
            this, SLOT (handle_load_workspace_request (const QString&)));
 
+  connect (file_browser_window, SIGNAL (find_files_signal (const QString&)),
+           this, SLOT (find_files (const QString&)));
+
+  connect (this, SIGNAL (set_widget_shortcuts_signal (bool)),
+           editor_window, SLOT (set_shortcuts (bool)));
+
   connect_uiwidget_links ();
 
   setWindowTitle ("Octave");
@@ -832,6 +853,7 @@ main_window::construct (void)
 
   construct_octave_qt_link ();
 
+#ifdef HAVE_QSCINTILLA
   connect (this,
            SIGNAL (insert_debugger_pointer_signal (const QString&, int)),
            editor_window,
@@ -846,11 +868,15 @@ main_window::construct (void)
            SIGNAL (update_breakpoint_marker_signal (bool, const QString&, int)),
            editor_window,
            SLOT (handle_update_breakpoint_marker_request (bool, const QString&, int)));
+#endif
 
   QDir curr_dir;
   set_current_working_directory (curr_dir.absolutePath ());
 
   octave_link::post_event (this, &main_window::resize_command_window_callback);
+
+  set_global_shortcuts (true);
+
 }
 
 void
@@ -903,9 +929,15 @@ main_window::construct_octave_qt_link (void)
            this, SLOT (handle_exit_debugger ()));
 
   connect (_octave_qt_link,
+           SIGNAL (show_preferences_signal (void)),
+           this, SLOT (process_settings_dialog_request ()));
+
+#ifdef HAVE_QSCINTILLA
+  connect (_octave_qt_link,
            SIGNAL (edit_file_signal (const QString&)),
            editor_window,
            SLOT (handle_edit_file_request (const QString&)));
+#endif
 
   connect (_octave_qt_link,
            SIGNAL (insert_debugger_pointer_signal (const QString&, int)),
@@ -921,6 +953,10 @@ main_window::construct_octave_qt_link (void)
            SIGNAL (update_breakpoint_marker_signal (bool, const QString&, int)),
            this,
            SLOT (handle_update_breakpoint_marker_request (bool, const QString&, int)));
+
+  connect (_octave_qt_link,
+           SIGNAL (show_doc_signal (const QString &)),
+           this, SLOT (handle_show_doc (const QString &)));
 
   connect (_workspace_model,
            SIGNAL (rename_variable (const QString&, const QString&)),
@@ -959,6 +995,8 @@ main_window::construct_file_menu (QMenuBar *p)
   _open_action
     = file_menu->addAction (QIcon (":/actions/icons/fileopen.png"),
                             tr ("Open..."));
+  _open_action->setShortcutContext (Qt::ApplicationShortcut);
+
 
 #ifdef HAVE_QSCINTILLA
   file_menu->addMenu (editor_window->get_mru_menu ());
@@ -980,14 +1018,16 @@ main_window::construct_file_menu (QMenuBar *p)
 
   file_menu->addSeparator ();
 
-  QAction *exit_action = file_menu->addAction (tr ("Exit"));
-  exit_action->setShortcut (QKeySequence::Quit);
+  _exit_action = file_menu->addAction (tr ("Exit"));
+  _exit_action->setShortcutContext (Qt::ApplicationShortcut);
 
   connect (preferences_action, SIGNAL (triggered ()),
            this, SLOT (process_settings_dialog_request ()));
 
+#ifdef HAVE_QSCINTILLA
   connect (_open_action, SIGNAL (triggered ()),
            editor_window, SLOT (request_open_file ()));
+#endif
 
   connect (load_workspace_action, SIGNAL (triggered ()),
            this, SLOT (handle_load_workspace_request ()));
@@ -995,7 +1035,7 @@ main_window::construct_file_menu (QMenuBar *p)
   connect (save_workspace_action, SIGNAL (triggered ()),
            this, SLOT (handle_save_workspace_request ()));
 
-  connect (exit_action, SIGNAL (triggered ()),
+  connect (_exit_action, SIGNAL (triggered ()),
            this, SLOT (close ()));
 }
 
@@ -1007,6 +1047,7 @@ main_window::construct_new_menu (QMenu *p)
   _new_script_action
     = new_menu->addAction (QIcon (":/actions/icons/filenew.png"),
                            tr ("Script"));
+  _new_script_action->setShortcutContext (Qt::ApplicationShortcut);
 
   QAction *new_function_action = new_menu->addAction (tr ("Function"));
   new_function_action->setEnabled (true);
@@ -1014,11 +1055,13 @@ main_window::construct_new_menu (QMenu *p)
   QAction *new_figure_action = new_menu->addAction (tr ("Figure"));
   new_figure_action->setEnabled (true);
 
+#ifdef HAVE_QSCINTILLA
   connect (_new_script_action, SIGNAL (triggered ()),
            editor_window, SLOT (request_new_script ()));
 
   connect (new_function_action, SIGNAL (triggered ()),
            editor_window, SLOT (request_new_function ()));
+#endif
 
   connect (new_figure_action, SIGNAL (triggered ()),
            this, SLOT (handle_new_figure_request ()));
@@ -1040,18 +1083,21 @@ main_window::construct_edit_menu (QMenuBar *p)
   _copy_action
     = edit_menu->addAction (QIcon (":/actions/icons/editcopy.png"),
                             tr ("Copy"), this, SLOT (copyClipboard ()));
-  _copy_action->setShortcut (ctrl_shift + Qt::Key_C);
+  _copy_action->setShortcut (QKeySequence::Copy);
+
 
   _paste_action
     = edit_menu->addAction (QIcon (":/actions/icons/editpaste.png"),
                             tr ("Paste"), this, SLOT (pasteClipboard ()));
-  _paste_action->setShortcut (ctrl_shift + Qt::Key_V);
+  _paste_action->setShortcut (QKeySequence::Paste);
+
+  _clear_clipboard_action
+    = edit_menu->addAction (tr ("Clear Clipboard"), this,
+                            SLOT (clear_clipboard ()));
 
   edit_menu->addSeparator ();
 
-  QAction *find_files_action
-    = edit_menu->addAction (tr ("Find Files..."));
-  find_files_action->setShortcut (ctrl_shift + Qt::Key_F);
+  _find_files_action = edit_menu->addAction (tr ("Find Files..."));
 
   edit_menu->addSeparator ();
 
@@ -1064,7 +1110,7 @@ main_window::construct_edit_menu (QMenuBar *p)
   QAction *clear_workspace_action
     = edit_menu->addAction (tr ("Clear Workspace"));
 
-  connect (find_files_action, SIGNAL (triggered()),
+  connect (_find_files_action, SIGNAL (triggered()),
            this, SLOT (find_files ()));
 
   connect (clear_command_window_action, SIGNAL (triggered ()),
@@ -1075,6 +1121,10 @@ main_window::construct_edit_menu (QMenuBar *p)
 
   connect (clear_workspace_action, SIGNAL (triggered ()),
            this, SLOT (handle_clear_workspace_request ()));
+
+  connect (_clipboard, SIGNAL (changed (QClipboard::Mode)),
+           this, SLOT (clipboard_has_changed (QClipboard::Mode)));
+  clipboard_has_changed (QClipboard::Clipboard);
 }
 
 QAction *
@@ -1253,8 +1303,10 @@ main_window::construct_window_menu (QMenuBar *p)
   connect (file_browser_action, SIGNAL (triggered ()),
            file_browser_window, SLOT (focus ()));
 
+#ifdef HAVE_QSCINTILLA
   connect (editor_action, SIGNAL (triggered ()),
            editor_window, SLOT (focus ()));
+#endif
 
   connect (documentation_action, SIGNAL (triggered ()),
            doc_browser_window, SLOT (focus ()));
@@ -1558,4 +1610,64 @@ main_window::find_files_finished(int)
 
 }
 
+void
+main_window::set_global_shortcuts (bool set_shortcuts)
+{
+  if (set_shortcuts)
+    {
 
+      _open_action->setShortcut (QKeySequence::Open);
+      _new_script_action->setShortcut (QKeySequence::New);
+
+      _exit_action->setShortcut (QKeySequence::Quit);
+
+      _find_files_action->setShortcut (Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_F);
+
+    }
+  else
+    {
+
+      QKeySequence no_key = QKeySequence ();
+
+      _open_action->setShortcut (no_key);
+      _new_script_action->setShortcut (no_key);
+
+      _exit_action->setShortcut (no_key);
+
+      _find_files_action->setShortcut (no_key);
+
+    }
+
+  emit set_widget_shortcuts_signal (set_shortcuts);
+}
+
+void
+main_window::handle_show_doc (const QString& file)
+{
+  doc_browser_window->setVisible (true);
+  emit show_doc_signal (file);
+}
+
+void
+main_window::clipboard_has_changed (QClipboard::Mode cp_mode)
+{
+  if (cp_mode == QClipboard::Clipboard)
+    {
+      if (_clipboard->text ().isEmpty ())
+        {
+          _paste_action->setEnabled (false);
+          _clear_clipboard_action->setEnabled (false);
+        }
+      else
+        {
+          _paste_action->setEnabled (true);
+          _clear_clipboard_action->setEnabled (true);
+        }
+    }
+}
+
+void
+main_window::clear_clipboard ()
+{
+  _clipboard->clear (QClipboard::Clipboard);
+}

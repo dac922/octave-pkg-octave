@@ -41,11 +41,11 @@ with the same names.  They are able to automatically swap the byte order
 of integer data and convert among the supported floating point formats
 as the data are read.
 
-<!-- fread libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfread"></a>
+<!-- fread libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfread"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>val</var>, <var>count</var>] = <b>fread</b> (<var>fid, size, precision, skip, arch</var>)<var><a name="index-fread-1056"></a></var><br>
+&mdash; Built-in Function: [<var>val</var>, <var>count</var>] = <b>fread</b> (<var>fid, size, precision, skip, arch</var>)<var><a name="index-fread-1074"></a></var><br>
 <blockquote><p>Read binary data of type <var>precision</var> from the specified file ID
 <var>fid</var>.
 
@@ -72,46 +72,46 @@ of <var>nr</var>, the last column is padded with zeros.
 data to read and may be one of
 
           <dl>
-<dt>"schar"<dt>"signed char"<dd>Signed character.
+<dt><code>"schar"</code><dt><code>"signed char"</code><dd>Signed character.
 
-          <br><dt>"uchar"<dt>"unsigned char"<dd>Unsigned character.
+          <br><dt><code>"uchar"</code><dt><code>"unsigned char"</code><dd>Unsigned character.
 
-          <br><dt>"int8"<dt>"integer*1"<dd>
+          <br><dt><code>"int8"</code><dt><code>"integer*1"</code><dd>
 8-bit signed integer.
 
-          <br><dt>"int16"<dt>"integer*2"<dd>16-bit signed integer.
+          <br><dt><code>"int16"</code><dt><code>"integer*2"</code><dd>16-bit signed integer.
 
-          <br><dt>"int32"<dt>"integer*4"<dd>32-bit signed integer.
+          <br><dt><code>"int32"</code><dt><code>"integer*4"</code><dd>32-bit signed integer.
 
-          <br><dt>"int64"<dt>"integer*8"<dd>64-bit signed integer.
+          <br><dt><code>"int64"</code><dt><code>"integer*8"</code><dd>64-bit signed integer.
 
-          <br><dt>"uint8"<dd>8-bit unsigned integer.
+          <br><dt><code>"uint8"</code><dd>8-bit unsigned integer.
 
-          <br><dt>"uint16"<dd>16-bit unsigned integer.
+          <br><dt><code>"uint16"</code><dd>16-bit unsigned integer.
 
-          <br><dt>"uint32"<dd>32-bit unsigned integer.
+          <br><dt><code>"uint32"</code><dd>32-bit unsigned integer.
 
-          <br><dt>"uint64"<dd>64-bit unsigned integer.
+          <br><dt><code>"uint64"</code><dd>64-bit unsigned integer.
 
-          <br><dt>"single"<dt>"float32"<dt>"real*4"<dd>32-bit floating point number.
+          <br><dt><code>"single"</code><dt><code>"float32"</code><dt><code>"real*4"</code><dd>32-bit floating point number.
 
-          <br><dt>"double"<dt>"float64"<dt>"real*8"<dd>64-bit floating point number.
+          <br><dt><code>"double"</code><dt><code>"float64"</code><dt><code>"real*8"</code><dd>64-bit floating point number.
 
-          <br><dt>"char"<dt>"char*1"<dd>Single character.
+          <br><dt><code>"char"</code><dt><code>"char*1"</code><dd>Single character.
 
-          <br><dt>"short"<dd>Short integer (size is platform dependent).
+          <br><dt><code>"short"</code><dd>Short integer (size is platform dependent).
 
-          <br><dt>"int"<dd>Integer (size is platform dependent).
+          <br><dt><code>"int"</code><dd>Integer (size is platform dependent).
 
-          <br><dt>"long"<dd>Long integer (size is platform dependent).
+          <br><dt><code>"long"</code><dd>Long integer (size is platform dependent).
 
-          <br><dt>"ushort"<dt>"unsigned short"<dd>Unsigned short integer (size is platform dependent).
+          <br><dt><code>"ushort"</code><dt><code>"unsigned short"</code><dd>Unsigned short integer (size is platform dependent).
 
-          <br><dt>"uint"<dt>"unsigned int"<dd>Unsigned integer (size is platform dependent).
+          <br><dt><code>"uint"</code><dt><code>"unsigned int"</code><dd>Unsigned integer (size is platform dependent).
 
-          <br><dt>"ulong"<dt>"unsigned long"<dd>Unsigned long integer (size is platform dependent).
+          <br><dt><code>"ulong"</code><dt><code>"unsigned long"</code><dd>Unsigned long integer (size is platform dependent).
 
-          <br><dt>"float"<dd>Single precision floating point number (size is platform dependent). 
+          <br><dt><code>"float"</code><dd>Single precision floating point number (size is platform dependent). 
 </dl>
 
      <p class="noindent">The default precision is <code>"uchar"</code>.
@@ -166,14 +166,15 @@ for the file.  Valid values are
         <p>The data read from the file is returned in <var>val</var>, and the number of
 values read is returned in <code>count</code>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>, <a href="doc_002dfgets.html#doc_002dfgets">fgets</a>, <a href="doc_002dfgetl.html#doc_002dfgetl">fgetl</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfwrite.html#XREFfwrite">fwrite</a>, <a href="XREFfgets.html#XREFfgets">fgets</a>, <a href="XREFfgetl.html#XREFfgetl">fgetl</a>, <a href="XREFfscanf.html#XREFfscanf">fscanf</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- fwrite libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfwrite"></a>
+        </blockquote></div>
+
+<!-- fwrite libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfwrite"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>count</var> = <b>fwrite</b> (<var>fid, data, precision, skip, arch</var>)<var><a name="index-fwrite-1057"></a></var><br>
+&mdash; Built-in Function: <var>count</var> = <b>fwrite</b> (<var>fid, data, precision, skip, arch</var>)<var><a name="index-fwrite-1075"></a></var><br>
 <blockquote><p>Write data in binary form of type <var>precision</var> to the specified file
 ID <var>fid</var>, returning the number of values successfully written to the
 file.
@@ -187,8 +188,9 @@ optional, and are interpreted as described for <code>fread</code>.
         <p>The behavior of <code>fwrite</code> is undefined if the values in <var>data</var>
 are too large to fit in the specified precision.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfputs.html#doc_002dfputs">fputs</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfread.html#XREFfread">fread</a>, <a href="XREFfputs.html#XREFfputs">fputs</a>, <a href="XREFfprintf.html#XREFfprintf">fprintf</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
+
+        </blockquote></div>
 
    </body></html>
 

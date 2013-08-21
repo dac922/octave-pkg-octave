@@ -92,7 +92,7 @@ function [c, hg] = __contour__ (varargin)
     error ("__contour__: z argument must be a matrix");
   endif
   if (length (varargin) == 4 || length (varargin) == 6)
-    vn = varargin {end};
+    vn = varargin{end};
     vnauto = false;
   else
     vnauto = true;
@@ -100,6 +100,7 @@ function [c, hg] = __contour__ (varargin)
   endif
 
   if (isscalar (vn))
+    ## FIXME - the levels should be determined similarly to {x,y,z}ticks
     lvl = linspace (min (z1(!isinf (z1))), max (z1(!isinf (z1))),
                     vn + 2)(1:end-1);
   else
@@ -139,9 +140,8 @@ function [c, hg] = __contour__ (varargin)
 
   addproperty ("fill", hg, "radio", "on|{off}", filled);
 
-  ## The properties zlevel and zlevelmode don't exist in matlab, but
-  ## allow the use of contourgroups with the contour3, meshc and surfc
-  ## functions.
+  ## The properties zlevel and zlevelmode don't exist in matlab, but allow the
+  ## use of contourgroups with the contour3, meshc, and surfc functions.
   if (isnumeric (zlevel))
     addproperty ("zlevelmode", hg, "radio", "{none}|auto|manual", "manual");
     addproperty ("zlevel", hg, "data", zlevel);
@@ -182,8 +182,8 @@ function [c, hg] = __contour__ (varargin)
   addproperty ("linestyle", hg, "linelinestyle", linespec.linestyle);
   addproperty ("linewidth", hg, "linelinewidth", 0.5);
 
-  ## FIXME It would be good to hide this property which is just an undocumented
-  ## alias for linecolor
+  ## FIXME: It would be good to hide this property which is just an
+  ##        undocumented alias for linecolor
   addproperty ("edgecolor", hg, "color", edgecolor, "{flat}|none");
 
   addlistener (hg, "fill", @update_data);
@@ -191,8 +191,8 @@ function [c, hg] = __contour__ (varargin)
   addlistener (hg, "zlevelmode", @update_zlevel);
   addlistener (hg, "zlevel", @update_zlevel);
 
-  addlistener (hg, "levellist", @update_data);
-  addlistener (hg, "levelstep", @update_data);
+  addlistener (hg, "levellist", {@update_data, "levellist"});
+  addlistener (hg, "levelstep", {@update_data, "levelstep"});
   addlistener (hg, "levellistmode", @update_data);
   addlistener (hg, "levelstepmode", @update_data);
 
@@ -209,13 +209,18 @@ function [c, hg] = __contour__ (varargin)
 
   addlistener (hg, "edgecolor", @update_edgecolor);
 
+  ## Set axis before adding patches so that each new patch does not trigger
+  ## new axis calculation.  No need if mode is already "manual".
+  if (all (strcmp (get (gca (), {"xlimmode", "ylimmode"}), "auto")))
+    axis ([min(x1(:)) max(x1(:)) min(y1(:)) max(y1(:))]);
+  endif
+
   add_patch_children (hg);
 
-  axis ("tight");
-
-  if (!isempty (opts))
+  if (! isempty (opts))
     set (hg, opts{:});
   endif
+
 endfunction
 
 function add_patch_children (hg)
@@ -391,6 +396,7 @@ function add_patch_children (hg)
 endfunction
 
 function update_zlevel (h, d)
+
   z = get (h, "zlevel");
   zmode = get (h, "zlevelmode");
   kids = get (h, "children");
@@ -435,7 +441,7 @@ function update_line (h, d)
        "linewidth", get (h, "linewidth"), "linestyle", get (h, "linestyle"));
 endfunction
 
-function update_data (h, d)
+function update_data (h, d, prop = "")
   persistent recursive = false;
 
   if (!recursive)
@@ -443,11 +449,28 @@ function update_data (h, d)
 
     delete (get (h, "children"));
 
-    if (strcmpi (get (h, "levellistmode"), "manual"))
+    switch (prop)
+      case "levellist"
+        set (h, "levellistmode", "manual")
+      case "levelstep"
+        set (h, "levelstepmode", "manual")
+    endswitch
+
+    if (strcmpi (get (h, "levellistmode"), "manual")
+        && ! strcmp (prop, "levelstep"))
       lvl = get (h, "levellist");
     elseif (strcmpi (get (h, "levelstepmode"), "manual"))
       z = get (h, "zdata");
-      lvl = ceil ((max(z(:)) - min (z(:)) ./ get (h, "levelstep")));
+      lvs = get (h, "levelstep");
+      lvl(1) = ceil (min (z(:)) / lvs) * lvs;
+      lvl(2) = floor (max (z(:)) / lvs) * lvs;
+      if (lvl(1) >= lvl(2))
+        lvl = median (z(:));
+      else
+        lvl = lvl(1) : lvs : lvl(2);
+      endif
+      set (h, "levellist", lvl);
+      set (h, "levellistmode", "auto");
     else
       lvl = 10;
     endif
@@ -488,9 +511,9 @@ function update_data (h, d)
 
     add_patch_children (h);
     update_text (h, d);
+    recursive = false;
   endif
 
-  recursive = false;
 endfunction
 
 function update_text (h, d)
@@ -536,7 +559,7 @@ function update_text (h, d)
 endfunction
 
 function lvl_eps = get_lvl_eps (lev)
-  ## FIXME -- is this the right thing to do for this tolerance?  Should
+  ## FIXME: is this the right thing to do for this tolerance?  Should
   ## it be an absolute or relative tolerance, or switch from one to the
   ## other depending on the value of lev?
   if (isscalar (lev))

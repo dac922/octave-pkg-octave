@@ -21,44 +21,53 @@
 ## @deftypefnx {Function File} {} semilogx (@var{x}, @var{y})
 ## @deftypefnx {Function File} {} semilogx (@var{x}, @var{y}, @var{property}, @var{value}, @dots{})
 ## @deftypefnx {Function File} {} semilogx (@var{x}, @var{y}, @var{fmt})
-## @deftypefnx {Function File} {} semilogx (@var{h}, @dots{})
+## @deftypefnx {Function File} {} semilogx (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} semilogx (@dots{})
-## Produce a two-dimensional plot using a logarithmic scale for the @var{x}
-## axis.  See the documentation of @code{plot} for a description of the
+## Produce a 2-D plot using a logarithmic scale for the x-axis.
+##
+## See the documentation of @code{plot} for a description of the
 ## arguments that @code{semilogx} will accept.
 ## 
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
 ## The optional return value @var{h} is a graphics handle to the created plot.
 ## @seealso{plot, semilogy, loglog}
 ## @end deftypefn
 
 ## Author: jwe
 
-function retval = semilogx (varargin)
+function h = semilogx (varargin)
 
-  [h, varargin, nargs] = __plt_get_axis_arg__ ("semilogx", varargin{:});
+  [hax, varargin, nargs] = __plt_get_axis_arg__ ("semilogx", varargin{:});
 
   if (nargs < 1)
     print_usage ();
   endif
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
+    hax = newplot (hax);
 
-    set (h, "xscale", "log");
-    if (any( strcmp (get (gca, "nextplot"), {"new", "replace"})))
-      set (h, "xminortick", "on");
+    set (hax, "xscale", "log");
+    if (! ishold (hax))
+      set (hax, "xminortick", "on");
     endif
 
-    tmp = __plt__ ("semilogx", h, varargin{:});
+    htmp = __plt__ ("semilogx", hax, varargin{:});
 
-    if (nargout > 0)
-      retval = tmp;
-    endif
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
+  if (nargout > 0)
+    h = htmp;
+  endif
 
 endfunction
 
@@ -68,6 +77,7 @@ endfunction
 %! x = 1:0.01:10;
 %! y = (x .* (1 + rand (size (x)))) .^ 2;
 %! semilogx (y, x);
+%! title ({'semilogx() plot', 'X-axis is logarithmic'});
 
 %!demo
 %! clf;

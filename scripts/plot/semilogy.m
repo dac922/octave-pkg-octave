@@ -23,9 +23,13 @@
 ## @deftypefnx {Function File} {} semilogy (@var{x}, @var{y}, @var{fmt})
 ## @deftypefnx {Function File} {} semilogy (@var{h}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} semilogy (@dots{})
-## Produce a two-dimensional plot using a logarithmic scale for the @var{y}
-## axis.  See the documentation of @code{plot} for a description of the
+## Produce a 2-D plot using a logarithmic scale for the y-axis.
+##
+## See the documentation of @code{plot} for a description of the
 ## arguments that @code{semilogy} will accept.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
 ## The optional return value @var{h} is a graphics handle to the created plot.
 ## @seealso{plot, semilogx, loglog}
@@ -33,33 +37,37 @@
 
 ## Author: jwe
 
-function retval = semilogy (varargin)
+function h = semilogy (varargin)
 
-  [h, varargin, nargs] = __plt_get_axis_arg__ ("semilogy", varargin{:});
+  [hax, varargin, nargs] = __plt_get_axis_arg__ ("semilogy", varargin{:});
 
   if (nargs < 1)
     print_usage ();
   endif
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
+    hax = newplot (hax);
 
-    set (h, "yscale", "log");
-    if (any (strcmp (get (gca, "nextplot"), {"new", "replace"})))
-      set (h, "yminortick", "on");
+    set (hax, "yscale", "log");
+    if (! ishold (hax))
+      set (hax, "yminortick", "on");
     endif
 
-    tmp = __plt__ ("semilogy", h, varargin{:});
-
-    if (nargout > 0)
-      retval = tmp;
-    endif
+    htmp = __plt__ ("semilogy", hax, varargin{:});
 
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
+
+  if (nargout > 0)
+    h = htmp;
+  endif
 
 endfunction
 
@@ -69,6 +77,7 @@ endfunction
 %! x = 1:0.01:10;
 %! y = (x .* (1 + rand (size (x)))) .^ 2;
 %! semilogy (x, y);
+%! title ({'semilogx() plot', 'Y-axis is logarithmic'});
 
 %!demo
 %! clf;
@@ -76,12 +85,12 @@ endfunction
 %! y = logspace (-5, 1, 10);
 %!
 %! subplot (2,1,1);
-%! semilogy (x, y);
-%! ylabel ('semilogy (x, y)');
+%!  semilogy (x, y);
+%!  ylabel ('semilogy (x, y)');
 %!
 %! subplot (2,1,2);
-%! semilogy (x, -y);
-%! ylabel ('semilogy (x, -y)');
+%!  semilogy (x, -y);
+%!  ylabel ('semilogy (x, -y)');
 
 %!demo
 %! clf;
@@ -89,14 +98,14 @@ endfunction
 %! y = logspace (-5, 1, 10);
 %!
 %! subplot (2,1,1);
-%! semilogy (x, y);
-%! set (gca, 'ydir', 'reverse', 'activepositionproperty', 'outerposition');
-%! ylabel ({'semilogy (x, y)', 'ydir = reversed'});
+%!  semilogy (x, y);
+%!  set (gca, 'ydir', 'reverse', 'activepositionproperty', 'outerposition');
+%!  ylabel ({'semilogy (x, y)', 'ydir = reversed'});
 %!
 %! subplot (2,1,2);
-%! semilogy (x, -y);
-%! set (gca, 'ydir', 'reverse', 'activepositionproperty', 'outerposition');
-%! ylabel ({'semilogy (x, -y)', 'ydir = reversed'});
+%!  semilogy (x, -y);
+%!  set (gca, 'ydir', 'reverse', 'activepositionproperty', 'outerposition');
+%!  ylabel ({'semilogy (x, -y)', 'ydir = reversed'});
 
 %!test
 %! hf = figure ("visible", "off");

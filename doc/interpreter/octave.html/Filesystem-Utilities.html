@@ -39,14 +39,14 @@ deleting files; for creating, reading, and deleting directories; for retrieving
 status information on files; and for manipulating file and path names.
 
 <!-- movefile scripts/miscellaneous/movefile.m -->
-   <p><a name="doc_002dmovefile"></a>
+   <p><a name="XREFmovefile"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>movefile</b> (<var>f1, f2</var>)<var><a name="index-movefile-3423"></a></var><br>
-&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>movefile</b> (<var>f1, f2, 'f'</var>)<var><a name="index-movefile-3424"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>movefile</b> (<var>f1, f2</var>)<var><a name="index-movefile-3611"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>movefile</b> (<var>f1, f2, 'f'</var>)<var><a name="index-movefile-3612"></a></var><br>
 <blockquote><p>Move the file <var>f1</var> to the new name <var>f2</var>.  The name <var>f1</var>
 may contain globbing patterns.  If <var>f1</var> expands to multiple file
-names, <var>f2</var> must be a directory.  If the force flag 'f' is given
+names, <var>f2</var> must be a directory.  If the force flag <code>'f'</code> is given
 then any existing files will be overwritten without prompting.
 
         <p>If successful, <var>status</var> is 1, with <var>msg</var> and <var>msgid</var> empty
@@ -54,47 +54,51 @@ character strings.  Otherwise, <var>status</var> is 0, <var>msg</var> contains a
 system-dependent error message, and <var>msgid</var> contains a unique
 message identifier.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drename.html#doc_002drename">rename</a>, <a href="doc_002dcopyfile.html#doc_002dcopyfile">copyfile</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrename.html#XREFrename">rename</a>, <a href="XREFcopyfile.html#XREFcopyfile">copyfile</a>.
 
-<!-- rename libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002drename"></a>
+        </blockquote></div>
+
+<!-- rename libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFrename"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>rename</b> (<var>old, new</var>)<var><a name="index-rename-3425"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>rename</b> (<var>old, new</var>)<var><a name="index-rename-3613"></a></var><br>
 <blockquote><p>Change the name of file <var>old</var> to <var>new</var>.
 
         <p>If successful, <var>err</var> is 0 and <var>msg</var> is an empty string. 
 Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dls.html#doc_002dls">ls</a>, <a href="doc_002ddir.html#doc_002ddir">dir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFls.html#XREFls">ls</a>, <a href="XREFdir.html#XREFdir">dir</a>.
+
+        </blockquote></div>
 
 <!-- copyfile scripts/miscellaneous/copyfile.m -->
-   <p><a name="doc_002dcopyfile"></a>
+   <p><a name="XREFcopyfile"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>copyfile</b> (<var>f1, f2</var>)<var><a name="index-copyfile-3426"></a></var><br>
-&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>copyfile</b> (<var>f1, f2, 'f'</var>)<var><a name="index-copyfile-3427"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>copyfile</b> (<var>f1, f2</var>)<var><a name="index-copyfile-3614"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>copyfile</b> (<var>f1, f2, 'f'</var>)<var><a name="index-copyfile-3615"></a></var><br>
 <blockquote><p>Copy the file <var>f1</var> to the new name <var>f2</var>.  The name <var>f1</var>
 may contain globbing patterns.  If <var>f1</var> expands to multiple file
-names, <var>f2</var> must be a directory.  If the force flag 'f' is given then
-existing destination files will be overwritten without prompting.
+names, <var>f2</var> must be a directory.  If the force flag <code>'f'</code> is
+given then existing destination files will be overwritten without
+prompting.
 
         <p>If successful, <var>status</var> is 1, with <var>msg</var> and <var>msgid</var> empty
 character strings.  Otherwise, <var>status</var> is 0, <var>msg</var> contains a
 system-dependent error message, and <var>msgid</var> contains a unique
 message identifier.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmovefile.html#doc_002dmovefile">movefile</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmovefile.html#XREFmovefile">movefile</a>.
+
+        </blockquote></div>
 
 <!-- unlink libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dunlink"></a>
+   <p><a name="XREFunlink"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>unlink</b> (<var>file</var>)<var><a name="index-unlink-3428"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>unlink</b> (<var>file</var>)<var><a name="index-unlink-3616"></a></var><br>
 <blockquote><p>Delete the file named <var>file</var>.
 
         <p>If successful, <var>err</var> is 0 and <var>msg</var> is an empty string. 
@@ -102,39 +106,41 @@ Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message. 
 </p></blockquote></div>
 
-<!-- link libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dlink"></a>
+<!-- link libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFlink"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>link</b> (<var>old, new</var>)<var><a name="index-link-3429"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>link</b> (<var>old, new</var>)<var><a name="index-link-3617"></a></var><br>
 <blockquote><p>Create a new link (also known as a hard link) to an existing file.
 
         <p>If successful, <var>err</var> is 0 and <var>msg</var> is an empty string. 
 Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsymlink.html#doc_002dsymlink">symlink</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsymlink.html#XREFsymlink">symlink</a>.
 
-<!-- symlink libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dsymlink"></a>
+        </blockquote></div>
+
+<!-- symlink libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFsymlink"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>symlink</b> (<var>old, new</var>)<var><a name="index-symlink-3430"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>symlink</b> (<var>old, new</var>)<var><a name="index-symlink-3618"></a></var><br>
 <blockquote><p>Create a symbolic link <var>new</var> which contains the string <var>old</var>.
 
         <p>If successful, <var>err</var> is 0 and <var>msg</var> is an empty string. 
 Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlink.html#doc_002dlink">link</a>, <a href="doc_002dreadlink.html#doc_002dreadlink">readlink</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlink.html#XREFlink">link</a>, <a href="XREFreadlink.html#XREFreadlink">readlink</a>.
 
-<!-- readlink libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dreadlink"></a>
+        </blockquote></div>
+
+<!-- readlink libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFreadlink"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>result</var>, <var>err</var>, <var>msg</var>] = <b>readlink</b> (<var>symlink</var>)<var><a name="index-readlink-3431"></a></var><br>
+&mdash; Built-in Function: [<var>result</var>, <var>err</var>, <var>msg</var>] = <b>readlink</b> (<var>symlink</var>)<var><a name="index-readlink-3619"></a></var><br>
 <blockquote><p>Read the value of the symbolic link <var>symlink</var>.
 
         <p>If successful, <var>result</var> contains the contents of the symbolic link
@@ -142,15 +148,16 @@ system-dependent error message.
 Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlink.html#doc_002dlink">link</a>, <a href="doc_002dsymlink.html#doc_002dsymlink">symlink</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlink.html#XREFlink">link</a>, <a href="XREFsymlink.html#XREFsymlink">symlink</a>.
 
-<!-- mkdir libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dmkdir"></a>
+        </blockquote></div>
+
+<!-- mkdir libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFmkdir"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>mkdir</b> (<var>dir</var>)<var><a name="index-mkdir-3432"></a></var><br>
-&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>mkdir</b> (<var>parent, dir</var>)<var><a name="index-mkdir-3433"></a></var><br>
+&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>mkdir</b> (<var>dir</var>)<var><a name="index-mkdir-3620"></a></var><br>
+&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>mkdir</b> (<var>parent, dir</var>)<var><a name="index-mkdir-3621"></a></var><br>
 <blockquote><p>Create a directory named <var>dir</var> in the directory <var>parent</var>.
 
         <p>If successful, <var>status</var> is 1, with <var>msg</var> and <var>msgid</var> empty
@@ -158,15 +165,16 @@ character strings.  Otherwise, <var>status</var> is 0, <var>msg</var> contains a
 system-dependent error message, and <var>msgid</var> contains a unique
 message identifier.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drmdir.html#doc_002drmdir">rmdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrmdir.html#XREFrmdir">rmdir</a>.
 
-<!-- rmdir libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002drmdir"></a>
+        </blockquote></div>
+
+<!-- rmdir libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFrmdir"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>rmdir</b> (<var>dir</var>)<var><a name="index-rmdir-3434"></a></var><br>
-&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>rmdir</b> (<var>dir, "s"</var>)<var><a name="index-rmdir-3435"></a></var><br>
+&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>rmdir</b> (<var>dir</var>)<var><a name="index-rmdir-3622"></a></var><br>
+&mdash; Built-in Function: [<var>status</var>, <var>msg</var>, <var>msgid</var>] = <b>rmdir</b> (<var>dir, "s"</var>)<var><a name="index-rmdir-3623"></a></var><br>
 <blockquote><p>Remove the directory named <var>dir</var>.
 
         <p>If successful, <var>status</var> is 1, with <var>msg</var> and <var>msgid</var> empty
@@ -177,29 +185,30 @@ message identifier.
         <p>If the optional second parameter is supplied with value <code>"s"</code>,
 recursively remove all subdirectories as well.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmkdir.html#doc_002dmkdir">mkdir</a>, <a href="doc_002dconfirm_005frecursive_005frmdir.html#doc_002dconfirm_005frecursive_005frmdir">confirm_recursive_rmdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmkdir.html#XREFmkdir">mkdir</a>, <a href="XREFconfirm_005frecursive_005frmdir.html#XREFconfirm_005frecursive_005frmdir">confirm_recursive_rmdir</a>.
 
-<!-- confirm_recursive_rmdir libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dconfirm_005frecursive_005frmdir"></a>
+        </blockquote></div>
+
+<!-- confirm_recursive_rmdir libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFconfirm_005frecursive_005frmdir"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>confirm_recursive_rmdir</b> ()<var><a name="index-confirm_005frecursive_005frmdir-3436"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>confirm_recursive_rmdir</b> (<var>new_val</var>)<var><a name="index-confirm_005frecursive_005frmdir-3437"></a></var><br>
-&mdash; Built-in Function:  <b>confirm_recursive_rmdir</b> (<var>new_val, "local"</var>)<var><a name="index-confirm_005frecursive_005frmdir-3438"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>confirm_recursive_rmdir</b> ()<var><a name="index-confirm_005frecursive_005frmdir-3624"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>confirm_recursive_rmdir</b> (<var>new_val</var>)<var><a name="index-confirm_005frecursive_005frmdir-3625"></a></var><br>
+&mdash; Built-in Function:  <b>confirm_recursive_rmdir</b> (<var>new_val, "local"</var>)<var><a name="index-confirm_005frecursive_005frmdir-3626"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether Octave
 will ask for confirmation before recursively removing a directory tree.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
 <!-- mkfifo libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dmkfifo"></a>
+   <p><a name="XREFmkfifo"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>mkfifo</b> (<var>name, mode</var>)<var><a name="index-mkfifo-3439"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>mkfifo</b> (<var>name, mode</var>)<var><a name="index-mkfifo-3627"></a></var><br>
 <blockquote><p>Create a <var>fifo</var> special file named <var>name</var> with file mode <var>mode</var>
 
         <p>If successful, <var>err</var> is 0 and <var>msg</var> is an empty string. 
@@ -207,25 +216,25 @@ Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message. 
 </p></blockquote></div>
 
-<!-- umask libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dumask"></a>
+<!-- umask libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFumask"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>umask</b> (<var>mask</var>)<var><a name="index-umask-3440"></a></var><br>
+&mdash; Built-in Function:  <b>umask</b> (<var>mask</var>)<var><a name="index-umask-3628"></a></var><br>
 <blockquote><p>Set the permission mask for file creation.  The parameter <var>mask</var>
 is an integer, interpreted as an octal number.  If successful,
 returns the previous value of the mask (as an integer to be
 interpreted as an octal number); otherwise an error message is printed. 
 </p></blockquote></div>
 
-   <p><a name="doc_002dlstat"></a><!-- stat libinterp/corefcn/syscalls.cc -->
-<a name="doc_002dstat"></a>
+   <p><a name="XREFlstat"></a><!-- stat libinterp/corefcn/syscalls.cc -->
+<a name="XREFstat"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>stat</b> (<var>file</var>)<var><a name="index-stat-3441"></a></var><br>
-&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>stat</b> (<var>fid</var>)<var><a name="index-stat-3442"></a></var><br>
-&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>lstat</b> (<var>file</var>)<var><a name="index-lstat-3443"></a></var><br>
-&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>lstat</b> (<var>fid</var>)<var><a name="index-lstat-3444"></a></var><br>
+&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>stat</b> (<var>file</var>)<var><a name="index-stat-3629"></a></var><br>
+&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>stat</b> (<var>fid</var>)<var><a name="index-stat-3630"></a></var><br>
+&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>lstat</b> (<var>file</var>)<var><a name="index-lstat-3631"></a></var><br>
+&mdash; Built-in Function: [<var>info</var>, <var>err</var>, <var>msg</var>] = <b>lstat</b> (<var>fid</var>)<var><a name="index-lstat-3632"></a></var><br>
 <blockquote><p>Return a structure <var>info</var> containing the following information about
 <var>file</var> or file identifier <var>fid</var>.
 
@@ -235,9 +244,9 @@ interpreted as an octal number); otherwise an error message is printed.
           <br><dt><code>ino</code><dd>File number of the file.
 
           <br><dt><code>mode</code><dd>File mode, as an integer.  Use the functions <code>S_ISREG</code><!-- /@w -->,
-<code>S_ISDIR</code><!-- /@w -->, <code>S_ISCHR</code><!-- /@w -->, <code>S_ISBLK</code><!-- /@w -->, <code>S_ISFIFO</code><!-- /@w -->,
-<code>S_ISLNK</code><!-- /@w -->, or <code>S_ISSOCK</code><!-- /@w --> to extract information from this
-value.
+<code>S_ISDIR</code><!-- /@w -->, <code>S_ISCHR</code><!-- /@w -->, <code>S_ISBLK</code><!-- /@w -->,
+<code>S_ISFIFO</code><!-- /@w -->, <code>S_ISLNK</code><!-- /@w -->, or <code>S_ISSOCK</code><!-- /@w --> to extract
+information from this value.
 
           <br><dt><code>modestr</code><dd>File mode, as a string of ten letters or dashes as would be returned by
 <kbd>ls -l</kbd>.
@@ -301,87 +310,94 @@ if you want information about the symbolic link itself.
         </blockquote></div>
 
 <!-- S_ISBLK libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISBLK"></a>
+   <p><a name="XREFS_005fISBLK"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISBLK</b> (<var>mode</var>)<var><a name="index-S_005fISBLK-3445"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISBLK</b> (<var>mode</var>)<var><a name="index-S_005fISBLK-3633"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a block device.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- S_ISCHR libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISCHR"></a>
+   <p><a name="XREFS_005fISCHR"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISCHR</b> (<var>mode</var>)<var><a name="index-S_005fISCHR-3446"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISCHR</b> (<var>mode</var>)<var><a name="index-S_005fISCHR-3634"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a character device.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- S_ISDIR libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISDIR"></a>
+   <p><a name="XREFS_005fISDIR"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISDIR</b> (<var>mode</var>)<var><a name="index-S_005fISDIR-3447"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISDIR</b> (<var>mode</var>)<var><a name="index-S_005fISDIR-3635"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a directory.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- S_ISFIFO libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISFIFO"></a>
+   <p><a name="XREFS_005fISFIFO"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISFIFO</b> (<var>mode</var>)<var><a name="index-S_005fISFIFO-3448"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISFIFO</b> (<var>mode</var>)<var><a name="index-S_005fISFIFO-3636"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a fifo.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- S_ISLNK libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISLNK"></a>
+   <p><a name="XREFS_005fISLNK"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISLNK</b> (<var>mode</var>)<var><a name="index-S_005fISLNK-3449"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISLNK</b> (<var>mode</var>)<var><a name="index-S_005fISLNK-3637"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a symbolic link.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- S_ISREG libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISREG"></a>
+   <p><a name="XREFS_005fISREG"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISREG</b> (<var>mode</var>)<var><a name="index-S_005fISREG-3450"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISREG</b> (<var>mode</var>)<var><a name="index-S_005fISREG-3638"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a regular file.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- S_ISSOCK libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dS_005fISSOCK"></a>
+   <p><a name="XREFS_005fISSOCK"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>S_ISSOCK</b> (<var>mode</var>)<var><a name="index-S_005fISSOCK-3451"></a></var><br>
+&mdash; Built-in Function:  <b>S_ISSOCK</b> (<var>mode</var>)<var><a name="index-S_005fISSOCK-3639"></a></var><br>
 <blockquote><p>Return true if <var>mode</var> corresponds to a socket.  The value
 of <var>mode</var> is assumed to be returned from a call to <code>stat</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstat.html#doc_002dstat">stat</a>, <a href="doc_002dlstat.html#doc_002dlstat">lstat</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstat.html#XREFstat">stat</a>, <a href="XREFlstat.html#XREFlstat">lstat</a>.
+
+        </blockquote></div>
 
 <!-- fileattrib scripts/miscellaneous/fileattrib.m -->
-   <p><a name="doc_002dfileattrib"></a>
+   <p><a name="XREFfileattrib"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>status</var>, <var>result</var>, <var>msgid</var>] = <b>fileattrib</b> (<var>file</var>)<var><a name="index-fileattrib-3452"></a></var><br>
+&mdash; Function File: [<var>status</var>, <var>result</var>, <var>msgid</var>] = <b>fileattrib</b> (<var>file</var>)<var><a name="index-fileattrib-3640"></a></var><br>
 <blockquote><p>Return information about <var>file</var>.
 
         <p>If successful, <var>status</var> is 1, with <var>result</var> containing a
@@ -417,24 +433,26 @@ directory.
         <p>If <var>file</var> contains globbing characters, return information about
 all the matching files.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dglob.html#doc_002dglob">glob</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFglob.html#XREFglob">glob</a>.
+
+        </blockquote></div>
 
 <!-- isdir scripts/general/isdir.m -->
-   <p><a name="doc_002disdir"></a>
+   <p><a name="XREFisdir"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isdir</b> (<var>f</var>)<var><a name="index-isdir-3453"></a></var><br>
+&mdash; Function File:  <b>isdir</b> (<var>f</var>)<var><a name="index-isdir-3641"></a></var><br>
 <blockquote><p>Return true if <var>f</var> is a directory.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dis_005fabsolute_005ffilename.html#doc_002dis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="doc_002dis_005frooted_005frelative_005ffilename.html#doc_002dis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFis_005fabsolute_005ffilename.html#XREFis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="XREFis_005frooted_005frelative_005ffilename.html#XREFis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>.
 
-<!-- readdir libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dreaddir"></a>
+        </blockquote></div>
+
+<!-- readdir libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFreaddir"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>files</var>, <var>err</var>, <var>msg</var>] = <b>readdir</b> (<var>dir</var>)<var><a name="index-readdir-3454"></a></var><br>
+&mdash; Built-in Function: [<var>files</var>, <var>err</var>, <var>msg</var>] = <b>readdir</b> (<var>dir</var>)<var><a name="index-readdir-3642"></a></var><br>
 <blockquote><p>Return names of the files in the directory <var>dir</var> as a cell array of
 strings.  If an error occurs, return an empty cell array in <var>files</var>.
 
@@ -442,14 +460,15 @@ strings.  If an error occurs, return an empty cell array in <var>files</var>.
 Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
 system-dependent error message.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dls.html#doc_002dls">ls</a>, <a href="doc_002ddir.html#doc_002ddir">dir</a>, <a href="doc_002dglob.html#doc_002dglob">glob</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFls.html#XREFls">ls</a>, <a href="XREFdir.html#XREFdir">dir</a>, <a href="XREFglob.html#XREFglob">glob</a>.
 
-<!-- glob libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dglob"></a>
+        </blockquote></div>
+
+<!-- glob libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFglob"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>glob</b> (<var>pattern</var>)<var><a name="index-glob-3455"></a></var><br>
+&mdash; Built-in Function:  <b>glob</b> (<var>pattern</var>)<var><a name="index-glob-3643"></a></var><br>
 <blockquote><p>Given an array of pattern strings (as a char array or a cell array) in
 <var>pattern</var>, return a cell array of file names that match any of
 them, or an empty cell array if no patterns match.  The pattern strings are
@@ -458,7 +477,8 @@ Within a pattern
 
           <dl>
 <dt><code>*</code><dd>matches any string, including the null string,
-<br><dt><code>?</code><dd>matches any single character, and
+
+          <br><dt><code>?</code><dd>matches any single character, and
 
           <br><dt><code>[...]</code><dd>matches any of the enclosed characters. 
 </dl>
@@ -488,14 +508,15 @@ names.  For example:
                   [2,1] = file2
                 }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dls.html#doc_002dls">ls</a>, <a href="doc_002ddir.html#doc_002ddir">dir</a>, <a href="doc_002dreaddir.html#doc_002dreaddir">readdir</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFls.html#XREFls">ls</a>, <a href="XREFdir.html#XREFdir">dir</a>, <a href="XREFreaddir.html#XREFreaddir">readdir</a>.
 
-<!-- fnmatch libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dfnmatch"></a>
+        </blockquote></div>
+
+<!-- fnmatch libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFfnmatch"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fnmatch</b> (<var>pattern, string</var>)<var><a name="index-fnmatch-3456"></a></var><br>
+&mdash; Built-in Function:  <b>fnmatch</b> (<var>pattern, string</var>)<var><a name="index-fnmatch-3644"></a></var><br>
 <blockquote><p>Return 1 or zero for each element of <var>string</var> that matches any of
 the elements of the string array <var>pattern</var>, using the rules of
 filename pattern matching.  For example:
@@ -505,12 +526,12 @@ filename pattern matching.  For example:
 </pre>
         </blockquote></div>
 
-<!-- file_in_path libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002dfile_005fin_005fpath"></a>
+<!-- file_in_path libinterp/corefcn/utils.cc -->
+   <p><a name="XREFfile_005fin_005fpath"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>file_in_path</b> (<var>path, file</var>)<var><a name="index-file_005fin_005fpath-3457"></a></var><br>
-&mdash; Built-in Function:  <b>file_in_path</b> (<var>path, file, "all"</var>)<var><a name="index-file_005fin_005fpath-3458"></a></var><br>
+&mdash; Built-in Function:  <b>file_in_path</b> (<var>path, file</var>)<var><a name="index-file_005fin_005fpath-3645"></a></var><br>
+&mdash; Built-in Function:  <b>file_in_path</b> (<var>path, file, "all"</var>)<var><a name="index-file_005fin_005fpath-3646"></a></var><br>
 <blockquote><p>Return the absolute name of <var>file</var> if it can be found in
 <var>path</var>.  The value of <var>path</var> should be a colon-separated list of
 directories in the format described for <code>path</code>.  If no file
@@ -527,32 +548,34 @@ the first that matches.
 a cell array containing the list of all files that have the same
 name in the path.  If no files are found, return an empty cell array.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfile_005fin_005floadpath.html#doc_002dfile_005fin_005floadpath">file_in_loadpath</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfile_005fin_005floadpath.html#XREFfile_005fin_005floadpath">file_in_loadpath</a>.
 
-<!-- filesep libinterp/interpfcn/dirfns.cc -->
-   <p><a name="doc_002dfilesep"></a>
+        </blockquote></div>
+
+<!-- filesep libinterp/corefcn/dirfns.cc -->
+   <p><a name="XREFfilesep"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>filesep</b> ()<var><a name="index-filesep-3459"></a></var><br>
-&mdash; Built-in Function:  <b>filesep</b> (<var>"all"</var>)<var><a name="index-filesep-3460"></a></var><br>
+&mdash; Built-in Function:  <b>filesep</b> ()<var><a name="index-filesep-3647"></a></var><br>
+&mdash; Built-in Function:  <b>filesep</b> (<var>"all"</var>)<var><a name="index-filesep-3648"></a></var><br>
 <blockquote><p>Return the system-dependent character used to separate directory names.
 
-        <p>If "all" is given, the function returns all valid file separators in
-the form of a string.  The list of file separators is system-dependent. 
+        <p>If <code>"all"</code> is given, the function returns all valid file separators
+in the form of a string.  The list of file separators is system-dependent. 
 It is &lsquo;<samp><span class="samp">/</span></samp>&rsquo; (forward slash) under UNIX or Mac&nbsp;OS&nbsp;X<!-- /@w -->, &lsquo;<samp><span class="samp">/</span></samp>&rsquo; and
 &lsquo;<samp><span class="samp">\</span></samp>&rsquo; (forward and backward slashes) under Windows.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpathsep.html#doc_002dpathsep">pathsep</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpathsep.html#XREFpathsep">pathsep</a>.
 
-<!-- filemarker libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dfilemarker"></a>
+        </blockquote></div>
+
+<!-- filemarker libinterp/corefcn/input.cc -->
+   <p><a name="XREFfilemarker"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>filemarker</b> ()<var><a name="index-filemarker-3461"></a></var><br>
-&mdash; Built-in Function:  <b>filemarker</b> (<var>new_val</var>)<var><a name="index-filemarker-3462"></a></var><br>
-&mdash; Built-in Function:  <b>filemarker</b> (<var>new_val, "local"</var>)<var><a name="index-filemarker-3463"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>filemarker</b> ()<var><a name="index-filemarker-3649"></a></var><br>
+&mdash; Built-in Function:  <b>filemarker</b> (<var>new_val</var>)<var><a name="index-filemarker-3650"></a></var><br>
+&mdash; Built-in Function:  <b>filemarker</b> (<var>new_val, "local"</var>)<var><a name="index-filemarker-3651"></a></var><br>
 <blockquote><p>Query or set the character used to separate filename from the
 the subfunction names contained within the file.  This can be used in
 a generic manner to interact with subfunctions.  For example,
@@ -568,37 +591,39 @@ For example,
 </pre>
         <p class="noindent">will set a breakpoint at the first line of the subfunction <code>mysubfunc</code>.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
 <!-- fileparts scripts/miscellaneous/fileparts.m -->
-   <p><a name="doc_002dfileparts"></a>
+   <p><a name="XREFfileparts"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>dir</var>, <var>name</var>, <var>ext</var>, <var>ver</var>] = <b>fileparts</b> (<var>filename</var>)<var><a name="index-fileparts-3464"></a></var><br>
+&mdash; Function File: [<var>dir</var>, <var>name</var>, <var>ext</var>, <var>ver</var>] = <b>fileparts</b> (<var>filename</var>)<var><a name="index-fileparts-3652"></a></var><br>
 <blockquote><p>Return the directory, name, extension, and version components of
 <var>filename</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfullfile.html#doc_002dfullfile">fullfile</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfullfile.html#XREFfullfile">fullfile</a>.
+
+        </blockquote></div>
 
 <!-- fullfile scripts/miscellaneous/fullfile.m -->
-   <p><a name="doc_002dfullfile"></a>
+   <p><a name="XREFfullfile"></a>
 
 <div class="defun">
-&mdash; Function File: <var>filename</var> = <b>fullfile</b> (<var>dir1, dir2, <small class="dots">...</small>, file</var>)<var><a name="index-fullfile-3465"></a></var><br>
+&mdash; Function File: <var>filename</var> = <b>fullfile</b> (<var>dir1, dir2, <small class="dots">...</small>, file</var>)<var><a name="index-fullfile-3653"></a></var><br>
 <blockquote><p>Return a complete filename constructed from the given components.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfileparts.html#doc_002dfileparts">fileparts</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfileparts.html#XREFfileparts">fileparts</a>.
 
-<!-- tilde_expand libinterp/interpfcn/sysdep.cc -->
-   <p><a name="doc_002dtilde_005fexpand"></a>
+        </blockquote></div>
+
+<!-- tilde_expand libinterp/corefcn/sysdep.cc -->
+   <p><a name="XREFtilde_005fexpand"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>tilde_expand</b> (<var>string</var>)<var><a name="index-tilde_005fexpand-3466"></a></var><br>
+&mdash; Built-in Function:  <b>tilde_expand</b> (<var>string</var>)<var><a name="index-tilde_005fexpand-3654"></a></var><br>
 <blockquote><p>Perform tilde expansion on <var>string</var>.  If <var>string</var> begins with a
 tilde character, (&lsquo;<samp><span class="samp">~</span></samp>&rsquo;), all of the characters preceding the first
 slash (or all characters, if there is no slash) are treated as a
@@ -615,90 +640,96 @@ home directory of the user running Octave.  For example:
         </blockquote></div>
 
 <!-- canonicalize_file_name libinterp/corefcn/syscalls.cc -->
-   <p><a name="doc_002dcanonicalize_005ffile_005fname"></a>
+   <p><a name="XREFcanonicalize_005ffile_005fname"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>cname</var>, <var>status</var>, <var>msg</var>] = <b>canonicalize_file_name</b> (<var>fname</var>)<var><a name="index-canonicalize_005ffile_005fname-3467"></a></var><br>
+&mdash; Built-in Function: [<var>cname</var>, <var>status</var>, <var>msg</var>] = <b>canonicalize_file_name</b> (<var>fname</var>)<var><a name="index-canonicalize_005ffile_005fname-3655"></a></var><br>
 <blockquote><p>Return the canonical name of file <var>fname</var>.  If the file does not exist
 the empty string ("") is returned.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmake_005fabsolute_005ffilename.html#doc_002dmake_005fabsolute_005ffilename">make_absolute_filename</a>, <a href="doc_002dis_005fabsolute_005ffilename.html#doc_002dis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="doc_002dis_005frooted_005frelative_005ffilename.html#doc_002dis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmake_005fabsolute_005ffilename.html#XREFmake_005fabsolute_005ffilename">make_absolute_filename</a>, <a href="XREFis_005fabsolute_005ffilename.html#XREFis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="XREFis_005frooted_005frelative_005ffilename.html#XREFis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>.
 
-<!-- make_absolute_filename libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002dmake_005fabsolute_005ffilename"></a>
+        </blockquote></div>
+
+<!-- make_absolute_filename libinterp/corefcn/utils.cc -->
+   <p><a name="XREFmake_005fabsolute_005ffilename"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>make_absolute_filename</b> (<var>file</var>)<var><a name="index-make_005fabsolute_005ffilename-3468"></a></var><br>
+&mdash; Built-in Function:  <b>make_absolute_filename</b> (<var>file</var>)<var><a name="index-make_005fabsolute_005ffilename-3656"></a></var><br>
 <blockquote><p>Return the full name of <var>file</var> beginning from the root of the file
 system.  No check is done for the existence of <var>file</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcanonicalize_005ffile_005fname.html#doc_002dcanonicalize_005ffile_005fname">canonicalize_file_name</a>, <a href="doc_002dis_005fabsolute_005ffilename.html#doc_002dis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="doc_002dis_005frooted_005frelative_005ffilename.html#doc_002dis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>, <a href="doc_002disdir.html#doc_002disdir">isdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcanonicalize_005ffile_005fname.html#XREFcanonicalize_005ffile_005fname">canonicalize_file_name</a>, <a href="XREFis_005fabsolute_005ffilename.html#XREFis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="XREFis_005frooted_005frelative_005ffilename.html#XREFis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>, <a href="XREFisdir.html#XREFisdir">isdir</a>.
 
-<!-- is_absolute_filename libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002dis_005fabsolute_005ffilename"></a>
+        </blockquote></div>
+
+<!-- is_absolute_filename libinterp/corefcn/utils.cc -->
+   <p><a name="XREFis_005fabsolute_005ffilename"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>is_absolute_filename</b> (<var>file</var>)<var><a name="index-is_005fabsolute_005ffilename-3469"></a></var><br>
+&mdash; Built-in Function:  <b>is_absolute_filename</b> (<var>file</var>)<var><a name="index-is_005fabsolute_005ffilename-3657"></a></var><br>
 <blockquote><p>Return true if <var>file</var> is an absolute filename.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dis_005frooted_005frelative_005ffilename.html#doc_002dis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>, <a href="doc_002dmake_005fabsolute_005ffilename.html#doc_002dmake_005fabsolute_005ffilename">make_absolute_filename</a>, <a href="doc_002disdir.html#doc_002disdir">isdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFis_005frooted_005frelative_005ffilename.html#XREFis_005frooted_005frelative_005ffilename">is_rooted_relative_filename</a>, <a href="XREFmake_005fabsolute_005ffilename.html#XREFmake_005fabsolute_005ffilename">make_absolute_filename</a>, <a href="XREFisdir.html#XREFisdir">isdir</a>.
 
-<!-- is_rooted_relative_filename libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002dis_005frooted_005frelative_005ffilename"></a>
+        </blockquote></div>
+
+<!-- is_rooted_relative_filename libinterp/corefcn/utils.cc -->
+   <p><a name="XREFis_005frooted_005frelative_005ffilename"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>is_rooted_relative_filename</b> (<var>file</var>)<var><a name="index-is_005frooted_005frelative_005ffilename-3470"></a></var><br>
+&mdash; Built-in Function:  <b>is_rooted_relative_filename</b> (<var>file</var>)<var><a name="index-is_005frooted_005frelative_005ffilename-3658"></a></var><br>
 <blockquote><p>Return true if <var>file</var> is a rooted-relative filename.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dis_005fabsolute_005ffilename.html#doc_002dis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="doc_002dmake_005fabsolute_005ffilename.html#doc_002dmake_005fabsolute_005ffilename">make_absolute_filename</a>, <a href="doc_002disdir.html#doc_002disdir">isdir</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFis_005fabsolute_005ffilename.html#XREFis_005fabsolute_005ffilename">is_absolute_filename</a>, <a href="XREFmake_005fabsolute_005ffilename.html#XREFmake_005fabsolute_005ffilename">make_absolute_filename</a>, <a href="XREFisdir.html#XREFisdir">isdir</a>.
 
-<!-- P_tmpdir libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dP_005ftmpdir"></a>
+        </blockquote></div>
+
+<!-- P_tmpdir libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFP_005ftmpdir"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>P_tmpdir</b> ()<var><a name="index-P_005ftmpdir-3471"></a></var><br>
+&mdash; Built-in Function:  <b>P_tmpdir</b> ()<var><a name="index-P_005ftmpdir-3659"></a></var><br>
 <blockquote><p>Return the default name of the directory for temporary files on
 this system.  The name of this directory is system dependent. 
 </p></blockquote></div>
 
 <!-- tempdir scripts/miscellaneous/tempdir.m -->
-   <p><a name="doc_002dtempdir"></a>
+   <p><a name="XREFtempdir"></a>
 
 <div class="defun">
-&mdash; Function File: <var>dir</var> = <b>tempdir</b> ()<var><a name="index-tempdir-3472"></a></var><br>
+&mdash; Function File: <var>dir</var> = <b>tempdir</b> ()<var><a name="index-tempdir-3660"></a></var><br>
 <blockquote><p>Return the name of the system's directory for temporary files. 
 </p></blockquote></div>
 
 <!-- tempname scripts/miscellaneous/tempname.m -->
-   <p><a name="doc_002dtempname"></a>
+   <p><a name="XREFtempname"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>tempname</b> ()<var><a name="index-tempname-3473"></a></var><br>
-&mdash; Function File:  <b>tempname</b> (<var>dir</var>)<var><a name="index-tempname-3474"></a></var><br>
-&mdash; Function File:  <b>tempname</b> (<var>dir, prefix</var>)<var><a name="index-tempname-3475"></a></var><br>
+&mdash; Function File:  <b>tempname</b> ()<var><a name="index-tempname-3661"></a></var><br>
+&mdash; Function File:  <b>tempname</b> (<var>dir</var>)<var><a name="index-tempname-3662"></a></var><br>
+&mdash; Function File:  <b>tempname</b> (<var>dir, prefix</var>)<var><a name="index-tempname-3663"></a></var><br>
 <blockquote><p>This function is an alias for <code>tmpnam</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtmpnam.html#doc_002dtmpnam">tmpnam</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtmpnam.html#XREFtmpnam">tmpnam</a>.
+
+        </blockquote></div>
 
 <!-- recycle scripts/miscellaneous/recycle.m -->
-   <p><a name="doc_002drecycle"></a>
+   <p><a name="XREFrecycle"></a>
 
 <div class="defun">
-&mdash; Function File: <var>current_state</var> = <b>recycle</b> ()<var><a name="index-recycle-3476"></a></var><br>
-&mdash; Function File: <var>old_state</var> = <b>recycle</b> (<var>new_state</var>)<var><a name="index-recycle-3477"></a></var><br>
+&mdash; Function File: <var>current_state</var> = <b>recycle</b> ()<var><a name="index-recycle-3664"></a></var><br>
+&mdash; Function File: <var>old_state</var> = <b>recycle</b> (<var>new_state</var>)<var><a name="index-recycle-3665"></a></var><br>
 <blockquote><p>Query or set the preference for recycling deleted files.
 
         <p>Recycling files, instead of permanently deleting them, is not currently
 implemented in Octave.  To help avoid accidental data loss an error
 will be raised if an attempt is made to enable file recycling.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddelete.html#doc_002ddelete">delete</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdelete.html#XREFdelete">delete</a>.
+
+        </blockquote></div>
 
    </body></html>
 

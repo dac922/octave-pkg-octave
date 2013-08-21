@@ -24,7 +24,10 @@
 ## @deftypefnx {Function File} {@var{cmap} =} colormap ("list")
 ## @deftypefnx {Function File} {@var{cmap} =} colormap ("register", "@var{name}")
 ## @deftypefnx {Function File} {@var{cmap} =} colormap ("unregister", "@var{name}")
+## @deftypefnx {Command} {} colormap @var{map_name}
 ## Query or set the current colormap.
+##
+## With no input arguments, @code{colormap} returns the current color map.
 ##
 ## @code{colormap (@var{map})} sets the current colormap to @var{map}.  The
 ## colormap should be an @var{n} row by 3 column matrix.  The columns
@@ -34,11 +37,14 @@
 ## @code{colormap ("default")} restores the default colormap (the
 ## @code{jet} map with 64 entries).  The default colormap is returned.
 ##
-## @code{colormap ("list")} returns a cell array with all the available
-## colormaps.  The options `register' and `unregister' will add or remove the
-## colormap @var{name} to it.
+## @code{colormap ("list")} returns a cell array with all of the available
+## colormaps.  The options @qcode{"register"} and @qcode{"unregister"} will
+## add or remove the colormap @var{name} from this list.
 ##
-## With no arguments, @code{colormap} returns the current color map.
+## For convenience, it is also possible to use this function with the
+## command form, where @var{map_name} must be the name of a function
+## that returns a colormap.
+##
 ## @seealso{jet}
 ## @end deftypefn
 
@@ -80,7 +86,7 @@ function cmap = colormap (map, name)
     endif
 
   elseif (nargin == 2)
-    if (! ischar (map) || all (! strcmp (map, {"register", "unregister"})))
+    if (! ischar (map) || ! any (strcmp (map, {"register", "unregister"})))
       print_usage ();
     elseif (! ischar (name))
       error ("colormap: to register/unregister a colormap, NAME must be a string");
@@ -99,4 +105,58 @@ function cmap = colormap (map, name)
 endfunction
 
 
-%% FIXME: Need some demos/tests
+%!demo
+%! ## Create an image for displaying a colormap
+%! image (1:64, linspace (0, 1, 64), repmat ((1:64)', 1, 64));
+%! axis ([1, 64, 0, 1], "ticy", "xy");
+%! ## Show 'jet' colormap
+%! colormap (jet (64));
+%! title "colormap (jet (64))"
+%! disp ("Press a key to continue");
+%! pause ();
+%! ## Show 'colorcube' colormap
+%! colormap (colorcube (64));
+%! title "colormap (colorcube (64))"
+
+%!test
+%! figure ("visible", "off");
+%! cmaptst = [0 1 0; 1 0 1; 1 1 1];
+%! cmap = colormap (cmaptst);
+%! assert (cmap, cmaptst);
+%! cmap = colormap ();
+%! assert (cmap, cmaptst);
+%! cmap = (get (gcf, "colormap"));
+%! assert (cmap, cmaptst);
+%! colormap ("default");
+%! assert (colormap (), jet (64));
+%! colormap ("ocean");
+%! assert (colormap, ocean (64));
+%! close ();  # done with temp. figure
+
+%!test
+%! cmaplst = colormap ("list");
+%! assert (iscell (cmaplst));
+%! colormap ("register", "__mycmap__"); 
+%! cmaplst2 = colormap ("list");
+%! assert (numel (cmaplst2), numel (cmaplst) + 1);
+%! assert (any (strcmp (cmaplst2, "__mycmap__")));
+%! colormap ("unregister", "__mycmap__"); 
+%! cmaplst2 = colormap ("list");
+%! assert (numel (cmaplst2), numel (cmaplst));
+%! assert (! any (strcmp (cmaplst2, "__mycmap__")));
+%! ## Unregister again and verify that nothing has happened
+%! colormap ("unregister", "__mycmap__"); 
+%! cmaplst3 = colormap ("list");
+%! assert (isequal (cmaplst2, cmaplst3));
+
+## Test input validation
+%!error colormap (1,2,3)
+%!error <MAP must be a real-valued N x 3> colormap ({1,2,3})
+%!error <MAP must be a real-valued N x 3> colormap ([1 i 1])
+%!error <MAP must be a real-valued N x 3> colormap (ones(3,3,3))
+%!error <MAP must be a real-valued N x 3> colormap ([1 0 1 0])
+%!error <all MAP values must be in the range> colormap ([-1 0 0])
+%!error <all MAP values must be in the range> colormap ([2 0 0])
+%!error colormap ("invalid", "name")
+%!error <NAME must be a string> colormap ("register", 1)
+

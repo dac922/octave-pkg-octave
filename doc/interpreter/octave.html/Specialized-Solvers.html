@@ -33,12 +33,12 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Lin
 <h3 class="section">18.5 Specialized Solvers</h3>
 
 <!-- bicg scripts/sparse/bicg.m -->
-<p><a name="doc_002dbicg"></a>
+<p><a name="XREFbicg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicg-2310"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicg-2311"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicg</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicg-2312"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicg-2465"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicg</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicg-2466"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicg</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicg-2467"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code> using the Bi-conjugate gradient iterative method.
 
           <ul>
@@ -75,7 +75,8 @@ a function handle or inline function <code>g</code> such that
 
                <li>3: the algorithm reached stagnation
 </ul>
-          (the value 2 is unused but skipped for compatibility).
+
+          <p>(the value 2 is unused but skipped for compatibility).
 
           <li><var>relres</var> is the final value of the relative residual.
 
@@ -84,17 +85,17 @@ a function handle or inline function <code>g</code> such that
           <li><var>resvec</var> is a vector containing the relative residual at each iteration. 
 </ul>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbicgstab.html#doc_002dbicgstab">bicgstab</a>, <a href="doc_002dcgs.html#doc_002dcgs">cgs</a>, <a href="doc_002dgmres.html#doc_002dgmres">gmres</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>.
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbicgstab.html#XREFbicgstab">bicgstab</a>, <a href="XREFcgs.html#XREFcgs">cgs</a>, <a href="XREFgmres.html#XREFgmres">gmres</a>, <a href="XREFpcg.html#XREFpcg">pcg</a>.
 
         </blockquote></div>
 
 <!-- bicgstab scripts/sparse/bicgstab.m -->
-   <p><a name="doc_002dbicgstab"></a>
+   <p><a name="XREFbicgstab"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicgstab-2313"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicgstab-2314"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicgstab</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicgstab-2315"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-bicgstab-2468"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>bicgstab</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-bicgstab-2469"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>bicgstab</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-bicgstab-2470"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code> using the stabilizied Bi-conjugate gradient iterative
 method.
 
@@ -130,7 +131,8 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
 
                <li>3: the algorithm reached stagnation
 </ul>
-          (the value 2 is unused but skipped for compatibility).
+
+          <p>(the value 2 is unused but skipped for compatibility).
 
           <li><var>relres</var> is the final value of the relative residual.
 
@@ -139,17 +141,17 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
           <li><var>resvec</var> is a vector containing the relative residual at each iteration. 
 </ul>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbicg.html#doc_002dbicg">bicg</a>, <a href="doc_002dcgs.html#doc_002dcgs">cgs</a>, <a href="doc_002dgmres.html#doc_002dgmres">gmres</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>.
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbicg.html#XREFbicg">bicg</a>, <a href="XREFcgs.html#XREFcgs">cgs</a>, <a href="XREFgmres.html#XREFgmres">gmres</a>, <a href="XREFpcg.html#XREFpcg">pcg</a>.
 
         </blockquote></div>
 
 <!-- cgs scripts/sparse/cgs.m -->
-   <p><a name="doc_002dcgs"></a>
+   <p><a name="XREFcgs"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-cgs-2316"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-cgs-2317"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>cgs</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-cgs-2318"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, M1, M2, x0</var>)<var><a name="index-cgs-2471"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>cgs</b> (<var>A, b, rtol, maxit, P</var>)<var><a name="index-cgs-2472"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>cgs</b> (<var>A, b, <small class="dots">...</small></var>)<var><a name="index-cgs-2473"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code>, where <var>A</var> is a square matrix, using the
 Conjugate Gradients Squared method.
 
@@ -185,7 +187,8 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
 
                <li>3: the algorithm reached stagnation
 </ul>
-          (the value 2 is unused but skipped for compatibility).
+
+          <p>(the value 2 is unused but skipped for compatibility).
 
           <li><var>relres</var> is the final value of the relative residual.
 
@@ -195,16 +198,17 @@ handle or inline function <code>g</code> such that <code>g(x) = M1 \ x</code> or
 each iteration. 
 </ul>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>, <a href="doc_002dbicgstab.html#doc_002dbicgstab">bicgstab</a>, <a href="doc_002dbicg.html#doc_002dbicg">bicg</a>, <a href="doc_002dgmres.html#doc_002dgmres">gmres</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpcg.html#XREFpcg">pcg</a>, <a href="XREFbicgstab.html#XREFbicgstab">bicgstab</a>, <a href="XREFbicg.html#XREFbicg">bicg</a>, <a href="XREFgmres.html#XREFgmres">gmres</a>.
+
+        </blockquote></div>
 
 <!-- gmres scripts/sparse/gmres.m -->
-   <p><a name="doc_002dgmres"></a>
+   <p><a name="XREFgmres"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, M1, M2, x0</var>)<var><a name="index-gmres-2319"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, P</var>)<var><a name="index-gmres-2320"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>gmres</b> (<var><small class="dots">...</small></var>)<var><a name="index-gmres-2321"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, M1, M2, x0</var>)<var><a name="index-gmres-2474"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>gmres</b> (<var>A, b, m, rtol, maxit, P</var>)<var><a name="index-gmres-2475"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>flag</var>, <var>relres</var>, <var>iter</var>, <var>resvec</var>] = <b>gmres</b> (<var><small class="dots">...</small></var>)<var><a name="index-gmres-2476"></a></var><br>
 <blockquote><p>Solve <code>A x = b</code> using the Preconditioned GMRES iterative method
 with restart, a.k.a. PGMRES(m).
 
@@ -250,8 +254,9 @@ total iterations performed.
 iteration. 
 </ul>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbicg.html#doc_002dbicg">bicg</a>, <a href="doc_002dbicgstab.html#doc_002dbicgstab">bicgstab</a>, <a href="doc_002dcgs.html#doc_002dcgs">cgs</a>, <a href="doc_002dpcg.html#doc_002dpcg">pcg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFbicg.html#XREFbicg">bicg</a>, <a href="XREFbicgstab.html#XREFbicgstab">bicgstab</a>, <a href="XREFcgs.html#XREFcgs">cgs</a>, <a href="XREFpcg.html#XREFpcg">pcg</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 2012 Jordi Gutiérrez Hermoso -->

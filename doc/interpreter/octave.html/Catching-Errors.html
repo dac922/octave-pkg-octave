@@ -67,34 +67,34 @@ to count the number of errors related to the &lsquo;<samp><span class="samp">*</
        end_try_catch
      endfor
 </pre>
-   <!-- lasterror libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002dlasterror"></a>
+   <!-- lasterror libinterp/corefcn/error.cc -->
+   <p><a name="XREFlasterror"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>lasterr</var> = <b>lasterror</b> ()<var><a name="index-lasterror-842"></a></var><br>
-&mdash; Built-in Function:  <b>lasterror</b> (<var>err</var>)<var><a name="index-lasterror-843"></a></var><br>
-&mdash; Built-in Function:  <b>lasterror</b> (<var>"reset"</var>)<var><a name="index-lasterror-844"></a></var><br>
+&mdash; Built-in Function: <var>lasterr</var> = <b>lasterror</b> ()<var><a name="index-lasterror-855"></a></var><br>
+&mdash; Built-in Function:  <b>lasterror</b> (<var>err</var>)<var><a name="index-lasterror-856"></a></var><br>
+&mdash; Built-in Function:  <b>lasterror</b> (<var>"reset"</var>)<var><a name="index-lasterror-857"></a></var><br>
 <blockquote><p>Query or set the last error message structure.  When called without
 arguments, return a structure containing the last error message and other
 information related to this error.  The elements of the structure are:
 
           <dl>
-<dt>'message'<dd>The text of the last error message
+<dt><code>message</code><dd>The text of the last error message
 
-          <br><dt>'identifier'<dd>The message identifier of this error message
+          <br><dt><code>identifier</code><dd>The message identifier of this error message
 
-          <br><dt>'stack'<dd>A structure containing information on where the message occurred.  This may
+          <br><dt><code>stack</code><dd>A structure containing information on where the message occurred.  This may
 be an empty structure if the information cannot
 be obtained.  The fields of the structure are:
 
                <dl>
-<dt>'file'<dd>The name of the file where the error occurred
+<dt><code>file</code><dd>The name of the file where the error occurred
 
-               <br><dt>'name'<dd>The name of function in which the error occurred
+               <br><dt><code>name</code><dd>The name of function in which the error occurred
 
-               <br><dt>'line'<dd>The line number at which the error occurred
+               <br><dt><code>line</code><dd>The line number at which the error occurred
 
-               <br><dt>'column'<dd>An optional field with the column number at which the error occurred
+               <br><dt><code>column</code><dd>An optional field with the column number at which the error occurred
 </dl>
           </dl>
 
@@ -102,37 +102,39 @@ be obtained.  The fields of the structure are:
 as input.  Any fields of <var>err</var> that match those above are set while any
 unspecified fields are initialized with default values.
 
-        <p>If <code>lasterror</code> is called with the argument "reset", all fields are
-set to their default values.
+        <p>If <code>lasterror</code> is called with the argument <code>"reset"</code>, all
+fields are set to their default values.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlasterr.html#doc_002dlasterr">lasterr</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dlastwarn.html#doc_002dlastwarn">lastwarn</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlasterr.html#XREFlasterr">lasterr</a>, <a href="XREFerror.html#XREFerror">error</a>, <a href="XREFlastwarn.html#XREFlastwarn">lastwarn</a>.
 
-<!-- lasterr libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002dlasterr"></a>
+        </blockquote></div>
+
+<!-- lasterr libinterp/corefcn/error.cc -->
+   <p><a name="XREFlasterr"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>msg</var>, <var>msgid</var>] = <b>lasterr</b> ()<var><a name="index-lasterr-845"></a></var><br>
-&mdash; Built-in Function:  <b>lasterr</b> (<var>msg</var>)<var><a name="index-lasterr-846"></a></var><br>
-&mdash; Built-in Function:  <b>lasterr</b> (<var>msg, msgid</var>)<var><a name="index-lasterr-847"></a></var><br>
+&mdash; Built-in Function: [<var>msg</var>, <var>msgid</var>] = <b>lasterr</b> ()<var><a name="index-lasterr-858"></a></var><br>
+&mdash; Built-in Function:  <b>lasterr</b> (<var>msg</var>)<var><a name="index-lasterr-859"></a></var><br>
+&mdash; Built-in Function:  <b>lasterr</b> (<var>msg, msgid</var>)<var><a name="index-lasterr-860"></a></var><br>
 <blockquote><p>Query or set the last error message.  When called without input arguments,
 return the last error message and message identifier.  With one
 argument, set the last error message to <var>msg</var>.  With two arguments,
 also set the last message identifier.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlasterror.html#doc_002dlasterror">lasterror</a>, <a href="doc_002derror.html#doc_002derror">error</a>, <a href="doc_002dlastwarn.html#doc_002dlastwarn">lastwarn</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlasterror.html#XREFlasterror">lasterror</a>, <a href="XREFerror.html#XREFerror">error</a>, <a href="XREFlastwarn.html#XREFlastwarn">lastwarn</a>.
+
+        </blockquote></div>
 
    <p>It is also possible to assign an identification string to an error. 
 If an error has such an ID the user can catch this error
 as will be shown in the next example.  To assign an ID to an error,
 simply call <code>error</code> with two string arguments, where the first
 is the identification string, and the second is the actual error.  Note
-that error IDs are in the format "NAMESPACE:ERROR-NAME".  The namespace
-"Octave" is used for Octave's own errors.  Any other string is available
+that error IDs are in the format <code>"NAMESPACE:ERROR-NAME"</code>.  The namespace
+<code>"Octave"</code> is used for Octave's own errors.  Any other string is available
 as a namespace for user's own errors.
 
-   <p>The next example counts indexing errors. The errors are catched using the
+   <p>The next example counts indexing errors.  The errors are caught using the
 field identifier of the structure returned by the function <code>lasterror</code>.
 
 <pre class="example">     number_of_errors = 0;
@@ -151,7 +153,7 @@ field identifier of the structure returned by the function <code>lasterror</code
 errors.
 
 <!-- error_ids scripts/miscellaneous/error_ids.m -->
-   <p><a name="doc_002derror_005fids"></a><a name="index-error-ids-848"></a>
+   <p><a name="XREFerror_005fids"></a><a name="index-error-ids-861"></a>
      <dl>
 <dt><code>Octave:invalid-context</code><dd>Indicates the error was generated by an operation that cannot be executed in
 the scope from which it was called.  For example, the function
@@ -167,7 +169,7 @@ for arrays, non-existent field of a structure.
 
      <br><dt><code>Octave:bad-alloc</code><dd>Indicates that memory couldn't be allocated.
 
-     <br><dt><code>Octave:undefined-function</code><dd>Indicates a call to a function that is not defined. The function may
+     <br><dt><code>Octave:undefined-function</code><dd>Indicates a call to a function that is not defined.  The function may
 exist but Octave is unable to find it in the search path.
 
    </dl>
@@ -193,39 +195,40 @@ error occurs.
        end_try_catch
      endfor
 </pre>
-   <!-- rethrow libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002drethrow"></a>
+   <!-- rethrow libinterp/corefcn/error.cc -->
+   <p><a name="XREFrethrow"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rethrow</b> (<var>err</var>)<var><a name="index-rethrow-849"></a></var><br>
+&mdash; Built-in Function:  <b>rethrow</b> (<var>err</var>)<var><a name="index-rethrow-862"></a></var><br>
 <blockquote><p>Reissue a previous error as defined by <var>err</var>.  <var>err</var> is a structure
-that must contain at least the 'message' and 'identifier' fields.  <var>err</var>
-can also contain a field 'stack' that gives information on the assumed
-location of the error.  Typically <var>err</var> is returned from
-<code>lasterror</code>.
+that must contain at least the <code>"message"</code> and <code>"identifier"</code>
+fields.  <var>err</var> can also contain a field <code>"stack"</code> that gives
+information on the assumed location of the error.  Typically <var>err</var> is
+returned from <code>lasterror</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlasterror.html#doc_002dlasterror">lasterror</a>, <a href="doc_002dlasterr.html#doc_002dlasterr">lasterr</a>, <a href="doc_002derror.html#doc_002derror">error</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlasterror.html#XREFlasterror">lasterror</a>, <a href="XREFlasterr.html#XREFlasterr">lasterr</a>, <a href="XREFerror.html#XREFerror">error</a>.
+
+        </blockquote></div>
 
 <!-- FIXME: I have no idea what the rest of the functions are used for... -->
-<!-- errno libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002derrno"></a>
+<!-- errno libinterp/corefcn/utils.cc -->
+   <p><a name="XREFerrno"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>err</var> = <b>errno</b> ()<var><a name="index-errno-850"></a></var><br>
-&mdash; Built-in Function: <var>err</var> = <b>errno</b> (<var>val</var>)<var><a name="index-errno-851"></a></var><br>
-&mdash; Built-in Function: <var>err</var> = <b>errno</b> (<var>name</var>)<var><a name="index-errno-852"></a></var><br>
+&mdash; Built-in Function: <var>err</var> = <b>errno</b> ()<var><a name="index-errno-863"></a></var><br>
+&mdash; Built-in Function: <var>err</var> = <b>errno</b> (<var>val</var>)<var><a name="index-errno-864"></a></var><br>
+&mdash; Built-in Function: <var>err</var> = <b>errno</b> (<var>name</var>)<var><a name="index-errno-865"></a></var><br>
 <blockquote><p>Return the current value of the system-dependent variable errno,
 set its value to <var>val</var> and return the previous value, or return
 the named error code given <var>name</var> as a character string, or -1
 if <var>name</var> is not found. 
 </p></blockquote></div>
 
-<!-- errno_list libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002derrno_005flist"></a>
+<!-- errno_list libinterp/corefcn/utils.cc -->
+   <p><a name="XREFerrno_005flist"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>errno_list</b> ()<var><a name="index-errno_005flist-853"></a></var><br>
+&mdash; Built-in Function:  <b>errno_list</b> ()<var><a name="index-errno_005flist-866"></a></var><br>
 <blockquote><p>Return a structure containing the system-dependent errno values. 
 </p></blockquote></div>
 

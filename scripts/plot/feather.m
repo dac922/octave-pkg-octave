@@ -20,16 +20,20 @@
 ## @deftypefn  {Function File} {} feather (@var{u}, @var{v})
 ## @deftypefnx {Function File} {} feather (@var{z})
 ## @deftypefnx {Function File} {} feather (@dots{}, @var{style})
-## @deftypefnx {Function File} {} feather (@var{h}, @dots{})
+## @deftypefnx {Function File} {} feather (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} feather (@dots{})
 ##
 ## Plot the @code{(@var{u}, @var{v})} components of a vector field emanating
-## from equidistant points on the x-axis.  If a single complex argument
-## @var{z} is given, then @code{@var{u} = real (@var{z})} and
-## @code{@var{v} = imag (@var{z})}.
+## from equidistant points on the x-axis.
+##
+## If a single complex argument @var{z} is given, then
+## @code{@var{u} = real (@var{z})} and @code{@var{v} = imag (@var{z})}.
 ##
 ## The style to use for the plot can be defined with a line style @var{style}
-## in a similar manner to the line styles used with the @code{plot} command.
+## of the same format as the @code{plot} command.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
 ## The optional return value @var{h} is a vector of graphics handles to the
 ## line objects representing the drawn vectors.
@@ -46,7 +50,7 @@
 
 function retval = feather (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("feather", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("feather", varargin{:});
 
   arrowsize = 0.25;
 
@@ -94,13 +98,17 @@ function retval = feather (varargin)
   y = [zeros(1, n); yend; ytmp  + u * arrowsize / 3; yend; ...
        ytmp - u * arrowsize / 3];
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
-    hlist = plot (h, x, y, line_spec, [1, n], [0, 0], line_spec);
+    hax = newplot (hax);
+    hlist = plot (x, y, line_spec, [1, n], [0, 0], line_spec);
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
   if (nargout > 0)
@@ -114,4 +122,6 @@ endfunction
 %! clf;
 %! phi = [0 : 15 : 360] * pi/180;
 %! feather (sin (phi), cos (phi));
+%! axis tight;
+%! title ('feather plot');
 

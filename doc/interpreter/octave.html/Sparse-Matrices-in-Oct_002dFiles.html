@@ -35,8 +35,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.6 Sparse Matrices in Oct-Files</h4>
 
-<p>There are three classes of sparse objects that are of interest to the
-user.
+<p>There are three classes of sparse objects that are of interest to the user.
 
      <dl>
 <dt><code>SparseMatrix</code><dd>A double precision sparse matrix class
@@ -48,22 +47,21 @@ user.
 
    <p>All of these classes inherit from the <code>Sparse&lt;T&gt;</code> template class,
 and so all have similar capabilities and usage.  The <code>Sparse&lt;T&gt;</code>
-class was based on Octave <code>Array&lt;T&gt;</code> class, and so users familiar
+class was based on Octave's <code>Array&lt;T&gt;</code> class, and so users familiar
 with Octave's <code>Array</code> classes will be comfortable with the use of
 the sparse classes.
 
    <p>The sparse classes will not be entirely described in this section, due
 to their similarity with the existing <code>Array</code> classes.  However,
 there are a few differences due the different nature of sparse objects,
-and these will be described.  Firstly, although it is fundamentally
+and these will be described.  First, although it is fundamentally
 possible to have N-dimensional sparse objects, the Octave sparse classes do
-not allow them at this time.  So all operations of the sparse classes
-must be 2-dimensional.  This means that in fact <code>SparseMatrix</code> is
-similar to Octave's <code>Matrix</code> class rather than its
-<code>NDArray</code> class.
+not allow them at this time; All instances of the sparse classes
+must be 2-dimensional.  This means that <code>SparseMatrix</code> is actually
+more similar to Octave's <code>Matrix</code> class than its <code>NDArray</code> class.
 
 <ul class="menu">
-<li><a accesskey="1" href="Array-and-Sparse-Differences.html#Array-and-Sparse-Differences">Array and Sparse Differences</a>
+<li><a accesskey="1" href="Array-and-Sparse-Class-Differences.html#Array-and-Sparse-Class-Differences">Array and Sparse Class Differences</a>
 <li><a accesskey="2" href="Creating-Sparse-Matrices-in-Oct_002dFiles.html#Creating-Sparse-Matrices-in-Oct_002dFiles">Creating Sparse Matrices in Oct-Files</a>
 <li><a accesskey="3" href="Using-Sparse-Matrices-in-Oct_002dFiles.html#Using-Sparse-Matrices-in-Oct_002dFiles">Using Sparse Matrices in Oct-Files</a>
 </ul>

@@ -9,6 +9,7 @@ EXTRA_DIST += \
 DLDFCN_SRC = \
   dldfcn/__delaunayn__.cc \
   dldfcn/__dsearchn__.cc \
+  dldfcn/__eigs__.cc \
   dldfcn/__fltk_uigetfile__.cc \
   dldfcn/__glpk__.cc \
   dldfcn/__init_fltk__.cc \
@@ -21,7 +22,6 @@ DLDFCN_SRC = \
   dldfcn/colamd.cc \
   dldfcn/convhulln.cc \
   dldfcn/dmperm.cc \
-  dldfcn/eigs.cc \
   dldfcn/fftw.cc \
   dldfcn/qr.cc \
   dldfcn/symbfact.cc \
@@ -47,6 +47,14 @@ dldfcn/$(am__leading_dot)__delaunayn__.oct-stamp: dldfcn/__delaunayn__.la
 	  touch $(@F)
 
 dldfcn/$(am__leading_dot)__dsearchn__.oct-stamp: dldfcn/__dsearchn__.la
+	rm -f $(<:.la=.oct)
+	la=$(<F) && \
+	  of=$(<F:.la=.oct) && \
+	  cd dldfcn && \
+	  $(LN_S) .libs/`$(SED) -n -e "s/dlname='\([^']*\)'/\1/p" < $$la` $$of && \
+	  touch $(@F)
+
+dldfcn/$(am__leading_dot)__eigs__.oct-stamp: dldfcn/__eigs__.la
 	rm -f $(<:.la=.oct)
 	la=$(<F) && \
 	  of=$(<F:.la=.oct) && \
@@ -150,14 +158,6 @@ dldfcn/$(am__leading_dot)dmperm.oct-stamp: dldfcn/dmperm.la
 	  $(LN_S) .libs/`$(SED) -n -e "s/dlname='\([^']*\)'/\1/p" < $$la` $$of && \
 	  touch $(@F)
 
-dldfcn/$(am__leading_dot)eigs.oct-stamp: dldfcn/eigs.la
-	rm -f $(<:.la=.oct)
-	la=$(<F) && \
-	  of=$(<F:.la=.oct) && \
-	  cd dldfcn && \
-	  $(LN_S) .libs/`$(SED) -n -e "s/dlname='\([^']*\)'/\1/p" < $$la` $$of && \
-	  touch $(@F)
-
 dldfcn/$(am__leading_dot)fftw.oct-stamp: dldfcn/fftw.la
 	rm -f $(<:.la=.oct)
 	la=$(<F) && \
@@ -222,6 +222,12 @@ dldfcn___dsearchn___la_SOURCES = dldfcn/__dsearchn__.cc
 dldfcn___dsearchn___la_LDFLAGS = -avoid-version -module $(NO_UNDEFINED_LDFLAG)  $(OCT_LINK_OPTS)
 dldfcn___dsearchn___la_LIBADD = $(DLD_LIBOCTINTERP_LIBADD) ../liboctave/liboctave.la  $(OCT_LINK_DEPS)
 
+dldfcn___eigs___la_SOURCES = dldfcn/__eigs__.cc
+dldfcn/__eigs__.df: CPPFLAGS += $(ARPACK_CPPFLAGS) $(SPARSE_XCPPFLAGS)
+dldfcn___eigs___la_CPPFLAGS = $(AM_CPPFLAGS) $(ARPACK_CPPFLAGS) $(SPARSE_XCPPFLAGS)
+dldfcn___eigs___la_LDFLAGS = -avoid-version -module $(NO_UNDEFINED_LDFLAG) $(ARPACK_LDFLAGS) $(SPARSE_XLDFLAGS) $(OCT_LINK_OPTS)
+dldfcn___eigs___la_LIBADD = $(DLD_LIBOCTINTERP_LIBADD) ../liboctave/liboctave.la $(ARPACK_LIBS) $(SPARSE_XLIBS) $(LAPACK_LIBS) $(BLAS_LIBS) $(OCT_LINK_DEPS)
+
 dldfcn___fltk_uigetfile___la_SOURCES = dldfcn/__fltk_uigetfile__.cc
 dldfcn/__fltk_uigetfile__.df: CPPFLAGS += $(GRAPHICS_CFLAGS) $(FT2_CPPFLAGS)
 dldfcn___fltk_uigetfile___la_CPPFLAGS = $(AM_CPPFLAGS) $(GRAPHICS_CFLAGS) $(FT2_CPPFLAGS)
@@ -238,7 +244,7 @@ dldfcn___init_fltk___la_SOURCES = dldfcn/__init_fltk__.cc
 dldfcn/__init_fltk__.df: CPPFLAGS += $(GRAPHICS_CFLAGS) $(FT2_CPPFLAGS)
 dldfcn___init_fltk___la_CPPFLAGS = $(AM_CPPFLAGS) $(GRAPHICS_CFLAGS) $(FT2_CPPFLAGS)
 dldfcn___init_fltk___la_LDFLAGS = -avoid-version -module $(NO_UNDEFINED_LDFLAG) $(GRAPHICS_LDFLAGS) $(FT2_LDFLAGS) $(OCT_LINK_OPTS)
-dldfcn___init_fltk___la_LIBADD = $(DLD_LIBOCTINTERP_LIBADD) ../liboctave/liboctave.la $(GRAPHICS_LIBS) $(FT2_LIBS) $(OCT_LINK_DEPS)
+dldfcn___init_fltk___la_LIBADD = $(DLD_LIBOCTINTERP_LIBADD) ../liboctave/liboctave.la $(GRAPHICS_LIBS) $(FT2_LIBS) $(OPENGL_LIBS) $(OCT_LINK_DEPS)
 
 dldfcn___init_gnuplot___la_SOURCES = dldfcn/__init_gnuplot__.cc
 dldfcn___init_gnuplot___la_LDFLAGS = -avoid-version -module $(NO_UNDEFINED_LDFLAG)  $(OCT_LINK_OPTS)
@@ -291,12 +297,6 @@ dldfcn/dmperm.df: CPPFLAGS += $(SPARSE_XCPPFLAGS)
 dldfcn_dmperm_la_CPPFLAGS = $(AM_CPPFLAGS) $(SPARSE_XCPPFLAGS)
 dldfcn_dmperm_la_LDFLAGS = -avoid-version -module $(NO_UNDEFINED_LDFLAG) $(SPARSE_XLDFLAGS) $(OCT_LINK_OPTS)
 dldfcn_dmperm_la_LIBADD = $(DLD_LIBOCTINTERP_LIBADD) ../liboctave/liboctave.la $(SPARSE_XLIBS) $(OCT_LINK_DEPS)
-
-dldfcn_eigs_la_SOURCES = dldfcn/eigs.cc
-dldfcn/eigs.df: CPPFLAGS += $(ARPACK_CPPFLAGS) $(SPARSE_XCPPFLAGS)
-dldfcn_eigs_la_CPPFLAGS = $(AM_CPPFLAGS) $(ARPACK_CPPFLAGS) $(SPARSE_XCPPFLAGS)
-dldfcn_eigs_la_LDFLAGS = -avoid-version -module $(NO_UNDEFINED_LDFLAG) $(ARPACK_LDFLAGS) $(SPARSE_XLDFLAGS) $(OCT_LINK_OPTS)
-dldfcn_eigs_la_LIBADD = $(DLD_LIBOCTINTERP_LIBADD) ../liboctave/liboctave.la $(ARPACK_LIBS) $(SPARSE_XLIBS) $(LAPACK_LIBS) $(BLAS_LIBS) $(OCT_LINK_DEPS)
 
 dldfcn_fftw_la_SOURCES = dldfcn/fftw.cc
 dldfcn/fftw.df: CPPFLAGS += $(FFTW_XCPPFLAGS)

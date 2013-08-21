@@ -235,8 +235,8 @@ make_statement (T *arg)
 %type <tree_constant_type> string constant magic_colon
 %type <tree_anon_fcn_handle_type> anon_fcn_handle
 %type <tree_fcn_handle_type> fcn_handle
-%type <tree_matrix_type> matrix_rows matrix_rows1
-%type <tree_cell_type> cell_rows cell_rows1
+%type <tree_matrix_type> matrix_rows
+%type <tree_cell_type> cell_rows
 %type <tree_expression_type> matrix cell
 %type <tree_expression_type> primary_expr oper_expr
 %type <tree_expression_type> simple_expr colon_expr assign_expr expression
@@ -426,59 +426,62 @@ constant        : NUM
                   { $$ = $1; }
                 ;
 
-matrix          : '[' ']'
-                  { $$ = new tree_constant (octave_null_matrix::instance); }
-                | '[' ';' ']'
-                  { $$ = new tree_constant (octave_null_matrix::instance); }
-                | '[' ',' ']'
-                  { $$ = new tree_constant (octave_null_matrix::instance); }
-                | '[' matrix_rows ']'
+matrix          : '[' matrix_rows ']'
                   { $$ = parser.finish_matrix ($2); }
                 ;
 
-matrix_rows     : matrix_rows1
-                  { $$ = $1; }
-                | matrix_rows1 ';'      // Ignore trailing semicolon.
-                  { $$ = $1; }
-                ;
-
-matrix_rows1    : cell_or_matrix_row
-                  { $$ = new tree_matrix ($1); }
-                | matrix_rows1 ';' cell_or_matrix_row
+matrix_rows     : cell_or_matrix_row
+                  { $$ = $1 ? new tree_matrix ($1) : 0; }
+                | matrix_rows ';' cell_or_matrix_row
                   {
-                    $1->append ($3);
-                    $$ = $1;
+                    if ($1)
+                      {
+                        if ($3)
+                          $1->append ($3);
+
+                        $$ = $1;
+                      }
+                    else
+                      $$ = $3 ? new tree_matrix ($3) : 0;
                   }
                 ;
 
-cell            : '{' '}'
-                  { $$ = new tree_constant (octave_value (Cell ())); }
-                | '{' ';' '}'
-                  { $$ = new tree_constant (octave_value (Cell ())); }
-                | '{' cell_rows '}'
+cell            : '{' cell_rows '}'
                   { $$ = parser.finish_cell ($2); }
                 ;
 
-cell_rows       : cell_rows1
-                  { $$ = $1; }
-                | cell_rows1 ';'        // Ignore trailing semicolon.
-                  { $$ = $1; }
-                ;
-
-cell_rows1      : cell_or_matrix_row
-                  { $$ = new tree_cell ($1); }
-                | cell_rows1 ';' cell_or_matrix_row
+cell_rows       : cell_or_matrix_row
+                  { $$ = $1 ? new tree_cell ($1) : 0; }
+                | cell_rows ';' cell_or_matrix_row
                   {
-                    $1->append ($3);
-                    $$ = $1;
+                    if ($1)
+                      {
+                        if ($3)
+                          $1->append ($3);
+
+                        $$ = $1;
+                      }
+                    else
+                      $$ = $3 ? new tree_cell ($3) : 0;
                   }
                 ;
 
+// tree_argument_list objects can't be empty or have leading or trailing
+// commas, but those are all allowed in matrix and cell array rows.
+
 cell_or_matrix_row
-                : arg_list
+                : // empty
+                  { $$ = 0; }
+                | ','
+                  { $$ = 0; }
+                | arg_list
                   { $$ = $1; }
-                | arg_list ','          // Ignore trailing comma.
+                | arg_list ','
                   { $$ = $1; }
+                | ',' arg_list
+                  { $$ = $2; }
+                | ',' arg_list ','
+                  { $$ = $2; }
                 ;
 
 fcn_handle      : '@' FCN_HANDLE
@@ -488,9 +491,9 @@ fcn_handle      : '@' FCN_HANDLE
                   }
                 ;
 
-anon_fcn_handle : '@' param_list statement
+anon_fcn_handle : '@' param_list stmt_begin statement
                   {
-                    $$ = parser.make_anon_fcn_handle ($2, $3);
+                    $$ = parser.make_anon_fcn_handle ($2, $4);
                     lexer.nesting_level.remove ();
                   }
                 ;
@@ -831,11 +834,11 @@ if_cmd_list     : if_cmd_list1
                   }
                 ;
 
-if_cmd_list1    : expression opt_sep opt_list
+if_cmd_list1    : expression stmt_begin opt_sep opt_list
                   {
                     $1->mark_braindead_shortcircuit (lexer.fcn_file_full_name);
 
-                    $$ = parser.start_if_command ($1, $3);
+                    $$ = parser.start_if_command ($1, $4);
                   }
                 | if_cmd_list1 elseif_clause
                   {
@@ -844,11 +847,11 @@ if_cmd_list1    : expression opt_sep opt_list
                   }
                 ;
 
-elseif_clause   : ELSEIF stash_comment opt_sep expression opt_sep opt_list
+elseif_clause   : ELSEIF stash_comment opt_sep expression stmt_begin opt_sep opt_list
                   {
                     $4->mark_braindead_shortcircuit (lexer.fcn_file_full_name);
 
-                    $$ = parser.make_elseif_clause ($1, $4, $6, $2);
+                    $$ = parser.make_elseif_clause ($1, $4, $7, $2);
                   }
                 ;
 
@@ -889,8 +892,8 @@ case_list1      : switch_case
                   }
                 ;
 
-switch_case     : CASE stash_comment opt_sep expression opt_sep opt_list
-                  { $$ = parser.make_switch_case ($1, $4, $6, $2); }
+switch_case     : CASE stash_comment opt_sep expression stmt_begin opt_sep opt_list
+                  { $$ = parser.make_switch_case ($1, $4, $7, $2); }
                 ;
 
 default_case    : OTHERWISE stash_comment opt_sep opt_list
@@ -903,11 +906,11 @@ default_case    : OTHERWISE stash_comment opt_sep opt_list
 // Looping
 // =======
 
-loop_command    : WHILE stash_comment expression opt_sep opt_list END
+loop_command    : WHILE stash_comment expression stmt_begin opt_sep opt_list END
                   {
                     $3->mark_braindead_shortcircuit (lexer.fcn_file_full_name);
 
-                    if (! ($$ = parser.make_while_command ($1, $3, $5, $6, $2)))
+                    if (! ($$ = parser.make_while_command ($1, $3, $6, $7, $2)))
                       ABORT_PARSE;
                   }
                 | DO stash_comment opt_sep opt_list UNTIL expression
@@ -915,10 +918,10 @@ loop_command    : WHILE stash_comment expression opt_sep opt_list END
                     if (! ($$ = parser.make_do_until_command ($5, $4, $6, $2)))
                       ABORT_PARSE;
                   }
-                | FOR stash_comment assign_lhs '=' expression opt_sep opt_list END
+                | FOR stash_comment assign_lhs '=' expression stmt_begin opt_sep opt_list END
                   {
                     if (! ($$ = parser.make_for_command (FOR, $1, $3, $5, 0,
-                                                  $7, $8, $2)))
+                                                  $8, $9, $2)))
                       ABORT_PARSE;
                   }
                 | FOR stash_comment '(' assign_lhs '=' expression ')' opt_sep opt_list END
@@ -927,10 +930,10 @@ loop_command    : WHILE stash_comment expression opt_sep opt_list END
                                                   $9, $10, $2)))
                       ABORT_PARSE;
                   }
-                | PARFOR stash_comment assign_lhs '=' expression opt_sep opt_list END
+                | PARFOR stash_comment assign_lhs '=' expression stmt_begin opt_sep opt_list END
                   {
                     if (! ($$ = parser.make_for_command (PARFOR, $1, $3, $5,
-                                                  0, $7, $8, $2)))
+                                                  0, $8, $9, $2)))
                       ABORT_PARSE;
                   }
                 | PARFOR stash_comment '(' assign_lhs '=' expression ',' expression ')' opt_sep opt_list END
@@ -972,15 +975,15 @@ except_command  : UNWIND stash_comment opt_sep opt_list CLEANUP
                     if (! ($$ = parser.make_unwind_command ($1, $4, $8, $9, $2, $6)))
                       ABORT_PARSE;
                   }
-                | TRY stash_comment opt_sep opt_list CATCH
-                  stash_comment opt_sep opt_list END
+                | TRY stash_comment opt_sep opt_list CATCH stash_comment
+                  opt_sep opt_list END
                   {
-                    if (! ($$ = parser.make_try_command ($1, $4, $8, $9, $2, $6)))
+                    if (! ($$ = parser.make_try_command ($1, $4, $7, $8, $9, $2, $6)))
                       ABORT_PARSE;
                   }
                 | TRY stash_comment opt_sep opt_list END
                   {
-                    if (! ($$ = parser.make_try_command ($1, $4, 0, $5, $2, 0)))
+                    if (! ($$ = parser.make_try_command ($1, $4, 0, 0, $5, $2, 0)))
                       ABORT_PARSE;
                   }
                 ;
@@ -1405,6 +1408,10 @@ class_enum      : identifier '(' expression ')'
 // =============
 // Miscellaneous
 // =============
+
+stmt_begin      : // empty
+                  { lexer.at_beginning_of_statement = true; }
+                ;
 
 stash_comment   : // empty
                   { $$ = octave_comment_buffer::get_comment (); }
@@ -2183,6 +2190,7 @@ octave_base_parser::make_unwind_command (token *unwind_tok,
 tree_command *
 octave_base_parser::make_try_command (token *try_tok,
                                       tree_statement_list *body,
+                                      char catch_sep,
                                       tree_statement_list *cleanup_stmts,
                                       token *end_tok,
                                       octave_comment_list *lc,
@@ -2197,7 +2205,26 @@ octave_base_parser::make_try_command (token *try_tok,
       int l = try_tok->line ();
       int c = try_tok->column ();
 
-      retval = new tree_try_catch_command (body, cleanup_stmts,
+      tree_identifier *id = 0;
+
+      if (! catch_sep && cleanup_stmts && ! cleanup_stmts->empty ())
+        {
+          tree_statement *stmt = cleanup_stmts->front ();
+
+          if (stmt)
+            {
+              tree_expression *expr = stmt->expression ();
+
+              if (expr && expr->is_identifier ())
+                {
+                  id = dynamic_cast<tree_identifier *> (expr);
+
+                  cleanup_stmts->pop_front ();
+                }
+            }
+        }
+
+      retval = new tree_try_catch_command (body, cleanup_stmts, id,
                                            lc, mc, tc, l, c);
     }
 
@@ -3065,7 +3092,9 @@ octave_base_parser::finish_array_list (tree_array_list *array_list)
 tree_expression *
 octave_base_parser::finish_matrix (tree_matrix *m)
 {
-  return finish_array_list (m);
+  return (m
+          ? finish_array_list (m)
+          : new tree_constant (octave_null_matrix::instance));
 }
 
 // Finish building a cell list.
@@ -3073,7 +3102,9 @@ octave_base_parser::finish_matrix (tree_matrix *m)
 tree_expression *
 octave_base_parser::finish_cell (tree_cell *c)
 {
-  return finish_array_list (c);
+  return (c
+          ? finish_array_list (c)
+          : new tree_constant (octave_value (Cell ())));
 }
 
 void
@@ -3510,7 +3541,8 @@ load_fcn_from_file (const std::string& file_name, const std::string& dir_name,
 
 DEFUN (autoload, args, ,
   "-*- texinfo -*-\n\
-@deftypefn {Built-in Function} {} autoload (@var{function}, @var{file})\n\
+@deftypefn  {Built-in Function} {} autoload (@var{function}, @var{file})\n\
+@deftypefnx {Built-in Function} {} autoload (@dots{}, @asis{\"remove\"})\n\
 Define @var{function} to autoload from @var{file}.\n\
 \n\
 The second argument, @var{file}, should be an absolute file name or\n\
@@ -3519,7 +3551,7 @@ the autoload command was run.  @var{file} should not depend on the\n\
 Octave load path.\n\
 \n\
 Normally, calls to @code{autoload} appear in PKG_ADD script files that\n\
-are evaluated when a directory is added to the Octave's load path.  To\n\
+are evaluated when a directory is added to Octave's load path.  To\n\
 avoid having to hardcode directory names in @var{file}, if @var{file}\n\
 is in the same directory as the PKG_ADD script then\n\
 \n\
@@ -3529,16 +3561,20 @@ autoload (\"foo\", \"bar.oct\");\n\
 \n\
 @noindent\n\
 will load the function @code{foo} from the file @code{bar.oct}.  The above\n\
-when @code{bar.oct} is not in the same directory or uses like\n\
+usage when @code{bar.oct} is not in the same directory or usages such as\n\
 \n\
 @example\n\
 autoload (\"foo\", file_in_loadpath (\"bar.oct\"))\n\
 @end example\n\
 \n\
 @noindent\n\
-are strongly discouraged, as their behavior might be unpredictable.\n\
+are strongly discouraged, as their behavior may be unpredictable.\n\
 \n\
 With no arguments, return a structure containing the current autoload map.\n\
+\n\
+If a third argument @asis{'remove'} is given, the function is cleared and\n\
+not loaded anymore during the current Octave session.\n\
+\n\
 @seealso{PKG_ADD}\n\
 @end deftypefn")
 {
@@ -3568,7 +3604,7 @@ With no arguments, return a structure containing the current autoload map.\n\
 
       retval = m;
     }
-  else if (nargin == 2)
+  else if (nargin == 2 || nargin == 3)
     {
       string_vector argv = args.make_argv ("autoload");
 
@@ -3605,7 +3641,18 @@ With no arguments, return a structure containing the current autoload map.\n\
                                  "autoload: '%s' is not an absolute file name",
                                  nm.c_str ());
             }
-          autoload_map[argv[1]] = nm;
+          if (nargin == 2)
+            autoload_map[argv[1]] = nm;
+          else if (nargin == 3)
+            {
+              if (argv[3].compare ("remove") != 0)
+                error_with_id ("Octave:invalid-input-arg",
+                               "autoload: third argument can only be 'remove'");
+
+              // Remove function from symbol table and autoload map.
+              symbol_table::clear_dld_function (argv[1]);
+              autoload_map.erase (argv[1]);
+            }
         }
     }
   else
@@ -3724,9 +3771,9 @@ DEFUN (mfilename, args, ,
 @deftypefnx {Built-in Function} {} mfilename (\"fullpath\")\n\
 @deftypefnx {Built-in Function} {} mfilename (\"fullpathext\")\n\
 Return the name of the currently executing file.  At the top-level,\n\
-return the empty string.  Given the argument @code{\"fullpath\"},\n\
+return the empty string.  Given the argument @qcode{\"fullpath\"},\n\
 include the directory part of the file name, but not the extension.\n\
-Given the argument @code{\"fullpathext\"}, include the directory part\n\
+Given the argument @qcode{\"fullpathext\"}, include the directory part\n\
 of the file name and the extension.\n\
 @end deftypefn")
 {
@@ -3785,7 +3832,6 @@ of the file name and the extension.\n\
 
   return retval;
 }
-
 
 DEFUN (source, args, ,
   "-*- texinfo -*-\n\
@@ -3913,7 +3959,7 @@ DEFUN (feval, args, nargout,
   "-*- texinfo -*-\n\
 @deftypefn {Built-in Function} {} feval (@var{name}, @dots{})\n\
 Evaluate the function named @var{name}.  Any arguments after the first\n\
-are passed on to the named function.  For example,\n\
+are passed as inputs to the named function.  For example,\n\
 \n\
 @example\n\
 @group\n\
@@ -3943,8 +3989,9 @@ feval (@var{f}, 1)\n\
 \n\
 @noindent\n\
 are equivalent ways to call the function referred to by @var{f}.  If it\n\
-cannot be predicted beforehand that @var{f} is a function handle or the\n\
-function name in a string, @code{feval} can be used instead.\n\
+cannot be predicted beforehand whether @var{f} is a function handle,\n\
+function name in a string, or inline function then @code{feval} can be used\n\
+instead.\n\
 @end deftypefn")
 {
   octave_value_list retval;
@@ -3961,9 +4008,28 @@ function name in a string, @code{feval} can be used instead.\n\
 
 DEFUN (builtin, args, nargout,
   "-*- texinfo -*-\n\
-@deftypefn {Loadable Function} {[@dots{}]} builtin (@var{f}, @dots{})\n\
+@deftypefn {Loadable Function} {[@dots{}] =} builtin (@var{f}, @dots{})\n\
 Call the base function @var{f} even if @var{f} is overloaded to\n\
 another function for the given type signature.\n\
+\n\
+This is normally useful when doing object-oriented programming and there\n\
+is a requirement to call one of Octave's base functions rather than\n\
+the overloaded one of a new class.\n\
+\n\
+A trivial example which redefines the @code{sin} function to be the\n\
+@code{cos} function shows how @code{builtin} works.\n\
+\n\
+@example\n\
+@group\n\
+sin (0)\n\
+  @result{} 0\n\
+function y = sin (x), y = cos (x); endfunction\n\
+sin (0)\n\
+  @result{} 1\n\
+builtin (\"sin\", 0)\n\
+  @result{} 0\n\
+@end group\n\
+@end example\n\
 @end deftypefn")
 {
   octave_value_list retval;
@@ -4117,11 +4183,11 @@ program.  If that fails, evaluate the optional string @var{catch}.\n\
 The string @var{try} is evaluated in the current context,\n\
 so any results remain available after @code{eval} returns.\n\
 \n\
-The following example makes the variable @var{a} with the approximate\n\
+The following example makes the variable @var{A} with the approximate\n\
 value 3.1416 available.\n\
 \n\
 @example\n\
-eval (\"a = acos(-1);\");\n\
+eval (\"A = acos(-1);\");\n\
 @end example\n\
 \n\
 If an error occurs during the evaluation of @var{try} the @var{catch}\n\
@@ -4226,7 +4292,7 @@ DEFUN (assignin, args, ,
   "-*- texinfo -*-\n\
 @deftypefn {Built-in Function} {} assignin (@var{context}, @var{varname}, @var{value})\n\
 Assign @var{value} to @var{varname} in context @var{context}, which\n\
-may be either @code{\"base\"} or @code{\"caller\"}.\n\
+may be either @qcode{\"base\"} or @qcode{\"caller\"}.\n\
 @seealso{evalin}\n\
 @end deftypefn")
 {
@@ -4280,8 +4346,8 @@ DEFUN (evalin, args, nargout,
 @deftypefn  {Built-in Function} {} evalin (@var{context}, @var{try})\n\
 @deftypefnx {Built-in Function} {} evalin (@var{context}, @var{try}, @var{catch})\n\
 Like @code{eval}, except that the expressions are evaluated in the\n\
-context @var{context}, which may be either @code{\"caller\"} or\n\
-@code{\"base\"}.\n\
+context @var{context}, which may be either @qcode{\"caller\"} or\n\
+@qcode{\"base\"}.\n\
 @seealso{eval, assignin}\n\
 @end deftypefn")
 {

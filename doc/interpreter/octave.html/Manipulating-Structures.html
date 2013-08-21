@@ -37,21 +37,21 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Structures.html#Structures">Structures<
 <p>Other functions that can manipulate the fields of a structure are given below.
 
 <!-- nfields libinterp/octave-value/ov-struct.cc -->
-   <p><a name="doc_002dnfields"></a>
+   <p><a name="XREFnfields"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>nfields</b> (<var>s</var>)<var><a name="index-nfields-467"></a></var><br>
+&mdash; Built-in Function:  <b>nfields</b> (<var>s</var>)<var><a name="index-nfields-479"></a></var><br>
 <blockquote><p>Return the number of fields of the structure <var>s</var>. 
 </p></blockquote></div>
 
 <!-- fieldnames scripts/general/fieldnames.m -->
-   <p><a name="doc_002dfieldnames"></a>
+   <p><a name="XREFfieldnames"></a>
 
 <div class="defun">
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-468"></a></var><br>
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>obj</var>)<var><a name="index-fieldnames-469"></a></var><br>
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>javaobj</var>)<var><a name="index-fieldnames-470"></a></var><br>
-&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>"jclassname"</var>)<var><a name="index-fieldnames-471"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-480"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>obj</var>)<var><a name="index-fieldnames-481"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>javaobj</var>)<var><a name="index-fieldnames-482"></a></var><br>
+&mdash; Function File: <var>names</var> = <b>fieldnames</b> (<var>"jclassname"</var>)<var><a name="index-fieldnames-483"></a></var><br>
 <blockquote><p>Return a cell array of strings with the names of the fields in the
 specified input.
 
@@ -65,27 +65,29 @@ properties of the object.
 <var>jclassname</var>) the name are the public data elements of the object or
 class.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstruct.html#doc_002dstruct">struct</a>, <a href="doc_002dmethods.html#doc_002dmethods">methods</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstruct.html#XREFstruct">struct</a>, <a href="XREFmethods.html#XREFmethods">methods</a>.
+
+        </blockquote></div>
 
 <!-- isfield libinterp/octave-value/ov-struct.cc -->
-   <p><a name="doc_002disfield"></a>
+   <p><a name="XREFisfield"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isfield</b> (<var>x, name</var>)<var><a name="index-isfield-472"></a></var><br>
+&mdash; Built-in Function:  <b>isfield</b> (<var>x, name</var>)<var><a name="index-isfield-484"></a></var><br>
 <blockquote><p>Return true if the <var>x</var> is a structure and it
 includes an element named <var>name</var>.  If <var>name</var> is a cell
 array of strings then a logical array of equal dimension is returned. 
 </p></blockquote></div>
 
 <!-- setfield scripts/miscellaneous/setfield.m -->
-   <p><a name="doc_002dsetfield"></a>
+   <p><a name="XREFsetfield"></a>
 
 <div class="defun">
-&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, field, val</var>)<var><a name="index-setfield-473"></a></var><br>
-&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small>, val</var>)<var><a name="index-setfield-474"></a></var><br>
+&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, field, val</var>)<var><a name="index-setfield-485"></a></var><br>
+&mdash; Function File: <var>s</var> = <b>setfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small>, val</var>)<var><a name="index-setfield-486"></a></var><br>
 <blockquote>
-        <p>Set a field member <var>field</var> in a structure <var>s</var> equal to <var>val</var>.  For example:
+        <p>Set a field member <var>field</var> in a structure <var>s</var> equal to <var>val</var>. 
+For example:
 
      <pre class="example">          <var>s</var> = struct ();
           <var>s</var> = setfield (<var>s</var>, "foo bar", 42);
@@ -95,10 +97,10 @@ array of strings then a logical array of equal dimension is returned.
      <pre class="example">          <var>s</var>.("foo bar") = 42;
 </pre>
         <p class="noindent">Note that ordinary structure syntax <var>s</var><code>.foo bar = 42</code> cannot be
-used here, as the field name is not a valid Octave identifier. Using
-arbitrary strings for field name is incompatible with <span class="sc">Matlab</span>, so
+used here, as the field name is not a valid Octave identifier.  Using
+arbitrary strings for field name is incompatible with <span class="sc">matlab</span>, so
 this usage will warn if the <code>Octave:matlab-incompatible</code> warning
-is set. See <a href="doc_002dwarning_005fids.html#doc_002dwarning_005fids">doc-warning_ids</a>.
+is set.  See <a href="XREFwarning_005fids.html#XREFwarning_005fids">XREFwarning_ids</a>.
 
         <p>With the second calling form, set a field on a structure array,
 possibly nested, with successive nested indices <var>idx1</var>,
@@ -118,7 +120,7 @@ nesting depth.
                     bar =  54
 </pre>
         <p>Here we first have an ordinary structure array with one field
-<code>baz</code> set to 42. Then we set another field in a nested scalar structure
+<code>baz</code> set to 42.  Then we set another field in a nested scalar structure
 indexing with two single cells containing the unique desired indices.
 
         <p>Finally an example with nested structure arrays,
@@ -139,41 +141,44 @@ another structure array whose third element is a structure
      <pre class="example">          <var>SA</var>.foo = 1;
           <var>SA</var>(2).bar(3).baz = 6
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetfield.html#doc_002dgetfield">getfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFgetfield.html#XREFgetfield">getfield</a>, <a href="XREFrmfield.html#XREFrmfield">rmfield</a>, <a href="XREFisfield.html#XREFisfield">isfield</a>, <a href="XREFisstruct.html#XREFisstruct">isstruct</a>, <a href="XREFfieldnames.html#XREFfieldnames">fieldnames</a>, <a href="XREFstruct.html#XREFstruct">struct</a>.
+
+        </blockquote></div>
 
 <!-- getfield scripts/miscellaneous/getfield.m -->
-   <p><a name="doc_002dgetfield"></a>
+   <p><a name="XREFgetfield"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, field</var>)<var><a name="index-getfield-475"></a></var><br>
-&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small></var>)<var><a name="index-getfield-476"></a></var><br>
-<blockquote><p>Extract a field from a structure (or a nested structure). The syntax
+&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, field</var>)<var><a name="index-getfield-487"></a></var><br>
+&mdash; Function File: [<var>val</var>] = <b>getfield</b> (<var>s, idx1, field1, idx2, field2, <small class="dots">...</small></var>)<var><a name="index-getfield-488"></a></var><br>
+<blockquote><p>Extract a field from a structure (or a nested structure).  The syntax
 is the same as <code>setfield</code>, except it omits the final <var>val</var>
 argument, returning this value instead of setting it.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsetfield.html#doc_002dsetfield">setfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsetfield.html#XREFsetfield">setfield</a>, <a href="XREFrmfield.html#XREFrmfield">rmfield</a>, <a href="XREFisfield.html#XREFisfield">isfield</a>, <a href="XREFisstruct.html#XREFisstruct">isstruct</a>, <a href="XREFfieldnames.html#XREFfieldnames">fieldnames</a>, <a href="XREFstruct.html#XREFstruct">struct</a>.
+
+        </blockquote></div>
 
 <!-- rmfield libinterp/octave-value/ov-struct.cc -->
-   <p><a name="doc_002drmfield"></a>
+   <p><a name="XREFrmfield"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, "f"</var>)<var><a name="index-rmfield-477"></a></var><br>
-&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-478"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, "f"</var>)<var><a name="index-rmfield-489"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-490"></a></var><br>
 <blockquote><p>Return a copy of the structure (array) <var>s</var> with the field <var>f</var>
 removed.  If <var>f</var> is a cell array of strings or a character array, remove
 each of the named fields.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcellstr.html#doc_002dcellstr">cellstr</a>, <a href="doc_002discellstr.html#doc_002discellstr">iscellstr</a>, <a href="doc_002dsetfield.html#doc_002dsetfield">setfield</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcellstr.html#XREFcellstr">cellstr</a>, <a href="XREFiscellstr.html#XREFiscellstr">iscellstr</a>, <a href="XREFsetfield.html#XREFsetfield">setfield</a>.
+
+        </blockquote></div>
 
 <!-- orderfields scripts/miscellaneous/orderfields.m -->
-   <p><a name="doc_002dorderfields"></a>
+   <p><a name="XREForderfields"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1</var>)<var><a name="index-orderfields-479"></a></var><br>
-&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-480"></a></var><br>
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1</var>)<var><a name="index-orderfields-491"></a></var><br>
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-492"></a></var><br>
 <blockquote><p>Return a copy of <var>s1</var> with fields arranged alphabetically or
 as specified by <var>s2</var>.
 
@@ -230,14 +235,15 @@ which converts the original name order into the new name order.
                      2
                      3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dgetfield.html#doc_002dgetfield">getfield</a>, <a href="doc_002drmfield.html#doc_002drmfield">rmfield</a>, <a href="doc_002disfield.html#doc_002disfield">isfield</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dfieldnames.html#doc_002dfieldnames">fieldnames</a>, <a href="doc_002dstruct.html#doc_002dstruct">struct</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFgetfield.html#XREFgetfield">getfield</a>, <a href="XREFrmfield.html#XREFrmfield">rmfield</a>, <a href="XREFisfield.html#XREFisfield">isfield</a>, <a href="XREFisstruct.html#XREFisstruct">isstruct</a>, <a href="XREFfieldnames.html#XREFfieldnames">fieldnames</a>, <a href="XREFstruct.html#XREFstruct">struct</a>.
+
+        </blockquote></div>
 
 <!-- substruct scripts/miscellaneous/substruct.m -->
-   <p><a name="doc_002dsubstruct"></a>
+   <p><a name="XREFsubstruct"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-481"></a></var><br>
+&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-493"></a></var><br>
 <blockquote><p>Create a subscript structure for use with <code>subsref</code> or
 <code>subsasgn</code>.  For example:
 
@@ -256,8 +262,9 @@ which converts the original name order into the new name order.
           subsref (x, idx)
              &rArr; 7  8  9
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsubsref.html#doc_002dsubsref">subsref</a>, <a href="doc_002dsubsasgn.html#doc_002dsubsasgn">subsasgn</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFsubsref.html#XREFsubsref">subsref</a>, <a href="XREFsubsasgn.html#XREFsubsasgn">subsasgn</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -56,7 +56,7 @@ the @code{fftw} function can be used to import wisdom.  For example,\n\
 will save the existing wisdom used by Octave to the string @var{wisdom}.\n\
 This string can then be saved to a file and restored using the @code{save}\n\
 and @code{load} commands respectively.  This existing wisdom can be\n\
-reimported as follows\n\
+re-imported as follows\n\
 \n\
 @example\n\
 fftw (\"dwisdom\", @var{wisdom})\n\
@@ -70,31 +70,32 @@ the @code{fftw} function.  There are five different manners in which the\n\
 wisdom can be treated:\n\
 \n\
 @table @asis\n\
-@item \"estimate\"\n\
+@item @qcode{\"estimate\"}\n\
 Specifies that no run-time measurement of the optimal means of\n\
 calculating a particular is performed, and a simple heuristic is used\n\
 to pick a (probably sub-optimal) plan.  The advantage of this method is\n\
 that there is little or no overhead in the generation of the plan, which\n\
 is appropriate for a Fourier transform that will be calculated once.\n\
 \n\
-@item \"measure\"\n\
+@item @qcode{\"measure\"}\n\
 In this case a range of algorithms to perform the transform is considered\n\
 and the best is selected based on their execution time.\n\
 \n\
-@item \"patient\"\n\
-Similar to \"measure\", but a wider range of algorithms is considered.\n\
+@item @qcode{\"patient\"}\n\
+Similar to @qcode{\"measure\"}, but a wider range of algorithms is\n\
+considered.\n\
 \n\
-@item \"exhaustive\"\n\
-Like \"measure\", but all possible algorithms that may be used to\n\
+@item @qcode{\"exhaustive\"}\n\
+Like @qcode{\"measure\"}, but all possible algorithms that may be used to\n\
 treat the transform are considered.\n\
 \n\
-@item \"hybrid\"\n\
+@item @qcode{\"hybrid\"}\n\
 As run-time measurement of the algorithm can be expensive, this is a\n\
-compromise where \"measure\" is used for transforms up to the size of 8192\n\
-and beyond that the \"estimate\" method is used.\n\
+compromise where @qcode{\"measure\"} is used for transforms up to the size\n\
+of 8192 and beyond that the @qcode{\"estimate\"} method is used.\n\
 @end table\n\
 \n\
-The default method is \"estimate\".  The current method can\n\
+The default method is @qcode{\"estimate\"}.  The current method can\n\
 be queried with\n\
 \n\
 @example\n\
@@ -120,8 +121,9 @@ transforms can be set with\n\
 fftw (\"threads\", @var{NTHREADS})\n\
 @end example\n\
 \n\
-Note that octave must be compiled with multi-threaded FFTW support for this feature.\n\
-The number of processors available to the current process is used per default.\n\
+Note that octave must be compiled with multi-threaded @sc{fftw} support for\n\
+this feature.  The number of processors available to the current process is\n\
+used per default.\n\
 \n\
 @seealso{fft, ifft, fft2, ifft2, fftn, ifftn}\n\
 @end deftypefn")

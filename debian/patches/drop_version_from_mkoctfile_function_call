@@ -10,5 +10,5 @@ Author: Sébastien Villemot <sebastien.villemot@ens.fr>
 -  shell_script = fullfile (bindir, sprintf ("mkoctfile-%s", OCTAVE_VERSION));
 +  shell_script = fullfile (bindir, "mkoctfile");
  
-   cmd = cstrcat ("\"", shell_script, "\"");
+   cmd = ['"' shell_script '"'];
    for i = 1:nargin

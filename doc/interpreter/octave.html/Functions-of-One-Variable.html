@@ -101,9 +101,10 @@ result.
 is reasonably accurate (to see why, examine what happens to the result
 if you move the lower bound to 0.1, then 0.01, then 0.001, etc.).
 
-   <p>The function "f" can be the string name of a function, a function handle, or
-an inline function.  These options make it quite easy to do integration
-without having to fully define a function in an m-file.  For example:
+   <p>The function <code>"f"</code> can be the string name of a function, a function
+handle, or an inline function.  These options make it quite easy to do
+integration without having to fully define a function in an m-file.  For
+example:
 
 <pre class="example">     # Verify integral (x^3) = x^4/4
      f = inline ("x.^3");
@@ -116,13 +117,13 @@ without having to fully define a function in an m-file.  For example:
           &rArr; 6.0000
 </pre>
    <!-- quad libinterp/corefcn/quad.cc -->
-   <p><a name="doc_002dquad"></a>
+   <p><a name="XREFquad"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>q</var> = <b>quad</b> (<var>f, a, b</var>)<var><a name="index-quad-2505"></a></var><br>
-&mdash; Built-in Function: <var>q</var> = <b>quad</b> (<var>f, a, b, tol</var>)<var><a name="index-quad-2506"></a></var><br>
-&mdash; Built-in Function: <var>q</var> = <b>quad</b> (<var>f, a, b, tol, sing</var>)<var><a name="index-quad-2507"></a></var><br>
-&mdash; Built-in Function: [<var>q</var>, <var>ier</var>, <var>nfun</var>, <var>err</var>] = <b>quad</b> (<var><small class="dots">...</small></var>)<var><a name="index-quad-2508"></a></var><br>
+&mdash; Built-in Function: <var>q</var> = <b>quad</b> (<var>f, a, b</var>)<var><a name="index-quad-2669"></a></var><br>
+&mdash; Built-in Function: <var>q</var> = <b>quad</b> (<var>f, a, b, tol</var>)<var><a name="index-quad-2670"></a></var><br>
+&mdash; Built-in Function: <var>q</var> = <b>quad</b> (<var>f, a, b, tol, sing</var>)<var><a name="index-quad-2671"></a></var><br>
+&mdash; Built-in Function: [<var>q</var>, <var>ier</var>, <var>nfun</var>, <var>err</var>] = <b>quad</b> (<var><small class="dots">...</small></var>)<var><a name="index-quad-2672"></a></var><br>
 <blockquote><p>Numerically evaluate the integral of <var>f</var> from <var>a</var> to <var>b</var> using
 Fortran routines from <span class="sc">quadpack</span><!-- /@w -->.  <var>f</var> is a function handle,
 inline function, or a string containing the name of the function to
@@ -156,16 +157,17 @@ parameters for <code>quad</code>.
 recursively.  This prevents its use in integrating over more than one
 variable by routines <code>dblquad</code> and <code>triplequad</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dquad_005foptions.html#doc_002dquad_005foptions">quad_options</a>, <a href="doc_002dquadv.html#doc_002dquadv">quadv</a>, <a href="doc_002dquadl.html#doc_002dquadl">quadl</a>, <a href="doc_002dquadgk.html#doc_002dquadgk">quadgk</a>, <a href="doc_002dquadcc.html#doc_002dquadcc">quadcc</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>, <a href="doc_002ddblquad.html#doc_002ddblquad">dblquad</a>, <a href="doc_002dtriplequad.html#doc_002dtriplequad">triplequad</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFquad_005foptions.html#XREFquad_005foptions">quad_options</a>, <a href="XREFquadv.html#XREFquadv">quadv</a>, <a href="XREFquadl.html#XREFquadl">quadl</a>, <a href="XREFquadgk.html#XREFquadgk">quadgk</a>, <a href="XREFquadcc.html#XREFquadcc">quadcc</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>, <a href="XREFdblquad.html#XREFdblquad">dblquad</a>, <a href="XREFtriplequad.html#XREFtriplequad">triplequad</a>.
+
+        </blockquote></div>
 
 <!-- quad_options libinterp/corefcn/quad.cc -->
-   <p><a name="doc_002dquad_005foptions"></a>
+   <p><a name="XREFquad_005foptions"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>quad_options</b> ()<var><a name="index-quad_005foptions-2509"></a></var><br>
-&mdash; Built-in Function: val = <b>quad_options</b> (<var>opt</var>)<var><a name="index-quad_005foptions-2510"></a></var><br>
-&mdash; Built-in Function:  <b>quad_options</b> (<var>opt, val</var>)<var><a name="index-quad_005foptions-2511"></a></var><br>
+&mdash; Built-in Function:  <b>quad_options</b> ()<var><a name="index-quad_005foptions-2673"></a></var><br>
+&mdash; Built-in Function: val = <b>quad_options</b> (<var>opt</var>)<var><a name="index-quad_005foptions-2674"></a></var><br>
+&mdash; Built-in Function:  <b>quad_options</b> (<var>opt, val</var>)<var><a name="index-quad_005foptions-2675"></a></var><br>
 <blockquote><p>Query or set options for the function <code>quad</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 
@@ -192,14 +194,14 @@ tolerance is zero, the relative tolerance must be greater than or equal to
         </p></blockquote></div>
 
 <!-- quadv scripts/general/quadv.m -->
-   <p><a name="doc_002dquadv"></a>
+   <p><a name="XREFquadv"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b</var>)<var><a name="index-quadv-2512"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b, tol</var>)<var><a name="index-quadv-2513"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b, tol, trace</var>)<var><a name="index-quadv-2514"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b, tol, trace, p1, p2, <small class="dots">...</small></var>)<var><a name="index-quadv-2515"></a></var><br>
-&mdash; Function File: [<var>q</var>, <var>nfun</var>] = <b>quadv</b> (<var><small class="dots">...</small></var>)<var><a name="index-quadv-2516"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b</var>)<var><a name="index-quadv-2676"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b, tol</var>)<var><a name="index-quadv-2677"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b, tol, trace</var>)<var><a name="index-quadv-2678"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadv</b> (<var>f, a, b, tol, trace, p1, p2, <small class="dots">...</small></var>)<var><a name="index-quadv-2679"></a></var><br>
+&mdash; Function File: [<var>q</var>, <var>nfun</var>] = <b>quadv</b> (<var><small class="dots">...</small></var>)<var><a name="index-quadv-2680"></a></var><br>
 <blockquote>
         <p>Numerically evaluate the integral of <var>f</var> from <var>a</var> to <var>b</var>
 using an adaptive Simpson's rule. 
@@ -233,17 +235,18 @@ the number of function evaluations that were made.
 used recursively in <code>dblquad</code> and <code>triplequad</code>, unlike the
 similar <code>quad</code> function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dquad.html#doc_002dquad">quad</a>, <a href="doc_002dquadl.html#doc_002dquadl">quadl</a>, <a href="doc_002dquadgk.html#doc_002dquadgk">quadgk</a>, <a href="doc_002dquadcc.html#doc_002dquadcc">quadcc</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>, <a href="doc_002ddblquad.html#doc_002ddblquad">dblquad</a>, <a href="doc_002dtriplequad.html#doc_002dtriplequad">triplequad</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFquad.html#XREFquad">quad</a>, <a href="XREFquadl.html#XREFquadl">quadl</a>, <a href="XREFquadgk.html#XREFquadgk">quadgk</a>, <a href="XREFquadcc.html#XREFquadcc">quadcc</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>, <a href="XREFdblquad.html#XREFdblquad">dblquad</a>, <a href="XREFtriplequad.html#XREFtriplequad">triplequad</a>.
+
+        </blockquote></div>
 
 <!-- quadl scripts/general/quadl.m -->
-   <p><a name="doc_002dquadl"></a>
+   <p><a name="XREFquadl"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b</var>)<var><a name="index-quadl-2517"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b, tol</var>)<var><a name="index-quadl-2518"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b, tol, trace</var>)<var><a name="index-quadl-2519"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b, tol, trace, p1, p2, <small class="dots">...</small></var>)<var><a name="index-quadl-2520"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b</var>)<var><a name="index-quadl-2681"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b, tol</var>)<var><a name="index-quadl-2682"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b, tol, trace</var>)<var><a name="index-quadl-2683"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadl</b> (<var>f, a, b, tol, trace, p1, p2, <small class="dots">...</small></var>)<var><a name="index-quadl-2684"></a></var><br>
 <blockquote>
         <p>Numerically evaluate the integral of <var>f</var> from <var>a</var> to <var>b</var>
 using an adaptive Lobatto rule. 
@@ -272,18 +275,19 @@ empty matrices ([]).
 Revisited</cite>, BIT Vol. 40, No. 1, March 2000, pp. 84&ndash;101. 
 <a href="http://www.inf.ethz.ch/personal/gander/">http://www.inf.ethz.ch/personal/gander/</a>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dquad.html#doc_002dquad">quad</a>, <a href="doc_002dquadv.html#doc_002dquadv">quadv</a>, <a href="doc_002dquadgk.html#doc_002dquadgk">quadgk</a>, <a href="doc_002dquadcc.html#doc_002dquadcc">quadcc</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>, <a href="doc_002ddblquad.html#doc_002ddblquad">dblquad</a>, <a href="doc_002dtriplequad.html#doc_002dtriplequad">triplequad</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFquad.html#XREFquad">quad</a>, <a href="XREFquadv.html#XREFquadv">quadv</a>, <a href="XREFquadgk.html#XREFquadgk">quadgk</a>, <a href="XREFquadcc.html#XREFquadcc">quadcc</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>, <a href="XREFdblquad.html#XREFdblquad">dblquad</a>, <a href="XREFtriplequad.html#XREFtriplequad">triplequad</a>.
+
+        </blockquote></div>
 
 <!-- quadgk scripts/general/quadgk.m -->
-   <p><a name="doc_002dquadgk"></a>
+   <p><a name="XREFquadgk"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b</var>)<var><a name="index-quadgk-2521"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b, abstol</var>)<var><a name="index-quadgk-2522"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b, abstol, trace</var>)<var><a name="index-quadgk-2523"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b, prop, val, <small class="dots">...</small></var>)<var><a name="index-quadgk-2524"></a></var><br>
-&mdash; Function File: [<var>q</var>, <var>err</var>] = <b>quadgk</b> (<var><small class="dots">...</small></var>)<var><a name="index-quadgk-2525"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b</var>)<var><a name="index-quadgk-2685"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b, abstol</var>)<var><a name="index-quadgk-2686"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b, abstol, trace</var>)<var><a name="index-quadgk-2687"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadgk</b> (<var>f, a, b, prop, val, <small class="dots">...</small></var>)<var><a name="index-quadgk-2688"></a></var><br>
+&mdash; Function File: [<var>q</var>, <var>err</var>] = <b>quadgk</b> (<var><small class="dots">...</small></var>)<var><a name="index-quadgk-2689"></a></var><br>
 <blockquote>
         <p>Numerically evaluate the integral of <var>f</var> from <var>a</var> to <var>b</var>
 using adaptive Gauss-Konrod quadrature. 
@@ -334,11 +338,11 @@ the quadrature into 10 intervals.  Subintervals that have an
 unacceptable error are subdivided and re-evaluated.  If the number of
 subintervals exceeds 650 subintervals at any point then a poor
 convergence is signaled and the current estimate of the integral is
-returned.  The property "MaxIntervalCount" can be used to alter the
+returned.  The property <code>"MaxIntervalCount"</code> can be used to alter the
 number of subintervals that can exist before exiting.
 
           <br><dt><code>WayPoints</code><dd>Discontinuities in the first derivative of the function to integrate can be
-flagged with the  <code>"WayPoints"</code> property.  This forces the ends of
+flagged with the <code>"WayPoints"</code> property.  This forces the ends of
 a subinterval to fall on the breakpoints of the function and can result in
 significantly improved estimation of the error in the integral, faster
 computation, or both.  For example,
@@ -367,17 +371,18 @@ assumed to have no edge singularities.  For example,
 <code>abs (</code><var>q</var><code> - </code><var>I</var><code>)</code>, where <var>I</var> is the exact value of the
 integral.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dquad.html#doc_002dquad">quad</a>, <a href="doc_002dquadv.html#doc_002dquadv">quadv</a>, <a href="doc_002dquadl.html#doc_002dquadl">quadl</a>, <a href="doc_002dquadcc.html#doc_002dquadcc">quadcc</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>, <a href="doc_002ddblquad.html#doc_002ddblquad">dblquad</a>, <a href="doc_002dtriplequad.html#doc_002dtriplequad">triplequad</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFquad.html#XREFquad">quad</a>, <a href="XREFquadv.html#XREFquadv">quadv</a>, <a href="XREFquadl.html#XREFquadl">quadl</a>, <a href="XREFquadcc.html#XREFquadcc">quadcc</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>, <a href="XREFdblquad.html#XREFdblquad">dblquad</a>, <a href="XREFtriplequad.html#XREFtriplequad">triplequad</a>.
+
+        </blockquote></div>
 
 <!-- quadcc libinterp/corefcn/quadcc.cc -->
-   <p><a name="doc_002dquadcc"></a>
+   <p><a name="XREFquadcc"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>quadcc</b> (<var>f, a, b</var>)<var><a name="index-quadcc-2526"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadcc</b> (<var>f, a, b, tol</var>)<var><a name="index-quadcc-2527"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>quadcc</b> (<var>f, a, b, tol, sing</var>)<var><a name="index-quadcc-2528"></a></var><br>
-&mdash; Function File: [<var>q</var>, <var>err</var>, <var>nr_points</var>] = <b>quadcc</b> (<var><small class="dots">...</small></var>)<var><a name="index-quadcc-2529"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadcc</b> (<var>f, a, b</var>)<var><a name="index-quadcc-2690"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadcc</b> (<var>f, a, b, tol</var>)<var><a name="index-quadcc-2691"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>quadcc</b> (<var>f, a, b, tol, sing</var>)<var><a name="index-quadcc-2692"></a></var><br>
+&mdash; Function File: [<var>q</var>, <var>err</var>, <var>nr_points</var>] = <b>quadcc</b> (<var><small class="dots">...</small></var>)<var><a name="index-quadcc-2693"></a></var><br>
 <blockquote><p>Numerically evaluate the integral of <var>f</var> from <var>a</var> to <var>b</var>
 using the doubly-adaptive Clenshaw-Curtis quadrature described by P. Gonnet
 in <cite>Increasing the Reliability of Adaptive Quadrature Using Explicit
@@ -389,7 +394,7 @@ values if given a vector of input values.  For example,
 
      <pre class="example">          f = @(x) x .* sin (1./x) .* sqrt (abs (1 - x));
 </pre>
-        <p class="noindent">which uses the element-by-element `dot' form for all operators.
+        <p class="noindent">which uses the element-by-element &ldquo;dot&rdquo; form for all operators.
 
         <p><var>a</var> and <var>b</var> are the lower and upper limits of integration.  Either
 or both limits may be infinite.  <code>quadcc</code> handles an inifinite limit
@@ -433,8 +438,9 @@ of the integrand over the nodes of the respective quadrature rules.
 Quadrature Using Explicit Interpolants</cite>, ACM Transactions on
 Mathematical Software, Vol. 37, Issue 3, Article No. 3, 2010.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dquad.html#doc_002dquad">quad</a>, <a href="doc_002dquadv.html#doc_002dquadv">quadv</a>, <a href="doc_002dquadl.html#doc_002dquadl">quadl</a>, <a href="doc_002dquadgk.html#doc_002dquadgk">quadgk</a>, <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>, <a href="doc_002ddblquad.html#doc_002ddblquad">dblquad</a>, <a href="doc_002dtriplequad.html#doc_002dtriplequad">triplequad</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFquad.html#XREFquad">quad</a>, <a href="XREFquadv.html#XREFquadv">quadv</a>, <a href="XREFquadl.html#XREFquadl">quadl</a>, <a href="XREFquadgk.html#XREFquadgk">quadgk</a>, <a href="XREFtrapz.html#XREFtrapz">trapz</a>, <a href="XREFdblquad.html#XREFdblquad">dblquad</a>, <a href="XREFtriplequad.html#XREFtriplequad">triplequad</a>.
+
+        </blockquote></div>
 
    <p>Sometimes one does not have the function, but only the raw (x, y) points from
 which to perform an integration.  This can occur when collecting data in an
@@ -473,12 +479,12 @@ select the best distribution.  In any case, one must remain aware of this
 issue when using <code>trapz</code>.
 
 <!-- trapz scripts/general/trapz.m -->
-   <p><a name="doc_002dtrapz"></a>
+   <p><a name="XREFtrapz"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>trapz</b> (<var>y</var>)<var><a name="index-trapz-2530"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>trapz</b> (<var>x, y</var>)<var><a name="index-trapz-2531"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>trapz</b> (<var><small class="dots">...</small>, dim</var>)<var><a name="index-trapz-2532"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>trapz</b> (<var>y</var>)<var><a name="index-trapz-2694"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>trapz</b> (<var>x, y</var>)<var><a name="index-trapz-2695"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>trapz</b> (<var><small class="dots">...</small>, dim</var>)<var><a name="index-trapz-2696"></a></var><br>
 <blockquote>
         <p>Numerically evaluate the integral of points <var>y</var> using the trapezoidal
 method. 
@@ -505,16 +511,17 @@ calculate the integral in three different ways.
           trapz (x, y)
             &rArr; q = 0.2525  # Same result by specifying <var>x</var>
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcumtrapz.html#doc_002dcumtrapz">cumtrapz</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFcumtrapz.html#XREFcumtrapz">cumtrapz</a>.
+
+        </blockquote></div>
 
 <!-- cumtrapz scripts/general/cumtrapz.m -->
-   <p><a name="doc_002dcumtrapz"></a>
+   <p><a name="XREFcumtrapz"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>cumtrapz</b> (<var>y</var>)<var><a name="index-cumtrapz-2533"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>cumtrapz</b> (<var>x, y</var>)<var><a name="index-cumtrapz-2534"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>cumtrapz</b> (<var><small class="dots">...</small>, dim</var>)<var><a name="index-cumtrapz-2535"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>cumtrapz</b> (<var>y</var>)<var><a name="index-cumtrapz-2697"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>cumtrapz</b> (<var>x, y</var>)<var><a name="index-cumtrapz-2698"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>cumtrapz</b> (<var><small class="dots">...</small>, dim</var>)<var><a name="index-cumtrapz-2699"></a></var><br>
 <blockquote>
         <p>Cumulative numerical integration of points <var>y</var> using the trapezoidal
 method. 
@@ -532,8 +539,9 @@ argument is given, operate along this dimension.
 the integral to the correct value you must multiply by the actual spacing
 value (deltaX).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtrapz.html#doc_002dtrapz">trapz</a>, <a href="doc_002dcumsum.html#doc_002dcumsum">cumsum</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtrapz.html#XREFtrapz">trapz</a>, <a href="XREFcumsum.html#XREFcumsum">cumsum</a>.
+
+        </blockquote></div>
 
    </body></html>
 

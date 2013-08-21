@@ -37,11 +37,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <p>Linking external C code to Octave is relatively simple, as the C
 functions can easily be called directly from C++.  One possible issue is
-the declarations of the external C functions might need to be explicitly
+that the declarations of the external C functions may need to be explicitly
 defined as C functions to the compiler.  If the declarations of the
-external C functions are in the header <code>foo.h</code>, then the manner in
-which to ensure that the C++ compiler treats these declarations as C
-code is
+external C functions are in the header <samp><span class="file">foo.h</span></samp>, then the tactic to
+ensure that the C++ compiler treats these declarations as C code is
 
 <pre class="example">     #ifdef __cplusplus
      extern "C"
@@ -52,10 +51,10 @@ code is
      }  /* end extern "C" */
      #endif
 </pre>
-   <p>Calling Fortran code however can pose some difficulties.  This is due to
-differences in the manner in compilers treat the linking of Fortran code
-with C or C++ code.  Octave supplies a number of macros that allow
-consistent behavior across a number of compilers.
+   <p>Calling Fortran code, however, can pose more difficulties.  This is due to
+differences in the manner in which compilers treat the linking of Fortran code
+with C or C++ code.  Octave supplies a number of macros that allow consistent
+behavior across a number of compilers.
 
    <p>The underlying Fortran code should use the <code>XSTOPX</code> function to
 replace the Fortran <code>STOP</code> function.  <code>XSTOPX</code> uses the Octave
@@ -63,15 +62,15 @@ exception handler to treat failing cases in the Fortran code
 explicitly.  Note that Octave supplies its own replacement <span class="sc">blas</span>
 <code>XERBLA</code> function, which uses <code>XSTOPX</code>.
 
-   <p>If the underlying code calls <code>XSTOPX</code>, then the <code>F77_XFCN</code><!-- /@w -->
+   <p>If the code calls <code>XSTOPX</code>, then the <code>F77_XFCN</code><!-- /@w -->
 macro should be used to call the underlying Fortran function.  The Fortran
 exception state can then be checked with the global variable
 <code>f77_exception_encountered</code>.  If <code>XSTOPX</code> will not be called,
 then the <code>F77_FCN</code><!-- /@w --> macro should be used instead to call the Fortran
 code.
 
-   <p>There is no harm in using <code>F77_XFCN</code><!-- /@w --> in all cases, except that for
-Fortran code that is short running and executes a large number of times,
+   <p>There is no great harm in using <code>F77_XFCN</code><!-- /@w --> in all cases, except that
+for Fortran code that is short running and executes a large number of times,
 there is potentially an overhead in doing so.  However, if <code>F77_FCN</code><!-- /@w -->
 is used with code that calls <code>XSTOP</code>, Octave can generate a
 segmentation fault.
@@ -90,10 +89,11 @@ given in the following example, where the C++ wrapper is
               F77_CHAR_ARG_LEN_DECL);
      }
      
-     DEFUN_DLD (fortdemo , args , , "Fortran Demo.")
+     DEFUN_DLD (fortdemo, args, , "Fortran Demo")
      {
        octave_value_list retval;
        int nargin = args.length ();
+     
        if (nargin != 1)
          print_usage ();
        else
@@ -102,7 +102,7 @@ given in the following example, where the C++ wrapper is
            if (! error_state)
              {
                double *av = a.fortran_vec ();
-               octave_idx_type na = a.nelem ();
+               octave_idx_type na = a.numel ();
                OCTAVE_LOCAL_BUFFER (char, ctmp, 128);
      
                F77_XFCN (fortsub, FORTSUB, (na, av, ctmp
@@ -145,16 +145,16 @@ given in the following example, where the C++ wrapper is
 </pre>
    <p>This example demonstrates most of the features needed to link to an
 external Fortran function, including passing arrays and strings, as well
-as exception handling.  An example of the behavior of this function is
+as exception handling.  Both the Fortran and C++ files need to be compiled
+in order for the example to work.
 
-<pre class="example">     [b, s] = fortdemo (1:3)
+<pre class="example">     mkoctfile fortdemo.cc fortsub.f
+     [b, s] = fortdemo (1:3)
      &rArr;
        b = 1.00000   0.50000   0.33333
        s = There are   3 values in the input vector
      [b, s] = fortdemo (0:3)
-     error: fortsub:divide by zero
-     error: exception encountered in Fortran subroutine fortsub_
-     error: fortdemo: error in Fortran
+     error: fortdemo: fortsub: divide by zero
 </pre>
    </body></html>
 

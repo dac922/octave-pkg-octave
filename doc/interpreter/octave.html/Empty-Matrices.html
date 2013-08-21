@@ -55,13 +55,13 @@ following are true:
 empty matrix symbol, &lsquo;<samp><span class="samp">[]</span></samp>&rsquo;.  The built-in variable
 <code>print_empty_dimensions</code> controls this behavior.
 
-<!-- print_empty_dimensions libinterp/interpfcn/pr-output.cc -->
-   <p><a name="doc_002dprint_005fempty_005fdimensions"></a>
+<!-- print_empty_dimensions libinterp/corefcn/pr-output.cc -->
+   <p><a name="XREFprint_005fempty_005fdimensions"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>print_empty_dimensions</b> ()<var><a name="index-print_005fempty_005fdimensions-282"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>print_empty_dimensions</b> (<var>new_val</var>)<var><a name="index-print_005fempty_005fdimensions-283"></a></var><br>
-&mdash; Built-in Function:  <b>print_empty_dimensions</b> (<var>new_val, "local"</var>)<var><a name="index-print_005fempty_005fdimensions-284"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>print_empty_dimensions</b> ()<var><a name="index-print_005fempty_005fdimensions-291"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>print_empty_dimensions</b> (<var>new_val</var>)<var><a name="index-print_005fempty_005fdimensions-292"></a></var><br>
+&mdash; Built-in Function:  <b>print_empty_dimensions</b> (<var>new_val, "local"</var>)<var><a name="index-print_005fempty_005fdimensions-293"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether the
 dimensions of empty matrices are printed along with the empty matrix
 symbol, &lsquo;<samp><span class="samp">[]</span></samp>&rsquo;.  For example, the expression
@@ -72,12 +72,13 @@ symbol, &lsquo;<samp><span class="samp">[]</span></samp>&rsquo;.  For example, t
 
      <pre class="example">          ans = [](3x0)
 </pre>
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dformat.html#doc_002dformat">format</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFformat.html#XREFformat">format</a>.
+
+        </blockquote></div>
 
    <p>Empty matrices may also be used in assignment statements as a convenient
 way to delete rows or columns of matrices. 

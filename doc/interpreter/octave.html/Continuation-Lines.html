@@ -35,31 +35,32 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Statements.html#Statements">Statements<
 <p>In the Octave language, most statements end with a newline character and
 you must tell Octave to ignore the newline character in order to
 continue a statement from one line to the next.  Lines that end with the
-characters <code>...</code> or <code>\</code> are joined with the following line
-before they are divided into tokens by Octave's parser.  For example,
-the lines
+characters <code>...</code> are joined with the following line before they are
+divided into tokens by Octave's parser.  For example, the lines
 
 <pre class="example">     x = long_variable_name ...
-         + longer_variable_name \
+         + longer_variable_name ...
          - 42
 </pre>
-   <p class="noindent">form a single statement.  The backslash character on the second line
-above is interpreted as a continuation character, <em>not</em> as a division
-operator.
+   <p class="noindent">form a single statement.
 
-   <p>For continuation lines that do not occur inside string constants,
-whitespace and comments may appear between the continuation marker and
-the newline character.  For example, the statement
+   <p>Any text between the continuation marker and the newline character is
+ignored.  For example, the statement
 
-<pre class="example">     x = long_variable_name ...     # comment one
-         + longer_variable_name \   # comment two
-         - 42                       # last comment
+<pre class="example">     x = long_variable_name ...    # comment one
+         + longer_variable_name ...comment two
+         - 42                      # last comment
 </pre>
-   <p class="noindent">is equivalent to the one shown above.  Inside string constants, the
-continuation marker must appear at the end of the line just before the
-newline character.
+   <p class="noindent">is equivalent to the one shown above.
 
-   <p>Input that occurs inside parentheses can be continued to the next line
+   <p>Inside double-quoted string constants, the character <code>\</code> has to be
+used as continuation marker.  The <code>\</code> must appear at the end of the
+line just before the newline character:
+
+<pre class="example">     s = "This text starts in the first line \
+     and is continued in the second line."
+</pre>
+   <p class="noindent">Input that occurs inside parentheses can be continued to the next line
 without having to use a continuation marker.  For example, it is
 possible to write statements like
 

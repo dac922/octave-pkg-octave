@@ -35,16 +35,16 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Lin
 <h3 class="section">18.3 Matrix Factorizations</h3>
 
 <!-- chol libinterp/dldfcn/chol.cc -->
-<p><a name="doc_002dchol"></a>
+<p><a name="XREFchol"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R</var> = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2244"></a></var><br>
-&mdash; Loadable Function: [<var>R</var>, <var>p</var>] = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2245"></a></var><br>
-&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S</var>)<var><a name="index-chol-2246"></a></var><br>
-&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S, "vector"</var>)<var><a name="index-chol-2247"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, "lower"</var>)<var><a name="index-chol-2248"></a></var><br>
-&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, "upper"</var>)<var><a name="index-chol-2249"></a></var><br>
-<blockquote><p><a name="index-Cholesky-factorization-2250"></a>Compute the Cholesky&nbsp;factor, <var>R</var>, of the symmetric positive definite
+&mdash; Loadable Function: <var>R</var> = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2399"></a></var><br>
+&mdash; Loadable Function: [<var>R</var>, <var>p</var>] = <b>chol</b> (<var>A</var>)<var><a name="index-chol-2400"></a></var><br>
+&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S</var>)<var><a name="index-chol-2401"></a></var><br>
+&mdash; Loadable Function: [<var>R</var>, <var>p</var>, <var>Q</var>] = <b>chol</b> (<var>S, "vector"</var>)<var><a name="index-chol-2402"></a></var><br>
+&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, "lower"</var>)<var><a name="index-chol-2403"></a></var><br>
+&mdash; Loadable Function: [<var>L</var>, <small class="dots">...</small>] = <b>chol</b> (<var><small class="dots">...</small>, "upper"</var>)<var><a name="index-chol-2404"></a></var><br>
+<blockquote><p><a name="index-Cholesky-factorization-2405"></a>Compute the Cholesky&nbsp;factor, <var>R</var>, of the symmetric positive definite
 matrix <var>A</var>, where
 
      <pre class="example">          <var>R</var>' * <var>R</var> = <var>A</var>.
@@ -62,69 +62,72 @@ is the factorization of <var>A</var><code>(</code><var>Q</var><code>,</code><var
      <pre class="example">          <var>R</var>' * <var>R</var> = <var>Q</var>' * <var>A</var> * <var>Q</var>.
 </pre>
         <p>The sparsity preserving permutation is generally returned as a matrix. 
-However, given the flag "vector", <var>Q</var> will be returned as a vector
-such that
+However, given the flag <code>"vector"</code>, <var>Q</var> will be returned as a
+vector such that
 
      <pre class="example">          <var>R</var>' * <var>R</var> = <var>A</var>(<var>Q</var>, <var>Q</var>).
 </pre>
-        <p>Called with either a sparse or full matrix and using the "lower" flag,
-<code>chol</code> returns the lower triangular factorization such that
+        <p>Called with either a sparse or full matrix and using the <code>"lower"</code>
+flag, <code>chol</code> returns the lower triangular factorization such that
 
      <pre class="example">          <var>L</var> * <var>L</var>' = <var>A</var>.
 </pre>
-        <p>For full matrices, if the "lower" flag is set only the lower triangular
-part of the matrix is used for the factorization, otherwise the upper
-triangular part is used.
+        <p>For full matrices, if the <code>"lower"</code> flag is set only the lower
+triangular part of the matrix is used for the factorization, otherwise the
+upper triangular part is used.
 
         <p>In general the lower triangular factorization is significantly faster for
 sparse matrices.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcholinv.html#doc_002dcholinv">cholinv</a>, <a href="doc_002dchol2inv.html#doc_002dchol2inv">chol2inv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqz.html#XREFqz">qz</a>, <a href="XREFschur.html#XREFschur">schur</a>, <a href="XREFsvd.html#XREFsvd">svd</a>, <a href="XREFcholinv.html#XREFcholinv">cholinv</a>, <a href="XREFchol2inv.html#XREFchol2inv">chol2inv</a>, <a href="XREFcholupdate.html#XREFcholupdate">cholupdate</a>, <a href="XREFcholinsert.html#XREFcholinsert">cholinsert</a>, <a href="XREFcholdelete.html#XREFcholdelete">choldelete</a>, <a href="XREFcholshift.html#XREFcholshift">cholshift</a>.
+
+        </blockquote></div>
 
 <!-- cholinv libinterp/dldfcn/chol.cc -->
-   <p><a name="doc_002dcholinv"></a>
+   <p><a name="XREFcholinv"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>cholinv</b> (<var>A</var>)<var><a name="index-cholinv-2251"></a></var><br>
+&mdash; Loadable Function:  <b>cholinv</b> (<var>A</var>)<var><a name="index-cholinv-2406"></a></var><br>
 <blockquote><p>Use the Cholesky&nbsp;factorization to compute the inverse of the
 symmetric positive definite matrix <var>A</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dchol2inv.html#doc_002dchol2inv">chol2inv</a>, <a href="doc_002dinv.html#doc_002dinv">inv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFchol2inv.html#XREFchol2inv">chol2inv</a>, <a href="XREFinv.html#XREFinv">inv</a>.
+
+        </blockquote></div>
 
 <!-- chol2inv libinterp/dldfcn/chol.cc -->
-   <p><a name="doc_002dchol2inv"></a>
+   <p><a name="XREFchol2inv"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>chol2inv</b> (<var>U</var>)<var><a name="index-chol2inv-2252"></a></var><br>
+&mdash; Loadable Function:  <b>chol2inv</b> (<var>U</var>)<var><a name="index-chol2inv-2407"></a></var><br>
 <blockquote><p>Invert a symmetric, positive definite square matrix from its Cholesky
 decomposition, <var>U</var>.  Note that <var>U</var> should be an upper-triangular
 matrix with positive diagonal elements.  <code>chol2inv (</code><var>U</var><code>)</code>
 provides <code>inv (</code><var>U</var><code>'*</code><var>U</var><code>)</code> but it is much faster than
 using <code>inv</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholinv.html#doc_002dcholinv">cholinv</a>, <a href="doc_002dinv.html#doc_002dinv">inv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFcholinv.html#XREFcholinv">cholinv</a>, <a href="XREFinv.html#XREFinv">inv</a>.
+
+        </blockquote></div>
 
 <!-- cholupdate libinterp/dldfcn/chol.cc -->
-   <p><a name="doc_002dcholupdate"></a>
+   <p><a name="XREFcholupdate"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholupdate</b> (<var>R, u, op</var>)<var><a name="index-cholupdate-2253"></a></var><br>
+&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholupdate</b> (<var>R, u, op</var>)<var><a name="index-cholupdate-2408"></a></var><br>
 <blockquote><p>Update or downdate a Cholesky&nbsp;factorization.  Given an upper triangular
 matrix <var>R</var> and a column vector <var>u</var>, attempt to determine another
 upper triangular matrix <var>R1</var> such that
 
           <ul>
 <li><var>R1</var>'*<var>R1</var> = <var>R</var>'*<var>R</var> + <var>u</var>*<var>u</var>'
-if <var>op</var> is "+"
+if <var>op</var> is <code>"+"</code>
 
           <li><var>R1</var>'*<var>R1</var> = <var>R</var>'*<var>R</var> - <var>u</var>*<var>u</var>'
-if <var>op</var> is "-"
+if <var>op</var> is <code>"-"</code>
 </ul>
 
-        <p>If <var>op</var> is "-", <var>info</var> is set to
+        <p>If <var>op</var> is <code>"-"</code>, <var>info</var> is set to
 
           <ul>
 <li>0 if the downdate was successful,
@@ -136,15 +139,16 @@ if <var>op</var> is "-"
 
         <p>If <var>info</var> is not present, an error message is printed in cases 1 and 2.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFcholinsert.html#XREFcholinsert">cholinsert</a>, <a href="XREFcholdelete.html#XREFcholdelete">choldelete</a>, <a href="XREFcholshift.html#XREFcholshift">cholshift</a>.
+
+        </blockquote></div>
 
 <!-- cholinsert libinterp/dldfcn/chol.cc -->
-   <p><a name="doc_002dcholinsert"></a>
+   <p><a name="XREFcholinsert"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R1</var> = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2254"></a></var><br>
-&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2255"></a></var><br>
+&mdash; Loadable Function: <var>R1</var> = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2409"></a></var><br>
+&mdash; Loadable Function: [<var>R1</var>, <var>info</var>] = <b>cholinsert</b> (<var>R, j, u</var>)<var><a name="index-cholinsert-2410"></a></var><br>
 <blockquote><p>Given a Cholesky&nbsp;factorization of a real symmetric or complex Hermitian
 positive definite matrix <var>A</var>&nbsp;=&nbsp;<var>R</var>'*<var>R</var><!-- /@w -->, <var>R</var>&nbsp;upper
 triangular, return the Cholesky&nbsp;factorization of
@@ -162,27 +166,29 @@ On return, <var>info</var> is set to
 
         <p>If <var>info</var> is not present, an error message is printed in cases 1 and 2.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholupdate.html#doc_002dcholupdate">cholupdate</a>, <a href="doc_002dcholdelete.html#doc_002dcholdelete">choldelete</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFcholupdate.html#XREFcholupdate">cholupdate</a>, <a href="XREFcholdelete.html#XREFcholdelete">choldelete</a>, <a href="XREFcholshift.html#XREFcholshift">cholshift</a>.
+
+        </blockquote></div>
 
 <!-- choldelete libinterp/dldfcn/chol.cc -->
-   <p><a name="doc_002dcholdelete"></a>
+   <p><a name="XREFcholdelete"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R1</var> = <b>choldelete</b> (<var>R, j</var>)<var><a name="index-choldelete-2256"></a></var><br>
+&mdash; Loadable Function: <var>R1</var> = <b>choldelete</b> (<var>R, j</var>)<var><a name="index-choldelete-2411"></a></var><br>
 <blockquote><p>Given a Cholesky&nbsp;factorization of a real symmetric or complex Hermitian
 positive definite matrix <var>A</var>&nbsp;=&nbsp;<var>R</var>'*<var>R</var><!-- /@w -->, <var>R</var>&nbsp;upper
 triangular, return the Cholesky&nbsp;factorization of A(p,p)<!-- /@w -->, where
 p&nbsp;=&nbsp;[1:j-1,j+1:n+1]<!-- /@w -->.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholupdate.html#doc_002dcholupdate">cholupdate</a>, <a href="doc_002dcholinsert.html#doc_002dcholinsert">cholinsert</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFcholupdate.html#XREFcholupdate">cholupdate</a>, <a href="XREFcholinsert.html#XREFcholinsert">cholinsert</a>, <a href="XREFcholshift.html#XREFcholshift">cholshift</a>.
+
+        </blockquote></div>
 
 <!-- cholshift libinterp/dldfcn/chol.cc -->
-   <p><a name="doc_002dcholshift"></a>
+   <p><a name="XREFcholshift"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>R1</var> = <b>cholshift</b> (<var>R, i, j</var>)<var><a name="index-cholshift-2257"></a></var><br>
+&mdash; Loadable Function: <var>R1</var> = <b>cholshift</b> (<var>R, i, j</var>)<var><a name="index-cholshift-2412"></a></var><br>
 <blockquote><p>Given a Cholesky&nbsp;factorization of a real symmetric or complex Hermitian
 positive definite matrix <var>A</var>&nbsp;=&nbsp;<var>R</var>'*<var>R</var><!-- /@w -->, <var>R</var>&nbsp;upper
 triangular, return the Cholesky&nbsp;factorization of
@@ -191,16 +197,17 @@ triangular, return the Cholesky&nbsp;factorization of
  or <br>
 <code>p = [1:j-1, shift(j:i,-1), i+1:n]</code> if <var>j</var>&nbsp;&lt;&nbsp;<var>i</var><!-- /@w -->.  <br>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dchol.html#doc_002dchol">chol</a>, <a href="doc_002dcholinsert.html#doc_002dcholinsert">cholinsert</a>, <a href="doc_002dcholdelete.html#doc_002dcholdelete">choldelete</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFcholupdate.html#XREFcholupdate">cholupdate</a>, <a href="XREFcholinsert.html#XREFcholinsert">cholinsert</a>, <a href="XREFcholdelete.html#XREFcholdelete">choldelete</a>.
+
+        </blockquote></div>
 
 <!-- hess libinterp/corefcn/hess.cc -->
-   <p><a name="doc_002dhess"></a>
+   <p><a name="XREFhess"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>H</var> = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2258"></a></var><br>
-&mdash; Built-in Function: [<var>P</var>, <var>H</var>] = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2259"></a></var><br>
-<blockquote><p><a name="index-Hessenberg-decomposition-2260"></a>Compute the Hessenberg decomposition of the matrix <var>A</var>.
+&mdash; Built-in Function: <var>H</var> = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2413"></a></var><br>
+&mdash; Built-in Function: [<var>P</var>, <var>H</var>] = <b>hess</b> (<var>A</var>)<var><a name="index-hess-2414"></a></var><br>
+<blockquote><p><a name="index-Hessenberg-decomposition-2415"></a>Compute the Hessenberg decomposition of the matrix <var>A</var>.
 
         <p>The Hessenberg decomposition is
 <var>P</var><code> * </code><var>H</var><code> * </code><var>P</var><code>' = </code><var>A</var> where <var>P</var> is a square
@@ -210,21 +217,24 @@ transposition) and <var>H</var> is upper Hessenberg
 
         <p>The Hessenberg decomposition is usually used as the first step in an
 eigenvalue computation, but has other applications as well (see Golub,
-Nash, and Van Loan, IEEE Transactions on Automatic Control, 1979). 
-</p></blockquote></div>
+Nash, and Van Loan, IEEE Transactions on Automatic Control, 1979).
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeig.html#XREFeig">eig</a>, <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqz.html#XREFqz">qz</a>, <a href="XREFschur.html#XREFschur">schur</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- lu libinterp/corefcn/lu.cc -->
-   <p><a name="doc_002dlu"></a>
+   <p><a name="XREFlu"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2261"></a></var><br>
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2262"></a></var><br>
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2263"></a></var><br>
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>, <var>R</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2264"></a></var><br>
-&mdash; Built-in Function: [<small class="dots">...</small>] = <b>lu</b> (<var>S, thres</var>)<var><a name="index-lu-2265"></a></var><br>
-&mdash; Built-in Function: <var>y</var> = <b>lu</b> (<var><small class="dots">...</small></var>)<var><a name="index-lu-2266"></a></var><br>
-&mdash; Built-in Function: [<small class="dots">...</small>] = <b>lu</b> (<var><small class="dots">...</small>, "vector"</var>)<var><a name="index-lu-2267"></a></var><br>
-<blockquote><p><a name="index-LU-decomposition-2268"></a>Compute the LU&nbsp;decomposition of <var>A</var>.  If <var>A</var> is full
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2416"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>lu</b> (<var>A</var>)<var><a name="index-lu-2417"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2418"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>, <var>Q</var>, <var>R</var>] = <b>lu</b> (<var>S</var>)<var><a name="index-lu-2419"></a></var><br>
+&mdash; Built-in Function: [<small class="dots">...</small>] = <b>lu</b> (<var>S, thres</var>)<var><a name="index-lu-2420"></a></var><br>
+&mdash; Built-in Function: <var>y</var> = <b>lu</b> (<var><small class="dots">...</small></var>)<var><a name="index-lu-2421"></a></var><br>
+&mdash; Built-in Function: [<small class="dots">...</small>] = <b>lu</b> (<var><small class="dots">...</small>, "vector"</var>)<var><a name="index-lu-2422"></a></var><br>
+<blockquote><p><a name="index-LU-decomposition-2423"></a>Compute the LU&nbsp;decomposition of <var>A</var>.  If <var>A</var> is full
 subroutines from
 <span class="sc">lapack</span> are used and if <var>A</var> is sparse then <span class="sc">umfpack</span> is used.  The
 result is returned in a permuted form, according to the optional return
@@ -271,10 +281,10 @@ element defines the pivoting tolerance for the unsymmetric <span class="sc">umfp
 pivoting strategy and the second for the symmetric strategy.  By default,
 the values defined by <code>spparms</code> are used ([0.1, 0.001]).
 
-        <p>Given the string argument "vector", <code>lu</code> returns the values of <var>P</var>
-and <var>Q</var> as vector values, such that for full matrix, <var>A</var><code>
-(</code><var>P</var><code>,:) = </code><var>L</var><code> * </code><var>U</var>, and <var>R</var><code>(</code><var>P</var><code>,:) * </code><var>A</var><code>
-(:, </code><var>Q</var><code>) = </code><var>L</var><code> * </code><var>U</var>.
+        <p>Given the string argument <code>"vector"</code>, <code>lu</code> returns the values
+of <var>P</var> and <var>Q</var> as vector values, such that for full matrix,
+<var>A</var><code> (</code><var>P</var><code>,:) = </code><var>L</var><code> * </code><var>U</var>, and <var>R</var><code>(</code><var>P</var><code>,:)
+* </code><var>A</var><code> (:, </code><var>Q</var><code>) = </code><var>L</var><code> * </code><var>U</var>.
 
         <p>With two output arguments, returns the permuted forms of the upper and
 lower triangular matrices, such that <var>A</var><code> = </code><var>L</var><code> * </code><var>U</var>. 
@@ -282,15 +292,18 @@ With one output argument <var>y</var>, then the matrix returned by the <span cla
 routines is returned.  If the input matrix is sparse then the matrix <var>L</var>
 is embedded into <var>U</var> to give a return value similar to the full case. 
 For both full and sparse matrices, <code>lu</code> loses the permutation
-information. 
-</p></blockquote></div>
+information.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFluupdate.html#XREFluupdate">luupdate</a>, <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqz.html#XREFqz">qz</a>, <a href="XREFschur.html#XREFschur">schur</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- luupdate libinterp/corefcn/lu.cc -->
-   <p><a name="doc_002dluupdate"></a>
+   <p><a name="XREFluupdate"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>] = <b>luupdate</b> (<var>L, U, x, y</var>)<var><a name="index-luupdate-2269"></a></var><br>
-&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>luupdate</b> (<var>L, U, P, x, y</var>)<var><a name="index-luupdate-2270"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>] = <b>luupdate</b> (<var>L, U, x, y</var>)<var><a name="index-luupdate-2424"></a></var><br>
+&mdash; Built-in Function: [<var>L</var>, <var>U</var>, <var>P</var>] = <b>luupdate</b> (<var>L, U, P, x, y</var>)<var><a name="index-luupdate-2425"></a></var><br>
 <blockquote><p>Given an LU&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>L</var>*<var>U</var><!-- /@w -->, <var>L</var>&nbsp;lower unit trapezoidal and
 <var>U</var>&nbsp;upper trapezoidal, return the LU&nbsp;factorization
@@ -322,18 +335,19 @@ stable.
 thus, for large enough k, it will be both faster and more accurate to
 recompute the factorization from scratch.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlu.html#doc_002dlu">lu</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>, <a href="doc_002dcholupdate.html#doc_002dcholupdate">cholupdate</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFcholupdate.html#XREFcholupdate">cholupdate</a>, <a href="XREFqrupdate.html#XREFqrupdate">qrupdate</a>.
+
+        </blockquote></div>
 
 <!-- qr libinterp/dldfcn/qr.cc -->
-   <p><a name="doc_002dqr"></a>
+   <p><a name="XREFqr"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A</var>)<var><a name="index-qr-2271"></a></var><br>
-&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A, '0'</var>)<var><a name="index-qr-2272"></a></var><br>
-&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B</var>)<var><a name="index-qr-2273"></a></var><br>
-&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B, '0'</var>)<var><a name="index-qr-2274"></a></var><br>
-<blockquote><p><a name="index-QR-factorization-2275"></a>Compute the QR&nbsp;factorization of <var>A</var>, using standard <span class="sc">lapack</span>
+&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A</var>)<var><a name="index-qr-2426"></a></var><br>
+&mdash; Loadable Function: [<var>Q</var>, <var>R</var>, <var>P</var>] = <b>qr</b> (<var>A, '0'</var>)<var><a name="index-qr-2427"></a></var><br>
+&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B</var>)<var><a name="index-qr-2428"></a></var><br>
+&mdash; Loadable Function: [<var>C</var>, <var>R</var>] = <b>qr</b> (<var>A, B, '0'</var>)<var><a name="index-qr-2429"></a></var><br>
+<blockquote><p><a name="index-QR-factorization-2430"></a>Compute the QR&nbsp;factorization of <var>A</var>, using standard <span class="sc">lapack</span>
 subroutines.  For example, given the matrix <var>A</var><code> = [1, 2; 3, 4]</code>,
 
      <pre class="example">          [<var>Q</var>, <var>R</var>] = qr (<var>A</var>)
@@ -361,7 +375,7 @@ squares problems
 <var>Q</var><code> * </code><var>Q</var><code> = </code><var>A</var> where <var>Q</var> is an orthogonal matrix and
 <var>R</var> is upper triangular.
 
-        <p>If given a second argument of '0', <code>qr</code> returns an economy-sized
+        <p>If given a second argument of <code>'0'</code>, <code>qr</code> returns an economy-sized
 QR&nbsp;factorization, omitting zero rows of <var>R</var> and the corresponding
 columns of <var>Q</var>.
 
@@ -412,13 +426,15 @@ as
      <pre class="example">          [<var>C</var>, <var>R</var>] = qr (<var>A</var>, <var>B</var>)
           x = <var>R</var> \ <var>C</var>
 </pre>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFqz.html#XREFqz">qz</a>, <a href="XREFschur.html#XREFschur">schur</a>, <a href="XREFsvd.html#XREFsvd">svd</a>, <a href="XREFqrupdate.html#XREFqrupdate">qrupdate</a>, <a href="XREFqrinsert.html#XREFqrinsert">qrinsert</a>, <a href="XREFqrdelete.html#XREFqrdelete">qrdelete</a>, <a href="XREFqrshift.html#XREFqrshift">qrshift</a>.
+
         </blockquote></div>
 
 <!-- qrupdate libinterp/dldfcn/qr.cc -->
-   <p><a name="doc_002dqrupdate"></a>
+   <p><a name="XREFqrupdate"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrupdate</b> (<var>Q, R, u, v</var>)<var><a name="index-qrupdate-2276"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrupdate</b> (<var>Q, R, u, v</var>)<var><a name="index-qrupdate-2431"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization
@@ -431,14 +447,15 @@ to recompute the factorization from scratch.
         <p>The QR&nbsp;factorization supplied may be either full
 (Q is square) or economized (R is square).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrinsert.html#doc_002dqrinsert">qrinsert</a>, <a href="doc_002dqrdelete.html#doc_002dqrdelete">qrdelete</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqrinsert.html#XREFqrinsert">qrinsert</a>, <a href="XREFqrdelete.html#XREFqrdelete">qrdelete</a>, <a href="XREFqrshift.html#XREFqrshift">qrshift</a>.
+
+        </blockquote></div>
 
 <!-- qrinsert libinterp/dldfcn/qr.cc -->
-   <p><a name="doc_002dqrinsert"></a>
+   <p><a name="XREFqrinsert"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrinsert</b> (<var>Q, R, j, x, orient</var>)<var><a name="index-qrinsert-2277"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrinsert</b> (<var>Q, R, j, x, orient</var>)<var><a name="index-qrinsert-2432"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization of
@@ -463,23 +480,24 @@ the QR&nbsp;factorization supplied may be either full
 
         <p>If <var>orient</var> is <code>"row"</code>, full factorization is needed.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>, <a href="doc_002dqrdelete.html#doc_002dqrdelete">qrdelete</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqrupdate.html#XREFqrupdate">qrupdate</a>, <a href="XREFqrdelete.html#XREFqrdelete">qrdelete</a>, <a href="XREFqrshift.html#XREFqrshift">qrshift</a>.
+
+        </blockquote></div>
 
 <!-- qrdelete libinterp/dldfcn/qr.cc -->
-   <p><a name="doc_002dqrdelete"></a>
+   <p><a name="XREFqrdelete"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrdelete</b> (<var>Q, R, j, orient</var>)<var><a name="index-qrdelete-2278"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrdelete</b> (<var>Q, R, j, orient</var>)<var><a name="index-qrdelete-2433"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization of
 [A(:,1:j-1)&nbsp;A(:,j+1:n)]<!-- /@w -->, i.e., <var>A</var> with one column deleted
-(if <var>orient</var> is "col"), or the QR&nbsp;factorization of
+(if <var>orient</var> is <code>"col"</code>), or the QR&nbsp;factorization of
 [A(1:j-1,:);A(j+1:n,:)]<!-- /@w -->, i.e., <var>A</var> with one row deleted (if
-<var>orient</var> is "row").
+<var>orient</var> is <code>"row"</code>).
 
-        <p>The default value of <var>orient</var> is "col".
+        <p>The default value of <var>orient</var> is <code>"col"</code>.
 
         <p>If <var>orient</var> is <code>"col"</code>,
 <var>j</var> may be an index vector
@@ -495,14 +513,15 @@ the QR&nbsp;factorization supplied may be either full
 
         <p>If <var>orient</var> is <code>"row"</code>, full factorization is needed.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrinsert.html#doc_002dqrinsert">qrinsert</a>, <a href="doc_002dqrupdate.html#doc_002dqrupdate">qrupdate</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqrupdate.html#XREFqrupdate">qrupdate</a>, <a href="XREFqrinsert.html#XREFqrinsert">qrinsert</a>, <a href="XREFqrshift.html#XREFqrshift">qrshift</a>.
+
+        </blockquote></div>
 
 <!-- qrshift libinterp/dldfcn/qr.cc -->
-   <p><a name="doc_002dqrshift"></a>
+   <p><a name="XREFqrshift"></a>
 
 <div class="defun">
-&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrshift</b> (<var>Q, R, i, j</var>)<var><a name="index-qrshift-2279"></a></var><br>
+&mdash; Loadable Function: [<var>Q1</var>, <var>R1</var>] = <b>qrshift</b> (<var>Q, R, i, j</var>)<var><a name="index-qrshift-2434"></a></var><br>
 <blockquote><p>Given a QR&nbsp;factorization of a real or complex matrix
 <var>A</var>&nbsp;=&nbsp;<var>Q</var>*<var>R</var><!-- /@w -->, <var>Q</var>&nbsp;unitary and
 <var>R</var>&nbsp;upper trapezoidal, return the QR&nbsp;factorization
@@ -511,15 +530,16 @@ of <var>A</var>(:,p)<!-- /@w -->, where p<!-- /@w --> is the permutation <br>
  or <br>
 <code>p = [1:j-1, shift(j:i,-1), i+1:n]</code> if <var>j</var>&nbsp;&lt;&nbsp;<var>i</var><!-- /@w -->.  <br>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dqr.html#doc_002dqr">qr</a>, <a href="doc_002dqrinsert.html#doc_002dqrinsert">qrinsert</a>, <a href="doc_002dqrdelete.html#doc_002dqrdelete">qrdelete</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqrupdate.html#XREFqrupdate">qrupdate</a>, <a href="XREFqrinsert.html#XREFqrinsert">qrinsert</a>, <a href="XREFqrdelete.html#XREFqrdelete">qrdelete</a>.
+
+        </blockquote></div>
 
 <!-- qz libinterp/corefcn/qz.cc -->
-   <p><a name="doc_002dqz"></a>
+   <p><a name="XREFqz"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>lambda</var> = <b>qz</b> (<var>A, B</var>)<var><a name="index-qz-2280"></a></var><br>
-&mdash; Built-in Function: <var>lambda</var> = <b>qz</b> (<var>A, B, opt</var>)<var><a name="index-qz-2281"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>qz</b> (<var>A, B</var>)<var><a name="index-qz-2435"></a></var><br>
+&mdash; Built-in Function: <var>lambda</var> = <b>qz</b> (<var>A, B, opt</var>)<var><a name="index-qz-2436"></a></var><br>
 <blockquote><p>QZ&nbsp;decomposition of the generalized eigenvalue problem
 (A x = s B x).  There are three ways to call this function:
           <ol type=1 start=1>
@@ -554,33 +574,34 @@ the generalized eigenvectors <var>V</var>, <var>W</var>, nor the orthogonal matr
 of the revised pencil contains all eigenvalues that satisfy:
 
                     <dl>
-<dt>"N"<dd>= unordered (default)
+<dt><code>"N"</code><dd>= unordered (default)
 
-                    <br><dt>"S"<dd>= small: leading block has all |lambda| &le; 1
+                    <br><dt><code>"S"</code><dd>= small: leading block has all |lambda| &le; 1
 
-                    <br><dt>"B"<dd>= big: leading block has all |lambda| &ge; 1
+                    <br><dt><code>"B"</code><dd>= big: leading block has all |lambda| &ge; 1
 
-                    <br><dt>"-"<dd>= negative real part: leading block has all eigenvalues
+                    <br><dt><code>"-"</code><dd>= negative real part: leading block has all eigenvalues
 in the open left half-plane
 
-                    <br><dt>"+"<dd>= non-negative real part: leading block has all eigenvalues
+                    <br><dt><code>"+"</code><dd>= non-negative real part: leading block has all eigenvalues
 in the closed right half-plane
 </dl>
                </dl>
           </ol>
 
         <p>Note: <code>qz</code> performs permutation balancing, but not scaling
-(see <a href="doc_002dbalance.html#doc_002dbalance">doc-balance</a>).  The order of output arguments was selected for
+(see <a href="XREFbalance.html#XREFbalance">XREFbalance</a>).  The order of output arguments was selected for
 compatibility with <span class="sc">matlab</span>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dbalance.html#doc_002dbalance">balance</a>, <a href="doc_002deig.html#doc_002deig">eig</a>, <a href="doc_002dschur.html#doc_002dschur">schur</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeig.html#XREFeig">eig</a>, <a href="XREFbalance.html#XREFbalance">balance</a>, <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqzhess.html#XREFqzhess">qzhess</a>, <a href="XREFschur.html#XREFschur">schur</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- qzhess scripts/linear-algebra/qzhess.m -->
-   <p><a name="doc_002dqzhess"></a>
+   <p><a name="XREFqzhess"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>aa</var>, <var>bb</var>, <var>q</var>, <var>z</var>] = <b>qzhess</b> (<var>A, B</var>)<var><a name="index-qzhess-2282"></a></var><br>
+&mdash; Function File: [<var>aa</var>, <var>bb</var>, <var>q</var>, <var>z</var>] = <b>qzhess</b> (<var>A, B</var>)<var><a name="index-qzhess-2437"></a></var><br>
 <blockquote><p>Compute the Hessenberg-triangular decomposition of the matrix pencil
 <code>(</code><var>A</var><code>, </code><var>B</var><code>)</code>, returning
 <var>aa</var><code> = </code><var>q</var><code> * </code><var>A</var><code> * </code><var>z</var>,
@@ -597,19 +618,22 @@ orthogonal.  For example:
 Moler and Stewart's QZ&nbsp;decomposition algorithm.
 
         <p>Algorithm taken from Golub and Van Loan,
-<cite>Matrix Computations, 2nd edition</cite>. 
-</p></blockquote></div>
+<cite>Matrix Computations, 2nd edition</cite>.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqz.html#XREFqz">qz</a>, <a href="XREFschur.html#XREFschur">schur</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- schur libinterp/corefcn/schur.cc -->
-   <p><a name="doc_002dschur"></a>
+   <p><a name="XREFschur"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A</var>)<var><a name="index-schur-2283"></a></var><br>
-&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, "real"</var>)<var><a name="index-schur-2284"></a></var><br>
-&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, "complex"</var>)<var><a name="index-schur-2285"></a></var><br>
-&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, opt</var>)<var><a name="index-schur-2286"></a></var><br>
-&mdash; Built-in Function: [<var>U</var>, <var>S</var>] = <b>schur</b> (<var>A, <small class="dots">...</small></var>)<var><a name="index-schur-2287"></a></var><br>
-<blockquote><p><a name="index-Schur-decomposition-2288"></a>Compute the Schur&nbsp;decomposition of <var>A</var>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A</var>)<var><a name="index-schur-2438"></a></var><br>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, "real"</var>)<var><a name="index-schur-2439"></a></var><br>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, "complex"</var>)<var><a name="index-schur-2440"></a></var><br>
+&mdash; Built-in Function: <var>S</var> = <b>schur</b> (<var>A, opt</var>)<var><a name="index-schur-2441"></a></var><br>
+&mdash; Built-in Function: [<var>U</var>, <var>S</var>] = <b>schur</b> (<var>A, <small class="dots">...</small></var>)<var><a name="index-schur-2442"></a></var><br>
+<blockquote><p><a name="index-Schur-decomposition-2443"></a>Compute the Schur&nbsp;decomposition of <var>A</var>
 
      <pre class="example">          <var>S</var><code> = </code><var>U</var><code>' * </code><var>A</var><code> * </code><var>U</var>
 </pre>
@@ -627,7 +651,8 @@ along the diagonal.  The diagonal elements of <var>S</var>
 blocks, when appropriate) are the eigenvalues of <var>A</var> and <var>S</var>.
 
         <p>The default for real matrices is a real Schur&nbsp;decomposition. 
-A complex decomposition may be forced by passing the flag "complex".
+A complex decomposition may be forced by passing the flag
+<code>"complex"</code>.
 
         <p>The eigenvalues are optionally ordered along the diagonal according to
 the value of <var>opt</var>.  <var>opt</var><code> = "a"</code> indicates that all
@@ -644,14 +669,15 @@ subspace corresponding to the <var>k</var> leading eigenvalues of <var>S</var>.
 square matrix, and has applications in the solution of algebraic
 Riccati equations in control (see <code>are</code> and <code>dare</code>).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drsf2csf.html#doc_002drsf2csf">rsf2csf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrsf2csf.html#XREFrsf2csf">rsf2csf</a>, <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqz.html#XREFqz">qz</a>, <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- rsf2csf libinterp/corefcn/schur.cc -->
-   <p><a name="doc_002drsf2csf"></a>
+   <p><a name="XREFrsf2csf"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>U</var>, <var>T</var>] = <b>rsf2csf</b> (<var>UR, TR</var>)<var><a name="index-rsf2csf-2289"></a></var><br>
+&mdash; Function File: [<var>U</var>, <var>T</var>] = <b>rsf2csf</b> (<var>UR, TR</var>)<var><a name="index-rsf2csf-2444"></a></var><br>
 <blockquote><p>Convert a real, upper quasi-triangular Schur&nbsp;form <var>TR</var> to a complex,
 upper triangular Schur&nbsp;form <var>T</var>.
 
@@ -662,26 +688,27 @@ upper triangular Schur&nbsp;form <var>T</var>.
 
         <p>Note also that <var>U</var> and <var>T</var> are not unique.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dschur.html#doc_002dschur">schur</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFschur.html#XREFschur">schur</a>.
+
+        </blockquote></div>
 
 <!-- subspace scripts/linear-algebra/subspace.m -->
-   <p><a name="doc_002dsubspace"></a>
+   <p><a name="XREFsubspace"></a>
 
 <div class="defun">
-&mdash; Function File: <var>angle</var> = <b>subspace</b> (<var>A, B</var>)<var><a name="index-subspace-2290"></a></var><br>
+&mdash; Function File: <var>angle</var> = <b>subspace</b> (<var>A, B</var>)<var><a name="index-subspace-2445"></a></var><br>
 <blockquote><p>Determine the largest principal angle between two subspaces
 spanned by the columns of matrices <var>A</var> and <var>B</var>. 
 </p></blockquote></div>
 
 <!-- svd libinterp/corefcn/svd.cc -->
-   <p><a name="doc_002dsvd"></a>
+   <p><a name="XREFsvd"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>s</var> = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2291"></a></var><br>
-&mdash; Built-in Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2292"></a></var><br>
-&mdash; Built-in Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A, econ</var>)<var><a name="index-svd-2293"></a></var><br>
-<blockquote><p><a name="index-singular-value-decomposition-2294"></a>Compute the singular value decomposition of <var>A</var>
+&mdash; Built-in Function: <var>s</var> = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2446"></a></var><br>
+&mdash; Built-in Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A</var>)<var><a name="index-svd-2447"></a></var><br>
+&mdash; Built-in Function: [<var>U</var>, <var>S</var>, <var>V</var>] = <b>svd</b> (<var>A, econ</var>)<var><a name="index-svd-2448"></a></var><br>
+<blockquote><p><a name="index-singular-value-decomposition-2449"></a>Compute the singular value decomposition of <var>A</var>
 
      <pre class="example">          A = U*S*V'
 </pre>
@@ -728,33 +755,35 @@ For example,
 decomposition, eliminating the unnecessary rows or columns of <var>U</var> or
 <var>V</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsvd_005fdriver.html#doc_002dsvd_005fdriver">svd_driver</a>, <a href="doc_002dsvds.html#doc_002dsvds">svds</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsvd_005fdriver.html#XREFsvd_005fdriver">svd_driver</a>, <a href="XREFsvds.html#XREFsvds">svds</a>, <a href="XREFeig.html#XREFeig">eig</a>, <a href="XREFlu.html#XREFlu">lu</a>, <a href="XREFchol.html#XREFchol">chol</a>, <a href="XREFhess.html#XREFhess">hess</a>, <a href="XREFqr.html#XREFqr">qr</a>, <a href="XREFqz.html#XREFqz">qz</a>.
+
+        </blockquote></div>
 
 <!-- svd_driver libinterp/corefcn/svd.cc -->
-   <p><a name="doc_002dsvd_005fdriver"></a>
+   <p><a name="XREFsvd_005fdriver"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>svd_driver</b> ()<var><a name="index-svd_005fdriver-2295"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>svd_driver</b> (<var>new_val</var>)<var><a name="index-svd_005fdriver-2296"></a></var><br>
-&mdash; Built-in Function:  <b>svd_driver</b> (<var>new_val, "local"</var>)<var><a name="index-svd_005fdriver-2297"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>svd_driver</b> ()<var><a name="index-svd_005fdriver-2450"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>svd_driver</b> (<var>new_val</var>)<var><a name="index-svd_005fdriver-2451"></a></var><br>
+&mdash; Built-in Function:  <b>svd_driver</b> (<var>new_val, "local"</var>)<var><a name="index-svd_005fdriver-2452"></a></var><br>
 <blockquote><p>Query or set the underlying <span class="sc">lapack</span> driver used by <code>svd</code>. 
-Currently recognized values are "gesvd" and "gesdd".  The default
-is "gesvd".
+Currently recognized values are <code>"gesvd"</code> and <code>"gesdd"</code>. 
+The default is <code>"gesvd"</code>.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsvd.html#doc_002dsvd">svd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsvd.html#XREFsvd">svd</a>.
+
+        </blockquote></div>
 
 <!-- FIXME - should there be a new section here? -->
 <!-- housh scripts/linear-algebra/housh.m -->
-   <p><a name="doc_002dhoush"></a>
+   <p><a name="XREFhoush"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>housv</var>, <var>beta</var>, <var>zer</var>] = <b>housh</b> (<var>x, j, z</var>)<var><a name="index-housh-2298"></a></var><br>
+&mdash; Function File: [<var>housv</var>, <var>beta</var>, <var>zer</var>] = <b>housh</b> (<var>x, j, z</var>)<var><a name="index-housh-2453"></a></var><br>
 <blockquote><p>Compute Householder reflection vector <var>housv</var> to reflect <var>x</var>
 to be the j-th column of identity, i.e.,
 
@@ -781,10 +810,10 @@ to be the j-th column of identity, i.e.,
         </p></blockquote></div>
 
 <!-- krylov scripts/linear-algebra/krylov.m -->
-   <p><a name="doc_002dkrylov"></a>
+   <p><a name="XREFkrylov"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>u</var>, <var>h</var>, <var>nu</var>] = <b>krylov</b> (<var>A, V, k, eps1, pflg</var>)<var><a name="index-krylov-2299"></a></var><br>
+&mdash; Function File: [<var>u</var>, <var>h</var>, <var>nu</var>] = <b>krylov</b> (<var>A, V, k, eps1, pflg</var>)<var><a name="index-krylov-2454"></a></var><br>
 <blockquote><p>Construct an orthogonal basis <var>u</var> of block Krylov subspace
 
      <pre class="example">          [v a*v a^2*v ... a^(k+1)*v]

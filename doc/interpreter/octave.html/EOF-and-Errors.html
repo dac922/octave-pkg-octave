@@ -52,25 +52,26 @@ contents of a file and then process it, than it is to read it line by
 line.  This has the potential advantage of removing the loop in the
 above code.
 
-<!-- feof libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfeof"></a>
+<!-- feof libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfeof"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>feof</b> (<var>fid</var>)<var><a name="index-feof-1064"></a></var><br>
+&mdash; Built-in Function:  <b>feof</b> (<var>fid</var>)<var><a name="index-feof-1082"></a></var><br>
 <blockquote><p>Return 1 if an end-of-file condition has been encountered for a given
 file and 0 otherwise.  Note that it will only return 1 if the end of the
 file has already been encountered, not if the next read operation will
 result in an end-of-file condition.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfread.html#doc_002dfread">fread</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfread.html#XREFfread">fread</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- ferror libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dferror"></a>
+        </blockquote></div>
+
+<!-- ferror libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFferror"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid</var>)<var><a name="index-ferror-1065"></a></var><br>
-&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid, "clear"</var>)<var><a name="index-ferror-1066"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid</var>)<var><a name="index-ferror-1083"></a></var><br>
+&mdash; Built-in Function: [<var>err</var>, <var>msg</var>] = <b>ferror</b> (<var>fid, "clear"</var>)<var><a name="index-ferror-1084"></a></var><br>
 <blockquote><p>Return 1 if an error condition has been encountered for the file ID
 <var>fid</var> and 0 otherwise.  Note that it will only return 1 if an error
 has already been encountered, not if the next operation will result in
@@ -79,24 +80,26 @@ an error condition.
         <p>The second argument is optional.  If it is supplied, also clear the
 error condition.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfclear.html#doc_002dfclear">fclear</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfclear.html#XREFfclear">fclear</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- fclear libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfclear"></a>
+        </blockquote></div>
+
+<!-- fclear libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfclear"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fclear</b> (<var>fid</var>)<var><a name="index-fclear-1067"></a></var><br>
+&mdash; Built-in Function:  <b>fclear</b> (<var>fid</var>)<var><a name="index-fclear-1085"></a></var><br>
 <blockquote><p>Clear the stream state for the specified file.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- freport libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfreport"></a>
+        </blockquote></div>
+
+<!-- freport libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfreport"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>freport</b> ()<var><a name="index-freport-1068"></a></var><br>
+&mdash; Built-in Function:  <b>freport</b> ()<var><a name="index-freport-1086"></a></var><br>
 <blockquote><p>Print a list of which files have been opened, and whether they are open
 for reading, writing, or both.  For example:
 
@@ -109,8 +112,9 @@ for reading, writing, or both.  For example:
                -|       2     w  stderr
                -|       3     r  myfile
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>, <a href="doc_002dfclose.html#doc_002dfclose">fclose</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFfopen.html#XREFfopen">fopen</a>, <a href="XREFfclose.html#XREFfclose">fclose</a>.
+
+        </blockquote></div>
 
    </body></html>
 

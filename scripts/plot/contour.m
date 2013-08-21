@@ -22,12 +22,27 @@
 ## @deftypefnx {Function File} {} contour (@var{x}, @var{y}, @var{z})
 ## @deftypefnx {Function File} {} contour (@var{x}, @var{y}, @var{z}, @var{vn})
 ## @deftypefnx {Function File} {} contour (@dots{}, @var{style})
-## @deftypefnx {Function File} {} contour (@var{h}, @dots{})
+## @deftypefnx {Function File} {} contour (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {[@var{c}, @var{h}] =} contour (@dots{})
+## Create a 2-D contour plot.
+##
 ## Plot level curves (contour lines) of the matrix @var{z}, using the
 ## contour matrix @var{c} computed by @code{contourc} from the same
-## arguments; see the latter for their interpretation.  The set of
-## contour levels, @var{c}, is only returned if requested.  For example:
+## arguments; see the latter for their interpretation.
+##
+## The appearance of contour lines can be defined with a line style @var{style}
+## in the same manner as @code{plot}.  Only line style and color are used;
+## Any markers defined by @var{style} are ignored.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
+## The optional output @var{c} are the contour levels in @code{contourc} format.
+##
+## The optional return value @var{h} is a graphics handle to the hggroup
+## comprising the contour lines.
+##
+## Example:
 ##
 ## @example
 ## @group
@@ -38,29 +53,28 @@
 ## @end group
 ## @end example
 ##
-## The style to use for the plot can be defined with a line style @var{style}
-## in a similar manner to the line styles used with the @code{plot} command.
-## Any markers defined by @var{style} are ignored.
+## @seealso{ezcontour, contourc, contourf, contour3, clabel, meshc, surfc, caxis, colormap, plot}
 ##
-## The optional input and output argument @var{h} allows an axis handle to
-## be passed to @code{contour} and the handles to the contour objects to be
-## returned.
-## @seealso{contourc, patch, plot}
 ## @end deftypefn
 
 ## Author: Shai Ayal <shaiay@users.sourceforge.net>
 
 function [c, h] = contour (varargin)
 
-  [xh, varargin] = __plt_get_axis_arg__ ("contour", varargin{:});
+  [hax, varargin] = __plt_get_axis_arg__ ("contour", varargin{:});
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (xh);
-    newplot ();
-    [ctmp, htmp] = __contour__ (xh, "none", varargin{:});
+    hax = newplot (hax);
+    
+    [ctmp, htmp] = __contour__ (hax, "none", varargin{:});
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
   if (nargout > 0)
@@ -76,6 +90,8 @@ endfunction
 %! colormap ('default');
 %! [x, y, z] = peaks ();
 %! contour (x, y, z);
+%! title ('contour() plot of peaks() function');
+%! title ({'contour() plot (isolines of constant Z)'; 'Z = peaks()'});
 
 %!demo
 %! clf;
@@ -84,13 +100,35 @@ endfunction
 %! [X, Y] = pol2cart (theta, r);
 %! Z = sin (2*theta) .* (1-r);
 %! contour (X, Y, abs (Z), 10);
+%! title ({'contour() plot'; 'polar fcn: Z = sin (2*theta) * (1-r)'});
 
-%!demo
-%! clf;
-%! colormap ('default');
-%! x = linspace (-2, 2);
-%! [x, y] = meshgrid (x);
-%! z = sqrt (x.^2 + y.^2) ./ (x.^2 + y.^2 + 1);
-%! contourf (x, y, z, [0.4, 0.4]);
-%! title ('The hole should be filled with the background color');
+%!test
+%! hf = figure ("visible", "off");
+%! clf (hf);
+%! unwind_protect
+%!   [x, y, z] = peaks ();
+%!   [c, h] = contour (x, y, z);
+%!   levellist = (-6):6;
+%!   set (h, "levellist", levellist);
+%!   assert (get (h, "levellist"), levellist)
+%!   assert (get (h, "levellistmode"), "manual")
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+
+%!test
+%! hf = figure ("visible", "off");
+%! clf (hf);
+%! unwind_protect
+%!   [x, y, z] = peaks ();
+%!   [c, h] = contour (x, y, z);
+%!   levelstep = 3;
+%!   set (h, "levelstep", levelstep);
+%!   assert (get (h, "levelstep"), levelstep)
+%!   assert (get (h, "levelstepmode"), "manual")
+%!   assert (get (h, "levellist"), (-6):levelstep:6)
+%!   assert (get (h, "levellistmode"), "auto")
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
 

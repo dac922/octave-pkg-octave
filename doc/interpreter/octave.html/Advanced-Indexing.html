@@ -162,11 +162,11 @@ elements using indexing commands.  For example, given a matrix
 result.
 
 <!-- sub2ind libinterp/corefcn/sub2ind.cc -->
-   <p><a name="doc_002dsub2ind"></a>
+   <p><a name="XREFsub2ind"></a>
 
 <div class="defun">
-&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, i, j</var>)<var><a name="index-sub2ind-548"></a></var><br>
-&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, s1, s2, <small class="dots">...</small>, sN</var>)<var><a name="index-sub2ind-549"></a></var><br>
+&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, i, j</var>)<var><a name="index-sub2ind-560"></a></var><br>
+&mdash; Function File: <var>ind</var> = <b>sub2ind</b> (<var>dims, s1, s2, <small class="dots">...</small>, sN</var>)<var><a name="index-sub2ind-561"></a></var><br>
 <blockquote><p>Convert subscripts to a linear index.
 
         <p>The following example shows how to convert the two-dimensional
@@ -177,14 +177,15 @@ all rows in each column.
      <pre class="example">          linear_index = sub2ind ([3, 3], 2, 3)
           &rArr; 8
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2sub.html#doc_002dind2sub">ind2sub</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFind2sub.html#XREFind2sub">ind2sub</a>.
+
+        </blockquote></div>
 
 <!-- ind2sub libinterp/corefcn/sub2ind.cc -->
-   <p><a name="doc_002dind2sub"></a>
+   <p><a name="XREFind2sub"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>s1</var>, <var>s2</var>, <small class="dots">...</small>, <var>sN</var>] = <b>ind2sub</b> (<var>dims, ind</var>)<var><a name="index-ind2sub-550"></a></var><br>
+&mdash; Function File: [<var>s1</var>, <var>s2</var>, <small class="dots">...</small>, <var>sN</var>] = <b>ind2sub</b> (<var>dims, ind</var>)<var><a name="index-ind2sub-562"></a></var><br>
 <blockquote><p>Convert a linear index to subscripts.
 
         <p>The following example shows how to convert the linear index <code>8</code>
@@ -195,15 +196,16 @@ moving from one column to next, filling up all rows in each column.
               &rArr; r =  2
               &rArr; c =  3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsub2ind.html#doc_002dsub2ind">sub2ind</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFsub2ind.html#XREFsub2ind">sub2ind</a>.
 
-<!-- isindex libinterp/interpfcn/utils.cc -->
-   <p><a name="doc_002disindex"></a>
+        </blockquote></div>
+
+<!-- isindex libinterp/corefcn/utils.cc -->
+   <p><a name="XREFisindex"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isindex</b> (<var>ind</var>)<var><a name="index-isindex-551"></a></var><br>
-&mdash; Built-in Function:  <b>isindex</b> (<var>ind, n</var>)<var><a name="index-isindex-552"></a></var><br>
+&mdash; Built-in Function:  <b>isindex</b> (<var>ind</var>)<var><a name="index-isindex-563"></a></var><br>
+&mdash; Built-in Function:  <b>isindex</b> (<var>ind, n</var>)<var><a name="index-isindex-564"></a></var><br>
 <blockquote><p>Return true if <var>ind</var> is a valid index.  Valid indices are
 either positive integers (although possibly of real data type), or logical
 arrays.  If present, <var>n</var> specifies the maximum extent of the dimension
@@ -212,20 +214,20 @@ subsequent indexing using <var>ind</var> will not perform the check again.
 </p></blockquote></div>
 
 <!-- allow_noninteger_range_as_index libinterp/octave-value/ov-range.cc -->
-   <p><a name="doc_002dallow_005fnoninteger_005frange_005fas_005findex"></a>
+   <p><a name="XREFallow_005fnoninteger_005frange_005fas_005findex"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>allow_noninteger_range_as_index</b> ()<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-553"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>allow_noninteger_range_as_index</b> (<var>new_val</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-554"></a></var><br>
-&mdash; Built-in Function:  <b>allow_noninteger_range_as_index</b> (<var>new_val, "local"</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-555"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>allow_noninteger_range_as_index</b> ()<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-565"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>allow_noninteger_range_as_index</b> (<var>new_val</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-566"></a></var><br>
+&mdash; Built-in Function:  <b>allow_noninteger_range_as_index</b> (<var>new_val, "local"</var>)<var><a name="index-allow_005fnoninteger_005frange_005fas_005findex-567"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether non-integer
 ranges are allowed as indices.  This might be useful for <span class="sc">matlab</span>
 compatibility; however, it is still not entirely compatible because
 <span class="sc">matlab</span> treats the range expression differently in different contexts.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
    </body></html>

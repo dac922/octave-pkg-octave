@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+<title>JIT Compiler - GNU Octave</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Octave">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution" title="Vectorization and Faster Code Execution">
+<link rel="prev" href="Accumulation.html#Accumulation" title="Accumulation">
+<link rel="next" href="Miscellaneous-Techniques.html#Miscellaneous-Techniques" title="Miscellaneous Techniques">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="JIT-Compiler"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Miscellaneous-Techniques.html#Miscellaneous-Techniques">Miscellaneous Techniques</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Accumulation.html#Accumulation">Accumulation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Vectorization-and-Faster-Code-Execution.html#Vectorization-and-Faster-Code-Execution">Vectorization and Faster Code Execution</a>
+<hr>
+</div>
+
+<h3 class="section">19.5 JIT Compiler</h3>
+
+<p>Vectorization is the preferred technique for eliminating loops and speeding up
+code.  Nevertheless, it is not always possible to replace every loop.  In such
+situations it may be worth trying Octave's <strong>experimental</strong> Just-In-Time
+(JIT) compiler.
+
+   <p>A JIT compiler works by analyzing the body of a loop, translating the Octave
+statements into another language, compiling the new code segment into an
+executable, and then running the executable and collecting any results.  The
+process is not simple and there is a significant amount of work to perform for
+each step.  It can still make sense, however, if the number of loop iterations
+is large.  Because Octave is an interpreted language every time through a
+loop Octave must parse the statements in the loop body before executing them. 
+With a JIT compiler this is done just once when the body is translated to
+another language.
+
+   <p>The JIT compiler is a very new feature in Octave and not all valid Octave
+statements can currently be accelerated.  However, if no other technique
+is available it may be worth benchmarking the code with JIT enabled.  The
+function <code>jit_enable</code> is used to turn compilation on or off.  The
+function <code>jit_startcnt</code> sets the threshold for acceleration.  Loops
+with iteration counts above <code>jit_startcnt</code> will be accelerated.  The
+function <code>debug_jit</code> is not likely to be of use to anyone not working
+directly on the implementation of the JIT compiler.
+
+<!-- jit_enable libinterp/corefcn/pt-jit.cc -->
+   <p><a name="XREFjit_005fenable"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>jit_enable</b> ()<var><a name="index-jit_005fenable-2511"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>jit_enable</b> (<var>new_val</var>)<var><a name="index-jit_005fenable-2512"></a></var><br>
+&mdash; Built-in Function:  <b>jit_enable</b> (<var>new_val, "local"</var>)<var><a name="index-jit_005fenable-2513"></a></var><br>
+<blockquote><p>Query or set the internal variable that enables Octave's JIT compiler.
+
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFjit_005fstartcnt.html#XREFjit_005fstartcnt">jit_startcnt</a>, <a href="XREFdebug_005fjit.html#XREFdebug_005fjit">debug_jit</a>.
+
+        </blockquote></div>
+
+<!-- jit_startcnt libinterp/corefcn/pt-jit.cc -->
+   <p><a name="XREFjit_005fstartcnt"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>jit_startcnt</b> ()<var><a name="index-jit_005fstartcnt-2514"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>jit_startcnt</b> (<var>new_val</var>)<var><a name="index-jit_005fstartcnt-2515"></a></var><br>
+&mdash; Built-in Function:  <b>jit_startcnt</b> (<var>new_val, "local"</var>)<var><a name="index-jit_005fstartcnt-2516"></a></var><br>
+<blockquote><p>Query or set the internal variable that determines whether JIT compilation
+will take place for a specific loop.  Because compilation is a costly
+operation it does not make sense to employ JIT when the loop count is low. 
+By default only loops with greater than 1000 iterations will be accelerated.
+
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFjit_005fenable.html#XREFjit_005fenable">jit_enable</a>, <a href="XREFdebug_005fjit.html#XREFdebug_005fjit">debug_jit</a>.
+
+        </blockquote></div>
+
+<!-- debug_jit libinterp/corefcn/pt-jit.cc -->
+   <p><a name="XREFdebug_005fjit"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>debug_jit</b> ()<var><a name="index-debug_005fjit-2517"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>debug_jit</b> (<var>new_val</var>)<var><a name="index-debug_005fjit-2518"></a></var><br>
+&mdash; Built-in Function:  <b>debug_jit</b> (<var>new_val, "local"</var>)<var><a name="index-debug_005fjit-2519"></a></var><br>
+<blockquote><p>Query or set the internal variable that determines whether
+debugging/tracing is enabled for Octave's JIT compiler.
+
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFjit_005fenable.html#XREFjit_005fenable">jit_enable</a>, <a href="XREFjit_005fstartcnt.html#XREFjit_005fstartcnt">jit_startcnt</a>.
+
+        </blockquote></div>
+
+   </body></html>
+

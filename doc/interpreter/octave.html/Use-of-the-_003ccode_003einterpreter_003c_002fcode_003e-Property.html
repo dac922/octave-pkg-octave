@@ -33,16 +33,16 @@ Up:&nbsp;<a rel="up" accesskey="u" href="High_002dLevel-Plotting.html#High_002dL
 <hr>
 </div>
 
-<h4 class="subsection">15.2.8 Use of the <code>interpreter</code> Property</h4>
+<h4 class="subsection">15.2.7 Use of the <code>interpreter</code> Property</h4>
 
 <p>All text objects, including titles, labels, legends, and text, include
-the property 'interpreter', this property determines the manner in which
+the property <code>"interpreter"</code>, this property determines the manner in which
 special control sequences in the text are rendered.  If the interpreter
-is set to 'none', then no rendering occurs.  At this point the 'latex'
-option is not implemented and so the 'latex' interpreter also does not
-interpret the text.
+is set to <code>"none"</code>, then no rendering occurs.  At this point the
+<code>"latex"</code> option is not implemented and so the <code>"latex"</code>
+interpreter also does not interpret the text.
 
-   <p>The 'tex' option implements a subset of TeX functionality in the
+   <p>The <code>"tex"</code> option implements a subset of TeX functionality in the
 rendering of the text.  This allows the insertion of special characters
 such as Greek or mathematical symbols within the text.  The special
 characters are also inserted with a code starting with the back-slash
@@ -62,7 +62,7 @@ the change in the font to part of the string.  For example,
 
 <pre class="example">     xlabel ('{\bf H} = a {\bf V}')
 </pre>
-   <p class="noindent">where the character 'a' will not appear in a bold font.  Note that to
+   <p class="noindent">where the character <code>'a'</code> will not appear in a bold font.  Note that to
 avoid having Octave interpret the backslash characters in the strings,
 the strings should be in single quotes.
 
@@ -73,11 +73,11 @@ the strings should be in single quotes.
 use </td><td valign="top" width="10%">
    <br></td></tr></table>
 
-   <p>Finally, the superscript and subscripting can be controlled with the '^'
-and '_' characters.  If the '^' or '_' is followed by a { character,
-then all of the block surrounded by the { } pair is super- or
-sub-scripted.  Without the { } pair, only the character immediately
-following the '^' or '_' is super- or sub-scripted.
+   <p>Finally, the superscript and subscripting can be controlled with the <code>'^'</code>
+and <code>'_'</code> characters.  If the <code>'^'</code> or <code>'_'</code> is followed by a
+{ character, then all of the block surrounded by the { } pair is super- or
+sub-scripted.  Without the { } pair, only the character immediately following
+the <code>'^'</code> or <code>'_'</code> is super- or sub-scripted.
 
    <div class="float">
 <a name="tab_003aextended"></a>

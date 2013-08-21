@@ -59,10 +59,10 @@ an RGB color.  The color map must be of class <code>double</code> with values
 between 0 and 1.
 
 <!-- iscolormap scripts/image/iscolormap.m -->
-   <p><a name="doc_002discolormap"></a>
+   <p><a name="XREFiscolormap"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>iscolormap</b> (<var>cmap</var>)<var><a name="index-iscolormap-3138"></a></var><br>
+&mdash; Function File:  <b>iscolormap</b> (<var>cmap</var>)<var><a name="index-iscolormap-3324"></a></var><br>
 <blockquote><p>Return true if <var>cmap</var> is a colormap.
 
         <p>A colormap is a real matrix with <var>n</var> rows and 3 columns. 
@@ -70,18 +70,19 @@ Each row represents a single color.  The columns contain red, green,
 and blue intensities respectively.  All entries must be between 0 and 1
 inclusive.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002drgbplot.html#doc_002drgbplot">rgbplot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>, <a href="XREFrgbplot.html#XREFrgbplot">rgbplot</a>.
+
+        </blockquote></div>
 
 <!-- gray2ind scripts/image/gray2ind.m -->
-   <p><a name="doc_002dgray2ind"></a>
+   <p><a name="XREFgray2ind"></a>
 
 <div class="defun">
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I</var>)<var><a name="index-gray2ind-3139"></a></var><br>
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I, n</var>)<var><a name="index-gray2ind-3140"></a></var><br>
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW</var>)<var><a name="index-gray2ind-3141"></a></var><br>
-&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW, n</var>)<var><a name="index-gray2ind-3142"></a></var><br>
-&mdash; Function File: [<var>img</var>, <var>map</var>] = <b>gray2ind</b> (<var><small class="dots">...</small></var>)<var><a name="index-gray2ind-3143"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I</var>)<var><a name="index-gray2ind-3325"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>I, n</var>)<var><a name="index-gray2ind-3326"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW</var>)<var><a name="index-gray2ind-3327"></a></var><br>
+&mdash; Function File: <var>img</var> = <b>gray2ind</b> (<var>BW, n</var>)<var><a name="index-gray2ind-3328"></a></var><br>
+&mdash; Function File: [<var>img</var>, <var>map</var>] = <b>gray2ind</b> (<var><small class="dots">...</small></var>)<var><a name="index-gray2ind-3329"></a></var><br>
 <blockquote><p>Convert a grayscale or binary intensity image to an indexed image.
 
         <p>The indexed image will consist of <var>n</var> different intensity values. 
@@ -91,14 +92,15 @@ binary black and white images.
         <p>The output <var>img</var> is of class uint8 if <var>n</var> is less than or
 equal to 256; Otherwise the return class is uint16.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2gray.html#doc_002dind2gray">ind2gray</a>, <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFind2gray.html#XREFind2gray">ind2gray</a>, <a href="XREFrgb2ind.html#XREFrgb2ind">rgb2ind</a>.
+
+        </blockquote></div>
 
 <!-- ind2gray scripts/image/ind2gray.m -->
-   <p><a name="doc_002dind2gray"></a>
+   <p><a name="XREFind2gray"></a>
 
 <div class="defun">
-&mdash; Function File: <var>I</var> = <b>ind2gray</b> (<var>x, map</var>)<var><a name="index-ind2gray-3144"></a></var><br>
+&mdash; Function File: <var>I</var> = <b>ind2gray</b> (<var>x, map</var>)<var><a name="index-ind2gray-3330"></a></var><br>
 <blockquote><p>Convert a color indexed image to a grayscale intensity image.
 
         <p>The image <var>x</var> must be an indexed image which will be converted using the
@@ -115,53 +117,56 @@ from <code>rgb2ntsc</code> which is <code>I = 0.299*R + 0.587*G + 0.114*B</code>
 Other possibilities include the value component from <code>rgb2hsv</code> or
 using a single color channel from <code>ind2rgb</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>, <a href="doc_002dind2rgb.html#doc_002dind2rgb">ind2rgb</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgray2ind.html#XREFgray2ind">gray2ind</a>, <a href="XREFind2rgb.html#XREFind2rgb">ind2rgb</a>.
+
+        </blockquote></div>
 
 <!-- rgb2ind scripts/image/rgb2ind.m -->
-   <p><a name="doc_002drgb2ind"></a>
+   <p><a name="XREFrgb2ind"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb</var>)<var><a name="index-rgb2ind-3145"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, map</var>)<var><a name="index-rgb2ind-3146"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, n</var>)<var><a name="index-rgb2ind-3147"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, tol</var>)<var><a name="index-rgb2ind-3148"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, map, dither_option</var>)<var><a name="index-rgb2ind-3149"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, n, dither_option</var>)<var><a name="index-rgb2ind-3150"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, tol, dither_option</var>)<var><a name="index-rgb2ind-3151"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B</var>)<var><a name="index-rgb2ind-3152"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, map</var>)<var><a name="index-rgb2ind-3153"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, n</var>)<var><a name="index-rgb2ind-3154"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, tol</var>)<var><a name="index-rgb2ind-3155"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, map, dither_option</var>)<var><a name="index-rgb2ind-3156"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, n, dither_option</var>)<var><a name="index-rgb2ind-3157"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, tol, dither_option</var>)<var><a name="index-rgb2ind-3158"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb</var>)<var><a name="index-rgb2ind-3331"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, map</var>)<var><a name="index-rgb2ind-3332"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, n</var>)<var><a name="index-rgb2ind-3333"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, tol</var>)<var><a name="index-rgb2ind-3334"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, map, dither_option</var>)<var><a name="index-rgb2ind-3335"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, n, dither_option</var>)<var><a name="index-rgb2ind-3336"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>rgb, tol, dither_option</var>)<var><a name="index-rgb2ind-3337"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B</var>)<var><a name="index-rgb2ind-3338"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, map</var>)<var><a name="index-rgb2ind-3339"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, n</var>)<var><a name="index-rgb2ind-3340"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, tol</var>)<var><a name="index-rgb2ind-3341"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, map, dither_option</var>)<var><a name="index-rgb2ind-3342"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, n, dither_option</var>)<var><a name="index-rgb2ind-3343"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>map</var>] = <b>rgb2ind</b> (<var>R, G, B, tol, dither_option</var>)<var><a name="index-rgb2ind-3344"></a></var><br>
 <blockquote><p>Convert an image in red-green-blue (RGB) color space to an indexed image.
 
         <p>The input image <var>rgb</var> must be an N-dimensional RGB image
-(MxNxO...x3 array) where M,N,O... are the image dimensions, and the
+(MxNxO<small class="dots">...</small>x3 array) where M,N,O<small class="dots">...</small> are the image
+dimensions, and the
 final dimension contains the values in the red, green and blue
-channels. Alternatively, the red, green and blue color channels can
+channels.  Alternatively, the red, green and blue color channels can
 be input as separate arrays <var>R</var>, <var>G</var> and  <var>B</var>.
 
         <p>The input <var>map</var> defines the colormap to be used.  Alternatively,
 <var>n</var> or <var>tol</var> may be used to define the maximum number of
 colors to use in an automatically generated colormap.  <var>n</var> is
 related to <var>tol</var> by:  <var>n</var> = (floor (1/<var>tol</var>) + 1)^3;
-<var>tol</var> must be &gt;0 and &lt;=1.
+<var>tol</var> must be &gt;0 and &le;1.
 
         <p><var>dither_option</var> is a string which enables or disables dithering:
-'dither' (default) or 'nodither'.
+<code>"dither"</code> (default) or <code>"nodither"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dind2rgb.html#doc_002dind2rgb">ind2rgb</a>, <a href="doc_002drgb2hsv.html#doc_002drgb2hsv">rgb2hsv</a>, <a href="doc_002drgb2ntsc.html#doc_002drgb2ntsc">rgb2ntsc</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFind2rgb.html#XREFind2rgb">ind2rgb</a>, <a href="XREFrgb2hsv.html#XREFrgb2hsv">rgb2hsv</a>, <a href="XREFrgb2ntsc.html#XREFrgb2ntsc">rgb2ntsc</a>.
+
+        </blockquote></div>
 
 <!-- ind2rgb scripts/image/ind2rgb.m -->
-   <p><a name="doc_002dind2rgb"></a>
+   <p><a name="XREFind2rgb"></a>
 
 <div class="defun">
-&mdash; Function File: <var>rgb</var> = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3159"></a></var><br>
-&mdash; Function File: [<var>R</var>, <var>G</var>, <var>B</var>] = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3160"></a></var><br>
+&mdash; Function File: <var>rgb</var> = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3345"></a></var><br>
+&mdash; Function File: [<var>R</var>, <var>G</var>, <var>B</var>] = <b>ind2rgb</b> (<var>x, map</var>)<var><a name="index-ind2rgb-3346"></a></var><br>
 <blockquote><p>Convert an indexed image to red, green, and blue color components.
 
         <p>The image <var>x</var> must be an indexed image which will be converted using the
@@ -169,25 +174,32 @@ colormap <var>map</var>.  If <var>map</var> does not contain enough colors for t
 image, pixels in <var>x</var> outside the range are mapped to the last color in
 the map.
 
-        <p>The output may be a single RGB image (MxNx3 matrix where M and N are the
-original image <var>x</var> dimensions, one for each of the red, green and blue
-channels).  Alternatively, the individual red, green, and blue color matrices
-of size MxN may be returned.
+        <p>The output may be a single RGB image (MxNx3 matrix where M and N
+are the original image <var>x</var> dimensions, one for each of the red, green
+and blue channels).  Alternatively, the individual red, green, and blue
+color matrices of size MxN may be returned.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>, <a href="doc_002dind2gray.html#doc_002dind2gray">ind2gray</a>, <a href="doc_002dhsv2rgb.html#doc_002dhsv2rgb">hsv2rgb</a>, <a href="doc_002dntsc2rgb.html#doc_002dntsc2rgb">ntsc2rgb</a>. 
-</p></blockquote></div>
+        <p>Multi-dimensional indexed images (of size MxNx1xK) are also
+supported.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrgb2ind.html#XREFrgb2ind">rgb2ind</a>, <a href="XREFind2gray.html#XREFind2gray">ind2gray</a>, <a href="XREFhsv2rgb.html#XREFhsv2rgb">hsv2rgb</a>, <a href="XREFntsc2rgb.html#XREFntsc2rgb">ntsc2rgb</a>.
+
+        </blockquote></div>
 
 <!-- colormap scripts/image/colormap.m -->
-   <p><a name="doc_002dcolormap"></a>
+   <p><a name="XREFcolormap"></a>
 
 <div class="defun">
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> ()<var><a name="index-colormap-3161"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>map</var>)<var><a name="index-colormap-3162"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"default"</var>)<var><a name="index-colormap-3163"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"list"</var>)<var><a name="index-colormap-3164"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"register", "name"</var>)<var><a name="index-colormap-3165"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"unregister", "name"</var>)<var><a name="index-colormap-3166"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> ()<var><a name="index-colormap-3347"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>map</var>)<var><a name="index-colormap-3348"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"default"</var>)<var><a name="index-colormap-3349"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"list"</var>)<var><a name="index-colormap-3350"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"register", "name"</var>)<var><a name="index-colormap-3351"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>colormap</b> (<var>"unregister", "name"</var>)<var><a name="index-colormap-3352"></a></var><br>
+&mdash; Command:  <b>colormap</b><var> map_name<a name="index-colormap-3353"></a></var><br>
 <blockquote><p>Query or set the current colormap.
+
+        <p>With no input arguments, <code>colormap</code> returns the current color map.
 
         <p><code>colormap (</code><var>map</var><code>)</code> sets the current colormap to <var>map</var>.  The
 colormap should be an <var>n</var> row by 3 column matrix.  The columns
@@ -197,22 +209,25 @@ must be between 0 and 1 inclusive.  The new colormap is returned.
         <p><code>colormap ("default")</code> restores the default colormap (the
 <code>jet</code> map with 64 entries).  The default colormap is returned.
 
-        <p><code>colormap ("list")</code> returns a cell array with all the available
-colormaps.  The options `register' and `unregister' will add or remove the
-colormap <var>name</var> to it.
+        <p><code>colormap ("list")</code> returns a cell array with all of the available
+colormaps.  The options <code>"register"</code> and <code>"unregister"</code> will
+add or remove the colormap <var>name</var> from this list.
 
-        <p>With no arguments, <code>colormap</code> returns the current color map.
+        <p>For convenience, it is also possible to use this function with the
+command form, where <var>map_name</var> must be the name of a function
+that returns a colormap.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002djet.html#doc_002djet">jet</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFjet.html#XREFjet">jet</a>.
+
+        </blockquote></div>
 
 <!-- rgbplot scripts/image/rgbplot.m -->
-   <p><a name="doc_002drgbplot"></a>
+   <p><a name="XREFrgbplot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rgbplot</b> (<var>cmap</var>)<var><a name="index-rgbplot-3167"></a></var><br>
-&mdash; Function File:  <b>rgbplot</b> (<var>cmap, style</var>)<var><a name="index-rgbplot-3168"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>rgbplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-rgbplot-3169"></a></var><br>
+&mdash; Function File:  <b>rgbplot</b> (<var>cmap</var>)<var><a name="index-rgbplot-3354"></a></var><br>
+&mdash; Function File:  <b>rgbplot</b> (<var>cmap, style</var>)<var><a name="index-rgbplot-3355"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>rgbplot</b> (<var><small class="dots">...</small></var>)<var><a name="index-rgbplot-3356"></a></var><br>
 <blockquote><p>Plot the components of a colormap.
 
         <p>Two different <var>style</var>s are available for displaying the <var>cmap</var>:
@@ -232,43 +247,46 @@ visible rather than the individual color components.
         <p>Run <code>demo rgbplot</code> to see an example of <code>rgbplot</code> and each style
 option.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- autumn scripts/image/autumn.m -->
-   <p><a name="doc_002dautumn"></a>
+   <p><a name="XREFautumn"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>autumn</b> ()<var><a name="index-autumn-3170"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>autumn</b> (<var>n</var>)<var><a name="index-autumn-3171"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>autumn</b> ()<var><a name="index-autumn-3357"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>autumn</b> (<var>n</var>)<var><a name="index-autumn-3358"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from red through orange
 to yellow. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- bone scripts/image/bone.m -->
-   <p><a name="doc_002dbone"></a>
+   <p><a name="XREFbone"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>bone</b> ()<var><a name="index-bone-3172"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>bone</b> (<var>n</var>)<var><a name="index-bone-3173"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>bone</b> ()<var><a name="index-bone-3359"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>bone</b> (<var>n</var>)<var><a name="index-bone-3360"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with
 gray-blue shades. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- colorcube scripts/image/colorcube.m -->
-   <p><a name="doc_002dcolorcube"></a>
+   <p><a name="XREFcolorcube"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>colorcube</b> ()<var><a name="index-colorcube-3174"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>colorcube</b> (<var>n</var>)<var><a name="index-colorcube-3175"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>colorcube</b> ()<var><a name="index-colorcube-3361"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>colorcube</b> (<var>n</var>)<var><a name="index-colorcube-3362"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is composed of as many equally
 spaced colors (not grays) in the RGB color space as possible.  If there
 are not a perfect number <var>n</var> of regularly spaced colors then the
@@ -277,83 +295,89 @@ and gray.
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- cool scripts/image/cool.m -->
-   <p><a name="doc_002dcool"></a>
+   <p><a name="XREFcool"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>cool</b> ()<var><a name="index-cool-3176"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>cool</b> (<var>n</var>)<var><a name="index-cool-3177"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>cool</b> ()<var><a name="index-cool-3363"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>cool</b> (<var>n</var>)<var><a name="index-cool-3364"></a></var><br>
 <blockquote><p>Create color colormap.  The colormap varies from cyan to magenta. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- copper scripts/image/copper.m -->
-   <p><a name="doc_002dcopper"></a>
+   <p><a name="XREFcopper"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>copper</b> ()<var><a name="index-copper-3178"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>copper</b> (<var>n</var>)<var><a name="index-copper-3179"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>copper</b> ()<var><a name="index-copper-3365"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>copper</b> (<var>n</var>)<var><a name="index-copper-3366"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to
 a light copper tone. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- flag scripts/image/flag.m -->
-   <p><a name="doc_002dflag"></a>
+   <p><a name="XREFflag"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>flag</b> ()<var><a name="index-flag-3180"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>flag</b> (<var>n</var>)<var><a name="index-flag-3181"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>flag</b> ()<var><a name="index-flag-3367"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>flag</b> (<var>n</var>)<var><a name="index-flag-3368"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap cycles through red, white, blue,
 and black with each index change. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- gray scripts/image/gray.m -->
-   <p><a name="doc_002dgray"></a>
+   <p><a name="XREFgray"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>gray</b> ()<var><a name="index-gray-3182"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>gray</b> (<var>n</var>)<var><a name="index-gray-3183"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gray</b> ()<var><a name="index-gray-3369"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gray</b> (<var>n</var>)<var><a name="index-gray-3370"></a></var><br>
 <blockquote><p>Create gray colormap.  This colormap varies from black to white with
 shades of gray. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- hot scripts/image/hot.m -->
-   <p><a name="doc_002dhot"></a>
+   <p><a name="XREFhot"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>hot</b> ()<var><a name="index-hot-3184"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>hot</b> (<var>n</var>)<var><a name="index-hot-3185"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>hot</b> ()<var><a name="index-hot-3371"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>hot</b> (<var>n</var>)<var><a name="index-hot-3372"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from black through dark red,
 red, orange, yellow, to white. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- hsv scripts/image/hsv.m -->
-   <p><a name="doc_002dhsv"></a>
+   <p><a name="XREFhsv"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hsv</b> (<var>n</var>)<var><a name="index-hsv-3186"></a></var><br>
+&mdash; Function File:  <b>hsv</b> (<var>n</var>)<var><a name="index-hsv-3373"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap begins with red, changes through
 yellow, green, cyan, blue, and magenta, before returning to red. 
 It is useful for displaying periodic functions.  The map is obtained by
@@ -364,158 +388,170 @@ maximum saturation and value.  The equivalent code is
         <p>The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- jet scripts/image/jet.m -->
-   <p><a name="doc_002djet"></a>
+   <p><a name="XREFjet"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>jet</b> ()<var><a name="index-jet-3187"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>jet</b> (<var>n</var>)<var><a name="index-jet-3188"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>jet</b> ()<var><a name="index-jet-3374"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>jet</b> (<var>n</var>)<var><a name="index-jet-3375"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from dark blue through blue,
 cyan, green, yellow, red, to dark red. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- lines scripts/image/lines.m -->
-   <p><a name="doc_002dlines"></a>
+   <p><a name="XREFlines"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>lines</b> ()<var><a name="index-lines-3189"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>lines</b> (<var>n</var>)<var><a name="index-lines-3190"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>lines</b> ()<var><a name="index-lines-3376"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>lines</b> (<var>n</var>)<var><a name="index-lines-3377"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is composed of the list of colors
-in the current axes "ColorOrder" property.  The default is blue,
+in the current axes <code>"ColorOrder"</code> property.  The default is blue,
 green, red, cyan, pink, yellow, and gray. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- ocean scripts/image/ocean.m -->
-   <p><a name="doc_002docean"></a>
+   <p><a name="XREFocean"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>ocean</b> ()<var><a name="index-ocean-3191"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>ocean</b> (<var>n</var>)<var><a name="index-ocean-3192"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>ocean</b> ()<var><a name="index-ocean-3378"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>ocean</b> (<var>n</var>)<var><a name="index-ocean-3379"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with shades
 of blue. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- pink scripts/image/pink.m -->
-   <p><a name="doc_002dpink"></a>
+   <p><a name="XREFpink"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>pink</b> ()<var><a name="index-pink-3193"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>pink</b> (<var>n</var>)<var><a name="index-pink-3194"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>pink</b> ()<var><a name="index-pink-3380"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>pink</b> (<var>n</var>)<var><a name="index-pink-3381"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from black to white with
 shades of gray-pink.  It gives a sepia tone when used on grayscale images. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- prism scripts/image/prism.m -->
-   <p><a name="doc_002dprism"></a>
+   <p><a name="XREFprism"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>prism</b> ()<var><a name="index-prism-3195"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>prism</b> (<var>n</var>)<var><a name="index-prism-3196"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>prism</b> ()<var><a name="index-prism-3382"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>prism</b> (<var>n</var>)<var><a name="index-prism-3383"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap cycles through red, orange, yellow,
 green, blue and violet with each index change. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- rainbow scripts/image/rainbow.m -->
-   <p><a name="doc_002drainbow"></a>
+   <p><a name="XREFrainbow"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>rainbow</b> ()<var><a name="index-rainbow-3197"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>rainbow</b> (<var>n</var>)<var><a name="index-rainbow-3198"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>rainbow</b> ()<var><a name="index-rainbow-3384"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>rainbow</b> (<var>n</var>)<var><a name="index-rainbow-3385"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap ranges from red through orange,
 yellow, green, blue, to violet. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- spring scripts/image/spring.m -->
-   <p><a name="doc_002dspring"></a>
+   <p><a name="XREFspring"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>spring</b> ()<var><a name="index-spring-3199"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>spring</b> (<var>n</var>)<var><a name="index-spring-3200"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>spring</b> ()<var><a name="index-spring-3386"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>spring</b> (<var>n</var>)<var><a name="index-spring-3387"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from magenta to yellow. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- summer scripts/image/summer.m -->
-   <p><a name="doc_002dsummer"></a>
+   <p><a name="XREFsummer"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>summer</b> ()<var><a name="index-summer-3201"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>summer</b> (<var>n</var>)<var><a name="index-summer-3202"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>summer</b> ()<var><a name="index-summer-3388"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>summer</b> (<var>n</var>)<var><a name="index-summer-3389"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from green to yellow. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- white scripts/image/white.m -->
-   <p><a name="doc_002dwhite"></a>
+   <p><a name="XREFwhite"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>white</b> ()<var><a name="index-white-3203"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>white</b> (<var>n</var>)<var><a name="index-white-3204"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>white</b> ()<var><a name="index-white-3390"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>white</b> (<var>n</var>)<var><a name="index-white-3391"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap is completely white. 
 The argument <var>n</var> should be a scalar.  If it
 is omitted, the length of the current colormap or 64 is assumed.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- winter scripts/image/winter.m -->
-   <p><a name="doc_002dwinter"></a>
+   <p><a name="XREFwinter"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>winter</b> ()<var><a name="index-winter-3205"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>winter</b> (<var>n</var>)<var><a name="index-winter-3206"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>winter</b> ()<var><a name="index-winter-3392"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>winter</b> (<var>n</var>)<var><a name="index-winter-3393"></a></var><br>
 <blockquote><p>Create color colormap.  This colormap varies from blue to green. 
 The argument <var>n</var> must be a scalar. 
 If unspecified, the length of the current colormap, or 64, is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- contrast scripts/image/contrast.m -->
-   <p><a name="doc_002dcontrast"></a>
+   <p><a name="XREFcontrast"></a>
 
 <div class="defun">
-&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x</var>)<var><a name="index-contrast-3207"></a></var><br>
-&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x, n</var>)<var><a name="index-contrast-3208"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x</var>)<var><a name="index-contrast-3394"></a></var><br>
+&mdash; Function File: <var>cmap</var> = <b>contrast</b> (<var>x, n</var>)<var><a name="index-contrast-3395"></a></var><br>
 <blockquote><p>Return a gray colormap that maximizes the contrast in an image.  The
 returned colormap will have <var>n</var> rows.  If <var>n</var> is not defined
 then the size of the current colormap is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dbrighten.html#doc_002dbrighten">brighten</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>, <a href="XREFbrighten.html#XREFbrighten">brighten</a>.
+
+        </blockquote></div>
 
    <p>An additional colormap is <code>gmap40</code>.  This code map contains only
 colors with integer values of the red, green and blue components.  This
@@ -525,11 +561,11 @@ of line or patch objects to be set.  <code>gmap40</code> is chiefly useful to gn
 and <var>contour</var> functions.
 
 <!-- gmap40 scripts/image/gmap40.m -->
-   <p><a name="doc_002dgmap40"></a>
+   <p><a name="XREFgmap40"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map</var> = <b>gmap40</b> ()<var><a name="index-gmap40-3209"></a></var><br>
-&mdash; Function File: <var>map</var> = <b>gmap40</b> (<var>n</var>)<var><a name="index-gmap40-3210"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gmap40</b> ()<var><a name="index-gmap40-3396"></a></var><br>
+&mdash; Function File: <var>map</var> = <b>gmap40</b> (<var>n</var>)<var><a name="index-gmap40-3397"></a></var><br>
 <blockquote><p>Create color colormap.  The colormap consists of red, green, blue, yellow,
 magenta and cyan.  This colormap is specifically designed for users of
 gnuplot 4.0 where these 6 colors are the allowable ones for patch objects. 
@@ -537,19 +573,20 @@ The argument <var>n</var> must be a scalar.
 If unspecified, a length of 6 is assumed.  Larger values of <var>n</var> result
 in a repetition of the above colors.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
    <p>The following three functions modify the existing colormap rather than
 replace it.
 
 <!-- brighten scripts/image/brighten.m -->
-   <p><a name="doc_002dbrighten"></a>
+   <p><a name="XREFbrighten"></a>
 
 <div class="defun">
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>map, beta</var>)<var><a name="index-brighten-3211"></a></var><br>
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>beta</var>)<var><a name="index-brighten-3212"></a></var><br>
-&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>h, beta</var>)<var><a name="index-brighten-3213"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>map, beta</var>)<var><a name="index-brighten-3398"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>beta</var>)<var><a name="index-brighten-3399"></a></var><br>
+&mdash; Function File: <var>map_out</var> = <b>brighten</b> (<var>h, beta</var>)<var><a name="index-brighten-3400"></a></var><br>
 <blockquote><p>Brighten or darken a colormap.  If the <var>map</var> argument is omitted, the
 function is applied to the current colormap.  The first argument can also be
 a valid graphics handle <var>h</var>, in which case <code>brighten</code> is applied to
@@ -560,62 +597,66 @@ negative value darkens and a positive value brightens the colormap.
 
         <p>If no output is specified then the result is written to the current colormap.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>, <a href="doc_002dcontrast.html#doc_002dcontrast">contrast</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>, <a href="XREFcontrast.html#XREFcontrast">contrast</a>.
+
+        </blockquote></div>
 
 <!-- spinmap scripts/image/spinmap.m -->
-   <p><a name="doc_002dspinmap"></a>
+   <p><a name="XREFspinmap"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>spinmap</b> ()<var><a name="index-spinmap-3214"></a></var><br>
-&mdash; Function File:  <b>spinmap</b> (<var>t</var>)<var><a name="index-spinmap-3215"></a></var><br>
-&mdash; Function File:  <b>spinmap</b> (<var>t, inc</var>)<var><a name="index-spinmap-3216"></a></var><br>
-&mdash; Function File:  <b>spinmap</b> (<var>"inf"</var>)<var><a name="index-spinmap-3217"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> ()<var><a name="index-spinmap-3401"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>t</var>)<var><a name="index-spinmap-3402"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>t, inc</var>)<var><a name="index-spinmap-3403"></a></var><br>
+&mdash; Function File:  <b>spinmap</b> (<var>"inf"</var>)<var><a name="index-spinmap-3404"></a></var><br>
 <blockquote><p>Cycle the colormap for <var>t</var> seconds with a color increment of <var>inc</var>. 
 Both parameters are optional.  The default cycle time is 5 seconds and the
-default increment is 2.  If the option "inf" is given then cycle
+default increment is 2.  If the option <code>"inf"</code> is given then cycle
 continuously until <kbd>Control-C</kbd> is pressed.
 
         <p>When rotating the original color 1 becomes color 2, color 2 becomes
 color 3, etc.  A positive or negative increment is allowed and a higher
 value of <var>inc</var> will cause faster cycling through the colormap.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolormap.html#doc_002dcolormap">colormap</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+
+        </blockquote></div>
 
 <!-- whitebg scripts/plot/whitebg.m -->
-   <p><a name="doc_002dwhitebg"></a>
+   <p><a name="XREFwhitebg"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>whitebg</b> ()<var><a name="index-whitebg-3218"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>color</var>)<var><a name="index-whitebg-3219"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>"none"</var>)<var><a name="index-whitebg-3220"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig</var>)<var><a name="index-whitebg-3221"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig, color</var>)<var><a name="index-whitebg-3222"></a></var><br>
-&mdash; Function File:  <b>whitebg</b> (<var>fig, "none"</var>)<var><a name="index-whitebg-3223"></a></var><br>
-<blockquote><p>Invert the colors in the current color scheme.  The root properties are
-also inverted such that all subsequent plot use the new color scheme.
+&mdash; Function File:  <b>whitebg</b> ()<var><a name="index-whitebg-3405"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>color</var>)<var><a name="index-whitebg-3406"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>"none"</var>)<var><a name="index-whitebg-3407"></a></var><br>
+&mdash; Function File:  <b>whitebg</b> (<var>hfig, <small class="dots">...</small></var>)<var><a name="index-whitebg-3408"></a></var><br>
+<blockquote><p>Invert the colors in the current color scheme.
 
-        <p>If defined, <var>fig</var> is the handle to the figure to be inverted.  In
-this case only the specified figure has its color properties changed.
+        <p>The root properties are also inverted such that all subsequent plot use the
+new color scheme.
 
         <p>If the optional argument <var>color</var> is present then the background color
 is set to <var>color</var> rather than inverted.  <var>color</var> may be a string
 representing one of the eight known colors or an RGB triplet.  The special
-string argument "none" restores the plot to the default colors.
+string argument <code>"none"</code> restores the plot to the default colors.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dreset.html#doc_002dreset">reset</a>. 
-</p></blockquote></div>
+        <p>If the first argument <var>hfig</var> is a figure handle, then operate on
+this figure rather than the current figure returned by <code>gcf</code>.  The
+root properties will not be changed.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFreset.html#XREFreset">reset</a>, <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>.
+
+        </blockquote></div>
 
    <p>The following functions can be used to manipulate colormaps.
 
 <!-- cmunique scripts/image/cmunique.m -->
-   <p><a name="doc_002dcmunique"></a>
+   <p><a name="XREFcmunique"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>X, map</var>)<var><a name="index-cmunique-3224"></a></var><br>
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>RGB</var>)<var><a name="index-cmunique-3225"></a></var><br>
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>I</var>)<var><a name="index-cmunique-3226"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>X, map</var>)<var><a name="index-cmunique-3409"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>RGB</var>)<var><a name="index-cmunique-3410"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmunique</b> (<var>I</var>)<var><a name="index-cmunique-3411"></a></var><br>
 <blockquote><p>Convert an input image <var>X</var> to an ouput indexed image <var>Y</var> which uses
 the smallest colormap possible <var>newmap</var>.
 
@@ -643,15 +684,16 @@ assigned the same value).
         <p>The output image is of class uint8 if the size of the new colormap is
 less than or equal to 256.  Otherwise, the output image is of class double.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drgb2ind.html#doc_002drgb2ind">rgb2ind</a>, <a href="doc_002dgray2ind.html#doc_002dgray2ind">gray2ind</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrgb2ind.html#XREFrgb2ind">rgb2ind</a>, <a href="XREFgray2ind.html#XREFgray2ind">gray2ind</a>.
+
+        </blockquote></div>
 
 <!-- cmpermute scripts/image/cmpermute.m -->
-   <p><a name="doc_002dcmpermute"></a>
+   <p><a name="XREFcmpermute"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map</var>)<var><a name="index-cmpermute-3227"></a></var><br>
-&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map, index</var>)<var><a name="index-cmpermute-3228"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map</var>)<var><a name="index-cmpermute-3412"></a></var><br>
+&mdash; Function File: [<var>Y</var>, <var>newmap</var>] = <b>cmpermute</b> (<var>X, map, index</var>)<var><a name="index-cmpermute-3413"></a></var><br>
 <blockquote><p>Reorder colors in a colormap.
 
         <p>When called with only two arguments, <code>cmpermute</code> randomly rearranges

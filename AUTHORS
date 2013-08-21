@@ -14,42 +14,43 @@ Remy Bruno               Ansgar Burchard          Marco Caliari
 Daniel Calvelo           John C. Campbell         Juan Pablo Carbajal
 Jean-Francois Cardoso    Joao Cardoso             Larrie Carr
 David Castelow           Vincent Cautaerts        Clinton Chee
-Albert Chin-A-Young      Carsten Clark            J. D. Cole
-Martin Costabel          Michael Creel            Jeff Cunningham
-Martin Dalecki           Jorge Barros de Abreu    Carlo de Falco
-Jacob Dawid              Thomas D. Dean           Philippe Defert
-Bill Denney              Fabian Deutsch           Christos Dimitrakakis
-Pantxo Diribarne         Vivek Dogra              John Donoghue
-David M. Doolin          Carnë Draug              Pascal A. Dupuis
-John W. Eaton            Dirk Eddelbuettel        Pieter Eendebak
-Paul Eggert              Stephen Eglen            Peter Ekberg
-Rolf Fabian              Gunnar Farnebäck         Stephen Fegan
-Ramon Garcia Fernandez   Torsten Finke            Jose Daniel Munoz Frias
-Brad Froehle             Castor Fu                Eduardo Gallestey
-Walter Gautschi          Klaus Gebhardt           Driss Ghaddab
-Nicolo Giorgetti         Michael D. Godfrey       Michael Goffioul
-Glenn Golden             Tomislav Goles           Keith Goodman
-Brian Gough              Steffen Groot            Etienne Grossmann
-David Grundberg          Kyle Guinn               Peter Gustafson
-Kai Habel                Patrick Häcker           William P. Y.
-                                                  Hadisoeseno
-Jaroslav Hajek           Benjamin Hall            Kim Hansen
-Søren Hauberg            Dave Hawthorne           Daniel Heiserer
-Martin Helm              Stefan Hepp              Martin Hepperle
-Jordi Gutiérrez Hermoso  Yozo Hida                Ryan Hinton
-Roman Hodek              A. Scottedward Hodel     Richard Allan Holcombe
-Tom Holroyd              David Hoover             Kurt Hornik
-Christopher Hulbert      Cyril Humbert            John Hunt
-Teemu Ikonen             Alan W. Irwin            Geoff Jacobsen
-Mats Jansson             Cai Jianming             Steven G. Johnson
-Heikki Junes             Matthias Jüschke         Atsushi Kajita
-Jarkko Kaleva            Mohamed Kamoun           Lute Kamstra
-Fotios Kasolis           Thomas Kasper            Joel Keay
-Mumit Khan               Paul Kienzle             Aaron A. King
-Arno J. Klaassen         Alexander Klein          Geoffrey Knauth
-Heine Kolltveit          Ken Kouno                Kacper Kowalik
-Daniel Kraft             Aravindh Krishnamoorthy  Oyvind Kristiansen
-Piotr Krzyzanowski       Volker Kuhlmann          Tetsuro Kurita
+Albert Chin-A-Young      Carsten Clark            Catalin Codreanu
+J. D. Cole               Martin Costabel          Michael Creel
+Jeff Cunningham          Martin Dalecki           Jorge Barros de Abreu
+Carlo de Falco           Jacob Dawid              Thomas D. Dean
+Philippe Defert          Bill Denney              Fabian Deutsch
+Christos Dimitrakakis    Pantxo Diribarne         Vivek Dogra
+John Donoghue            David M. Doolin          Carnë Draug
+Pascal A. Dupuis         John W. Eaton            Dirk Eddelbuettel
+Pieter Eendebak          Paul Eggert              Stephen Eglen
+Peter Ekberg             Rolf Fabian              Gunnar Farnebäck
+Stephen Fegan            Ramon Garcia Fernandez   Torsten Finke
+Jose Daniel Munoz Frias  Brad Froehle             Castor Fu
+Eduardo Gallestey        Walter Gautschi          Klaus Gebhardt
+Driss Ghaddab            Nicolo Giorgetti         Arun Giridhar
+Michael D. Godfrey       Michael Goffioul         Glenn Golden
+Tomislav Goles           Keith Goodman            Brian Gough
+Steffen Groot            Etienne Grossmann        David Grundberg
+Kyle Guinn               Peter Gustafson          Kai Habel
+Patrick Häcker           William P. Y.            Jaroslav Hajek
+                         Hadisoeseno              
+Benjamin Hall            Kim Hansen               Søren Hauberg
+Dave Hawthorne           Daniel Heiserer          Martin Helm
+Stefan Hepp              Martin Hepperle          Jordi Gutiérrez Hermoso
+Yozo Hida                Ryan Hinton              Roman Hodek
+A. Scottedward Hodel     Richard Allan Holcombe   Tom Holroyd
+David Hoover             Kurt Hornik              Christopher Hulbert
+Cyril Humbert            John Hunt                Teemu Ikonen
+Alan W. Irwin            Geoff Jacobsen           Mats Jansson
+Cai Jianming             Steven G. Johnson        Heikki Junes
+Matthias Jüschke         Atsushi Kajita           Jarkko Kaleva
+Mohamed Kamoun           Lute Kamstra             Fotios Kasolis
+Thomas Kasper            Joel Keay                Mumit Khan
+Paul Kienzle             Aaron A. King            Arno J. Klaassen
+Alexander Klein          Geoffrey Knauth          Heine Kolltveit
+Ken Kouno                Kacper Kowalik           Daniel Kraft
+Aravindh Krishnamoorthy  Oyvind Kristiansen       Piotr Krzyzanowski
+Volker Kuhlmann          Tetsuro Kurita           Philipp Kutin
 Miroslaw Kwasniak        Rafael Laboissiere       Kai Labusch
 Claude Lacoursiere       Walter Landry            Bill Lash
 Dirk Laurie              Maurice LeBrun           Friedrich Leisch
@@ -93,16 +94,16 @@ Peter L. Sondergaard     Joerg Specht             Quentin H. Spencer
 Christoph Spiel          Richard Stallman         Russell Standish
 Brett Stewart            Doug Stewart             Jonathan Stickel
 Judd Storrs              Thomas Stuart            Ivan Sutoris
-John Swensen             Daisuke Takago           Ariel Tankus
-Matthew Tenny            Georg Thimm              Duncan Temple Lang
-Kris Thielemans          Olaf Till                Christophe Tournery
-Thomas Treichl           Karsten Trulsen          Frederick Umminger
-Utkarsh Upadhyay         Daniel Wagenaar          Stefan van der Walt
-Peter Van Wieren         James R. Van Zandt       Gregory Vanuxem
-Ivana Varekova           Thomas Walter            Andreas Weber
-Olaf Weber               Thomas Weber             Rik Wehbring
-Bob Weigel               Andreas Weingessel       Martin Weiser
-Michael Weitzel          David Wells              Fook Fah Yap
-Sean Young               Michael Zeising          Federico Zenith
-Alex Zvoleff                                      
+John Swensen             Daisuke Takago           Falk Tannhäuser
+Ariel Tankus             Matthew Tenny            Georg Thimm
+Duncan Temple Lang       Kris Thielemans          Olaf Till
+Christophe Tournery      Thomas Treichl           Karsten Trulsen
+Frederick Umminger       Utkarsh Upadhyay         Daniel Wagenaar
+Stefan van der Walt      Peter Van Wieren         James R. Van Zandt
+Risto Vanhanen           Gregory Vanuxem          Ivana Varekova
+Thomas Walter            Andreas Weber            Olaf Weber
+Thomas Weber             Rik Wehbring             Bob Weigel
+Andreas Weingessel       Martin Weiser            Michael Weitzel
+David Wells              Fook Fah Yap             Sean Young
+Michael Zeising          Federico Zenith          Alex Zvoleff
 

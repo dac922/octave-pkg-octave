@@ -356,9 +356,9 @@ also be set to zero.\n\
 The default value of @var{k} is zero, so that @code{triu} and\n\
 @code{tril} normally include the main diagonal as part of the result.\n\
 \n\
-If the value of @var{k} is nonzero integer, the selection of elements\
-starts at an offset of @var{k} diagonals above or below the main\
-diagonal; above for positive @var{k} and below for negative @var{k}.\
+If the value of @var{k} is nonzero integer, the selection of elements\n\
+starts at an offset of @var{k} diagonals above or below the main\n\
+diagonal; above for positive @var{k} and below for negative @var{k}.\n\
 \n\
 The absolute value of @var{k} must not be greater than the number of\n\
 sub-diagonals or super-diagonals.\n\
@@ -386,9 +386,9 @@ tril (ones (3), 1)\n\
 @end group\n\
 @end example\n\
 \n\
-If the option \"pack\" is given as third argument, the extracted elements\n\
-are not inserted into a matrix, but rather stacked column-wise one above\n\
-other.\n\
+If the option @qcode{\"pack\"} is given as third argument, the extracted\n\
+elements are not inserted into a matrix, but rather stacked column-wise one\n\
+above other.\n\
 @seealso{diag}\n\
 @end deftypefn")
 {

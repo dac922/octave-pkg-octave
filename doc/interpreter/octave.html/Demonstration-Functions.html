@@ -33,13 +33,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Test-and-Demo-Functions.html#Test-and-D
 <h3 class="section">B.2 Demonstration Functions</h3>
 
 <!-- demo scripts/testfun/demo.m -->
-<p><a name="doc_002ddemo"></a>
+<p><a name="XREFdemo"></a>
 
 <div class="defun">
-&mdash; Command:  <b>demo</b><var> name<a name="index-demo-3765"></a></var><br>
-&mdash; Command:  <b>demo</b><var> name n<a name="index-demo-3766"></a></var><br>
-&mdash; Function File:  <b>demo</b> (<var>"name"</var>)<var><a name="index-demo-3767"></a></var><br>
-&mdash; Function File:  <b>demo</b> (<var>"name", n</var>)<var><a name="index-demo-3768"></a></var><br>
+&mdash; Command:  <b>demo</b><var> name<a name="index-demo-3960"></a></var><br>
+&mdash; Command:  <b>demo</b><var> name n<a name="index-demo-3961"></a></var><br>
+&mdash; Function File:  <b>demo</b> (<var>"name"</var>)<var><a name="index-demo-3962"></a></var><br>
+&mdash; Function File:  <b>demo</b> (<var>"name", n</var>)<var><a name="index-demo-3963"></a></var><br>
 <blockquote>
         <p>Run example code block <var>n</var> associated with the function <var>name</var>. 
 If <var>n</var> is not specified, all examples are run.
@@ -47,9 +47,9 @@ If <var>n</var> is not specified, all examples are run.
         <p>Examples are stored in the script file, or in a file with the same
 name but no extension located on Octave's load path.  To keep examples
 separate from regular script code, all lines are prefixed by <code>%!</code>.  Each
-example must also be introduced by the keyword 'demo' flush left to the
-prefix with no intervening spaces.  The remainder of the example can
-contain arbitrary Octave code.  For example:
+example must also be introduced by the keyword <code>"demo"</code> flush left
+to the prefix with no intervening spaces.  The remainder of the example
+can contain arbitrary Octave code.  For example:
 
      <pre class="example">          %!demo
           %! t = 0:0.01:2*pi;
@@ -79,8 +79,8 @@ define new functions inside a demo.  If you must have function blocks,
 rather than just anonymous functions or inline functions, you will have to
 use <code>eval (example ("function",n))</code> to see them.  Because eval only
 evaluates one line, or one statement if the statement crosses
-multiple lines, you must wrap your demo in "if 1 &lt;demo stuff&gt; endif"
-with the 'if' on the same line as 'demo'.  For example:
+multiple lines, you must wrap your demo in <code>"if 1 &lt;demo stuff&gt; endif"</code>
+with the <code>"if"</code> on the same line as <code>"demo"</code>.  For example:
 
      <pre class="example">          %!demo if 1
           %!  function y=f(x)
@@ -89,21 +89,22 @@ with the 'if' on the same line as 'demo'.  For example:
           %!  f(3)
           %! endif
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dtest.html#doc_002dtest">test</a>, <a href="doc_002dexample.html#doc_002dexample">example</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFtest.html#XREFtest">test</a>, <a href="XREFexample.html#XREFexample">example</a>.
+
+        </blockquote></div>
 
 <!-- example scripts/testfun/example.m -->
-   <p><a name="doc_002dexample"></a>
+   <p><a name="XREFexample"></a>
 
 <div class="defun">
-&mdash; Command:  <b>example</b><var> name<a name="index-example-3769"></a></var><br>
-&mdash; Command:  <b>example</b><var> name n<a name="index-example-3770"></a></var><br>
-&mdash; Function File:  <b>example</b> (<var>"name"</var>)<var><a name="index-example-3771"></a></var><br>
-&mdash; Function File:  <b>example</b> (<var>"name", n</var>)<var><a name="index-example-3772"></a></var><br>
-&mdash; Function File: [<var>s</var>, <var>idx</var>] = <b>example</b> (<var><small class="dots">...</small></var>)<var><a name="index-example-3773"></a></var><br>
+&mdash; Command:  <b>example</b><var> name<a name="index-example-3964"></a></var><br>
+&mdash; Command:  <b>example</b><var> name n<a name="index-example-3965"></a></var><br>
+&mdash; Function File:  <b>example</b> (<var>"name"</var>)<var><a name="index-example-3966"></a></var><br>
+&mdash; Function File:  <b>example</b> (<var>"name", n</var>)<var><a name="index-example-3967"></a></var><br>
+&mdash; Function File: [<var>s</var>, <var>idx</var>] = <b>example</b> (<var><small class="dots">...</small></var>)<var><a name="index-example-3968"></a></var><br>
 <blockquote>
         <p>Display the code for example <var>n</var> associated with the function
-"<var>name</var>", but do not run it.  If <var>n</var> is not specified, all examples
+<var>name</var>, but do not run it.  If <var>n</var> is not specified, all examples
 are displayed.
 
         <p>When called with output arguments, the examples are returned in the form of
@@ -112,41 +113,45 @@ various examples.
 
         <p>See <code>demo</code> for a complete explanation.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddemo.html#doc_002ddemo">demo</a>, <a href="doc_002dtest.html#doc_002dtest">test</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdemo.html#XREFdemo">demo</a>, <a href="XREFtest.html#XREFtest">test</a>.
+
+        </blockquote></div>
 
 <!-- rundemos scripts/testfun/rundemos.m -->
-   <p><a name="doc_002drundemos"></a>
+   <p><a name="XREFrundemos"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rundemos</b> ()<var><a name="index-rundemos-3774"></a></var><br>
-&mdash; Function File:  <b>rundemos</b> (<var>directory</var>)<var><a name="index-rundemos-3775"></a></var><br>
+&mdash; Function File:  <b>rundemos</b> ()<var><a name="index-rundemos-3969"></a></var><br>
+&mdash; Function File:  <b>rundemos</b> (<var>directory</var>)<var><a name="index-rundemos-3970"></a></var><br>
 <blockquote><p>Execute built-in demos for all function files in the specified directory. 
 If no directory is specified, operate on all directories in Octave's
 search path for functions.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002druntests.html#doc_002druntests">runtests</a>, <a href="doc_002dpath.html#doc_002dpath">path</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFruntests.html#XREFruntests">runtests</a>, <a href="XREFpath.html#XREFpath">path</a>.
+
+        </blockquote></div>
 
 <!-- runtests scripts/testfun/runtests.m -->
-   <p><a name="doc_002druntests"></a>
+   <p><a name="XREFruntests"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>runtests</b> ()<var><a name="index-runtests-3776"></a></var><br>
-&mdash; Function File:  <b>runtests</b> (<var>directory</var>)<var><a name="index-runtests-3777"></a></var><br>
-<blockquote><p>Execute built-in tests for all function files in the specified directory. 
-If no directory is specified, operate on all directories in Octave's
+&mdash; Function File:  <b>runtests</b> ()<var><a name="index-runtests-3971"></a></var><br>
+&mdash; Function File:  <b>runtests</b> (<var>directory</var>)<var><a name="index-runtests-3972"></a></var><br>
+<blockquote><p>Execute built-in tests for all function files in the specified directory.
+
+        <p>If no directory is specified, operate on all directories in Octave's
 search path for functions.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drundemos.html#doc_002drundemos">rundemos</a>, <a href="doc_002dpath.html#doc_002dpath">path</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrundemos.html#XREFrundemos">rundemos</a>, <a href="XREFpath.html#XREFpath">path</a>.
+
+        </blockquote></div>
 
 <!-- speed scripts/testfun/speed.m -->
-   <p><a name="doc_002dspeed"></a>
+   <p><a name="XREFspeed"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>speed</b> (<var>f, init, max_n, f2, tol</var>)<var><a name="index-speed-3778"></a></var><br>
-&mdash; Function File: [<var>order</var>, <var>n</var>, <var>T_f</var>, <var>T_f2</var>] = <b>speed</b> (<var><small class="dots">...</small></var>)<var><a name="index-speed-3779"></a></var><br>
+&mdash; Function File:  <b>speed</b> (<var>f, init, max_n, f2, tol</var>)<var><a name="index-speed-3973"></a></var><br>
+&mdash; Function File: [<var>order</var>, <var>n</var>, <var>T_f</var>, <var>T_f2</var>] = <b>speed</b> (<var><small class="dots">...</small></var>)<var><a name="index-speed-3974"></a></var><br>
 <blockquote>
         <p>Determine the execution time of an expression (<var>f</var>) for various input
 values (<var>n</var>).  The <var>n</var> are log-spaced from 1 to <var>max_n</var>.  For

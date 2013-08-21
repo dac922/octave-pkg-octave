@@ -36,23 +36,30 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Three_002dDimensional-Plots.html#Three_
 <h5 class="subsubsection">15.2.2.2 Three-dimensional Function Plotting</h5>
 
 <!-- ezplot3 scripts/plot/ezplot3.m -->
-<p><a name="doc_002dezplot3"></a>
+<p><a name="XREFezplot3"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezplot3</b> (<var>fx, fy, fz</var>)<var><a name="index-ezplot3-1387"></a></var><br>
-&mdash; Function File:  <b>ezplot3</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezplot3-1388"></a></var><br>
-&mdash; Function File:  <b>ezplot3</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezplot3-1389"></a></var><br>
-&mdash; Function File:  <b>ezplot3</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezplot3-1390"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezplot3</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezplot3-1391"></a></var><br>
+&mdash; Function File:  <b>ezplot3</b> (<var>fx, fy, fz</var>)<var><a name="index-ezplot3-1477"></a></var><br>
+&mdash; Function File:  <b>ezplot3</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezplot3-1478"></a></var><br>
+&mdash; Function File:  <b>ezplot3</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezplot3-1479"></a></var><br>
+&mdash; Function File:  <b>ezplot3</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezplot3-1480"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezplot3</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezplot3-1481"></a></var><br>
 <blockquote>
-        <p>Plot a parametrically defined curve in three dimensions. 
-<var>fx</var>, <var>fy</var>, and <var>fz</var> are strings, inline functions
-or function handles with one arguments defining the function.  By
-default the plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code>
-with 60 points.
+        <p>Plot a parametrically defined curve in three dimensions.
+
+        <p><var>fx</var>, <var>fy</var>, and <var>fz</var> are strings, inline functions,
+or function handles with one argument defining the function.  By
+default the plot is over the domain <code>0 &lt;= </code><var>t</var><code> &lt;= 2*pi</code>
+with 500 points.
 
         <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of <var>t</var>.  <var>n</var> is a scalar defining the number of points to use.
+values of <var>t</var>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in plotting the
+function.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created plot.
 
@@ -61,184 +68,209 @@ value of <var>t</var>.  <var>n</var> is a scalar defining the number of points t
           fz = @(t) t;
           ezplot3 (fx, fy, fz, [0, 10*pi], 100);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dplot3.html#doc_002dplot3">plot3</a>, <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFplot3.html#XREFplot3">plot3</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezmesh.html#XREFezmesh">ezmesh</a>, <a href="XREFezsurf.html#XREFezsurf">ezsurf</a>.
+
+        </blockquote></div>
 
 <!-- ezmesh scripts/plot/ezmesh.m -->
-   <p><a name="doc_002dezmesh"></a>
+   <p><a name="XREFezmesh"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezmesh</b> (<var>f</var>)<var><a name="index-ezmesh-1392"></a></var><br>
-&mdash; Function File:  <b>ezmesh</b> (<var>fx, fy, fz</var>)<var><a name="index-ezmesh-1393"></a></var><br>
-&mdash; Function File:  <b>ezmesh</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezmesh-1394"></a></var><br>
-&mdash; Function File:  <b>ezmesh</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezmesh-1395"></a></var><br>
-&mdash; Function File:  <b>ezmesh</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezmesh-1396"></a></var><br>
-&mdash; Function File:  <b>ezmesh</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezmesh-1397"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezmesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezmesh-1398"></a></var><br>
+&mdash; Function File:  <b>ezmesh</b> (<var>f</var>)<var><a name="index-ezmesh-1482"></a></var><br>
+&mdash; Function File:  <b>ezmesh</b> (<var>fx, fy, fz</var>)<var><a name="index-ezmesh-1483"></a></var><br>
+&mdash; Function File:  <b>ezmesh</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezmesh-1484"></a></var><br>
+&mdash; Function File:  <b>ezmesh</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezmesh-1485"></a></var><br>
+&mdash; Function File:  <b>ezmesh</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezmesh-1486"></a></var><br>
+&mdash; Function File:  <b>ezmesh</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezmesh-1487"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezmesh</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezmesh-1488"></a></var><br>
 <blockquote>
-        <p>Plot the mesh defined by a function.  <var>f</var> is a string, inline
-function or function handle with two arguments defining the function.  By
-default the plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code> and
-<code>-2*pi &lt; </code><var>y</var><code> &lt; 2*pi</code> with 60 points in each dimension.
+        <p>Plot the mesh defined by a function.
 
-        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
-then the minimum and maximum value of <var>x</var> and <var>y</var> are specify
-separately.
-
-        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+        <p><var>f</var> is a string, inline function, or function handle with two arguments
+defining the function.  By default the plot is over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
 
         <p>If three functions are passed, then plot the parametrically defined
 function <code>[</code><var>fx</var><code> (</code><var>s</var><code>, </code><var>t</var><code>), </code><var>fy</var><code> (</code><var>s</var><code>, </code><var>t</var><code>),
 </code><var>fz</var><code> (</code><var>s</var><code>, </code><var>t</var><code>)]</code>.
 
-        <p>If the argument "circ" is given, then the function is plotted over a disk
-centered on the middle of the domain <var>dom</var>.
+        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
+values of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
+then the minimum and maximum values are <code>[xmin xmax ymin ymax]</code>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+
+        <p>If the argument <code>"circ"</code> is given, then the function is plotted over
+a disk centered on the middle of the domain <var>dom</var>.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created
 surface object.
 
+        <p>Example 1: 2-argument function
+
      <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
           ezmesh (f, [-3, 3]);
 </pre>
-        <p>An example of a parametrically defined function is
+        <p>Example 2: parametrically defined function
 
      <pre class="example">          fx = @(s,t) cos (s) .* cos (t);
           fy = @(s,t) sin (s) .* cos (t);
           fz = @(s,t) sin (t);
           ezmesh (fx, fy, fz, [-pi, pi, -pi/2, pi/2], 20);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFmesh.html#XREFmesh">mesh</a>, <a href="XREFezmeshc.html#XREFezmeshc">ezmeshc</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezsurf.html#XREFezsurf">ezsurf</a>, <a href="XREFezsurfc.html#XREFezsurfc">ezsurfc</a>, <a href="XREFhidden.html#XREFhidden">hidden</a>.
+
+        </blockquote></div>
 
 <!-- ezmeshc scripts/plot/ezmeshc.m -->
-   <p><a name="doc_002dezmeshc"></a>
+   <p><a name="XREFezmeshc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezmeshc</b> (<var>f</var>)<var><a name="index-ezmeshc-1399"></a></var><br>
-&mdash; Function File:  <b>ezmeshc</b> (<var>fx, fy, fz</var>)<var><a name="index-ezmeshc-1400"></a></var><br>
-&mdash; Function File:  <b>ezmeshc</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezmeshc-1401"></a></var><br>
-&mdash; Function File:  <b>ezmeshc</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezmeshc-1402"></a></var><br>
-&mdash; Function File:  <b>ezmeshc</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezmeshc-1403"></a></var><br>
-&mdash; Function File:  <b>ezmeshc</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezmeshc-1404"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezmeshc</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezmeshc-1405"></a></var><br>
+&mdash; Function File:  <b>ezmeshc</b> (<var>f</var>)<var><a name="index-ezmeshc-1489"></a></var><br>
+&mdash; Function File:  <b>ezmeshc</b> (<var>fx, fy, fz</var>)<var><a name="index-ezmeshc-1490"></a></var><br>
+&mdash; Function File:  <b>ezmeshc</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezmeshc-1491"></a></var><br>
+&mdash; Function File:  <b>ezmeshc</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezmeshc-1492"></a></var><br>
+&mdash; Function File:  <b>ezmeshc</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezmeshc-1493"></a></var><br>
+&mdash; Function File:  <b>ezmeshc</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezmeshc-1494"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezmeshc</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezmeshc-1495"></a></var><br>
 <blockquote>
-        <p>Plot the mesh and contour lines defined by a function.  <var>f</var> is a string,
-inline function or function handle with two arguments defining the function. 
-By default the plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code> and
-<code>-2*pi &lt; </code><var>y</var><code> &lt; 2*pi</code> with 60 points in each dimension.
+        <p>Plot the mesh and contour lines defined by a function.
 
-        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
-then the minimum and maximum value of <var>x</var> and <var>y</var> are specify
-separately.
-
-        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+        <p><var>f</var> is a string, inline function, or function handle with two arguments
+defining the function.  By default the plot is over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
 
         <p>If three functions are passed, then plot the parametrically defined
 function <code>[</code><var>fx</var><code> (</code><var>s</var><code>, </code><var>t</var><code>), </code><var>fy</var><code> (</code><var>s</var><code>, </code><var>t</var><code>),
 </code><var>fz</var><code> (</code><var>s</var><code>, </code><var>t</var><code>)]</code>.
 
-        <p>If the argument "circ" is given, then the function is plotted over a disk
-centered on the middle of the domain <var>dom</var>.
+        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
+values of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
+then the minimum and maximum values are <code>[xmin xmax ymin ymax]</code>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+
+        <p>If the argument <code>"circ"</code> is given, then the function is plotted over
+a disk centered on the middle of the domain <var>dom</var>.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a 2-element vector with a graphics
 handle for the created mesh plot and a second handle for the created contour
 plot.
 
+        <p>Example: 2-argument function
+
      <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
           ezmeshc (f, [-3, 3]);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFmeshc.html#XREFmeshc">meshc</a>, <a href="XREFezmesh.html#XREFezmesh">ezmesh</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezsurf.html#XREFezsurf">ezsurf</a>, <a href="XREFezsurfc.html#XREFezsurfc">ezsurfc</a>, <a href="XREFhidden.html#XREFhidden">hidden</a>.
+
+        </blockquote></div>
 
 <!-- ezsurf scripts/plot/ezsurf.m -->
-   <p><a name="doc_002dezsurf"></a>
+   <p><a name="XREFezsurf"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezsurf</b> (<var>f</var>)<var><a name="index-ezsurf-1406"></a></var><br>
-&mdash; Function File:  <b>ezsurf</b> (<var>fx, fy, fz</var>)<var><a name="index-ezsurf-1407"></a></var><br>
-&mdash; Function File:  <b>ezsurf</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezsurf-1408"></a></var><br>
-&mdash; Function File:  <b>ezsurf</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezsurf-1409"></a></var><br>
-&mdash; Function File:  <b>ezsurf</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezsurf-1410"></a></var><br>
-&mdash; Function File:  <b>ezsurf</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezsurf-1411"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezsurf</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezsurf-1412"></a></var><br>
+&mdash; Function File:  <b>ezsurf</b> (<var>f</var>)<var><a name="index-ezsurf-1496"></a></var><br>
+&mdash; Function File:  <b>ezsurf</b> (<var>fx, fy, fz</var>)<var><a name="index-ezsurf-1497"></a></var><br>
+&mdash; Function File:  <b>ezsurf</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezsurf-1498"></a></var><br>
+&mdash; Function File:  <b>ezsurf</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezsurf-1499"></a></var><br>
+&mdash; Function File:  <b>ezsurf</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezsurf-1500"></a></var><br>
+&mdash; Function File:  <b>ezsurf</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezsurf-1501"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezsurf</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezsurf-1502"></a></var><br>
 <blockquote>
-        <p>Plot the surface defined by a function.  <var>f</var> is a string, inline
-function or function handle with two arguments defining the function.  By
-default the plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt; 2*pi</code> and
-<code>-2*pi &lt; </code><var>y</var><code> &lt; 2*pi</code> with 60 points in each dimension.
+        <p>Plot the surface defined by a function.
 
-        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
-then the minimum and maximum value of <var>x</var> and <var>y</var> are specify
-separately.
-
-        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+        <p><var>f</var> is a string, inline function, or function handle with two arguments
+defining the function.  By default the plot is over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
 
         <p>If three functions are passed, then plot the parametrically defined
 function <code>[</code><var>fx</var><code> (</code><var>s</var><code>, </code><var>t</var><code>), </code><var>fy</var><code> (</code><var>s</var><code>, </code><var>t</var><code>),
 </code><var>fz</var><code> (</code><var>s</var><code>, </code><var>t</var><code>)]</code>.
 
-        <p>If the argument "circ" is given, then the function is plotted over a disk
-centered on the middle of the domain <var>dom</var>.
+        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
+values of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
+then the minimum and maximum values are <code>[xmin xmax ymin ymax]</code>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+
+        <p>If the argument <code>"circ"</code> is given, then the function is plotted over
+a disk centered on the middle of the domain <var>dom</var>.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created
 surface object.
 
+        <p>Example 1: 2-argument function
+
      <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
           ezsurf (f, [-3, 3]);
 </pre>
-        <p>An example of a parametrically defined function is
+        <p>Example 2: parametrically defined function
 
      <pre class="example">          fx = @(s,t) cos (s) .* cos (t);
           fy = @(s,t) sin (s) .* cos (t);
           fz = @(s,t) sin (t);
           ezsurf (fx, fy, fz, [-pi, pi, -pi/2, pi/2], 20);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>, <a href="doc_002dezsurfc.html#doc_002dezsurfc">ezsurfc</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFsurf.html#XREFsurf">surf</a>, <a href="XREFezsurfc.html#XREFezsurfc">ezsurfc</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezmesh.html#XREFezmesh">ezmesh</a>, <a href="XREFezmeshc.html#XREFezmeshc">ezmeshc</a>, <a href="XREFshading.html#XREFshading">shading</a>.
+
+        </blockquote></div>
 
 <!-- ezsurfc scripts/plot/ezsurfc.m -->
-   <p><a name="doc_002dezsurfc"></a>
+   <p><a name="XREFezsurfc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ezsurfc</b> (<var>f</var>)<var><a name="index-ezsurfc-1413"></a></var><br>
-&mdash; Function File:  <b>ezsurfc</b> (<var>fx, fy, fz</var>)<var><a name="index-ezsurfc-1414"></a></var><br>
-&mdash; Function File:  <b>ezsurfc</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezsurfc-1415"></a></var><br>
-&mdash; Function File:  <b>ezsurfc</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezsurfc-1416"></a></var><br>
-&mdash; Function File:  <b>ezsurfc</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezsurfc-1417"></a></var><br>
-&mdash; Function File:  <b>ezsurfc</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-ezsurfc-1418"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>ezsurfc</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezsurfc-1419"></a></var><br>
+&mdash; Function File:  <b>ezsurfc</b> (<var>f</var>)<var><a name="index-ezsurfc-1503"></a></var><br>
+&mdash; Function File:  <b>ezsurfc</b> (<var>fx, fy, fz</var>)<var><a name="index-ezsurfc-1504"></a></var><br>
+&mdash; Function File:  <b>ezsurfc</b> (<var><small class="dots">...</small>, dom</var>)<var><a name="index-ezsurfc-1505"></a></var><br>
+&mdash; Function File:  <b>ezsurfc</b> (<var><small class="dots">...</small>, n</var>)<var><a name="index-ezsurfc-1506"></a></var><br>
+&mdash; Function File:  <b>ezsurfc</b> (<var><small class="dots">...</small>, "circ"</var>)<var><a name="index-ezsurfc-1507"></a></var><br>
+&mdash; Function File:  <b>ezsurfc</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-ezsurfc-1508"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>ezsurfc</b> (<var><small class="dots">...</small></var>)<var><a name="index-ezsurfc-1509"></a></var><br>
 <blockquote>
-        <p>Plot the surface and contour lines defined by a function.  <var>f</var> is a
-string, inline function or function handle with two arguments defining the
-function.  By default the plot is over the domain <code>-2*pi &lt; </code><var>x</var><code> &lt;
-2*pi</code> and <code>-2*pi &lt; </code><var>y</var><code> &lt; 2*pi</code> with 60 points in each dimension.
+        <p>Plot the surface and contour lines defined by a function.
 
-        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
-value of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
-then the minimum and maximum value of <var>x</var> and <var>y</var> are specify
-separately.
-
-        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+        <p><var>f</var> is a string, inline function, or function handle with two arguments
+defining the function.  By default the plot is over the meshed domain
+<code>-2*pi &lt;= </code><var>x</var><code> | </code><var>y</var><code> &lt;= 2*pi</code> with 60 points in each dimension.
 
         <p>If three functions are passed, then plot the parametrically defined
 function <code>[</code><var>fx</var><code> (</code><var>s</var><code>, </code><var>t</var><code>), </code><var>fy</var><code> (</code><var>s</var><code>, </code><var>t</var><code>),
 </code><var>fz</var><code> (</code><var>s</var><code>, </code><var>t</var><code>)]</code>.
 
-        <p>If the argument "circ" is given, then the function is plotted over a disk
-centered on the middle of the domain <var>dom</var>.
+        <p>If <var>dom</var> is a two element vector, it represents the minimum and maximum
+values of both <var>x</var> and <var>y</var>.  If <var>dom</var> is a four element vector,
+then the minimum and maximum values are <code>[xmin xmax ymin ymax]</code>.
+
+        <p><var>n</var> is a scalar defining the number of points to use in each dimension.
+
+        <p>If the argument <code>"circ"</code> is given, then the function is plotted over
+a disk centered on the middle of the domain <var>dom</var>.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a 2-element vector with a graphics
-for the created surface plot and a second handle for the created contour
-plot.
+handle for the created surface plot and a second handle for the created
+contour plot.
+
+        <p>Example:
 
      <pre class="example">          f = @(x,y) sqrt (abs (x .* y)) ./ (1 + x.^2 + y.^2);
           ezsurfc (f, [-3, 3]);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dezplot.html#doc_002dezplot">ezplot</a>, <a href="doc_002dezmeshc.html#doc_002dezmeshc">ezmeshc</a>, <a href="doc_002dezsurf.html#doc_002dezsurf">ezsurf</a>, <a href="doc_002dezmesh.html#doc_002dezmesh">ezmesh</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFsurfc.html#XREFsurfc">surfc</a>, <a href="XREFezsurf.html#XREFezsurf">ezsurf</a>, <a href="XREFezplot.html#XREFezplot">ezplot</a>, <a href="XREFezmesh.html#XREFezmesh">ezmesh</a>, <a href="XREFezmeshc.html#XREFezmeshc">ezmeshc</a>, <a href="XREFshading.html#XREFshading">shading</a>.
+
+        </blockquote></div>
 
    </body></html>
 

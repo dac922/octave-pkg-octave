@@ -35,9 +35,9 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.8 Calling Octave Functions from Oct-Files</h4>
 
-<p>There is often a need to be able to call another octave function from
-within an oct-file, and there are many examples of such within octave
-itself.  For example the <code>quad</code> function is an oct-file that
+<p>There is often a need to be able to call another Octave function from
+within an oct-file, and there are many examples of such within Octave
+itself.  For example, the <code>quad</code> function is an oct-file that
 calculates the definite integral by quadrature over a user supplied
 function.
 
@@ -62,8 +62,8 @@ passing a function to an oct-file.
      
      DEFUN_DLD (funcdemo, args, nargout, "Function Demo")
      {
-       int nargin = args.length ();
        octave_value_list retval;
+       int nargin = args.length ();
      
        if (nargin &lt; 2)
          print_usage ();
@@ -71,9 +71,8 @@ passing a function to an oct-file.
          {
            octave_value_list newargs;
            for (octave_idx_type i = nargin - 1; i > 0; i--)
-             newargs (i - 1) = args(i);
-           if (args(0).is_function_handle ()
-               || args(0).is_inline_function ())
+             newargs(i-1) = args(i);
+           if (args(0).is_function_handle () || args(0).is_inline_function ())
              {
                octave_function *fcn = args(0).function_value ();
                if (! error_state)
@@ -81,21 +80,20 @@ passing a function to an oct-file.
              }
            else if (args(0).is_string ())
              {
-               std::string fcn = args (0).string_value ();
+               std::string fcn = args(0).string_value ();
                if (! error_state)
                  retval = feval (fcn, newargs, nargout);
              }
            else
-             error ("funcdemo: expected string,",
-                    " inline or function handle");
+             error ("funcdemo: INPUT must be string, inline, or function handle");
          }
        return retval;
      }
 </pre>
      
 </pre>
-   <p>The first argument to this demonstration is the user supplied function
-and the following arguments are all passed to the user function.
+   <p>The first argument to this demonstration is the user-supplied function
+and the remaining arguments are all passed to the user function.
 
 <pre class="example">     funcdemo (@sin,1)
      &rArr; 0.84147
@@ -108,25 +106,27 @@ and the following arguments are all passed to the user function.
      funcdemo (@atan2, 1, 1)
      &rArr; 0.78540
 </pre>
-   <p>When the user function is passed as a string, the treatment of the
-function is different.  In some cases it is necessary to always have the
+   <p>When the user function is passed as a string the treatment of the
+function is different.  In some cases it is necessary to have the
 user supplied function as an <code>octave_function</code> object.  In that
-case the string argument can be used to create a temporary function like
+case the string argument can be used to create a temporary function
+as demonstrated below.
 
 <pre class="example">     std::octave fcn_name = unique_symbol_name ("__fcn__");
-     std::string fname = "function y = ";
-     fname.append (fcn_name);
-     fname.append ("(x) y = ");
+     std::string fcode = "function y = ";
+     fcode.append (fcn_name);
+     fcode.append ("(x) y = ");
      fcn = extract_function (args(0), "funcdemo", fcn_name,
-                             fname, "; endfunction");
+                             fcode, "; endfunction");
      ...
      if (fcn_name.length ())
        clear_function (fcn_name);
 </pre>
-   <p>There are two important things to know in this case.  The number of input
-arguments to the user function is fixed, and in the above is a single
-argument, and secondly to avoid leaving the temporary function in the
-Octave symbol table it should be cleared after use.
+   <p>There are two important things to know in this case.  First, the number of
+input arguments to the user function is fixed, and in the above example is
+a single argument.  Second, to avoid leaving the temporary function in the
+Octave symbol table it should be cleared after use.  Also, by convention
+internal function names begin and end with the character sequence &lsquo;<samp><span class="samp">__</span></samp>&rsquo;.
 
    </body></html>
 

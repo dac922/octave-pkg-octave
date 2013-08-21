@@ -46,12 +46,12 @@ the function <code>f</code> is called without any input arguments.
 and returns to the Octave prompt.  This means that no code following
 a call to <code>error</code> will be executed.
 
-<!-- error libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002derror"></a>
+<!-- error libinterp/corefcn/error.cc -->
+   <p><a name="XREFerror"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>error</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-error-833"></a></var><br>
-&mdash; Built-in Function:  <b>error</b> (<var>id, template, <small class="dots">...</small></var>)<var><a name="index-error-834"></a></var><br>
+&mdash; Built-in Function:  <b>error</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-error-846"></a></var><br>
+&mdash; Built-in Function:  <b>error</b> (<var>id, template, <small class="dots">...</small></var>)<var><a name="index-error-847"></a></var><br>
 <blockquote><p>Format the optional arguments under the control of the template string
 <var>template</var> using the same rules as the <code>printf</code> family of
 functions (see <a href="Formatted-Output.html#Formatted-Output">Formatted Output</a>) and print the resulting message
@@ -91,15 +91,32 @@ a single message:
           f ()
           error: nargin != 1
 </pre>
+        <p>A null string ("") input to <code>error</code> will be ignored and the code
+will continue running as if the statement were a NOP.  This is for
+compatibility with <span class="sc">matlab</span>.  It also makes it possible to write code such
+as
+
+     <pre class="example">          err_msg = "";
+          if (CONDITION 1)
+            err_msg = "CONDITION 1 found";
+          elseif (CONDITION2)
+            err_msg = "CONDITION 2 found";
+          ...
+          endif
+          error (err_msg);
+</pre>
+        <p class="noindent">which will only stop execution if an error has been found.
+
         <p>Implementation Note: For compatibility with <span class="sc">matlab</span>, escape
-sequences (e.g., "\n" =&gt; newline) are processed in <var>template</var>
+sequences (e.g., <code>"n"</code> =&gt; newline) are processed in <var>template</var>
 regardless of whether <var>template</var> has been defined within single quotes
 as long as there are two or more input arguments. 
 Use a second backslash to stop interpolation of the escape sequence (e.g.,
 "\\n") or use the <code>regexptranslate</code> function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwarning.html#doc_002dwarning">warning</a>, <a href="doc_002dlasterror.html#doc_002dlasterror">lasterror</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwarning.html#XREFwarning">warning</a>, <a href="XREFlasterror.html#XREFlasterror">lasterror</a>.
+
+        </blockquote></div>
 
    <p>Since it is common to use errors when there is something wrong with
 the input to a function, Octave supports functions to simplify such code. 
@@ -142,23 +159,24 @@ error.
      -|  mailing list.
 </pre>
    <!-- print_usage scripts/help/print_usage.m -->
-   <p><a name="doc_002dprint_005fusage"></a>
+   <p><a name="XREFprint_005fusage"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>print_usage</b> ()<var><a name="index-print_005fusage-835"></a></var><br>
-&mdash; Function File:  <b>print_usage</b> (<var>name</var>)<var><a name="index-print_005fusage-836"></a></var><br>
+&mdash; Function File:  <b>print_usage</b> ()<var><a name="index-print_005fusage-848"></a></var><br>
+&mdash; Function File:  <b>print_usage</b> (<var>name</var>)<var><a name="index-print_005fusage-849"></a></var><br>
 <blockquote><p>Print the usage message for a function.  When called with no input arguments
 the <code>print_usage</code> function displays the usage message of the currently
 executing function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dhelp.html#doc_002dhelp">help</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFhelp.html#XREFhelp">help</a>.
 
-<!-- usage libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002dusage"></a>
+        </blockquote></div>
+
+<!-- usage libinterp/corefcn/error.cc -->
+   <p><a name="XREFusage"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>usage</b> (<var>msg</var>)<var><a name="index-usage-837"></a></var><br>
+&mdash; Built-in Function:  <b>usage</b> (<var>msg</var>)<var><a name="index-usage-850"></a></var><br>
 <blockquote><p>Print the message <var>msg</var>, prefixed by the string &lsquo;<samp><span class="samp">usage: </span></samp>&rsquo;, and
 set Octave's internal error state such that control will return to the
 top level without evaluating any more commands.  This is useful for
@@ -181,28 +199,29 @@ this
 </p></blockquote></div>
 
 <!-- beep scripts/io/beep.m -->
-   <p><a name="doc_002dbeep"></a>
+   <p><a name="XREFbeep"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>beep</b> ()<var><a name="index-beep-838"></a></var><br>
+&mdash; Function File:  <b>beep</b> ()<var><a name="index-beep-851"></a></var><br>
 <blockquote><p>Produce a beep from the speaker (or visual bell).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dputs.html#doc_002dputs">puts</a>, <a href="doc_002dfputs.html#doc_002dfputs">fputs</a>, <a href="doc_002dprintf.html#doc_002dprintf">printf</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFputs.html#XREFputs">puts</a>, <a href="XREFfputs.html#XREFfputs">fputs</a>, <a href="XREFprintf.html#XREFprintf">printf</a>, <a href="XREFfprintf.html#XREFfprintf">fprintf</a>.
 
-<!-- beep_on_error libinterp/interpfcn/error.cc -->
-   <p><a name="doc_002dbeep_005fon_005ferror"></a>
+        </blockquote></div>
+
+<!-- beep_on_error libinterp/corefcn/error.cc -->
+   <p><a name="XREFbeep_005fon_005ferror"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>beep_on_error</b> ()<var><a name="index-beep_005fon_005ferror-839"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>beep_on_error</b> (<var>new_val</var>)<var><a name="index-beep_005fon_005ferror-840"></a></var><br>
-&mdash; Built-in Function:  <b>beep_on_error</b> (<var>new_val, "local"</var>)<var><a name="index-beep_005fon_005ferror-841"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>beep_on_error</b> ()<var><a name="index-beep_005fon_005ferror-852"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>beep_on_error</b> (<var>new_val</var>)<var><a name="index-beep_005fon_005ferror-853"></a></var><br>
+&mdash; Built-in Function:  <b>beep_on_error</b> (<var>new_val, "local"</var>)<var><a name="index-beep_005fon_005ferror-854"></a></var><br>
 <blockquote><p>Query or set the internal variable that controls whether Octave will try
 to ring the terminal bell before printing an error message.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
    </body></html>

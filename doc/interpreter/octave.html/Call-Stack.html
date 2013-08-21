@@ -34,13 +34,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Debugging.html#Debugging">Debugging</a>
 
 <h3 class="section">13.5 Call Stack</h3>
 
-<!-- dbstack libinterp/interpfcn/debug.cc -->
-<p><a name="doc_002ddbstack"></a>
+<!-- dbstack libinterp/corefcn/debug.cc -->
+<p><a name="XREFdbstack"></a>
 
 <div class="defun">
-&mdash; Command:  <b>dbstack</b><var><a name="index-dbstack-901"></a></var><br>
-&mdash; Command:  <b>dbstack</b><var> n<a name="index-dbstack-902"></a></var><br>
-&mdash; Built-in Function: [<var>stack</var>, <var>idx</var>] = <b>dbstack</b> (<var><small class="dots">...</small></var>)<var><a name="index-dbstack-903"></a></var><br>
+&mdash; Command:  <b>dbstack</b><var><a name="index-dbstack-918"></a></var><br>
+&mdash; Command:  <b>dbstack</b><var> n<a name="index-dbstack-919"></a></var><br>
+&mdash; Built-in Function: [<var>stack</var>, <var>idx</var>] = <b>dbstack</b> (<var><small class="dots">...</small></var>)<var><a name="index-dbstack-920"></a></var><br>
 <blockquote><p>Display or return current debugging function stack information. 
 With optional argument <var>n</var>, omit the <var>n</var> innermost stack frames.
 
@@ -64,32 +64,35 @@ following fields:
         <p>The return argument <var>idx</var> specifies which element of the <var>stack</var>
 struct array is currently active.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbup.html#doc_002ddbup">dbup</a>, <a href="doc_002ddbdown.html#doc_002ddbdown">dbdown</a>, <a href="doc_002ddbwhere.html#doc_002ddbwhere">dbwhere</a>, <a href="doc_002ddbstatus.html#doc_002ddbstatus">dbstatus</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbup.html#XREFdbup">dbup</a>, <a href="XREFdbdown.html#XREFdbdown">dbdown</a>, <a href="XREFdbwhere.html#XREFdbwhere">dbwhere</a>, <a href="XREFdbstatus.html#XREFdbstatus">dbstatus</a>.
 
-<!-- dbup libinterp/interpfcn/debug.cc -->
-   <p><a name="doc_002ddbup"></a>
+        </blockquote></div>
+
+<!-- dbup libinterp/corefcn/debug.cc -->
+   <p><a name="XREFdbup"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dbup</b><var><a name="index-dbup-904"></a></var><br>
-&mdash; Built-in Function:  <b>dbup</b> (<var>n</var>)<var><a name="index-dbup-905"></a></var><br>
+&mdash; Built-in Function:  <b>dbup</b><var><a name="index-dbup-921"></a></var><br>
+&mdash; Built-in Function:  <b>dbup</b> (<var>n</var>)<var><a name="index-dbup-922"></a></var><br>
 <blockquote><p>In debugging mode, move up the execution stack <var>n</var> frames. 
 If <var>n</var> is omitted, move up one frame.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbstack.html#doc_002ddbstack">dbstack</a>, <a href="doc_002ddbdown.html#doc_002ddbdown">dbdown</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbstack.html#XREFdbstack">dbstack</a>, <a href="XREFdbdown.html#XREFdbdown">dbdown</a>.
 
-<!-- dbdown libinterp/interpfcn/debug.cc -->
-   <p><a name="doc_002ddbdown"></a>
+        </blockquote></div>
+
+<!-- dbdown libinterp/corefcn/debug.cc -->
+   <p><a name="XREFdbdown"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dbdown</b><var><a name="index-dbdown-906"></a></var><br>
-&mdash; Built-in Function:  <b>dbdown</b> (<var>n</var>)<var><a name="index-dbdown-907"></a></var><br>
+&mdash; Built-in Function:  <b>dbdown</b><var><a name="index-dbdown-923"></a></var><br>
+&mdash; Built-in Function:  <b>dbdown</b> (<var>n</var>)<var><a name="index-dbdown-924"></a></var><br>
 <blockquote><p>In debugging mode, move down the execution stack <var>n</var> frames. 
 If <var>n</var> is omitted, move down one frame.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddbstack.html#doc_002ddbstack">dbstack</a>, <a href="doc_002ddbup.html#doc_002ddbup">dbup</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdbstack.html#XREFdbstack">dbstack</a>, <a href="XREFdbup.html#XREFdbup">dbup</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -25,52 +25,36 @@
 
 function [h, varargin, narg] = __plt_get_axis_arg__ (caller, varargin)
 
-  if (islogical (caller))
-    nogca = caller;
-    caller = varargin{1};
-    varargin(1) = [];
-  else
-    nogca = false;
-  endif
+  h = [];
+  parent = find (strcmpi (varargin, "parent"), 1);
+  
 
-  ## Figure handles are integers, but object handles are non-integer,
-  ## therefore ignore integer scalars.
-  if (nargin > 1 && length (varargin) > 0 && isnumeric (varargin{1})
-      && numel (varargin{1}) == 1 && ishandle (varargin{1}(1))
-      && varargin{1}(1) != 0 && ! isfigure (varargin{1}(1)))
-    tmp = varargin{1};
-    obj = get (tmp);
-    if ((strcmp (obj.type, "axes") && ! strcmp (obj.tag, "legend"))
-        || strcmp (obj.type, "hggroup"))
-      h = ancestor (tmp, "axes");
-      varargin(1) = [];
-      if (isempty (varargin))
-        varargin = {};
-      endif
-    else
+  ## Look for a scalar which is a graphics handle but not the
+  ## Root Figure (0) or an ordinary figure (integer).
+  if (numel (varargin) > 0 && numel (varargin{1}) == 1
+      && ishandle (varargin{1}) && varargin{1} != 0 && ! isfigure (varargin{1}))
+    htmp = varargin{1};
+    if (! isaxes (htmp))
       error ("%s: expecting first argument to be axes handle", caller);
     endif
-  else
-    f = get (0, "currentfigure");
-    if (isempty (f))
-      h = [];
-    else
-      h = get (f, "currentaxes");
+    if (! strcmp (get (htmp, "tag"), "legend"))
+      h = htmp;
+      varargin(1) = [];
     endif
-    if (isempty (h))
-      if (nogca)
-        h = NaN;
+  ## Look for "parent"/axis prop/value pair
+  elseif (numel (varargin) > 1 && ! isempty (parent))
+    if (parent < numel (varargin) && ishandle (varargin{parent+1}))
+      htmp = varargin{parent+1};
+      if (isaxes (htmp) && ! strcmp (get (htmp, "tag"), "legend"))
+        h = htmp;
+        varargin(parent:parent+1) = [];
       else
-        h = gca ();
+        ## 'parent' property for some other type like hggroup
+        h = ancestor (htmp, "axes");
       endif
+    else
+      error ("%s: expecting parent value to be axes handle", caller);
     endif
-    if (nargin < 2)
-      varargin = {};
-    endif
-  endif
-
-  if (ishandle (h) && strcmp (get (h, "nextplot"), "new"))
-    h = axes ();
   endif
 
   narg = length (varargin);

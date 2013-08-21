@@ -50,176 +50,190 @@ length of the input if it is a complex number.
    <p>The following functions are available for determining the type of a
 variable.
 
-<!-- isnumeric libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002disnumeric"></a>
+<!-- isnumeric libinterp/corefcn/data.cc -->
+   <p><a name="XREFisnumeric"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isnumeric</b> (<var>x</var>)<var><a name="index-isnumeric-320"></a></var><br>
+&mdash; Built-in Function:  <b>isnumeric</b> (<var>x</var>)<var><a name="index-isnumeric-330"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a numeric object, i.e., an integer, real, or
 complex array.  Logical and character arrays are not considered to be
 numeric.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disreal.html#doc_002disreal">isreal</a>, <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002discell.html#doc_002discell">iscell</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisinteger.html#XREFisinteger">isinteger</a>, <a href="XREFisfloat.html#XREFisfloat">isfloat</a>, <a href="XREFisreal.html#XREFisreal">isreal</a>, <a href="XREFiscomplex.html#XREFiscomplex">iscomplex</a>, <a href="XREFislogical.html#XREFislogical">islogical</a>, <a href="XREFischar.html#XREFischar">ischar</a>, <a href="XREFiscell.html#XREFiscell">iscell</a>, <a href="XREFisstruct.html#XREFisstruct">isstruct</a>, <a href="XREFisa.html#XREFisa">isa</a>.
 
-<!-- isfloat libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002disfloat"></a>
+        </blockquote></div>
+
+<!-- isfloat libinterp/corefcn/data.cc -->
+   <p><a name="XREFisfloat"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isfloat</b> (<var>x</var>)<var><a name="index-isfloat-321"></a></var><br>
+&mdash; Built-in Function:  <b>isfloat</b> (<var>x</var>)<var><a name="index-isfloat-331"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a floating-point numeric object. 
 Objects of class double or single are floating-point objects.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisinteger.html#XREFisinteger">isinteger</a>, <a href="XREFischar.html#XREFischar">ischar</a>, <a href="XREFislogical.html#XREFislogical">islogical</a>, <a href="XREFisnumeric.html#XREFisnumeric">isnumeric</a>, <a href="XREFisa.html#XREFisa">isa</a>.
 
-<!-- isreal libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002disreal"></a>
+        </blockquote></div>
+
+<!-- isreal libinterp/corefcn/data.cc -->
+   <p><a name="XREFisreal"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isreal</b> (<var>x</var>)<var><a name="index-isreal-322"></a></var><br>
+&mdash; Built-in Function:  <b>isreal</b> (<var>x</var>)<var><a name="index-isreal-332"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a non-complex matrix or scalar. 
 For compatibility with <span class="sc">matlab</span>, this includes logical and character
 matrices.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFiscomplex.html#XREFiscomplex">iscomplex</a>, <a href="XREFisnumeric.html#XREFisnumeric">isnumeric</a>, <a href="XREFisa.html#XREFisa">isa</a>.
 
-<!-- iscomplex libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002discomplex"></a>
+        </blockquote></div>
+
+<!-- iscomplex libinterp/corefcn/data.cc -->
+   <p><a name="XREFiscomplex"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>iscomplex</b> (<var>x</var>)<var><a name="index-iscomplex-323"></a></var><br>
+&mdash; Built-in Function:  <b>iscomplex</b> (<var>x</var>)<var><a name="index-iscomplex-333"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a complex-valued numeric object.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disreal.html#doc_002disreal">isreal</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002dislogical.html#doc_002dislogical">islogical</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisreal.html#XREFisreal">isreal</a>, <a href="XREFisnumeric.html#XREFisnumeric">isnumeric</a>, <a href="XREFislogical.html#XREFislogical">islogical</a>, <a href="XREFischar.html#XREFischar">ischar</a>, <a href="XREFisfloat.html#XREFisfloat">isfloat</a>, <a href="XREFisa.html#XREFisa">isa</a>.
 
-<!-- ismatrix libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dismatrix"></a>
+        </blockquote></div>
+
+<!-- ismatrix libinterp/corefcn/data.cc -->
+   <p><a name="XREFismatrix"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ismatrix</b> (<var>a</var>)<var><a name="index-ismatrix-324"></a></var><br>
+&mdash; Built-in Function:  <b>ismatrix</b> (<var>a</var>)<var><a name="index-ismatrix-334"></a></var><br>
 <blockquote><p>Return true if <var>a</var> is a numeric, logical, or character matrix. 
 Scalars (1x1 matrices) and vectors (1xN or Nx1 matrices)
 are subsets of the more general N-dimensional matrix and <code>ismatrix</code>
 will return true for these objects as well.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002discell.html#doc_002discell">iscell</a>, <a href="doc_002disstruct.html#doc_002disstruct">isstruct</a>, <a href="doc_002dissparse.html#doc_002dissparse">issparse</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFiscell.html#XREFiscell">iscell</a>, <a href="XREFisstruct.html#XREFisstruct">isstruct</a>, <a href="XREFissparse.html#XREFissparse">issparse</a>, <a href="XREFisa.html#XREFisa">isa</a>.
+
+        </blockquote></div>
 
 <!-- isvector scripts/general/isvector.m -->
-   <p><a name="doc_002disvector"></a>
+   <p><a name="XREFisvector"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isvector</b> (<var>x</var>)<var><a name="index-isvector-325"></a></var><br>
+&mdash; Function File:  <b>isvector</b> (<var>x</var>)<var><a name="index-isvector-335"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a vector.  A vector is a 2-D array
 where one of the dimensions is equal to 1.  As a consequence a
 1x1 array, or scalar, is also a vector.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002drows.html#doc_002drows">rows</a>, <a href="doc_002dcolumns.html#doc_002dcolumns">columns</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>, <a href="XREFsize.html#XREFsize">size</a>, <a href="XREFrows.html#XREFrows">rows</a>, <a href="XREFcolumns.html#XREFcolumns">columns</a>, <a href="XREFlength.html#XREFlength">length</a>.
+
+        </blockquote></div>
 
 <!-- isrow scripts/general/isrow.m -->
-   <p><a name="doc_002disrow"></a>
+   <p><a name="XREFisrow"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isrow</b> (<var>x</var>)<var><a name="index-isrow-326"></a></var><br>
+&mdash; Function File:  <b>isrow</b> (<var>x</var>)<var><a name="index-isrow-336"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a row vector.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002discolumn.html#doc_002discolumn">iscolumn</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFiscolumn.html#XREFiscolumn">iscolumn</a>, <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>.
+
+        </blockquote></div>
 
 <!-- iscolumn scripts/general/iscolumn.m -->
-   <p><a name="doc_002discolumn"></a>
+   <p><a name="XREFiscolumn"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>iscolumn</b> (<var>x</var>)<var><a name="index-iscolumn-327"></a></var><br>
+&mdash; Function File:  <b>iscolumn</b> (<var>x</var>)<var><a name="index-iscolumn-337"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a column vector.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disrow.html#doc_002disrow">isrow</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisrow.html#XREFisrow">isrow</a>, <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>.
+
+        </blockquote></div>
 
 <!-- isscalar scripts/general/isscalar.m -->
-   <p><a name="doc_002disscalar"></a>
+   <p><a name="XREFisscalar"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isscalar</b> (<var>x</var>)<var><a name="index-isscalar-328"></a></var><br>
+&mdash; Function File:  <b>isscalar</b> (<var>x</var>)<var><a name="index-isscalar-338"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a scalar.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>.
+
+        </blockquote></div>
 
 <!-- issquare scripts/general/issquare.m -->
-   <p><a name="doc_002dissquare"></a>
+   <p><a name="XREFissquare"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>issquare</b> (<var>x</var>)<var><a name="index-issquare-329"></a></var><br>
+&mdash; Function File:  <b>issquare</b> (<var>x</var>)<var><a name="index-issquare-339"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a square matrix.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>, <a href="XREFsize.html#XREFsize">size</a>.
+
+        </blockquote></div>
 
 <!-- issymmetric scripts/linear-algebra/issymmetric.m -->
-   <p><a name="doc_002dissymmetric"></a>
+   <p><a name="XREFissymmetric"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>issymmetric</b> (<var>x</var>)<var><a name="index-issymmetric-330"></a></var><br>
-&mdash; Function File:  <b>issymmetric</b> (<var>x, tol</var>)<var><a name="index-issymmetric-331"></a></var><br>
+&mdash; Function File:  <b>issymmetric</b> (<var>x</var>)<var><a name="index-issymmetric-340"></a></var><br>
+&mdash; Function File:  <b>issymmetric</b> (<var>x, tol</var>)<var><a name="index-issymmetric-341"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a symmetric matrix within the tolerance specified
 by <var>tol</var>.  The default tolerance is zero (uses faster code). 
 Matrix <var>x</var> is considered symmetric if
 <code>norm (</code><var>x</var><code> - </code><var>x</var><code>.', Inf) / norm (</code><var>x</var><code>, Inf) &lt; </code><var>tol</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dishermitian.html#doc_002dishermitian">ishermitian</a>, <a href="doc_002disdefinite.html#doc_002disdefinite">isdefinite</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFishermitian.html#XREFishermitian">ishermitian</a>, <a href="XREFisdefinite.html#XREFisdefinite">isdefinite</a>.
+
+        </blockquote></div>
 
 <!-- ishermitian scripts/linear-algebra/ishermitian.m -->
-   <p><a name="doc_002dishermitian"></a>
+   <p><a name="XREFishermitian"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>ishermitian</b> (<var>x</var>)<var><a name="index-ishermitian-332"></a></var><br>
-&mdash; Function File:  <b>ishermitian</b> (<var>x, tol</var>)<var><a name="index-ishermitian-333"></a></var><br>
+&mdash; Function File:  <b>ishermitian</b> (<var>x</var>)<var><a name="index-ishermitian-342"></a></var><br>
+&mdash; Function File:  <b>ishermitian</b> (<var>x, tol</var>)<var><a name="index-ishermitian-343"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is Hermitian within the tolerance specified by
 <var>tol</var>. 
 The default tolerance is zero (uses faster code). 
 Matrix <var>x</var> is considered symmetric if
 <code>norm (</code><var>x</var><code> - </code><var>x</var><code>', Inf) / norm (</code><var>x</var><code>, Inf) &lt; </code><var>tol</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dissymmetric.html#doc_002dissymmetric">issymmetric</a>, <a href="doc_002disdefinite.html#doc_002disdefinite">isdefinite</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFissymmetric.html#XREFissymmetric">issymmetric</a>, <a href="XREFisdefinite.html#XREFisdefinite">isdefinite</a>.
+
+        </blockquote></div>
 
 <!-- isdefinite scripts/linear-algebra/isdefinite.m -->
-   <p><a name="doc_002disdefinite"></a>
+   <p><a name="XREFisdefinite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isdefinite</b> (<var>x</var>)<var><a name="index-isdefinite-334"></a></var><br>
-&mdash; Function File:  <b>isdefinite</b> (<var>x, tol</var>)<var><a name="index-isdefinite-335"></a></var><br>
+&mdash; Function File:  <b>isdefinite</b> (<var>x</var>)<var><a name="index-isdefinite-344"></a></var><br>
+&mdash; Function File:  <b>isdefinite</b> (<var>x, tol</var>)<var><a name="index-isdefinite-345"></a></var><br>
 <blockquote><p>Return 1 if <var>x</var> is symmetric positive definite within the
 tolerance specified by <var>tol</var> or 0 if <var>x</var> is symmetric
 positive semidefinite.  Otherwise, return -1.  If <var>tol</var>
 is omitted, use a tolerance of
 <code>100 * eps * norm (</code><var>x</var><code>, "fro")</code>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dissymmetric.html#doc_002dissymmetric">issymmetric</a>, <a href="doc_002dishermitian.html#doc_002dishermitian">ishermitian</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFissymmetric.html#XREFissymmetric">issymmetric</a>, <a href="XREFishermitian.html#XREFishermitian">ishermitian</a>.
 
-<!-- islogical libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dislogical"></a>
+        </blockquote></div>
+
+<!-- islogical libinterp/corefcn/data.cc -->
+   <p><a name="XREFislogical"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>islogical</b> (<var>x</var>)<var><a name="index-islogical-336"></a></var><br>
-&mdash; Built-in Function:  <b>isbool</b> (<var>x</var>)<var><a name="index-isbool-337"></a></var><br>
+&mdash; Built-in Function:  <b>islogical</b> (<var>x</var>)<var><a name="index-islogical-346"></a></var><br>
+&mdash; Built-in Function:  <b>isbool</b> (<var>x</var>)<var><a name="index-isbool-347"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a logical object.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disfloat.html#doc_002disfloat">isfloat</a>, <a href="doc_002disinteger.html#doc_002disinteger">isinteger</a>, <a href="doc_002dischar.html#doc_002dischar">ischar</a>, <a href="doc_002disnumeric.html#doc_002disnumeric">isnumeric</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisfloat.html#XREFisfloat">isfloat</a>, <a href="XREFisinteger.html#XREFisinteger">isinteger</a>, <a href="XREFischar.html#XREFischar">ischar</a>, <a href="XREFisnumeric.html#XREFisnumeric">isnumeric</a>, <a href="XREFisa.html#XREFisa">isa</a>.
+
+        </blockquote></div>
 
 <!-- isprime scripts/specfun/isprime.m -->
-   <p><a name="doc_002disprime"></a>
+   <p><a name="XREFisprime"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>isprime</b> (<var>x</var>)<var><a name="index-isprime-338"></a></var><br>
+&mdash; Function File:  <b>isprime</b> (<var>x</var>)<var><a name="index-isprime-348"></a></var><br>
 <blockquote><p>Return a logical array which is true where the elements of <var>x</var> are
 prime numbers and false where they are not.
 
@@ -229,8 +243,9 @@ special purpose factorization code.
      <pre class="example">          isprime (1:6)
               &rArr; [0, 1, 1, 0, 1, 0]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dprimes.html#doc_002dprimes">primes</a>, <a href="doc_002dfactor.html#doc_002dfactor">factor</a>, <a href="doc_002dgcd.html#doc_002dgcd">gcd</a>, <a href="doc_002dlcm.html#doc_002dlcm">lcm</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFprimes.html#XREFprimes">primes</a>, <a href="XREFfactor.html#XREFfactor">factor</a>, <a href="XREFgcd.html#XREFgcd">gcd</a>, <a href="XREFlcm.html#XREFlcm">lcm</a>.
+
+        </blockquote></div>
 
    <p>If instead of knowing properties of variables, you wish to know which
 variables are defined and to gather other information about the

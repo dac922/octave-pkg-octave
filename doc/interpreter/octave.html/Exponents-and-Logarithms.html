@@ -33,82 +33,88 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic<
 <h3 class="section">17.1 Exponents and Logarithms</h3>
 
 <!-- exp libinterp/corefcn/mappers.cc -->
-<p><a name="doc_002dexp"></a>
+<p><a name="XREFexp"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>exp</b> (<var>x</var>)<var><a name="index-exp-1963"></a></var><br>
+&mdash; Mapping Function:  <b>exp</b> (<var>x</var>)<var><a name="index-exp-2117"></a></var><br>
 <blockquote><p>Compute
 <code>e^x</code>
 for each element of <var>x</var>.  To compute the matrix
 exponential, see <a href="Linear-Algebra.html#Linear-Algebra">Linear Algebra</a>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlog.html#doc_002dlog">log</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlog.html#XREFlog">log</a>.
+
+        </blockquote></div>
 
 <!-- expm1 libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dexpm1"></a>
+   <p><a name="XREFexpm1"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>expm1</b> (<var>x</var>)<var><a name="index-expm1-1964"></a></var><br>
+&mdash; Mapping Function:  <b>expm1</b> (<var>x</var>)<var><a name="index-expm1-2118"></a></var><br>
 <blockquote><p>Compute
 <code>exp (</code><var>x</var><code>) - 1</code>
 accurately in the neighborhood of zero.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dexp.html#doc_002dexp">exp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFexp.html#XREFexp">exp</a>.
+
+        </blockquote></div>
 
 <!-- log libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dlog"></a>
+   <p><a name="XREFlog"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>log</b> (<var>x</var>)<var><a name="index-log-1965"></a></var><br>
+&mdash; Mapping Function:  <b>log</b> (<var>x</var>)<var><a name="index-log-2119"></a></var><br>
 <blockquote><p>Compute the natural logarithm,
 <code>ln (</code><var>x</var><code>)</code>,
 for each element of <var>x</var>.  To compute the
 matrix logarithm, see <a href="Linear-Algebra.html#Linear-Algebra">Linear Algebra</a>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dexp.html#doc_002dexp">exp</a>, <a href="doc_002dlog1p.html#doc_002dlog1p">log1p</a>, <a href="doc_002dlog2.html#doc_002dlog2">log2</a>, <a href="doc_002dlog10.html#doc_002dlog10">log10</a>, <a href="doc_002dlogspace.html#doc_002dlogspace">logspace</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFexp.html#XREFexp">exp</a>, <a href="XREFlog1p.html#XREFlog1p">log1p</a>, <a href="XREFlog2.html#XREFlog2">log2</a>, <a href="XREFlog10.html#XREFlog10">log10</a>, <a href="XREFlogspace.html#XREFlogspace">logspace</a>.
+
+        </blockquote></div>
 
 <!-- reallog scripts/specfun/reallog.m -->
-   <p><a name="doc_002dreallog"></a>
+   <p><a name="XREFreallog"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>reallog</b> (<var>x</var>)<var><a name="index-reallog-1966"></a></var><br>
+&mdash; Function File:  <b>reallog</b> (<var>x</var>)<var><a name="index-reallog-2120"></a></var><br>
 <blockquote><p>Return the real-valued natural logarithm of each element of <var>x</var>.  Report
 an error if any element results in a complex return value.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlog.html#doc_002dlog">log</a>, <a href="doc_002drealpow.html#doc_002drealpow">realpow</a>, <a href="doc_002drealsqrt.html#doc_002drealsqrt">realsqrt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlog.html#XREFlog">log</a>, <a href="XREFrealpow.html#XREFrealpow">realpow</a>, <a href="XREFrealsqrt.html#XREFrealsqrt">realsqrt</a>.
+
+        </blockquote></div>
 
 <!-- log1p libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dlog1p"></a>
+   <p><a name="XREFlog1p"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>log1p</b> (<var>x</var>)<var><a name="index-log1p-1967"></a></var><br>
+&mdash; Mapping Function:  <b>log1p</b> (<var>x</var>)<var><a name="index-log1p-2121"></a></var><br>
 <blockquote><p>Compute
 <code>log (1 + </code><var>x</var><code>)</code>
 accurately in the neighborhood of zero.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlog.html#doc_002dlog">log</a>, <a href="doc_002dexp.html#doc_002dexp">exp</a>, <a href="doc_002dexpm1.html#doc_002dexpm1">expm1</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlog.html#XREFlog">log</a>, <a href="XREFexp.html#XREFexp">exp</a>, <a href="XREFexpm1.html#XREFexpm1">expm1</a>.
+
+        </blockquote></div>
 
 <!-- log10 libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dlog10"></a>
+   <p><a name="XREFlog10"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>log10</b> (<var>x</var>)<var><a name="index-log10-1968"></a></var><br>
+&mdash; Mapping Function:  <b>log10</b> (<var>x</var>)<var><a name="index-log10-2122"></a></var><br>
 <blockquote><p>Compute the base-10 logarithm of each element of <var>x</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlog.html#doc_002dlog">log</a>, <a href="doc_002dlog2.html#doc_002dlog2">log2</a>, <a href="doc_002dlogspace.html#doc_002dlogspace">logspace</a>, <a href="doc_002dexp.html#doc_002dexp">exp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlog.html#XREFlog">log</a>, <a href="XREFlog2.html#XREFlog2">log2</a>, <a href="XREFlogspace.html#XREFlogspace">logspace</a>, <a href="XREFexp.html#XREFexp">exp</a>.
 
-<!-- log2 libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dlog2"></a>
+        </blockquote></div>
+
+<!-- log2 libinterp/corefcn/data.cc -->
+   <p><a name="XREFlog2"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>log2</b> (<var>x</var>)<var><a name="index-log2-1969"></a></var><br>
-&mdash; Mapping Function: [<var>f</var>, <var>e</var>] = <b>log2</b> (<var>x</var>)<var><a name="index-log2-1970"></a></var><br>
+&mdash; Mapping Function:  <b>log2</b> (<var>x</var>)<var><a name="index-log2-2123"></a></var><br>
+&mdash; Mapping Function: [<var>f</var>, <var>e</var>] = <b>log2</b> (<var>x</var>)<var><a name="index-log2-2124"></a></var><br>
 <blockquote><p>Compute the base-2 logarithm of each element of <var>x</var>.
 
         <p>If called with two output arguments, split <var>x</var> into
@@ -117,15 +123,16 @@ binary mantissa and exponent so that
 and <var>e</var> is an integer.  If
 <code>x = 0</code>, <code>f = e = 0</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpow2.html#doc_002dpow2">pow2</a>, <a href="doc_002dlog.html#doc_002dlog">log</a>, <a href="doc_002dlog10.html#doc_002dlog10">log10</a>, <a href="doc_002dexp.html#doc_002dexp">exp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpow2.html#XREFpow2">pow2</a>, <a href="XREFlog.html#XREFlog">log</a>, <a href="XREFlog10.html#XREFlog10">log10</a>, <a href="XREFexp.html#XREFexp">exp</a>.
+
+        </blockquote></div>
 
 <!-- pow2 scripts/specfun/pow2.m -->
-   <p><a name="doc_002dpow2"></a>
+   <p><a name="XREFpow2"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>pow2</b> (<var>x</var>)<var><a name="index-pow2-1971"></a></var><br>
-&mdash; Mapping Function:  <b>pow2</b> (<var>f, e</var>)<var><a name="index-pow2-1972"></a></var><br>
+&mdash; Mapping Function:  <b>pow2</b> (<var>x</var>)<var><a name="index-pow2-2125"></a></var><br>
+&mdash; Mapping Function:  <b>pow2</b> (<var>f, e</var>)<var><a name="index-pow2-2126"></a></var><br>
 <blockquote><p>With one argument, computes
 2 .^ x
 for each element of <var>x</var>.
@@ -133,74 +140,80 @@ for each element of <var>x</var>.
         <p>With two arguments, returns
 f .* (2 .^ e).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlog2.html#doc_002dlog2">log2</a>, <a href="doc_002dnextpow2.html#doc_002dnextpow2">nextpow2</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlog2.html#XREFlog2">log2</a>, <a href="XREFnextpow2.html#XREFnextpow2">nextpow2</a>.
+
+        </blockquote></div>
 
 <!-- nextpow2 scripts/general/nextpow2.m -->
-   <p><a name="doc_002dnextpow2"></a>
+   <p><a name="XREFnextpow2"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nextpow2</b> (<var>x</var>)<var><a name="index-nextpow2-1973"></a></var><br>
+&mdash; Function File:  <b>nextpow2</b> (<var>x</var>)<var><a name="index-nextpow2-2127"></a></var><br>
 <blockquote><p>If <var>x</var> is a scalar, return the first integer <var>n</var> such that
 2^n &ge; abs (x).
 
         <p>If <var>x</var> is a vector, return <code>nextpow2 (length (</code><var>x</var><code>))</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpow2.html#doc_002dpow2">pow2</a>, <a href="doc_002dlog2.html#doc_002dlog2">log2</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpow2.html#XREFpow2">pow2</a>, <a href="XREFlog2.html#XREFlog2">log2</a>.
+
+        </blockquote></div>
 
 <!-- realpow scripts/specfun/realpow.m -->
-   <p><a name="doc_002drealpow"></a>
+   <p><a name="XREFrealpow"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>realpow</b> (<var>x, y</var>)<var><a name="index-realpow-1974"></a></var><br>
+&mdash; Function File:  <b>realpow</b> (<var>x, y</var>)<var><a name="index-realpow-2128"></a></var><br>
 <blockquote><p>Compute the real-valued, element-by-element power operator.  This is
 equivalent to <var>x</var><code>&nbsp;.^&nbsp;</code><var>y</var><!-- /@w -->, except that <code>realpow</code>
 reports an error if any return value is complex.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dreallog.html#doc_002dreallog">reallog</a>, <a href="doc_002drealsqrt.html#doc_002drealsqrt">realsqrt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFreallog.html#XREFreallog">reallog</a>, <a href="XREFrealsqrt.html#XREFrealsqrt">realsqrt</a>.
+
+        </blockquote></div>
 
 <!-- sqrt libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dsqrt"></a>
+   <p><a name="XREFsqrt"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>sqrt</b> (<var>x</var>)<var><a name="index-sqrt-1975"></a></var><br>
+&mdash; Mapping Function:  <b>sqrt</b> (<var>x</var>)<var><a name="index-sqrt-2129"></a></var><br>
 <blockquote><p>Compute the square root of each element of <var>x</var>.  If <var>x</var> is negative,
 a complex result is returned.  To compute the matrix square root, see
 <a href="Linear-Algebra.html#Linear-Algebra">Linear Algebra</a>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealsqrt.html#doc_002drealsqrt">realsqrt</a>, <a href="doc_002dnthroot.html#doc_002dnthroot">nthroot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrealsqrt.html#XREFrealsqrt">realsqrt</a>, <a href="XREFnthroot.html#XREFnthroot">nthroot</a>.
+
+        </blockquote></div>
 
 <!-- realsqrt scripts/specfun/realsqrt.m -->
-   <p><a name="doc_002drealsqrt"></a>
+   <p><a name="XREFrealsqrt"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>realsqrt</b> (<var>x</var>)<var><a name="index-realsqrt-1976"></a></var><br>
+&mdash; Function File:  <b>realsqrt</b> (<var>x</var>)<var><a name="index-realsqrt-2130"></a></var><br>
 <blockquote><p>Return the real-valued square root of each element of <var>x</var>.  Report an
 error if any element results in a complex return value.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsqrt.html#doc_002dsqrt">sqrt</a>, <a href="doc_002drealpow.html#doc_002drealpow">realpow</a>, <a href="doc_002dreallog.html#doc_002dreallog">reallog</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsqrt.html#XREFsqrt">sqrt</a>, <a href="XREFrealpow.html#XREFrealpow">realpow</a>, <a href="XREFreallog.html#XREFreallog">reallog</a>.
+
+        </blockquote></div>
 
 <!-- cbrt libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dcbrt"></a>
+   <p><a name="XREFcbrt"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>cbrt</b> (<var>x</var>)<var><a name="index-cbrt-1977"></a></var><br>
+&mdash; Mapping Function:  <b>cbrt</b> (<var>x</var>)<var><a name="index-cbrt-2131"></a></var><br>
 <blockquote><p>Compute the real cube root of each element of <var>x</var>. 
 Unlike <var>x</var><code>^(1/3)</code>, the result will be negative if <var>x</var> is
 negative.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnthroot.html#doc_002dnthroot">nthroot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnthroot.html#XREFnthroot">nthroot</a>.
+
+        </blockquote></div>
 
 <!-- nthroot scripts/specfun/nthroot.m -->
-   <p><a name="doc_002dnthroot"></a>
+   <p><a name="XREFnthroot"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>nthroot</b> (<var>x, n</var>)<var><a name="index-nthroot-1978"></a></var><br>
+&mdash; Function File:  <b>nthroot</b> (<var>x, n</var>)<var><a name="index-nthroot-2132"></a></var><br>
 <blockquote>
         <p>Compute the n-th root of <var>x</var>, returning real results for real
 components of <var>x</var>.  For example:
@@ -214,8 +227,9 @@ components of <var>x</var>.  For example:
 If <var>n</var> is an even integer and <var>X</var> has negative entries, an
 error is produced.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drealsqrt.html#doc_002drealsqrt">realsqrt</a>, <a href="doc_002dsqrt.html#doc_002dsqrt">sqrt</a>, <a href="doc_002dcbrt.html#doc_002dcbrt">cbrt</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrealsqrt.html#XREFrealsqrt">realsqrt</a>, <a href="XREFsqrt.html#XREFsqrt">sqrt</a>, <a href="XREFcbrt.html#XREFcbrt">cbrt</a>.
+
+        </blockquote></div>
 
    </body></html>
 

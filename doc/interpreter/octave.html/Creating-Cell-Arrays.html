@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Cell-Arrays.html#Cell-Arrays">Cell Arra
 <hr>
 </div>
 
-<h4 class="subsection">6.2.2 Creating Cell Array</h4>
+<h4 class="subsection">6.2.2 Creating Cell Arrays</h4>
 
 <p>The introductory example (see <a href="Basic-Usage-of-Cell-Arrays.html#Basic-Usage-of-Cell-Arrays">Basic Usage of Cell Arrays</a>) showed
 how to create a cell array containing currently available variables. 
@@ -67,18 +67,19 @@ of the first one is displayed
           &rArr; ans =
               3   4   5
 </pre>
-   <p class="noindent">As can be seen, the <a href="doc_002dsize.html#doc_002dsize"><code>size</code></a> function also works
+   <p class="noindent">As can be seen, the <a href="XREFsize.html#XREFsize">size</a> function also works
 for cell arrays.  As do other functions describing the size of an
-object, such as <a href="doc_002dlength.html#doc_002dlength"><code>length</code></a>, <a href="doc_002dnumel.html#doc_002dnumel"><code>numel</code></a>, <a href="doc_002drows.html#doc_002drows"><code>rows</code></a>, and <a href="doc_002dcolumns.html#doc_002dcolumns"><code>columns</code></a>.
+object, such as <a href="XREFlength.html#XREFlength">length</a>, <a href="XREFnumel.html#XREFnumel">numel</a>,
+<a href="XREFrows.html#XREFrows">rows</a>, and <a href="XREFcolumns.html#XREFcolumns">columns</a>.
 
 <!-- cell libinterp/octave-value/ov-cell.cc -->
-   <p><a name="doc_002dcell"></a>
+   <p><a name="XREFcell"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>cell</b> (<var>n</var>)<var><a name="index-cell-489"></a></var><br>
-&mdash; Built-in Function:  <b>cell</b> (<var>m, n</var>)<var><a name="index-cell-490"></a></var><br>
-&mdash; Built-in Function:  <b>cell</b> (<var>m, n, k, <small class="dots">...</small></var>)<var><a name="index-cell-491"></a></var><br>
-&mdash; Built-in Function:  <b>cell</b> ([<var>m n <small class="dots">...</small></var>])<var><a name="index-cell-492"></a></var><br>
+&mdash; Built-in Function:  <b>cell</b> (<var>n</var>)<var><a name="index-cell-501"></a></var><br>
+&mdash; Built-in Function:  <b>cell</b> (<var>m, n</var>)<var><a name="index-cell-502"></a></var><br>
+&mdash; Built-in Function:  <b>cell</b> (<var>m, n, k, <small class="dots">...</small></var>)<var><a name="index-cell-503"></a></var><br>
+&mdash; Built-in Function:  <b>cell</b> ([<var>m n <small class="dots">...</small></var>])<var><a name="index-cell-504"></a></var><br>
 <blockquote><p>Create a new cell array object. 
 If invoked with a single scalar integer argument, return a square
 NxN cell array.  If invoked with two or more scalar
@@ -91,11 +92,11 @@ is possible to convert numerical arrays into cell arrays using the
 <code>num2cell</code>, <code>mat2cell</code> and <code>cellslices</code> functions.
 
 <!-- num2cell libinterp/corefcn/cellfun.cc -->
-   <p><a name="doc_002dnum2cell"></a>
+   <p><a name="XREFnum2cell"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>C</var> = <b>num2cell</b> (<var>A</var>)<var><a name="index-num2cell-493"></a></var><br>
-&mdash; Built-in Function: <var>C</var> = <b>num2cell</b> (<var>A, dim</var>)<var><a name="index-num2cell-494"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>num2cell</b> (<var>A</var>)<var><a name="index-num2cell-505"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>num2cell</b> (<var>A, dim</var>)<var><a name="index-num2cell-506"></a></var><br>
 <blockquote><p>Convert the numeric matrix <var>A</var> to a cell array.  If <var>dim</var> is
 defined, the value <var>C</var> is of dimension 1 in this dimension and the
 elements of <var>A</var> are placed into <var>C</var> in slices.  For example:
@@ -119,16 +120,17 @@ elements of <var>A</var> are placed into <var>C</var> in slices.  For example:
                      4
                 }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dmat2cell.html#doc_002dmat2cell">mat2cell</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFmat2cell.html#XREFmat2cell">mat2cell</a>.
+
+        </blockquote></div>
 
 <!-- mat2cell libinterp/corefcn/cellfun.cc -->
-   <p><a name="doc_002dmat2cell"></a>
+   <p><a name="XREFmat2cell"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>C</var> = <b>mat2cell</b> (<var>A, m, n</var>)<var><a name="index-mat2cell-495"></a></var><br>
-&mdash; Built-in Function: <var>C</var> = <b>mat2cell</b> (<var>A, d1, d2, <small class="dots">...</small></var>)<var><a name="index-mat2cell-496"></a></var><br>
-&mdash; Built-in Function: <var>C</var> = <b>mat2cell</b> (<var>A, r</var>)<var><a name="index-mat2cell-497"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>mat2cell</b> (<var>A, m, n</var>)<var><a name="index-mat2cell-507"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>mat2cell</b> (<var>A, d1, d2, <small class="dots">...</small></var>)<var><a name="index-mat2cell-508"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>mat2cell</b> (<var>A, r</var>)<var><a name="index-mat2cell-509"></a></var><br>
 <blockquote><p>Convert the matrix <var>A</var> to a cell array.  If <var>A</var> is 2-D, then
 it is required that <code>sum (</code><var>m</var><code>) == size (</code><var>A</var><code>, 1)</code> and
 <code>sum (</code><var>n</var><code>) == size (</code><var>A</var><code>, 2)</code>.  Similarly, if <var>A</var> is
@@ -163,14 +165,15 @@ arguments are assumed to equal <code>size (</code><var>A</var><code>,</code><var
              [2,2] = 16
           }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dnum2cell.html#doc_002dnum2cell">num2cell</a>, <a href="doc_002dcell2mat.html#doc_002dcell2mat">cell2mat</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFnum2cell.html#XREFnum2cell">num2cell</a>, <a href="XREFcell2mat.html#XREFcell2mat">cell2mat</a>.
+
+        </blockquote></div>
 
 <!-- cellslices libinterp/corefcn/cellfun.cc -->
-   <p><a name="doc_002dcellslices"></a>
+   <p><a name="XREFcellslices"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>sl</var> = <b>cellslices</b> (<var>x, lb, ub, dim</var>)<var><a name="index-cellslices-498"></a></var><br>
+&mdash; Built-in Function: <var>sl</var> = <b>cellslices</b> (<var>x, lb, ub, dim</var>)<var><a name="index-cellslices-510"></a></var><br>
 <blockquote><p>Given an array <var>x</var>, this function produces a cell array of slices from
 the array determined by the index vectors <var>lb</var>, <var>ub</var>, for lower and
 upper bounds, respectively.  In other words, it is equivalent to the
@@ -185,8 +188,9 @@ following code:
         <p>The position of the index is determined by <var>dim</var>.  If not specified,
 slicing is done along the first non-singleton dimension.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcell2mat.html#doc_002dcell2mat">cell2mat</a>, <a href="doc_002dcellindexmat.html#doc_002dcellindexmat">cellindexmat</a>, <a href="doc_002dcellfun.html#doc_002dcellfun">cellfun</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcell2mat.html#XREFcell2mat">cell2mat</a>, <a href="XREFcellindexmat.html#XREFcellindexmat">cellindexmat</a>, <a href="XREFcellfun.html#XREFcellfun">cellfun</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -33,7 +33,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 
 <h2 class="chapter">4 Numeric Data Types</h2>
 
-<p><a name="index-numeric-constant-259"></a><a name="index-numeric-value-260"></a>
+<p><a name="index-numeric-constant-268"></a><a name="index-numeric-value-269"></a>
 A <dfn>numeric constant</dfn> may be a scalar, a vector, or a matrix, and it
 may contain complex values.
 
@@ -42,7 +42,7 @@ that can be an integer, a decimal fraction, a number in scientific
 (exponential) notation, or a complex number.  Note that by default numeric
 constants are represented within Octave in double-precision floating
 point format (complex constants are stored as pairs of double-precision
-floating point values).  It is however possible to represent real
+floating point values).  It is, however, possible to represent real
 integers as described in <a href="Integer-Data-Types.html#Integer-Data-Types">Integer Data Types</a>.  Here are some
 examples of real-valued numeric constants, which all have the same
 value:
@@ -78,21 +78,22 @@ If it does, Octave will print an error message, like this:
 &lsquo;<samp><span class="samp">i</span></samp>&rsquo; above.  All four forms are equivalent.
 
 <!-- double libinterp/octave-value/ov-re-mat.cc -->
-   <p><a name="doc_002ddouble"></a>
+   <p><a name="XREFdouble"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>double</b> (<var>x</var>)<var><a name="index-double-261"></a></var><br>
+&mdash; Built-in Function:  <b>double</b> (<var>x</var>)<var><a name="index-double-270"></a></var><br>
 <blockquote><p>Convert <var>x</var> to double precision type.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsingle.html#doc_002dsingle">single</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsingle.html#XREFsingle">single</a>.
 
-<!-- complex libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dcomplex"></a>
+        </blockquote></div>
+
+<!-- complex libinterp/corefcn/data.cc -->
+   <p><a name="XREFcomplex"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>complex</b> (<var>x</var>)<var><a name="index-complex-262"></a></var><br>
-&mdash; Built-in Function:  <b>complex</b> (<var>re, im</var>)<var><a name="index-complex-263"></a></var><br>
+&mdash; Built-in Function:  <b>complex</b> (<var>x</var>)<var><a name="index-complex-271"></a></var><br>
+&mdash; Built-in Function:  <b>complex</b> (<var>re, im</var>)<var><a name="index-complex-272"></a></var><br>
 <blockquote><p>Return a complex result from real arguments.  With 1 real argument <var>x</var>,
 return the complex result <var>x</var><code> + 0i</code>.  With 2 real arguments,
 return the complex result <var>re</var><code> + </code><var>im</var>.  <code>complex</code> can
@@ -102,8 +103,9 @@ For example:
      <pre class="example">          complex ([1, 2], [3, 4])
             &rArr; [ 1 + 3i   2 + 4i ]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dreal.html#doc_002dreal">real</a>, <a href="doc_002dimag.html#doc_002dimag">imag</a>, <a href="doc_002discomplex.html#doc_002discomplex">iscomplex</a>, <a href="doc_002dabs.html#doc_002dabs">abs</a>, <a href="doc_002darg.html#doc_002darg">arg</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFreal.html#XREFreal">real</a>, <a href="XREFimag.html#XREFimag">imag</a>, <a href="XREFiscomplex.html#XREFiscomplex">iscomplex</a>, <a href="XREFabs.html#XREFabs">abs</a>, <a href="XREFarg.html#XREFarg">arg</a>.
+
+        </blockquote></div>
 
 <ul class="menu">
 <li><a accesskey="1" href="Matrices.html#Matrices">Matrices</a>

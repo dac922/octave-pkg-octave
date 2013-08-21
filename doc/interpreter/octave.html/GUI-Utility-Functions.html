@@ -39,28 +39,41 @@ programs that do.  <strong>Warning:</strong> The functions <code>uiwait</code>,
 <code>uiresume</code>, and <code>waitfor</code> are only available for the FLTK tooolkit.
 
 <!-- guidata scripts/plot/guidata.m -->
-   <p><a name="doc_002dguidata"></a>
+   <p><a name="XREFguidata"></a>
 
 <div class="defun">
-&mdash; Function File: <var>data</var> = <b>guidata</b> (<var>handle</var>)<var><a name="index-guidata-3352"></a></var><br>
-&mdash; Function File:  <b>guidata</b> (<var>handle, data</var>)<var><a name="index-guidata-3353"></a></var><br>
-        </div>
+&mdash; Function File: <var>data</var> = <b>guidata</b> (<var>h</var>)<var><a name="index-guidata-3537"></a></var><br>
+&mdash; Function File:  <b>guidata</b> (<var>h, data</var>)<var><a name="index-guidata-3538"></a></var><br>
+<blockquote><p>Query or set user-custom GUI data.
+
+        <p>The GUI data is stored in the figure handle <var>h</var>.  If <var>h</var> is not a
+figure handle then it's parent figure will be used for storage.
+
+        <p><var>data</var> must be a single object which means it is usually preferable
+for it to be a data container such as a cell array or struct.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgetappdata.html#XREFgetappdata">getappdata</a>, <a href="XREFsetappdata.html#XREFsetappdata">setappdata</a>, <a href="XREFget.html#XREFget">get</a>, <a href="XREFset.html#XREFset">set</a>, <a href="XREFgetpref.html#XREFgetpref">getpref</a>, <a href="XREFsetpref.html#XREFsetpref">setpref</a>.
+
+        </blockquote></div>
 
 <!-- guihandles scripts/plot/guihandles.m -->
-   <p><a name="doc_002dguihandles"></a>
+   <p><a name="XREFguihandles"></a>
 
 <div class="defun">
-&mdash; Function File: <var>hdata</var> = <b>guihandles</b> (<var>handle</var>)<var><a name="index-guihandles-3354"></a></var><br>
-&mdash; Function File: <var>hdata</var> = <b>guihandles</b><var><a name="index-guihandles-3355"></a></var><br>
-        </div>
+&mdash; Function File: <var>hdata</var> = <b>guihandles</b> (<var>handle</var>)<var><a name="index-guihandles-3539"></a></var><br>
+&mdash; Function File: <var>hdata</var> = <b>guihandles</b><var><a name="index-guihandles-3540"></a></var><br>
+<blockquote>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFguidata.html#XREFguidata">guidata</a>, <a href="XREFgetappdata.html#XREFgetappdata">getappdata</a>, <a href="XREFsetappdata.html#XREFsetappdata">setappdata</a>.
+
+        </blockquote></div>
 
 <!-- uiwait scripts/plot/uiwait.m -->
-   <p><a name="doc_002duiwait"></a>
+   <p><a name="XREFuiwait"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>uiwait</b><var><a name="index-uiwait-3356"></a></var><br>
-&mdash; Function File:  <b>uiwait</b> (<var>h</var>)<var><a name="index-uiwait-3357"></a></var><br>
-&mdash; Function File:  <b>uiwait</b> (<var>h, timeout</var>)<var><a name="index-uiwait-3358"></a></var><br>
+&mdash; Function File:  <b>uiwait</b><var><a name="index-uiwait-3541"></a></var><br>
+&mdash; Function File:  <b>uiwait</b> (<var>h</var>)<var><a name="index-uiwait-3542"></a></var><br>
+&mdash; Function File:  <b>uiwait</b> (<var>h, timeout</var>)<var><a name="index-uiwait-3543"></a></var><br>
 <blockquote><p>Suspend program execution until the figure with handle <var>h</var> is
 deleted or <code>uiresume</code> is called.  When no figure handle is specified,
 this function uses the current figure.
@@ -75,30 +88,32 @@ and a timeout value of 1 is used instead.  If a non-integer value is
 specified, it is truncated towards 0.  If <var>timeout</var> is not specified,
 the program execution is suspended indefinitely.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duiresume.html#doc_002duiresume">uiresume</a>, <a href="doc_002dwaitfor.html#doc_002dwaitfor">waitfor</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuiresume.html#XREFuiresume">uiresume</a>, <a href="XREFwaitfor.html#XREFwaitfor">waitfor</a>.
+
+        </blockquote></div>
 
 <!-- uiresume scripts/plot/uiresume.m -->
-   <p><a name="doc_002duiresume"></a>
+   <p><a name="XREFuiresume"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>uiresume</b> (<var>h</var>)<var><a name="index-uiresume-3359"></a></var><br>
+&mdash; Function File:  <b>uiresume</b> (<var>h</var>)<var><a name="index-uiresume-3544"></a></var><br>
 <blockquote><p>Resume program execution suspended with <code>uiwait</code>.  The handle <var>h</var>
 must be the same as the on specified in <code>uiwait</code>.  If the handle
 is invalid or there is no <code>uiwait</code> call pending for the figure
 with handle <var>h</var>, this function does nothing.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002duiwait.html#doc_002duiwait">uiwait</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFuiwait.html#XREFuiwait">uiwait</a>.
 
-<!-- waitfor libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002dwaitfor"></a>
+        </blockquote></div>
+
+<!-- waitfor libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFwaitfor"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>waitfor</b> (<var>h</var>)<var><a name="index-waitfor-3360"></a></var><br>
-&mdash; Built-in Function:  <b>waitfor</b> (<var>h, prop</var>)<var><a name="index-waitfor-3361"></a></var><br>
-&mdash; Built-in Function:  <b>waitfor</b> (<var>h, prop, value</var>)<var><a name="index-waitfor-3362"></a></var><br>
-&mdash; Built-in Function:  <b>waitfor</b> (<var><small class="dots">...</small>, "timeout", timeout</var>)<var><a name="index-waitfor-3363"></a></var><br>
+&mdash; Built-in Function:  <b>waitfor</b> (<var>h</var>)<var><a name="index-waitfor-3545"></a></var><br>
+&mdash; Built-in Function:  <b>waitfor</b> (<var>h, prop</var>)<var><a name="index-waitfor-3546"></a></var><br>
+&mdash; Built-in Function:  <b>waitfor</b> (<var>h, prop, value</var>)<var><a name="index-waitfor-3547"></a></var><br>
+&mdash; Built-in Function:  <b>waitfor</b> (<var><small class="dots">...</small>, "timeout", timeout</var>)<var><a name="index-waitfor-3548"></a></var><br>
 <blockquote><p>Suspend the execution of the current program until a condition is
 satisfied on the graphics handle <var>h</var>.  While the program is suspended
 graphics events are still being processed normally, allowing callbacks to
@@ -132,8 +147,9 @@ not an integer, it is truncated towards 0.
 
         <p>In all cases, typing CTRL-C stops program execution immediately.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disequal.html#doc_002disequal">isequal</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisequal.html#XREFisequal">isequal</a>.
+
+        </blockquote></div>
 
    </body></html>
 

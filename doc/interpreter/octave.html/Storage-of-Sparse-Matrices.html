@@ -54,13 +54,13 @@ triplets, with two elements being their position in the array
 easy to grasp, but requires more storage than is strictly needed.
 
    <p>The storage technique used within Octave is the compressed column
-format. It is similar to the Yale format. 
+format.  It is similar to the Yale format. 
 <a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>
 In this format the position of each element in a row and the data are
-stored as previously. However, if we assume that all elements in the
+stored as previously.  However, if we assume that all elements in the
 same column are stored adjacent in the computers memory, then we only
 need to store information on the number of non-zero elements in each
-column, rather than their positions. Thus assuming that the matrix has
+column, rather than their positions.  Thus assuming that the matrix has
 more non-zero elements than there are columns in the matrix, we win in
 terms of the amount of memory used.
 

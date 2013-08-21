@@ -18,26 +18,43 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} ylabel (@var{string})
-## @deftypefnx {Function File} {} ylabel (@var{h}, @var{string})
+## @deftypefnx {Function File} {} ylabel (@var{string}, @var{property}, @var{val}, @dots{})
+## @deftypefnx {Function File} {} ylabel (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} ylabel (@dots{})
-## @seealso{xlabel}
+## Specify the string used to label the y-axis of the current axis.
+##
+## If @var{hax} is specified then label the axis defined by @var{hax}.
+##
+## An optional list of @var{property}/@var{value} pairs can be used to change
+## the properties of the created text label.
+##
+## If the first argument @var{hax} is an axes handle, then operate on
+## this axis rather than the current axes returned by @code{gca}.
+##
+## The optional return value @var{h} is a graphics handle to the created text
+## object.
+## @seealso{xlabel, zlabel, datetick, title, text}
 ## @end deftypefn
 
 ## Author: jwe
 
-function retval = ylabel (varargin)
+function h = ylabel (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("ylabel", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("ylabel", varargin{:});
 
+  if (isempty (hax))
+    hax = gca ();
+  endif
+  
   if (rem (nargin, 2) != 1)
     print_usage ();
   endif
 
-  tmp = __axis_label__ (h, "ylabel", varargin{:},
-                        "color", get (h, "ycolor"));
+  htmp = __axis_label__ (hax, "ylabel", varargin{1},
+                         "color", get (hax, "ycolor"), varargin{2:end});
 
   if (nargout > 0)
-    retval = tmp;
+    h = htmp;
   endif
 
 endfunction
@@ -46,11 +63,12 @@ endfunction
 %!test
 %! hf = figure ("visible", "off");
 %! unwind_protect
-%!   y = ylabel ("ylabel_string");
+%!   y = ylabel ("ylabel_string", "color", "r");
 %!   assert (get (gca, "ylabel"), y);
 %!   assert (get (y, "type"), "text");
 %!   assert (get (y, "visible"), "on");
 %!   assert (get (y, "string"), "ylabel_string");
+%!   assert (get (y, "color"), [1 0 0]);
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect

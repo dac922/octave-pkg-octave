@@ -21,19 +21,25 @@
 ## @deftypefnx {Function File} {} surface (@var{x}, @var{y}, @var{z})
 ## @deftypefnx {Function File} {} surface (@var{z}, @var{c})
 ## @deftypefnx {Function File} {} surface (@var{z})
-## @deftypefnx {Function File} {} surface (@dots{}, @var{prop}, @var{val})
-## @deftypefnx {Function File} {} surface (@var{h}, @dots{})
+## @deftypefnx {Function File} {} surface (@dots{}, @var{prop}, @var{val}, @dots{})
+## @deftypefnx {Function File} {} surface (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} surface (@dots{})
-## Plot a surface graphic object given matrices @var{x}, and @var{y} from
-## @code{meshgrid} and a matrix @var{z} corresponding to the @var{x} and
-## @var{y} coordinates of the surface.  If @var{x} and @var{y} are vectors,
-## then a typical vertex is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus,
-## columns of @var{z} correspond to different @var{x} values and rows of
-## @var{z} correspond to different @var{y} values.  If @var{x} and @var{y}
-## are missing, they are constructed from size of the matrix @var{z}.
+## Create a surface graphic object given matrices @var{x} and @var{y} from
+## @code{meshgrid} and a matrix of values @var{z} corresponding to the
+## @var{x} and @var{y} coordinates of the surface.
 ##
-## Any additional properties passed are assigned to the surface.
+## If @var{x} and @var{y} are vectors, then a typical vertex is
+## (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus, columns of @var{z} correspond
+## to different @var{x} values and rows of @var{z} correspond to different
+## @var{y} values.  If only a single input @var{z} is given then @var{x} is
+## taken to be @code{1:rows (@var{z})} and @var{y} is
+## @code{1:columns (@var{z})}.
+##
+## Any property/value input pairs are assigned to the surface object.
 ## 
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+##
 ## The optional return value @var{h} is a graphics handle to the created
 ## surface object.
 ## @seealso{surf, mesh, patch, line}
@@ -41,47 +47,50 @@
 
 ## Author: jwe
 
-function retval = surface (varargin)
+function h = surface (varargin)
 
-  [h, varargin] = __plt_get_axis_arg__ ("surface", varargin{:});
+  [hax, varargin] = __plt_get_axis_arg__ ("surface", varargin{:});
 
-  oldh = gca ();
-  unwind_protect
-    axes (h);
-    [tmp, bad_usage] = __surface__ (h, varargin{:});
-  unwind_protect_cleanup
-    axes (oldh);
-  end_unwind_protect
+  if (isempty (hax))
+    hax = gca ();
+  endif
+  
+  [htmp, bad_usage] = __surface__ (hax, varargin{:});
 
   if (bad_usage)
     print_usage ();
   endif
 
   if (nargout > 0)
-    retval = tmp;
+    h = htmp;
   endif
 
 endfunction
 
 function [h, bad_usage] = __surface__ (ax, varargin)
 
-  bad_usage = false;
   h = 0;
+  bad_usage = false;
   firststring = nargin;
-  for i = 2 : nargin
-    if (ischar (varargin{i - 1}))
-      firststring = i - 1;
+  for i = 1 : (nargin - 1)
+    if (ischar (varargin{i}))
+      firststring = i;
       break;
     endif
   endfor
 
   if (firststring > 5)
     bad_usage = true;
+    return;
   elseif (firststring == 5)
     x = varargin{1};
     y = varargin{2};
     z = varargin{3};
     c = varargin{4};
+
+    if (iscomplex (x) || iscomplex (y) || iscomplex (z) || iscomplex (c))
+      error ("mesh: X, Y, Z, C arguments must be real");
+    endif
 
     [z_nr, z_nc] = size (z);
     [c_nr, c_nc, c_np] = size (c);
@@ -108,6 +117,11 @@ function [h, bad_usage] = __surface__ (ax, varargin)
     y = varargin{2};
     z = varargin{3};
     c = z;
+
+    if (iscomplex (x) || iscomplex (y) || iscomplex (z))
+      error ("mesh: X, Y, Z arguments must be real");
+    endif
+
     if (isvector (x) && isvector (y) && ismatrix (z))
       if (rows (z) == length (y) && columns (z) == length (x))
         x = x(:)';
@@ -125,6 +139,11 @@ function [h, bad_usage] = __surface__ (ax, varargin)
   elseif (firststring == 3)
     z = varargin{1};
     c = varargin{2};
+
+    if (iscomplex (z) || iscomplex (c))
+      error ("mesh: X, C arguments must be real");
+    endif
+
     if (ismatrix (z) && !isvector (z) && !isscalar (z))
       [nr, nc] = size (z);
       x = 1:nc;
@@ -135,6 +154,11 @@ function [h, bad_usage] = __surface__ (ax, varargin)
   elseif (firststring == 2)
     z = varargin{1};
     c = z;
+
+    if (iscomplex (z))
+      error ("mesh: Z argument must be real");
+    endif
+
     if (ismatrix (z) && !isvector (z) && !isscalar (z))
       [nr, nc] = size (z);
       x = 1:nc;
@@ -144,24 +168,23 @@ function [h, bad_usage] = __surface__ (ax, varargin)
     endif
   elseif (firststring == 1)
     x = 1:3;
-    y = (x).';
+    y = x';
     c = z = eye (3);
   else
     bad_usage = true;
+    return;
   endif
 
-  if (! bad_usage)
-    ## Make a default surface object.
-    other_args = {};
-    if (firststring < nargin)
-      other_args = varargin(firststring:end);
-    endif
-    h = __go_surface__ (ax, "xdata", x, "ydata", y, "zdata", z, "cdata", c,
-                        other_args{:});
+  if (firststring < nargin)
+    other_args = varargin(firststring:end);
+  else
+    other_args = {};  # make a default surface object.
+  endif
+  h = __go_surface__ (ax, "xdata", x, "ydata", y, "zdata", z, "cdata", c,
+                      other_args{:});
 
-    if (! ishold ())
-      set (ax, "view", [0, 90], "box", "off");
-    endif
+  if (! ishold ())
+    set (ax, "view", [0, 90], "box", "off");
   endif
 
 endfunction

@@ -19,11 +19,12 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} plot (@var{y})
 ## @deftypefnx {Function File} {} plot (@var{x}, @var{y})
-## @deftypefnx {Function File} {} plot (@var{x}, @var{y}, @var{property}, @var{value}, @dots{})
 ## @deftypefnx {Function File} {} plot (@var{x}, @var{y}, @var{fmt})
-## @deftypefnx {Function File} {} plot (@var{h}, @dots{})
+## @deftypefnx {Function File} {} plot (@dots{}, @var{property}, @var{value}, @dots{})
+## @deftypefnx {Function File} {} plot (@var{x1}, @var{y1}, @dots{}, @var{xn}, @var{yn})
+## @deftypefnx {Function File} {} plot (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} plot (@dots{})
-## Produce two-dimensional plots.
+## Produce 2-D plots.
 ##
 ## Many different combinations of arguments are possible.  The simplest
 ## form is
@@ -34,11 +35,7 @@
 ##
 ## @noindent
 ## where the argument is taken as the set of @var{y} coordinates and the
-## @var{x} coordinates are taken to be the indices of the elements
-## starting with 1.
-##
-## To save a plot, in one of several image formats such as PostScript
-## or PNG, use the @code{print} command.
+## @var{x} coordinates are taken to be the range @code{1:numel (@var{y})}.
 ##
 ## If more than one argument is given, they are interpreted as
 ##
@@ -71,7 +68,14 @@
 ## the elements, starting with 1.
 ##
 ## @item
-## If the @var{x} is a vector and @var{y} is a matrix, then
+## If @var{x} and @var{y} are scalars, a single point is plotted.
+## 
+## @item
+## If both arguments are vectors, the elements of @var{y} are plotted versus
+## the elements of @var{x}.
+##
+## @item
+## If @var{x} is a vector and @var{y} is a matrix, then
 ## the columns (or rows) of @var{y} are plotted versus @var{x}.
 ## (using whichever combination matches, with columns tried first.)
 ##
@@ -81,125 +85,143 @@
 ## (using whichever combination matches, with columns tried first.)
 ##
 ## @item
-## If both arguments are vectors, the elements of @var{y} are plotted versus
-## the elements of @var{x}.
-##
-## @item
 ## If both arguments are matrices, the columns of @var{y} are plotted
 ## versus the columns of @var{x}.  In this case, both matrices must have
 ## the same number of rows and columns and no attempt is made to transpose
 ## the arguments to make the number of rows match.
-##
-## If both arguments are scalars, a single point is plotted.
 ## @end itemize
 ##
 ## Multiple property-value pairs may be specified, but they must appear
-## in pairs.  These arguments are applied to the lines drawn by
-## @code{plot}.
+## in pairs.  These arguments are applied to the line objects drawn by
+## @code{plot}.  Useful properties to modify are @qcode{"linestyle"},
+## @qcode{"linewidth"}, @qcode{"color"}, @qcode{"marker"},
+## @qcode{"markersize"}, @qcode{"markeredgecolor"}, @qcode{"markerfacecolor"}.
 ##
-## If the @var{fmt} argument is supplied, it is interpreted as
-## follows.  If @var{fmt} is missing, the default gnuplot line style
-## is assumed.
+## The @var{fmt} format argument can also be used to control the plot style.
+## The format is composed of three parts: linestyle, markerstyle, color. 
+## When a markerstyle is specified, but no linestyle, only the markers are
+## plotted.  Similarly, if a linestyle is specified, but no markerstyle, then
+## only lines are drawn.  If both are specified then lines and markers will
+## be plotted.  If no @var{fmt} and no @var{property}/@var{value} pairs are
+## given, then the default plot style is solid lines with no markers and the
+## color determined by the @qcode{"colororder"} property of the current axes.
 ##
-## @table @samp
-## @item -
-## Set lines plot style (default).
+## Format arguments:
 ##
-## @item .
-## Set dots plot style.
+## @table @asis
+## @item linestyle
 ##
-## @item @var{n}
-## Interpreted as the plot color if @var{n} is an integer in the range 1 to
-## 6.
+## @multitable @columnfractions 0.06 0.94
+## @item @samp{-}  @tab Use solid lines (default).
+## @item @samp{--} @tab Use dashed lines.
+## @item @samp{:}  @tab Use dotted lines.
+## @item @samp{-.} @tab Use dash-dotted lines.
+## @end multitable
 ##
-## @item @var{nm}
-## If @var{nm} is a two digit integer and @var{m} is an integer in the
-## range 1 to 6, @var{m} is interpreted as the point style.  This is only
-## valid in combination with the @code{@@} or @code{-@@} specifiers.
+## @item markerstyle
 ##
-## @item @var{c}
-## If @var{c} is one of @code{"k"} (black), @code{"r"} (red), @code{"g"}
-## (green), @code{"b"} (blue), @code{"m"} (magenta), @code{"c"} (cyan),
-## or @code{"w"} (white), it is interpreted as the line plot color.
+## @multitable @columnfractions 0.06 0.94
+## @item @samp{+} @tab crosshair
+## @item @samp{o} @tab circle
+## @item @samp{*} @tab star
+## @item @samp{.} @tab point
+## @item @samp{x} @tab cross
+## @item @samp{s} @tab square
+## @item @samp{d} @tab diamond
+## @item @samp{^} @tab upward-facing triangle
+## @item @samp{v} @tab downward-facing triangle
+## @item @samp{>} @tab right-facing triangle
+## @item @samp{<} @tab left-facing triangle
+## @item @samp{p} @tab pentagram
+## @item @samp{h} @tab hexagram
+## @end multitable
 ##
-## @item ";title;"
-## Here @code{"title"} is the label for the key.
+## @item color
 ##
-## @item +
-## @itemx *
-## @itemx o
-## @itemx x
-## @itemx ^
-## Used in combination with the points or linespoints styles, set the point
-## style.
+## @multitable @columnfractions 0.06 0.94
+## @item @samp{k} @tab blacK
+## @item @samp{r} @tab Red
+## @item @samp{g} @tab Green
+## @item @samp{b} @tab Blue
+## @item @samp{m} @tab Magenta
+## @item @samp{c} @tab Cyan
+## @item @samp{w} @tab White
+## @end multitable
 ##
-## @item @@
-## Select the next unused point style.
+## @item @qcode{";key;"}
+## Here @qcode{"key"} is the label to use for the plot legend.
 ## @end table
 ##
-## The @var{fmt} argument may also be used to assign key titles.
-## To do so, include the desired title between semi-colons after the
-## formatting sequence described above, e.g., "+3;Key Title;"
-## Note that the last semi-colon is required and will generate an error if
-## it is left out.
+## The @var{fmt} argument may also be used to assign legend keys.
+## To do so, include the desired label between semicolons after the
+## formatting sequence described above, e.g., @qcode{"+b;Key Title;"}.
+## Note that the last semicolon is required and Octave will generate
+## an error if it is left out.
 ##
 ## Here are some plot examples:
 ##
 ## @example
-## plot (x, y, "@@12", x, y2, x, y3, "4", x, y4, "+")
+## plot (x, y, "or", x, y2, x, y3, "m", x, y4, "+")
 ## @end example
 ##
-## This command will plot @code{y} with points of type 2 (displayed as
-## @samp{+}) and color 1 (red), @code{y2} with lines, @code{y3} with lines of
-## color 4 (magenta) and @code{y4} with points displayed as @samp{+}.
+## This command will plot @code{y} with red circles, @code{y2} with solid
+## lines, @code{y3} with solid magenta lines, and @code{y4} with points
+## displayed as @samp{+}.
 ##
 ## @example
-## plot (b, "*", "markersize", 3)
+## plot (b, "*", "markersize", 10)
 ## @end example
 ##
 ## This command will plot the data in the variable @code{b},
-## with points displayed as @samp{*} with a marker size of 3.
+## with points displayed as @samp{*} and a marker size of 10.
 ##
 ## @example
 ## @group
 ## t = 0:0.1:6.3;
-## plot (t, cos(t), "-;cos(t);", t, sin(t), "+3;sin(t);");
+## plot (t, cos(t), "-;cos(t);", t, sin(t), "-b;sin(t);");
 ## @end group
 ## @end example
 ##
 ## This will plot the cosine and sine functions and label them accordingly
-## in the key.
+## in the legend.
 ##
-## If the first argument is an axis handle, then plot into these axes,
-## rather than the current axis handle returned by @code{gca}.
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
-## The optional return value @var{h} is a graphics handle to the created plot.
+## The optional return value @var{h} is a vector of graphics handles to
+## the created line objects.
 ##
-## @seealso{semilogx, semilogy, loglog, polar, mesh, contour, bar,
-## stairs, errorbar, xlabel, ylabel, title, print}
+## To save a plot, in one of several image formats such as PostScript
+## or PNG, use the @code{print} command.
+##
+## @seealso{axis, box, grid, hold, legend, title, xlabel, ylabel, xlim, ylim, ezplot, errorbar, fplot, line, plot3, polar, loglog, semilogx, semilogy, subplot}
 ## @end deftypefn
 
 ## Author: jwe
 
-function retval = plot (varargin)
+function h = plot (varargin)
 
-  [h, varargin, nargs] = __plt_get_axis_arg__ ("plot", varargin{:});
+  [hax, varargin, nargs] = __plt_get_axis_arg__ ("plot", varargin{:});
 
   if (nargs < 1)
     print_usage ();
   endif
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
-    tmp = __plt__ ("plot", h, varargin{:});
+    hax = newplot (hax);
+    htmp = __plt__ ("plot", hax, varargin{:});
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
   if (nargout > 0)
-    retval = tmp;
+    h = htmp;
   endif
 
 endfunction
@@ -208,17 +230,18 @@ endfunction
 %!demo
 %! x = 1:5;  y = 1:5;
 %! plot (x,y,'g');
-%! title ('plot of green line at 45 degrees');
+%! title ('plot() of green line at 45 degrees');
 
 %!demo
 %! x = 1:5;  y = 1:5;
 %! plot (x,y,'g*');
-%! title ('plot of green stars along a line at 45 degrees');
+%! title ('plot() of green stars along a line at 45 degrees');
 
 %!demo
 %! x1 = 1:5;  y1 = 1:5;
 %! x2 = 5:9; y2 = 5:-1:1;
 %! plot (x1,y1,'bo-', x2,y2,'rs-');
 %! axis ('tight');
-%! title ('plot of blue circles ascending and red squares descending with connecting lines drawn'); 
+%! title ({'plot() of blue circles ascending and red squares descending';
+%!         'connecting lines drawn'}); 
 

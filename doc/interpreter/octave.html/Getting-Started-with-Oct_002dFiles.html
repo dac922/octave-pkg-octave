@@ -33,15 +33,21 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Oct_002dFiles.html#Oct_002dFiles">Oct-F
 
 <h4 class="subsection">A.1.1 Getting Started with Oct-Files</h4>
 
-<p>The basic command to build oct-files is <code>mkoctfile</code> and it can be
-call from within octave or from the command line.
+<p>Oct-files are pieces of C++ code that have been compiled with the Octave
+API into a dynamically loadable object.  They take their name from the file
+which contains the object which has the extension <samp><span class="file">.oct</span></samp>.
+
+   <p>Finding a C++ compiler, using the correct switches, adding the right include
+paths for header files, etc. is a difficult task.  Octave automates this by
+providing the <code>mkoctfile</code> command with which to build oct-files.  The
+command is available from within Octave or at the shell command line.
 
 <!-- mkoctfile scripts/miscellaneous/mkoctfile.m -->
-   <p><a name="doc_002dmkoctfile"></a>
+   <p><a name="XREFmkoctfile"></a>
 
 <div class="defun">
-&mdash; Command:  <b>mkoctfile</b> [<var>-options</var>]<var> file <small class="dots">...</small><a name="index-mkoctfile-3736"></a></var><br>
-&mdash; Function File: [<var>output</var>, <var>status</var> = <b>mkoctfile</b> (<var><small class="dots">...</small></var>)<var><a name="index-mkoctfile-3737"></a></var><br>
+&mdash; Command:  <b>mkoctfile</b> [<var>-options</var>]<var> file <small class="dots">...</small><a name="index-mkoctfile-3930"></a></var><br>
+&mdash; Function File: [<var>output</var>, <var>status</var> = <b>mkoctfile</b> (<var><small class="dots">...</small></var>)<var><a name="index-mkoctfile-3931"></a></var><br>
 <blockquote>
         <p>The <code>mkoctfile</code> function compiles source code written in C,
 C++, or Fortran.  Depending on the options used with <code>mkoctfile</code>, the
@@ -135,7 +141,8 @@ to ".mex".
           </dl>
         </p></blockquote></div>
 
-   <p>Consider the short C++ example:
+   <p>Consider the following short example which introduces the basics of
+writing a C++ function that can be linked to Octave.
 
 <pre class="example"><pre class="verbatim">     #include &lt;octave/oct.h>
      
@@ -143,24 +150,23 @@ to ".mex".
        "Hello World Help String")
      {
        int nargin = args.length ();
-       octave_stdout &lt;&lt; "Hello World has " &lt;&lt; nargin
-             &lt;&lt; " input arguments and "
-             &lt;&lt; nargout &lt;&lt; " output arguments.\n";
+     
+       octave_stdout &lt;&lt; "Hello World has "
+                     &lt;&lt; nargin &lt;&lt; " input arguments and "
+                     &lt;&lt; nargout &lt;&lt; " output arguments.\n";
+     
        return octave_value_list ();
      }
 </pre>
 </pre>
-   <p>This example although short introduces the basics of writing a C++
-function that can be dynamically linked to Octave.  The easiest way to
-make available most of the definitions that might be necessary for a C++
-oct-file in Octave is to use the <code>#include &lt;octave/oct.h&gt;</code> header. 
+   <p>The first critical line is <code>#include &lt;octave/oct.h&gt;</code> which
+makes available most of the definitions necessary for a C++ oct-file. 
 Note that <samp><span class="file">octave/oct.h</span></samp> is a C++ header and cannot be directly
-<code>#include</code>'ed in a C source file, nor any other language.  What
-follows is mostly C++, with a discussion of other languages in section
-<a href="Calling-External-Code-from-Oct_002dFiles.html#Calling-External-Code-from-Oct_002dFiles">Calling External Code from Oct-Files</a>.
+<code>#include</code>'ed in a C source file, nor any other language.
 
-   <p>The macro that defines the entry point into the dynamically loaded
-function is <code>DEFUN_DLD</code><!-- /@w -->.  This macro takes four arguments, these being
+   <p>Included by <samp><span class="file">oct.h</span></samp> is a definition for the macro
+<code>DEFUN_DLD</code><!-- /@w --> which creates a dynamically loaded function.  This
+macro takes four arguments:
 
      <ol type=1 start=1>
 <li>The function name as it will be seen in Octave,
@@ -170,37 +176,43 @@ function is <code>DEFUN_DLD</code><!-- /@w -->.  This macro takes four arguments
      <li>The number of output arguments, which can and often is omitted if
 not used, and
 
-     <li>The string that will be seen as the help text of the function.
+     <li>The string to use for the help text of the function.
         </ol>
 
    <p>The return type of functions defined with <code>DEFUN_DLD</code><!-- /@w --> is always
 <code>octave_value_list</code>.
 
    <p>There are a couple of important considerations in the choice of function
-name.  Firstly, it must be a valid Octave function name and so must be a
-sequence of letters, digits and underscores, not starting with a
-digit.  Secondly, as Octave uses the function name to define the filename
+name.  First, it must be a valid Octave function name and so must be a
+sequence of letters, digits, and underscores not starting with a
+digit.  Second, as Octave uses the function name to define the filename
 it attempts to find the function in, the function name in the
 <code>DEFUN_DLD</code><!-- /@w --> macro must match the filename of the oct-file.  Therefore,
-the above function should be in a file <samp><span class="file">helloworld.cc</span></samp>, and it should be
+the above function should be in a file <samp><span class="file">helloworld.cc</span></samp>, and would be
 compiled to an oct-file using the command
 
 <pre class="example">     mkoctfile helloworld.cc
 </pre>
-   <p>This will create a file called <samp><span class="file">helloworld.oct</span></samp>, that is the compiled
+   <p>This will create a file called <samp><span class="file">helloworld.oct</span></samp> that is the compiled
 version of the function.  It should be noted that it is perfectly
 acceptable to have more than one <code>DEFUN_DLD</code><!-- /@w --> function in a source
 file.  However, there must either be a symbolic link to the oct-file for
 each of the functions defined in the source code with the <code>DEFUN_DLD</code><!-- /@w -->
-macro or the autoload (<a href="Function-Files.html#Function-Files">Function Files</a>) function should be used.
+macro or the <code>autoload</code> (<a href="Function-Files.html#Function-Files">Function Files</a>) function should be used.
 
-   <p>The rest of this function then shows how to find the number of input
-arguments, how to print through the octave pager, and return from the
-function.  After compiling this function as above, an example of its use
-is
+   <p>The rest of the function shows how to find the number of input arguments,
+how to print through the Octave pager, and return from the function.  After
+compiling this function as above, an example of its use is
 
 <pre class="example">     helloworld (1, 2, 3)
      -| Hello World has 3 input arguments and 0 output arguments.
 </pre>
+   <p>Subsequent sections show how to use specific classes from Octave's core
+internals.  Base classes like dMatrix (a matrix of double values) are
+found in the directory <samp><span class="file">liboctave/array</span></samp>.  The definitive reference for
+how to use a particular class is the header file itself.  However, it is
+often enough just to study the examples in the manual in order to be able
+to use the class.
+
    </body></html>
 

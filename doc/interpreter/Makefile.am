@@ -58,7 +58,6 @@ EXAMPLE_FILES = \
   $(top_srcdir)/examples/addtwomatrices.cc \
   $(top_srcdir)/examples/celldemo.cc \
   $(top_srcdir)/examples/embedded.cc \
-  $(top_srcdir)/examples/firstmexdemo.c \
   $(top_srcdir)/examples/fortdemo.cc \
   $(top_srcdir)/examples/fortsub.f \
   $(top_srcdir)/examples/funcdemo.cc \
@@ -67,6 +66,7 @@ EXAMPLE_FILES = \
   $(top_srcdir)/examples/mycell.c \
   $(top_srcdir)/examples/myfeval.c \
   $(top_srcdir)/examples/myfunc.c \
+  $(top_srcdir)/examples/myhello.c \
   $(top_srcdir)/examples/mypow2.c \
   $(top_srcdir)/examples/mysparse.c \
   $(top_srcdir)/examples/mystring.c \
@@ -125,7 +125,7 @@ MUNGED_TEXI_SRC = \
   debug.texi \
   diffeq.texi \
   diagperm.texi \
-  dynamic.texi \
+  external.texi \
   emacs.texi \
   errors.texi \
   eval.texi \
@@ -225,19 +225,19 @@ contributors.texi: contributors.in
 		cp $(srcdir)/contributors.texi contributors.texi; \
 		touch -r $(srcdir)/contributors.texi contributors.texi; \
 	fi
-	-$(MAKEINFO) -D AUTHORSONLY \
+	-$(MAKEINFO) -D AUTHORSONLY -I $(srcdir) \
 	  --no-validate --no-headers --no-split --output AUTHORS $<
 	mv AUTHORS ../../AUTHORS
 
 ../../BUGS: bugs.texi
 	rm -f BUGS
-	-$(MAKEINFO) -D BUGSONLY \
+	-$(MAKEINFO) -D BUGSONLY -I $(srcdir) \
 	  --no-validate --no-headers --no-split --output BUGS $<
 	mv BUGS ../../BUGS
 
 ../../INSTALL.OCTAVE: install.texi
 	rm -f INSTALL
-	-$(MAKEINFO) -D INSTALLONLY \
+	-$(MAKEINFO) -D INSTALLONLY -I $(srcdir) \
 	  --no-validate --no-headers --no-split --output INSTALL $<
 	mv INSTALL ../../INSTALL.OCTAVE
 

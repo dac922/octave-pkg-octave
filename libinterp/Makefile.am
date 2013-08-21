@@ -33,9 +33,7 @@ AM_CPPFLAGS = \
   -I$(srcdir)/octave-value \
   -I$(srcdir)/operators \
   -Iparse-tree -I$(srcdir)/parse-tree \
-  -Iinterp-core -I$(srcdir)/interp-core \
-  -Iinterpfcn -I$(srcdir)/interpfcn \
-  -Icorefcn \
+  -Icorefcn -I$(srcdir)/corefcn \
   -I$(top_builddir)/libgnu -I$(top_srcdir)/libgnu
 
 AM_CFLAGS += $(WARN_CFLAGS)
@@ -48,11 +46,13 @@ octlib_LTLIBRARIES = liboctinterp.la
 ## $(DEF_FILES), and building those requires all the sources
 ## (except builtins.cc) to be available.
 BUILT_SOURCES = \
-  interp-core/mxarray.h \
-  interp-core/oct-errno.cc \
-  interpfcn/defaults.h \
-  interpfcn/graphics-props.cc \
-  interpfcn/graphics.h \
+  corefcn/mxarray.h \
+  corefcn/oct-errno.cc \
+  corefcn/defaults.h \
+  corefcn/graphics-props.cc \
+  corefcn/graphics.h \
+  corefcn/oct-tex-lexer.cc \
+  corefcn/oct-tex-parser.cc \
   operators/ops.cc \
   parse-tree/lex.cc \
   parse-tree/oct-gperf.h \
@@ -64,6 +64,7 @@ BUILT_SOURCES = \
   builtins.cc
 
 BUILT_DISTFILES = \
+  corefcn/oct-tex-parser.h \
   parse-tree/oct-gperf.h \
   parse-tree/oct-parse.h \
   parse-tree/oct-parse.yy
@@ -71,10 +72,10 @@ BUILT_DISTFILES = \
 ## Files that are created during build process and installed,
 ## BUT not distributed in tarball.
 BUILT_NODISTFILES = \
-  interp-core/mxarray.h \
-  interp-core/oct-errno.cc \
-  interpfcn/defaults.h \
-  interpfcn/graphics.h \
+  corefcn/mxarray.h \
+  corefcn/oct-errno.cc \
+  corefcn/defaults.h \
+  corefcn/graphics.h \
   builtin-defun-decls.h \
   operators/ops.cc \
   oct-conf.h \
@@ -103,7 +104,7 @@ EXTRA_DIST = \
   $(BUILT_DISTFILES)
 
 octinclude_HEADERS = \
-  interpfcn/graphics-props.cc \
+  corefcn/graphics-props.cc \
   parse-tree/oct-gperf.h \
   builtins.h \
   builtin-defun-decls.h \
@@ -112,13 +113,12 @@ octinclude_HEADERS = \
   $(PARSE_TREE_INC) \
   $(PARSER_INC) \
   $(OPERATORS_INC) \
-  $(INTERP_CORE_INC) \
-  $(INTERPFCN_INC)
+  $(COREFCN_INC)
 
 nodist_octinclude_HEADERS = \
-  interp-core/mxarray.h \
-  interpfcn/defaults.h \
-  interpfcn/graphics.h \
+  corefcn/mxarray.h \
+  corefcn/defaults.h \
+  corefcn/graphics.h \
   oct-conf.h \
   version.h
 
@@ -127,8 +127,6 @@ DIST_SRC = \
   $(OCTAVE_VALUE_SRC) \
   $(PARSE_TREE_SRC) \
   $(PARSER_SRC) \
-  $(INTERP_CORE_SRC) \
-  $(INTERPFCN_SRC) \
   $(COREFCN_SRC)
 
 noinst_LTLIBRARIES =
@@ -137,8 +135,6 @@ include parse-tree/module.mk
 include octave-value/module.mk
 include operators/module.mk
 include template-inst/module.mk
-include interp-core/module.mk
-include interpfcn/module.mk
 include corefcn/module.mk
 include dldfcn/module.mk
 
@@ -161,10 +157,10 @@ liboctinterp_la_SOURCES = \
   $(TEMPLATE_INST_SRC)
 
 nodist_liboctinterp_la_SOURCES = \
-  interp-core/mxarray.h \
-  interp-core/oct-errno.cc \
-  interpfcn/defaults.h \
-  interpfcn/graphics.h \
+  corefcn/mxarray.h \
+  corefcn/oct-errno.cc \
+  corefcn/defaults.h \
+  corefcn/graphics.h \
   operators/ops.cc \
   builtin-defun-decls.h \
   builtins.cc \
@@ -181,8 +177,6 @@ liboctinterp_la_LIBADD = \
   octave-value/liboctave-value.la \
   parse-tree/libparse-tree.la \
   parse-tree/libparser.la \
-  interp-core/libinterp-core.la \
-  interpfcn/libinterpfcn.la \
   corefcn/libcorefcn.la \
   $(top_builddir)/liboctave/liboctave.la \
   $(LIBOCTINTERP_LINK_DEPS)
@@ -325,7 +319,7 @@ uninstall-local: uninstall-oct uninstall-built-in-docstrings
 
 if AMCOND_ENABLE_DYNAMIC_LINKING
 install-oct:
-	$(top_srcdir)/build-aux/mkinstalldirs $(DESTDIR)$(octfiledir)
+	$(MKDIR_P) $(DESTDIR)$(octfiledir)
 	if [ -n "`cat $(DLDFCN_PKG_ADD_FILE)`" ]; then \
 	  $(INSTALL_DATA) $(DLDFCN_PKG_ADD_FILE) $(DESTDIR)$(octfiledir)/PKG_ADD; \
 	fi
@@ -365,7 +359,7 @@ endif
 
 CLEANFILES = \
   $(DLDFCN_PKG_ADD_FILE) \
-  interpfcn/graphics-props.cc \
+  corefcn/graphics-props.cc \
   parse-tree/oct-parse.output
 
 DISTCLEANFILES = \

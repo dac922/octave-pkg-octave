@@ -23,11 +23,12 @@
 ## @deftypefnx {Function File} {} waitbar (@var{frac})
 ## @deftypefnx {Function File} {} waitbar (@var{frac}, @var{hwbar})
 ## @deftypefnx {Function File} {} waitbar (@var{frac}, @var{hwbar}, @var{msg})
-## Return a handle @var{h} to a new waitbar object.  The waitbar is
-## filled to fraction @var{frac} which must be in the range [0, 1].  The
-## optional message @var{msg} is centered and displayed above the waitbar.
-## The appearance of the waitbar figure window can be configured by passing
-## property/value pairs to the function.
+## Return a handle @var{h} to a new waitbar object.
+##
+## The waitbar is filled to fraction @var{frac} which must be in the range
+## [0, 1].  The optional message @var{msg} is centered and displayed above the
+## waitbar.  The appearance of the waitbar figure window can be configured by
+## passing property/value pairs to the function.
 ## 
 ## When called with a single input the current waitbar, if it exists, is
 ## updated to the new value @var{frac}.  If there are multiple outstanding
@@ -86,9 +87,13 @@ function retval = waitbar (varargin)
   endif
 
   if (h)
-    p = findobj (h, "type", "patch");
+    gd = get (h, "__guidata__");
+    ## Get the cached handles.
+    ax = gd(1);
+    p = gd(2);
+
     set (p, "xdata", [0; frac; frac; 0]);
-    ax = findobj (h, "type", "axes");
+
     if (ischar (msg) || iscellstr (msg))
       th = get (ax, "title");
       curr_msg = get (th, "string");
@@ -102,25 +107,35 @@ function retval = waitbar (varargin)
       endif
     endif
   else
-    h = __go_figure__ (NaN, "position", [250, 500, 400, 100],
-                       "numbertitle", "off",
-                       "toolbar", "none", "menubar", "none",
-                       "integerhandle", "off",
-                       "handlevisibility", "callback",
-                       "tag", "waitbar",
-                       varargin{:});
+    ## Save and restore current figure
+    cf = get (0, "currentfigure");
+
+    h = figure ("position", [250, 500, 400, 100],
+                "numbertitle", "off",
+                "toolbar", "none", "menubar", "none",
+                "integerhandle", "off",
+                "handlevisibility", "callback",
+                "tag", "waitbar",
+                varargin{:});
 
     ax = axes ("parent", h, "xtick", [], "ytick", [],
                "xlim", [0, 1], "ylim", [0, 1],
                "xlimmode", "manual", "ylimmode", "manual",
                "position", [0.1, 0.3, 0.8, 0.2]);
 
-    patch (ax, [0; frac; frac; 0], [0; 0; 1; 1], [0, 0.35, 0.75]);
+    p = patch (ax, [0; frac; frac; 0], [0; 0; 1; 1], [0, 0.35, 0.75]);
+
+    ## Cache the axes and patch handles.
+    set (h, "__guidata__", [ax p]);
 
     if (! (ischar (msg) || iscellstr (msg)))
       msg = "Please wait...";
     endif
     title (ax, msg);
+
+    if (! isempty (cf))
+      set (0, "currentfigure", cf);
+    endif
   endif
 
   drawnow ();

@@ -183,7 +183,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/xstrndup.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/build-aux/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -1537,6 +1537,10 @@ ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
+ac_ct_LRELEASE = @ac_ct_LRELEASE@
+ac_ct_MOC = @ac_ct_MOC@
+ac_ct_RCC = @ac_ct_RCC@
+ac_ct_UIC = @ac_ct_UIC@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -1777,7 +1781,6 @@ EXAMPLE_FILES = \
   $(top_srcdir)/examples/addtwomatrices.cc \
   $(top_srcdir)/examples/celldemo.cc \
   $(top_srcdir)/examples/embedded.cc \
-  $(top_srcdir)/examples/firstmexdemo.c \
   $(top_srcdir)/examples/fortdemo.cc \
   $(top_srcdir)/examples/fortsub.f \
   $(top_srcdir)/examples/funcdemo.cc \
@@ -1786,6 +1789,7 @@ EXAMPLE_FILES = \
   $(top_srcdir)/examples/mycell.c \
   $(top_srcdir)/examples/myfeval.c \
   $(top_srcdir)/examples/myfunc.c \
+  $(top_srcdir)/examples/myhello.c \
   $(top_srcdir)/examples/mypow2.c \
   $(top_srcdir)/examples/mysparse.c \
   $(top_srcdir)/examples/mystring.c \
@@ -1864,7 +1868,7 @@ MUNGED_TEXI_SRC = \
   debug.texi \
   diffeq.texi \
   diagperm.texi \
-  dynamic.texi \
+  external.texi \
   emacs.texi \
   errors.texi \
   eval.texi \
@@ -3025,19 +3029,19 @@ contributors.texi: contributors.in
 		cp $(srcdir)/contributors.texi contributors.texi; \
 		touch -r $(srcdir)/contributors.texi contributors.texi; \
 	fi
-	-$(MAKEINFO) -D AUTHORSONLY \
+	-$(MAKEINFO) -D AUTHORSONLY -I $(srcdir) \
 	  --no-validate --no-headers --no-split --output AUTHORS $<
 	mv AUTHORS ../../AUTHORS
 
 ../../BUGS: bugs.texi
 	rm -f BUGS
-	-$(MAKEINFO) -D BUGSONLY \
+	-$(MAKEINFO) -D BUGSONLY -I $(srcdir) \
 	  --no-validate --no-headers --no-split --output BUGS $<
 	mv BUGS ../../BUGS
 
 ../../INSTALL.OCTAVE: install.texi
 	rm -f INSTALL
-	-$(MAKEINFO) -D INSTALLONLY \
+	-$(MAKEINFO) -D INSTALLONLY -I $(srcdir) \
 	  --no-validate --no-headers --no-split --output INSTALL $<
 	mv INSTALL ../../INSTALL.OCTAVE
 

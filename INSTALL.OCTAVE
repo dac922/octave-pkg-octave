@@ -137,7 +137,7 @@ LAPACK
 
 PCRE
      The Perl Compatible Regular Expression library
-     (http://www.pcre.org).
+     (`http://www.pcre.org').
 
    The following external package is optional but strongly recommended:
 
@@ -201,7 +201,7 @@ HDF5
      `load' and `save' commands to read and write HDF data files.
 
 LLVM
-     Compiler framework, (`http://www.llvm.org'). LLVM is required for
+     Compiler framework, (`http://www.llvm.org').  LLVM is required for
      Octave's experimental just-in-time (JIT) compilation for speeding
      up the interpreter.
 
@@ -225,13 +225,13 @@ QRUPDATE
      `qrinsert', `qrshift', and `qrupdate'.
 
 QScintilla
-     Source code highlighter and manipulator; a Qt  port of Scintilla
+     Source code highlighter and manipulator; a Qt port of Scintilla
      (`http://www.riverbankcomputing.co.uk/software/qscintilla').
      QScintilla is used for syntax highlighting and code completion in
      the GUI.
 
 Qt
-     GUI and utility libraries (`'). Qt is required for building the
+     GUI and utility libraries (`').  Qt is required for building the
      GUI.  It is a large framework, but the only components required
      are the GUI, core, WebKit, and network modules.
 
@@ -886,7 +886,7 @@ installation of Octave.
      this way are `CFLAGS', `CXXFLAGS', `FFLAGS', and `LDFLAGS'.
      Passing them as options to the configure script also records them
      in the `config.status' file.  By default, `CPPFLAGS' and `LDFLAGS'
-     are empty, `CFLAGS' and `CXXFLAGS' are set to `"-g -O"' and
-     `FFLAGS' is set to `"-O"'.
+     are empty, `CFLAGS' and `CXXFLAGS' are set to "-g -O" and `FFLAGS'
+     is set to "-O".
 
 

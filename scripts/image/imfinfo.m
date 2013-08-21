@@ -1,4 +1,4 @@
-## Copyright (C) 2008-2012 Soren Hauberg <hauberg@gmail.com>
+## Copyright (C) 2008-2012 Soren Hauberg
 ##
 ## This file is part of Octave.
 ##
@@ -18,12 +18,16 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {@var{info} =} imfinfo (@var{filename})
+## @deftypefnx {Function File} {@var{info} =} imfinfo (@var{filename}, @var{ext})
 ## @deftypefnx {Function File} {@var{info} =} imfinfo (@var{url})
 ## Read image information from a file.
 ##
 ## @code{imfinfo} returns a structure containing information about the image
-## stored in the file @var{filename}.  The output structure contains the
-## following fields.
+## stored in the file @var{filename}.  If there is no file @var{filename},
+## and @var{ext} was specified, it will look for a file named @var{filename}
+## and extension @var{ext}, i.e., a file named @var{filename}.@var{ext}.
+##
+## The output structure @var{info} contains the following fields:
 ##
 ## @table @samp
 ## @item Filename
@@ -45,7 +49,7 @@
 ## Number of bits per channel per pixel.
 ##
 ## @item Format
-## Image format (e.g., @code{"jpeg"}).
+## Image format (e.g., @qcode{"jpeg"}).
 ##
 ## @item LongFormat
 ## Long form image format description.
@@ -71,8 +75,8 @@
 ## for.
 ##
 ## @item ByteOrder
-## Endian option for formats that support it.  Value is @code{"little-endian"},
-## @code{"big-endian"}, or @code{"undefined"}.
+## Endian option for formats that support it.  Value is @qcode{"little-endian"},
+## @qcode{"big-endian"}, or @qcode{"undefined"}.
 ##
 ## @item Gamma
 ## Gamma level of the image.  The same color image displayed on two different
@@ -92,64 +96,29 @@
 ## Preferred number of colors in the image.
 ##
 ## @item ResolutionUnits
-## Units of image resolution.  Value is @code{"pixels per inch"},
-## @code{"pixels per centimeter"}, or @code{"undefined"}.
+## Units of image resolution.  Value is @qcode{"pixels per inch"},
+## @qcode{"pixels per centimeter"}, or @qcode{"undefined"}.
 ##
 ## @item ColorType
-## Image type.  Value is @code{"grayscale"}, @code{"indexed"},
-## @code{"truecolor"}, or @code{"undefined"}.
+## Image type.  Value is @qcode{"grayscale"}, @qcode{"indexed"},
+## @qcode{"truecolor"}, or @qcode{"undefined"}.
 ##
 ## @item View
 ## FlashPix viewing parameters.
 ## @end table
 ##
-## @seealso{imread, imwrite, imshow}
+## @seealso{imread, imwrite, imshow, imformats}
 ## @end deftypefn
 
-function info = imfinfo (filename)
+## Author: Soren Hauberg <hauberg@gmail.com>
 
-  if (nargin < 1)
+function info = imfinfo (varargin)
+  if (nargin < 1 || nargin > 2)
     print_usage ();
-  endif
-
-  if (! ischar (filename))
+  elseif (! ischar (varargin{1}))
     error ("imfinfo: FILENAME must be a string");
+  elseif (nargin > 1 && ! ischar (varargin{2}))
+    error ("imfinfo: EXT must be a string");
   endif
-
-  filename = tilde_expand (filename);
-
-  delete_file = false;
-
-  unwind_protect
-
-    fn = file_in_path (IMAGE_PATH, filename);
-
-    if (isempty (fn))
-
-      ## Couldn't find file. See if it's an URL.
-
-      tmp = tmpnam ();
-
-      [fn, status, msg] = urlwrite (filename, tmp);
-
-      if (! status)
-        error ("imfinfo: cannot find %s", filename);
-      endif
-
-      if (! isempty (fn))
-        delete_file = true;
-      endif
-
-    endif
-
-    info = __magick_finfo__ (fn);
-
-  unwind_protect_cleanup
-
-    if (delete_file)
-      unlink (fn);
-    endif
-
-  end_unwind_protect
-
+  info = imageIO (@__imfinfo__, "info", varargin, varargin{:});
 endfunction

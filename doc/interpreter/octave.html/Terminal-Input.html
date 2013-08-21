@@ -39,12 +39,12 @@ input.  The <code>input</code> and <code>menu</code> functions are normally
 used for managing an interactive dialog with a user, and the
 <code>keyboard</code> function is normally used for doing simple debugging.
 
-<!-- input libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dinput"></a>
+<!-- input libinterp/corefcn/input.cc -->
+   <p><a name="XREFinput"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>ans</var> = <b>input</b> (<var>prompt</var>)<var><a name="index-input-940"></a></var><br>
-&mdash; Built-in Function: <var>ans</var> = <b>input</b> (<var>prompt, "s"</var>)<var><a name="index-input-941"></a></var><br>
+&mdash; Built-in Function: <var>ans</var> = <b>input</b> (<var>prompt</var>)<var><a name="index-input-958"></a></var><br>
+&mdash; Built-in Function: <var>ans</var> = <b>input</b> (<var>prompt, "s"</var>)<var><a name="index-input-959"></a></var><br>
 <blockquote><p>Print a prompt and wait for user input.  For example,
 
      <pre class="example">          input ("Pick a number, any number! ")
@@ -70,14 +70,15 @@ a good idea to always call <code>fflush (stdout)</code> before calling
 <code>input</code>.  This will ensure that all pending output is written to
 the screen before your prompt.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dyes_005for_005fno.html#doc_002dyes_005for_005fno">yes_or_no</a>, <a href="doc_002dkbhit.html#doc_002dkbhit">kbhit</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFyes_005for_005fno.html#XREFyes_005for_005fno">yes_or_no</a>, <a href="XREFkbhit.html#XREFkbhit">kbhit</a>.
+
+        </blockquote></div>
 
 <!-- menu scripts/miscellaneous/menu.m -->
-   <p><a name="doc_002dmenu"></a>
+   <p><a name="XREFmenu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>menu</b> (<var>title, opt1, <small class="dots">...</small></var>)<var><a name="index-menu-942"></a></var><br>
+&mdash; Function File:  <b>menu</b> (<var>title, opt1, <small class="dots">...</small></var>)<var><a name="index-menu-960"></a></var><br>
 <blockquote><p>Print a title string followed by a series of options.  Each option will
 be printed along with a number.  The return value is the number of the
 option selected by the user.  This function is useful for interactive
@@ -85,14 +86,15 @@ programs.  There is no limit to the number of options that may be passed
 in, but it may be confusing to present more than will fit easily on one
 screen.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddisp.html#doc_002ddisp">disp</a>, <a href="doc_002dprintf.html#doc_002dprintf">printf</a>, <a href="doc_002dinput.html#doc_002dinput">input</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdisp.html#XREFdisp">disp</a>, <a href="XREFprintf.html#XREFprintf">printf</a>, <a href="XREFinput.html#XREFinput">input</a>.
 
-<!-- yes_or_no libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dyes_005for_005fno"></a>
+        </blockquote></div>
+
+<!-- yes_or_no libinterp/corefcn/input.cc -->
+   <p><a name="XREFyes_005for_005fno"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>ans</var> = <b>yes_or_no</b> (<var>"prompt"</var>)<var><a name="index-yes_005for_005fno-943"></a></var><br>
+&mdash; Built-in Function: <var>ans</var> = <b>yes_or_no</b> (<var>"prompt"</var>)<var><a name="index-yes_005for_005fno-961"></a></var><br>
 <blockquote><p>Ask the user a yes-or-no question.  Return logical true if the answer is yes
 or false if the answer is no.  Takes one argument, <var>prompt</var>, which is
 the string to display when asking the question.  <var>prompt</var> should end in
@@ -100,8 +102,9 @@ a space; <code>yes-or-no</code> adds the string &lsquo;<samp><span class="samp">
 user must confirm the answer with &lt;RET&gt; and can edit it until it has
 been confirmed.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinput.html#doc_002dinput">input</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFinput.html#XREFinput">input</a>.
+
+        </blockquote></div>
 
    <p>For <code>input</code>, the normal command line history and editing functions
 are available at the prompt.
@@ -110,12 +113,12 @@ are available at the prompt.
 character from the keyboard without requiring the user to type a
 carriage return.
 
-<!-- kbhit libinterp/interpfcn/sysdep.cc -->
-   <p><a name="doc_002dkbhit"></a>
+<!-- kbhit libinterp/corefcn/sysdep.cc -->
+   <p><a name="XREFkbhit"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>kbhit</b> ()<var><a name="index-kbhit-944"></a></var><br>
-&mdash; Built-in Function:  <b>kbhit</b> (<var>1</var>)<var><a name="index-kbhit-945"></a></var><br>
+&mdash; Built-in Function:  <b>kbhit</b> ()<var><a name="index-kbhit-962"></a></var><br>
+&mdash; Built-in Function:  <b>kbhit</b> (<var>1</var>)<var><a name="index-kbhit-963"></a></var><br>
 <blockquote><p>Read a single keystroke from the keyboard.  If called with an
 argument, don't wait for a keypress.  For example,
 
@@ -129,8 +132,9 @@ it is typed.
         <p class="noindent">is identical to the above example, but doesn't wait for a keypress,
 returning the empty string if no key is available.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dinput.html#doc_002dinput">input</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFinput.html#XREFinput">input</a>.
+
+        </blockquote></div>
 
    </body></html>
 

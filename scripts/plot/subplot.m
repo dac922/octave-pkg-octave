@@ -19,14 +19,17 @@
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} subplot (@var{rows}, @var{cols}, @var{index})
 ## @deftypefnx {Function File} {} subplot (@var{rcn})
-## Set up a plot grid with @var{rows} by @var{cols} subwindows and plot
-## in location given by @var{index}.
+## @deftypefnx {Function File} {} subplot (@dots{}, "align")
+## @deftypefnx {Function File} {@var{hax} =} subplot (@dots{})
+## @deftypefnx {Function File} {@var{hax} =} subplot (@dots{})
+## Set up a plot grid with @var{rows} by @var{cols} subwindows and set the
+## current axes for plotting to the location given by @var{index}.
 ##
-## If only one argument is supplied, then it must be a three digit value
-## specifying the location in digits 1 (rows) and 2 (columns) and the plot
-## index in digit 3.
+## If only one numeric argument is supplied, then it must be a three digit
+## value specifying the location in digits 1 (rows) and 2 (columns) and the
+## plot index in digit 3.
 ##
-## The plot index runs row-wise.  First all the columns in a row are filled
+## The plot index runs row-wise.  First all the columns in a row are numbered
 ## and then the next row is filled.
 ##
 ## For example, a plot with 2 by 3 grid will have plot indices running as
@@ -52,14 +55,20 @@
 ## @end group
 ## @end example
 ##
-## @var{index} may be a vector.  In which case, the new axis will enclose
+## @end ifnottex
+##
+## @var{index} may also be a vector.  In this case, the new axis will enclose
 ## the grid locations specified.  The first demo illustrates an example:
 ##
 ## @example
 ## demo ("subplot", 1)
 ## @end example
 ##
-## @end ifnottex
+## If the option @qcode{"align"} is given then the plot boxes of the subwindows
+## will align, but this may leave no room for axis tick marks or labels.
+##
+## If the output @var{hax} is requested, subplot returns the axis handle for
+## the subplot.  This is useful for modifying the properties of a subplot.
 ## @seealso{axes, plot}
 ## @end deftypefn
 
@@ -174,12 +183,15 @@ function h = subplot (varargin)
     endif
 
     if (! have_position)
+      pos = subplot_position (rows, cols, index, "position");
+      outerpos = subplot_position (rows, cols, index, "outerposition");
+      box = [pos(1:2), pos(1:2)+pos(3:4)];
+      outerbox = [outerpos(1:2), outerpos(1:2)+outerpos(3:4)];
+      looseinset = [box(1:2)-outerbox(1:2), outerbox(3:4)-box(3:4)];
       if (align_axes)
-        pos = subplot_position (rows, cols, index, "position");
-      elseif (strcmp (get (cf, "__graphics_toolkit__"), "gnuplot"))
-        pos = subplot_position (rows, cols, index, "outerpositiontight");
+        activepositionproperty = "position";
       else
-        pos = subplot_position (rows, cols, index, "outerposition");
+        activepositionproperty = "outerposition";
       endif
     endif
 
@@ -210,7 +222,7 @@ function h = subplot (varargin)
           ## If the new axes are in exactly the same position as an
           ## existing axes object, use the existing axes.
           found = true;
-          tmp = child;
+          hsubplot = child;
         else
           ## If the new axes overlap an old axes object, delete the old
           ## axes.
@@ -230,14 +242,19 @@ function h = subplot (varargin)
     endfor
 
     if (found)
-      set (cf, "currentaxes", tmp);
-    elseif (align_axes)
-      tmp = axes ("box", "off", "position", pos, varargin{:});
-    elseif (strcmp (get (cf, "__graphics_toolkit__"), "gnuplot"))
-      tmp = axes ("box", "off", "outerposition", pos, varargin{:});
+      set (cf, "currentaxes", hsubplot);
     else
-      tmp = axes ("looseinset", [0 0 0 0], "box", "off", "outerposition", pos,
-                  "autopos_tag", "subplot", varargin{:});
+      hsubplot = axes ("box", "off",
+                       "position", pos,
+                       "looseinset", looseinset,
+                       "activepositionproperty", activepositionproperty,
+                       varargin{:});
+      addproperty ("subplot_align", hsubplot, "boolean", true);
+      addlistener (hsubplot, "position", @subplot_align);
+      if (! align_axes)
+        set (hsubplot, "subplot_align", false)
+        subplot_align (hsubplot)
+      endif
     endif
 
   unwind_protect_cleanup
@@ -246,7 +263,7 @@ function h = subplot (varargin)
   end_unwind_protect
 
   if (nargout > 0)
-    h = tmp;
+    h = hsubplot;
   endif
 
 endfunction
@@ -327,6 +344,30 @@ function pos = subplot_position (rows, cols, index, position_property)
 
 endfunction
 
+function subplot_align (h, varargin)
+  persistent updating = false
+  if (! updating)
+    unwind_protect
+      updating = true;
+      hfig = ancestor (h, "figure");
+      hsubplots = findall (hfig, 'type', 'axes', 'subplot_align', 'off');
+      if (! isempty (hsubplots))
+        tightinset = get (hsubplots, 'tightinset');
+        if (iscell (tightinset))
+          tightinset = max (cell2mat (tightinset));
+        endif
+        looseinset = get (hsubplots, 'looseinset');
+        if (iscell (looseinset))
+          looseinset = max (cell2mat (looseinset));
+        endif
+        looseinset = max (tightinset, looseinset);
+        set (hsubplots, 'looseinset', looseinset);
+      endif
+    unwind_protect_cleanup
+      updating = false;
+    end_unwind_protect
+  endif
+endfunction
 
 %!demo
 %! clf;
@@ -363,4 +404,63 @@ endfunction
 %! xlabel ('xlabel (1,2,1)');
 %! ylabel ('ylabel (1,2,1)');
 %! title ('title (1,2,1)');
+
+%!demo
+%! clf;
+%! x = 0:10;
+%! ax(1) = subplot (221);
+%! set (ax(1), 'tag', '1');
+%! plot (x, rand (3, 11))
+%! title ('x & y labels & ticklabels');
+%! xlabel xlabel
+%! ylabel ylabel
+%! ax(2) = subplot (222);
+%! set (ax(2), 'tag', '2');
+%! plot (x, rand (3, 11))
+%! title ('no labels');
+%! axis ('nolabel','tic')
+%! ax(3) = subplot (223);
+%! set (ax(3), 'tag', '3');
+%! plot (x, rand (3, 11))
+%! title ('no labels');
+%! axis ('nolabel','tic')
+%! ax(4) = subplot (224);
+%! set (ax(4), 'tag', '4');
+%! plot (x, rand (3, 11))
+%! title ('x & y labels & ticklabels');
+%! xlabel xlabel
+%! ylabel ylabel
+
+%!demo
+%! x = 0:10;
+%! subplot (221);
+%! plot (x, rand (3, 11))
+%! ylim ([0, 1]);
+%! text (0.5, 0.5, '{x,y}labels & {x,y}ticklabels', ...
+%!       'horizontalalignment', 'center', ...
+%!       'units', 'normalized');
+%! xlabel xlabel
+%! ylabel ylabel
+%! title title
+%! subplot (222);
+%! plot (x, rand (3, 11))
+%! axis ('labely');
+%! ylabel ylabel
+%! text (0.5, 0.5, 'no xlabels, xticklabels', ...
+%!       'horizontalalignment', 'center', ...
+%!       'units', 'normalized');
+%! subplot (223);
+%! plot (x, rand (3, 11))
+%! axis ('labelx');
+%! text (0.5, 0.5, 'no ylabels, yticklabels', ...
+%!       'horizontalalignment', 'center', ...
+%!       'units', 'normalized');
+%! xlabel xlabel
+%! title title
+%! subplot (224);
+%! plot (x, rand (3, 11))
+%! axis ('nolabel','tic');
+%! text (0.5, 0.5, 'no {x,y}labels, {x,y}ticklabels', ...
+%!       'horizontalalignment', 'center', ...
+%!       'units', 'normalized');
 

@@ -182,7 +182,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/xstrndup.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/build-aux/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -1494,6 +1494,10 @@ ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
+ac_ct_LRELEASE = @ac_ct_LRELEASE@
+ac_ct_MOC = @ac_ct_MOC@
+ac_ct_RCC = @ac_ct_RCC@
+ac_ct_UIC = @ac_ct_UIC@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -1707,11 +1711,11 @@ localstartupfiledir = ${localfcnfiledir}/startup
 # a space, so protect with $(null))
 null = 
 EXTRA_DIST = @polynomial/module.mk @FIRfilter/module.mk $(FCN_FILES) \
-	addtwomatrices.cc celldemo.cc embedded.cc firstmexdemo.c \
-	fortdemo.cc fortsub.f funcdemo.cc globaldemo.cc hello.cc \
-	helloworld.cc make_int.cc mycell.c myfeval.c myfevalf.f \
-	myfunc.c myhello.c mypow2.c myprop.c myset.c mysparse.c \
-	mystring.c mystruct.c oregonator.cc oregonator.m paramdemo.cc \
+	addtwomatrices.cc celldemo.cc embedded.cc fortdemo.cc \
+	fortsub.f funcdemo.cc globaldemo.cc helloworld.cc make_int.cc \
+	mex_demo.c mycell.c myfeval.c myfevalf.f myfunc.c myhello.c \
+	mypow2.c myprop.c myset.c mysparse.c mystring.c mystruct.c \
+	oct_demo.cc oregonator.cc oregonator.m paramdemo.cc \
 	standalone.cc stringdemo.cc structdemo.cc unwinddemo.cc
 FCN_FILE_DIRS = @polynomial @FIRfilter
 FCN_FILES = $(at_polynomial_FCN_FILES) $(at_FIRfilter_FCN_FILES)

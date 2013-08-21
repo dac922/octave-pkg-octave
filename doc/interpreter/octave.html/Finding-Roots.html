@@ -39,10 +39,10 @@ the companion matrix of the polynomial (see the <code>compan</code> function
 for a definition), and then finding its eigenvalues.
 
 <!-- roots scripts/polynomial/roots.m -->
-   <p><a name="doc_002droots"></a>
+   <p><a name="XREFroots"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>roots</b> (<var>v</var>)<var><a name="index-roots-2910"></a></var><br>
+&mdash; Function File:  <b>roots</b> (<var>v</var>)<var><a name="index-roots-3074"></a></var><br>
 <blockquote>
         <p>For a vector <var>v</var> with N components, return
 the roots of the polynomial
@@ -64,15 +64,16 @@ polynomial
 which is roughly
 +/- 2.2361.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002dcompan.html#doc_002dcompan">compan</a>, <a href="doc_002dfzero.html#doc_002dfzero">fzero</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpoly.html#XREFpoly">poly</a>, <a href="XREFcompan.html#XREFcompan">compan</a>, <a href="XREFfzero.html#XREFfzero">fzero</a>.
+
+        </blockquote></div>
 
 <!-- polyeig scripts/polynomial/polyeig.m -->
-   <p><a name="doc_002dpolyeig"></a>
+   <p><a name="XREFpolyeig"></a>
 
 <div class="defun">
-&mdash; Function File: <var>z</var> = <b>polyeig</b> (<var>C0, C1, <small class="dots">...</small>, Cl</var>)<var><a name="index-polyeig-2911"></a></var><br>
-&mdash; Function File: [<var>v</var>, <var>z</var>] = <b>polyeig</b> (<var>C0, C1, <small class="dots">...</small>, Cl</var>)<var><a name="index-polyeig-2912"></a></var><br>
+&mdash; Function File: <var>z</var> = <b>polyeig</b> (<var>C0, C1, <small class="dots">...</small>, Cl</var>)<var><a name="index-polyeig-3075"></a></var><br>
+&mdash; Function File: [<var>v</var>, <var>z</var>] = <b>polyeig</b> (<var>C0, C1, <small class="dots">...</small>, Cl</var>)<var><a name="index-polyeig-3076"></a></var><br>
 <blockquote>
         <p>Solve the polynomial eigenvalue problem of degree <var>l</var>.
 
@@ -84,14 +85,15 @@ Note that the eigenvalues <var>z</var> are the zeros of the matrix polynomial.
 <var>z</var> is an <var>lxn</var> vector and <var>v</var> is an (<var>n</var> x <var>n</var>)l matrix
 with columns that correspond to the eigenvectors.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002deig.html#doc_002deig">eig</a>, <a href="doc_002deigs.html#doc_002deigs">eigs</a>, <a href="doc_002dcompan.html#doc_002dcompan">compan</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFeig.html#XREFeig">eig</a>, <a href="XREFeigs.html#XREFeigs">eigs</a>, <a href="XREFcompan.html#XREFcompan">compan</a>.
+
+        </blockquote></div>
 
 <!-- compan scripts/polynomial/compan.m -->
-   <p><a name="doc_002dcompan"></a>
+   <p><a name="XREFcompan"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>compan</b> (<var>c</var>)<var><a name="index-compan-2913"></a></var><br>
+&mdash; Function File:  <b>compan</b> (<var>c</var>)<var><a name="index-compan-3077"></a></var><br>
 <blockquote><p>Compute the companion matrix corresponding to polynomial coefficient
 vector <var>c</var>.
 
@@ -110,16 +112,17 @@ vector <var>c</var>.
         <p>The eigenvalues of the companion matrix are equal to the roots of the
 polynomial.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002deig.html#doc_002deig">eig</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFroots.html#XREFroots">roots</a>, <a href="XREFpoly.html#XREFpoly">poly</a>, <a href="XREFeig.html#XREFeig">eig</a>.
+
+        </blockquote></div>
 
 <!-- mpoles scripts/polynomial/mpoles.m -->
-   <p><a name="doc_002dmpoles"></a>
+   <p><a name="XREFmpoles"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p</var>)<var><a name="index-mpoles-2914"></a></var><br>
-&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol</var>)<var><a name="index-mpoles-2915"></a></var><br>
-&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol, reorder</var>)<var><a name="index-mpoles-2916"></a></var><br>
+&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p</var>)<var><a name="index-mpoles-3078"></a></var><br>
+&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol</var>)<var><a name="index-mpoles-3079"></a></var><br>
+&mdash; Function File: [<var>multp</var>, <var>idxp</var>] = <b>mpoles</b> (<var>p, tol, reorder</var>)<var><a name="index-mpoles-3080"></a></var><br>
 <blockquote><p>Identify unique poles in <var>p</var> and their associated multiplicity.  The
 output is ordered from largest pole to smallest pole.
 
@@ -141,8 +144,9 @@ poles.  <var>multp</var><code>(n)</code> refers to the multiplicity of the Nth p
              &rArr; n = [2; 5; 1; 4; 3]
              &rArr; p(n) = [3, 2, 2, 1, 1]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dresidue.html#doc_002dresidue">residue</a>, <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002ddeconv.html#doc_002ddeconv">deconv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFresidue.html#XREFresidue">residue</a>, <a href="XREFpoly.html#XREFpoly">poly</a>, <a href="XREFroots.html#XREFroots">roots</a>, <a href="XREFconv.html#XREFconv">conv</a>, <a href="XREFdeconv.html#XREFdeconv">deconv</a>.
+
+        </blockquote></div>
 
    </body></html>
 

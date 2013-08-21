@@ -56,10 +56,10 @@ files holding data in mu-law encoding end in <samp><span class="file">au</span><
 <samp><span class="file">snd</span></samp>.
 
 <!-- lin2mu scripts/audio/lin2mu.m -->
-   <p><a name="doc_002dlin2mu"></a>
+   <p><a name="XREFlin2mu"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>lin2mu</b> (<var>x, n</var>)<var><a name="index-lin2mu-3237"></a></var><br>
+&mdash; Function File:  <b>lin2mu</b> (<var>x, n</var>)<var><a name="index-lin2mu-3422"></a></var><br>
 <blockquote><p>Convert audio data from linear to mu-law.  Mu-law values use 8-bit
 unsigned integers.  Linear values use <var>n</var>-bit signed integers or
 floating point values in the range -1 &le; <var>x</var> &le; 1 if
@@ -68,14 +68,15 @@ floating point values in the range -1 &le; <var>x</var> &le; 1 if
         <p>If <var>n</var> is not specified it defaults to 0, 8, or 16 depending on
 the range of values in <var>x</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmu2lin.html#XREFmu2lin">mu2lin</a>, <a href="XREFloadaudio.html#XREFloadaudio">loadaudio</a>, <a href="XREFsaveaudio.html#XREFsaveaudio">saveaudio</a>.
+
+        </blockquote></div>
 
 <!-- mu2lin scripts/audio/mu2lin.m -->
-   <p><a name="doc_002dmu2lin"></a>
+   <p><a name="XREFmu2lin"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>mu2lin</b> (<var>x, n</var>)<var><a name="index-mu2lin-3238"></a></var><br>
+&mdash; Function File:  <b>mu2lin</b> (<var>x, n</var>)<var><a name="index-mu2lin-3423"></a></var><br>
 <blockquote><p>Convert audio data from mu-law to linear.  Mu-law values are 8-bit
 unsigned integers.  Linear values use <var>n</var>-bit signed integers
 or floating point values in the range -1&le;y&le;1 if <var>n</var>
@@ -83,14 +84,15 @@ is 0.
 
         <p>If <var>n</var> is not specified it defaults to 0.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlin2mu.html#XREFlin2mu">lin2mu</a>, <a href="XREFloadaudio.html#XREFloadaudio">loadaudio</a>, <a href="XREFsaveaudio.html#XREFsaveaudio">saveaudio</a>.
+
+        </blockquote></div>
 
 <!-- loadaudio scripts/audio/loadaudio.m -->
-   <p><a name="doc_002dloadaudio"></a>
+   <p><a name="XREFloadaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>loadaudio</b> (<var>name, ext, bps</var>)<var><a name="index-loadaudio-3239"></a></var><br>
+&mdash; Function File:  <b>loadaudio</b> (<var>name, ext, bps</var>)<var><a name="index-loadaudio-3424"></a></var><br>
 <blockquote><p>Load audio data from the file <samp><var>name</var><span class="file">.</span><var>ext</var></samp> into the
 vector <var>x</var>.
 
@@ -102,22 +104,24 @@ to mu-law encoding.
         <p>The argument <var>bps</var> can be either 8 (default) or 16, and specifies
 the number of bits per sample used in the audio file.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>, <a href="doc_002dplayaudio.html#doc_002dplayaudio">playaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>, <a href="doc_002drecord.html#doc_002drecord">record</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlin2mu.html#XREFlin2mu">lin2mu</a>, <a href="XREFmu2lin.html#XREFmu2lin">mu2lin</a>, <a href="XREFsaveaudio.html#XREFsaveaudio">saveaudio</a>, <a href="XREFplayaudio.html#XREFplayaudio">playaudio</a>, <a href="XREFsetaudio.html#XREFsetaudio">setaudio</a>, <a href="XREFrecord.html#XREFrecord">record</a>.
+
+        </blockquote></div>
 
 <!-- saveaudio scripts/audio/saveaudio.m -->
-   <p><a name="doc_002dsaveaudio"></a>
+   <p><a name="XREFsaveaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>saveaudio</b> (<var>name, x, ext, bps</var>)<var><a name="index-saveaudio-3240"></a></var><br>
+&mdash; Function File:  <b>saveaudio</b> (<var>name, x, ext, bps</var>)<var><a name="index-saveaudio-3425"></a></var><br>
 <blockquote><p>Save a vector <var>x</var> of audio data to the file
 <samp><var>name</var><span class="file">.</span><var>ext</var></samp>.  The optional parameters <var>ext</var> and
 <var>bps</var> determine the encoding and the number of bits per sample used
 in the audio file (see <code>loadaudio</code>); defaults are <samp><span class="file">lin</span></samp> and
 8, respectively.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dplayaudio.html#doc_002dplayaudio">playaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>, <a href="doc_002drecord.html#doc_002drecord">record</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlin2mu.html#XREFlin2mu">lin2mu</a>, <a href="XREFmu2lin.html#XREFmu2lin">mu2lin</a>, <a href="XREFloadaudio.html#XREFloadaudio">loadaudio</a>, <a href="XREFplayaudio.html#XREFplayaudio">playaudio</a>, <a href="XREFsetaudio.html#XREFsetaudio">setaudio</a>, <a href="XREFrecord.html#XREFrecord">record</a>.
+
+        </blockquote></div>
 
    <p>The following functions for audio I/O require special A/D hardware and
 operating system support.  It is assumed that audio data in linear
@@ -128,50 +132,52 @@ these functions will work without modification on a wide variety of
 hardware are welcome.
 
 <!-- playaudio scripts/audio/playaudio.m -->
-   <p><a name="doc_002dplayaudio"></a>
+   <p><a name="XREFplayaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>playaudio</b> (<var>name, ext</var>)<var><a name="index-playaudio-3241"></a></var><br>
-&mdash; Function File:  <b>playaudio</b> (<var>x</var>)<var><a name="index-playaudio-3242"></a></var><br>
+&mdash; Function File:  <b>playaudio</b> (<var>name, ext</var>)<var><a name="index-playaudio-3426"></a></var><br>
+&mdash; Function File:  <b>playaudio</b> (<var>x</var>)<var><a name="index-playaudio-3427"></a></var><br>
 <blockquote><p>Play the audio file <samp><var>name</var><span class="file">.</span><var>ext</var></samp> or the audio data
 stored in the vector <var>x</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>, <a href="doc_002drecord.html#doc_002drecord">record</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlin2mu.html#XREFlin2mu">lin2mu</a>, <a href="XREFmu2lin.html#XREFmu2lin">mu2lin</a>, <a href="XREFloadaudio.html#XREFloadaudio">loadaudio</a>, <a href="XREFsaveaudio.html#XREFsaveaudio">saveaudio</a>, <a href="XREFsetaudio.html#XREFsetaudio">setaudio</a>, <a href="XREFrecord.html#XREFrecord">record</a>.
+
+        </blockquote></div>
 
 <!-- record scripts/audio/record.m -->
-   <p><a name="doc_002drecord"></a>
+   <p><a name="XREFrecord"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>record</b> (<var>sec, sampling_rate</var>)<var><a name="index-record-3243"></a></var><br>
+&mdash; Function File:  <b>record</b> (<var>sec, sampling_rate</var>)<var><a name="index-record-3428"></a></var><br>
 <blockquote><p>Record <var>sec</var> seconds of audio input into the vector <var>x</var>.  The
 default value for <var>sampling_rate</var> is 8000 samples per second, or
 8kHz.  The program waits until the user types &lt;RET&gt; and then
 immediately starts to record.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlin2mu.html#doc_002dlin2mu">lin2mu</a>, <a href="doc_002dmu2lin.html#doc_002dmu2lin">mu2lin</a>, <a href="doc_002dloadaudio.html#doc_002dloadaudio">loadaudio</a>, <a href="doc_002dsaveaudio.html#doc_002dsaveaudio">saveaudio</a>, <a href="doc_002dplayaudio.html#doc_002dplayaudio">playaudio</a>, <a href="doc_002dsetaudio.html#doc_002dsetaudio">setaudio</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlin2mu.html#XREFlin2mu">lin2mu</a>, <a href="XREFmu2lin.html#XREFmu2lin">mu2lin</a>, <a href="XREFloadaudio.html#XREFloadaudio">loadaudio</a>, <a href="XREFsaveaudio.html#XREFsaveaudio">saveaudio</a>, <a href="XREFplayaudio.html#XREFplayaudio">playaudio</a>, <a href="XREFsetaudio.html#XREFsetaudio">setaudio</a>.
+
+        </blockquote></div>
 
 <!-- setaudio scripts/audio/setaudio.m -->
-   <p><a name="doc_002dsetaudio"></a>
+   <p><a name="XREFsetaudio"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setaudio</b> ()<var><a name="index-setaudio-3244"></a></var><br>
-&mdash; Function File:  <b>setaudio</b> (<var>w_type</var>)<var><a name="index-setaudio-3245"></a></var><br>
-&mdash; Function File:  <b>setaudio</b> (<var>w_type, value</var>)<var><a name="index-setaudio-3246"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> ()<var><a name="index-setaudio-3429"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> (<var>w_type</var>)<var><a name="index-setaudio-3430"></a></var><br>
+&mdash; Function File:  <b>setaudio</b> (<var>w_type, value</var>)<var><a name="index-setaudio-3431"></a></var><br>
 <blockquote><p>Execute the shell command &lsquo;<samp><span class="samp">mixer</span></samp>&rsquo;, possibly with optional
 arguments <var>w_type</var> and <var>value</var>. 
 </p></blockquote></div>
 
 <!-- wavread scripts/audio/wavread.m -->
-   <p><a name="doc_002dwavread"></a>
+   <p><a name="XREFwavread"></a>
 
 <div class="defun">
-&mdash; Function File: <var>y</var> = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3247"></a></var><br>
-&mdash; Function File: [<var>y</var>, <var>Fs</var>, <var>bps</var>] = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3248"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n</var>)<var><a name="index-wavread-3249"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, </var>[<var>n1 n2</var>])<var><a name="index-wavread-3250"></a></var><br>
-&mdash; Function File: [<var>samples</var>, <var>channels</var>] = <b>wavread</b> (<var>filename, "size"</var>)<var><a name="index-wavread-3251"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3432"></a></var><br>
+&mdash; Function File: [<var>y</var>, <var>Fs</var>, <var>bps</var>] = <b>wavread</b> (<var>filename</var>)<var><a name="index-wavread-3433"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, n</var>)<var><a name="index-wavread-3434"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>wavread</b> (<var>filename, </var>[<var>n1 n2</var>])<var><a name="index-wavread-3435"></a></var><br>
+&mdash; Function File: [<var>samples</var>, <var>channels</var>] = <b>wavread</b> (<var>filename, "size"</var>)<var><a name="index-wavread-3436"></a></var><br>
 <blockquote>
         <p>Load the RIFF/WAVE sound file <var>filename</var>, and return the samples
 in vector <var>y</var>.  If the file contains multichannel data, then
@@ -195,24 +201,26 @@ per sample (<var>bps</var>).
         <p>Return the number of samples (<var>n</var>) and number of channels (<var>ch</var>)
 instead of the audio data.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwavwrite.html#doc_002dwavwrite">wavwrite</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwavwrite.html#XREFwavwrite">wavwrite</a>.
+
+        </blockquote></div>
 
 <!-- wavwrite scripts/audio/wavwrite.m -->
-   <p><a name="doc_002dwavwrite"></a>
+   <p><a name="XREFwavwrite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>wavwrite</b> (<var>y, filename</var>)<var><a name="index-wavwrite-3252"></a></var><br>
-&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, filename</var>)<var><a name="index-wavwrite-3253"></a></var><br>
-&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, bps, filename</var>)<var><a name="index-wavwrite-3254"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, filename</var>)<var><a name="index-wavwrite-3437"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, filename</var>)<var><a name="index-wavwrite-3438"></a></var><br>
+&mdash; Function File:  <b>wavwrite</b> (<var>y, Fs, bps, filename</var>)<var><a name="index-wavwrite-3439"></a></var><br>
 <blockquote><p>Write <var>y</var> to the canonical RIFF/WAVE sound file <var>filename</var>
 with sample rate <var>Fs</var> and bits per sample <var>bps</var>.  The
 default sample rate is 8000 Hz with 16-bits per sample.  Each column
 of the data represents a separate channel.  If <var>y</var> is either a
 row vector or a column vector, it is written as a single channel.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwavread.html#doc_002dwavread">wavread</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwavread.html#XREFwavread">wavread</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 2008-2012 David Bateman -->

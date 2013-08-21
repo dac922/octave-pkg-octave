@@ -43,10 +43,10 @@ is the derivative of x.  The equation is solved using Petzold's
 DAE solver <span class="sc">daspk</span>.
 
 <!-- daspk libinterp/corefcn/daspk.cc -->
-   <p><a name="doc_002ddaspk"></a>
+   <p><a name="XREFdaspk"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>daspk</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-daspk-2554"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>daspk</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-daspk-2718"></a></var><br>
 <blockquote><p>Solve the set of differential-algebraic equations
 
      <pre class="example">          0 = f (x, xdot, t)
@@ -110,16 +110,17 @@ less than zero and <var>msg</var> will contain additional information.
         <p>You can use the function <code>daspk_options</code> to set optional
 parameters for <code>daspk</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddassl.html#doc_002ddassl">dassl</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdassl.html#XREFdassl">dassl</a>.
+
+        </blockquote></div>
 
 <!-- daspk_options libinterp/corefcn/daspk.cc -->
-   <p><a name="doc_002ddaspk_005foptions"></a>
+   <p><a name="XREFdaspk_005foptions"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>daspk_options</b> ()<var><a name="index-daspk_005foptions-2555"></a></var><br>
-&mdash; Built-in Function: val = <b>daspk_options</b> (<var>opt</var>)<var><a name="index-daspk_005foptions-2556"></a></var><br>
-&mdash; Built-in Function:  <b>daspk_options</b> (<var>opt, val</var>)<var><a name="index-daspk_005foptions-2557"></a></var><br>
+&mdash; Built-in Function:  <b>daspk_options</b> ()<var><a name="index-daspk_005foptions-2719"></a></var><br>
+&mdash; Built-in Function: val = <b>daspk_options</b> (<var>opt</var>)<var><a name="index-daspk_005foptions-2720"></a></var><br>
+&mdash; Built-in Function:  <b>daspk_options</b> (<var>opt, val</var>)<var><a name="index-daspk_005foptions-2721"></a></var><br>
 <blockquote><p>Query or set options for the function <code>daspk</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 
@@ -263,10 +264,10 @@ and <span class="sc">dasrt</span>, which can be used to solve DAEs with constrai
 (stopping conditions).
 
 <!-- dassl libinterp/corefcn/dassl.cc -->
-   <p><a name="doc_002ddassl"></a>
+   <p><a name="XREFdassl"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>dassl</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dassl-2558"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>istate</var>, <var>msg</var>] = <b>dassl</b> (<var>fcn, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dassl-2722"></a></var><br>
 <blockquote><p>Solve the set of differential-algebraic equations
 
      <pre class="example">          0 = f (x, xdot, t)
@@ -330,16 +331,17 @@ less than zero and <var>msg</var> will contain additional information.
         <p>You can use the function <code>dassl_options</code> to set optional
 parameters for <code>dassl</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddaspk.html#doc_002ddaspk">daspk</a>, <a href="doc_002ddasrt.html#doc_002ddasrt">dasrt</a>, <a href="doc_002dlsode.html#doc_002dlsode">lsode</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdaspk.html#XREFdaspk">daspk</a>, <a href="XREFdasrt.html#XREFdasrt">dasrt</a>, <a href="XREFlsode.html#XREFlsode">lsode</a>.
+
+        </blockquote></div>
 
 <!-- dassl_options libinterp/corefcn/dassl.cc -->
-   <p><a name="doc_002ddassl_005foptions"></a>
+   <p><a name="XREFdassl_005foptions"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dassl_options</b> ()<var><a name="index-dassl_005foptions-2559"></a></var><br>
-&mdash; Built-in Function: val = <b>dassl_options</b> (<var>opt</var>)<var><a name="index-dassl_005foptions-2560"></a></var><br>
-&mdash; Built-in Function:  <b>dassl_options</b> (<var>opt, val</var>)<var><a name="index-dassl_005foptions-2561"></a></var><br>
+&mdash; Built-in Function:  <b>dassl_options</b> ()<var><a name="index-dassl_005foptions-2723"></a></var><br>
+&mdash; Built-in Function: val = <b>dassl_options</b> (<var>opt</var>)<var><a name="index-dassl_005foptions-2724"></a></var><br>
+&mdash; Built-in Function:  <b>dassl_options</b> (<var>opt, val</var>)<var><a name="index-dassl_005foptions-2725"></a></var><br>
 <blockquote><p>Query or set options for the function <code>dassl</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 
@@ -390,13 +392,13 @@ underlying Fortran code.
         </p></blockquote></div>
 
 <!-- dasrt libinterp/corefcn/dasrt.cc -->
-   <p><a name="doc_002ddasrt"></a>
+   <p><a name="XREFdasrt"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>t_out</var>, <var>istat</var>, <var>msg</var>] = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2562"></a></var><br>
-&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2563"></a></var><br>
-&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2564"></a></var><br>
-&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2565"></a></var><br>
+&mdash; Built-in Function: [<var>x</var>, <var>xdot</var>, <var>t_out</var>, <var>istat</var>, <var>msg</var>] = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2726"></a></var><br>
+&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t</var>)<var><a name="index-dasrt-2727"></a></var><br>
+&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, </var>[]<var>, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2728"></a></var><br>
+&mdash; Built-in Function: <small class="dots">...</small> = <b>dasrt</b> (<var>fcn, g, x_0, xdot_0, t, t_crit</var>)<var><a name="index-dasrt-2729"></a></var><br>
 <blockquote><p>Solve the set of differential-algebraic equations
 
      <pre class="example">          0 = f (x, xdot, t)
@@ -493,16 +495,17 @@ less than zero and <var>msg</var> will contain additional information.
         <p>You can use the function <code>dasrt_options</code> to set optional
 parameters for <code>dasrt</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddasrt_005foptions.html#doc_002ddasrt_005foptions">dasrt_options</a>, <a href="doc_002ddaspk.html#doc_002ddaspk">daspk</a>, <a href="doc_002ddasrt.html#doc_002ddasrt">dasrt</a>, <a href="doc_002dlsode.html#doc_002dlsode">lsode</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdasrt_005foptions.html#XREFdasrt_005foptions">dasrt_options</a>, <a href="XREFdaspk.html#XREFdaspk">daspk</a>, <a href="XREFdasrt.html#XREFdasrt">dasrt</a>, <a href="XREFlsode.html#XREFlsode">lsode</a>.
+
+        </blockquote></div>
 
 <!-- dasrt_options libinterp/corefcn/dasrt.cc -->
-   <p><a name="doc_002ddasrt_005foptions"></a>
+   <p><a name="XREFdasrt_005foptions"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dasrt_options</b> ()<var><a name="index-dasrt_005foptions-2566"></a></var><br>
-&mdash; Built-in Function: val = <b>dasrt_options</b> (<var>opt</var>)<var><a name="index-dasrt_005foptions-2567"></a></var><br>
-&mdash; Built-in Function:  <b>dasrt_options</b> (<var>opt, val</var>)<var><a name="index-dasrt_005foptions-2568"></a></var><br>
+&mdash; Built-in Function:  <b>dasrt_options</b> ()<var><a name="index-dasrt_005foptions-2730"></a></var><br>
+&mdash; Built-in Function: val = <b>dasrt_options</b> (<var>opt</var>)<var><a name="index-dasrt_005foptions-2731"></a></var><br>
+&mdash; Built-in Function:  <b>dasrt_options</b> (<var>opt, val</var>)<var><a name="index-dasrt_005foptions-2732"></a></var><br>
 <blockquote><p>Query or set options for the function <code>dasrt</code>. 
 When called with no arguments, the names of all available options and
 their current values are displayed. 

@@ -21,9 +21,9 @@
 ## @deftypefnx {Function File} {} tetramesh (@var{T}, @var{X}, @var{C})
 ## @deftypefnx {Function File} {} tetramesh (@dots{}, @var{property}, @var{val}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} tetramesh (@dots{})
+## Display the tetrahedrons defined in the m-by-4 matrix @var{T} as 3-D patches.
 ##
-## Display the tetrahedrons defined in the m-by-4 matrix @var{T}
-## as 3-D patches.  @var{T} is typically the output of a Delaunay triangulation
+## @var{T} is typically the output of a Delaunay triangulation
 ## of a 3-D set of points.  Every row of @var{T} contains four indices into
 ## the n-by-3 matrix @var{X} of the vertices of a tetrahedron.  Every row in
 ## @var{X} represents one point in 3-D space. 
@@ -39,11 +39,11 @@
 ##
 ## The optional return value @var{h} is a vector of patch handles where each
 ## handle represents one tetrahedron in the order given by @var{T}. 
-## A typical use case for @var{h} is to turn the respective patch "visible"
-## property "on" or "off".
+## A typical use case for @var{h} is to turn the respective patch
+## @qcode{"visible"} property @qcode{"on"} or @qcode{"off"}.
 ##
 ## Type @code{demo tetramesh} to see examples on using @code{tetramesh}.
-## @seealso{delaunay3, delaunayn, trimesh, patch}
+## @seealso{trimesh, delaunay3, delaunayn, patch}
 ## @end deftypefn
 
 ## Author: Martin Helm <martin@mhelm.de>
@@ -126,10 +126,10 @@ endfunction
 %! X = [x(:) y(:) z(:)];
 %! colormap (jet (64));
 %! h = tetramesh (tetra, X);
-%! set (h(1:2:end), "Visible", "off");
+%! set (h(1:2:end), 'Visible', 'off');
 %! axis equal;
 %! view (30, 20);
-%! title ("Using jet (64), every other tetrahedron invisible");
+%! title ('Using jet (64), every other tetrahedron invisible');
 
 %!demo
 %! clf;
@@ -141,8 +141,8 @@ endfunction
 %! tetra = delaunay3 (x, y, z);
 %! X = [x(:) y(:) z(:)];
 %! colormap (gray (256));
-%! tetramesh (tetra, X, 21:20:241, "EdgeColor", "w");
+%! tetramesh (tetra, X, 21:20:241, 'EdgeColor', 'w');
 %! axis equal;
 %! view (30, 20);
-%! title ("Using gray (256) and white edges");
+%! title ('Using gray (256) and white edges');
 

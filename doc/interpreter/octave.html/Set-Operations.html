@@ -42,12 +42,12 @@ pretty much the same way.  As an example, assume that <code>x</code> and
    <p class="noindent">computes the union of the two sets.
 
 <!-- ismember scripts/set/ismember.m -->
-   <p><a name="doc_002dismember"></a>
+   <p><a name="XREFismember"></a>
 
 <div class="defun">
-&mdash; Function File: <var>tf</var> = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2889"></a></var><br>
-&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-2890"></a></var><br>
-&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s, "rows"</var>)<var><a name="index-ismember-2891"></a></var><br>
+&mdash; Function File: <var>tf</var> = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-3053"></a></var><br>
+&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s</var>)<var><a name="index-ismember-3054"></a></var><br>
+&mdash; Function File: [<var>tf</var>, <var>S_idx</var>] = <b>ismember</b> (<var>A, s, "rows"</var>)<var><a name="index-ismember-3055"></a></var><br>
 <blockquote><p>Return a logical matrix <var>tf</var> with the same shape as <var>A</var> which is
 true (1) if <code>A(i,j)</code> is in <var>s</var> and false (0) if it is not.  If a
 second output argument is requested, the index into <var>s</var> of each of the
@@ -77,16 +77,17 @@ matching elements is also returned.
                &rArr; tf = logical ([1; 0; 1])
                &rArr; s_idx = [2; 0; 5];
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFunique.html#XREFunique">unique</a>, <a href="XREFunion.html#XREFunion">union</a>, <a href="XREFintersect.html#XREFintersect">intersect</a>, <a href="XREFsetxor.html#XREFsetxor">setxor</a>, <a href="XREFsetdiff.html#XREFsetdiff">setdiff</a>.
+
+        </blockquote></div>
 
 <!-- union scripts/set/union.m -->
-   <p><a name="doc_002dunion"></a>
+   <p><a name="XREFunion"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>union</b> (<var>a, b</var>)<var><a name="index-union-2892"></a></var><br>
-&mdash; Function File:  <b>union</b> (<var>a, b, "rows"</var>)<var><a name="index-union-2893"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>union</b> (<var>a, b</var>)<var><a name="index-union-2894"></a></var><br>
+&mdash; Function File:  <b>union</b> (<var>a, b</var>)<var><a name="index-union-3056"></a></var><br>
+&mdash; Function File:  <b>union</b> (<var>a, b, "rows"</var>)<var><a name="index-union-3057"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>union</b> (<var>a, b</var>)<var><a name="index-union-3058"></a></var><br>
 <blockquote>
         <p>Return the set of elements that are in either of the sets <var>a</var> and
 <var>b</var>.  <var>a</var>, <var>b</var> may be cell arrays of strings. 
@@ -95,9 +96,9 @@ For example:
      <pre class="example">          union ([1, 2, 4], [2, 3, 5])
               &rArr; [1, 2, 3, 4, 5]
 </pre>
-        <p>If the optional third input argument is the string "rows" then each row of
-the matrices <var>a</var> and <var>b</var> will be considered as a single set element. 
-For example:
+        <p>If the optional third input argument is the string <code>"rows"</code> then
+each row of the matrices <var>a</var> and <var>b</var> will be considered as a
+single set element.  For example:
 
      <pre class="example">          union ([1, 2; 2, 3], [1, 2; 3, 4], "rows")
              &rArr;  1   2
@@ -107,15 +108,16 @@ For example:
         <p>The optional outputs <var>ia</var> and <var>ib</var> are index vectors such that
 <code>a(ia)</code> and <code>b(ib)</code> are disjoint sets whose union is <var>c</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dunique.html#doc_002dunique">unique</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFintersect.html#XREFintersect">intersect</a>, <a href="XREFsetdiff.html#XREFsetdiff">setdiff</a>, <a href="XREFunique.html#XREFunique">unique</a>.
+
+        </blockquote></div>
 
 <!-- intersect scripts/set/intersect.m -->
-   <p><a name="doc_002dintersect"></a>
+   <p><a name="XREFintersect"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2895"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-2896"></a></var><br>
+&mdash; Function File:  <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-3059"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>intersect</b> (<var>a, b</var>)<var><a name="index-intersect-3060"></a></var><br>
 <blockquote>
         <p>Return the elements in both <var>a</var> and <var>b</var>, sorted in ascending
 order.  If <var>a</var> and <var>b</var> are both column vectors return a column
@@ -127,35 +129,36 @@ vector, otherwise return a row vector.
 
         </blockquote></div>
 
-<p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>.
+<p class="noindent"><strong>See also:</strong> <a href="XREFunique.html#XREFunique">unique</a>, <a href="XREFunion.html#XREFunion">union</a>, <a href="XREFsetxor.html#XREFsetxor">setxor</a>, <a href="XREFsetdiff.html#XREFsetdiff">setdiff</a>, <a href="XREFismember.html#XREFismember">ismember</a>.
 
 <!-- setdiff scripts/set/setdiff.m -->
-   <p><a name="doc_002dsetdiff"></a>
+   <p><a name="XREFsetdiff"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2897"></a></var><br>
-&mdash; Function File:  <b>setdiff</b> (<var>a, b, "rows"</var>)<var><a name="index-setdiff-2898"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>i</var>] = <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-2899"></a></var><br>
+&mdash; Function File:  <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-3061"></a></var><br>
+&mdash; Function File:  <b>setdiff</b> (<var>a, b, "rows"</var>)<var><a name="index-setdiff-3062"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>i</var>] = <b>setdiff</b> (<var>a, b</var>)<var><a name="index-setdiff-3063"></a></var><br>
 <blockquote><p>Return the elements in <var>a</var> that are not in <var>b</var>, sorted in
 ascending order.  If <var>a</var> and <var>b</var> are both column vectors
 return a column vector, otherwise return a row vector. 
 <var>a</var>, <var>b</var> may be cell arrays of string(s).
 
-        <p>Given the optional third argument &lsquo;<samp><span class="samp">"rows"</span></samp>&rsquo;, return the rows in
+        <p>Given the optional third argument <code>"rows"</code>, return the rows in
 <var>a</var> that are not in <var>b</var>, sorted in ascending order by rows.
 
         <p>If requested, return <var>i</var> such that <code>c = a(i)</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFunique.html#XREFunique">unique</a>, <a href="XREFunion.html#XREFunion">union</a>, <a href="XREFintersect.html#XREFintersect">intersect</a>, <a href="XREFsetxor.html#XREFsetxor">setxor</a>, <a href="XREFismember.html#XREFismember">ismember</a>.
+
+        </blockquote></div>
 
 <!-- setxor scripts/set/setxor.m -->
-   <p><a name="doc_002dsetxor"></a>
+   <p><a name="XREFsetxor"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2900"></a></var><br>
-&mdash; Function File:  <b>setxor</b> (<var>a, b, "rows"</var>)<var><a name="index-setxor-2901"></a></var><br>
-&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-2902"></a></var><br>
+&mdash; Function File:  <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-3064"></a></var><br>
+&mdash; Function File:  <b>setxor</b> (<var>a, b, "rows"</var>)<var><a name="index-setxor-3065"></a></var><br>
+&mdash; Function File: [<var>c</var>, <var>ia</var>, <var>ib</var>] = <b>setxor</b> (<var>a, b</var>)<var><a name="index-setxor-3066"></a></var><br>
 <blockquote>
         <p>Return the elements exclusive to <var>a</var> or <var>b</var>, sorted in ascending
 order.  If <var>a</var> and <var>b</var> are both column vectors return a column
@@ -166,15 +169,16 @@ vector, otherwise return a row vector.
 such that <code>a(ia)</code> and <code>b(ib)</code> are disjoint sets whose union
 is <var>c</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dintersect.html#doc_002dintersect">intersect</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFunique.html#XREFunique">unique</a>, <a href="XREFunion.html#XREFunion">union</a>, <a href="XREFintersect.html#XREFintersect">intersect</a>, <a href="XREFsetdiff.html#XREFsetdiff">setdiff</a>, <a href="XREFismember.html#XREFismember">ismember</a>.
+
+        </blockquote></div>
 
 <!-- powerset scripts/set/powerset.m -->
-   <p><a name="doc_002dpowerset"></a>
+   <p><a name="XREFpowerset"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>powerset</b> (<var>a</var>)<var><a name="index-powerset-2903"></a></var><br>
-&mdash; Function File:  <b>powerset</b> (<var>a, "rows"</var>)<var><a name="index-powerset-2904"></a></var><br>
+&mdash; Function File:  <b>powerset</b> (<var>a</var>)<var><a name="index-powerset-3067"></a></var><br>
+&mdash; Function File:  <b>powerset</b> (<var>a, "rows"</var>)<var><a name="index-powerset-3068"></a></var><br>
 <blockquote><p>Compute the powerset (all subsets) of the set <var>a</var>.
 
         <p>The set <var>a</var> must be a numerical matrix or a cell array of strings.  The
@@ -182,10 +186,11 @@ output will always be a cell array of either vectors or strings.
 
         <p>With the optional second argument <code>"rows"</code>, each row of the set <var>a</var>
 is considered one element of the set.  As a result, <var>a</var> must then be a
-numerical 2D matrix.
+numerical 2-D matrix.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dunique.html#doc_002dunique">unique</a>, <a href="doc_002dunion.html#doc_002dunion">union</a>, <a href="doc_002dsetxor.html#doc_002dsetxor">setxor</a>, <a href="doc_002dsetdiff.html#doc_002dsetdiff">setdiff</a>, <a href="doc_002dismember.html#doc_002dismember">ismember</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFunique.html#XREFunique">unique</a>, <a href="XREFunion.html#XREFunion">union</a>, <a href="XREFsetxor.html#XREFsetxor">setxor</a>, <a href="XREFsetdiff.html#XREFsetdiff">setdiff</a>, <a href="XREFismember.html#XREFismember">ismember</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->

@@ -60,6 +60,8 @@ public:
   void setSelectionColor (const QColor& color);
   void setCursorColor (bool useForegoundColor, const QColor& color);
 
+  QString selectedText ();
+
 public slots:
   void copyClipboard (void);
   void pasteClipboard (void);
@@ -68,6 +70,7 @@ public slots:
 signals:
   void terminated (void);
   void titleChanged (const QString&);
+  void set_global_shortcuts_signal (bool);
 
 protected:
   void viewPaintEvent (QConsoleView*, QPaintEvent*);
@@ -78,11 +81,12 @@ protected:
   void focusInEvent (QFocusEvent*);
   void focusOutEvent (QFocusEvent*);
   void keyPressEvent (QKeyEvent*);
-  bool winEvent (MSG*, long*);
   virtual void start (void);
   void mouseMoveEvent (QMouseEvent *event);
   void mousePressEvent (QMouseEvent *event);
   void mouseReleaseEvent (QMouseEvent *event);
+
+  bool eventFilter(QObject *obj, QEvent *ev);
 
 private slots:
   void scrollValueChanged (int value);

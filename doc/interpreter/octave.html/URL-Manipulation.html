@@ -7,6 +7,7 @@
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Networking-Utilities.html#Networking-Utilities" title="Networking Utilities">
 <link rel="prev" href="FTP-Objects.html#FTP-Objects" title="FTP Objects">
+<link rel="next" href="Base64-and-Binary-Data-Transmission.html#Base64-and-Binary-Data-Transmission" title="Base64 and Binary Data Transmission">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -25,6 +26,7 @@
 <div class="node">
 <a name="URL-Manipulation"></a>
 <p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Base64-and-Binary-Data-Transmission.html#Base64-and-Binary-Data-Transmission">Base64 and Binary Data Transmission</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="FTP-Objects.html#FTP-Objects">FTP Objects</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="Networking-Utilities.html#Networking-Utilities">Networking Utilities</a>
 <hr>
@@ -33,13 +35,13 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Networking-Utilities.html#Networking-Ut
 <h4 class="subsection">36.4.2 URL Manipulation</h4>
 
 <!-- urlread libinterp/dldfcn/urlwrite.cc -->
-<p><a name="doc_002durlread"></a>
+<p><a name="XREFurlread"></a>
 
 <div class="defun">
-&mdash; Loadable Function: <var>s</var> = <b>urlread</b> (<var>url</var>)<var><a name="index-urlread-3512"></a></var><br>
-&mdash; Loadable Function: [<var>s</var>, <var>success</var>] = <b>urlread</b> (<var>url</var>)<var><a name="index-urlread-3513"></a></var><br>
-&mdash; Loadable Function: [<var>s</var>, <var>success</var>, <var>message</var>] = <b>urlread</b> (<var>url</var>)<var><a name="index-urlread-3514"></a></var><br>
-&mdash; Loadable Function: [<small class="dots">...</small>] = <b>urlread</b> (<var>url, method, param</var>)<var><a name="index-urlread-3515"></a></var><br>
+&mdash; Loadable Function: <var>s</var> = <b>urlread</b> (<var>url</var>)<var><a name="index-urlread-3701"></a></var><br>
+&mdash; Loadable Function: [<var>s</var>, <var>success</var>] = <b>urlread</b> (<var>url</var>)<var><a name="index-urlread-3702"></a></var><br>
+&mdash; Loadable Function: [<var>s</var>, <var>success</var>, <var>message</var>] = <b>urlread</b> (<var>url</var>)<var><a name="index-urlread-3703"></a></var><br>
+&mdash; Loadable Function: [<small class="dots">...</small>] = <b>urlread</b> (<var>url, method, param</var>)<var><a name="index-urlread-3704"></a></var><br>
 <blockquote><p>Download a remote file specified by its <var>url</var> and return its content
 in string <var>s</var>.  For example:
 
@@ -64,17 +66,18 @@ For example:
      <pre class="example">          s = urlread ("http://www.google.com/search", "get",
                       {"query", "octave"});
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002durlwrite.html#doc_002durlwrite">urlwrite</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFurlwrite.html#XREFurlwrite">urlwrite</a>.
+
+        </blockquote></div>
 
 <!-- urlwrite libinterp/dldfcn/urlwrite.cc -->
-   <p><a name="doc_002durlwrite"></a>
+   <p><a name="XREFurlwrite"></a>
 
 <div class="defun">
-&mdash; Loadable Function:  <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3516"></a></var><br>
-&mdash; Loadable Function: <var>f</var> = <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3517"></a></var><br>
-&mdash; Loadable Function: [<var>f</var>, <var>success</var>] = <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3518"></a></var><br>
-&mdash; Loadable Function: [<var>f</var>, <var>success</var>, <var>message</var>] = <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3519"></a></var><br>
+&mdash; Loadable Function:  <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3705"></a></var><br>
+&mdash; Loadable Function: <var>f</var> = <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3706"></a></var><br>
+&mdash; Loadable Function: [<var>f</var>, <var>success</var>] = <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3707"></a></var><br>
+&mdash; Loadable Function: [<var>f</var>, <var>success</var>, <var>message</var>] = <b>urlwrite</b> (<var>url, localfile</var>)<var><a name="index-urlwrite-3708"></a></var><br>
 <blockquote><p>Download a remote file specified by its <var>url</var> and save it as
 <var>localfile</var>.  For example:
 
@@ -102,8 +105,9 @@ For example:
      <pre class="example">          urlwrite ("http://www.google.com/search", "search.html",
                     "get", {"query", "octave"});
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002durlread.html#doc_002durlread">urlread</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFurlread.html#XREFurlread">urlread</a>.
+
+        </blockquote></div>
 
    </body></html>
 

@@ -34,20 +34,22 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Two_002dDimensional-Plots.html#Two_002d
 <h5 class="subsubsection">15.2.1.3 Two-dimensional Geometric Shapes</h5>
 
 <!-- rectangle scripts/plot/rectangle.m -->
-<p><a name="doc_002drectangle"></a>
+<p><a name="XREFrectangle"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rectangle</b> ()<var><a name="index-rectangle-1287"></a></var><br>
-&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "Position", pos</var>)<var><a name="index-rectangle-1288"></a></var><br>
-&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "Curvature", curv</var>)<var><a name="index-rectangle-1289"></a></var><br>
-&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "EdgeColor", ec</var>)<var><a name="index-rectangle-1290"></a></var><br>
-&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "FaceColor", fc</var>)<var><a name="index-rectangle-1291"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>rectangle</b> (<var><small class="dots">...</small></var>)<var><a name="index-rectangle-1292"></a></var><br>
+&mdash; Function File:  <b>rectangle</b> ()<var><a name="index-rectangle-1340"></a></var><br>
+&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "Position", pos</var>)<var><a name="index-rectangle-1341"></a></var><br>
+&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "Curvature", curv</var>)<var><a name="index-rectangle-1342"></a></var><br>
+&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "EdgeColor", ec</var>)<var><a name="index-rectangle-1343"></a></var><br>
+&mdash; Function File:  <b>rectangle</b> (<var><small class="dots">...</small>, "FaceColor", fc</var>)<var><a name="index-rectangle-1344"></a></var><br>
+&mdash; Function File:  <b>rectangle</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-rectangle-1345"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>rectangle</b> (<var><small class="dots">...</small></var>)<var><a name="index-rectangle-1346"></a></var><br>
 <blockquote>
-        <p>Draw rectangular patch defined by <var>pos</var> and <var>curv</var>.  The variable
-<var>pos</var><code>(1:2)</code> defines the lower left-hand corner of the patch
-and <var>pos</var><code>(3:4)</code> defines its width and height.  By default, the
-value of <var>pos</var> is <code>[0, 0, 1, 1]</code>.
+        <p>Draw a rectangular patch defined by <var>pos</var> and <var>curv</var>.
+
+        <p>The variable <var>pos</var><code>(1:2)</code> defines the lower left-hand corner of
+the patch and <var>pos</var><code>(3:4)</code> defines its width and height.  By
+default, the value of <var>pos</var> is <code>[0, 0, 1, 1]</code>.
 
         <p>The variable <var>curv</var> defines the curvature of the sides of the rectangle
 and may be a scalar or two-element vector with values between 0 and 1. 
@@ -62,13 +64,16 @@ by
 
      <pre class="example">          min (pos (1:2)) / max (pos (1:2)) * curv
 </pre>
-        <p>Other properties are passed to the underlying patch command.
+        <p>Additional property/value pairs are passed to the underlying patch command.
+
+        <p>If the first argument <var>hax</var> is an axes handle, then plot into this axis,
+rather than the current axes returned by <code>gca</code>.
 
         <p>The optional return value <var>h</var> is a graphics handle to the created
 rectangle object. 
 </p></blockquote></div>
 
-<p class="noindent"><strong>See also:</strong> <a href="doc_002dpatch.html#doc_002dpatch">patch</a>.
+<p class="noindent"><strong>See also:</strong> <a href="XREFpatch.html#XREFpatch">patch</a>, <a href="XREFline.html#XREFline">line</a>, <a href="XREFcylinder.html#XREFcylinder">cylinder</a>, <a href="XREFellipsoid.html#XREFellipsoid">ellipsoid</a>, <a href="XREFsphere.html#XREFsphere">sphere</a>.
 
    </body></html>
 

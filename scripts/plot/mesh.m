@@ -20,68 +20,108 @@
 ## @deftypefn  {Function File} {} mesh (@var{x}, @var{y}, @var{z})
 ## @deftypefnx {Function File} {} mesh (@var{z})
 ## @deftypefnx {Function File} {} mesh (@dots{}, @var{c})
+## @deftypefnx {Function File} {} mesh (@dots{}, @var{prop}, @var{val}, @dots{})
 ## @deftypefnx {Function File} {} mesh (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} mesh (@dots{})
-## Plot a mesh given matrices @var{x}, and @var{y} from @code{meshgrid} and
-## a matrix @var{z} corresponding to the @var{x} and @var{y} coordinates of
-## the mesh.  If @var{x} and @var{y} are vectors, then a typical vertex
-## is (@var{x}(j), @var{y}(i), @var{z}(i,j)).  Thus, columns of @var{z}
-## correspond to different @var{x} values and rows of @var{z} correspond
-## to different @var{y} values.
+## Plot a 3-D wireframe mesh.
 ##
-## The color of the mesh is derived from the @code{colormap}
-## and the value of @var{z}.  Optionally the color of the mesh can be
-## specified independent of @var{z}, by adding a fourth matrix, @var{c}.
+## The wireframe mesh is plotted using rectangles.  The vertices of the
+## rectangles [@var{x}, @var{y}] are typically the output of @code{meshgrid}.
+## over a 2-D rectangular region in the x-y plane.  @var{z} determines the
+## height above the plane of each vertex.  If only a single @var{z} matrix is
+## given, then it is plotted over the meshgrid
+## @code{@var{x} = 1:columns (@var{z}), @var{y} = 1:rows (@var{z})}.
+## Thus, columns of @var{z} correspond to different @var{x} values and rows
+## of @var{z} correspond to different @var{y} values.
+##
+## The color of the mesh is computed by linearly scaling the @var{Z} values
+## to fit the range of the current colormap.  Use @code{caxis} and/or
+## change the colormap to control the appearance.
+##
+## Optionally, the color of the mesh can be specified independently of @var{z}
+## by supplying a color matrix, @var{c}.
+##
+## Any property/value pairs are passed directly to the underlying surface
+## object.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
 ## The optional return value @var{h} is a graphics handle to the created
 ## surface object.
-## @seealso{colormap, contour, meshgrid, surf}
+##
+## @seealso{ezmesh, meshc, meshz, trimesh, contour, surf, surface, meshgrid, hidden, shading, colormap, caxis}
 ## @end deftypefn
 
 ## Author: jwe
 
 function h = mesh (varargin)
 
-  newplot ();
-
-  tmp = surface (varargin{:});
-
-  ax = get (tmp, "parent");
-
-  set (tmp, "facecolor", "w");
-  set (tmp, "edgecolor", "flat");
-
-  if (! ishold ())
-    set (ax, "view", [-37.5, 30],
-         "xgrid", "on", "ygrid", "on", "zgrid", "on");
+  if (! all (cellfun ("isreal", varargin)))
+    error ("mesh: X, Y, Z, C arguments must be real");
   endif
 
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("mesh", varargin{:});
+
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
+  unwind_protect
+    hax = newplot (hax);
+
+    htmp = surface (varargin{:});
+
+    set (htmp, "facecolor", "w");
+    set (htmp, "edgecolor", "flat");
+    if (! ishold ())
+      set (hax, "view", [-37.5, 30],
+                "xgrid", "on", "ygrid", "on", "zgrid", "on");
+    endif
+  unwind_protect_cleanup
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
+  end_unwind_protect
+
   if (nargout > 0)
-    h = tmp;
+    h = htmp;
   endif
 
 endfunction
 
 
 %!demo
-%! clf ();
+%! clf;
 %! x = logspace (0,1,11);
 %! z = x'*x;
-%! mesh (x, x, z, z.^2);
-%! xlabel xlabel
-%! ylabel ylabel
-%! zlabel "linear scale"
+%! mesh (x, x, z);
+%! xlabel 'X-axis';
+%! ylabel 'Y-axis';
+%! zlabel 'Z-axis';
+%! title ('mesh() with color proportional to height');
 
 %!demo
-%! clf ();
+%! clf;
 %! x = logspace (0,1,11);
 %! z = x'*x;
 %! mesh (x, x, z, z.^2);
-%! set (gca, "zscale", "log")
-%! xlabel xlabel
-%! ylabel ylabel
-%! zlabel "log scale"
-%! if (strcmp (get (gcf, "__graphics_toolkit__"), "gnuplot"))
-%!   title ({"Gnuplot: mesh color is wrong", "This a Gnuplot bug"})
+%! xlabel 'X-axis';
+%! ylabel 'Y-axis';
+%! zlabel 'linear scale';
+%! title ('mesh() with color proportional to Z^2');
+
+%!demo
+%! clf;
+%! x = logspace (0,1,11);
+%! z = x'*x;
+%! mesh (x, x, z, z.^2);
+%! set (gca, 'zscale', 'log');
+%! xlabel 'X-axis';
+%! ylabel 'Y-axis';
+%! zlabel 'log scale';
+%! title ({'mesh() with color proportional to Z^2', 'Z-axis is log scale'});
+%! if (strcmp (get (gcf, '__graphics_toolkit__'), 'gnuplot'))
+%!   title ({'Gnuplot: mesh color is wrong', 'This is a Gnuplot bug'});
 %! endif
 

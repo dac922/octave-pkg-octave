@@ -35,44 +35,48 @@ Up:&nbsp;<a rel="up" accesskey="u" href="C_002dStyle-I_002fO-Functions.html#C_00
 <p>Three functions are available for setting and determining the position of
 the file pointer for a given file.
 
-<!-- ftell libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dftell"></a>
+<!-- ftell libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFftell"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ftell</b> (<var>fid</var>)<var><a name="index-ftell-1069"></a></var><br>
+&mdash; Built-in Function:  <b>ftell</b> (<var>fid</var>)<var><a name="index-ftell-1087"></a></var><br>
 <blockquote><p>Return the position of the file pointer as the number of characters
 from the beginning of the file <var>fid</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfseek.html#doc_002dfseek">fseek</a>, <a href="doc_002dfeof.html#doc_002dfeof">feof</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfseek.html#XREFfseek">fseek</a>, <a href="XREFfeof.html#XREFfeof">feof</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- fseek libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfseek"></a>
+        </blockquote></div>
+
+<!-- fseek libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfseek"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset</var>)<var><a name="index-fseek-1070"></a></var><br>
-&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset, origin</var>)<var><a name="index-fseek-1071"></a></var><br>
-&mdash; Built-in Function: <var>status</var> = <b>fseek</b> (<var><small class="dots">...</small></var>)<var><a name="index-fseek-1072"></a></var><br>
+&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset</var>)<var><a name="index-fseek-1088"></a></var><br>
+&mdash; Built-in Function:  <b>fseek</b> (<var>fid, offset, origin</var>)<var><a name="index-fseek-1089"></a></var><br>
+&mdash; Built-in Function: <var>status</var> = <b>fseek</b> (<var><small class="dots">...</small></var>)<var><a name="index-fseek-1090"></a></var><br>
 <blockquote><p>Set the file pointer to any location within the file <var>fid</var>.
 
         <p>The pointer is positioned <var>offset</var> characters from the <var>origin</var>,
 which may be one of the predefined variables <code>SEEK_CUR</code><!-- /@w --> (current
 position), <code>SEEK_SET</code><!-- /@w --> (beginning), or <code>SEEK_END</code><!-- /@w --> (end of
-file) or strings "cof", "bof" or "eof".  If <var>origin</var> is omitted,
-<code>SEEK_SET</code><!-- /@w --> is assumed.  <var>offset</var> may be positive, negative, or zero but not all combinations of <var>origin</var> and <var>offset</var> can be realized.
+file) or strings <code>"cof"</code>, <code>"bof"</code> or <code>"eof"</code>.  If
+<var>origin</var> is omitted, <code>SEEK_SET</code><!-- /@w --> is assumed.  <var>offset</var> may
+be positive, negative, or zero but not all combinations of <var>origin</var> and
+<var>offset</var> can be realized.
 
         <p>Return 0 on success and -1 on error.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfskipl.html#doc_002dfskipl">fskipl</a>, <a href="doc_002dfrewind.html#doc_002dfrewind">frewind</a>, <a href="doc_002dftell.html#doc_002dftell">ftell</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfskipl.html#XREFfskipl">fskipl</a>, <a href="XREFfrewind.html#XREFfrewind">frewind</a>, <a href="XREFftell.html#XREFftell">ftell</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- SEEK_SET libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dSEEK_005fSET"></a>
+        </blockquote></div>
+
+<!-- SEEK_SET libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFSEEK_005fSET"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>SEEK_SET</b> ()<var><a name="index-SEEK_005fSET-1073"></a></var><br>
-&mdash; Built-in Function:  <b>SEEK_CUR</b> ()<var><a name="index-SEEK_005fCUR-1074"></a></var><br>
-&mdash; Built-in Function:  <b>SEEK_END</b> ()<var><a name="index-SEEK_005fEND-1075"></a></var><br>
+&mdash; Built-in Function:  <b>SEEK_SET</b> ()<var><a name="index-SEEK_005fSET-1091"></a></var><br>
+&mdash; Built-in Function:  <b>SEEK_CUR</b> ()<var><a name="index-SEEK_005fCUR-1092"></a></var><br>
+&mdash; Built-in Function:  <b>SEEK_END</b> ()<var><a name="index-SEEK_005fEND-1093"></a></var><br>
 <blockquote><p>Return the numerical value to pass to <code>fseek</code> to perform
 one of the following actions:
 
@@ -84,20 +88,22 @@ one of the following actions:
           <br><dt><code>SEEK_END</code><dd>Position file relative to the end. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfseek.html#doc_002dfseek">fseek</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfseek.html#XREFfseek">fseek</a>.
 
-<!-- frewind libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfrewind"></a>
+        </blockquote></div>
+
+<!-- frewind libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfrewind"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>frewind</b> (<var>fid</var>)<var><a name="index-frewind-1076"></a></var><br>
+&mdash; Built-in Function:  <b>frewind</b> (<var>fid</var>)<var><a name="index-frewind-1094"></a></var><br>
 <blockquote><p>Move the file pointer to the beginning of the file <var>fid</var>, returning
 0 for success, and -1 if an error was encountered.  It is equivalent to
 <code>fseek (</code><var>fid</var><code>, 0, SEEK_SET)</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfseek.html#doc_002dfseek">fseek</a>, <a href="doc_002dftell.html#doc_002dftell">ftell</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfseek.html#XREFfseek">fseek</a>, <a href="XREFftell.html#XREFftell">ftell</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
+
+        </blockquote></div>
 
    <p>The following example stores the current file position in the variable
 <code>marker</code>, moves the pointer to the beginning of the file, reads

@@ -38,11 +38,11 @@ expression.  These functions are defined for all objects.  They return
 data structure type doesn't have rows or columns, so the <code>rows</code> and
 <code>columns</code> functions return &minus;1 for structure arguments.
 
-<!-- ndims libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dndims"></a>
+<!-- ndims libinterp/corefcn/data.cc -->
+   <p><a name="XREFndims"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>ndims</b> (<var>a</var>)<var><a name="index-ndims-246"></a></var><br>
+&mdash; Built-in Function:  <b>ndims</b> (<var>a</var>)<var><a name="index-ndims-255"></a></var><br>
 <blockquote><p>Return the number of dimensions of <var>a</var>. 
 For any array, the result will always be larger than or equal to 2. 
 Trailing singleton dimensions are not counted.
@@ -50,35 +50,38 @@ Trailing singleton dimensions are not counted.
      <pre class="example">          ndims (ones (4, 1, 2, 1))
               &rArr; 3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dsize.html#doc_002dsize">size</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFsize.html#XREFsize">size</a>.
 
-<!-- columns libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dcolumns"></a>
+        </blockquote></div>
+
+<!-- columns libinterp/corefcn/data.cc -->
+   <p><a name="XREFcolumns"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>columns</b> (<var>a</var>)<var><a name="index-columns-247"></a></var><br>
+&mdash; Built-in Function:  <b>columns</b> (<var>a</var>)<var><a name="index-columns-256"></a></var><br>
 <blockquote><p>Return the number of columns of <var>a</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drows.html#doc_002drows">rows</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>, <a href="doc_002dnumel.html#doc_002dnumel">numel</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrows.html#XREFrows">rows</a>, <a href="XREFsize.html#XREFsize">size</a>, <a href="XREFlength.html#XREFlength">length</a>, <a href="XREFnumel.html#XREFnumel">numel</a>, <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>.
 
-<!-- rows libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002drows"></a>
+        </blockquote></div>
+
+<!-- rows libinterp/corefcn/data.cc -->
+   <p><a name="XREFrows"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>rows</b> (<var>a</var>)<var><a name="index-rows-248"></a></var><br>
+&mdash; Built-in Function:  <b>rows</b> (<var>a</var>)<var><a name="index-rows-257"></a></var><br>
 <blockquote><p>Return the number of rows of <var>a</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcolumns.html#doc_002dcolumns">columns</a>, <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>, <a href="doc_002dnumel.html#doc_002dnumel">numel</a>, <a href="doc_002disscalar.html#doc_002disscalar">isscalar</a>, <a href="doc_002disvector.html#doc_002disvector">isvector</a>, <a href="doc_002dismatrix.html#doc_002dismatrix">ismatrix</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcolumns.html#XREFcolumns">columns</a>, <a href="XREFsize.html#XREFsize">size</a>, <a href="XREFlength.html#XREFlength">length</a>, <a href="XREFnumel.html#XREFnumel">numel</a>, <a href="XREFisscalar.html#XREFisscalar">isscalar</a>, <a href="XREFisvector.html#XREFisvector">isvector</a>, <a href="XREFismatrix.html#XREFismatrix">ismatrix</a>.
 
-<!-- numel libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dnumel"></a>
+        </blockquote></div>
+
+<!-- numel libinterp/corefcn/data.cc -->
+   <p><a name="XREFnumel"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>numel</b> (<var>a</var>)<var><a name="index-numel-249"></a></var><br>
-&mdash; Built-in Function:  <b>numel</b> (<var>a, idx1, idx2, <small class="dots">...</small></var>)<var><a name="index-numel-250"></a></var><br>
+&mdash; Built-in Function:  <b>numel</b> (<var>a</var>)<var><a name="index-numel-258"></a></var><br>
+&mdash; Built-in Function:  <b>numel</b> (<var>a, idx1, idx2, <small class="dots">...</small></var>)<var><a name="index-numel-259"></a></var><br>
 <blockquote><p>Return the number of elements in the object <var>a</var>. 
 Optionally, if indices <var>idx1</var>, <var>idx2</var>, <small class="dots">...</small> are supplied,
 return the number of elements that would result from the indexing
@@ -96,27 +99,32 @@ return the number of elements that would result from the indexing
         <p>This method is also called when an object appears as lvalue with cs-list
 indexing, i.e., <code>object{...}</code> or <code>object(...).field</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsize.html#doc_002dsize">size</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsize.html#XREFsize">size</a>.
 
-<!-- length libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dlength"></a>
+        </blockquote></div>
 
-<div class="defun">
-&mdash; Built-in Function:  <b>length</b> (<var>a</var>)<var><a name="index-length-251"></a></var><br>
-<blockquote><p>Return the "length" of the object <var>a</var>.  For matrix objects, the
-length is the number of rows or columns, whichever is greater (this
-odd definition is used for compatibility with <span class="sc">matlab</span>).
-
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsize.html#doc_002dsize">size</a>. 
-</p></blockquote></div>
-
-<!-- size libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dsize"></a>
+<!-- length libinterp/corefcn/data.cc -->
+   <p><a name="XREFlength"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>size</b> (<var>a</var>)<var><a name="index-size-252"></a></var><br>
-&mdash; Built-in Function:  <b>size</b> (<var>a, dim</var>)<var><a name="index-size-253"></a></var><br>
+&mdash; Built-in Function:  <b>length</b> (<var>a</var>)<var><a name="index-length-260"></a></var><br>
+<blockquote><p>Return the length of the object <var>a</var>.
+
+        <p>The length is 0 for empty objects, 1 for scalars, and the number of elements
+for vectors.  For matrix objects, the length is the number of rows or
+columns, whichever is greater (this odd definition is used for compatibility
+with <span class="sc">matlab</span>).
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnumel.html#XREFnumel">numel</a>, <a href="XREFsize.html#XREFsize">size</a>.
+
+        </blockquote></div>
+
+<!-- size libinterp/corefcn/data.cc -->
+   <p><a name="XREFsize"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>size</b> (<var>a</var>)<var><a name="index-size-261"></a></var><br>
+&mdash; Built-in Function:  <b>size</b> (<var>a, dim</var>)<var><a name="index-size-262"></a></var><br>
 <blockquote><p>Return the number of rows and columns of <var>a</var>.
 
         <p>With one input argument and one output argument, the result is returned
@@ -139,25 +147,27 @@ corresponding dimension.  For example,
 </pre>
         <p class="noindent">returns the number of columns in the given matrix.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnumel.html#doc_002dnumel">numel</a>, <a href="doc_002dndims.html#doc_002dndims">ndims</a>, <a href="doc_002dlength.html#doc_002dlength">length</a>, <a href="doc_002drows.html#doc_002drows">rows</a>, <a href="doc_002dcolumns.html#doc_002dcolumns">columns</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnumel.html#XREFnumel">numel</a>, <a href="XREFndims.html#XREFndims">ndims</a>, <a href="XREFlength.html#XREFlength">length</a>, <a href="XREFrows.html#XREFrows">rows</a>, <a href="XREFcolumns.html#XREFcolumns">columns</a>.
 
-<!-- isempty libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002disempty"></a>
+        </blockquote></div>
+
+<!-- isempty libinterp/corefcn/data.cc -->
+   <p><a name="XREFisempty"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isempty</b> (<var>a</var>)<var><a name="index-isempty-254"></a></var><br>
+&mdash; Built-in Function:  <b>isempty</b> (<var>a</var>)<var><a name="index-isempty-263"></a></var><br>
 <blockquote><p>Return true if <var>a</var> is an empty matrix (any one of its dimensions is
 zero).  Otherwise, return false.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disnull.html#doc_002disnull">isnull</a>, <a href="doc_002disa.html#doc_002disa">isa</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisnull.html#XREFisnull">isnull</a>, <a href="XREFisa.html#XREFisa">isa</a>.
+
+        </blockquote></div>
 
 <!-- isnull libinterp/octave-value/ov-null-mat.cc -->
-   <p><a name="doc_002disnull"></a>
+   <p><a name="XREFisnull"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>isnull</b> (<var>x</var>)<var><a name="index-isnull-255"></a></var><br>
+&mdash; Built-in Function:  <b>isnull</b> (<var>x</var>)<var><a name="index-isnull-264"></a></var><br>
 <blockquote><p>Return true if <var>x</var> is a special null matrix, string, or single quoted
 string.  Indexed assignment with such a value on the right-hand side should
 delete array elements.  This function should be used when overloading
@@ -170,42 +180,46 @@ distinguish the cases:
           <br><dt><code>X = []; A(I) = X</code><dd>This should give an error if <code>I</code> is nonempty. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002disempty.html#doc_002disempty">isempty</a>, <a href="doc_002disindex.html#doc_002disindex">isindex</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFisempty.html#XREFisempty">isempty</a>, <a href="XREFisindex.html#XREFisindex">isindex</a>.
+
+        </blockquote></div>
 
 <!-- sizeof libinterp/octave-value/ov.cc -->
-   <p><a name="doc_002dsizeof"></a>
+   <p><a name="XREFsizeof"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>sizeof</b> (<var>val</var>)<var><a name="index-sizeof-256"></a></var><br>
+&mdash; Built-in Function:  <b>sizeof</b> (<var>val</var>)<var><a name="index-sizeof-265"></a></var><br>
 <blockquote><p>Return the size of <var>val</var> in bytes.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dwhos.html#doc_002dwhos">whos</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFwhos.html#XREFwhos">whos</a>.
 
-<!-- size_equal libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dsize_005fequal"></a>
+        </blockquote></div>
+
+<!-- size_equal libinterp/corefcn/data.cc -->
+   <p><a name="XREFsize_005fequal"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>size_equal</b> (<var>a, b, <small class="dots">...</small></var>)<var><a name="index-size_005fequal-257"></a></var><br>
+&mdash; Built-in Function:  <b>size_equal</b> (<var>a, b, <small class="dots">...</small></var>)<var><a name="index-size_005fequal-266"></a></var><br>
 <blockquote><p>Return true if the dimensions of all arguments agree. 
 Trailing singleton dimensions are ignored. 
 Called with a single or no argument, size_equal returns true.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsize.html#doc_002dsize">size</a>, <a href="doc_002dnumel.html#doc_002dnumel">numel</a>, <a href="doc_002dndims.html#doc_002dndims">ndims</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsize.html#XREFsize">size</a>, <a href="XREFnumel.html#XREFnumel">numel</a>, <a href="XREFndims.html#XREFndims">ndims</a>.
 
-<!-- squeeze libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dsqueeze"></a>
+        </blockquote></div>
+
+<!-- squeeze libinterp/corefcn/data.cc -->
+   <p><a name="XREFsqueeze"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>squeeze</b> (<var>x</var>)<var><a name="index-squeeze-258"></a></var><br>
+&mdash; Built-in Function:  <b>squeeze</b> (<var>x</var>)<var><a name="index-squeeze-267"></a></var><br>
 <blockquote><p>Remove singleton dimensions from <var>x</var> and return the result. 
 Note that for compatibility with <span class="sc">matlab</span>, all objects have
 a minimum of two dimensions and row vectors are left unchanged.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dreshape.html#doc_002dreshape">reshape</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFreshape.html#XREFreshape">reshape</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 1996-2012 John W. Eaton -->

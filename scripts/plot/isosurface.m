@@ -38,9 +38,9 @@
 ## which are three--dimensional arrays with the same size than @var{val}
 ## then the volume data is taken at those given points.
 ##
-## The string input argument "noshare" is only for compatibility and
+## The string input argument @qcode{"noshare"} is only for compatibility and
 ## has no effect.  If given the string input argument
-## "verbose" then print messages to the command line interface about the
+## @qcode{"verbose"} then print messages to the command line interface about the
 ## current progress.
 ##
 ## If called with the input argument @var{col} which is a
@@ -51,7 +51,7 @@
 ##
 ## If called with two or three output arguments then return the
 ## information about the faces @var{f}, vertices @var{v} and color data
-## @var{c} as seperate arrays instead of a single structure array.
+## @var{c} as separate arrays instead of a single structure array.
 ##
 ## If called with no output argument then directly process the
 ## isosurface geometry with the @command{patch} command.
@@ -150,7 +150,7 @@ function varargout = isosurface (varargin)
   endif
   if (calc_colors)
     if (nargout == 2)
-      warning ( "Colors will be calculated, but you did not specify an output argument for it!" );
+      warning ("isosurface: colors will be calculated, but no output argument to receive it.");
     endif
     [fvc.faces, fvc.vertices, fvc.facevertexcdata] = __marching_cube__ (x, y, z, val, iso, colors);
   else
@@ -158,13 +158,13 @@ function varargout = isosurface (varargin)
   endif
 
   if (isempty (fvc.vertices) || isempty (fvc.faces))
-    warning ( "The resulting triangulation is empty" );
+    warning ("isosurface: triangulation is empty");
   endif
 
   switch (nargout)
     case 0
       ## plot the calculated surface
-      newplot ();
+      hax = newplot ();
       if (calc_colors)
         pa = patch ("Faces", fvc.faces, "Vertices", fvc.vertices,
                     "FaceVertexCData", fvc.facevertexcdata,
@@ -174,8 +174,8 @@ function varargout = isosurface (varargin)
                     "FaceColor", "g", "EdgeColor", "k");
       endif
       if (! ishold ())
-        set (gca (), "view", [-37.5, 30],
-             "xgrid", "on", "ygrid", "on", "zgrid", "on");
+        set (hax, "view", [-37.5, 30],
+                  "xgrid", "on", "ygrid", "on", "zgrid", "on");
       endif
     case 1
       varargout = {fvc};
@@ -195,17 +195,20 @@ endfunction
 %! [x,y,z] = meshgrid (-2:0.5:2, -2:0.5:2, -2:0.5:2);
 %! v = x.^2 + y.^2 + z.^2;
 %! isosurface (x, y, z, v, 1);
+%! title ('isosurface of a sphere');
 
 %!shared x, y, z, val
-%! [x, y, z]  = meshgrid (0:1, 0:1, 0:1); %% Points for single
-%! val        = [0, 0; 0, 0];             %% cube and a 3-D
-%! val(:,:,2) = [0, 0; 1, 0];             %% array of values
+%! [x, y, z]  = meshgrid (0:1, 0:1, 0:1); # Points for single
+%! val        = [0, 0; 0, 0];             # cube and a 3-D
+%! val(:,:,2) = [0, 0; 1, 0];             # array of values
+
 %!test
 %! fv = isosurface (x, y, z, val, 0.3);
 %! assert (isfield (fv, "vertices"), true);
 %! assert (isfield (fv, "faces"), true);
 %! assert (size (fv.vertices), [3 3]);
 %! assert (size (fv.faces), [1 3]);
+
 %!test
 %! fvc = isosurface (x, y, z, val, .3, y);
 %! assert (isfield (fvc, "vertices"), true);
@@ -214,10 +217,12 @@ endfunction
 %! assert (size (fvc.vertices), [3 3]);
 %! assert (size (fvc.faces), [1 3]);
 %! assert (size (fvc.facevertexcdata), [3 1]);
+
 %!test
 %! [f, v] = isosurface (x, y, z, val, .3);
 %! assert (size (f), [1 3]);
 %! assert (size (v), [3 3]);
+
 %!test
 %! [f, v, c] = isosurface (x, y, z, val, .3, y);
 %! assert (size (f), [1 3]);

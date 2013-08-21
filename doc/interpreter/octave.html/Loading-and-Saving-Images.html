@@ -33,9 +33,8 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Image-Processing.html#Image-Processing"
 <h3 class="section">32.1 Loading and Saving Images</h3>
 
 <p>The first step in most image processing tasks is to load an image
-into Octave.  This is done using the <code>imread</code> function, which uses the
-<code>GraphicsMagick</code> library for reading.  This means a vast number of image
-formats is supported.  The <code>imwrite</code> function is the corresponding function
+into Octave which is done with the <code>imread</code> function. 
+The <code>imwrite</code> function is the corresponding function
 for writing images to the disk.
 
    <p>In summary, most image processing code will follow the structure of this code
@@ -45,84 +44,125 @@ for writing images to the disk.
      imwrite (J, "my_output_image.img");
 </pre>
    <!-- imread scripts/image/imread.m -->
-   <p><a name="doc_002dimread"></a>
+   <p><a name="XREFimread"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>img</var>, <var>map</var>, <var>alpha</var>] = <b>imread</b> (<var>filename</var>)<var><a name="index-imread-3112"></a></var><br>
+&mdash; Function File: [<var>img</var>, <var>map</var>, <var>alpha</var>] = <b>imread</b> (<var>filename</var>)<var><a name="index-imread-3286"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>imread</b> (<var>filename, ext</var>)<var><a name="index-imread-3287"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>imread</b> (<var>url</var>)<var><a name="index-imread-3288"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>imread</b> (<var><small class="dots">...</small>, idx</var>)<var><a name="index-imread-3289"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>imread</b> (<var><small class="dots">...</small>, param1, val1, <small class="dots">...</small></var>)<var><a name="index-imread-3290"></a></var><br>
 <blockquote><p>Read images from various file formats.
 
-        <p>The size and numeric class of the output depends on the
+        <p>Reads an image as a matrix from the file <var>filename</var>.  If there is
+no file <var>filename</var>, and <var>ext</var> was specified, it will look for
+a file named <var>filename</var> and extension <var>ext</var>, i.e., a file named
+<var>filename</var>.<var>ext</var>.
+
+        <p>The size and class of the output depends on the
 format of the image.  A color image is returned as an
 MxNx3 matrix.  Gray-level and black-and-white images are
-of size MxN. 
-The color depth of the image determines the numeric
-class of the output: "uint8" or "uint16" for gray
-and color, and "logical" for black and white.
+of size MxN.  Multipage images will have an additional 4th
+dimension. 
+The bit depth of the image determines the
+class of the output: <code>"uint8"</code> or <code>"uint16"</code> for gray
+and color, and <code>"logical"</code> for black and white. 
+Note that indexed images always return the indexes for a colormap,
+independent if <var>map</var> is a requested output.  To obtain the actual
+RGB image, use <code>ind2rgb</code>. 
+See the Octave manual for more information in representing images.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dimwrite.html#doc_002dimwrite">imwrite</a>, <a href="doc_002dimfinfo.html#doc_002dimfinfo">imfinfo</a>. 
-</p></blockquote></div>
+        <p>Some file formats, such as TIFF and GIF, are able to store multiple
+images in a single file.  <var>idx</var> can be a scalar or vector
+specifying the index of the images to read.  By default, Octave
+will only read the first page.
+
+        <p>Depending on the file format, it is possible to configure the reading
+of images with <var>param</var>, <var>val</var> pairs.  The following options
+are supported:
+
+          <dl>
+<dt>&lsquo;<samp><code>"Frames"</code><span class="samp"> or </span><code>"Index"</code></samp>&rsquo;<dd>This is an alternative method to specify <var>idx</var>.  When specifying it
+in this way, its value can also be the string <code>"all"</code>.
+
+          <br><dt>&lsquo;<samp><code>"Info"</code></samp>&rsquo;<dd>This option exists for <span class="sc">matlab</span> compatibility and has no effect.  For
+maximum performance while reading multiple images from a single file,
+use the Index option.
+
+          <br><dt>&lsquo;<samp><code>"PixelRegion"</code></samp>&rsquo;<dd>Controls the image region that is read.  Takes as value a cell array
+with two arrays of 3 elements <code>{</code><var>rows</var> <var>cols</var><code>}</code>.  The
+elements in the array are the start, increment and end pixel to be
+read.  If the increment value is omitted, defaults to 1. 
+</dl>
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimwrite.html#XREFimwrite">imwrite</a>, <a href="XREFimfinfo.html#XREFimfinfo">imfinfo</a>, <a href="XREFimformats.html#XREFimformats">imformats</a>.
+
+        </blockquote></div>
 
 <!-- imwrite scripts/image/imwrite.m -->
-   <p><a name="doc_002dimwrite"></a>
+   <p><a name="XREFimwrite"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>imwrite</b> (<var>img, filename</var>)<var><a name="index-imwrite-3113"></a></var><br>
-&mdash; Function File:  <b>imwrite</b> (<var>img, filename, fmt</var>)<var><a name="index-imwrite-3114"></a></var><br>
-&mdash; Function File:  <b>imwrite</b> (<var>img, filename, fmt, p1, v1, <small class="dots">...</small></var>)<var><a name="index-imwrite-3115"></a></var><br>
-&mdash; Function File:  <b>imwrite</b> (<var>img, map, filename, <small class="dots">...</small></var>)<var><a name="index-imwrite-3116"></a></var><br>
+&mdash; Function File:  <b>imwrite</b> (<var>img, filename</var>)<var><a name="index-imwrite-3291"></a></var><br>
+&mdash; Function File:  <b>imwrite</b> (<var>img, filename, ext</var>)<var><a name="index-imwrite-3292"></a></var><br>
+&mdash; Function File:  <b>imwrite</b> (<var>img, map, filename</var>)<var><a name="index-imwrite-3293"></a></var><br>
+&mdash; Function File:  <b>imwrite</b> (<var><small class="dots">...</small>, param1, val1, <small class="dots">...</small></var>)<var><a name="index-imwrite-3294"></a></var><br>
 <blockquote><p>Write images in various file formats.
 
-        <p>If <var>fmt</var> is not supplied, the file extension of <var>filename</var> is used
-to determine the format.
+        <p>The image <var>img</var> can be a binary, grayscale, RGB, or multi-dimensional
+image.  The size and class of <var>img</var> should be the same as what should
+be expected when reading it with <code>imread</code>: the 3rd and 4th dimensions
+reserved for color space, and multiple pages respectively.  If it's an
+indexed image, the colormap <var>map</var> must also be specified.
 
-        <p>The parameter-value pairs (<var>p1</var>, <var>v1</var>, <small class="dots">...</small>) are optional. 
-Currently the following options are supported for <tt>JPEG</tt> images:
+        <p>If <var>ext</var> is not supplied, the file extension of <var>filename</var> is used
+to determine the format.  The actual supported formats are dependent on
+options made during the build of Octave.  Use <code>imformats</code> to check
+the support of the different image formats.
+
+        <p>Depending on the file format, it is possible to configure the writing
+of images with <var>param</var>, <var>val</var> pairs.  The following options
+are supported:
 
           <dl>
 <dt>&lsquo;<samp><span class="samp">Quality</span></samp>&rsquo;<dd>Set the quality of the compression.  The value should be an
 integer between 0 and 100, with larger values indicating higher visual
-quality and lower compression. 
-</dl>
+quality and lower compression.  Defaults to 75.
 
-        <p><strong>Supported Formats</strong>
-        <p><table summary=""><tr align="left"><th valign="top" width="33%">Extension </th><th valign="top" width="66%">Format
-<br></th></tr><tr align="left"><td valign="top" width="33%">bmp </td><td valign="top" width="66%">Windows Bitmap
-<br></td></tr><tr align="left"><td valign="top" width="33%">gif </td><td valign="top" width="66%">Graphics Interchange Format
-<br></td></tr><tr align="left"><td valign="top" width="33%">jpg and jpeg </td><td valign="top" width="66%">Joint Photographic Experts Group
-<br></td></tr><tr align="left"><td valign="top" width="33%">pbm </td><td valign="top" width="66%">Portable Bitmap
-<br></td></tr><tr align="left"><td valign="top" width="33%">pcx </td><td valign="top" width="66%">
-<br></td></tr><tr align="left"><td valign="top" width="33%">pgm </td><td valign="top" width="66%">Portable Graymap
-<br></td></tr><tr align="left"><td valign="top" width="33%">png </td><td valign="top" width="66%">Portable Network Graphics
-<br></td></tr><tr align="left"><td valign="top" width="33%">pnm </td><td valign="top" width="66%">Portable Anymap
-<br></td></tr><tr align="left"><td valign="top" width="33%">ppm </td><td valign="top" width="66%">Portable Pixmap
-<br></td></tr><tr align="left"><td valign="top" width="33%">ras </td><td valign="top" width="66%">Sun Raster
-<br></td></tr><tr align="left"><td valign="top" width="33%">tif and tiff </td><td valign="top" width="66%">Tagged Image File Format
-<br></td></tr><tr align="left"><td valign="top" width="33%">xwd </td><td valign="top" width="66%">X11 Dump
-        <br></td></tr></table>
+          <br><dt>&lsquo;<samp><span class="samp">WriteMode</span></samp>&rsquo;<dd>Some file formats, such as TIFF and GIF, are able to store multiple
+images in a single file.  This option specifies if <var>img</var> should be
+appended to the file (if it exists) or if a new file should be created
+for it (possibly overwriting an existing file).  The value should be
+the string <code>"Overwrite"</code> (default), or <code>"Append"</code>.
 
-        <p><strong>Unsupported Formats</strong>
-        <p><table summary=""><tr align="left"><th valign="top" width="33%">Extension </th><th valign="top" width="66%">Format
-<br></th></tr><tr align="left"><td valign="top" width="33%">hdf </td><td valign="top" width="66%">Hierarchical Data Format V4
-<br></td></tr><tr align="left"><td valign="top" width="33%">jp2 and jpx </td><td valign="top" width="66%">Joint Photographic Experts Group 2000
-        <br></td></tr></table>
+          <p>Despite this option, the most efficient method of writing a multipage
+image is to pass a 4 dimensional <var>img</var> to <code>imwrite</code>, the
+same matrix that could be expected when using <code>imread</code> with the
+option <code>"Index"</code> set to <code>"all"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dimread.html#doc_002dimread">imread</a>, <a href="doc_002dimfinfo.html#doc_002dimfinfo">imfinfo</a>. 
-</p></blockquote></div>
+        </dl>
 
-<!-- IMAGE_PATH libinterp/interpfcn/defaults.cc -->
-   <p><a name="doc_002dIMAGE_005fPATH"></a>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimread.html#XREFimread">imread</a>, <a href="XREFimfinfo.html#XREFimfinfo">imfinfo</a>, <a href="XREFimformats.html#XREFimformats">imformats</a>.
+
+        </blockquote></div>
+
+<!-- IMAGE_PATH libinterp/corefcn/defaults.cc -->
+   <p><a name="XREFIMAGE_005fPATH"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>IMAGE_PATH</b> ()<var><a name="index-IMAGE_005fPATH-3117"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>IMAGE_PATH</b> (<var>new_val</var>)<var><a name="index-IMAGE_005fPATH-3118"></a></var><br>
-&mdash; Built-in Function:  <b>IMAGE_PATH</b> (<var>new_val, "local"</var>)<var><a name="index-IMAGE_005fPATH-3119"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>IMAGE_PATH</b> ()<var><a name="index-IMAGE_005fPATH-3295"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>IMAGE_PATH</b> (<var>new_val</var>)<var><a name="index-IMAGE_005fPATH-3296"></a></var><br>
+&mdash; Built-in Function:  <b>IMAGE_PATH</b> (<var>new_val, "local"</var>)<var><a name="index-IMAGE_005fPATH-3297"></a></var><br>
 <blockquote><p>Query or set the internal variable that specifies a colon separated
 list of directories in which to search for image files.
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
-</p></blockquote></div>
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFEXEC_005fPATH.html#XREFEXEC_005fPATH">EXEC_PATH</a>, <a href="XREFOCTAVE_005fHOME.html#XREFOCTAVE_005fHOME">OCTAVE_HOME</a>.
+
+        </blockquote></div>
 
    <p>It is possible to get information about an image file on disk, without actually
 reading it into Octave.  This is done using the <code>imfinfo</code> function which
@@ -130,16 +170,20 @@ provides read access to many of the parameters stored in the header of the image
 file.
 
 <!-- imfinfo scripts/image/imfinfo.m -->
-   <p><a name="doc_002dimfinfo"></a>
+   <p><a name="XREFimfinfo"></a>
 
 <div class="defun">
-&mdash; Function File: <var>info</var> = <b>imfinfo</b> (<var>filename</var>)<var><a name="index-imfinfo-3120"></a></var><br>
-&mdash; Function File: <var>info</var> = <b>imfinfo</b> (<var>url</var>)<var><a name="index-imfinfo-3121"></a></var><br>
+&mdash; Function File: <var>info</var> = <b>imfinfo</b> (<var>filename</var>)<var><a name="index-imfinfo-3298"></a></var><br>
+&mdash; Function File: <var>info</var> = <b>imfinfo</b> (<var>filename, ext</var>)<var><a name="index-imfinfo-3299"></a></var><br>
+&mdash; Function File: <var>info</var> = <b>imfinfo</b> (<var>url</var>)<var><a name="index-imfinfo-3300"></a></var><br>
 <blockquote><p>Read image information from a file.
 
         <p><code>imfinfo</code> returns a structure containing information about the image
-stored in the file <var>filename</var>.  The output structure contains the
-following fields.
+stored in the file <var>filename</var>.  If there is no file <var>filename</var>,
+and <var>ext</var> was specified, it will look for a file named <var>filename</var>
+and extension <var>ext</var>, i.e., a file named <var>filename</var>.<var>ext</var>.
+
+        <p>The output structure <var>info</var> contains the following fields:
 
           <dl>
 <dt>&lsquo;<samp><span class="samp">Filename</span></samp>&rsquo;<dd>The full name of the image file.
@@ -196,8 +240,79 @@ red/green/blue components without loss of accuracy).
           <br><dt>&lsquo;<samp><span class="samp">View</span></samp>&rsquo;<dd>FlashPix viewing parameters. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dimread.html#doc_002dimread">imread</a>, <a href="doc_002dimwrite.html#doc_002dimwrite">imwrite</a>, <a href="doc_002dimshow.html#doc_002dimshow">imshow</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimread.html#XREFimread">imread</a>, <a href="XREFimwrite.html#XREFimwrite">imwrite</a>, <a href="XREFimshow.html#XREFimshow">imshow</a>, <a href="XREFimformats.html#XREFimformats">imformats</a>.
+
+        </blockquote></div>
+
+   <p>By default, Octave's image IO functions (<code>imread</code>, <code>imwrite</code>,
+and <code>imfinfo</code>) use the <code>GraphicsMagick</code> library for their
+operations.  This means a vast number of image formats is supported
+but considering the large amount of image formats in science and
+its commonly closed nature, it is impossible to have a library
+capable of reading them all.  Because of this, the function
+<code>imformats</code> keeps a configurable list of available formats,
+their extensions, and what functions should the image IO functions
+use.  This allows to expand Octave's image IO capabilities by
+creating functions aimed at acting on specific file formats.
+
+   <p>While it would be possible to call the extra functions directly,
+properly configuring Octave with <code>imformats</code> allows to keep a
+consistent code that is abstracted from file formats.
+
+   <p>It is important to note that a file format is not actually defined by its
+file extension and that <code>GraphicsMagick</code> is capable to read and write
+more file formats than the ones listed by <code>imformats</code>.  What this
+means is that even with an incorrect or missing extension the image may
+still be read correctly, and that even unlisted formats are not necessarily
+unsupported.
+
+<!-- imformats scripts/image/imformats.m -->
+   <p><a name="XREFimformats"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>imformats</b> ()<var><a name="index-imformats-3301"></a></var><br>
+&mdash; Function File: <var>formats</var> = <b>imformats</b> (<var>ext</var>)<var><a name="index-imformats-3302"></a></var><br>
+&mdash; Function File: <var>formats</var> = <b>imformats</b> (<var>format</var>)<var><a name="index-imformats-3303"></a></var><br>
+&mdash; Function File: <var>formats</var> = <b>imformats</b> (<var>"add", format</var>)<var><a name="index-imformats-3304"></a></var><br>
+&mdash; Function File: <var>formats</var> = <b>imformats</b> (<var>"remove", ext</var>)<var><a name="index-imformats-3305"></a></var><br>
+&mdash; Function File: <var>formats</var> = <b>imformats</b> (<var>"update", ext, format</var>)<var><a name="index-imformats-3306"></a></var><br>
+&mdash; Function File: <var>formats</var> = <b>imformats</b> (<var>"factory"</var>)<var><a name="index-imformats-3307"></a></var><br>
+<blockquote><p>Manage supported image formats.
+
+        <p><var>formats</var> is a structure with information about each supported file
+format, or from a specific format <var>ext</var>, the value displayed on the
+field <code>ext</code>.  It contains the following fields:
+
+          <dl>
+<dt>ext<dd>The name of the file format.  This may match the file extension but Octave
+will automatically detect the file format.
+
+          <br><dt>description<dd>A long description of the file format.
+
+          <br><dt>isa<dd>A function handle to confirm if a file is of the specified format.
+
+          <br><dt>write<dd>A function handle to write if a file is of the specified format.
+
+          <br><dt>read<dd>A function handle to open files the specified format.
+
+          <br><dt>info<dd>A function handle to obtain image information of the specified format.
+
+          <br><dt>alpha<dd>Logical value if format supports alpha channel (transparency or matte).
+
+          <br><dt>multipage<dd>Logical value if format supports multipage (multiple images per file). 
+</dl>
+
+        <p>It is possible to change the way Octave manages file formats with the options
+<code>"add"</code>, <code>"remove"</code>, and <code>"update"</code>, and supplying a
+structure <var>format</var> with the required fields.  The option
+<code>"factory"</code> resets the configuration to the default.
+
+        <p>This can be used by Octave packages to extend the image reading capabilities
+Octave, through use of the PKG_ADD and PKG_DEL commands.
+
+     <p class="noindent"><strong>See also:</strong> <a href="XREFimfinfo.html#XREFimfinfo">imfinfo</a>, <a href="XREFimread.html#XREFimread">imread</a>, <a href="XREFimwrite.html#XREFimwrite">imwrite</a>.
+
+        </blockquote></div>
 
    </body></html>
 

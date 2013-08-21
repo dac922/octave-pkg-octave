@@ -47,8 +47,6 @@ public:
   file_editor (QWidget *p);
   ~file_editor (void);
 
-  void connect_visibility_changed (void);
-
   void loadFile (const QString& fileName);
 
   QMenu *get_mru_menu (void) { return _mru_file_menu; }
@@ -59,6 +57,7 @@ public:
   void handle_enter_debug_mode (void);
   void handle_exit_debug_mode (void);
 
+  void check_actions (void);
 signals:
 
   void fetab_settings_changed (const QSettings *settings);
@@ -99,7 +98,6 @@ signals:
 
 public slots:
   void focus (void);
-  void handle_visibility (bool visible);
 
   void request_new_file (const QString& commands);
   void request_new_script (const QString& commands);
@@ -155,6 +153,14 @@ public slots:
   // Tells the editor to react on changed settings.
   void notice_settings (const QSettings *settings);
 
+  // Tells the ditor to dis- or enable some shortcuts
+  void set_shortcuts (bool set_shortcuts);
+
+
+protected slots:
+  void copyClipboard ();
+  void pasteClipboard ();
+
 private slots:
 
   void request_open_file (const QString& fileName, int line = -1,
@@ -177,10 +183,36 @@ private:
   QMenuBar *_menu_bar;
   QToolBar *_tool_bar;
   QMenu *_debug_menu;
+
+  QAction *_comment_selection_action;
+  QAction *_uncomment_selection_action;
+
   QAction *_copy_action;
   QAction *_cut_action;
+  QAction *_paste_action;
+
+  QAction *_find_action;
+  QAction *_goto_line_action;
+
+  QAction *_next_bookmark_action;
+  QAction *_previous_bookmark_action;
+  QAction *_toggle_bookmark_action;
+  QAction * _remove_bookmark_action;
+
+  QAction *_print_action;
   QAction *_run_action;
+
+  QAction *_save_action;
+  QAction *_save_as_action;
+  QAction *_close_action;
+  QAction *_close_all_action;
+  QAction *_close_others_action;
+
+  QAction *_redo_action;
+  QAction *_undo_action;
+
   QTabWidget *_tab_widget;
+
   int _marker_breakpoint;
 
   enum { MaxMRUFiles = 10 };

@@ -6,7 +6,7 @@
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Creating-Strings.html#Creating-Strings" title="Creating Strings">
-<link rel="next" href="Conversion-of-Numerical-Data-to-Strings.html#Conversion-of-Numerical-Data-to-Strings" title="Conversion of Numerical Data to Strings">
+<link rel="next" href="Converting-Numerical-Data-to-Strings.html#Converting-Numerical-Data-to-Strings" title="Converting Numerical Data to Strings">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -25,19 +25,31 @@
 <div class="node">
 <a name="Concatenating-Strings"></a>
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Conversion-of-Numerical-Data-to-Strings.html#Conversion-of-Numerical-Data-to-Strings">Conversion of Numerical Data to Strings</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Converting-Numerical-Data-to-Strings.html#Converting-Numerical-Data-to-Strings">Converting Numerical Data to Strings</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="Creating-Strings.html#Creating-Strings">Creating Strings</a>
 <hr>
 </div>
 
 <h4 class="subsection">5.3.1 Concatenating Strings</h4>
 
-<p>It has been shown above that strings can be concatenated using matrix notation
-(see <a href="Strings.html#Strings">Strings</a>, <a href="Character-Arrays.html#Character-Arrays">Character Arrays</a>).  Apart from that, there are several
-functions to concatenate string objects: <code>char</code>,
-<code>strvcat</code>, <code>strcat</code> and <code>cstrcat</code>.  In addition, the general
-purpose concatenation functions can be used: see <a href="doc_002dcat.html#doc_002dcat">cat</a>,
-<a href="doc_002dhorzcat.html#doc_002dhorzcat">horzcat</a> and <a href="doc_002dvertcat.html#doc_002dvertcat">vertcat</a>.
+<p>Strings can be concatenated using matrix notation
+(see <a href="Strings.html#Strings">Strings</a>, <a href="Character-Arrays.html#Character-Arrays">Character Arrays</a>) which is often the most natural
+method.  For example:
+
+<pre class="example">     fullname = [fname ".txt"];
+     email = ["&lt;" user "@" domain "&gt;"];
+</pre>
+   <p class="noindent">In each case it is easy to see what the final string will look like.  This
+method is also the most efficient.  When using matrix concatenation the parser
+immediately begins joining the strings without having to process
+the overhead of a function call and the input validation of the associated
+function.
+
+   <p>Nevertheless, there are several other functions for concatenating string
+objects which can be useful in specific circumstances: <code>char</code>,
+<code>strvcat</code>, <code>strcat</code>, and <code>cstrcat</code>.  Finally, the general
+purpose concatenation functions can be used: see <a href="XREFcat.html#XREFcat">cat</a>,
+<a href="XREFhorzcat.html#XREFhorzcat">horzcat</a>, and <a href="XREFvertcat.html#XREFvertcat">vertcat</a>.
 
      <ul>
 <li>All string concatenation functions except <code>cstrcat</code>
@@ -109,13 +121,13 @@ from the internal representation of the strings in a string array
 </ul>
 
 <!-- char libinterp/corefcn/strfns.cc -->
-   <p><a name="doc_002dchar"></a>
+   <p><a name="XREFchar"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>char</b> (<var>x</var>)<var><a name="index-char-351"></a></var><br>
-&mdash; Built-in Function:  <b>char</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-char-352"></a></var><br>
-&mdash; Built-in Function:  <b>char</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-char-353"></a></var><br>
-&mdash; Built-in Function:  <b>char</b> (<var>cell_array</var>)<var><a name="index-char-354"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>x</var>)<var><a name="index-char-361"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-char-362"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-char-363"></a></var><br>
+&mdash; Built-in Function:  <b>char</b> (<var>cell_array</var>)<var><a name="index-char-364"></a></var><br>
 <blockquote><p>Create a string array from one or more numeric matrices, character
 matrices, or cell arrays.  Arguments are concatenated vertically. 
 The returned values are padded with blanks as needed to make each row
@@ -140,17 +152,18 @@ For example:
                  "str1   "
                  "half   "]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>, <a href="doc_002dcellstr.html#doc_002dcellstr">cellstr</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrvcat.html#XREFstrvcat">strvcat</a>, <a href="XREFcellstr.html#XREFcellstr">cellstr</a>.
+
+        </blockquote></div>
 
 <!-- strvcat libinterp/corefcn/strfns.cc -->
-   <p><a name="doc_002dstrvcat"></a>
+   <p><a name="XREFstrvcat"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strvcat</b> (<var>x</var>)<var><a name="index-strvcat-355"></a></var><br>
-&mdash; Built-in Function:  <b>strvcat</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-strvcat-356"></a></var><br>
-&mdash; Built-in Function:  <b>strvcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strvcat-357"></a></var><br>
-&mdash; Built-in Function:  <b>strvcat</b> (<var>cell_array</var>)<var><a name="index-strvcat-358"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>x</var>)<var><a name="index-strvcat-365"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>x, <small class="dots">...</small></var>)<var><a name="index-strvcat-366"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strvcat-367"></a></var><br>
+&mdash; Built-in Function:  <b>strvcat</b> (<var>cell_array</var>)<var><a name="index-strvcat-368"></a></var><br>
 <blockquote><p>Create a character array from one or more numeric matrices, character
 matrices, or cell arrays.  Arguments are concatenated vertically. 
 The returned values are padded with blanks as needed to make each row
@@ -174,20 +187,21 @@ For example:
                     "str1   "
                     "half   "]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrcat.html#doc_002dstrcat">strcat</a>, <a href="doc_002dcstrcat.html#doc_002dcstrcat">cstrcat</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFchar.html#XREFchar">char</a>, <a href="XREFstrcat.html#XREFstrcat">strcat</a>, <a href="XREFcstrcat.html#XREFcstrcat">cstrcat</a>.
+
+        </blockquote></div>
 
 <!-- strcat scripts/strings/strcat.m -->
-   <p><a name="doc_002dstrcat"></a>
+   <p><a name="XREFstrcat"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>strcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strcat-359"></a></var><br>
+&mdash; Function File:  <b>strcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-strcat-369"></a></var><br>
 <blockquote><p>Return a string containing all the arguments concatenated
 horizontally.  If the arguments are cells strings,  <code>strcat</code>
 returns a cell string with the individual cells concatenated. 
 For numerical input, each element is converted to the
 corresponding ASCII character.  Trailing white space for each of
-the inputs (<var>s1</var>, <var>S2</var>, <small class="dots">...</small>) is eliminated before they
+the inputs (<var>s1</var>, <var>s2</var>, <small class="dots">...</small>) is eliminated before they
 are concatenated.
 
         <p>For example:
@@ -215,14 +229,15 @@ are concatenated.
                     [2,1] = cdecdecde
                   }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dcstrcat.html#doc_002dcstrcat">cstrcat</a>, <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFcstrcat.html#XREFcstrcat">cstrcat</a>, <a href="XREFchar.html#XREFchar">char</a>, <a href="XREFstrvcat.html#XREFstrvcat">strvcat</a>.
+
+        </blockquote></div>
 
 <!-- cstrcat scripts/strings/cstrcat.m -->
-   <p><a name="doc_002dcstrcat"></a>
+   <p><a name="XREFcstrcat"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cstrcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-cstrcat-360"></a></var><br>
+&mdash; Function File:  <b>cstrcat</b> (<var>s1, s2, <small class="dots">...</small></var>)<var><a name="index-cstrcat-370"></a></var><br>
 <blockquote><p>Return a string containing all the arguments concatenated
 horizontally.  Trailing white space is preserved.  For example:
 
@@ -234,8 +249,9 @@ horizontally.  Trailing white space is preserved.  For example:
                 &rArr; "ab ab ab "
                    "cdecdecde"
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrcat.html#doc_002dstrcat">strcat</a>, <a href="doc_002dchar.html#doc_002dchar">char</a>, <a href="doc_002dstrvcat.html#doc_002dstrvcat">strvcat</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrcat.html#XREFstrcat">strcat</a>, <a href="XREFchar.html#XREFchar">char</a>, <a href="XREFstrvcat.html#XREFstrvcat">strvcat</a>.
+
+        </blockquote></div>
 
    </body></html>
 

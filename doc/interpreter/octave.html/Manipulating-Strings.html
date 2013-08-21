@@ -49,10 +49,10 @@ all blank characters with underscores.
 general regular expressions, the following functions come with Octave.
 
 <!-- deblank scripts/strings/deblank.m -->
-   <p><a name="doc_002ddeblank"></a>
+   <p><a name="XREFdeblank"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>deblank</b> (<var>s</var>)<var><a name="index-deblank-375"></a></var><br>
+&mdash; Function File:  <b>deblank</b> (<var>s</var>)<var><a name="index-deblank-385"></a></var><br>
 <blockquote><p>Remove trailing whitespace and nulls from <var>s</var>.  If <var>s</var>
 is a matrix, <var>deblank</var> trims each row to the length of longest
 string.  If <var>s</var> is a cell array of strings, operate recursively on each
@@ -66,14 +66,15 @@ string element.
           deblank ([" abc   "; "   def   "])
                &rArr;  [" abc  " ; "   def"]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrtrim.html#doc_002dstrtrim">strtrim</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrtrim.html#XREFstrtrim">strtrim</a>.
+
+        </blockquote></div>
 
 <!-- strtrim scripts/strings/strtrim.m -->
-   <p><a name="doc_002dstrtrim"></a>
+   <p><a name="XREFstrtrim"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>strtrim</b> (<var>s</var>)<var><a name="index-strtrim-376"></a></var><br>
+&mdash; Function File:  <b>strtrim</b> (<var>s</var>)<var><a name="index-strtrim-386"></a></var><br>
 <blockquote><p>Remove leading and trailing whitespace from <var>s</var>.  If
 <var>s</var> is a matrix, <var>strtrim</var> trims each row to the length of
 longest string.  If <var>s</var> is a cell array of strings, operate recursively
@@ -85,14 +86,15 @@ on each string element.  For example:
           strtrim ([" abc   "; "   def   "])
                &rArr;  ["abc  "  ; "  def"]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002ddeblank.html#doc_002ddeblank">deblank</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFdeblank.html#XREFdeblank">deblank</a>.
+
+        </blockquote></div>
 
 <!-- strtrunc scripts/strings/strtrunc.m -->
-   <p><a name="doc_002dstrtrunc"></a>
+   <p><a name="XREFstrtrunc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>strtrunc</b> (<var>s, n</var>)<var><a name="index-strtrunc-377"></a></var><br>
+&mdash; Function File:  <b>strtrunc</b> (<var>s, n</var>)<var><a name="index-strtrunc-387"></a></var><br>
 <blockquote><p>Truncate the character string <var>s</var> to length <var>n</var>.  If <var>s</var>
 is a character matrix, then the number of columns is adjusted. 
 If <var>s</var> is a cell array of strings, then the operation is performed
@@ -100,11 +102,11 @@ on each cell element and the new cell array is returned.
 </p></blockquote></div>
 
 <!-- findstr scripts/strings/findstr.m -->
-   <p><a name="doc_002dfindstr"></a>
+   <p><a name="XREFfindstr"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>findstr</b> (<var>s, t</var>)<var><a name="index-findstr-378"></a></var><br>
-&mdash; Function File:  <b>findstr</b> (<var>s, t, overlap</var>)<var><a name="index-findstr-379"></a></var><br>
+&mdash; Function File:  <b>findstr</b> (<var>s, t</var>)<var><a name="index-findstr-388"></a></var><br>
+&mdash; Function File:  <b>findstr</b> (<var>s, t, overlap</var>)<var><a name="index-findstr-389"></a></var><br>
 <blockquote><p>Return the vector of all positions in the longer of the two strings
 <var>s</var> and <var>t</var> where an occurrence of the shorter of the two starts. 
 If the optional argument <var>overlap</var> is true, the returned vector
@@ -118,32 +120,34 @@ can include overlapping positions (this is the default).  For example:
         <p><strong>Caution:</strong> <code>findstr</code> is scheduled for deprecation.  Use
 <code>strfind</code> in all new code.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrfind.html#doc_002dstrfind">strfind</a>, <a href="doc_002dstrmatch.html#doc_002dstrmatch">strmatch</a>, <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrncmp.html#doc_002dstrncmp">strncmp</a>, <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>, <a href="doc_002dstrncmpi.html#doc_002dstrncmpi">strncmpi</a>, <a href="doc_002dfind.html#doc_002dfind">find</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstrfind.html#XREFstrfind">strfind</a>, <a href="XREFstrmatch.html#XREFstrmatch">strmatch</a>, <a href="XREFstrcmp.html#XREFstrcmp">strcmp</a>, <a href="XREFstrncmp.html#XREFstrncmp">strncmp</a>, <a href="XREFstrcmpi.html#XREFstrcmpi">strcmpi</a>, <a href="XREFstrncmpi.html#XREFstrncmpi">strncmpi</a>, <a href="XREFfind.html#XREFfind">find</a>.
+
+        </blockquote></div>
 
 <!-- strchr scripts/strings/strchr.m -->
-   <p><a name="doc_002dstrchr"></a>
+   <p><a name="XREFstrchr"></a>
 
 <div class="defun">
-&mdash; Function File: <var>idx</var> = <b>strchr</b> (<var>str, chars</var>)<var><a name="index-strchr-380"></a></var><br>
-&mdash; Function File: <var>idx</var> = <b>strchr</b> (<var>str, chars, n</var>)<var><a name="index-strchr-381"></a></var><br>
-&mdash; Function File: <var>idx</var> = <b>strchr</b> (<var>str, chars, n, direction</var>)<var><a name="index-strchr-382"></a></var><br>
-&mdash; Function File: [<var>i</var>, <var>j</var>] = <b>strchr</b> (<var><small class="dots">...</small></var>)<var><a name="index-strchr-383"></a></var><br>
+&mdash; Function File: <var>idx</var> = <b>strchr</b> (<var>str, chars</var>)<var><a name="index-strchr-390"></a></var><br>
+&mdash; Function File: <var>idx</var> = <b>strchr</b> (<var>str, chars, n</var>)<var><a name="index-strchr-391"></a></var><br>
+&mdash; Function File: <var>idx</var> = <b>strchr</b> (<var>str, chars, n, direction</var>)<var><a name="index-strchr-392"></a></var><br>
+&mdash; Function File: [<var>i</var>, <var>j</var>] = <b>strchr</b> (<var><small class="dots">...</small></var>)<var><a name="index-strchr-393"></a></var><br>
 <blockquote><p>Search for the string <var>str</var> for occurrences of characters from
 the set <var>chars</var>.  The return value(s), as well as the <var>n</var> and
 <var>direction</var> arguments behave identically as in <code>find</code>.
 
         <p>This will be faster than using regexp in most cases.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfind.html#doc_002dfind">find</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfind.html#XREFfind">find</a>.
+
+        </blockquote></div>
 
 <!-- index scripts/strings/index.m -->
-   <p><a name="doc_002dindex"></a>
+   <p><a name="XREFindex"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>index</b> (<var>s, t</var>)<var><a name="index-index-384"></a></var><br>
-&mdash; Function File:  <b>index</b> (<var>s, t, direction</var>)<var><a name="index-index-385"></a></var><br>
+&mdash; Function File:  <b>index</b> (<var>s, t</var>)<var><a name="index-index-394"></a></var><br>
+&mdash; Function File:  <b>index</b> (<var>s, t, direction</var>)<var><a name="index-index-395"></a></var><br>
 <blockquote><p>Return the position of the first occurrence of the string <var>t</var> in the
 string <var>s</var>, or 0 if no occurrence is found.  <var>s</var> may also be a
 string array or cell array of strings.
@@ -153,17 +157,18 @@ string array or cell array of strings.
      <pre class="example">          index ("Teststring", "t")
               &rArr; 4
 </pre>
-        <p>If <var>direction</var> is &lsquo;<samp><span class="samp">"first"</span></samp>&rsquo;, return the first element found. 
-If <var>direction</var> is &lsquo;<samp><span class="samp">"last"</span></samp>&rsquo;, return the last element found.
+        <p>If <var>direction</var> is <code>"first"</code>, return the first element found. 
+If <var>direction</var> is <code>"last"</code>, return the last element found.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfind.html#doc_002dfind">find</a>, <a href="doc_002drindex.html#doc_002drindex">rindex</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfind.html#XREFfind">find</a>, <a href="XREFrindex.html#XREFrindex">rindex</a>.
+
+        </blockquote></div>
 
 <!-- rindex scripts/strings/rindex.m -->
-   <p><a name="doc_002drindex"></a>
+   <p><a name="XREFrindex"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>rindex</b> (<var>s, t</var>)<var><a name="index-rindex-386"></a></var><br>
+&mdash; Function File:  <b>rindex</b> (<var>s, t</var>)<var><a name="index-rindex-396"></a></var><br>
 <blockquote><p>Return the position of the last occurrence of the character string
 <var>t</var> in the character string <var>s</var>, or 0 if no occurrence is
 found.  <var>s</var> may also be a string array or cell array of strings.
@@ -174,17 +179,18 @@ found.  <var>s</var> may also be a string array or cell array of strings.
                &rArr; 6
 </pre>
         <p>The <code>rindex</code> function is equivalent to <code>index</code> with
-<var>direction</var> set to &lsquo;<samp><span class="samp">"last"</span></samp>&rsquo;.
+<var>direction</var> set to <code>"last"</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfind.html#doc_002dfind">find</a>, <a href="doc_002dindex.html#doc_002dindex">index</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfind.html#XREFfind">find</a>, <a href="XREFindex.html#XREFindex">index</a>.
+
+        </blockquote></div>
 
 <!-- strfind libinterp/corefcn/strfind.cc -->
-   <p><a name="doc_002dstrfind"></a>
+   <p><a name="XREFstrfind"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>idx</var> = <b>strfind</b> (<var>str, pattern</var>)<var><a name="index-strfind-387"></a></var><br>
-&mdash; Built-in Function: <var>idx</var> = <b>strfind</b> (<var>cellstr, pattern</var>)<var><a name="index-strfind-388"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>strfind</b> (<var>str, pattern</var>)<var><a name="index-strfind-397"></a></var><br>
+&mdash; Built-in Function: <var>idx</var> = <b>strfind</b> (<var>cellstr, pattern</var>)<var><a name="index-strfind-398"></a></var><br>
 <blockquote><p>Search for <var>pattern</var> in the string <var>str</var> and return the
 starting index of every such occurrence in the vector <var>idx</var>. 
 If there is no such occurrence, or if <var>pattern</var> is longer
@@ -208,40 +214,43 @@ above.  Examples:
                     [1,3] = [](1x0)
                   }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfindstr.html#doc_002dfindstr">findstr</a>, <a href="doc_002dstrmatch.html#doc_002dstrmatch">strmatch</a>, <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>, <a href="doc_002dregexpi.html#doc_002dregexpi">regexpi</a>, <a href="doc_002dfind.html#doc_002dfind">find</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFfindstr.html#XREFfindstr">findstr</a>, <a href="XREFstrmatch.html#XREFstrmatch">strmatch</a>, <a href="XREFregexp.html#XREFregexp">regexp</a>, <a href="XREFregexpi.html#XREFregexpi">regexpi</a>, <a href="XREFfind.html#XREFfind">find</a>.
+
+        </blockquote></div>
 
 <!-- strjoin scripts/strings/strjoin.m -->
-   <p><a name="doc_002dstrjoin"></a>
+   <p><a name="XREFstrjoin"></a>
 
 <div class="defun">
-&mdash; Function File: <var>str</var> = <b>strjoin</b> (<var>cstr</var>)<var><a name="index-strjoin-389"></a></var><br>
-&mdash; Function File: <var>str</var> = <b>strjoin</b> (<var>cstr, delimiter</var>)<var><a name="index-strjoin-390"></a></var><br>
-<blockquote><p>Joins the elements of the cell-string array, <var>cstr</var>, into a single
+&mdash; Function File: <var>str</var> = <b>strjoin</b> (<var>cstr</var>)<var><a name="index-strjoin-399"></a></var><br>
+&mdash; Function File: <var>str</var> = <b>strjoin</b> (<var>cstr, delimiter</var>)<var><a name="index-strjoin-400"></a></var><br>
+<blockquote><p>Join the elements of the cell-string array, <var>cstr</var>, into a single
 string.
 
         <p>If no <var>delimiter</var> is specified, the elements of <var>cstr</var>
-seperated by a space.
+separated by a space.
 
         <p>If <var>delimiter</var> is specified as a string, the cell-string array is
-joined using the string.
+joined using the string.  Escape sequences are supported.
 
         <p>If <var>delimiter</var> is a cell-string array whose length is one less
-than <var>cstr</var>, then the elemennts of <var>cstr</var> are joined by
-interleaving the cell-string elements of <var>delimiter</var>.
+than <var>cstr</var>, then the elements of <var>cstr</var> are joined by
+interleaving the cell-string elements of <var>delimiter</var>.  Escape
+sequences are not supported.
 
      <pre class="example">          strjoin ({'Octave','Scilab','Lush','Yorick'}, '*')
                 &rArr; 'Octave*Scilab*Lush*Yorick'
 </pre>
-        <p class="noindent"><strong>See also:</strong> strsplit. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> strsplit.
+
+        </blockquote></div>
 
 <!-- strmatch scripts/strings/strmatch.m -->
-   <p><a name="doc_002dstrmatch"></a>
+   <p><a name="XREFstrmatch"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>strmatch</b> (<var>s, A</var>)<var><a name="index-strmatch-391"></a></var><br>
-&mdash; Function File:  <b>strmatch</b> (<var>s, A, "exact"</var>)<var><a name="index-strmatch-392"></a></var><br>
+&mdash; Function File:  <b>strmatch</b> (<var>s, A</var>)<var><a name="index-strmatch-401"></a></var><br>
+&mdash; Function File:  <b>strmatch</b> (<var>s, A, "exact"</var>)<var><a name="index-strmatch-402"></a></var><br>
 <blockquote><p>Return indices of entries of <var>A</var> which begin with the string <var>s</var>. 
 The second argument <var>A</var> must be a string, character matrix, or a cell
 array of strings.  If the third argument <code>"exact"</code> is not given, then
@@ -260,18 +269,19 @@ Trailing spaces and nulls in <var>s</var> and <var>A</var> are ignored when matc
                &rArr; [1]
 </pre>
         <p><strong>Caution:</strong> <code>strmatch</code> is scheduled for deprecation.  Use
-<code>strncmp</code> (normal case), or <code>strcmp</code> ("exact" case), or
+<code>strncmp</code> (normal case), or <code>strcmp</code> (<code>"exact"</code> case), or
 <code>regexp</code> in all new code.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrfind.html#doc_002dstrfind">strfind</a>, <a href="doc_002dfindstr.html#doc_002dfindstr">findstr</a>, <a href="doc_002dstrcmp.html#doc_002dstrcmp">strcmp</a>, <a href="doc_002dstrncmp.html#doc_002dstrncmp">strncmp</a>, <a href="doc_002dstrcmpi.html#doc_002dstrcmpi">strcmpi</a>, <a href="doc_002dstrncmpi.html#doc_002dstrncmpi">strncmpi</a>, <a href="doc_002dfind.html#doc_002dfind">find</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFstrfind.html#XREFstrfind">strfind</a>, <a href="XREFfindstr.html#XREFfindstr">findstr</a>, <a href="XREFstrcmp.html#XREFstrcmp">strcmp</a>, <a href="XREFstrncmp.html#XREFstrncmp">strncmp</a>, <a href="XREFstrcmpi.html#XREFstrcmpi">strcmpi</a>, <a href="XREFstrncmpi.html#XREFstrncmpi">strncmpi</a>, <a href="XREFfind.html#XREFfind">find</a>.
+
+        </blockquote></div>
 
 <!-- strtok scripts/strings/strtok.m -->
-   <p><a name="doc_002dstrtok"></a>
+   <p><a name="XREFstrtok"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>tok</var>, <var>rem</var>] = <b>strtok</b> (<var>str</var>)<var><a name="index-strtok-393"></a></var><br>
-&mdash; Function File: [<var>tok</var>, <var>rem</var>] = <b>strtok</b> (<var>str, delim</var>)<var><a name="index-strtok-394"></a></var><br>
+&mdash; Function File: [<var>tok</var>, <var>rem</var>] = <b>strtok</b> (<var>str</var>)<var><a name="index-strtok-403"></a></var><br>
+&mdash; Function File: [<var>tok</var>, <var>rem</var>] = <b>strtok</b> (<var>str, delim</var>)<var><a name="index-strtok-404"></a></var><br>
 <blockquote>
         <p>Find all characters in the string <var>str</var> up to, but not including, the
 first character which is in the string <var>delim</var>.  If <var>rem</var> is
@@ -291,27 +301,27 @@ and returns a cell array of tokens and remainders.
                   tok = 14
                   rem = *27+31
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dindex.html#doc_002dindex">index</a>, <a href="doc_002dstrsplit.html#doc_002dstrsplit">strsplit</a>, <a href="doc_002dstrchr.html#doc_002dstrchr">strchr</a>, <a href="doc_002disspace.html#doc_002disspace">isspace</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFindex.html#XREFindex">index</a>, <a href="XREFstrsplit.html#XREFstrsplit">strsplit</a>, <a href="XREFstrchr.html#XREFstrchr">strchr</a>, <a href="XREFisspace.html#XREFisspace">isspace</a>.
+
+        </blockquote></div>
 
 <!-- strsplit scripts/strings/strsplit.m -->
-   <p><a name="doc_002dstrsplit"></a>
+   <p><a name="XREFstrsplit"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var>s</var>)<var><a name="index-strsplit-395"></a></var><br>
-&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var>s, del</var>)<var><a name="index-strsplit-396"></a></var><br>
-&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var>s, del, collapsedelimiters</var>)<var><a name="index-strsplit-397"></a></var><br>
-&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var><small class="dots">...</small>, name, value</var>)<var><a name="index-strsplit-398"></a></var><br>
-&mdash; Function File: [<var>cstr</var>, <var>matches</var>] = <b>strsplit</b> (<var><small class="dots">...</small></var>)<var><a name="index-strsplit-399"></a></var><br>
+&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var>s</var>)<var><a name="index-strsplit-405"></a></var><br>
+&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var>s, del</var>)<var><a name="index-strsplit-406"></a></var><br>
+&mdash; Function File: [<var>cstr</var>] = <b>strsplit</b> (<var><small class="dots">...</small>, name, value</var>)<var><a name="index-strsplit-407"></a></var><br>
+&mdash; Function File: [<var>cstr</var>, <var>matches</var>] = <b>strsplit</b> (<var><small class="dots">...</small></var>)<var><a name="index-strsplit-408"></a></var><br>
 <blockquote><p>Split the string <var>s</var> using the delimiters specified by <var>del</var>
-and return a cell array of strings.  For a single delimiter, <var>del</var>
-may be a string, or a scalar cell-string.  For multible delimiters,
-<var>del</var> must be a cell-string array.  Unless <var>collapsedelimiters</var> is
-specified to be <var>false</var>, consecutive delimiters are collapsed into one.
+and return a cell-string array of sub-strings.  If a delimiter is not
+specified the string, <var>s</var>, is split at whitespace.  The delimiter,
+<var>del</var> may be a string, a scalar cell-string, or cell-string array. 
+<var>del</var> must be a cell-string array.  By default, consecutive
+delimiters in the input string, <var>s</var>, are collapsed into one.
 
         <p>The second output, <var>matches</var>, returns the delmiters which were matched
-in the original string.  The matched delimiters are uneffected by the
-<var>collapsedelimiters</var>.
+in the original string.
 
         <p>Example:
 
@@ -348,25 +358,17 @@ in the original string.  The matched delimiters are uneffected by the
                       [1,4] =
                       [1,5] = c
                     }
+          
 </pre>
         <p>Supported <var>name</var>/<var>value</var> pair arguments are;
 
           <ul>
-<li><var>collapsedelimiters</var> may take the value of <var>true</var> or <var>false</var>
-with the default being <var>false</var>. 
-<li><var>delimitertype</var> may take the value of <code>legacy</code>,
-<code>simple</code> or <code>regularexpression</code>. 
-If <var>delimitertype</var> is equal to <code>legacy</code>, each individual
-character of <var>del</var> is used to split the input.  For both <code>simple</code>
-and <code>regularexpression</code>, the string is split at the boundaries of the
-delimiter string.  If <var>delimiter</var> is a cell-string, then the string
-is split at the boundaries of each of the cells' strings.  <var>simple</var>
-delimiters may contain escaped characters, but are otherwise treated as
-literal strings.
+<li><var>collapsedelimiters</var> may take the value of <var>true</var> or
+<var>false</var> with the default being <var>false</var>.
 
-          <p>If the specified delimiters are single characters, the default is
-<var>delimitertype</var> is <code>legacy</code>.  Otherwise the default
-<var>delimitertype</var> is <code>simple</code>. 
+          <li><var>delimitertype</var> may take the value of <code>simple</code> or
+<code>regularexpression</code>.  The default is <var>delimitertype</var> is
+<code>simple</code>. 
 </ul>
 
         <p>Example:
@@ -389,16 +391,6 @@ literal strings.
                       [1,5] = c
                     }
           
-          strsplit ("a,,b, c", ", ", false, "delimitertype", "legacy")
-                &rArr;
-                    {
-                      [1,1] = a
-                      [1,2] =
-                      [1,3] = b
-                      [1,4] =
-                      [1,5] = c
-                    }
-          
           strsplit ("a,\t,b, c", {',', '\s'}, "delimitertype", "regularexpression")
                 &rArr;
                     {
@@ -406,19 +398,67 @@ literal strings.
                       [1,2] = b
                       [1,3] = c
                     }
+          
+          strsplit ("a,\t,b, c", {',', ' ', '\t'}, "collapsedelimiters", false)
+                &rArr;
+                    {
+                      [1,1] = a
+                      [1,2] =
+                      [1,3] =
+                      [1,4] = b
+                      [1,5] =
+                      [1,6] = c
+                    }
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrjoin.html#doc_002dstrjoin">strjoin</a>, <a href="doc_002dstrtok.html#doc_002dstrtok">strtok</a>, <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFostrsplit.html#XREFostrsplit">ostrsplit</a>, <a href="XREFstrjoin.html#XREFstrjoin">strjoin</a>, <a href="XREFstrtok.html#XREFstrtok">strtok</a>, <a href="XREFregexp.html#XREFregexp">regexp</a>.
 
-<!-- strread scripts/io/strread.m -->
-   <p><a name="doc_002dstrread"></a>
+        </blockquote></div>
+
+<!-- ostrsplit scripts/strings/ostrsplit.m -->
+   <p><a name="XREFostrsplit"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str</var>)<var><a name="index-strread-400"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format</var>)<var><a name="index-strread-401"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format, format_repeat</var>)<var><a name="index-strread-402"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-strread-403"></a></var><br>
-&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format, format_repeat, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-strread-404"></a></var><br>
+&mdash; Function File: [<var>cstr</var>] = <b>ostrsplit</b> (<var>s, sep</var>)<var><a name="index-ostrsplit-409"></a></var><br>
+&mdash; Function File: [<var>cstr</var>] = <b>ostrsplit</b> (<var>s, sep, strip_empty</var>)<var><a name="index-ostrsplit-410"></a></var><br>
+<blockquote><p>Split the string <var>s</var> using one or more separators <var>sep</var> and return
+a cell array of strings.  Consecutive separators and separators at
+boundaries result in empty strings, unless <var>strip_empty</var> is true. 
+The default value of <var>strip_empty</var> is false.
+
+        <p>2-D character arrays are split at separators and at the original column
+boundaries.
+
+        <p>Example:
+
+     <pre class="example">          ostrsplit ("a,b,c", ",")
+                &rArr;
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = c
+                    }
+          
+          ostrsplit (["a,b" ; "cde"], ",")
+                &rArr;
+                    {
+                      [1,1] = a
+                      [1,2] = b
+                      [1,3] = cde
+                    }
+</pre>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrsplit.html#XREFstrsplit">strsplit</a>, <a href="XREFstrtok.html#XREFstrtok">strtok</a>.
+
+        </blockquote></div>
+
+<!-- strread scripts/io/strread.m -->
+   <p><a name="XREFstrread"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str</var>)<var><a name="index-strread-411"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format</var>)<var><a name="index-strread-412"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format, format_repeat</var>)<var><a name="index-strread-413"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-strread-414"></a></var><br>
+&mdash; Function File: [<var>a</var>, <small class="dots">...</small>] = <b>strread</b> (<var>str, format, format_repeat, prop1, value1, <small class="dots">...</small></var>)<var><a name="index-strread-415"></a></var><br>
 <blockquote><p>Read data from a string.
 
         <p>The string <var>str</var> is split into words that are repeatedly matched to the
@@ -479,20 +519,20 @@ value for <var>format_repeat</var>.
 pairs.  The following properties are recognized:
 
           <dl>
-<dt>"commentstyle"<dd>Parts of <var>str</var> are considered comments and will be skipped. 
+<dt><code>"commentstyle"</code><dd>Parts of <var>str</var> are considered comments and will be skipped. 
 <var>value</var> is the comment style and can be any of the following.
 
                <ul>
-<li>"shell"
+<li><code>"shell"</code>
 Everything from <code>#</code> characters to the nearest end-of-line is skipped.
 
-               <li>"c"
+               <li><code>"c"</code>
 Everything between <code>/*</code> and <code>*/</code> is skipped.
 
-               <li>"c++"
+               <li><code>"c++"</code>
 Everything from <code>//</code> characters to the nearest end-of-line is skipped.
 
-               <li>"matlab"
+               <li><code>"matlab"</code>
 Everything from <code>%</code> characters to the nearest end-of-line is skipped.
 
                <li>user-supplied.  Two options:
@@ -501,28 +541,28 @@ Everything from <code>%</code> characters to the nearest end-of-line is skipped.
 is skipped. 
 </ul>
 
-          <br><dt>"delimiter"<dd>Any character in <var>value</var> will be used to split <var>str</var> into words
+          <br><dt><code>"delimiter"</code><dd>Any character in <var>value</var> will be used to split <var>str</var> into words
 (default value = any whitespace).
 
-          <br><dt>"emptyvalue":<dd>Value to return for empty numeric values in non-whitespace delimited data. 
+          <br><dt><code>"emptyvalue"</code>:<dd>Value to return for empty numeric values in non-whitespace delimited data. 
 The default is NaN.  When the data type does not support NaN
 (int32 for example), then default is zero.
 
-          <br><dt>"multipledelimsasone"<dd>Treat a series of consecutive delimiters, without whitespace in between,
+          <br><dt><code>"multipledelimsasone"</code><dd>Treat a series of consecutive delimiters, without whitespace in between,
 as a single delimiter.  Consecutive delimiter series need not be vertically
-"aligned".
+<code>"aligned"</code>.
 
-          <br><dt>"treatasempty"<dd>Treat single occurrences (surrounded by delimiters or whitespace) of the
+          <br><dt><code>"treatasempty"</code><dd>Treat single occurrences (surrounded by delimiters or whitespace) of the
 string(s) in <var>value</var> as missing values.
 
-          <br><dt>"returnonerror"<dd>If <var>value</var> true (1, default), ignore read errors and return normally. 
+          <br><dt><code>"returnonerror"</code><dd>If <var>value</var> true (1, default), ignore read errors and return normally. 
 If false (0), return an error.
 
-          <br><dt>"whitespace"<dd>Any character in <var>value</var> will be interpreted as whitespace and
+          <br><dt><code>"whitespace"</code><dd>Any character in <var>value</var> will be interpreted as whitespace and
 trimmed; the string defining whitespace must be enclosed in double
 quotes for proper processing of special characters like \t. 
-The default value for whitespace = " \b\r\n\t" (note the space). 
-Unless whitespace is set to &rdquo; (empty) AND at least one "%s" format
+The default value for whitespace = <code>" brnt"</code> (note the space). 
+Unless whitespace is set to &rdquo; (empty) AND at least one <code>"%s"</code> format
 conversion specifier is supplied, a space is always part of whitespace.
 
         </dl>
@@ -532,22 +572,23 @@ of the number of format conversion specifiers, strread's behavior
 depends on the last character of <var>str</var>:
 
           <dl>
-<dt>last character = "\n"<dd>Data columns are padded with empty fields or Nan so that all columns
+<dt>last character = <code>"n"</code><dd>Data columns are padded with empty fields or Nan so that all columns
 have equal length
 
-          <br><dt>last character is not "\n"<dd>Data columns are not padded; strread returns columns of unequal length
+          <br><dt>last character is not <code>"n"</code><dd>Data columns are not padded; strread returns columns of unequal length
 
         </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dtextscan.html#doc_002dtextscan">textscan</a>, <a href="doc_002dtextread.html#doc_002dtextread">textread</a>, <a href="doc_002dload.html#doc_002dload">load</a>, <a href="doc_002ddlmread.html#doc_002ddlmread">dlmread</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFtextscan.html#XREFtextscan">textscan</a>, <a href="XREFtextread.html#XREFtextread">textread</a>, <a href="XREFload.html#XREFload">load</a>, <a href="XREFdlmread.html#XREFdlmread">dlmread</a>, <a href="XREFfscanf.html#XREFfscanf">fscanf</a>.
+
+        </blockquote></div>
 
 <!-- strrep libinterp/corefcn/strfind.cc -->
-   <p><a name="doc_002dstrrep"></a>
+   <p><a name="XREFstrrep"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>strrep</b> (<var>s, ptn, rep</var>)<var><a name="index-strrep-405"></a></var><br>
-&mdash; Built-in Function:  <b>strrep</b> (<var>s, ptn, rep, "overlaps", o</var>)<var><a name="index-strrep-406"></a></var><br>
+&mdash; Built-in Function:  <b>strrep</b> (<var>s, ptn, rep</var>)<var><a name="index-strrep-416"></a></var><br>
+&mdash; Built-in Function:  <b>strrep</b> (<var>s, ptn, rep, "overlaps", o</var>)<var><a name="index-strrep-417"></a></var><br>
 <blockquote><p>Replace all occurrences of the substring <var>ptn</var> in the string <var>s</var>
 with the string <var>rep</var> and return the result.  For example:
 
@@ -557,15 +598,16 @@ with the string <var>rep</var> and return the result.  For example:
         <p><var>s</var> may also be a cell array of strings, in which case the replacement is
 done for each element and a cell array is returned.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dregexprep.html#doc_002dregexprep">regexprep</a>, <a href="doc_002dstrfind.html#doc_002dstrfind">strfind</a>, <a href="doc_002dfindstr.html#doc_002dfindstr">findstr</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFregexprep.html#XREFregexprep">regexprep</a>, <a href="XREFstrfind.html#XREFstrfind">strfind</a>, <a href="XREFfindstr.html#XREFfindstr">findstr</a>.
+
+        </blockquote></div>
 
 <!-- substr scripts/strings/substr.m -->
-   <p><a name="doc_002dsubstr"></a>
+   <p><a name="XREFsubstr"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>substr</b> (<var>s, offset</var>)<var><a name="index-substr-407"></a></var><br>
-&mdash; Function File:  <b>substr</b> (<var>s, offset, len</var>)<var><a name="index-substr-408"></a></var><br>
+&mdash; Function File:  <b>substr</b> (<var>s, offset</var>)<var><a name="index-substr-418"></a></var><br>
+&mdash; Function File:  <b>substr</b> (<var>s, offset, len</var>)<var><a name="index-substr-419"></a></var><br>
 <blockquote><p>Return the substring of <var>s</var> which starts at character number
 <var>offset</var> and is <var>len</var> characters long.
 
@@ -589,11 +631,11 @@ the end of the string
 </p></blockquote></div>
 
 <!-- regexp libinterp/corefcn/regexp.cc -->
-   <p><a name="doc_002dregexp"></a>
+   <p><a name="XREFregexp"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>s</var>, <var>e</var>, <var>te</var>, <var>m</var>, <var>t</var>, <var>nm</var>, <var>sp</var>] = <b>regexp</b> (<var>str, pat</var>)<var><a name="index-regexp-409"></a></var><br>
-&mdash; Built-in Function: [<small class="dots">...</small>] = <b>regexp</b> (<var>str, pat, "opt1", <small class="dots">...</small></var>)<var><a name="index-regexp-410"></a></var><br>
+&mdash; Built-in Function: [<var>s</var>, <var>e</var>, <var>te</var>, <var>m</var>, <var>t</var>, <var>nm</var>, <var>sp</var>] = <b>regexp</b> (<var>str, pat</var>)<var><a name="index-regexp-420"></a></var><br>
+&mdash; Built-in Function: [<small class="dots">...</small>] = <b>regexp</b> (<var>str, pat, "opt1", <small class="dots">...</small></var>)<var><a name="index-regexp-421"></a></var><br>
 <blockquote><p>Regular expression string matching.  Search for <var>pat</var> in <var>str</var> and
 return the positions and substrings of any matches, or empty values if there
 are none.
@@ -641,9 +683,13 @@ end (<code>$</code>) of the string.
         <p>In addition, the following escaped characters have special meaning.
 
           <dl>
-<dt><code>\b</code><dd>Match a word boundary
+<dt><code>\d</code><dd>Match any digit
 
-          <br><dt><code>\B</code><dd>Match within a word
+          <br><dt><code>\D</code><dd>Match any non-digit
+
+          <br><dt><code>\s</code><dd>Match any whitespace character
+
+          <br><dt><code>\S</code><dd>Match any non-whitespace character
 
           <br><dt><code>\w</code><dd>Match any word character
 
@@ -653,17 +699,11 @@ end (<code>$</code>) of the string.
 
           <br><dt><code>\&gt;</code><dd>Match the end of a word
 
-          <br><dt><code>\s</code><dd>Match any whitespace character
-
-          <br><dt><code>\S</code><dd>Match any non-whitespace character
-
-          <br><dt><code>\d</code><dd>Match any digit
-
-          <br><dt><code>\D</code><dd>Match any non-digit
+          <br><dt><code>\B</code><dd>Match within a word
 </dl>
 
         <p>Implementation Note: For compatibility with <span class="sc">matlab</span>, ordinary escape
-sequences (e.g., "\n" =&gt; newline) are processed in <var>pat</var>
+sequences (e.g., <code>"n"</code> =&gt; newline) are processed in <var>pat</var>
 regardless of whether <var>pat</var> has been defined within single quotes.  Use
 a second backslash to stop interpolation of the escape sequence (e.g.,
 "\\n") or use the <code>regexptranslate</code> function.
@@ -695,13 +735,13 @@ selected by additional <var>opt</var> arguments.  These are strings and the
 correspondence between the output arguments and the optional argument
 are
 
-        <p><table summary=""><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'start'        </td><td valign="top" width="30%"><var>s</var>  </td><td valign="top" width="20%">
-<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'end'          </td><td valign="top" width="30%"><var>e</var>  </td><td valign="top" width="20%">
-<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'tokenExtents' </td><td valign="top" width="30%"><var>te</var> </td><td valign="top" width="20%">
-<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'match'        </td><td valign="top" width="30%"><var>m</var>  </td><td valign="top" width="20%">
-<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'tokens'       </td><td valign="top" width="30%"><var>t</var>  </td><td valign="top" width="20%">
-<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'names'        </td><td valign="top" width="30%"><var>nm</var> </td><td valign="top" width="20%">
-<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%">'split'        </td><td valign="top" width="30%"><var>sp</var> </td><td valign="top" width="20%">
+        <p><table summary=""><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'start'</code>        </td><td valign="top" width="30%"><var>s</var>  </td><td valign="top" width="20%">
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'end'</code>          </td><td valign="top" width="30%"><var>e</var>  </td><td valign="top" width="20%">
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'tokenExtents'</code> </td><td valign="top" width="30%"><var>te</var> </td><td valign="top" width="20%">
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'match'</code>        </td><td valign="top" width="30%"><var>m</var>  </td><td valign="top" width="20%">
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'tokens'</code>       </td><td valign="top" width="30%"><var>t</var>  </td><td valign="top" width="20%">
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'names'</code>        </td><td valign="top" width="30%"><var>nm</var> </td><td valign="top" width="20%">
+<br></td></tr><tr align="left"><td valign="top" width="20%"></td><td valign="top" width="30%"><code>'split'</code>        </td><td valign="top" width="30%"><var>sp</var> </td><td valign="top" width="20%">
         <br></td></tr></table>
 
         <p>Additional arguments are summarized below.
@@ -749,39 +789,41 @@ the character &lsquo;<samp><span class="samp">#</span></samp>&rsquo;.
 
           <br><dt>&lsquo;<samp><span class="samp">emptymatch</span></samp>&rsquo;<dd>Return zero-length matches.
 
-          <p><code>regexp ('a', 'b*', 'emptymatch'</code> returns <code>[1 2]</code> because there are
-zero or more 'b' characters at positions 1 and end-of-string.
+          <p><code>regexp ('a', 'b*', 'emptymatch')</code> returns <code>[1 2]</code> because there
+are zero or more <code>'b'</code> characters at positions 1 and end-of-string.
 
         </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dregexpi.html#doc_002dregexpi">regexpi</a>, <a href="doc_002dstrfind.html#doc_002dstrfind">strfind</a>, <a href="doc_002dregexprep.html#doc_002dregexprep">regexprep</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFregexpi.html#XREFregexpi">regexpi</a>, <a href="XREFstrfind.html#XREFstrfind">strfind</a>, <a href="XREFregexprep.html#XREFregexprep">regexprep</a>.
+
+        </blockquote></div>
 
 <!-- regexpi libinterp/corefcn/regexp.cc -->
-   <p><a name="doc_002dregexpi"></a>
+   <p><a name="XREFregexpi"></a>
 
 <div class="defun">
-&mdash; Built-in Function: [<var>s</var>, <var>e</var>, <var>te</var>, <var>m</var>, <var>t</var>, <var>nm</var>, <var>sp</var>] = <b>regexpi</b> (<var>str, pat</var>)<var><a name="index-regexpi-411"></a></var><br>
-&mdash; Built-in Function: [<small class="dots">...</small>] = <b>regexpi</b> (<var>str, pat, "opt1", <small class="dots">...</small></var>)<var><a name="index-regexpi-412"></a></var><br>
+&mdash; Built-in Function: [<var>s</var>, <var>e</var>, <var>te</var>, <var>m</var>, <var>t</var>, <var>nm</var>, <var>sp</var>] = <b>regexpi</b> (<var>str, pat</var>)<var><a name="index-regexpi-422"></a></var><br>
+&mdash; Built-in Function: [<small class="dots">...</small>] = <b>regexpi</b> (<var>str, pat, "opt1", <small class="dots">...</small></var>)<var><a name="index-regexpi-423"></a></var><br>
 <blockquote>
         <p>Case insensitive regular expression string matching.  Search for <var>pat</var> in
 <var>str</var> and return the positions and substrings of any matches, or empty
-values if there are none.  See <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>, for details on the
+values if there are none.  See <a href="XREFregexp.html#XREFregexp">regexp</a>, for details on the
 syntax of the search pattern.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFregexp.html#XREFregexp">regexp</a>.
+
+        </blockquote></div>
 
 <!-- regexprep libinterp/corefcn/regexp.cc -->
-   <p><a name="doc_002dregexprep"></a>
+   <p><a name="XREFregexprep"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>outstr</var> = <b>regexprep</b> (<var>string, pat, repstr</var>)<var><a name="index-regexprep-413"></a></var><br>
-&mdash; Built-in Function: <var>outstr</var> = <b>regexprep</b> (<var>string, pat, repstr, "opt1", <small class="dots">...</small></var>)<var><a name="index-regexprep-414"></a></var><br>
+&mdash; Built-in Function: <var>outstr</var> = <b>regexprep</b> (<var>string, pat, repstr</var>)<var><a name="index-regexprep-424"></a></var><br>
+&mdash; Built-in Function: <var>outstr</var> = <b>regexprep</b> (<var>string, pat, repstr, "opt1", <small class="dots">...</small></var>)<var><a name="index-regexprep-425"></a></var><br>
 <blockquote><p>Replace occurrences of pattern <var>pat</var> in <var>string</var> with <var>repstr</var>.
 
         <p>The pattern is a regular expression as documented for <code>regexp</code>. 
-See <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>.
+See <a href="XREFregexp.html#XREFregexp">regexp</a>.
 
         <p>The replacement string may contain <code>$i</code>, which substitutes
 for the ith set of parentheses in the match string.  For example,
@@ -800,32 +842,34 @@ for the ith set of parentheses in the match string.  For example,
         </dl>
 
         <p>Implementation Note: For compatibility with <span class="sc">matlab</span>, ordinary escape
-sequences (e.g., "\n" =&gt; newline) are processed in both <var>pat</var>
-and <var>repstr</var> regardless of whether they were defined within single quotes.  Use a second backslash to stop interpolation of the escape sequence (e.g.,
-"\\n") or use the <code>regexptranslate</code> function.
+sequences (e.g., <code>"n"</code> =&gt; newline) are processed in both <var>pat</var>
+and <var>repstr</var> regardless of whether they were defined within single
+quotes.  Use a second backslash to stop interpolation of the escape sequence
+(e.g., "\\n") or use the <code>regexptranslate</code> function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>, <a href="doc_002dregexpi.html#doc_002dregexpi">regexpi</a>, <a href="doc_002dstrrep.html#doc_002dstrrep">strrep</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFregexp.html#XREFregexp">regexp</a>, <a href="XREFregexpi.html#XREFregexpi">regexpi</a>, <a href="XREFstrrep.html#XREFstrrep">strrep</a>.
+
+        </blockquote></div>
 
 <!-- regexptranslate scripts/strings/regexptranslate.m -->
-   <p><a name="doc_002dregexptranslate"></a>
+   <p><a name="XREFregexptranslate"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>regexptranslate</b> (<var>op, s</var>)<var><a name="index-regexptranslate-415"></a></var><br>
+&mdash; Function File:  <b>regexptranslate</b> (<var>op, s</var>)<var><a name="index-regexptranslate-426"></a></var><br>
 <blockquote><p>Translate a string for use in a regular expression.  This may
 include either wildcard replacement or special character escaping. 
 The behavior is controlled by <var>op</var> which can take the following
 values
 
           <dl>
-<dt>"wildcard"<dd>The wildcard characters <code>.</code>, <code>*</code>, and <code>?</code> are replaced
+<dt><code>"wildcard"</code><dd>The wildcard characters <code>.</code>, <code>*</code>, and <code>?</code> are replaced
 with wildcards that are appropriate for a regular expression. 
 For example:
 
           <pre class="example">               regexptranslate ("wildcard", "*.m")
                     &rArr; ".*\.m"
 </pre>
-          <br><dt>"escape"<dd>The characters <code>$.?[]</code>, that have special meaning for regular
+          <br><dt><code>"escape"</code><dd>The characters <code>$.?[]</code>, that have special meaning for regular
 expressions are escaped so that they are treated literally.  For example:
 
           <pre class="example">               regexptranslate ("escape", "12.5")
@@ -833,16 +877,17 @@ expressions are escaped so that they are treated literally.  For example:
 </pre>
           </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dregexp.html#doc_002dregexp">regexp</a>, <a href="doc_002dregexpi.html#doc_002dregexpi">regexpi</a>, <a href="doc_002dregexprep.html#doc_002dregexprep">regexprep</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFregexp.html#XREFregexp">regexp</a>, <a href="XREFregexpi.html#XREFregexpi">regexpi</a>, <a href="XREFregexprep.html#XREFregexprep">regexprep</a>.
+
+        </blockquote></div>
 
 <!-- untabify scripts/strings/untabify.m -->
-   <p><a name="doc_002duntabify"></a>
+   <p><a name="XREFuntabify"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>untabify</b> (<var>t</var>)<var><a name="index-untabify-416"></a></var><br>
-&mdash; Function File:  <b>untabify</b> (<var>t, tw</var>)<var><a name="index-untabify-417"></a></var><br>
-&mdash; Function File:  <b>untabify</b> (<var>t, tw, deblank</var>)<var><a name="index-untabify-418"></a></var><br>
+&mdash; Function File:  <b>untabify</b> (<var>t</var>)<var><a name="index-untabify-427"></a></var><br>
+&mdash; Function File:  <b>untabify</b> (<var>t, tw</var>)<var><a name="index-untabify-428"></a></var><br>
+&mdash; Function File:  <b>untabify</b> (<var>t, tw, deblank</var>)<var><a name="index-untabify-429"></a></var><br>
 <blockquote><p>Replace TAB characters in <var>t</var>, with spaces. 
 The tab width is specified by <var>tw</var>, or defaults to eight. 
 The input, <var>t</var>, may be either a 2-D character array, or a cell
@@ -863,8 +908,9 @@ of the same file with trailing spaces stripped.
           fprintf (fid, "%s\n", text{:});
           fclose (fid);
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dstrjust.html#doc_002dstrjust">strjust</a>, <a href="doc_002dstrsplit.html#doc_002dstrsplit">strsplit</a>, <a href="doc_002ddeblank.html#doc_002ddeblank">deblank</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFstrjust.html#XREFstrjust">strjust</a>, <a href="XREFstrsplit.html#XREFstrsplit">strsplit</a>, <a href="XREFdeblank.html#XREFdeblank">deblank</a>.
+
+        </blockquote></div>
 
    </body></html>
 

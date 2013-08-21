@@ -35,11 +35,11 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Polynomial-Manipulations.html#Polynomia
 <h3 class="section">28.3 Products of Polynomials</h3>
 
 <!-- conv scripts/polynomial/conv.m -->
-<p><a name="doc_002dconv"></a>
+<p><a name="XREFconv"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>conv</b> (<var>a, b</var>)<var><a name="index-conv-2917"></a></var><br>
-&mdash; Function File:  <b>conv</b> (<var>a, b, shape</var>)<var><a name="index-conv-2918"></a></var><br>
+&mdash; Function File:  <b>conv</b> (<var>a, b</var>)<var><a name="index-conv-3081"></a></var><br>
+&mdash; Function File:  <b>conv</b> (<var>a, b, shape</var>)<var><a name="index-conv-3082"></a></var><br>
 <blockquote><p>Convolve two vectors <var>a</var> and <var>b</var>.
 
         <p>The output convolution is a vector with length equal to
@@ -50,43 +50,45 @@ convolution represents the coefficient vector of the product polynomial.
         <p>The optional <var>shape</var> argument may be
 
           <dl>
-<dt><var>shape</var> = "full"<dd>Return the full convolution.  (default)
+<dt><var>shape</var> = <code>"full"</code><dd>Return the full convolution.  (default)
 
-          <br><dt><var>shape</var> = "same"<dd>Return the central part of the convolution with the same size as <var>a</var>. 
+          <br><dt><var>shape</var> = <code>"same"</code><dd>Return the central part of the convolution with the same size as <var>a</var>. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddeconv.html#doc_002ddeconv">deconv</a>, <a href="doc_002dconv2.html#doc_002dconv2">conv2</a>, <a href="doc_002dconvn.html#doc_002dconvn">convn</a>, <a href="doc_002dfftconv.html#doc_002dfftconv">fftconv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdeconv.html#XREFdeconv">deconv</a>, <a href="XREFconv2.html#XREFconv2">conv2</a>, <a href="XREFconvn.html#XREFconvn">convn</a>, <a href="XREFfftconv.html#XREFfftconv">fftconv</a>.
+
+        </blockquote></div>
 
 <!-- convn libinterp/corefcn/conv2.cc -->
-   <p><a name="doc_002dconvn"></a>
+   <p><a name="XREFconvn"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>C</var> = <b>convn</b> (<var>A, B</var>)<var><a name="index-convn-2919"></a></var><br>
-&mdash; Built-in Function: <var>C</var> = <b>convn</b> (<var>A, B, shape</var>)<var><a name="index-convn-2920"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>convn</b> (<var>A, B</var>)<var><a name="index-convn-3083"></a></var><br>
+&mdash; Built-in Function: <var>C</var> = <b>convn</b> (<var>A, B, shape</var>)<var><a name="index-convn-3084"></a></var><br>
 <blockquote><p>Return the n-D convolution of <var>A</var> and <var>B</var>.  The size of the result
 is determined by the optional <var>shape</var> argument which takes the following
 values
 
           <dl>
-<dt><var>shape</var> = "full"<dd>Return the full convolution.  (default)
+<dt><var>shape</var> = <code>"full"</code><dd>Return the full convolution.  (default)
 
-          <br><dt><var>shape</var> = "same"<dd>Return central part of the convolution with the same size as <var>A</var>. 
+          <br><dt><var>shape</var> = <code>"same"</code><dd>Return central part of the convolution with the same size as <var>A</var>. 
 The central part of the convolution begins at the indices
 <code>floor ([size(</code><var>B</var><code>)/2] + 1)</code>.
 
-          <br><dt><var>shape</var> = "valid"<dd>Return only the parts which do not include zero-padded edges. 
+          <br><dt><var>shape</var> = <code>"valid"</code><dd>Return only the parts which do not include zero-padded edges. 
 The size of the result is <code>max (size (A) - size (B) + 1, 0)</code>. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dconv2.html#doc_002dconv2">conv2</a>, <a href="doc_002dconv.html#doc_002dconv">conv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFconv2.html#XREFconv2">conv2</a>, <a href="XREFconv.html#XREFconv">conv</a>.
+
+        </blockquote></div>
 
 <!-- deconv scripts/polynomial/deconv.m -->
-   <p><a name="doc_002ddeconv"></a>
+   <p><a name="XREFdeconv"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>deconv</b> (<var>y, a</var>)<var><a name="index-deconv-2921"></a></var><br>
+&mdash; Function File:  <b>deconv</b> (<var>y, a</var>)<var><a name="index-deconv-3085"></a></var><br>
 <blockquote><p>Deconvolve two vectors.
 
         <p><code>[b, r] = deconv (y, a)</code> solves for <var>b</var> and <var>r</var> such that
@@ -96,28 +98,29 @@ The size of the result is <code>max (size (A) - size (B) + 1, 0)</code>.
 contain the coefficients of the polynomial quotient and <var>r</var> will be
 a remainder polynomial of lowest order.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002dresidue.html#doc_002dresidue">residue</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFconv.html#XREFconv">conv</a>, <a href="XREFresidue.html#XREFresidue">residue</a>.
+
+        </blockquote></div>
 
 <!-- conv2 libinterp/corefcn/conv2.cc -->
-   <p><a name="doc_002dconv2"></a>
+   <p><a name="XREFconv2"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>conv2</b> (<var>A, B</var>)<var><a name="index-conv2-2922"></a></var><br>
-&mdash; Built-in Function:  <b>conv2</b> (<var>v1, v2, m</var>)<var><a name="index-conv2-2923"></a></var><br>
-&mdash; Built-in Function:  <b>conv2</b> (<var><small class="dots">...</small>, shape</var>)<var><a name="index-conv2-2924"></a></var><br>
+&mdash; Built-in Function:  <b>conv2</b> (<var>A, B</var>)<var><a name="index-conv2-3086"></a></var><br>
+&mdash; Built-in Function:  <b>conv2</b> (<var>v1, v2, m</var>)<var><a name="index-conv2-3087"></a></var><br>
+&mdash; Built-in Function:  <b>conv2</b> (<var><small class="dots">...</small>, shape</var>)<var><a name="index-conv2-3088"></a></var><br>
 <blockquote><p>Return the 2-D convolution of <var>A</var> and <var>B</var>.  The size of the result
 is determined by the optional <var>shape</var> argument which takes the following
 values
 
           <dl>
-<dt><var>shape</var> = "full"<dd>Return the full convolution.  (default)
+<dt><var>shape</var> = <code>"full"</code><dd>Return the full convolution.  (default)
 
-          <br><dt><var>shape</var> = "same"<dd>Return the central part of the convolution with the same size as <var>A</var>. 
+          <br><dt><var>shape</var> = <code>"same"</code><dd>Return the central part of the convolution with the same size as <var>A</var>. 
 The central part of the convolution begins at the indices
 <code>floor ([size(</code><var>B</var><code>)/2] + 1)</code>.
 
-          <br><dt><var>shape</var> = "valid"<dd>Return only the parts which do not include zero-padded edges. 
+          <br><dt><var>shape</var> = <code>"valid"</code><dd>Return only the parts which do not include zero-padded edges. 
 The size of the result is <code>max (size (A) - size (B) + 1, 0)</code>. 
 </dl>
 
@@ -125,15 +128,16 @@ The size of the result is <code>max (size (A) - size (B) + 1, 0)</code>.
 <var>m</var> by the vector <var>v1</var> in the column direction and by the vector
 <var>v2</var> in the row direction.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002dconvn.html#doc_002dconvn">convn</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFconv.html#XREFconv">conv</a>, <a href="XREFconvn.html#XREFconvn">convn</a>.
+
+        </blockquote></div>
 
 <!-- polygcd scripts/polynomial/polygcd.m -->
-   <p><a name="doc_002dpolygcd"></a>
+   <p><a name="XREFpolygcd"></a>
 
 <div class="defun">
-&mdash; Function File: <var>q</var> = <b>polygcd</b> (<var>b, a</var>)<var><a name="index-polygcd-2925"></a></var><br>
-&mdash; Function File: <var>q</var> = <b>polygcd</b> (<var>b, a, tol</var>)<var><a name="index-polygcd-2926"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>polygcd</b> (<var>b, a</var>)<var><a name="index-polygcd-3089"></a></var><br>
+&mdash; Function File: <var>q</var> = <b>polygcd</b> (<var>b, a, tol</var>)<var><a name="index-polygcd-3090"></a></var><br>
 <blockquote>
         <p>Find the greatest common divisor of two polynomials.  This is equivalent
 to the polynomial found by multiplying together all the common roots. 
@@ -150,16 +154,17 @@ be used on large polynomials.
           deconv (poly (1:8), polygcd (poly (1:8), poly (3:12))) - poly (1:2)
           &rArr; [ 0, 0, 0 ]
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002ddeconv.html#doc_002ddeconv">deconv</a>, <a href="doc_002dresidue.html#doc_002dresidue">residue</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFpoly.html#XREFpoly">poly</a>, <a href="XREFroots.html#XREFroots">roots</a>, <a href="XREFconv.html#XREFconv">conv</a>, <a href="XREFdeconv.html#XREFdeconv">deconv</a>, <a href="XREFresidue.html#XREFresidue">residue</a>.
+
+        </blockquote></div>
 
 <!-- residue scripts/polynomial/residue.m -->
-   <p><a name="doc_002dresidue"></a>
+   <p><a name="XREFresidue"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>r</var>, <var>p</var>, <var>k</var>, <var>e</var>] = <b>residue</b> (<var>b, a</var>)<var><a name="index-residue-2927"></a></var><br>
-&mdash; Function File: [<var>b</var>, <var>a</var>] = <b>residue</b> (<var>r, p, k</var>)<var><a name="index-residue-2928"></a></var><br>
-&mdash; Function File: [<var>b</var>, <var>a</var>] = <b>residue</b> (<var>r, p, k, e</var>)<var><a name="index-residue-2929"></a></var><br>
+&mdash; Function File: [<var>r</var>, <var>p</var>, <var>k</var>, <var>e</var>] = <b>residue</b> (<var>b, a</var>)<var><a name="index-residue-3091"></a></var><br>
+&mdash; Function File: [<var>b</var>, <var>a</var>] = <b>residue</b> (<var>r, p, k</var>)<var><a name="index-residue-3092"></a></var><br>
+&mdash; Function File: [<var>b</var>, <var>a</var>] = <b>residue</b> (<var>r, p, k, e</var>)<var><a name="index-residue-3093"></a></var><br>
 <blockquote><p>The first calling form computes the partial fraction expansion for the
 quotient of the polynomials, <var>b</var> and <var>a</var>.
 
@@ -224,8 +229,9 @@ determined by the function <code>mpoles</code>.
           ----- + ------- + ----- + s = --------------------------
           (s-2)   (s-2)^2   (s-1)          s^3 - 5s^2 + 8s - 4
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dmpoles.html#doc_002dmpoles">mpoles</a>, <a href="doc_002dpoly.html#doc_002dpoly">poly</a>, <a href="doc_002droots.html#doc_002droots">roots</a>, <a href="doc_002dconv.html#doc_002dconv">conv</a>, <a href="doc_002ddeconv.html#doc_002ddeconv">deconv</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFmpoles.html#XREFmpoles">mpoles</a>, <a href="XREFpoly.html#XREFpoly">poly</a>, <a href="XREFroots.html#XREFroots">roots</a>, <a href="XREFconv.html#XREFconv">conv</a>, <a href="XREFdeconv.html#XREFdeconv">deconv</a>.
+
+        </blockquote></div>
 
    </body></html>
 

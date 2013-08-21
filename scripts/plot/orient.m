@@ -17,15 +17,23 @@
 ## <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {} orient (@var{orientation})
-## Set the default print orientation.  Valid values for
-## @var{orientation} include @code{"landscape"}, @code{"portrait"},
-## and @code{"tall"}.
+## @deftypefn  {Function File} {} orient (@var{orientation})
+## @deftypefnx {Function File} {} orient (@var{hfig}, @var{orientation})
+## @deftypefnx {Function File} {@var{orientation} =} orient ()
+## @deftypefnx {Function File} {@var{orientation} =} orient (@var{hfig})
+## Query or set the default print orientation.
 ##
-## The @code{"tall"} option sets the orientation to portait and fills
-## the page with the plot, while leaving a 0.25in border.
+## Valid values for @var{orientation} are @qcode{"landscape"},
+## @qcode{"portrait"}, and @qcode{"tall"}.
 ##
-## If called with no arguments, return the default print orientation.
+## The @qcode{"tall"} option sets the orientation to portrait and fills
+## the page with the plot, while leaving a 0.25 inch border.
+##
+## When called with no arguments, return the default print orientation.
+##
+## If the first argument @var{hfig} is a figure handle, then operate on this
+## figure rather than the current figure returned by @code{gcf}.
+## @seealso{print, saveas}
 ## @end deftypefn
 
 ## Author: Paul Kienzle
@@ -49,8 +57,8 @@ function retval = orient (varargin)
     orientation = varargin{1};
     if (strcmpi (orientation, "landscape") || strcmpi (orientation, "portrait"))
       if (! strcmpi (get (cf, "paperorientation"), orientation))
-        ## FIXME - with the proper listeners in place there won't be a need to set
-        ##         the papersize and paperpostion here.
+        ## FIXME: with the proper listeners in place there won't be a need to
+        ##        set the papersize and paperpostion here.
         papersize = get (cf, "papersize");
         paperposition = get (cf, "paperposition");
         set (cf, "paperorientation", orientation);
@@ -75,37 +83,44 @@ endfunction
 %! papersize = [8.5, 11];
 %! paperposition = [0.25, 2.5, 8, 6];
 %! tallpaperposition = [0.25, 0.25, (papersize-0.5)];
-%! hfig = figure ();
-%! set (hfig, "visible", "off");
+%! hfig = figure ("visible", "off");
 %! set (hfig, "paperorientation", "portrait");
 %! set (hfig, "papersize", papersize);
 %! set (hfig, "paperposition", paperposition);
+
 %!test
 %! orient portrait;
 %! assert (orient, "portrait")   # default
 %! assert (get (hfig, "papersize"), papersize);
 %! assert (get (hfig, "paperposition"), paperposition);
+
 %!test
 %! orient landscape;
 %! assert (orient,"landscape")   # change to landscape
 %! assert (get (hfig, "papersize"), papersize([2, 1]));
 %! assert (get (hfig, "paperposition"), paperposition([2, 1, 4, 3]));
+
 %!test
 %! orient portrait   # change back to portrait
 %! assert (orient, "portrait");
 %! assert (get (hfig, "papersize"), papersize);
 %! assert (get (hfig, "paperposition"), paperposition);
+
 %!test
 %! orient landscape;
 %! orient tall;
 %! assert (orient, "portrait");
 %! assert (get (hfig, "papersize"), papersize);
 %! assert (get (hfig, "paperposition"), tallpaperposition);
+
 %!fail ("orient ('nobody')", "unknown ORIENTATION")
+
 %!test
 %! orient portrait   # errors don't change the state
 %! assert (orient, "portrait");
 %! assert (get (hfig, "papersize"), papersize);
 %! assert (get (hfig, "paperposition"), tallpaperposition);
+
+%!test
 %! close (hfig);
 

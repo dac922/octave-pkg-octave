@@ -22,26 +22,29 @@
 ## @deftypefnx {Function File} {} quiver3 (@dots{}, @var{s})
 ## @deftypefnx {Function File} {} quiver3 (@dots{}, @var{style})
 ## @deftypefnx {Function File} {} quiver3 (@dots{}, "filled")
-## @deftypefnx {Function File} {} quiver3 (@var{h}, @dots{})
+## @deftypefnx {Function File} {} quiver3 (@var{hax}, @dots{})
 ## @deftypefnx {Function File} {@var{h} =} quiver3 (@dots{})
 ##
-## Plot the @code{(@var{u}, @var{v}, @var{w})} components of a vector field in
-## an @code{(@var{x}, @var{y}), @var{z}} meshgrid.  If the grid is uniform, you
-## can specify @var{x}, @var{y} @var{z} as vectors.
+## Plot the (@var{u}, @var{v}, @var{w}) components of a vector field in
+## an (@var{x}, @var{y}, @var{z}) meshgrid.  If the grid is uniform, you
+## can specify @var{x}, @var{y}, and @var{z} as vectors.
 ##
-## If @var{x}, @var{y} and @var{z} are undefined they are assumed to be
+## If @var{x}, @var{y}, and @var{z} are undefined they are assumed to be
 ## @code{(1:@var{m}, 1:@var{n}, 1:@var{p})} where @code{[@var{m}, @var{n}] =
 ## size (@var{u})} and @code{@var{p} = max (size (@var{w}))}.
 ##
 ## The variable @var{s} is a scalar defining a scaling factor to use for
-##  the arrows of the field relative to the mesh spacing.  A value of 0
+## the arrows of the field relative to the mesh spacing.  A value of 0
 ## disables all scaling.  The default value is 1.
 ##
 ## The style to use for the plot can be defined with a line style @var{style}
-## in a similar manner to the line styles used with the @code{plot} command.
+## of the same format as the @code{plot} command.
 ## If a marker is specified then markers at the grid points of the vectors are
-## printed rather than arrows.  If the argument "filled" is given then the
-## markers as filled.
+## drawn rather than arrows.  If the argument @qcode{"filled"} is given then the
+## markers are filled.
+##
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
 ##
 ## The optional return value @var{h} is a graphics handle to a quiver object.
 ## A quiver object regroups the components of the quiver plot (body, arrow,
@@ -58,28 +61,36 @@
 ## @end group
 ## @end example
 ##
-## @seealso{plot}
+## @seealso{quiver, compass, feather, plot}
 ## @end deftypefn
 
 function retval = quiver3 (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("quiver3", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("quiver3", varargin{:});
 
   if (nargin < 2)
     print_usage ();
   else
-    oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
     unwind_protect
-      axes (h);
-      newplot ();
-      tmp = __quiver__ (h, 1, varargin{:});
+      hax = newplot (hax);
+      htmp = __quiver__ (hax, true, varargin{:});
+
+      if (! ishold (hax))
+        set (hax, "view", [-37.5, 30]);  # 3D view
+      endif
     unwind_protect_cleanup
-      axes (oldh);
+      if (! isempty (oldfig))
+        set (0, "currentfigure", oldfig);
+      endif
     end_unwind_protect
   endif
 
   if (nargout > 0)
-    retval = tmp;
+    retval = htmp;
   endif
 
 endfunction
@@ -91,9 +102,9 @@ endfunction
 %! [x,y] = meshgrid (-1:0.1:1);
 %! z = sin (2*pi * sqrt (x.^2 + y.^2));
 %! theta = 2*pi * sqrt (x.^2 + y.^2) + pi/2;
-%! quiver3 (x, y, z, sin (theta), cos (theta), ones (size (z)));
-%! hold on;
 %! mesh (x, y, z);
+%! hold on;
+%! quiver3 (x, y, z, sin (theta), cos (theta), ones (size (z)));
 %! hold off;
 
 %!demo

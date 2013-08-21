@@ -32,7 +32,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Nonlinear-Equations.html#Nonlinear-Equa
 
 <h3 class="section">20.2 Minimizers</h3>
 
-<p><a name="index-local-minimum-2369"></a><a name="index-finding-minimums-2370"></a>
+<p><a name="index-local-minimum-2533"></a><a name="index-finding-minimums-2534"></a>
 Often it is useful to find the minimum value of a function rather than just
 the zeroes where it crosses the x-axis.  <code>fminbnd</code> is designed for the
 simpler, but very common, case of a univariate function where the interval
@@ -47,17 +47,18 @@ can be made for maxima by simply inverting the objective function
 (<code>Fto_max = -Fto_min</code>).
 
 <!-- fminbnd scripts/optimization/fminbnd.m -->
-   <p><a name="doc_002dfminbnd"></a>
+   <p><a name="XREFfminbnd"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] = <b>fminbnd</b> (<var>fun, a, b, options</var>)<var><a name="index-fminbnd-2371"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] = <b>fminbnd</b> (<var>fun, a, b, options</var>)<var><a name="index-fminbnd-2535"></a></var><br>
 <blockquote><p>Find a minimum point of a univariate function.
 
         <p><var>fun</var> should be a function handle or name.  <var>a</var>, <var>b</var> specify a
 starting interval.  <var>options</var> is a structure specifying additional
 options.  Currently, <code>fminbnd</code> recognizes these options:
-"FunValCheck", "OutputFcn", "TolX", "MaxIter", "MaxFunEvals".  For a
-description of these options, see <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>.
+<code>"FunValCheck"</code>, <code>"OutputFcn"</code>, <code>"TolX"</code>,
+<code>"MaxIter"</code>, <code>"MaxFunEvals"</code>.  For a description of these
+options, see <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
 
         <p>On exit, the function returns <var>x</var>, the approximate minimum point
 and <var>fval</var>, the function value thereof. 
@@ -80,16 +81,17 @@ to begin searching from you will need to use an unconstrained
 minimization algorithm such as <code>fminunc</code> or <code>fminsearch</code>. 
 <code>fminbnd</code> internally uses a Golden Section search strategy.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfzero.html#doc_002dfzero">fzero</a>, <a href="doc_002dfminunc.html#doc_002dfminunc">fminunc</a>, <a href="doc_002dfminsearch.html#doc_002dfminsearch">fminsearch</a>, <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfzero.html#XREFfzero">fzero</a>, <a href="XREFfminunc.html#XREFfminunc">fminunc</a>, <a href="XREFfminsearch.html#XREFfminsearch">fminsearch</a>, <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
+
+        </blockquote></div>
 
 <!-- fminunc scripts/optimization/fminunc.m -->
-   <p><a name="doc_002dfminunc"></a>
+   <p><a name="XREFfminunc"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>fminunc</b> (<var>fcn, x0</var>)<var><a name="index-fminunc-2372"></a></var><br>
-&mdash; Function File:  <b>fminunc</b> (<var>fcn, x0, options</var>)<var><a name="index-fminunc-2373"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>fvec</var>, <var>info</var>, <var>output</var>, <var>grad</var>, <var>hess</var>] = <b>fminunc</b> (<var>fcn, <small class="dots">...</small></var>)<var><a name="index-fminunc-2374"></a></var><br>
+&mdash; Function File:  <b>fminunc</b> (<var>fcn, x0</var>)<var><a name="index-fminunc-2536"></a></var><br>
+&mdash; Function File:  <b>fminunc</b> (<var>fcn, x0, options</var>)<var><a name="index-fminunc-2537"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fvec</var>, <var>info</var>, <var>output</var>, <var>grad</var>, <var>hess</var>] = <b>fminunc</b> (<var>fcn, <small class="dots">...</small></var>)<var><a name="index-fminunc-2538"></a></var><br>
 <blockquote><p>Solve an unconstrained optimization problem defined by the function
 <var>fcn</var>.
 
@@ -142,16 +144,17 @@ gradient search which depends on the objective function being differentiable.
 If the function has discontinuities it may be better to use a derivative-free
 algorithm such as <code>fminsearch</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfminbnd.html#doc_002dfminbnd">fminbnd</a>, <a href="doc_002dfminsearch.html#doc_002dfminsearch">fminsearch</a>, <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfminbnd.html#XREFfminbnd">fminbnd</a>, <a href="XREFfminsearch.html#XREFfminsearch">fminsearch</a>, <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
+
+        </blockquote></div>
 
 <!-- fminsearch scripts/optimization/fminsearch.m -->
-   <p><a name="doc_002dfminsearch"></a>
+   <p><a name="XREFfminsearch"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>fminsearch</b> (<var>fun, x0</var>)<var><a name="index-fminsearch-2375"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>fminsearch</b> (<var>fun, x0, options</var>)<var><a name="index-fminsearch-2376"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>fval</var>] = <b>fminsearch</b> (<var><small class="dots">...</small></var>)<var><a name="index-fminsearch-2377"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>fminsearch</b> (<var>fun, x0</var>)<var><a name="index-fminsearch-2539"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>fminsearch</b> (<var>fun, x0, options</var>)<var><a name="index-fminsearch-2540"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>fval</var>] = <b>fminsearch</b> (<var><small class="dots">...</small></var>)<var><a name="index-fminsearch-2541"></a></var><br>
 <blockquote>
         <p>Find a value of <var>x</var> which minimizes the function <var>fun</var>. 
 The search begins at the point <var>x0</var> and iterates using the
@@ -161,8 +164,9 @@ a gradient-based search such as <code>fminunc</code> fails.
 
         <p>Options for the search are provided in the parameter <var>options</var> using
 the function <code>optimset</code>.  Currently, <code>fminsearch</code> accepts the
-options: "TolX", "MaxFunEvals", "MaxIter", "Display".  For a description of
-these options, see <code>optimset</code>.
+options: <code>"TolX"</code>, <code>"MaxFunEvals"</code>, <code>"MaxIter"</code>,
+<code>"Display"</code>.  For a description of these options, see
+<code>optimset</code>.
 
         <p>On exit, the function returns <var>x</var>, the minimum point,
 and <var>fval</var>, the function value thereof.
@@ -173,8 +177,9 @@ and <var>fval</var>, the function value thereof.
           
           fminsearch (inline ("(x(1)-5).^2+(x(2)-8).^4", "x"), [0;0])
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfminbnd.html#doc_002dfminbnd">fminbnd</a>, <a href="doc_002dfminunc.html#doc_002dfminunc">fminunc</a>, <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFfminbnd.html#XREFfminbnd">fminbnd</a>, <a href="XREFfminunc.html#XREFfminunc">fminunc</a>, <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
+
+        </blockquote></div>
 
 <!-- DO NOT EDIT!  Generated automatically by munge-texi.pl. -->
 <!-- Copyright (C) 2009-2012 Jaroslav Hajek -->

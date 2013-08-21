@@ -35,10 +35,10 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic<
 <h3 class="section">17.5 Utility Functions</h3>
 
 <!-- ceil libinterp/corefcn/mappers.cc -->
-<p><a name="doc_002dceil"></a>
+<p><a name="XREFceil"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>ceil</b> (<var>x</var>)<var><a name="index-ceil-2041"></a></var><br>
+&mdash; Mapping Function:  <b>ceil</b> (<var>x</var>)<var><a name="index-ceil-2196"></a></var><br>
 <blockquote><p>Return the smallest integer not less than <var>x</var>.  This is equivalent to
 rounding towards positive infinity.  If <var>x</var> is
 complex, return <code>ceil (real (</code><var>x</var><code>)) + ceil (imag (</code><var>x</var><code>)) * I</code>.
@@ -46,14 +46,15 @@ complex, return <code>ceil (real (</code><var>x</var><code>)) + ceil (imag (</co
      <pre class="example">          ceil ([-2.7, 2.7])
               &rArr; -2    3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dfloor.html#doc_002dfloor">floor</a>, <a href="doc_002dround.html#doc_002dround">round</a>, <a href="doc_002dfix.html#doc_002dfix">fix</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFfloor.html#XREFfloor">floor</a>, <a href="XREFround.html#XREFround">round</a>, <a href="XREFfix.html#XREFfix">fix</a>.
+
+        </blockquote></div>
 
 <!-- fix libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dfix"></a>
+   <p><a name="XREFfix"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>fix</b> (<var>x</var>)<var><a name="index-fix-2042"></a></var><br>
+&mdash; Mapping Function:  <b>fix</b> (<var>x</var>)<var><a name="index-fix-2197"></a></var><br>
 <blockquote><p>Truncate fractional portion of <var>x</var> and return the integer portion.  This
 is equivalent to rounding towards zero.  If <var>x</var> is complex, return
 <code>fix (real (</code><var>x</var><code>)) + fix (imag (</code><var>x</var><code>)) * I</code>.
@@ -61,14 +62,15 @@ is equivalent to rounding towards zero.  If <var>x</var> is complex, return
      <pre class="example">          fix ([-2.7, 2.7])
              &rArr; -2    2
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dceil.html#doc_002dceil">ceil</a>, <a href="doc_002dfloor.html#doc_002dfloor">floor</a>, <a href="doc_002dround.html#doc_002dround">round</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFceil.html#XREFceil">ceil</a>, <a href="XREFfloor.html#XREFfloor">floor</a>, <a href="XREFround.html#XREFround">round</a>.
+
+        </blockquote></div>
 
 <!-- floor libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dfloor"></a>
+   <p><a name="XREFfloor"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>floor</b> (<var>x</var>)<var><a name="index-floor-2043"></a></var><br>
+&mdash; Mapping Function:  <b>floor</b> (<var>x</var>)<var><a name="index-floor-2198"></a></var><br>
 <blockquote><p>Return the largest integer not greater than <var>x</var>.  This is equivalent to
 rounding towards negative infinity.  If <var>x</var> is
 complex, return <code>floor (real (</code><var>x</var><code>)) + floor (imag (</code><var>x</var><code>)) * I</code>.
@@ -76,14 +78,15 @@ complex, return <code>floor (real (</code><var>x</var><code>)) + floor (imag (</
      <pre class="example">          floor ([-2.7, 2.7])
                &rArr; -3    2
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dceil.html#doc_002dceil">ceil</a>, <a href="doc_002dround.html#doc_002dround">round</a>, <a href="doc_002dfix.html#doc_002dfix">fix</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFceil.html#XREFceil">ceil</a>, <a href="XREFround.html#XREFround">round</a>, <a href="XREFfix.html#XREFfix">fix</a>.
+
+        </blockquote></div>
 
 <!-- round libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dround"></a>
+   <p><a name="XREFround"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>round</b> (<var>x</var>)<var><a name="index-round-2044"></a></var><br>
+&mdash; Mapping Function:  <b>round</b> (<var>x</var>)<var><a name="index-round-2199"></a></var><br>
 <blockquote><p>Return the integer nearest to <var>x</var>.  If <var>x</var> is complex, return
 <code>round (real (</code><var>x</var><code>)) + round (imag (</code><var>x</var><code>)) * I</code>.  If there
 are two nearest integers, return the one further away from zero.
@@ -91,30 +94,32 @@ are two nearest integers, return the one further away from zero.
      <pre class="example">          round ([-2.7, 2.7])
                &rArr; -3    3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dceil.html#doc_002dceil">ceil</a>, <a href="doc_002dfloor.html#doc_002dfloor">floor</a>, <a href="doc_002dfix.html#doc_002dfix">fix</a>, <a href="doc_002droundb.html#doc_002droundb">roundb</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFceil.html#XREFceil">ceil</a>, <a href="XREFfloor.html#XREFfloor">floor</a>, <a href="XREFfix.html#XREFfix">fix</a>, <a href="XREFroundb.html#XREFroundb">roundb</a>.
+
+        </blockquote></div>
 
 <!-- roundb libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002droundb"></a>
+   <p><a name="XREFroundb"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>roundb</b> (<var>x</var>)<var><a name="index-roundb-2045"></a></var><br>
+&mdash; Mapping Function:  <b>roundb</b> (<var>x</var>)<var><a name="index-roundb-2200"></a></var><br>
 <blockquote><p>Return the integer nearest to <var>x</var>.  If there are two nearest
 integers, return the even one (banker's rounding).  If <var>x</var> is complex,
 return <code>roundb (real (</code><var>x</var><code>)) + roundb (imag (</code><var>x</var><code>)) * I</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dround.html#doc_002dround">round</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFround.html#XREFround">round</a>.
+
+        </blockquote></div>
 
 <!-- max libinterp/corefcn/max.cc -->
-   <p><a name="doc_002dmax"></a>
+   <p><a name="XREFmax"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>max</b> (<var>x</var>)<var><a name="index-max-2046"></a></var><br>
-&mdash; Built-in Function:  <b>max</b> (<var>x, y</var>)<var><a name="index-max-2047"></a></var><br>
-&mdash; Built-in Function:  <b>max</b> (<var>x, </var>[]<var>, dim</var>)<var><a name="index-max-2048"></a></var><br>
-&mdash; Built-in Function:  <b>max</b> (<var>x, y, dim</var>)<var><a name="index-max-2049"></a></var><br>
-&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>max</b> (<var>x</var>)<var><a name="index-max-2050"></a></var><br>
+&mdash; Built-in Function:  <b>max</b> (<var>x</var>)<var><a name="index-max-2201"></a></var><br>
+&mdash; Built-in Function:  <b>max</b> (<var>x, y</var>)<var><a name="index-max-2202"></a></var><br>
+&mdash; Built-in Function:  <b>max</b> (<var>x, </var>[]<var>, dim</var>)<var><a name="index-max-2203"></a></var><br>
+&mdash; Built-in Function:  <b>max</b> (<var>x, y, dim</var>)<var><a name="index-max-2204"></a></var><br>
+&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>max</b> (<var>x</var>)<var><a name="index-max-2205"></a></var><br>
 <blockquote><p>For a vector argument, return the maximum value.  For a matrix
 argument, return the maximum value from each column, as a row
 vector, or over the dimension <var>dim</var> if defined, in which case <var>y</var>
@@ -143,18 +148,19 @@ maximum value(s).  Thus,
               &rArr;  x = 5
                   ix = 3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dmin.html#doc_002dmin">min</a>, <a href="doc_002dcummax.html#doc_002dcummax">cummax</a>, <a href="doc_002dcummin.html#doc_002dcummin">cummin</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFmin.html#XREFmin">min</a>, <a href="XREFcummax.html#XREFcummax">cummax</a>, <a href="XREFcummin.html#XREFcummin">cummin</a>.
+
+        </blockquote></div>
 
 <!-- min libinterp/corefcn/max.cc -->
-   <p><a name="doc_002dmin"></a>
+   <p><a name="XREFmin"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>min</b> (<var>x</var>)<var><a name="index-min-2051"></a></var><br>
-&mdash; Built-in Function:  <b>min</b> (<var>x, y</var>)<var><a name="index-min-2052"></a></var><br>
-&mdash; Built-in Function:  <b>min</b> (<var>x, </var>[]<var>, dim</var>)<var><a name="index-min-2053"></a></var><br>
-&mdash; Built-in Function:  <b>min</b> (<var>x, y, dim</var>)<var><a name="index-min-2054"></a></var><br>
-&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>min</b> (<var>x</var>)<var><a name="index-min-2055"></a></var><br>
+&mdash; Built-in Function:  <b>min</b> (<var>x</var>)<var><a name="index-min-2206"></a></var><br>
+&mdash; Built-in Function:  <b>min</b> (<var>x, y</var>)<var><a name="index-min-2207"></a></var><br>
+&mdash; Built-in Function:  <b>min</b> (<var>x, </var>[]<var>, dim</var>)<var><a name="index-min-2208"></a></var><br>
+&mdash; Built-in Function:  <b>min</b> (<var>x, y, dim</var>)<var><a name="index-min-2209"></a></var><br>
+&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>min</b> (<var>x</var>)<var><a name="index-min-2210"></a></var><br>
 <blockquote><p>For a vector argument, return the minimum value.  For a matrix
 argument, return the minimum value from each column, as a row
 vector, or over the dimension <var>dim</var> if defined, in which case <var>y</var>
@@ -183,16 +189,17 @@ minimum value(s).  Thus,
               &rArr;  x = 0
                   ix = 3
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dmax.html#doc_002dmax">max</a>, <a href="doc_002dcummin.html#doc_002dcummin">cummin</a>, <a href="doc_002dcummax.html#doc_002dcummax">cummax</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFmax.html#XREFmax">max</a>, <a href="XREFcummin.html#XREFcummin">cummin</a>, <a href="XREFcummax.html#XREFcummax">cummax</a>.
+
+        </blockquote></div>
 
 <!-- cummax libinterp/corefcn/max.cc -->
-   <p><a name="doc_002dcummax"></a>
+   <p><a name="XREFcummax"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>cummax</b> (<var>x</var>)<var><a name="index-cummax-2056"></a></var><br>
-&mdash; Built-in Function:  <b>cummax</b> (<var>x, dim</var>)<var><a name="index-cummax-2057"></a></var><br>
-&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>cummax</b> (<var>x</var>)<var><a name="index-cummax-2058"></a></var><br>
+&mdash; Built-in Function:  <b>cummax</b> (<var>x</var>)<var><a name="index-cummax-2211"></a></var><br>
+&mdash; Built-in Function:  <b>cummax</b> (<var>x, dim</var>)<var><a name="index-cummax-2212"></a></var><br>
+&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>cummax</b> (<var>x</var>)<var><a name="index-cummax-2213"></a></var><br>
 <blockquote><p>Return the cumulative maximum values along dimension <var>dim</var>.  If <var>dim</var>
 is unspecified it defaults to column-wise operation.  For example:
 
@@ -212,16 +219,17 @@ is unspecified it defaults to column-wise operation.  For example:
 </pre>
         <p class="noindent">but computed in a much faster manner.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcummin.html#doc_002dcummin">cummin</a>, <a href="doc_002dmax.html#doc_002dmax">max</a>, <a href="doc_002dmin.html#doc_002dmin">min</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcummin.html#XREFcummin">cummin</a>, <a href="XREFmax.html#XREFmax">max</a>, <a href="XREFmin.html#XREFmin">min</a>.
+
+        </blockquote></div>
 
 <!-- cummin libinterp/corefcn/max.cc -->
-   <p><a name="doc_002dcummin"></a>
+   <p><a name="XREFcummin"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>cummin</b> (<var>x</var>)<var><a name="index-cummin-2059"></a></var><br>
-&mdash; Built-in Function:  <b>cummin</b> (<var>x, dim</var>)<var><a name="index-cummin-2060"></a></var><br>
-&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>cummin</b> (<var>x</var>)<var><a name="index-cummin-2061"></a></var><br>
+&mdash; Built-in Function:  <b>cummin</b> (<var>x</var>)<var><a name="index-cummin-2214"></a></var><br>
+&mdash; Built-in Function:  <b>cummin</b> (<var>x, dim</var>)<var><a name="index-cummin-2215"></a></var><br>
+&mdash; Built-in Function: [<var>w</var>, <var>iw</var>] = <b>cummin</b> (<var>x</var>)<var><a name="index-cummin-2216"></a></var><br>
 <blockquote><p>Return the cumulative minimum values along dimension <var>dim</var>.  If <var>dim</var>
 is unspecified it defaults to column-wise operation.  For example:
 
@@ -241,15 +249,16 @@ is unspecified it defaults to column-wise operation.  For example:
 </pre>
         <p class="noindent">but computed in a much faster manner.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcummax.html#doc_002dcummax">cummax</a>, <a href="doc_002dmin.html#doc_002dmin">min</a>, <a href="doc_002dmax.html#doc_002dmax">max</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcummax.html#XREFcummax">cummax</a>, <a href="XREFmin.html#XREFmin">min</a>, <a href="XREFmax.html#XREFmax">max</a>.
 
-<!-- hypot libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dhypot"></a>
+        </blockquote></div>
+
+<!-- hypot libinterp/corefcn/data.cc -->
+   <p><a name="XREFhypot"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>hypot</b> (<var>x, y</var>)<var><a name="index-hypot-2062"></a></var><br>
-&mdash; Built-in Function:  <b>hypot</b> (<var>x, y, z, <small class="dots">...</small></var>)<var><a name="index-hypot-2063"></a></var><br>
+&mdash; Built-in Function:  <b>hypot</b> (<var>x, y</var>)<var><a name="index-hypot-2217"></a></var><br>
+&mdash; Built-in Function:  <b>hypot</b> (<var>x, y, z, <small class="dots">...</small></var>)<var><a name="index-hypot-2218"></a></var><br>
 <blockquote><p>Compute the element-by-element square root of the sum of the squares of
 <var>x</var> and <var>y</var>.  This is equivalent to
 <code>sqrt (</code><var>x</var><code>.^2 + </code><var>y</var><code>.^2)</code>, but calculated in a manner that
@@ -263,16 +272,16 @@ the arguments are accumulated from left to right:
         </blockquote></div>
 
 <!-- gradient scripts/general/gradient.m -->
-   <p><a name="doc_002dgradient"></a>
+   <p><a name="XREFgradient"></a>
 
 <div class="defun">
-&mdash; Function File: <var>dx</var> = <b>gradient</b> (<var>m</var>)<var><a name="index-gradient-2064"></a></var><br>
-&mdash; Function File: [<var>dx</var>, <var>dy</var>, <var>dz</var>, <small class="dots">...</small>] = <b>gradient</b> (<var>m</var>)<var><a name="index-gradient-2065"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>m, s</var>)<var><a name="index-gradient-2066"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>m, x, y, z, <small class="dots">...</small></var>)<var><a name="index-gradient-2067"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>f, x0</var>)<var><a name="index-gradient-2068"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>f, x0, s</var>)<var><a name="index-gradient-2069"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>f, x0, x, y, <small class="dots">...</small></var>)<var><a name="index-gradient-2070"></a></var><br>
+&mdash; Function File: <var>dx</var> = <b>gradient</b> (<var>m</var>)<var><a name="index-gradient-2219"></a></var><br>
+&mdash; Function File: [<var>dx</var>, <var>dy</var>, <var>dz</var>, <small class="dots">...</small>] = <b>gradient</b> (<var>m</var>)<var><a name="index-gradient-2220"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>m, s</var>)<var><a name="index-gradient-2221"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>m, x, y, z, <small class="dots">...</small></var>)<var><a name="index-gradient-2222"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>f, x0</var>)<var><a name="index-gradient-2223"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>f, x0, s</var>)<var><a name="index-gradient-2224"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>gradient</b> (<var>f, x0, x, y, <small class="dots">...</small></var>)<var><a name="index-gradient-2225"></a></var><br>
 <blockquote>
         <p>Calculate the gradient of sampled data or a function.  If <var>m</var>
 is a vector, calculate the one-dimensional gradient of <var>m</var>.  If
@@ -306,14 +315,15 @@ sampled data, the spacing values between the points from which the
 gradient is estimated can be set via the <var>s</var> or <var>dx</var>,
 <var>dy</var>, <small class="dots">...</small> arguments.  By default a spacing of 1 is used.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddiff.html#doc_002ddiff">diff</a>, <a href="doc_002ddel2.html#doc_002ddel2">del2</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdiff.html#XREFdiff">diff</a>, <a href="XREFdel2.html#XREFdel2">del2</a>.
+
+        </blockquote></div>
 
 <!-- dot libinterp/corefcn/dot.cc -->
-   <p><a name="doc_002ddot"></a>
+   <p><a name="XREFdot"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dot</b> (<var>x, y, dim</var>)<var><a name="index-dot-2071"></a></var><br>
+&mdash; Built-in Function:  <b>dot</b> (<var>x, y, dim</var>)<var><a name="index-dot-2226"></a></var><br>
 <blockquote><p>Compute the dot product of two vectors.  If <var>x</var> and <var>y</var>
 are matrices, calculate the dot products along the first
 non-singleton dimension.  If the optional argument <var>dim</var> is
@@ -325,15 +335,16 @@ but avoids forming a temporary array and is faster.  When <var>X</var> and
 <var>Y</var> are column vectors, the result is equivalent to
 <var>X</var><code>' * </code><var>Y</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcross.html#doc_002dcross">cross</a>, <a href="doc_002ddivergence.html#doc_002ddivergence">divergence</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcross.html#XREFcross">cross</a>, <a href="XREFdivergence.html#XREFdivergence">divergence</a>.
+
+        </blockquote></div>
 
 <!-- cross scripts/linear-algebra/cross.m -->
-   <p><a name="doc_002dcross"></a>
+   <p><a name="XREFcross"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>cross</b> (<var>x, y</var>)<var><a name="index-cross-2072"></a></var><br>
-&mdash; Function File:  <b>cross</b> (<var>x, y, dim</var>)<var><a name="index-cross-2073"></a></var><br>
+&mdash; Function File:  <b>cross</b> (<var>x, y</var>)<var><a name="index-cross-2227"></a></var><br>
+&mdash; Function File:  <b>cross</b> (<var>x, y, dim</var>)<var><a name="index-cross-2228"></a></var><br>
 <blockquote><p>Compute the vector cross product of two 3-dimensional vectors
 <var>x</var> and <var>y</var>.
 
@@ -345,17 +356,18 @@ along the first dimension with 3 elements.  The optional argument
 <var>dim</var> forces the cross product to be calculated along
 the specified dimension.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddot.html#doc_002ddot">dot</a>, <a href="doc_002dcurl.html#doc_002dcurl">curl</a>, <a href="doc_002ddivergence.html#doc_002ddivergence">divergence</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdot.html#XREFdot">dot</a>, <a href="XREFcurl.html#XREFcurl">curl</a>, <a href="XREFdivergence.html#XREFdivergence">divergence</a>.
+
+        </blockquote></div>
 
 <!-- divergence scripts/general/divergence.m -->
-   <p><a name="doc_002ddivergence"></a>
+   <p><a name="XREFdivergence"></a>
 
 <div class="defun">
-&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>x, y, z, fx, fy, fz</var>)<var><a name="index-divergence-2074"></a></var><br>
-&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>fx, fy, fz</var>)<var><a name="index-divergence-2075"></a></var><br>
-&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>x, y, fx, fy</var>)<var><a name="index-divergence-2076"></a></var><br>
-&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>fx, fy</var>)<var><a name="index-divergence-2077"></a></var><br>
+&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>x, y, z, fx, fy, fz</var>)<var><a name="index-divergence-2229"></a></var><br>
+&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>fx, fy, fz</var>)<var><a name="index-divergence-2230"></a></var><br>
+&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>x, y, fx, fy</var>)<var><a name="index-divergence-2231"></a></var><br>
+&mdash; Function File: <var>div</var> = <b>divergence</b> (<var>fx, fy</var>)<var><a name="index-divergence-2232"></a></var><br>
 <blockquote><p>Calculate divergence of a vector field given by the arrays <var>fx</var>,
 <var>fy</var>, and <var>fz</var> or <var>fx</var>, <var>fy</var> respectively.
 
@@ -366,18 +378,19 @@ the specified dimension.
         <p>The coordinates of the vector field can be given by the arguments <var>x</var>,
 <var>y</var>, <var>z</var> or <var>x</var>, <var>y</var> respectively.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcurl.html#doc_002dcurl">curl</a>, <a href="doc_002dgradient.html#doc_002dgradient">gradient</a>, <a href="doc_002ddel2.html#doc_002ddel2">del2</a>, <a href="doc_002ddot.html#doc_002ddot">dot</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcurl.html#XREFcurl">curl</a>, <a href="XREFgradient.html#XREFgradient">gradient</a>, <a href="XREFdel2.html#XREFdel2">del2</a>, <a href="XREFdot.html#XREFdot">dot</a>.
+
+        </blockquote></div>
 
 <!-- curl scripts/general/curl.m -->
-   <p><a name="doc_002dcurl"></a>
+   <p><a name="XREFcurl"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>cx</var>, <var>cy</var>, <var>cz</var>, <var>v</var>] = <b>curl</b> (<var>x, y, z, fx, fy, fz</var>)<var><a name="index-curl-2078"></a></var><br>
-&mdash; Function File: [<var>cz</var>, <var>v</var>] = <b>curl</b> (<var>x, y, fx, fy</var>)<var><a name="index-curl-2079"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>curl</b> (<var>fx, fy, fz</var>)<var><a name="index-curl-2080"></a></var><br>
-&mdash; Function File: [<small class="dots">...</small>] = <b>curl</b> (<var>fx, fy</var>)<var><a name="index-curl-2081"></a></var><br>
-&mdash; Function File: <var>v</var> = <b>curl</b> (<var><small class="dots">...</small></var>)<var><a name="index-curl-2082"></a></var><br>
+&mdash; Function File: [<var>cx</var>, <var>cy</var>, <var>cz</var>, <var>v</var>] = <b>curl</b> (<var>x, y, z, fx, fy, fz</var>)<var><a name="index-curl-2233"></a></var><br>
+&mdash; Function File: [<var>cz</var>, <var>v</var>] = <b>curl</b> (<var>x, y, fx, fy</var>)<var><a name="index-curl-2234"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>curl</b> (<var>fx, fy, fz</var>)<var><a name="index-curl-2235"></a></var><br>
+&mdash; Function File: [<small class="dots">...</small>] = <b>curl</b> (<var>fx, fy</var>)<var><a name="index-curl-2236"></a></var><br>
+&mdash; Function File: <var>v</var> = <b>curl</b> (<var><small class="dots">...</small></var>)<var><a name="index-curl-2237"></a></var><br>
 <blockquote><p>Calculate curl of vector field given by the arrays <var>fx</var>, <var>fy</var>, and
 <var>fz</var> or <var>fx</var>, <var>fy</var> respectively.
 
@@ -392,16 +405,17 @@ for two-dimensional input.  For three-dimensional input the scalar
 rotation is calculated at each grid point in direction of the vector field
 at that point.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002ddivergence.html#doc_002ddivergence">divergence</a>, <a href="doc_002dgradient.html#doc_002dgradient">gradient</a>, <a href="doc_002ddel2.html#doc_002ddel2">del2</a>, <a href="doc_002dcross.html#doc_002dcross">cross</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFdivergence.html#XREFdivergence">divergence</a>, <a href="XREFgradient.html#XREFgradient">gradient</a>, <a href="XREFdel2.html#XREFdel2">del2</a>, <a href="XREFcross.html#XREFcross">cross</a>.
+
+        </blockquote></div>
 
 <!-- del2 scripts/general/del2.m -->
-   <p><a name="doc_002ddel2"></a>
+   <p><a name="XREFdel2"></a>
 
 <div class="defun">
-&mdash; Function File: <var>d</var> = <b>del2</b> (<var>M</var>)<var><a name="index-del2-2083"></a></var><br>
-&mdash; Function File: <var>d</var> = <b>del2</b> (<var>M, h</var>)<var><a name="index-del2-2084"></a></var><br>
-&mdash; Function File: <var>d</var> = <b>del2</b> (<var>M, dx, dy, <small class="dots">...</small></var>)<var><a name="index-del2-2085"></a></var><br>
+&mdash; Function File: <var>d</var> = <b>del2</b> (<var>M</var>)<var><a name="index-del2-2238"></a></var><br>
+&mdash; Function File: <var>d</var> = <b>del2</b> (<var>M, h</var>)<var><a name="index-del2-2239"></a></var><br>
+&mdash; Function File: <var>d</var> = <b>del2</b> (<var>M, dx, dy, <small class="dots">...</small></var>)<var><a name="index-del2-2240"></a></var><br>
 <blockquote>
         <p>Calculate the discrete Laplace
 operator. 
@@ -425,29 +439,31 @@ length of the spacing vectors must match the respective dimension of
         <p>At least 3 data points are needed for each dimension.  Boundary points are
 calculated from the linear extrapolation of interior points.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgradient.html#doc_002dgradient">gradient</a>, <a href="doc_002ddiff.html#doc_002ddiff">diff</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgradient.html#XREFgradient">gradient</a>, <a href="XREFdiff.html#XREFdiff">diff</a>.
+
+        </blockquote></div>
 
 <!-- factorial scripts/specfun/factorial.m -->
-   <p><a name="doc_002dfactorial"></a>
+   <p><a name="XREFfactorial"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>factorial</b> (<var>n</var>)<var><a name="index-factorial-2086"></a></var><br>
+&mdash; Function File:  <b>factorial</b> (<var>n</var>)<var><a name="index-factorial-2241"></a></var><br>
 <blockquote><p>Return the factorial of <var>n</var> where <var>n</var> is a positive integer.  If
 <var>n</var> is a scalar, this is equivalent to <code>prod (1:</code><var>n</var><code>)</code>.  For
 vector or matrix arguments, return the factorial of each element in the
 array.  For non-integers see the generalized factorial function
 <code>gamma</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dprod.html#doc_002dprod">prod</a>, <a href="doc_002dgamma.html#doc_002dgamma">gamma</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFprod.html#XREFprod">prod</a>, <a href="XREFgamma.html#XREFgamma">gamma</a>.
+
+        </blockquote></div>
 
 <!-- factor scripts/specfun/factor.m -->
-   <p><a name="doc_002dfactor"></a>
+   <p><a name="XREFfactor"></a>
 
 <div class="defun">
-&mdash; Function File: <var>p</var> = <b>factor</b> (<var>q</var>)<var><a name="index-factor-2087"></a></var><br>
-&mdash; Function File: [<var>p</var>, <var>n</var>] = <b>factor</b> (<var>q</var>)<var><a name="index-factor-2088"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>factor</b> (<var>q</var>)<var><a name="index-factor-2242"></a></var><br>
+&mdash; Function File: [<var>p</var>, <var>n</var>] = <b>factor</b> (<var>q</var>)<var><a name="index-factor-2243"></a></var><br>
 <blockquote>
         <p>Return prime factorization of <var>q</var>.  That is,
 <code>prod (</code><var>p</var><code>) == </code><var>q</var> and every element of <var>p</var> is a prime
@@ -457,15 +473,16 @@ number.  If <var>q</var><code> == 1</code>, return 1.
 their multiplicities.  That is, <code>prod (</code><var>p</var><code> .^ </code><var>n</var><code>) ==
 </code><var>q</var>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgcd.html#doc_002dgcd">gcd</a>, <a href="doc_002dlcm.html#doc_002dlcm">lcm</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgcd.html#XREFgcd">gcd</a>, <a href="XREFlcm.html#XREFlcm">lcm</a>.
+
+        </blockquote></div>
 
 <!-- gcd libinterp/corefcn/gcd.cc -->
-   <p><a name="doc_002dgcd"></a>
+   <p><a name="XREFgcd"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>g</var> = <b>gcd</b> (<var>a1, a2, <small class="dots">...</small></var>)<var><a name="index-gcd-2089"></a></var><br>
-&mdash; Built-in Function: [<var>g</var>, <var>v1</var>, <small class="dots">...</small>] = <b>gcd</b> (<var>a1, a2, <small class="dots">...</small></var>)<var><a name="index-gcd-2090"></a></var><br>
+&mdash; Built-in Function: <var>g</var> = <b>gcd</b> (<var>a1, a2, <small class="dots">...</small></var>)<var><a name="index-gcd-2244"></a></var><br>
+&mdash; Built-in Function: [<var>g</var>, <var>v1</var>, <small class="dots">...</small>] = <b>gcd</b> (<var>a1, a2, <small class="dots">...</small></var>)<var><a name="index-gcd-2245"></a></var><br>
 <blockquote>
         <p>Compute the greatest common divisor of <var>a1</var>, <var>a2</var>, <small class="dots">...</small>.  If more
 than one argument is given all arguments must be the same size or scalar. 
@@ -485,27 +502,29 @@ that,
 
      <pre class="example">          <var>g</var> = <var>v1</var> .* <var>a1</var> + <var>v2</var> .* <var>a2</var> + ...
 </pre>
-        <p class="noindent"><strong>See also:</strong> <a href="doc_002dlcm.html#doc_002dlcm">lcm</a>, <a href="doc_002dfactor.html#doc_002dfactor">factor</a>. 
-</p></blockquote></div>
+        <p class="noindent"><strong>See also:</strong> <a href="XREFlcm.html#XREFlcm">lcm</a>, <a href="XREFfactor.html#XREFfactor">factor</a>.
+
+        </blockquote></div>
 
 <!-- lcm scripts/specfun/lcm.m -->
-   <p><a name="doc_002dlcm"></a>
+   <p><a name="XREFlcm"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>lcm</b> (<var>x, y</var>)<var><a name="index-lcm-2091"></a></var><br>
-&mdash; Mapping Function:  <b>lcm</b> (<var>x, y, <small class="dots">...</small></var>)<var><a name="index-lcm-2092"></a></var><br>
+&mdash; Mapping Function:  <b>lcm</b> (<var>x, y</var>)<var><a name="index-lcm-2246"></a></var><br>
+&mdash; Mapping Function:  <b>lcm</b> (<var>x, y, <small class="dots">...</small></var>)<var><a name="index-lcm-2247"></a></var><br>
 <blockquote><p>Compute the least common multiple of <var>x</var> and <var>y</var>,
 or of the list of all arguments.  All elements must be the same size or
 scalar.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfactor.html#doc_002dfactor">factor</a>, <a href="doc_002dgcd.html#doc_002dgcd">gcd</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfactor.html#XREFfactor">factor</a>, <a href="XREFgcd.html#XREFgcd">gcd</a>.
+
+        </blockquote></div>
 
 <!-- chop scripts/general/chop.m -->
-   <p><a name="doc_002dchop"></a>
+   <p><a name="XREFchop"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>chop</b> (<var>x, ndigits, base</var>)<var><a name="index-chop-2093"></a></var><br>
+&mdash; Function File:  <b>chop</b> (<var>x, ndigits, base</var>)<var><a name="index-chop-2248"></a></var><br>
 <blockquote><p>Truncate elements of <var>x</var> to a length of <var>ndigits</var> such that the
 resulting numbers are exactly divisible by <var>base</var>.  If <var>base</var> is not
 specified it defaults to 10.
@@ -517,12 +536,12 @@ specified it defaults to 10.
 </pre>
         </blockquote></div>
 
-<!-- rem libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002drem"></a>
+<!-- rem libinterp/corefcn/data.cc -->
+   <p><a name="XREFrem"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>rem</b> (<var>x, y</var>)<var><a name="index-rem-2094"></a></var><br>
-&mdash; Mapping Function:  <b>fmod</b> (<var>x, y</var>)<var><a name="index-fmod-2095"></a></var><br>
+&mdash; Mapping Function:  <b>rem</b> (<var>x, y</var>)<var><a name="index-rem-2249"></a></var><br>
+&mdash; Mapping Function:  <b>fmod</b> (<var>x, y</var>)<var><a name="index-fmod-2250"></a></var><br>
 <blockquote><p>Return the remainder of the division <var>x</var><code> / </code><var>y</var>, computed
 using the expression
 
@@ -531,14 +550,15 @@ using the expression
         <p>An error message is printed if the dimensions of the arguments do not
 agree, or if either of the arguments is complex.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dmod.html#doc_002dmod">mod</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFmod.html#XREFmod">mod</a>.
 
-<!-- mod libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dmod"></a>
+        </blockquote></div>
+
+<!-- mod libinterp/corefcn/data.cc -->
+   <p><a name="XREFmod"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>mod</b> (<var>x, y</var>)<var><a name="index-mod-2096"></a></var><br>
+&mdash; Mapping Function:  <b>mod</b> (<var>x, y</var>)<var><a name="index-mod-2251"></a></var><br>
 <blockquote><p>Compute the modulo of <var>x</var> and <var>y</var>.  Conceptually this is given by
 
      <pre class="example">          x - y .* floor (x ./ y)
@@ -551,14 +571,15 @@ is, <code>mod (-1, 3)</code> is 2, not -1, as <code>rem (-1, 3)</code> returns.
         <p>An error results if the dimensions of the arguments do not agree, or if
 either of the arguments is complex.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002drem.html#doc_002drem">rem</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFrem.html#XREFrem">rem</a>.
+
+        </blockquote></div>
 
 <!-- primes scripts/specfun/primes.m -->
-   <p><a name="doc_002dprimes"></a>
+   <p><a name="XREFprimes"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>primes</b> (<var>n</var>)<var><a name="index-primes-2097"></a></var><br>
+&mdash; Function File:  <b>primes</b> (<var>n</var>)<var><a name="index-primes-2252"></a></var><br>
 <blockquote>
         <p>Return all primes up to <var>n</var>.
 
@@ -570,28 +591,30 @@ proportional to the logarithm of the prime.  Integrating, one finds
 that there are about k primes less than
 k*log (5*k).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dlist_005fprimes.html#doc_002dlist_005fprimes">list_primes</a>, <a href="doc_002disprime.html#doc_002disprime">isprime</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFlist_005fprimes.html#XREFlist_005fprimes">list_primes</a>, <a href="XREFisprime.html#XREFisprime">isprime</a>.
+
+        </blockquote></div>
 
 <!-- list_primes scripts/miscellaneous/list_primes.m -->
-   <p><a name="doc_002dlist_005fprimes"></a>
+   <p><a name="XREFlist_005fprimes"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>list_primes</b> ()<var><a name="index-list_005fprimes-2098"></a></var><br>
-&mdash; Function File:  <b>list_primes</b> (<var>n</var>)<var><a name="index-list_005fprimes-2099"></a></var><br>
+&mdash; Function File:  <b>list_primes</b> ()<var><a name="index-list_005fprimes-2253"></a></var><br>
+&mdash; Function File:  <b>list_primes</b> (<var>n</var>)<var><a name="index-list_005fprimes-2254"></a></var><br>
 <blockquote><p>List the first <var>n</var> primes.  If <var>n</var> is unspecified, the first
 25 primes are listed.
 
         <p>The algorithm used is from page 218 of the TeXbook.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dprimes.html#doc_002dprimes">primes</a>, <a href="doc_002disprime.html#doc_002disprime">isprime</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFprimes.html#XREFprimes">primes</a>, <a href="XREFisprime.html#XREFisprime">isprime</a>.
+
+        </blockquote></div>
 
 <!-- sign libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dsign"></a>
+   <p><a name="XREFsign"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>sign</b> (<var>x</var>)<var><a name="index-sign-2100"></a></var><br>
+&mdash; Mapping Function:  <b>sign</b> (<var>x</var>)<var><a name="index-sign-2255"></a></var><br>
 <blockquote><p>Compute the <dfn>signum</dfn> function, which is defined as
 
      <pre class="example">                     -1, x &lt; 0;
@@ -605,25 +628,27 @@ Although IEEE 754 floating point
 allows zero to be signed, 0.0 and -0.0 compare equal.  If you must test
 whether zero is signed, use the <code>signbit</code> function.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsignbit.html#doc_002dsignbit">signbit</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsignbit.html#XREFsignbit">signbit</a>.
+
+        </blockquote></div>
 
 <!-- signbit libinterp/corefcn/mappers.cc -->
-   <p><a name="doc_002dsignbit"></a>
+   <p><a name="XREFsignbit"></a>
 
 <div class="defun">
-&mdash; Mapping Function:  <b>signbit</b> (<var>x</var>)<var><a name="index-signbit-2101"></a></var><br>
+&mdash; Mapping Function:  <b>signbit</b> (<var>x</var>)<var><a name="index-signbit-2256"></a></var><br>
 <blockquote><p>Return logical true if the value of <var>x</var> has its sign bit set. 
 Otherwise return logical false.  This behavior is consistent with the other
-logical functions. See<a href="Logical-Values.html#Logical-Values">Logical Values</a>.  The behavior differs from the
+logical functions.  See<a href="Logical-Values.html#Logical-Values">Logical Values</a>.  The behavior differs from the
 C language function which returns non-zero if the sign bit is set.
 
         <p>This is not the same as <code>x &lt; 0.0</code>, because IEEE 754 floating point
 allows zero to be signed.  The comparison <code>-0.0 &lt; 0.0</code> is false,
 but <code>signbit (-0.0)</code> will return a nonzero value.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsign.html#doc_002dsign">sign</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsign.html#XREFsign">sign</a>.
+
+        </blockquote></div>
 
    </body></html>
 

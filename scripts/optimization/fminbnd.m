@@ -25,8 +25,9 @@
 ## @var{fun} should be a function handle or name.  @var{a}, @var{b} specify a
 ## starting interval.  @var{options} is a structure specifying additional
 ## options.  Currently, @code{fminbnd} recognizes these options:
-## "FunValCheck", "OutputFcn", "TolX", "MaxIter", "MaxFunEvals".  For a
-## description of these options, see @ref{doc-optimset,,optimset}.
+## @qcode{"FunValCheck"}, @qcode{"OutputFcn"}, @qcode{"TolX"},
+## @qcode{"MaxIter"}, @qcode{"MaxFunEvals"}.  For a description of these
+## options, see @ref{XREFoptimset,,optimset}.
 ##
 ## On exit, the function returns @var{x}, the approximate minimum point
 ## and @var{fval}, the function value thereof.
@@ -210,7 +211,7 @@ function [x, fval, info, output] = fminbnd (fun, xmin, xmax, options = struct ()
   iter(1).procedure = "initial";
 
   ## Handle the "Display" option
-  switch displ
+  switch (displ)
     case "iter"
       print_formatted_table (iter);
       print_exit_msg (info, struct("TolX", tolx, "fx", fval));
@@ -259,7 +260,7 @@ endfunction
 ## Print either a success termination message or bad news
 function print_exit_msg (info, opt=struct())
   printf ("");
-  switch info
+  switch (info)
     case 1
       printf ("Optimization terminated:\n");
       printf (" the current x satisfies the termination criteria using OPTIONS.TolX of %e\n", opt.TolX);

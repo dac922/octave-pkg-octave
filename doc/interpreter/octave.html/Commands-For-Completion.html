@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Command-Line-Editing.html#Command-Line-
 
 <h4 class="subsection">2.4.4 Letting Readline Type For You</h4>
 
-<p><a name="index-command-completion-135"></a>
+<p><a name="index-command-completion-141"></a>
 The following commands allow Octave to complete command and variable
 names for you.
 
@@ -45,27 +45,27 @@ complete the names of commands and variables.
      <br><dt><kbd>M-?</kbd><dd>List the possible completions of the text before the cursor. 
 </dl>
 
-<!-- completion_append_char libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dcompletion_005fappend_005fchar"></a>
+<!-- completion_append_char libinterp/corefcn/input.cc -->
+   <p><a name="XREFcompletion_005fappend_005fchar"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>val</var> = <b>completion_append_char</b> ()<var><a name="index-completion_005fappend_005fchar-136"></a></var><br>
-&mdash; Built-in Function: <var>old_val</var> = <b>completion_append_char</b> (<var>new_val</var>)<var><a name="index-completion_005fappend_005fchar-137"></a></var><br>
-&mdash; Built-in Function:  <b>completion_append_char</b> (<var>new_val, "local"</var>)<var><a name="index-completion_005fappend_005fchar-138"></a></var><br>
+&mdash; Built-in Function: <var>val</var> = <b>completion_append_char</b> ()<var><a name="index-completion_005fappend_005fchar-142"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>completion_append_char</b> (<var>new_val</var>)<var><a name="index-completion_005fappend_005fchar-143"></a></var><br>
+&mdash; Built-in Function:  <b>completion_append_char</b> (<var>new_val, "local"</var>)<var><a name="index-completion_005fappend_005fchar-144"></a></var><br>
 <blockquote><p>Query or set the internal character variable that is appended to
 successful command-line completion attempts.  The default
 value is <code>" "</code> (a single space).
 
-        <p>When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function. 
+        <p>When called from inside a function with the <code>"local"</code> option, the
+variable is changed locally for the function and any subroutines it calls. 
+The original variable value is restored when exiting the function. 
 </p></blockquote></div>
 
-<!-- completion_matches libinterp/interpfcn/input.cc -->
-   <p><a name="doc_002dcompletion_005fmatches"></a>
+<!-- completion_matches libinterp/corefcn/input.cc -->
+   <p><a name="XREFcompletion_005fmatches"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>completion_matches</b> (<var>hint</var>)<var><a name="index-completion_005fmatches-139"></a></var><br>
+&mdash; Built-in Function:  <b>completion_matches</b> (<var>hint</var>)<var><a name="index-completion_005fmatches-145"></a></var><br>
 <blockquote><p>Generate possible completions given <var>hint</var>.
 
         <p>This function is provided for the benefit of programs like Emacs which

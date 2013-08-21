@@ -40,10 +40,10 @@ to a function or operator.  To do this the <code>superiorto</code> and
 <code>inferiorto</code> functions can be used
 
 <!-- superiorto libinterp/octave-value/ov-class.cc -->
-   <p><a name="doc_002dsuperiorto"></a>
+   <p><a name="XREFsuperiorto"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>superiorto</b> (<var>class_name, <small class="dots">...</small></var>)<var><a name="index-superiorto-3330"></a></var><br>
+&mdash; Built-in Function:  <b>superiorto</b> (<var>class_name, <small class="dots">...</small></var>)<var><a name="index-superiorto-3515"></a></var><br>
 <blockquote><p>When called from a class constructor, mark the object currently
 constructed as having a higher precedence than <var>class_name</var>. 
 More that one such class can be specified in a single call. 
@@ -51,10 +51,10 @@ This function may only be called from a class constructor.
 </p></blockquote></div>
 
 <!-- inferiorto libinterp/octave-value/ov-class.cc -->
-   <p><a name="doc_002dinferiorto"></a>
+   <p><a name="XREFinferiorto"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>inferiorto</b> (<var>class_name, <small class="dots">...</small></var>)<var><a name="index-inferiorto-3331"></a></var><br>
+&mdash; Built-in Function:  <b>inferiorto</b> (<var>class_name, <small class="dots">...</small></var>)<var><a name="index-inferiorto-3516"></a></var><br>
 <blockquote><p>When called from a class constructor, mark the object currently
 constructed as having a lower precedence than <var>class_name</var>. 
 More that one such class can be specified in a single call. 
@@ -65,9 +65,9 @@ This function may only be called from a class constructor.
 
 <pre class="example">     2 * polynomial ([1, 0, 1]);
 </pre>
-   <p class="noindent">That mixes an object of the class "double" with an object of the class
-"polynomial".  In this case we like to ensure that the return type of
-the above is of the type "polynomial" and so we use the
+   <p class="noindent">That mixes an object of the class <code>"double"</code> with an object of the class
+<code>"polynomial"</code>.  In this case we like to ensure that the return type of
+the above is of the type <code>"polynomial"</code> and so we use the
 <code>superiorto</code> function in the class constructor.  In particular our
 polynomial class constructor would be modified to be
 
@@ -103,10 +103,11 @@ polynomial class constructor would be modified to be
        superiorto ("double");
      endfunction
 </pre>
+     
 </pre>
    <p>Note that user classes always have higher precedence than built-in
 Octave types.  So in fact marking our polynomial class higher than the
-"double" class is in fact not necessary.
+<code>"double"</code> class is in fact not necessary.
 
    <p>When faced with two objects that have the same precedence, Octave will use the
 method of the object that appears first on the list of arguments.

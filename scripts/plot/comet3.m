@@ -18,18 +18,20 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {} comet3 (@var{z})
+## @deftypefnx {Function File} {} comet3 (@var{x}, @var{y}, @var{z})
 ## @deftypefnx {Function File} {} comet3 (@var{x}, @var{y}, @var{z}, @var{p})
-## @deftypefnx {Function File} {} comet3 (@var{ax}, @dots{})
+## @deftypefnx {Function File} {} comet3 (@var{hax}, @dots{})
 ## Produce a simple comet style animation along the trajectory provided by
-## the input coordinate vectors (@var{x}, @var{y}), where @var{x} will default
-## to the indices of @var{y}.
+## the input coordinate vectors (@var{x}, @var{y}, @var{z}).  If only @var{z}
+## is specified then @var{x}, @var{y} default to the indices of @var{z}.
 ##
 ## The speed of the comet may be controlled by @var{p}, which represents the
-## time which passes as the animation passes from one point to the next.  The
-## default for @var{p} is 0.1 seconds.
+## time each point is displayed before moving to the next one.  The default for
+## @var{p} is 0.1 seconds.
 ##
-## If @var{ax} is specified the animation is produced in that axis rather than
-## the @code{gca}.
+## If the first argument @var{hax} is an axes handle, then plot into this axis,
+## rather than the current axes returned by @code{gca}.
+## @seealso{comet}
 ## @end deftypefn
 
 ## Author: jwe
@@ -37,7 +39,7 @@
 
 function comet3 (varargin)
 
-  [h, varargin, nargin] = __plt_get_axis_arg__ ("comet3", varargin{:});
+  [hax, varargin, nargin] = __plt_get_axis_arg__ ("comet3", varargin{:});
 
   if (nargin == 0 || nargin == 2 || nargin > 4)
     print_usage ();
@@ -57,25 +59,35 @@ function comet3 (varargin)
     p = varargin{4};
   endif
 
-  oldh = gca ();
+  oldfig = [];
+  if (isempty (hax))
+    oldfig = get (0, "currentfigure");
+  endif
   unwind_protect
-    axes (h);
-    newplot ();
-    theaxis = [min(x), max(x), min(y), max(y), min(z), max(z)];
+    hax = newplot (hax);
+    limits = [min(x), max(x), min(y), max(y), min(z), max(z)];
     num = numel (y);
     dn = round (num/10);
-    for n = 1:(num+dn);
+
+    hl = plot3 (x(1), y(1), z(1), "color", "r", "marker", "none",
+                x(1), y(1), z(1), "color", "g", "marker", "none",
+                x(1), y(1), z(1), "color", "b", "marker", "o");
+    axis (limits);  # set manual limits to speed up plotting
+
+    for n = 2:(num+dn);
       m = n - dn;
       m = max ([m, 1]);
       k = min ([n, num]);
-      h = plot3 (x(1:m), y(1:m), z(1:m), "r", x(m:k), y(m:k), z(m:k), "g",
-                 x(k), y(k), z(k), "ob");
-      axis (theaxis);
+      set (hl(1), "xdata", x(1:m), "ydata", y(1:m), "zdata", z(1:m));
+      set (hl(2), "xdata", x(m:k), "ydata", y(m:k), "zdata", z(m:k));
+      set (hl(3), "xdata", x(k)  , "ydata", y(k)  , "zdata", z(k));
       drawnow ();
       pause (p);
     endfor
   unwind_protect_cleanup
-    axes (oldh);
+    if (! isempty (oldfig))
+      set (0, "currentfigure", oldfig);
+    endif
   end_unwind_protect
 
 endfunction
@@ -83,6 +95,9 @@ endfunction
 
 %!demo
 %! clf;
+%! title ('comet3() animation');
+%! view (3); hold on;
 %! t = 0:pi/20:5*pi;
-%! comet3 (cos (t), sin (t), t, 0.01);
+%! comet3 (cos (t), sin (t), t, 0.05);
+%! hold off;
 

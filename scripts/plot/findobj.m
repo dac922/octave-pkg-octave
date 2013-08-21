@@ -18,46 +18,59 @@
 
 ## -*- texinfo -*-
 ## @deftypefn  {Function File} {@var{h} =} findobj ()
-## @deftypefnx {Function File} {@var{h} =} findobj (@var{prop_name}, @var{prop_value})
+## @deftypefnx {Function File} {@var{h} =} findobj (@var{prop_name}, @var{prop_value}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} findobj (@var{prop_name}, @var{prop_value}, "-@var{logical_op}", @var{prop_name}, @var{prop_value})
 ## @deftypefnx {Function File} {@var{h} =} findobj ("-property", @var{prop_name})
 ## @deftypefnx {Function File} {@var{h} =} findobj ("-regexp", @var{prop_name}, @var{pattern})
-## @deftypefnx {Function File} {@var{h} =} findobj ("flat", @dots{})
-## @deftypefnx {Function File} {@var{h} =} findobj (@var{h}, @dots{})
-## @deftypefnx {Function File} {@var{h} =} findobj (@var{h}, "-depth", @var{d}, @dots{})
-## Find graphics object with specified property values.  The simplest form is
+## @deftypefnx {Function File} {@var{h} =} findobj (@var{hlist}, @dots{})
+## @deftypefnx {Function File} {@var{h} =} findobj (@var{hlist}, "flat", @dots{})
+## @deftypefnx {Function File} {@var{h} =} findobj (@var{hlist}, "-depth", @var{d}, @dots{})
+## Find graphics object with specified property values.
+##
+## The simplest form is
 ##
 ## @example
 ## findobj (@var{prop_name}, @var{prop_value})
 ## @end example
 ##
 ## @noindent
-## which returns all of the handles to the objects with the name
-## @var{prop_name} and the name @var{prop_value}.  The search can be limited
-## to a particular object or set of objects and their descendants by
-## passing a handle or set of handles @var{h} as the first argument to
-## @code{findobj}.
+## which returns the handles of all objects which have a property named
+## @var{prop_name} that has the value @var{prop_value}.  If multiple
+## property/value pairs are specified then only objects meeting all of the
+## conditions are returned.
 ##
-## The depth of hierarchy of objects to which to search to can be limited
-## with the "-depth" argument.  To limit the number depth of the hierarchy
-## to search to @var{d} generations of children, and example is
-##
-## @example
-## findobj (@var{h}, "-depth", @var{d}, @var{prop_name}, @var{prop_value})
-## @end example
-##
-## Specifying a depth @var{d} of 0, limits the search to the set of object
-## passed in @var{h}.  A depth @var{d} of 0 is equivalent to the "-flat"
+## The search can be limited to a particular set of objects and their
+## descendants, by passing a handle or set of handles @var{hlist} as the first
 ## argument.
 ##
-## A specified logical operator may be applied to the pairs of @var{prop_name}
-## and @var{prop_value}.  The supported logical operators are "-and", "-or",
-## "-xor", "-not".
+## The depth of the object hierarchy to search can be limited with the
+## @qcode{"-depth"} argument.  An example of searching only three generations
+## of children is:
 ##
-## The objects may also be matched by comparing a regular expression to the
-## property values, where property values that match @code{regexp
-## (@var{prop_value}, @var{pattern})} are returned.  Finally, objects may be
-## matched by property name only, using the "-property" option.
-## @seealso{get, set}
+## @example
+## findobj (@var{hlist}, "-depth", @var{d}, @var{prop_name}, @var{prop_value})
+## @end example
+##
+## Specifying a depth @var{d} of 0, limits the search to the set of objects
+## passed in @var{hlist}.  A depth @var{d} of 0 is equivalent to the
+## @qcode{"flat"} argument.
+##
+## A specified logical operator may be applied to the pairs of @var{prop_name}
+## and @var{prop_value}.  The supported logical operators are:
+## @qcode{"-and"}, @qcode{"-or"},
+## @qcode{"-xor"}, @qcode{"-not"}.
+##
+## Objects may also be matched by comparing a regular expression to the
+## property values, where property values that match
+## @code{regexp (@var{prop_value}, @var{pattern})} are returned.
+##
+## Finally, objects may be matched by property name only by using the
+## @qcode{"-property"} option.
+##
+## Implementation Note: The search only includes objects with visible
+## handles (HandleVisibility = @qcode{"on"}).  @xref{XREFfindall,,findall}, to
+## search for all objects including hidden ones.
+## @seealso{findall, allchild, get, set}
 ## @end deftypefn
 
 ## Author: Ben Abbott <bpabbott@mac.com>
@@ -110,6 +123,7 @@ function h = findobj (varargin)
   pvalue            = {};
   np = 1;
   na = 1;
+  operatorprecedence = {"-not", "-and", "-or", "-xor"};
 
   while (na <= numel (args))
     regularexpression(np) = 0;
@@ -148,17 +162,8 @@ function h = findobj (varargin)
           na = na + 1;
           if (na <= numel (args))
             if (ischar (args{na}))
-              if (strcmpi (args{na}, "-and"))
-                logicaloperator{np} = "and";
-                na = na+1;
-              elseif (strcmpi (args{na}, "-or"))
-                logicaloperator{np} = "or";
-                na = na+1;
-              elseif (strcmpi (args{na}, "-xor"))
-                logicaloperator{np} = "xor";
-                na = na+1;
-              elseif (strcmpi (args{na}, "-not"))
-                logicaloperator{np} = "not";
+              if (any (strcmpi (args{na}, operatorprecedence)))
+                logicaloperator{np} = args{na}(2:end);
                 na = na+1;
               endif
             else
@@ -185,6 +190,9 @@ function h = findobj (varargin)
   endwhile
 
   numpairs = np - 1;
+  if (~ isempty (logicaloperator))
+    logicaloperator = shift (logicaloperator, 1);
+  endif
 
   ## Load all objects which qualify for being searched.
   idepth = 0;
@@ -192,57 +200,102 @@ function h = findobj (varargin)
   while (numel (handles) && ! (idepth >= depth))
     children = [];
     for n = 1 : numel (handles)
-      children = union (children, get (handles(n), "children"));
+      children = [children; get(handles(n), "children")];
     endfor
     handles = children;
-    h = union (h, children);
+    h = [h; children];
     idepth = idepth + 1;
   endwhile
 
-  keepers = ones (size (h));
   if (numpairs > 0)
+    match = true (numel (h), numpairs);
     for nh = 1 : numel (h)
-      p = get (h (nh));
+      p = get (h(nh));
       for np = 1 : numpairs
         fields = fieldnames (p);
         fieldindex = find (strcmpi (fields, pname{np}), 1);
         if (numel (fieldindex))
           pname{np} = fields{fieldindex};
           if (property(np))
-            match = 1;
+            match(nh,np) = true;
           else
             if (regularexpression(np))
-              match = regexp (p.(pname{np}), pvalue{np});
-              if (isempty (match))
-                match = 0;
+              foo = regexp (p.(pname{np}), pvalue{np}, "once");
+              if (isempty (foo))
+                match(nh,np) = false;
+              else
+                match(nh,np) = foo;
               endif
             elseif (numel (p.(pname{np})) == numel (pvalue{np}))
-              if (ischar (pvalue{np}))
-                match = strcmpi (pvalue{np}, p.(pname{np}));
+              if (ischar (pvalue{np}) && ischar (p.(pname{np})))
+                match(nh,np) = strcmpi (pvalue{np}, p.(pname{np}));
+              elseif (isnumeric (pvalue{np} && isnumeric (p.(pname{np}))))
+                match(nh,np) = (pvalue{np} == p.(pname{np}));
               else
-                match = (pvalue{np} == p.(pname{np}));
+                match(nh,np) = isequal (pvalue{np}, p.(pname{np}));
               endif
             else
-              match = 0;
+              match(nh,np) = false;
             endif
-            match = all (match);
-          endif
-          if (strcmpi (logicaloperator{np}, "not"))
-            keepers(nh) = ! keepers(nh) & ! match;
-          else
-            keepers(nh) = feval (logicaloperator{np}, keepers(nh), match);
           endif
         else
-          keepers(nh) = 0;
+          match(nh,np) = false;
         endif
       endfor
     endfor
+
+    if (numpairs > 1)
+      for no = 1 : numel (operatorprecedence)
+        pairs = find (strcmp (logicaloperator(2:end), ...
+                              operatorprecedence{no}(2:end)));
+        for np = sort (pairs, "descend")
+          if (no == 1)
+            match(:,np+1) = ! match(:,np+1);
+            logicaloperator(np+1) = {"and"};
+          else
+            match(:,np) = feval (logicaloperator{np+1}, match(:,np), ...
+                                 match(:,np+1));
+            logicaloperator(np+1) = [];
+            match(:,np+1) = [];
+            numpairs = numpairs - 1;
+          endif
+          if (numpairs < 2)
+            break;
+          endif
+        endfor
+        if (numpairs < 2)
+          break;
+        endif
+      endfor
+    endif
+  else
+    match = true (numel (h), 1);
   endif
 
-  h = h (keepers != 0);
-  h = reshape (h, [numel(h), 1]);
+  h = h(match);
+  h = h(:);
 endfunction
 
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   h = findobj (gca (), "-property", "foo");
+%!   assert (isempty (h));
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   h = plot (1:10);
+%!   set (h, "tag", "foobar");
+%!   g = findobj (gcf (), "tag", "foobar", "type", "line", "color", [0 0 1]);
+%!   assert (g, h);
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
 
 %!test
 %! hf = figure ("visible", "off");
@@ -253,6 +306,114 @@ endfunction
 %!   assert (gca, findobj (hf, "type", "axes"));
 %!   assert (hf, findobj (hf, "type", "figure"));
 %!   assert (isempty (findobj (hf, "type", "xyzxyz")));
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   subplot (2,2,1);
+%!    imagesc (rand (10));
+%!   subplot (2,2,2);
+%!    surf (peaks);
+%!   subplot (2,2,3);
+%!    contour (peaks);
+%!   subplot (2,2,4);
+%!    plot (peaks);
+%!   h1 = findobj (gcf (), "-regexp", "Type", "image|surface|hggroup");
+%!   h2 = findobj (gcf (), "Type", "image",
+%!                  "-or", "Type", "surface",
+%!                  "-or", "Type", "hggroup");
+%!   assert (h2, h1);
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+
+%!test
+%! toolkit = graphics_toolkit ("gnuplot");
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   h1 = subplot (2,2,1);
+%!   h2 = subplot (2,2,2);
+%!   h3 = subplot (2,2,3, "userdata", struct ("foo", "bar"));
+%!   h4 = subplot (2,2,4);
+%!   h = findobj (hf, "userdata", struct ("foo", "bar"));
+%!   assert (h, h3);
+%! unwind_protect_cleanup
+%!   close (hf);
+%!   graphics_toolkit (toolkit);
+%! end_unwind_protect
+
+%!test
+%! toolkit = graphics_toolkit ("gnuplot");
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   h1 = subplot (2,2,1, "tag", "1");
+%!   h2 = subplot (2,2,2, "tag", "2");
+%!   h3 = subplot (2,2,3, "tag", "3");
+%!   h4 = subplot (2,2,4, "tag", "4");
+%!   h = findobj (hf, "type", "axes", "-not", "tag", "1");
+%!   assert (h, [h4; h3; h2])
+%! unwind_protect_cleanup
+%!   close (hf);
+%!   graphics_toolkit (toolkit);
+%! end_unwind_protect
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   h1 = subplot (2, 2, 1);
+%!   set (h1, "userdata", struct ("column", 1, "row", 1));
+%!   h2 = subplot (2, 2, 2);
+%!   set (h2, "userdata", struct ("column", 2, "row", 1));
+%!   h3 = subplot (2, 2, 3);
+%!   set (h3, "userdata", struct ("column", 1, "row", 2));
+%!   h4 = subplot (2, 2, 4);
+%!   set (h4, "userdata", struct ("column", 2, "row", 2));
+%!   h = findobj (hf, "type", "axes",
+%!                "-not", "userdata", struct ("column", 1, "row", 1));
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+%! assert (h, [h4; h3; h2])
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   ha = axes ();
+%!   plot (1:10);
+%!   h = findobj (hf, "type", "figure",
+%!                "-or", "parent", hf,
+%!                "-and", "type", "axes");
+%! unwind_protect_cleanup
+%!   close (hf)
+%! end_unwind_protect
+%! assert (h, [hf; ha])
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   set (hf, "tag", "foo");
+%!   h1 = subplot (2,2,1, "tag", "foo");
+%!   h2 = subplot (2,2,2, "tag", "bar");
+%!   h3 = subplot (2,2,3, "tag", "foo");
+%!   h4 = subplot (2,2,4, "tag", "bar");
+%!   h = findobj (hf, "type", "axes", "-xor", "tag", "foo");
+%!   assert (h, [hf; h4; h2]);
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   hax1 = subplot (2,1,1);
+%!    hl1 = plot (rand (10,1));
+%!   hax2 = subplot (2,1,2);
+%!    hl2 = plot (rand (10,1));
+%!   hobj = findobj (hf);
+%!   assert (hobj, [hf; hax2; hax1; hl2; hl1]);
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect

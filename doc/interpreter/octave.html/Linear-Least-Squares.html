@@ -42,10 +42,10 @@ function.  In the general case where the noise is assumed to be anisotropic
 the <code>gls</code> is needed.
 
 <!-- ols scripts/statistics/base/ols.m -->
-   <p><a name="doc_002dols"></a>
+   <p><a name="XREFols"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-2594"></a></var><br>
+&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-2758"></a></var><br>
 <blockquote><p>Ordinary least squares estimation for the multivariate model
 y&nbsp;=&nbsp;x*b&nbsp;+&nbsp;e<!-- /@w --> with
 mean (e) = 0 and cov (vec (e)) = kron (s, I). 
@@ -76,14 +76,15 @@ Otherwise, <var>beta</var><code> = pinv (</code><var>x</var><code>) * </code><va
           <br><dt><var>r</var><dd>The matrix of OLS residuals, <var>r</var><code> = </code><var>y</var><code> - </code><var>x</var><code>*</code><var>beta</var>. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dgls.html#doc_002dgls">gls</a>, <a href="doc_002dpinv.html#doc_002dpinv">pinv</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFgls.html#XREFgls">gls</a>, <a href="XREFpinv.html#XREFpinv">pinv</a>.
+
+        </blockquote></div>
 
 <!-- gls scripts/statistics/base/gls.m -->
-   <p><a name="doc_002dgls"></a>
+   <p><a name="XREFgls"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-2595"></a></var><br>
+&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-2759"></a></var><br>
 <blockquote><p>Generalized least squares estimation for the multivariate model
 y&nbsp;=&nbsp;x*b&nbsp;+&nbsp;e<!-- /@w --> with mean (e) = 0 and
 cov (vec (e)) = (s^2) o,
@@ -105,27 +106,28 @@ defined as follows.
           <br><dt><var>r</var><dd>The matrix of GLS residuals, r = y - x*beta. 
 </dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dols.html#doc_002dols">ols</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFols.html#XREFols">ols</a>.
+
+        </blockquote></div>
 
 <!-- lsqnonneg scripts/optimization/lsqnonneg.m -->
-   <p><a name="doc_002dlsqnonneg"></a>
+   <p><a name="XREFlsqnonneg"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d</var>)<var><a name="index-lsqnonneg-2596"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0</var>)<var><a name="index-lsqnonneg-2597"></a></var><br>
-&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0, options</var>)<var><a name="index-lsqnonneg-2598"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2599"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2600"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2601"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2602"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>, <var>lambda</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2603"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d</var>)<var><a name="index-lsqnonneg-2760"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0</var>)<var><a name="index-lsqnonneg-2761"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>lsqnonneg</b> (<var>c, d, x0, options</var>)<var><a name="index-lsqnonneg-2762"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2763"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2764"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2765"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2766"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>resnorm</var>, <var>residual</var>, <var>exitflag</var>, <var>output</var>, <var>lambda</var>] = <b>lsqnonneg</b> (<var><small class="dots">...</small></var>)<var><a name="index-lsqnonneg-2767"></a></var><br>
 <blockquote><p>Minimize <code>norm (</code><var>c</var><code>*</code><var>x</var><code> - d)</code> subject to
 <var>x</var><code> &gt;= 0</code>.  <var>c</var> and <var>d</var> must be real.  <var>x0</var> is an
 optional initial guess for <var>x</var>. 
 Currently, <code>lsqnonneg</code>
 recognizes these options: <code>"MaxIter"</code>, <code>"TolX"</code>. 
-For a description of these options, see <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>.
+For a description of these options, see <a href="XREFoptimset.html#XREFoptimset">optimset</a>.
 
         <p>Outputs:
 
@@ -150,9 +152,9 @@ converge given enough iterations.)
           <p>A structure with two fields:
 
                <ul>
-<li>"algorithm": The algorithm used ("nnls")
+<li><code>"algorithm"</code>: The algorithm used (<code>"nnls"</code>)
 
-               <li>"iterations": The number of iterations taken. 
+               <li><code>"iterations"</code>: The number of iterations taken. 
 </ul>
 
           <li>lambda
@@ -160,17 +162,18 @@ converge given enough iterations.)
           <p>Not implemented. 
 </ul>
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002doptimset.html#doc_002doptimset">optimset</a>, <a href="doc_002dpqpnonneg.html#doc_002dpqpnonneg">pqpnonneg</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFoptimset.html#XREFoptimset">optimset</a>, <a href="XREFpqpnonneg.html#XREFpqpnonneg">pqpnonneg</a>.
+
+        </blockquote></div>
 
 <!-- optimset scripts/optimization/optimset.m -->
-   <p><a name="doc_002doptimset"></a>
+   <p><a name="XREFoptimset"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>optimset</b> ()<var><a name="index-optimset-2604"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2605"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>old, par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2606"></a></var><br>
-&mdash; Function File:  <b>optimset</b> (<var>old, new</var>)<var><a name="index-optimset-2607"></a></var><br>
+&mdash; Function File:  <b>optimset</b> ()<var><a name="index-optimset-2768"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2769"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>old, par, val, <small class="dots">...</small></var>)<var><a name="index-optimset-2770"></a></var><br>
+&mdash; Function File:  <b>optimset</b> (<var>old, new</var>)<var><a name="index-optimset-2771"></a></var><br>
 <blockquote><p>Create options struct for optimization functions.
 
         <p>Valid parameters are:
@@ -181,32 +184,32 @@ converge given enough iterations.)
 <br><dt>Display<dd>Request verbose display of results from optimizations.  Values are:
 
                <dl>
-<dt>"off" [default]<dd>No display.
+<dt><code>"off"</code> [default]<dd>No display.
 
-               <br><dt>"iter"<dd>Display intermediate results for every loop iteration.
+               <br><dt><code>"iter"</code><dd>Display intermediate results for every loop iteration.
 
-               <br><dt>"final"<dd>Display the result of the final loop iteration.
+               <br><dt><code>"final"</code><dd>Display the result of the final loop iteration.
 
-               <br><dt>"notify"<dd>Display the result of the final loop iteration if the function has
+               <br><dt><code>"notify"</code><dd>Display the result of the final loop iteration if the function has
 failed to converge. 
 </dl>
 
           <br><dt>FinDiffType
 <br><dt>FunValCheck<dd>When enabled, display an error if the objective function returns an invalid
-value (a complex number, NaN, or Inf).  Must be set to "on" or "off"
-[default].  Note: the functions <code>fzero</code> and <code>fminbnd</code> correctly
-handle Inf values and only complex values or NaN will cause an error in this
-case.
+value (a complex number, NaN, or Inf).  Must be set to <code>"on"</code> or
+<code>"off"</code> [default].  Note: the functions <code>fzero</code> and
+<code>fminbnd</code> correctly handle Inf values and only complex values or NaN
+will cause an error in this case.
 
-          <br><dt>GradObj<dd>When set to "on", the function to be minimized must return a second argument
-which is the gradient, or first derivative, of the function at the point
-<var>x</var>.  If set to "off" [default], the gradient is computed via finite
-differences.
+          <br><dt>GradObj<dd>When set to <code>"on"</code>, the function to be minimized must return a
+second argument which is the gradient, or first derivative, of the
+function at the point <var>x</var>.  If set to <code>"off"</code> [default], the
+gradient is computed via finite differences.
 
-          <br><dt>Jacobian<dd>When set to "on", the function to be minimized must return a second argument
-which is the Jacobian, or first derivative, of the function at the point
-<var>x</var>.  If set to "off" [default], the Jacobian is computed via finite
-differences.
+          <br><dt>Jacobian<dd>When set to <code>"on"</code>, the function to be minimized must return a
+second argument which is the Jacobian, or first derivative, of the
+function at the point <var>x</var>.  If set to <code>"off"</code> [default], the
+Jacobian is computed via finite differences.
 
           <br><dt>MaxFunEvals<dd>Maximum number of function evaluations before optimization stops. 
 Must be a positive integer.
@@ -230,11 +233,11 @@ less than <code>TolX</code> the optimization stops.  Must be a positive scalar.
         </p></blockquote></div>
 
 <!-- optimget scripts/optimization/optimget.m -->
-   <p><a name="doc_002doptimget"></a>
+   <p><a name="XREFoptimget"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>optimget</b> (<var>options, parname</var>)<var><a name="index-optimget-2608"></a></var><br>
-&mdash; Function File:  <b>optimget</b> (<var>options, parname, default</var>)<var><a name="index-optimget-2609"></a></var><br>
+&mdash; Function File:  <b>optimget</b> (<var>options, parname</var>)<var><a name="index-optimget-2772"></a></var><br>
+&mdash; Function File:  <b>optimget</b> (<var>options, parname, default</var>)<var><a name="index-optimget-2773"></a></var><br>
 <blockquote><p>Return a specific option from a structure created by
 <code>optimset</code>.  If <var>parname</var> is not a field of the <var>options</var>
 structure, return <var>default</var> if supplied, otherwise return an

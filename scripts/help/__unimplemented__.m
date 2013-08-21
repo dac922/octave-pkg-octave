@@ -40,59 +40,75 @@ function txt = __unimplemented__ (fcn)
 
   ## Some smarter cases, add more as needed.
   switch (fcn)
+    case {"avifile", "aviinfo", "aviread"}
+      txt = ["Basic video file support is provided in the video package.  ", ...
+             "See @url{http://octave.sf.net/video/}."];
 
-  case "quad2d"
-    txt = ["quad2d is not implemented.  Consider using dblquad."];
+    case "gsvd"
+      txt = ["gsvd is not currently part of core Octave.  ", ...
+             "See the linear-algebra package at ", ...
+             "@url{http://octave.sourceforge.net/linear-algebra/}."];
 
-  case "gsvd"
-    txt = ["gsvd is not currently part of core Octave.  See the ",...
-    "linear-algebra package at ",...
-    "@url{http://octave.sourceforge.net/linear-algebra/}."];
+    case "funm"
+      txt = ["funm is not currently part of core Octave.  ", ...
+             "See the linear-algebra package at ", ...
+             "@url{http://octave.sourceforge.net/linear-algebra/}."];
 
-  case "funm"
-    txt = ["funm is not currently part of core Octave.  See the ",...
-    "linear-algebra package at @url{http://octave.sf.net/linear-algebra/}."];
+    case "griddedInterpolant"
+      txt = ["griddedInterpolant is not implemented.  ", ...
+             "Consider using griddata."];
 
-  case "linprog"
-    txt = ["Octave does not currently provide linprog.  ",...
-    "Linear programming problems may be solved using @code{glpk}.  ",...
-    "Try @code{help glpk} for more info."];
+    case "integral"
+      txt = ["Octave provides many routines for 1-D numerical integration.  ", ...
+             "Consider quadcc, quad, quadv, quadl, quadgk."];
 
-  case {"ode113", "ode15i", "ode15s", "ode23", "ode23s", "ode23t", "ode45", "odeget", "odeset"}
-    txt = ["Octave provides lsode for solving differential equations.  ",...
-    "For more information try @code{help lsode}.  ",...
-    "Matlab-compatible ODE functions are provided by the odepkg package.  ",...
-    "See @url{http://octave.sourceforge.net/odepkg/}."];
+    case "integral2"
+      txt = ["integral2 is not implemented.  Consider using dblquad."];
 
-  case {"javaArray", "javaMethod", "javaMethodEDT", "javaObject", "javaObjectEDT", "javaaddpath", "javaclasspath", "javarmpath"}
-    txt = ["Java objects and methods can be used with the java package. ",...
-    "See @url{http://octave.sf.net/java/}."];
+    case "integral3"
+      txt = ["integral3 is not implemented.  Consider using triplequad"];
 
-  case {"errordlg", "helpdlg", "inputdlg", "listdlg", "questdlg", "warndlg"}
-    txt = ["Several dialog functions are provided in the java package. ",...
-    "See @url{http://octave.sf.net/java/}."];
+    case "linprog"
+      txt = ["Octave does not currently provide linprog.  ", ...
+             "Linear programming problems may be solved using @code{glpk}.  ", ...
+             "Try @code{help glpk} for more info."];
 
-  case {"xlsread", "xlsfinfo", "xlswrite", "wk1read", "wk1finfo", "wk1write"}
-    txt = ["Functions for spreadsheet style I/O (.xls .xlsx .sxc .ods .dbf .wk1 etc.) " , ...
-    "are provided in the io package. ",...
-    "See @url{http://octave.sf.net/io/}."];
+    case "matlabrc"
+      txt = ["matlabrc is not implemented.  ", ...
+             'Octave uses the file ".octaverc" instead.'];
 
-  case {"avifile", "aviinfo", "aviread"}
-    txt = ["Basic video file support is provided in the video package. ",...
-    "See @url{http://octave.sf.net/video/}."];
+    case {"ode113", "ode15i", "ode15s", "ode23", "ode23s", "ode23t", ...
+          "ode23tb", "ode45", "odeget", "odeset"}
+      txt = ["Octave provides lsode for solving differential equations.  ", ...
+             "For more information try @code{help lsode}.  ", ...
+             "Matlab-compatible ODE functions are provided by the odepkg ", ...
+             "package.  See @url{http://octave.sourceforge.net/odepkg/}."];
 
-  otherwise
-    if (ismember (fcn, missing_functions ()))
-      txt = sprintf ("the '%s' function is not yet implemented in Octave", fcn);
-    else
-      is_matlab_function = false;
-      txt = "";
-    endif
+    case "startup"
+      txt = ["startup is not implemented.  ", ...
+             'Octave uses the file ".octaverc" instead.'];
+
+    case "quad2d"
+      txt = ["quad2d is not implemented.  Consider using dblquad."];
+
+    case {"xlsread", "xlsfinfo", "xlswrite", "wk1read", "wk1finfo", "wk1write"}
+      txt = ["Functions for spreadsheet style I/O ", ...
+             "(.xls .xlsx .sxc .ods .dbf .wk1 etc.) " , ...
+             "are provided in the io package. ", ...
+             "See @url{http://octave.sf.net/io/}."];
+
+    otherwise
+      if (ismember (fcn, missing_functions ()))
+        txt = ["the '" fcn "' function is not yet implemented in Octave"];
+      else
+        is_matlab_function = false;
+        txt = "";
+      endif
   endswitch
 
   if (is_matlab_function)
-    txt = [txt, "\n\n@noindent\nPlease read ",...
-           "@url{http://www.octave.org/missing.html} to learn how ",...
+    txt = [txt, "\n\n@noindent\nPlease read ", ...
+           "@url{http://www.octave.org/missing.html} to learn how ", ...
            "you can contribute missing functionality."];
     txt = __makeinfo__ (txt);
   endif
@@ -105,22 +121,22 @@ endfunction
 
 function list = missing_functions ()
   persistent list = {
-  "DelaunayTri",
   "MException",
   "RandStream",
-  "TriRep",
-  "TriScatteredInterp",
+  "Tiff",
+  "VideoReader",
+  "VideoWriter",
   "align",
   "alim",
   "alpha",
   "alphamap",
   "annotation",
   "audiodevinfo",
+  "audioinfo",
   "audioplayer",
+  "audioread",
   "audiorecorder",
-  "aufinfo",
-  "auread",
-  "auwrite",
+  "audiowrite",
   "bar3",
   "bar3h",
   "bench",
@@ -155,38 +171,37 @@ function list = missing_functions ()
   "cdfwrite",
   "cellplot",
   "checkin",
+  "checkcode",
   "checkout",
   "cholinc",
   "clearvars",
   "clipboard",
   "cmopts",
-  "cmpermute",
-  "cmunique",
   "colordef",
   "colormapeditor",
   "commandhistory",
   "commandwindow",
   "condeig",
   "coneplot",
+  "containers.Map",
   "contourslice",
   "createClassFromWsdl",
   "createSoapMessage",
   "customverctrl",
-  "daqread",
   "datacursormode",
-  "datatipinfo",
   "dbmex",
   "dde23",
   "ddeget",
+  "ddensd",
   "ddesd",
   "ddeset",
   "decic",
+  "delaunayTriangulation",
   "depdir",
   "depfun",
   "deval",
   "dialog",
   "dither",
-  "docopt",
   "docsearch",
   "dragrect",
   "dynamicprops",
@@ -197,8 +212,10 @@ function list = missing_functions ()
   "figurepalette",
   "filebrowser",
   "fill3",
+  "fitsdisp",
   "fitsinfo",
   "fitsread",
+  "fitswrite",
   "flow",
   "frame2im",
   "freqspace",
@@ -206,41 +223,44 @@ function list = missing_functions ()
   "gammaincinv",
   "getframe",
   "getpixelposition",
+  "gobjects",
   "grabcode",
   "graymon",
+  "griddedInterpolant",
   "gsvd",
   "guidata",
   "guide",
   "guihandles",
   "handle",
-  "hdf",
-  "hdf5",
-  "hdf5info",
-  "hdf5read",
-  "hdf5write",
+  "h5create",
+  "h5disp",
+  "h5info",
+  "h5read",
+  "h5readatt",
+  "h5write",
+  "h5writeatt",
   "hdfinfo",
   "hdfread",
-  "hdftool",
-  "helpbrowser",
-  "helpdesk",
-  "helpwin",
   "hgexport",
   "hgload",
   "hgsave",
   "hgsetget",
   "hgtransform",
-  "hostid",
+  "ichol",
   "ilu",
   "im2frame",
   "im2java",
   "imapprox",
-  "imformats",
   "import",
   "inmem",
   "inputParser",
   "inspect",
+  "instrcallback",
   "instrfind",
   "instrfindall",
+  "integral",
+  "integral2",
+  "integral3",
   "interpstreamspeed",
   "iscom",
   "isinterface",
@@ -266,25 +286,31 @@ function list = missing_functions ()
   "lsqr",
   "makehgtform",
   "material",
+  "matfile",
   "matlabrc",
-  "maxNumCompThreads",
   "memmapfile",
   "memory",
   "metaclass",
   "methodsview",
   "minres",
-  "mlint",
   "mlintrpt",
   "mmfileinfo",
-  "mmreader",
   "movegui",
   "movie",
   "movie2avi",
-  "msgbox",
   "multibandread",
   "multibandwrite",
   "native2unicode",
+  "nccreate",
+  "ncdisp",
+  "ncinfo",
+  "ncread",
+  "ncreadatt",
+  "ncwrite",
+  "ncwriteatt",
+  "ncwriteschema",
   "noanimate",
+  "notebook",
   "ode113",
   "ode15i",
   "ode15s",
@@ -293,7 +319,6 @@ function list = missing_functions ()
   "ode23t",
   "ode23tb",
   "ode45",
-  "odefile",
   "odeget",
   "odeset",
   "odextend",
@@ -305,38 +330,37 @@ function list = missing_functions ()
   "ordqz",
   "ordschur",
   "padecoef",
-  "pagesetupdlg",
   "pan",
   "parseSoapResponse",
-  "path2rc",
   "pathtool",
   "pcode",
   "pdepe",
   "pdeval",
-  "playshow",
   "plotbrowser",
   "plotedit",
   "plottools",
-  "prefdir",
-  "preferences",
   "printdlg",
   "printopt",
   "printpreview",
   "profsave",
   "propedit",
   "propertyeditor",
+  "psi",
   "publish",
   "qmr",
   "quad2d",
   "rbbox",
   "reducepatch",
   "reducevolume",
-  "root",
+  "readasync",
+  "rng",
   "rotate",
   "rotate3d",
+  "scatteredInterpolant",
   "selectmoveresize",
   "sendmail",
   "serial",
+  "serialbreak",
   "setpixelposition",
   "showplottool",
   "smooth3",
@@ -344,6 +368,8 @@ function list = missing_functions ()
   "sound",
   "soundsc",
   "ss2tf",
+  "startup",
+  "stopasync",
   "stream2",
   "stream3",
   "streamline",
@@ -354,7 +380,6 @@ function list = missing_functions ()
   "strings",
   "subvolume",
   "superclasses",
-  "support",
   "surf2patch",
   "symmlq",
   "syntax",
@@ -362,10 +387,10 @@ function list = missing_functions ()
   "textwrap",
   "tfqmr",
   "timer",
-  "timerfind",
-  "timerfindall",
   "timeseries",
+  "todatenum",
   "toolboxdir",
+  "triangulation",
   "tscollection",
   "tstool",
   "uibuttongroup",
@@ -392,19 +417,15 @@ function list = missing_functions ()
   "unmesh",
   "userpath",
   "validateattributes",
+  "verctrl",
   "verLessThan",
   "viewmtx",
   "visdiff",
   "volumebounds",
-  "waitfor",
-  "wavfinfo",
-  "wavplay",
-  "wavrecord",
   "web",
   "whatsnew",
-  "wk1finfo",
-  "wk1read",
-  "wk1write",
+  "winopen",
+  "winqueryreg",
   "workspace",
   "xmlread",
   "xmlwrite",

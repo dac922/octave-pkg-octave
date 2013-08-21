@@ -34,7 +34,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Advanced-Plotting.html#Advanced-Plottin
 
 <h4 class="subsection">15.4.6 Object Groups</h4>
 
-<p><a name="index-object-groups-1629"></a>
+<p><a name="index-object-groups-1770"></a>
 A number of Octave high level plot functions return groups of other
 graphics objects or they return graphics objects that have their
 properties linked in such a way that changes to one of the properties
@@ -42,19 +42,30 @@ results in changes in the others.  A graphic object that groups other
 objects is an <code>hggroup</code>
 
 <!-- hggroup scripts/plot/hggroup.m -->
-   <p><a name="doc_002dhggroup"></a>
+   <p><a name="XREFhggroup"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>hggroup</b> ()<var><a name="index-hggroup-1630"></a></var><br>
-&mdash; Function File:  <b>hggroup</b> (<var>h</var>)<var><a name="index-hggroup-1631"></a></var><br>
-&mdash; Function File:  <b>hggroup</b> (<var><small class="dots">...</small>, property, value, <small class="dots">...</small></var>)<var><a name="index-hggroup-1632"></a></var><br>
-<blockquote><p>Create group object with parent <var>h</var>.  If no parent is specified,
-the group is created in the current axes.  Return the handle of the
-group object created.
+&mdash; Function File:  <b>hggroup</b> ()<var><a name="index-hggroup-1771"></a></var><br>
+&mdash; Function File:  <b>hggroup</b> (<var>hax</var>)<var><a name="index-hggroup-1772"></a></var><br>
+&mdash; Function File:  <b>hggroup</b> (<var><small class="dots">...</small>, property, value, <small class="dots">...</small></var>)<var><a name="index-hggroup-1773"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>hggroup</b> (<var><small class="dots">...</small></var>)<var><a name="index-hggroup-1774"></a></var><br>
+<blockquote><p>Create handle graphics group object with axes parent <var>hax</var>.
 
-        <p>Multiple property-value pairs may be specified for the group, but they
-must appear in pairs. 
-</p></blockquote></div>
+        <p>If no parent is specified, the group is created in the current axes.
+
+        <p>Multiple property/value pairs may be specified for the hggroup, but they
+must appear in pairs.
+
+        <p>The optional return value <var>h</var> is a graphics handle to the created
+hggroup object.
+
+        <p>Programming Note: An hggroup is a way to group base graphics objects such
+as line objects or patch objects into a single unit which can react
+appropriately.  For example, the individual lines of a contour plot are
+collected into a single hggroup so that they can be made visible/invisible
+with a single command, <code>set (hg_handle, "visible", "off")</code>.
+
+        </blockquote></div>
 
    <p>For example a simple use of a <code>hggroup</code> might be
 
@@ -71,12 +82,12 @@ the same as the set of common properties for the other graphics
 objects.  Additional properties can be added with the <code>addproperty</code>
 function.
 
-<!-- addproperty libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002daddproperty"></a>
+<!-- addproperty libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFaddproperty"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type</var>)<var><a name="index-addproperty-1633"></a></var><br>
-&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type, arg, <small class="dots">...</small></var>)<var><a name="index-addproperty-1634"></a></var><br>
+&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type</var>)<var><a name="index-addproperty-1775"></a></var><br>
+&mdash; Built-in Function:  <b>addproperty</b> (<var>name, h, type, arg, <small class="dots">...</small></var>)<var><a name="index-addproperty-1776"></a></var><br>
 <blockquote><p>Create a new property named <var>name</var> in graphics object <var>h</var>. 
 <var>type</var> determines the type of the property to create.  <var>args</var>
 usually contains the default value of the property, but additional
@@ -137,11 +148,11 @@ graphics object.  Add so to control the way in which this newly added
 property is used, the <code>addlistener</code> function is used to define a
 callback function that is executed when the property is altered.
 
-<!-- addlistener libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002daddlistener"></a>
+<!-- addlistener libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFaddlistener"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>addlistener</b> (<var>h, prop, fcn</var>)<var><a name="index-addlistener-1635"></a></var><br>
+&mdash; Built-in Function:  <b>addlistener</b> (<var>h, prop, fcn</var>)<var><a name="index-addlistener-1777"></a></var><br>
 <blockquote><p>Register <var>fcn</var> as listener for the property <var>prop</var> of the graphics
 object <var>h</var>.  Property listeners are executed (in order of registration)
 when the property is set.  The new value is already available when the
@@ -168,11 +179,11 @@ as additional arguments to the function.
 </pre>
         </blockquote></div>
 
-<!-- dellistener libinterp/interpfcn/graphics.cc -->
-   <p><a name="doc_002ddellistener"></a>
+<!-- dellistener libinterp/corefcn/graphics.cc -->
+   <p><a name="XREFdellistener"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>dellistener</b> (<var>h, prop, fcn</var>)<var><a name="index-dellistener-1636"></a></var><br>
+&mdash; Built-in Function:  <b>dellistener</b> (<var>h, prop, fcn</var>)<var><a name="index-dellistener-1778"></a></var><br>
 <blockquote><p>Remove the registration of <var>fcn</var> as a listener for the property
 <var>prop</var> of the graphics object <var>h</var>.  The function <var>fcn</var> must
 be the same variable (not just the same value), as was passed to the
@@ -220,16 +231,19 @@ propagating any changes its value to the children of the group.  The
      hlink = linkprop ([hg, h1, h2], "color");
 </pre>
    <!-- linkprop scripts/plot/linkprop.m -->
-   <p><a name="doc_002dlinkprop"></a>
+   <p><a name="XREFlinkprop"></a>
 
 <div class="defun">
-&mdash; Function File: <var>hlink</var> = <b>linkprop</b> (<var>h, prop</var>)<var><a name="index-linkprop-1637"></a></var><br>
+&mdash; Function File: <var>hlink</var> = <b>linkprop</b> (<var>h, prop</var>)<var><a name="index-linkprop-1779"></a></var><br>
+&mdash; Function File: <var>hlink</var> = <b>linkprop</b> (<var>h, {prop1, prop2, <small class="dots">...</small>}</var>)<var><a name="index-linkprop-1780"></a></var><br>
 <blockquote><p>Link graphics object properties, such that a change in one is
-propagated to the others.  The properties to link are given as a
-string of cell string array by <var>prop</var> and the objects containing
-these properties by the handle array <var>h</var>.
+propagated to the others.
 
-        <p>An example of the use of linkprop is
+        <p><var>prop</var> can be a string for a single property, or a cell array of strings
+for multiple properties.  <var>h</var> is an array of graphics handles which
+will have their properties linked.
+
+        <p>An example of the use of <code>linkprop</code> is
 
      <pre class="example">          x = 0:0.1:10;
           subplot (1,2,1);

@@ -26,8 +26,8 @@ and differential-algebraic equations.
 All solvers are based on reliable ODE routines written in Fortran.
 
 @menu
-* Ordinary Differential Equations::  
-* Differential-Algebraic Equations::  
+* Ordinary Differential Equations::
+* Differential-Algebraic Equations::
 @end menu
 
 @cindex differential equations
@@ -61,7 +61,7 @@ using Hindmarsh's ODE solver @sc{lsode}.
 
 
 @c lsode libinterp/corefcn/lsode.cc
-@anchor{doc-lsode}
+@anchor{XREFlsode}
 @deftypefn  {Built-in Function} {[@var{x}, @var{istate}, @var{msg}] =} lsode (@var{fcn}, @var{x_0}, @var{t})
 @deftypefnx {Built-in Function} {[@var{x}, @var{istate}, @var{msg}] =} lsode (@var{fcn}, @var{x_0}, @var{t}, @var{t_crit})
 Solve the set of differential equations
@@ -173,12 +173,12 @@ other than 2 and @var{msg} will contain additional information.
 
 You can use the function @code{lsode_options} to set optional
 parameters for @code{lsode}.
-@seealso{@ref{doc-daspk,,daspk}, @ref{doc-dassl,,dassl}, @ref{doc-dasrt,,dasrt}}
+@seealso{@ref{XREFdaspk,,daspk}, @ref{XREFdassl,,dassl}, @ref{XREFdasrt,,dasrt}}
 @end deftypefn
 
 
 @c lsode_options libinterp/corefcn/lsode.cc
-@anchor{doc-lsode_options}
+@anchor{XREFlsode_options}
 @deftypefn  {Built-in Function} {} lsode_options ()
 @deftypefnx {Built-in Function} {val =} lsode_options (@var{opt})
 @deftypefnx {Built-in Function} {} lsode_options (@var{opt}, @var{val})
@@ -214,11 +214,11 @@ A string specifying the method of integration to use to solve the ODE
 system.  Valid values are
 
 @table @asis
-@item "adams"
+@item  "adams"
 @itemx "non-stiff"
 No Jacobian used (even if it is available).
 
-@item "bdf"
+@item  "bdf"
 @itemx "stiff"
 Use stiff backward differentiation formula (BDF) method.  If a
 function to compute the Jacobian is not supplied, @code{lsode} will
@@ -254,6 +254,7 @@ Here is an example of solving a set of three differential equations using
 
 @example
 @group
+## oregonator differential equation
 function xdot = f (x, t)
 
   xdot = zeros (3,1);
@@ -294,6 +295,10 @@ See Alan C. Hindmarsh, @cite{ODEPACK, A Systematized Collection of ODE
 Solvers}, in Scientific Computing, R. S. Stepleman, editor, (1983) for
 more information about the inner workings of @code{lsode}.
 
+An m-file for the differential equation used above is included with the
+Octave distribution in the examples directory under the name
+@file{oregonator.m}.
+
 @node Differential-Algebraic Equations
 @section Differential-Algebraic Equations
 
@@ -323,7 +328,7 @@ is the derivative of @math{x}.  The equation is solved using Petzold's
 DAE solver @sc{daspk}.
 
 @c daspk libinterp/corefcn/daspk.cc
-@anchor{doc-daspk}
+@anchor{XREFdaspk}
 @deftypefn {Built-in Function} {[@var{x}, @var{xdot}, @var{istate}, @var{msg}] =} daspk (@var{fcn}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
 Solve the set of differential-algebraic equations
 @tex
@@ -420,12 +425,12 @@ less than zero and @var{msg} will contain additional information.
 
 You can use the function @code{daspk_options} to set optional
 parameters for @code{daspk}.
-@seealso{@ref{doc-dassl,,dassl}}
+@seealso{@ref{XREFdassl,,dassl}}
 @end deftypefn
 
 
 @c daspk_options libinterp/corefcn/daspk.cc
-@anchor{doc-daspk_options}
+@anchor{XREFdaspk_options}
 @deftypefn  {Built-in Function} {} daspk_options ()
 @deftypefnx {Built-in Function} {val =} daspk_options (@var{opt})
 @deftypefnx {Built-in Function} {} daspk_options (@var{opt}, @var{val})
@@ -601,7 +606,7 @@ and @sc{dasrt}, which can be used to solve DAEs with constraints
 (stopping conditions).
 
 @c dassl libinterp/corefcn/dassl.cc
-@anchor{doc-dassl}
+@anchor{XREFdassl}
 @deftypefn {Built-in Function} {[@var{x}, @var{xdot}, @var{istate}, @var{msg}] =} dassl (@var{fcn}, @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
 Solve the set of differential-algebraic equations
 @tex
@@ -699,12 +704,12 @@ less than zero and @var{msg} will contain additional information.
 
 You can use the function @code{dassl_options} to set optional
 parameters for @code{dassl}.
-@seealso{@ref{doc-daspk,,daspk}, @ref{doc-dasrt,,dasrt}, @ref{doc-lsode,,lsode}}
+@seealso{@ref{XREFdaspk,,daspk}, @ref{XREFdasrt,,dasrt}, @ref{XREFlsode,,lsode}}
 @end deftypefn
 
 
 @c dassl_options libinterp/corefcn/dassl.cc
-@anchor{doc-dassl_options}
+@anchor{XREFdassl_options}
 @deftypefn  {Built-in Function} {} dassl_options ()
 @deftypefnx {Built-in Function} {val =} dassl_options (@var{opt})
 @deftypefnx {Built-in Function} {} dassl_options (@var{opt}, @var{val})
@@ -771,7 +776,7 @@ underlying Fortran code.
 
 
 @c dasrt libinterp/corefcn/dasrt.cc
-@anchor{doc-dasrt}
+@anchor{XREFdasrt}
 @deftypefn  {Built-in Function} {[@var{x}, @var{xdot}, @var{t_out}, @var{istat}, @var{msg}] =} dasrt (@var{fcn}, [], @var{x_0}, @var{xdot_0}, @var{t})
 @deftypefnx {Built-in Function} {@dots{} =} dasrt (@var{fcn}, @var{g}, @var{x_0}, @var{xdot_0}, @var{t})
 @deftypefnx {Built-in Function} {@dots{} =} dasrt (@var{fcn}, [], @var{x_0}, @var{xdot_0}, @var{t}, @var{t_crit})
@@ -908,12 +913,12 @@ less than zero and @var{msg} will contain additional information.
 
 You can use the function @code{dasrt_options} to set optional
 parameters for @code{dasrt}.
-@seealso{@ref{doc-dasrt_options,,dasrt_options}, @ref{doc-daspk,,daspk}, @ref{doc-dasrt,,dasrt}, @ref{doc-lsode,,lsode}}
+@seealso{@ref{XREFdasrt_options,,dasrt_options}, @ref{XREFdaspk,,daspk}, @ref{XREFdasrt,,dasrt}, @ref{XREFlsode,,lsode}}
 @end deftypefn
 
 
 @c dasrt_options libinterp/corefcn/dasrt.cc
-@anchor{doc-dasrt_options}
+@anchor{XREFdasrt_options}
 @deftypefn  {Built-in Function} {} dasrt_options ()
 @deftypefnx {Built-in Function} {val =} dasrt_options (@var{opt})
 @deftypefnx {Built-in Function} {} dasrt_options (@var{opt}, @var{val})

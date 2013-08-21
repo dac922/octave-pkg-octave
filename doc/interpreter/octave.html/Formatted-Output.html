@@ -37,15 +37,15 @@ Up:&nbsp;<a rel="up" accesskey="u" href="C_002dStyle-I_002fO-Functions.html#C_00
 <p>This section describes how to call <code>printf</code> and related functions.
 
    <p>The following functions are available for formatted output.  They are
-modelled after the C language functions of the same name, but they
+modeled after the C language functions of the same name, but they
 interpret the format template differently in order to improve the
 performance of printing vector and matrix values.
 
-<!-- printf libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dprintf"></a>
+<!-- printf libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFprintf"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>printf</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-printf-1037"></a></var><br>
+&mdash; Built-in Function:  <b>printf</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-printf-1055"></a></var><br>
 <blockquote><p>Print optional arguments under the control of the template string
 <var>template</var> to the stream <code>stdout</code> and return the number of
 characters printed.
@@ -53,34 +53,37 @@ characters printed.
         <p>See the Formatted Output section of the GNU Octave manual for a
 complete description of the syntax of the template string.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dsprintf.html#doc_002dsprintf">sprintf</a>, <a href="doc_002dscanf.html#doc_002dscanf">scanf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfprintf.html#XREFfprintf">fprintf</a>, <a href="XREFsprintf.html#XREFsprintf">sprintf</a>, <a href="XREFscanf.html#XREFscanf">scanf</a>.
 
-<!-- fprintf libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dfprintf"></a>
+        </blockquote></div>
+
+<!-- fprintf libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFfprintf"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>fprintf</b> (<var>fid, template, <small class="dots">...</small></var>)<var><a name="index-fprintf-1038"></a></var><br>
+&mdash; Built-in Function:  <b>fprintf</b> (<var>fid, template, <small class="dots">...</small></var>)<var><a name="index-fprintf-1056"></a></var><br>
 <blockquote><p>This function is just like <code>printf</code>, except that the output is
 written to the stream <var>fid</var> instead of <code>stdout</code>. 
 If <var>fid</var> is omitted, the output is written to <code>stdout</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfputs.html#doc_002dfputs">fputs</a>, <a href="doc_002dfdisp.html#doc_002dfdisp">fdisp</a>, <a href="doc_002dfwrite.html#doc_002dfwrite">fwrite</a>, <a href="doc_002dfscanf.html#doc_002dfscanf">fscanf</a>, <a href="doc_002dprintf.html#doc_002dprintf">printf</a>, <a href="doc_002dsprintf.html#doc_002dsprintf">sprintf</a>, <a href="doc_002dfopen.html#doc_002dfopen">fopen</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfputs.html#XREFfputs">fputs</a>, <a href="XREFfdisp.html#XREFfdisp">fdisp</a>, <a href="XREFfwrite.html#XREFfwrite">fwrite</a>, <a href="XREFfscanf.html#XREFfscanf">fscanf</a>, <a href="XREFprintf.html#XREFprintf">printf</a>, <a href="XREFsprintf.html#XREFsprintf">sprintf</a>, <a href="XREFfopen.html#XREFfopen">fopen</a>.
 
-<!-- sprintf libinterp/interpfcn/file-io.cc -->
-   <p><a name="doc_002dsprintf"></a>
+        </blockquote></div>
+
+<!-- sprintf libinterp/corefcn/file-io.cc -->
+   <p><a name="XREFsprintf"></a>
 
 <div class="defun">
-&mdash; Built-in Function:  <b>sprintf</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-sprintf-1039"></a></var><br>
+&mdash; Built-in Function:  <b>sprintf</b> (<var>template, <small class="dots">...</small></var>)<var><a name="index-sprintf-1057"></a></var><br>
 <blockquote><p>This is like <code>printf</code>, except that the output is returned as a
 string.  Unlike the C library function, which requires you to provide a
 suitably sized string as an argument, Octave's <code>sprintf</code> function
 returns the string, automatically sized to hold all of the items
 converted.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dprintf.html#doc_002dprintf">printf</a>, <a href="doc_002dfprintf.html#doc_002dfprintf">fprintf</a>, <a href="doc_002dsscanf.html#doc_002dsscanf">sscanf</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFprintf.html#XREFprintf">printf</a>, <a href="XREFfprintf.html#XREFfprintf">fprintf</a>, <a href="XREFsscanf.html#XREFsscanf">sscanf</a>.
+
+        </blockquote></div>
 
    <p>The <code>printf</code> function can be used to print any number of arguments. 
 The template string argument you supply in a call provides
@@ -91,7 +94,7 @@ about their types and what style should be used for printing them.
 output stream as-is, while <dfn>conversion specifications</dfn> introduced by
 a &lsquo;<samp><span class="samp">%</span></samp>&rsquo; character in the template cause subsequent arguments to be
 formatted and written to the output stream.  For example,
-<a name="index-conversion-specifications-_0028_0040code_007bprintf_007d_0029-1040"></a>
+<a name="index-conversion-specifications-_0028_0040code_007bprintf_007d_0029-1058"></a>
 <pre class="example">     pct = 37;
      filename = "foo.txt";
      printf ("Processed %d%% of '%s'.\nPlease be patient.\n",

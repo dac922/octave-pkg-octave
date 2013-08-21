@@ -27,8 +27,8 @@ This appendix will eventually contain a semi-formal description of
 Octave's language.
 
 @menu
-* Keywords::                    
-* Parser::                    
+* Keywords::
+* Parser::
 @end menu
 
 @node Keywords
@@ -60,12 +60,12 @@ The function @code{iskeyword} can be used to quickly check whether an
 identifier is reserved by Octave.
 
 @c iskeyword libinterp/parse-tree/lex.cc
-@anchor{doc-iskeyword}
+@anchor{XREFiskeyword}
 @deftypefn  {Built-in Function} {} iskeyword ()
 @deftypefnx {Built-in Function} {} iskeyword (@var{name})
 Return true if @var{name} is an Octave keyword.  If @var{name}
 is omitted, return a list of keywords.
-@seealso{@ref{doc-isvarname,,isvarname}, @ref{doc-exist,,exist}}
+@seealso{@ref{XREFisvarname,,isvarname}, @ref{XREFexist,,exist}}
 @end deftypefn
 
 
@@ -83,12 +83,12 @@ In addition, there are three non-specific parser customization functions.
 periodic evaluation.  @code{remove_input_event_hook} will stop a user function
 from being evaluated periodically.
 
-@c add_input_event_hook libinterp/interpfcn/input.cc
-@anchor{doc-add_input_event_hook}
+@c add_input_event_hook libinterp/corefcn/input.cc
+@anchor{XREFadd_input_event_hook}
 @deftypefn  {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn})
 @deftypefnx {Built-in Function} {@var{id} =} add_input_event_hook (@var{fcn}, @var{data})
-Add the named function or function handle @var{fcn} to the list of functions to call
-periodically when Octave is waiting for input.  The function should
+Add the named function or function handle @var{fcn} to the list of functions
+to call periodically when Octave is waiting for input.  The function should
 have the form
 
 @example
@@ -100,37 +100,37 @@ arguments.
 
 The returned identifier may be used to remove the function handle from
 the list of input hook functions.
-@seealso{@ref{doc-remove_input_event_hook,,remove_input_event_hook}}
+@seealso{@ref{XREFremove_input_event_hook,,remove_input_event_hook}}
 @end deftypefn
 
 
-@c remove_input_event_hook libinterp/interpfcn/input.cc
-@anchor{doc-remove_input_event_hook}
-@deftypefn {Built-in Function} {} remove_input_event_hook (@var{name})
+@c remove_input_event_hook libinterp/corefcn/input.cc
+@anchor{XREFremove_input_event_hook}
+@deftypefn  {Built-in Function} {} remove_input_event_hook (@var{name})
 @deftypefnx {Built-in Function} {} remove_input_event_hook (@var{fcn_id})
 Remove the named function or function handle with the given identifier
 from the list of functions to call periodically when Octave is waiting
 for input.
-@seealso{@ref{doc-add_input_event_hook,,add_input_event_hook}}
+@seealso{@ref{XREFadd_input_event_hook,,add_input_event_hook}}
 @end deftypefn
 
 
 Finally, when the parser cannot identify an input token it calls a particular
-function to handle this.  By default, this is the function "unimplemented"
-which makes suggestions about possible Octave substitutes for @sc{matlab}
-functions.
+function to handle this.  By default, this is the function
+@qcode{"unimplemented"} which makes suggestions about possible Octave
+substitutes for @sc{matlab} functions.
 
-@c missing_function_hook libinterp/interpfcn/variables.cc
-@anchor{doc-missing_function_hook}
+@c missing_function_hook libinterp/corefcn/variables.cc
+@anchor{XREFmissing_function_hook}
 @deftypefn  {Built-in Function} {@var{val} =} missing_function_hook ()
 @deftypefnx {Built-in Function} {@var{old_val} =} missing_function_hook (@var{new_val})
 @deftypefnx {Built-in Function} {} missing_function_hook (@var{new_val}, "local")
 Query or set the internal variable that specifies the function to call when
 an unknown identifier is requested.
 
-When called from inside a function with the "local" option, the variable is
-changed locally for the function and any subroutines it calls.  The original
-variable value is restored when exiting the function.
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
 @end deftypefn
 
 

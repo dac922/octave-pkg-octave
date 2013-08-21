@@ -76,13 +76,13 @@ that corresponds to this.  For example,
 diagonal defined.
 
 <!-- spdiags scripts/sparse/spdiags.m -->
-   <p><a name="doc_002dspdiags"></a>
+   <p><a name="XREFspdiags"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>b</var>, <var>c</var>] = <b>spdiags</b> (<var>A</var>)<var><a name="index-spdiags-2378"></a></var><br>
-&mdash; Function File: <var>b</var> = <b>spdiags</b> (<var>A, c</var>)<var><a name="index-spdiags-2379"></a></var><br>
-&mdash; Function File: <var>b</var> = <b>spdiags</b> (<var>v, c, A</var>)<var><a name="index-spdiags-2380"></a></var><br>
-&mdash; Function File: <var>b</var> = <b>spdiags</b> (<var>v, c, m, n</var>)<var><a name="index-spdiags-2381"></a></var><br>
+&mdash; Function File: [<var>b</var>, <var>c</var>] = <b>spdiags</b> (<var>A</var>)<var><a name="index-spdiags-2542"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>spdiags</b> (<var>A, c</var>)<var><a name="index-spdiags-2543"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>spdiags</b> (<var>v, c, A</var>)<var><a name="index-spdiags-2544"></a></var><br>
+&mdash; Function File: <var>b</var> = <b>spdiags</b> (<var>v, c, m, n</var>)<var><a name="index-spdiags-2545"></a></var><br>
 <blockquote><p>A generalization of the function <code>diag</code>.  Called with a single
 input argument, the non-zero diagonals <var>c</var> of <var>A</var> are extracted. 
 With two arguments the diagonals to extract are given by the vector
@@ -111,12 +111,12 @@ diagonal.
         </blockquote></div>
 
 <!-- speye scripts/sparse/speye.m -->
-   <p><a name="doc_002dspeye"></a>
+   <p><a name="XREFspeye"></a>
 
 <div class="defun">
-&mdash; Function File: <var>y</var> = <b>speye</b> (<var>m</var>)<var><a name="index-speye-2382"></a></var><br>
-&mdash; Function File: <var>y</var> = <b>speye</b> (<var>m, n</var>)<var><a name="index-speye-2383"></a></var><br>
-&mdash; Function File: <var>y</var> = <b>speye</b> (<var>sz</var>)<var><a name="index-speye-2384"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>speye</b> (<var>m</var>)<var><a name="index-speye-2546"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>speye</b> (<var>m, n</var>)<var><a name="index-speye-2547"></a></var><br>
+&mdash; Function File: <var>y</var> = <b>speye</b> (<var>sz</var>)<var><a name="index-speye-2548"></a></var><br>
 <blockquote><p>Return a sparse identity matrix.  This is significantly more
 efficient than <code>sparse (eye (</code><var>m</var><code>))</code> as the full matrix
 is not constructed.
@@ -128,20 +128,20 @@ is taken to be the size of the matrix to create.
 </p></blockquote></div>
 
 <!-- spones scripts/sparse/spones.m -->
-   <p><a name="doc_002dspones"></a>
+   <p><a name="XREFspones"></a>
 
 <div class="defun">
-&mdash; Function File: <var>r</var> = <b>spones</b> (<var>S</var>)<var><a name="index-spones-2385"></a></var><br>
+&mdash; Function File: <var>r</var> = <b>spones</b> (<var>S</var>)<var><a name="index-spones-2549"></a></var><br>
 <blockquote><p>Replace the non-zero entries of <var>S</var> with ones.  This creates a
 sparse matrix with the same structure as <var>S</var>. 
 </p></blockquote></div>
 
 <!-- sprand scripts/sparse/sprand.m -->
-   <p><a name="doc_002dsprand"></a>
+   <p><a name="XREFsprand"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>sprand</b> (<var>m, n, d</var>)<var><a name="index-sprand-2386"></a></var><br>
-&mdash; Function File:  <b>sprand</b> (<var>s</var>)<var><a name="index-sprand-2387"></a></var><br>
+&mdash; Function File:  <b>sprand</b> (<var>m, n, d</var>)<var><a name="index-sprand-2550"></a></var><br>
+&mdash; Function File:  <b>sprand</b> (<var>s</var>)<var><a name="index-sprand-2551"></a></var><br>
 <blockquote><p>Generate a random sparse matrix.  The size of the matrix will be
 <var>m</var> by <var>n</var>, with a density of values given by <var>d</var>. 
 <var>d</var> should be between 0 and 1.  Values will be uniformly
@@ -150,15 +150,16 @@ distributed between 0 and 1.
         <p>If called with a single matrix argument, a random sparse matrix is
 generated wherever the matrix <var>S</var> is non-zero.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsprandn.html#doc_002dsprandn">sprandn</a>, <a href="doc_002dsprandsym.html#doc_002dsprandsym">sprandsym</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsprandn.html#XREFsprandn">sprandn</a>, <a href="XREFsprandsym.html#XREFsprandsym">sprandsym</a>.
+
+        </blockquote></div>
 
 <!-- sprandn scripts/sparse/sprandn.m -->
-   <p><a name="doc_002dsprandn"></a>
+   <p><a name="XREFsprandn"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>sprandn</b> (<var>m, n, d</var>)<var><a name="index-sprandn-2388"></a></var><br>
-&mdash; Function File:  <b>sprandn</b> (<var>s</var>)<var><a name="index-sprandn-2389"></a></var><br>
+&mdash; Function File:  <b>sprandn</b> (<var>m, n, d</var>)<var><a name="index-sprandn-2552"></a></var><br>
+&mdash; Function File:  <b>sprandn</b> (<var>s</var>)<var><a name="index-sprandn-2553"></a></var><br>
 <blockquote><p>Generate a random sparse matrix.  The size of the matrix will be
 <var>m</var> by <var>n</var>, with a density of values given by <var>d</var>. 
 <var>d</var> should be between 0 and 1.  Values will be normally
@@ -167,15 +168,16 @@ distributed with mean of zero and variance 1.
         <p>If called with a single matrix argument, a random sparse matrix is
 generated wherever the matrix <var>S</var> is non-zero.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsprand.html#doc_002dsprand">sprand</a>, <a href="doc_002dsprandsym.html#doc_002dsprandsym">sprandsym</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsprand.html#XREFsprand">sprand</a>, <a href="XREFsprandsym.html#XREFsprandsym">sprandsym</a>.
+
+        </blockquote></div>
 
 <!-- sprandsym scripts/sparse/sprandsym.m -->
-   <p><a name="doc_002dsprandsym"></a>
+   <p><a name="XREFsprandsym"></a>
 
 <div class="defun">
-&mdash; Function File:  <b>sprandsym</b> (<var>n, d</var>)<var><a name="index-sprandsym-2390"></a></var><br>
-&mdash; Function File:  <b>sprandsym</b> (<var>s</var>)<var><a name="index-sprandsym-2391"></a></var><br>
+&mdash; Function File:  <b>sprandsym</b> (<var>n, d</var>)<var><a name="index-sprandsym-2554"></a></var><br>
+&mdash; Function File:  <b>sprandsym</b> (<var>s</var>)<var><a name="index-sprandsym-2555"></a></var><br>
 <blockquote><p>Generate a symmetric random sparse matrix.  The size of the matrix will be
 <var>n</var> by <var>n</var>, with a density of values given by <var>d</var>. 
 <var>d</var> should be between 0 and 1.  Values will be normally
@@ -185,8 +187,9 @@ distributed with mean of zero and variance 1.
 generated wherever the matrix <var>S</var> is non-zero in its lower
 triangular part.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsprand.html#doc_002dsprand">sprand</a>, <a href="doc_002dsprandn.html#doc_002dsprandn">sprandn</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsprand.html#XREFsprand">sprand</a>, <a href="XREFsprandn.html#XREFsprandn">sprandn</a>.
+
+        </blockquote></div>
 
    <p>The recommended way for the user to create a sparse matrix, is to create
 two vectors containing the row and column index of the data and a third
@@ -239,22 +242,23 @@ important that code using to above structure should be vectorized
 as much as possible to minimize the number of assignments and reduce the
 number of memory allocations.
 
-<!-- full libinterp/interpfcn/data.cc -->
-   <p><a name="doc_002dfull"></a>
+<!-- full libinterp/corefcn/data.cc -->
+   <p><a name="XREFfull"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>FM</var> = <b>full</b> (<var>SM</var>)<var><a name="index-full-2392"></a></var><br>
+&mdash; Built-in Function: <var>FM</var> = <b>full</b> (<var>SM</var>)<var><a name="index-full-2556"></a></var><br>
 <blockquote><p>Return a full storage matrix from a sparse, diagonal, permutation matrix
 or a range.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsparse.html#XREFsparse">sparse</a>.
+
+        </blockquote></div>
 
 <!-- spalloc libinterp/corefcn/sparse.cc -->
-   <p><a name="doc_002dspalloc"></a>
+   <p><a name="XREFspalloc"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>s</var> = <b>spalloc</b> (<var>m, n, nz</var>)<var><a name="index-spalloc-2393"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>spalloc</b> (<var>m, n, nz</var>)<var><a name="index-spalloc-2557"></a></var><br>
 <blockquote><p>Create an <var>m</var>-by-<var>n</var> sparse matrix with pre-allocated space for at
 most <var>nz</var> nonzero elements.  This is useful for building the matrix
 incrementally by a sequence of indexed assignments.  Subsequent indexed
@@ -287,18 +291,19 @@ contiguous block of columns.
         <p>The amount of pre-allocated memory for a given matrix may be queried using
 the function <code>nzmax</code>.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dnzmax.html#doc_002dnzmax">nzmax</a>, <a href="doc_002dsparse.html#doc_002dsparse">sparse</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFnzmax.html#XREFnzmax">nzmax</a>, <a href="XREFsparse.html#XREFsparse">sparse</a>.
+
+        </blockquote></div>
 
 <!-- sparse libinterp/corefcn/sparse.cc -->
-   <p><a name="doc_002dsparse"></a>
+   <p><a name="XREFsparse"></a>
 
 <div class="defun">
-&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>a</var>)<var><a name="index-sparse-2394"></a></var><br>
-&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>i, j, sv, m, n, nzmax</var>)<var><a name="index-sparse-2395"></a></var><br>
-&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>i, j, sv</var>)<var><a name="index-sparse-2396"></a></var><br>
-&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>i, j, s, m, n, "unique"</var>)<var><a name="index-sparse-2397"></a></var><br>
-&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>m, n</var>)<var><a name="index-sparse-2398"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>a</var>)<var><a name="index-sparse-2558"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>i, j, sv, m, n, nzmax</var>)<var><a name="index-sparse-2559"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>i, j, sv</var>)<var><a name="index-sparse-2560"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>i, j, s, m, n, "unique"</var>)<var><a name="index-sparse-2561"></a></var><br>
+&mdash; Built-in Function: <var>s</var> = <b>sparse</b> (<var>m, n</var>)<var><a name="index-sparse-2562"></a></var><br>
 <blockquote><p>Create a sparse matrix from the full matrix or row, column, value triplets. 
 If <var>a</var> is a full matrix, convert it to a sparse matrix representation,
 removing all zero values in the process.
@@ -322,8 +327,9 @@ behavior, such as taking the minimum instead.
           s = sparse (i, j, s, m, n, "summation")
           s = sparse (i, j, s, m, n, "sum")
 </pre>
-        <p>Given the option "unique". if more than two values are specified for the
-same <var>i</var>, <var>j</var> indices, the last specified value will be used.
+        <p>Given the option <code>"unique"</code>, if more than two values are specified
+for the same <var>i</var>, <var>j</var> indices, the last specified value will be
+used.
 
         <p><code>sparse (</code><var>m</var><code>, </code><var>n</var><code>)</code> is equivalent to
 <code>sparse ([], [], [], </code><var>m</var><code>, </code><var>n</var><code>, 0)</code>
@@ -331,14 +337,15 @@ same <var>i</var>, <var>j</var> indices, the last specified value will be used.
         <p>If any of <var>sv</var>, <var>i</var> or <var>j</var> are scalars, they are expanded
 to have a common size.
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dfull.html#doc_002dfull">full</a>, <a href="doc_002daccumarray.html#doc_002daccumarray">accumarray</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFfull.html#XREFfull">full</a>, <a href="XREFaccumarray.html#XREFaccumarray">accumarray</a>.
+
+        </blockquote></div>
 
 <!-- spconvert scripts/sparse/spconvert.m -->
-   <p><a name="doc_002dspconvert"></a>
+   <p><a name="XREFspconvert"></a>
 
 <div class="defun">
-&mdash; Function File: <var>x</var> = <b>spconvert</b> (<var>m</var>)<var><a name="index-spconvert-2399"></a></var><br>
+&mdash; Function File: <var>x</var> = <b>spconvert</b> (<var>m</var>)<var><a name="index-spconvert-2563"></a></var><br>
 <blockquote><p>This function converts for a simple sparse matrix format easily
 produced by other programs into Octave's internal sparse format.  The
 input <var>x</var> is either a 3 or 4 column real matrix, containing
@@ -349,9 +356,8 @@ be used to force a particular matrix size.
 
    <p>The above problem of memory reallocation can be avoided in
 oct-files.  However, the construction of a sparse matrix from an oct-file
-is more complex than can be discussed here, and
-you are referred to chapter <a href="Dynamically-Linked-Functions.html#Dynamically-Linked-Functions">Dynamically Linked Functions</a>, to have
-a full description of the techniques involved.
+is more complex than can be discussed here.  See <a href="External-Code-Interface.html#External-Code-Interface">External Code Interface</a>,
+for a full description of the techniques involved.
 
    </body></html>
 

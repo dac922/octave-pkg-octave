@@ -35,14 +35,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic<
 <h3 class="section">17.8 Coordinate Transformations</h3>
 
 <!-- cart2pol scripts/general/cart2pol.m -->
-<p><a name="doc_002dcart2pol"></a>
+<p><a name="XREFcart2pol"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>theta</var>, <var>r</var>] = <b>cart2pol</b> (<var>x, y</var>)<var><a name="index-cart2pol-2139"></a></var><br>
-&mdash; Function File: [<var>theta</var>, <var>r</var>, <var>z</var>] = <b>cart2pol</b> (<var>x, y, z</var>)<var><a name="index-cart2pol-2140"></a></var><br>
-&mdash; Function File: [<var>theta</var>, <var>r</var>] = <b>cart2pol</b> (<var>c</var>)<var><a name="index-cart2pol-2141"></a></var><br>
-&mdash; Function File: [<var>theta</var>, <var>r</var>, <var>z</var>] = <b>cart2pol</b> (<var>c</var>)<var><a name="index-cart2pol-2142"></a></var><br>
-&mdash; Function File: <var>p</var> = <b>cart2pol</b> (<var><small class="dots">...</small></var>)<var><a name="index-cart2pol-2143"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>r</var>] = <b>cart2pol</b> (<var>x, y</var>)<var><a name="index-cart2pol-2294"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>r</var>, <var>z</var>] = <b>cart2pol</b> (<var>x, y, z</var>)<var><a name="index-cart2pol-2295"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>r</var>] = <b>cart2pol</b> (<var>c</var>)<var><a name="index-cart2pol-2296"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>r</var>, <var>z</var>] = <b>cart2pol</b> (<var>c</var>)<var><a name="index-cart2pol-2297"></a></var><br>
+&mdash; Function File: <var>p</var> = <b>cart2pol</b> (<var><small class="dots">...</small></var>)<var><a name="index-cart2pol-2298"></a></var><br>
 <blockquote>
         <p>Transform Cartesian to polar or cylindrical coordinates.
 
@@ -56,18 +56,19 @@ represents the Cartesian coordinate (<var>x</var>, <var>y</var> (, <var>z</var>)
 <var>p</var> where each row represents one polar/(cylindrical) coordinate
 (<var>theta</var>, <var>phi</var> (, <var>z</var>)).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dpol2cart.html#doc_002dpol2cart">pol2cart</a>, <a href="doc_002dcart2sph.html#doc_002dcart2sph">cart2sph</a>, <a href="doc_002dsph2cart.html#doc_002dsph2cart">sph2cart</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFpol2cart.html#XREFpol2cart">pol2cart</a>, <a href="XREFcart2sph.html#XREFcart2sph">cart2sph</a>, <a href="XREFsph2cart.html#XREFsph2cart">sph2cart</a>.
+
+        </blockquote></div>
 
 <!-- pol2cart scripts/general/pol2cart.m -->
-   <p><a name="doc_002dpol2cart"></a>
+   <p><a name="XREFpol2cart"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>pol2cart</b> (<var>theta, r</var>)<var><a name="index-pol2cart-2144"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>pol2cart</b> (<var>theta, r, z</var>)<var><a name="index-pol2cart-2145"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>pol2cart</b> (<var>p</var>)<var><a name="index-pol2cart-2146"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>pol2cart</b> (<var>p</var>)<var><a name="index-pol2cart-2147"></a></var><br>
-&mdash; Function File: <var>C</var> = <b>pol2cart</b> (<var><small class="dots">...</small></var>)<var><a name="index-pol2cart-2148"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>pol2cart</b> (<var>theta, r</var>)<var><a name="index-pol2cart-2299"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>pol2cart</b> (<var>theta, r, z</var>)<var><a name="index-pol2cart-2300"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>pol2cart</b> (<var>p</var>)<var><a name="index-pol2cart-2301"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>pol2cart</b> (<var>p</var>)<var><a name="index-pol2cart-2302"></a></var><br>
+&mdash; Function File: <var>C</var> = <b>pol2cart</b> (<var><small class="dots">...</small></var>)<var><a name="index-pol2cart-2303"></a></var><br>
 <blockquote><p>Transform polar or cylindrical to Cartesian coordinates.
 
         <p><var>theta</var>, <var>r</var>, (and <var>z</var>) must be the same shape, or scalar. 
@@ -80,16 +81,17 @@ represents the polar/(cylindrical) coordinate (<var>x</var>, <var>y</var> (, <va
 <var>C</var> where each row represents one Cartesian coordinate
 (<var>x</var>, <var>y</var> (, <var>z</var>)).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcart2pol.html#doc_002dcart2pol">cart2pol</a>, <a href="doc_002dsph2cart.html#doc_002dsph2cart">sph2cart</a>, <a href="doc_002dcart2sph.html#doc_002dcart2sph">cart2sph</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcart2pol.html#XREFcart2pol">cart2pol</a>, <a href="XREFsph2cart.html#XREFsph2cart">sph2cart</a>, <a href="XREFcart2sph.html#XREFcart2sph">cart2sph</a>.
+
+        </blockquote></div>
 
 <!-- cart2sph scripts/general/cart2sph.m -->
-   <p><a name="doc_002dcart2sph"></a>
+   <p><a name="XREFcart2sph"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>theta</var>, <var>phi</var>, <var>r</var>] = <b>cart2sph</b> (<var>x, y, z</var>)<var><a name="index-cart2sph-2149"></a></var><br>
-&mdash; Function File: [<var>theta</var>, <var>phi</var>, <var>r</var>] = <b>cart2sph</b> (<var>C</var>)<var><a name="index-cart2sph-2150"></a></var><br>
-&mdash; Function File: <var>S</var> = <b>cart2sph</b> (<var><small class="dots">...</small></var>)<var><a name="index-cart2sph-2151"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>phi</var>, <var>r</var>] = <b>cart2sph</b> (<var>x, y, z</var>)<var><a name="index-cart2sph-2304"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>phi</var>, <var>r</var>] = <b>cart2sph</b> (<var>C</var>)<var><a name="index-cart2sph-2305"></a></var><br>
+&mdash; Function File: <var>S</var> = <b>cart2sph</b> (<var><small class="dots">...</small></var>)<var><a name="index-cart2sph-2306"></a></var><br>
 <blockquote><p>Transform Cartesian to spherical coordinates.
 
         <p><var>theta</var> describes the angle relative to the positive x-axis. 
@@ -103,16 +105,17 @@ represents the Cartesian coordinate (<var>x</var>, <var>y</var>, <var>z</var>).
 <var>s</var> where each row represents one spherical coordinate
 (<var>theta</var>, <var>phi</var>, <var>r</var>).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dsph2cart.html#doc_002dsph2cart">sph2cart</a>, <a href="doc_002dcart2pol.html#doc_002dcart2pol">cart2pol</a>, <a href="doc_002dpol2cart.html#doc_002dpol2cart">pol2cart</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFsph2cart.html#XREFsph2cart">sph2cart</a>, <a href="XREFcart2pol.html#XREFcart2pol">cart2pol</a>, <a href="XREFpol2cart.html#XREFpol2cart">pol2cart</a>.
+
+        </blockquote></div>
 
 <!-- sph2cart scripts/general/sph2cart.m -->
-   <p><a name="doc_002dsph2cart"></a>
+   <p><a name="XREFsph2cart"></a>
 
 <div class="defun">
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>sph2cart</b> (<var>theta, phi, r</var>)<var><a name="index-sph2cart-2152"></a></var><br>
-&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>sph2cart</b> (<var>S</var>)<var><a name="index-sph2cart-2153"></a></var><br>
-&mdash; Function File: C = <b>sph2cart</b> (<var><small class="dots">...</small></var>)<var><a name="index-sph2cart-2154"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>sph2cart</b> (<var>theta, phi, r</var>)<var><a name="index-sph2cart-2307"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>sph2cart</b> (<var>S</var>)<var><a name="index-sph2cart-2308"></a></var><br>
+&mdash; Function File: C = <b>sph2cart</b> (<var><small class="dots">...</small></var>)<var><a name="index-sph2cart-2309"></a></var><br>
 <blockquote><p>Transform spherical to Cartesian coordinates.
 
         <p><var>theta</var> describes the angle relative to the positive x-axis. 
@@ -126,8 +129,9 @@ represents the spherical coordinate (<var>theta</var>, <var>phi</var>, <var>r</v
 <var>C</var> where each row represents one Cartesian coordinate
 (<var>x</var>, <var>y</var>, <var>z</var>).
 
-     <p class="noindent"><strong>See also:</strong> <a href="doc_002dcart2sph.html#doc_002dcart2sph">cart2sph</a>, <a href="doc_002dpol2cart.html#doc_002dpol2cart">pol2cart</a>, <a href="doc_002dcart2pol.html#doc_002dcart2pol">cart2pol</a>. 
-</p></blockquote></div>
+     <p class="noindent"><strong>See also:</strong> <a href="XREFcart2sph.html#XREFcart2sph">cart2sph</a>, <a href="XREFpol2cart.html#XREFpol2cart">pol2cart</a>, <a href="XREFcart2pol.html#XREFcart2pol">cart2pol</a>.
+
+        </blockquote></div>
 
    </body></html>
 

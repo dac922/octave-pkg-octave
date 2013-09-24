@@ -6331,8 +6331,8 @@ Author: Thomas Weber <tweber@debian.org>
 -  corefcn/gl2ps.c \
    corefcn/graphics.in.h \
    corefcn/mxarray.in.h \
-   corefcn/oct-errno.in.cc
-@@ -54,7 +53,6 @@
+   corefcn/oct-errno.in.cc \
+@@ -59,7 +58,6 @@
    corefcn/file-io.h \
    corefcn/gl-render.h \
    corefcn/gl2ps-renderer.h \
@@ -6340,7 +6340,7 @@ Author: Thomas Weber <tweber@debian.org>
    corefcn/gripes.h \
    corefcn/help.h \
    corefcn/hook-fcn.h \
-@@ -119,8 +117,7 @@
+@@ -129,8 +127,7 @@
  C_COREFCN_SRC = \
    corefcn/cutils.c \
    corefcn/matherr.c \
@@ -6352,7 +6352,7 @@ Author: Thomas Weber <tweber@debian.org>
    corefcn/Cell.cc \
 --- a/configure.ac
 +++ b/configure.ac
-@@ -1148,6 +1148,16 @@
+@@ -1190,6 +1190,16 @@
  AC_SUBST(GRAPHICS_CFLAGS)
  AC_SUBST(GRAPHICS_LIBS)
  

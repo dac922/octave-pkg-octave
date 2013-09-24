@@ -7,7 +7,7 @@ Forwarded: not-needed
 Author: Thomas Weber <tweber@debian.org>
 --- a/liboctave/Makefile.am
 +++ b/liboctave/Makefile.am
-@@ -40,7 +40,8 @@
+@@ -38,7 +38,8 @@
  
  AM_CXXFLAGS += $(WARN_CXXFLAGS)
  
@@ -19,7 +19,7 @@ Author: Thomas Weber <tweber@debian.org>
  
 --- a/libinterp/Makefile.am
 +++ b/libinterp/Makefile.am
-@@ -40,7 +40,8 @@
+@@ -38,7 +38,8 @@
  
  AM_CXXFLAGS += $(WARN_CXXFLAGS)
  

@@ -319,11 +319,11 @@
 %!error <format TEMPLATE must be a string> sprintf (1)
 
 %!test
-%! arch_list = {"native"; "ieee-le"; "ieee-be"; "vaxd"; "vaxg"; "cray"};
+%! arch_list = {"native"; "ieee-le"; "ieee-be"};
 %! warning ("off", "Octave:fopen-mode");
 %! status = 1;
 %!
-%! for i = 1:6
+%! for i = 1:3
 %!   arch = arch_list{i};
 %!   for j = 1:4
 %!     if (j == 1)

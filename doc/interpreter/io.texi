@@ -1151,22 +1151,21 @@ variety of data.
 @deftypefnx {Function File} {@var{A} =} importdata (@var{fname}, @var{delimiter}, @var{header_rows})
 @deftypefnx {Function File} {[@var{A}, @var{delimiter}] =} importdata (@dots{})
 @deftypefnx {Function File} {[@var{A}, @var{delimiter}, @var{header_rows}] =} importdata (@dots{})
-Importing data from file.
-
-Importing the contents of file @var{fname} into workspace.
+Import data from the file @var{fname}.
 
 Input parameters:
 
 @itemize
 @item @var{fname}
-The file name for the file to import.
+The name of the file containing data.
 
 @item @var{delimiter}
 The character separating columns of data.  Use @code{\t} for tab.
-(Only valid for ascii files)
+(Only valid for ASCII files)
 
 @item @var{header_rows}
-Number of header rows before the data begins.  (Only valid for ascii files)
+The number of header rows before the data begins.  (Only valid for ASCII
+files)
 @end itemize
 
 Different file types are supported:
@@ -1174,7 +1173,7 @@ Different file types are supported:
 @itemize
 @item ASCII table
 
-Importing ASCII table using the specified number of header rows and
+Import ASCII table using the specified number of header rows and
 the specified delimiter.
 
 @item Image file
@@ -1478,15 +1477,6 @@ IEEE big endian format.
 
 @item ieee-le
 IEEE little endian format.
-
-@item vaxd
-VAX D floating format.
-
-@item vaxg
-VAX G floating format.
-
-@item cray
-Cray floating format.
 @end table
 
 @noindent
@@ -2495,20 +2485,7 @@ IEEE big endian.
 
 @item "ieee-le"
 IEEE little endian.
-
-@item @qcode{"vaxd"}
-VAX D floating format.
-
-@item @qcode{"vaxg"}
-VAX G floating format.
-
-@item @qcode{"cray"}
-Cray floating format.
 @end table
-
-@noindent
-Conversions are currently only supported for @qcode{"ieee-be"} and
-@qcode{"ieee-le"} formats.
 
 The data read from the file is returned in @var{val}, and the number of
 values read is returned in @code{count}

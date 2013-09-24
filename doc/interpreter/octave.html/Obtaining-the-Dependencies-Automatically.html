@@ -1,70 +1,103 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Obtaining the Dependencies Automatically - GNU Octave</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Octave">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Build-Dependencies.html#Build-Dependencies" title="Build Dependencies">
-<link rel="next" href="Build-Tools.html#Build-Tools" title="Build Tools">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<a name="Obtaining-the-Dependencies-Automatically"></a>
-<p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Build-Tools.html#Build-Tools">Build Tools</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Build-Dependencies.html#Build-Dependencies">Build Dependencies</a>
-<hr>
-</div>
+<title>GNU Octave: Obtaining the Dependencies Automatically</title>
 
+<meta name="description" content="GNU Octave: Obtaining the Dependencies Automatically">
+<meta name="keywords" content="GNU Octave: Obtaining the Dependencies Automatically">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Build-Dependencies.html#Build-Dependencies" rel="up" title="Build Dependencies">
+<link href="Build-Tools.html#Build-Tools" rel="next" title="Build Tools">
+<link href="Build-Dependencies.html#Build-Dependencies" rel="previous" title="Build Dependencies">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Obtaining-the-Dependencies-Automatically"></a>
+<div class="header">
+<p>
+Next: <a href="Build-Tools.html#Build-Tools" accesskey="n" rel="next">Build Tools</a>, Up: <a href="Build-Dependencies.html#Build-Dependencies" accesskey="u" rel="up">Build Dependencies</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Obtaining-the-Dependencies-Automatically-1"></a>
 <h4 class="subsection">G.1.1 Obtaining the Dependencies Automatically</h4>
 
-<p>On some systems you can obtain many of Octave's build dependencies
+<p>On some systems you can obtain many of Octave&rsquo;s build dependencies
 automatically.  The commands for doing this vary by system.  Similarly,
 the names of pre-compiled packages vary by system and do not always
 match exactly the names listed in <a href="Build-Tools.html#Build-Tools">Build Tools</a> and <a href="External-Packages.html#External-Packages">External Packages</a>.
-
-   <p>You will usually need the development version of an external dependency
+</p>
+<p>You will usually need the development version of an external dependency
 so that you get the libraries and header files for building software,
 not just for running already compiled programs.  These packages
 typically have names that end with the suffix <code>-dev</code> or <code>-devel</code>.
-
-   <p>On systems with <code>apt-get</code> (Debian, Ubuntu, etc.), you may be able
+</p>
+<p>On systems with <code>apt-get</code> (Debian, Ubuntu, etc.), you may be able
 to install most of the tools and external packages using a command
 similar to
+</p>
+<div class="example">
+<pre class="example">apt-get build-dep octave
+</pre></div>
 
-<pre class="example">     apt-get build-dep octave
-</pre>
-   <p class="noindent">The specific package name may be <code>octave3.2</code> or <code>octave3.4</code>. 
+<p>The specific package name may be <code>octave3.2</code> or <code>octave3.4</code>.
 The set of required tools and external dependencies does not change
 frequently, so it is not important that the version match exactly, but
 you should use the most recent one available.
-
-   <p>On systems with <code>yum</code> (Fedora, Red Hat, etc.), you may be able to
+</p>
+<p>On systems with <code>yum</code> (Fedora, Red Hat, etc.), you may be able to
 install most of the tools and external packages using a command similar to
+</p>
+<div class="example">
+<pre class="example">yum-builddep octave
+</pre></div>
 
-<pre class="example">     yum-builddep octave
-</pre>
-   <p class="noindent">The <code>yum-builddep</code> utility is part of the <code>yum-utils</code> package.
-
-   <p>For either type of system, the package name may include a version
+<p>The <code>yum-builddep</code> utility is part of the <code>yum-utils</code> package.
+</p>
+<p>For either type of system, the package name may include a version
 number.  The set of required tools and external dependencies does not
 change frequently, so it is not important that the version exactly match
 the version you are installing, but you should use the most recent one
 available.
+</p>
 
-   </body></html>
 
+
+</body>
+</html>

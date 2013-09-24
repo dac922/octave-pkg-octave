@@ -39,7 +39,8 @@ function uiresume (h)
       set (h, "__uiwait_state__", "triggered");
     endif
   catch
-    # Ignore exception
+    ## Ignore exception
   end_try_catch
 
 endfunction
+

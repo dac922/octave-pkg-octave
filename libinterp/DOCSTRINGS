@@ -926,8 +926,8 @@ Convert @var{x} to unsigned 64-bit integer type.
 @deftypefn {Built-in Function} {} uint8 (@var{x})
 Convert @var{x} to unsigned 8-bit integer type.
 @end deftypefn
-__end__
-@c __end__ libinterp/parse-tree/pt-arg-list.cc
+end
+@c end libinterp/parse-tree/pt-arg-list.cc
 internal function
 do_braindead_shortcircuit_evaluation
 @c do_braindead_shortcircuit_evaluation libinterp/parse-tree/pt-binop.cc
@@ -1345,16 +1345,24 @@ bitshift (10, [-2, -1, 0, 1, 2])
 @deftypefn  {Built-in Function} {} bitmax ()
 @deftypefnx {Built-in Function} {} bitmax ("double")
 @deftypefnx {Built-in Function} {} bitmax ("single")
-@deftypefnx {Built-in Function} {} flintmax (@dots{})
 Return the largest integer that can be represented within a floating point
 value.  The default class is @qcode{"double"}, but @qcode{"single"} is a
 valid option.  On IEEE-754 compatible systems, @code{bitmax} is
 @w{@math{2^{53} - 1}} for @qcode{"double"} and @w{@math{2^{24} -1}} for
 @qcode{"single"}.
-
-@code{flintmax} for FLoating point INTeger MAXimum is an alias for
-@code{bitmax}.
-@seealso{intmax, realmax, realmin}
+@seealso{flintmax, intmax, realmax, realmin}
+@end deftypefn
+flintmax
+@c flintmax libinterp/corefcn/bitfcns.cc
+-*- texinfo -*-
+@deftypefn  {Built-in Function} {} flintmax ()
+@deftypefnx {Built-in Function} {} flintmax ("double")
+@deftypefnx {Built-in Function} {} flintmax ("single")
+Return the largest integer that can be represented consecutively in a
+floating point value.  The default class is @qcode{"double"}, but @qcode{"single"}
+is a valid option.  On IEEE-754 compatible systems, @code{flintmax} is @w{@math{2^53}}
+for @qcode{"double"} and @w{@math{2^24}} for @qcode{"single"}.
+@seealso{bitmax, intmax, realmax, realmin}
 @end deftypefn
 intmax
 @c intmax libinterp/corefcn/bitfcns.cc
@@ -1390,7 +1398,7 @@ unsigned 64-bit integer.
 @end table
 
 The default for @var{type} is @code{uint32}.
-@seealso{intmin, bitmax}
+@seealso{intmin, flintmax, bitmax}
 @end deftypefn
 intmin
 @c intmin libinterp/corefcn/bitfcns.cc
@@ -1426,7 +1434,7 @@ unsigned 64-bit integer.
 @end table
 
 The default for @var{type} is @code{uint32}.
-@seealso{intmax, bitmax}
+@seealso{intmax, flintmax, bitmax}
 @end deftypefn
 sizemax
 @c sizemax libinterp/corefcn/bitfcns.cc
@@ -4536,11 +4544,16 @@ For that, use any of the condition number functions: @code{cond},
 cd
 @c cd libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn  {Command} {} cd dir
-@deftypefnx {Command} {} chdir dir
-Change the current working directory to @var{dir}.  If @var{dir} is
-omitted, the current directory is changed to the user's home
-directory.  For example,
+@deftypefn  {Command} {} cd @var{dir}
+@deftypefnx {Command} {} cd
+@deftypefnx {Built-in Function} {@var{old_dir} =} cd @var{dir}
+@deftypefnx {Command} {} chdir @dots{}
+Change the current working directory to @var{dir}.
+
+If @var{dir} is omitted, the current directory is changed to the user's home
+directory (@qcode{"~"}).
+
+For example,
 
 @example
 cd ~/octave
@@ -4550,100 +4563,118 @@ cd ~/octave
 changes the current working directory to @file{~/octave}.  If the
 directory does not exist, an error message is printed and the working
 directory is not changed.
-@seealso{mkdir, rmdir, dir}
+
+@code{chdir} is an alias for @code{cd} and can be used in all of the same
+calling formats.
+
+Compatibility Note: When called with no arguments, @sc{matlab} prints the
+present working directory rather than changing to the user's home directory.
+@seealso{pwd, mkdir, rmdir, dir, ls}
 @end deftypefn
 pwd
 @c pwd libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {} pwd ()
+@deftypefn  {Built-in Function} {} pwd ()
+@deftypefnx {Built-in Function} {@var{dir} =} pwd ()
 Return the current working directory.
-@seealso{dir, ls}
+@seealso{cd, dir, ls, mkdir, rmdir}
 @end deftypefn
 readdir
 @c readdir libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{files}, @var{err}, @var{msg}] =} readdir (@var{dir})
-Return names of the files in the directory @var{dir} as a cell array of
-strings.  If an error occurs, return an empty cell array in @var{files}.
+@deftypefn  {Built-in Function} {@var{files} =} readdir (@var{dir})
+@deftypefnx {Built-in Function} {[@var{files}, @var{err}, @var{msg}] =} readdir (@var{dir})
+Return the names of files in the directory @var{dir} as a cell array of
+strings.
 
+If an error occurs, return an empty cell array in @var{files}.
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{ls, dir, glob}
+@seealso{ls, dir, glob, what}
 @end deftypefn
 mkdir
 @c mkdir libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn  {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@var{dir})
-@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@var{parent}, @var{dir})
+@deftypefn  {Built-in Function} {} mkdir @var{dir}
+@deftypefnx {Built-in Function} {} mkdir (@var{parent}, @var{dir})
+@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@dots{})
 Create a directory named @var{dir} in the directory @var{parent}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
-@seealso{rmdir}
+If no @var{parent} directory is specified the present working directory is
+used.
+
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.
+@seealso{rmdir, pwd, cd}
 @end deftypefn
 rmdir
 @c rmdir libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn  {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@var{dir})
-@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@var{dir}, "s")
+@deftypefn  {Built-in Function} {} rmdir @var{dir}
+@deftypefnx {Built-in Function} {} rmdir (@var{dir}, "s")
+@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@dots{})
 Remove the directory named @var{dir}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.
 
 If the optional second parameter is supplied with value @qcode{"s"},
 recursively remove all subdirectories as well.
-@seealso{mkdir, confirm_recursive_rmdir}
+@seealso{mkdir, confirm_recursive_rmdir, pwd}
 @end deftypefn
 link
 @c link libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} link (@var{old}, @var{new})
+@deftypefn  {Built-in Function} {} link @var{old} @var{new}
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} link (@var{old}, @var{new})
 Create a new link (also known as a hard link) to an existing file.
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{symlink}
+@seealso{symlink, unlink, readlink, lstat}
 @end deftypefn
 symlink
 @c symlink libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} symlink (@var{old}, @var{new})
+@deftypefn  {Built-in Function} {} symlink @var{old} @var{new}
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} symlink (@var{old}, @var{new})
 Create a symbolic link @var{new} which contains the string @var{old}.
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{link, readlink}
+@seealso{link, unlink, readlink, lstat}
 @end deftypefn
 readlink
 @c readlink libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{result}, @var{err}, @var{msg}] =} readlink (@var{symlink})
+@deftypefn  {Built-in Function} {} readlink @var{symlink}
+@deftypefnx {Built-in Function} {[@var{result}, @var{err}, @var{msg}] =} readlink (@var{symlink})
 Read the value of the symbolic link @var{symlink}.
 
 If successful, @var{result} contains the contents of the symbolic link
-@var{symlink}, @var{err} is 0 and @var{msg} is an empty string.
-Otherwise, @var{err} is nonzero and @var{msg} contains a
-system-dependent error message.
-@seealso{link, symlink}
+@var{symlink}, @var{err} is 0, and @var{msg} is an empty string.
+Otherwise, @var{err} is nonzero and @var{msg} contains a system-dependent
+error message.
+@seealso{lstat, symlink, link, unlink, delete}
 @end deftypefn
 rename
 @c rename libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} rename (@var{old}, @var{new})
+@deftypefn  {Built-in Function} {} rename @var{old} @var{new}
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} rename (@var{old}, @var{new})
 Change the name of file @var{old} to @var{new}.
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{ls, dir}
+@seealso{movefile, copyfile, ls, dir}
 @end deftypefn
 glob
 @c glob libinterp/corefcn/dirfns.cc
@@ -4666,9 +4697,8 @@ matches any single character, and
 matches any of the enclosed characters.
 @end table
 
-Tilde expansion
-is performed on each of the patterns before looking for matching file
-names.  For example:
+Tilde expansion is performed on each of the patterns before looking for
+matching file names.  For example:
 
 @example
 ls
@@ -4692,13 +4722,13 @@ glob ("file[12]")
         [2,1] = file2
       @}
 @end example
-@seealso{ls, dir, readdir}
+@seealso{ls, dir, readdir, what, fnmatch}
 @end deftypefn
 fnmatch
 @c fnmatch libinterp/corefcn/dirfns.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} fnmatch (@var{pattern}, @var{string})
-Return 1 or zero for each element of @var{string} that matches any of
+Return true or false for each element of @var{string} that matches any of
 the elements of the string array @var{pattern}, using the rules of
 filename pattern matching.  For example:
 
@@ -4708,6 +4738,7 @@ fnmatch ("a*b", @{"ab"; "axyzb"; "xyzab"@})
      @result{} [ 1; 1; 0 ]
 @end group
 @end example
+@seealso{glob, regexp}
 @end deftypefn
 filesep
 @c filesep libinterp/corefcn/dirfns.cc
@@ -4742,6 +4773,7 @@ will ask for confirmation before recursively removing a directory tree.
 When called from inside a function with the @qcode{"local"} option, the
 variable is changed locally for the function and any subroutines it calls.  
 The original variable value is restored when exiting the function.
+@seealso{rmdir}
 @end deftypefn
 dlmread
 @c dlmread libinterp/corefcn/dlmread.cc
@@ -4837,13 +4869,14 @@ If @var{u} is a scalar, the results are the same size as @var{m}.
 If @var{u} is a column vector and @var{m} is a row vector, the
 results are matrices with @code{length (@var{u})} rows and
 @code{length (@var{m})} columns.  Otherwise, @var{u} and
-@var{m} must conform and the results will be the same size.
+@var{m} must conform in size and the results will be the same size as the
+inputs.
 
 The value of @var{u} may be complex.
-The value of @var{m} must be 0 @leq{} m @leq{} 1.
+The value of @var{m} must be 0 @leq{} @var{m} @leq{} 1.
 
-@var{tol} is currently ignored (@sc{matlab} uses this to allow faster,
-less accurate approximation).
+The optinoal input @var{tol} is currently ignored (@sc{matlab} uses this to
+allow faster, less accurate approximation).
 
 If requested, @var{err} contains the following status information
 and is the same size as the result.
@@ -4856,9 +4889,11 @@ Normal return.
 Error---no computation, algorithm termination condition not met,
 return @code{NaN}.
 @end enumerate
- Ref: Abramowitz, Milton and Stegun, Irene A
-      Handbook of Mathematical Functions, Dover, 1965
-      Chapter 16 (Sections 16.4, 16.13 and 16.15)
+
+Reference: Milton Abramowitz and Irene A Stegun,
+@cite{Handbook of Mathematical Functions}, Chapter 16 (Sections 16.4, 16.13,
+and 16.15), Dover, 1965.
+
 @seealso{ellipke}
 @end deftypefn
 rethrow
@@ -5438,15 +5473,6 @@ IEEE big endian format.
 
 @item ieee-le
 IEEE little endian format.
-
-@item vaxd
-VAX D floating format.
-
-@item vaxg
-VAX G floating format.
-
-@item cray
-Cray floating format.
 @end table
 
 @noindent
@@ -5793,20 +5819,7 @@ IEEE big endian.
 
 @item "ieee-le"
 IEEE little endian.
-
-@item @qcode{"vaxd"}
-VAX D floating format.
-
-@item @qcode{"vaxg"}
-VAX G floating format.
-
-@item @qcode{"cray"}
-Cray floating format.
 @end table
-
-@noindent
-Conversions are currently only supported for @qcode{"ieee-be"} and
-@qcode{"ieee-le"} formats.
 
 The data read from the file is returned in @var{val}, and the number of
 values read is returned in @code{count}
@@ -6465,6 +6478,7 @@ Remove any defaults set for the handle @var{h}.  The default figure
 properties of @qcode{"position"}, @qcode{"units"},
 @qcode{"windowstyle"} and @qcode{"paperunits"} and the default axes
 properties of @qcode{"position"} and @qcode{"units"} are not reset.
+@seealso{cla, clf}
 @end deftypefn
 set
 @c set libinterp/corefcn/graphics.cc
@@ -9265,8 +9279,10 @@ maximum value(s).  Thus,
 @deftypefn  {Built-in Function} {} cummin (@var{x})
 @deftypefnx {Built-in Function} {} cummin (@var{x}, @var{dim})
 @deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} cummin (@var{x})
-Return the cumulative minimum values along dimension @var{dim}.  If @var{dim}
-is unspecified it defaults to column-wise operation.  For example:
+Return the cumulative minimum values along dimension @var{dim}.
+
+If @var{dim} is unspecified it defaults to column-wise operation.  For
+example:
 
 @example
 @group
@@ -9275,27 +9291,18 @@ cummin ([5 4 6 2 3 1])
 @end group
 @end example
 
-
-The call
-
-@example
-  [w, iw] = cummin (x)
-@end example
-
-@noindent
-with @code{x} a vector, is equivalent to the following code:
+If called with two output arguments the index of the minimum value is also
+returned.
 
 @example
 @group
-w = iw = zeros (size (x));
-for i = 1:length (x)
-  [w(i), iw(i)] = max (x(1:i));
-endfor
+[w, iw] = cummin ([5 4 6 2 3 1])
+@result{}
+w =  5  4  4  2  2  1
+iw = 1  2  2  4  4  6
 @end group
 @end example
 
-@noindent
-but computed in a much faster manner.
 @seealso{cummax, min, max}
 @end deftypefn
 cummax
@@ -9303,9 +9310,11 @@ but computed in a much faster manner.
 -*- texinfo -*-
 @deftypefn  {Built-in Function} {} cummax (@var{x})
 @deftypefnx {Built-in Function} {} cummax (@var{x}, @var{dim})
-@deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} cummax (@var{x})
-Return the cumulative maximum values along dimension @var{dim}.  If @var{dim}
-is unspecified it defaults to column-wise operation.  For example:
+@deftypefnx {Built-in Function} {[@var{w}, @var{iw}] =} cummax (@dots{})
+Return the cumulative maximum values along dimension @var{dim}.
+
+If @var{dim} is unspecified it defaults to column-wise operation.  For
+example:
 
 @example
 @group
@@ -9314,26 +9323,18 @@ cummax ([1 3 2 6 4 5])
 @end group
 @end example
 
-The call
-
-@example
-[w, iw] = cummax (x, dim)
-@end example
-
-@noindent
-with @code{x} a vector, is equivalent to the following code:
+If called with two output arguments the index of the maximum value is also
+returned.
 
 @example
 @group
-w = iw = zeros (size (x));
-for i = 1:length (x)
-  [w(i), iw(i)] = max (x(1:i));
-endfor
+[w, iw] = cummax ([1 3 2 6 4 5])
+@result{}
+w =  1  3  3  6  6  6
+iw = 1  2  2  4  4  4
 @end group
 @end example
 
-@noindent
-but computed in a much faster manner.
 @seealso{cummin, max, min}
 @end deftypefn
 md5sum
@@ -11293,13 +11294,20 @@ the brackets indicate optional arguments and @qcode{'d'} indicates zero or
 more digits.  The special input values @code{Inf}, @code{NaN}, and @code{NA}
 are also accepted.
 
-@var{s} may also be a character matrix, in which case the conversion is
-repeated for each row.  Or @var{s} may be a cell array of strings, in which
-case each element is converted and an array of the same dimensions is
-returned.
+@var{s} may be a character string, character matrix, or cell array.
+For character arrays the conversion is repeated for every row, and
+a double or complex array is returned.  Empty rows in @var{s} are deleted
+and not returned in the numeric array.  For cell arrays each character
+string element is processed and a double or complex array of the same
+dimensions as @var{s} is returned.
 
-@code{str2double} returns NaN for elements of @var{s} which cannot be
-converted.
+For unconvertible scalar or character string input @code{str2double} returns
+a NaN@.  Similarly, for character array input @code{str2double} returns a
+NaN for any row of @var{s} that could not be converted.  For a cell array,
+@code{str2double} returns a NaN for any element of @var{s} for which
+conversion fails.  Note that numeric elements in a mixed string/numeric
+cell array are not strings and the conversion will fail for these elements
+and return NaN.
 
 @code{str2double} can replace @code{str2num}, and it avoids the security
 risk of using @code{eval} on unknown data.
@@ -11310,19 +11318,28 @@ risk of using @code{eval} on unknown data.
 -*- texinfo -*-
 @deftypefn  {Built-in Function} {@var{idx} =} strfind (@var{str}, @var{pattern})
 @deftypefnx {Built-in Function} {@var{idx} =} strfind (@var{cellstr}, @var{pattern})
+@deftypefnx {Built-in Function} {@var{idx} =} strfind (@dots{}, "overlaps", @var{val})
 Search for @var{pattern} in the string @var{str} and return the
 starting index of every such occurrence in the vector @var{idx}.
+
 If there is no such occurrence, or if @var{pattern} is longer
 than @var{str}, then @var{idx} is the empty array @code{[]}.
+The optional argument @qcode{"overlaps"} determines whether the pattern
+can match at every position in @var{str} (true), or only for unique
+occurrences of the complete pattern (false).  The default is true.
 
 If a cell array of strings @var{cellstr} is specified
-then @var{idx} is a cell array of vectors, as specified
-above.  Examples:
+then @var{idx} is a cell array of vectors, as specified above.
+
+Examples:
 
 @example
 @group
 strfind ("abababa", "aba")
      @result{} [1, 3, 5]
+
+strfind ("abababa", "aba", "overlaps", false)
+     @result{} [1, 5]
 
 strfind (@{"abababa", "bebebe", "ab"@}, "aba")
      @result{}
@@ -11341,10 +11358,20 @@ strfind (@{"abababa", "bebebe", "ab"@}, "aba")
 strrep
 @c strrep libinterp/corefcn/strfind.cc
 -*- texinfo -*-
-@deftypefn  {Built-in Function} {} strrep (@var{s}, @var{ptn}, @var{rep})
-@deftypefnx {Built-in Function} {} strrep (@var{s}, @var{ptn}, @var{rep}, "overlaps", @var{o})
-Replace all occurrences of the substring @var{ptn} in the string @var{s}
-with the string @var{rep} and return the result.  For example:
+@deftypefn  {Built-in Function} {@var{newstr} =} strrep (@var{str}, @var{ptn}, @var{rep})
+@deftypefnx {Built-in Function} {@var{newstr} =} strrep (@var{cellstr}, @var{ptn}, @var{rep})
+@deftypefnx {Built-in Function} {@var{newstr} =} strrep (@dots{}, "overlaps", @var{val})
+Replace all occurrences of the pattern @var{ptn} in the string @var{str}
+with the string @var{rep} and return the result.
+
+The optional argument @qcode{"overlaps"} determines whether the pattern
+can match at every position in @var{str} (true), or only for unique
+occurrences of the complete pattern (false).  The default is true.
+
+@var{s} may also be a cell array of strings, in which case the replacement is
+done for each element and a cell array is returned.
+
+Example:
 
 @example
 @group
@@ -11353,8 +11380,6 @@ strrep ("This is a test string", "is", "&%$")
 @end group
 @end example
 
-@var{s} may also be a cell array of strings, in which case the replacement is
-done for each element and a cell array is returned.
 @seealso{regexprep, strfind, findstr}
 @end deftypefn
 char
@@ -11977,21 +12002,25 @@ Return 0 if successful, otherwise return -1.
 lstat
 @c lstat libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{info}, @var{err}, @var{msg}] =} lstat (@var{symlink})
+@deftypefn  {Built-in Function} {@var{info} =} lstat (@var{symlink})
+@deftypefnx {Built-in Function} {[@var{info}, @var{err}, @var{msg}] =} lstat (@var{symlink})
 Return a structure @var{info} containing information about the symbolic link
-@var{symlink}.  The function outputs are described in the documentation for
-@code{stat}.
-@seealso{stat}
+@var{symlink}.
+
+The function outputs are described in the documentation for @code{stat}.
+@seealso{stat, symlink}
 @end deftypefn
 mkfifo
 @c mkfifo libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} mkfifo (@var{name}, @var{mode})
-Create a @var{fifo} special file named @var{name} with file mode @var{mode}
+@deftypefn  {Built-in Function} {} mkfifo (@var{name}, @var{mode})
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} mkfifo (@var{name}, @var{mode})
+Create a FIFO special file named @var{name} with file mode @var{mode}
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
+@seealso{pipe}
 @end deftypefn
 pipe
 @c pipe libinterp/corefcn/syscalls.cc
@@ -12003,6 +12032,7 @@ into @var{read_fd} and @var{write_fd} respectively.
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
+@seealso{mkfifo}
 @end deftypefn
 stat
 @c stat libinterp/corefcn/syscalls.cc
@@ -12098,61 +12128,69 @@ For example:
   @result{} err = 0
   @result{} msg =
 @end example
+@seealso{lstat, ls, dir}
 @end deftypefn
 S_ISREG
 @c S_ISREG libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISREG (@var{mode})
-Return true if @var{mode} corresponds to a regular file.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a regular file.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 S_ISDIR
 @c S_ISDIR libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISDIR (@var{mode})
-Return true if @var{mode} corresponds to a directory.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a directory.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 S_ISCHR
 @c S_ISCHR libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISCHR (@var{mode})
-Return true if @var{mode} corresponds to a character device.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a character device.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 S_ISBLK
 @c S_ISBLK libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISBLK (@var{mode})
-Return true if @var{mode} corresponds to a block device.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a block device.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 S_ISFIFO
 @c S_ISFIFO libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISFIFO (@var{mode})
-Return true if @var{mode} corresponds to a fifo.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a fifo.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 S_ISLNK
 @c S_ISLNK libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISLNK (@var{mode})
-Return true if @var{mode} corresponds to a symbolic link.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a symbolic link.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 S_ISSOCK
 @c S_ISSOCK libinterp/corefcn/syscalls.cc
 -*- texinfo -*-
 @deftypefn {Built-in Function} {} S_ISSOCK (@var{mode})
-Return true if @var{mode} corresponds to a socket.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a socket.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{stat, lstat}
 @end deftypefn
 gethostname
@@ -13839,6 +13877,12 @@ context @var{context}, which may be either @qcode{"caller"} or
 @deftypefn {Built-in Function} {@var{old_val} =} __parser_debug_flag__ (@var{new_val}))
 Undocumented internal function.
 @end deftypefn
+__parse_file__
+@c __parse_file__ libinterp/parse-tree/oct-parse.cc
+-*- texinfo -*-
+@deftypefn {Built-in Function} {} __parse_file__ (@var{file}, @var{verbose})
+Undocumented internal function.
+@end deftypefn
 __delaunayn__
 @c __delaunayn__ libinterp/dldfcn/__delaunayn__.cc
 -*- texinfo -*-
@@ -13917,9 +13961,19 @@ Undocumented internal function.
 mouse_wheel_zoom
 @c mouse_wheel_zoom libinterp/dldfcn/__init_fltk__.cc
 -*- texinfo -*-
-@deftypefn  {Built-in Function} {@var{speed} =} mouse_wheel_zoom ()
-@deftypefnx {Built-in Function} {} mouse_wheel_zoom (@var{speed})
+@deftypefn  {Loadable Function} {@var{val} =} mouse_wheel_zoom ()
+@deftypefnx {Loadable Function} {@var{old_val} =} mouse_wheel_zoom (@var{new_val})
+@deftypefnx {Loadable Function} {} mouse_wheel_zoom (@var{new_val}, "local")
 Query or set the mouse wheel zoom factor.
+
+The zoom factor is a number in the range (0,1) which is the percentage of the
+current axis limits that will be used when zooming.  For example, if the
+current x-axis limits are [0, 50] and @code{mouse_wheel_zoom} is 0.4 (40%),
+then a zoom operation will change the limits by 20.
+
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
 
 This function is currently implemented only for the FLTK graphics toolkit.
 @seealso{gui_mode}
@@ -13970,6 +14024,16 @@ This is a private internal function not intended for direct use.  Instead
 use @code{imwrite}.
 
 @seealso{imfinfo, imformats, imread, imwrite}
+@end deftypefn
+__magick_ping__
+@c __magick_ping__ libinterp/dldfcn/__magick_read__.cc
+-*- texinfo -*-
+@deftypefn {Loadable Function} {} __magick_ping__ (@var{fname}, @var{idx})
+Ping image information with GraphicsMagick or ImageMagick.
+
+This is a private internal function not intended for direct use.
+
+@seealso{imfinfo}
 @end deftypefn
 __magick_finfo__
 @c __magick_finfo__ libinterp/dldfcn/__magick_read__.cc
@@ -15108,14 +15172,14 @@ Undocumented internal function
 @c __ftp_close__ libinterp/dldfcn/urlwrite.cc
 -*- texinfo -*-
 @deftypefn {Loadable Function} {} __ftp_close__ (@var{handle})
- Undocumented internal function
- @end deftypefn
+Undocumented internal function
+@end deftypefn
 __ftp_mode__
 @c __ftp_mode__ libinterp/dldfcn/urlwrite.cc
 -*- texinfo -*-
 @deftypefn {Loadable Function} {} __ftp_mode__ (@var{handle})
- Undocumented internal function
- @end deftypefn
+Undocumented internal function
+@end deftypefn
 __ftp_delete__
 @c __ftp_delete__ libinterp/dldfcn/urlwrite.cc
 -*- texinfo -*-

@@ -34,7 +34,7 @@
 ## Thus, columns of @var{z} correspond to different @var{x} values and rows
 ## of @var{z} correspond to different @var{y} values.
 ##
-## The color of the mesh is computed by linearly scaling the @var{Z} values
+## The color of the mesh is computed by linearly scaling the @var{z} values
 ## to fit the range of the current colormap.  Use @code{caxis} and/or
 ## change the colormap to control the appearance.
 ##
@@ -64,7 +64,7 @@ function h = mesh (varargin)
   [hax, varargin, nargin] = __plt_get_axis_arg__ ("mesh", varargin{:});
 
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
   unwind_protect

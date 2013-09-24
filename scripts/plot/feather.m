@@ -71,7 +71,7 @@ function retval = feather (varargin)
   have_line_spec = false;
   while (ioff <= nargin)
     arg = varargin{ioff++};
-    if ((ischar (arg) || iscell (arg)) && ! have_line_spec)
+    if ((ischar (arg) || iscellstr (arg)) && ! have_line_spec)
       [linespec, valid] = __pltopt__ ("feather", arg, false);
       if (valid)
         line_spec = arg;
@@ -99,7 +99,7 @@ function retval = feather (varargin)
        ytmp - u * arrowsize / 3];
 
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
   unwind_protect

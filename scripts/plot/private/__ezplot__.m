@@ -420,7 +420,7 @@ function [h, needusage] = __ezplot__ (pltfunc, varargin)
             if (! auto_domain_done)
               domain = find_valid_domain (X, Y, Z);
             endif
-          end
+          endif
         endif
       endif
     endif
@@ -428,7 +428,7 @@ function [h, needusage] = __ezplot__ (pltfunc, varargin)
 
   ## Now, actually call the correct plot function with valid data and domain.
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
   unwind_protect

@@ -149,7 +149,7 @@ function [T, p, col] = __marching_cube__ (xx, yy, zz, c, iso, colors)
   id =  find (cedge); # select only voxels which are intersected
   if (isempty (id))
     T = p = col = [];
-    return
+    return;
   endif
 
   ## phase II: calculate the list of intersection points
@@ -528,3 +528,4 @@ function [edge_table, tri_table] = init_mc ()
   0, 3, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1;
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ] + 1;
 endfunction
+

@@ -259,12 +259,12 @@ make_statement (T *arg)
 %type <tree_switch_command_type> switch_command
 %type <tree_switch_case_type> switch_case default_case
 %type <tree_switch_case_list_type> case_list1 case_list
-%type <tree_decl_elt_type> decl2
+%type <tree_decl_elt_type> decl2 param_list_elt
 %type <tree_decl_init_list_type> decl1
 %type <tree_decl_command_type> declaration
 %type <tree_statement_type> statement function_end classdef_end
 %type <tree_statement_list_type> simple_list simple_list1 list list1
-%type <tree_statement_list_type> opt_list input1
+%type <tree_statement_list_type> opt_list
 // These types need to be specified.
 %type <dummy_type> attr
 %type <dummy_type> class_event
@@ -307,33 +307,24 @@ make_statement (T *arg)
 // Statements and statement lists
 // ==============================
 
-input           : input1
+input           : simple_list '\n'
                   {
                     parser.stmt_list = $1;
                     YYACCEPT;
                   }
-                | simple_list parse_error
-                  { ABORT_PARSE; }
+                | simple_list END_OF_INPUT
+                  {
+                    lexer.end_of_input = true;
+                    parser.stmt_list = $1;
+                    YYACCEPT;
+                  }
                 | parse_error
                   { ABORT_PARSE; }
                 ;
 
-input1          : '\n'
+simple_list     : opt_sep_no_nl
                   { $$ = 0; }
-                | END_OF_INPUT
-                  {
-                    lexer.end_of_input = true;
-                    $$ = 0;
-                  }
-                | simple_list
-                  { $$ = $1; }
-                | simple_list '\n'
-                  { $$ = $1; }
-                | simple_list END_OF_INPUT
-                  { $$ = $1; }
-                ;
-
-simple_list     : simple_list1 opt_sep_no_nl
+                | simple_list1 opt_sep_no_nl
                   { $$ = parser.set_stmt_print_flag ($1, $2, false); }
                 ;
 
@@ -798,10 +789,6 @@ decl2           : identifier
                     lexer.looking_at_initializer_expression = false;
                     $$ = new tree_decl_elt ($1, $4);
                   }
-                | magic_tilde
-                  {
-                    $$ = new tree_decl_elt ($1);
-                  }
                 ;
 
 // ====================
@@ -1070,13 +1057,19 @@ param_list1     : // empty
                   }
                 ;
 
-param_list2     : decl2
+param_list2     : param_list_elt
                   { $$ = new tree_parameter_list ($1); }
-                | param_list2 ',' decl2
+                | param_list2 ',' param_list_elt
                   {
                     $1->append ($3);
                     $$ = $1;
                   }
+                ;
+
+param_list_elt  : decl2
+                  { $$ = $1; }
+                | magic_tilde
+                  { $$ = new tree_decl_elt ($1); }
                 ;
 
 // ===================================
@@ -1086,19 +1079,31 @@ param_list2     : decl2
 return_list     : '[' ']'
                   {
                     lexer.looking_at_return_list = false;
+
                     $$ = new tree_parameter_list ();
                   }
-                | return_list1
+                | identifier
                   {
                     lexer.looking_at_return_list = false;
-                    if ($1->validate (tree_parameter_list::out))
-                      $$ = $1;
+
+                    tree_parameter_list *tmp = new tree_parameter_list ($1);
+
+                    // Even though this parameter list can contain only
+                    // a single identifier, we still need to validate it
+                    // to check for varargin or varargout.
+
+                    if (tmp->validate (tree_parameter_list::out))
+                      $$ = tmp;
                     else
                       ABORT_PARSE;
                   }
                 | '[' return_list1 ']'
                   {
                     lexer.looking_at_return_list = false;
+
+                    // Check for duplicate parameter names, varargin,
+                    // or varargout.
+
                     if ($2->validate (tree_parameter_list::out))
                       $$ = $2;
                     else
@@ -4427,6 +4432,57 @@ Undocumented internal function.\n\
                                   "__parser_debug_flag__");
 
   octave_debug = debug_flag;
+
+  return retval;
+}
+
+DEFUN (__parse_file__, args, ,
+  "-*- texinfo -*-\n\
+@deftypefn {Built-in Function} {} __parse_file__ (@var{file}, @var{verbose})\n\
+Undocumented internal function.\n\
+@end deftypefn")
+{
+  octave_value retval;
+
+  int nargin = args.length ();
+
+  if (nargin == 1 || nargin == 2)
+    {
+      std::string file = args(0).string_value ();
+      
+      std::string full_file = octave_env::make_absolute (file);
+
+      size_t file_len = file.length ();
+
+      if ((file_len > 4 && file.substr (file_len-4) == ".oct")
+          || (file_len > 4 && file.substr (file_len-4) == ".mex")
+          || (file_len > 2 && file.substr (file_len-2) == ".m"))
+        {
+          file = octave_env::base_pathname (file);
+          file = file.substr (0, file.find_last_of ('.'));
+
+          size_t pos = file.find_last_of (file_ops::dir_sep_str ());
+          if (pos != std::string::npos)
+            file = file.substr (pos+1);
+        }
+
+      if (! error_state)
+        {
+          if (nargin == 2)
+            octave_stdout << "parsing " << full_file << std::endl;
+
+          octave_function *fcn = parse_fcn_file (full_file, file, "",
+                                                 true, false, false,
+                                                 false, "__parse_file__");
+
+          if (fcn)
+            delete fcn;
+        }
+      else
+        error ("__parse_file__: expecting file name as argument");
+    }
+  else
+    print_usage ();
 
   return retval;
 }

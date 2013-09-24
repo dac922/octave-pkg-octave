@@ -73,7 +73,7 @@ function h = fill (varargin)
   iargs = __find_patches__ (varargin{:});
 
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
   unwind_protect
@@ -94,7 +94,7 @@ function h = fill (varargin)
       hlist(end + 1, 1) = htmp;
     endfor
 
-    if (strncmp (old_nxtplt, "replace", 7))
+    if (strcmp (old_nxtplt, "replace"))
       set (hax, "nextplot", old_nxtplt);
     endif
 

@@ -617,7 +617,7 @@ When the input is an Octave object @var{obj}, the names are the public
 properties of the object.
 
 When the input is a Java object @var{javaobj} or Java classname
-@var{jclassname}) the name are the public data elements of the object or
+@var{jclassname} the name are the public data elements of the object or
 class.
 @seealso{@ref{XREFstruct,,struct}, @ref{XREFmethods,,methods}}
 @end deftypefn

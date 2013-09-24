@@ -44,6 +44,10 @@ function txt = __unimplemented__ (fcn)
       txt = ["Basic video file support is provided in the video package.  ", ...
              "See @url{http://octave.sf.net/video/}."];
 
+    case "exifread"
+      txt = ["exifread is deprecated.  " ...
+             "The functionality is available in the imfinfo function."];
+
     case "gsvd"
       txt = ["gsvd is not currently part of core Octave.  ", ...
              "See the linear-algebra package at ", ...
@@ -207,7 +211,6 @@ function list = missing_functions ()
   "dynamicprops",
   "echodemo",
   "evalc",
-  "exifread",
   "export2wsdlg",
   "figurepalette",
   "filebrowser",
@@ -442,3 +445,4 @@ endfunction
 %! assert (str(1:51), "quad2d is not implemented.  Consider using dblquad.");
 %! str = __unimplemented__ ("MException");
 %! assert (str(1:58), "the 'MException' function is not yet implemented in Octave");
+

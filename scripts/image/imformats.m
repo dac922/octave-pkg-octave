@@ -175,7 +175,7 @@ function formats = default_formats ()
   ## there's no need to go and calculate it all over again if we are
   ## requested to reset back to factory.
   if (! isempty (formats))
-    return
+    return;
   endif
 
   ##      Building the formats info
@@ -260,7 +260,7 @@ function is_valid_format (format)
   ## the minimal list of fields required in the structure. We don't
   ## require multipage because it doesn't exist in matlab
   min_fields  = {"ext", "read", "isa", "write", "info", "alpha", "description"};
-  fields_mask = cellfun (@(x) isfield (format, x), min_fields);
+  fields_mask = isfield (format, min_fields);
   if (! all (fields_mask))
     error ("imformats: structure has missing field `%s'.", min_fields(! fields_mask){1});
   endif
@@ -277,10 +277,11 @@ endfunction
 function bool = isa_magick (coder, filename)
   bool = false;
   try
-    info = __imfinfo__ (filename);
+    info = __magick_ping__ (filename, 1);
     bool = strcmp (coder, info.Format);
   end_try_catch
 endfunction
+
 
 ## changing the function to read
 %!testif HAVE_MAGICK

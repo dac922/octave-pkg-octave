@@ -148,7 +148,7 @@ function [h, failed] = __patch__ (p, varargin)
             args{7} = "facecolor";
             args{8} = "interp";
             args{9} = "cdata";
-            agrs{10} = c;
+            args{10} = c;
           else
             error ("patch: color value not valid");
           endif
@@ -210,13 +210,14 @@ function [h, failed] = __patch__ (p, varargin)
 endfunction
 
 function args = delfields (args, flds)
-  idx = cellfun (@(x) any (strcmpi (x, flds)), args);
+  idx = cellfun ("isclass", args, "char");
+  idx(idx) = ismember (args(idx), flds);
   if (rows (idx) == 1)
-    idx = idx | [false, idx(1:end-1)];
+    idx |= [false, idx(1:end-1)];
   else
-    idx = idx | [false; idx(1:end-1)];
+    idx |= [false; idx(1:end-1)];
   endif
-  args (idx) = [];
+  args(idx) = [];
 endfunction
 
 function args = setdata (args)
@@ -366,3 +367,4 @@ function update_handle (h, isfv)
     recursive = false;
   endif
 endfunction
+

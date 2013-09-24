@@ -1,3 +1,4 @@
+/* DO NOT EDIT. AUTOMATICALLY GENERATED FROM oct-tex-lexer.in.ll and oct-tex-symbols.in. */
 /*
 
 Copyright (C) 2013 Michael Goffioul
@@ -36,10 +37,8 @@ along with Octave; see the file COPYING.  If not, see
 
 %x	NUM_MODE
 %x	MAYBE_NUM_MODE
-%x	COMMAND
 
 D       [0-9]
-ID	[a-zA-Z]
 NUM	(({D}+\.?{D}*)|(\.{D}+))
 
 %%
@@ -98,9 +97,109 @@ NUM	(({D}+\.?{D}*)|(\.{D}+))
 // Symbols
 %}
 
-"\\"		{ BEGIN(COMMAND); return CMD; }
-<COMMAND>{ID}	{ yylval->ch = yytext[0]; return ID; }
-<COMMAND>"\n"|.	{ BEGIN(INITIAL); yyless (0); }
+"\\alpha" { yylval->sym = 0; return SYM; }
+"\\angle" { yylval->sym = 1; return SYM; }
+"\\ast" { yylval->sym = 2; return SYM; }
+"\\beta" { yylval->sym = 3; return SYM; }
+"\\gamma" { yylval->sym = 4; return SYM; }
+"\\delta" { yylval->sym = 5; return SYM; }
+"\\epsilon" { yylval->sym = 6; return SYM; }
+"\\zeta" { yylval->sym = 7; return SYM; }
+"\\eta" { yylval->sym = 8; return SYM; }
+"\\theta" { yylval->sym = 9; return SYM; }
+"\\vartheta" { yylval->sym = 10; return SYM; }
+"\\iota" { yylval->sym = 11; return SYM; }
+"\\kappa" { yylval->sym = 12; return SYM; }
+"\\lambda" { yylval->sym = 13; return SYM; }
+"\\mu" { yylval->sym = 14; return SYM; }
+"\\nu" { yylval->sym = 15; return SYM; }
+"\\xi" { yylval->sym = 16; return SYM; }
+"\\pi" { yylval->sym = 17; return SYM; }
+"\\rho" { yylval->sym = 18; return SYM; }
+"\\sigma" { yylval->sym = 19; return SYM; }
+"\\varsigma" { yylval->sym = 20; return SYM; }
+"\\tau" { yylval->sym = 21; return SYM; }
+"\\equiv" { yylval->sym = 22; return SYM; }
+"\\Im" { yylval->sym = 23; return SYM; }
+"\\otimes" { yylval->sym = 24; return SYM; }
+"\\cap" { yylval->sym = 25; return SYM; }
+"\\supset" { yylval->sym = 26; return SYM; }
+"\\int" { yylval->sym = 27; return SYM; }
+"\\rfloor" { yylval->sym = 28; return SYM; }
+"\\lfloor" { yylval->sym = 29; return SYM; }
+"\\perp" { yylval->sym = 30; return SYM; }
+"\\wedge" { yylval->sym = 31; return SYM; }
+"\\rceil" { yylval->sym = 32; return SYM; }
+"\\vee" { yylval->sym = 33; return SYM; }
+"\\langle" { yylval->sym = 34; return SYM; }
+"\\upsilon" { yylval->sym = 35; return SYM; }
+"\\phi" { yylval->sym = 36; return SYM; }
+"\\chi" { yylval->sym = 37; return SYM; }
+"\\psi" { yylval->sym = 38; return SYM; }
+"\\omega" { yylval->sym = 39; return SYM; }
+"\\Gamma" { yylval->sym = 40; return SYM; }
+"\\Delta" { yylval->sym = 41; return SYM; }
+"\\Theta" { yylval->sym = 42; return SYM; }
+"\\Lambda" { yylval->sym = 43; return SYM; }
+"\\Xi" { yylval->sym = 44; return SYM; }
+"\\Pi" { yylval->sym = 45; return SYM; }
+"\\Sigma" { yylval->sym = 46; return SYM; }
+"\\Upsilon" { yylval->sym = 47; return SYM; }
+"\\Phi" { yylval->sym = 48; return SYM; }
+"\\Psi" { yylval->sym = 49; return SYM; }
+"\\Omega" { yylval->sym = 50; return SYM; }
+"\\forall" { yylval->sym = 51; return SYM; }
+"\\exists" { yylval->sym = 52; return SYM; }
+"\\ni" { yylval->sym = 53; return SYM; }
+"\\cong" { yylval->sym = 54; return SYM; }
+"\\approx" { yylval->sym = 55; return SYM; }
+"\\Re" { yylval->sym = 56; return SYM; }
+"\\oplus" { yylval->sym = 57; return SYM; }
+"\\cup" { yylval->sym = 58; return SYM; }
+"\\subseteq" { yylval->sym = 59; return SYM; }
+"\\in" { yylval->sym = 60; return SYM; }
+"\\lceil" { yylval->sym = 61; return SYM; }
+"\\cdot" { yylval->sym = 62; return SYM; }
+"\\neg" { yylval->sym = 63; return SYM; }
+"\\times" { yylval->sym = 64; return SYM; }
+"\\surd" { yylval->sym = 65; return SYM; }
+"\\varpi" { yylval->sym = 66; return SYM; }
+"\\rangle" { yylval->sym = 67; return SYM; }
+"\\sim" { yylval->sym = 68; return SYM; }
+"\\leq" { yylval->sym = 69; return SYM; }
+"\\infty" { yylval->sym = 70; return SYM; }
+"\\clubsuit" { yylval->sym = 71; return SYM; }
+"\\diamondsuit" { yylval->sym = 72; return SYM; }
+"\\heartsuit" { yylval->sym = 73; return SYM; }
+"\\spadesuit" { yylval->sym = 74; return SYM; }
+"\\leftrightarrow" { yylval->sym = 75; return SYM; }
+"\\leftarrow" { yylval->sym = 76; return SYM; }
+"\\Leftarrow" { yylval->sym = 77; return SYM; }
+"\\uparrow" { yylval->sym = 78; return SYM; }
+"\\rightarrow" { yylval->sym = 79; return SYM; }
+"\\Rightarrow" { yylval->sym = 80; return SYM; }
+"\\downarrow" { yylval->sym = 81; return SYM; }
+"\\circ" { yylval->sym = 82; return SYM; }
+"\\pm" { yylval->sym = 83; return SYM; }
+"\\geq" { yylval->sym = 84; return SYM; }
+"\\propto" { yylval->sym = 85; return SYM; }
+"\\partial" { yylval->sym = 86; return SYM; }
+"\\bullet" { yylval->sym = 87; return SYM; }
+"\\div" { yylval->sym = 88; return SYM; }
+"\\neq" { yylval->sym = 89; return SYM; }
+"\\aleph" { yylval->sym = 90; return SYM; }
+"\\wp" { yylval->sym = 91; return SYM; }
+"\\oslash" { yylval->sym = 92; return SYM; }
+"\\supseteq" { yylval->sym = 93; return SYM; }
+"\\subset" { yylval->sym = 94; return SYM; }
+"\\o" { yylval->sym = 95; return SYM; }
+"\\nabla" { yylval->sym = 96; return SYM; }
+"\\ldots" { yylval->sym = 97; return SYM; }
+"\\prime" { yylval->sym = 98; return SYM; }
+"\\0" { yylval->sym = 99; return SYM; }
+"\\mid" { yylval->sym = 100; return SYM; }
+"\\copyright" { yylval->sym = 101; return SYM; }
+"\\deg" { yylval->sym = 102; return SYM; }
 
 %{
 // Generic character

@@ -28,7 +28,7 @@
 ## Draw a 2-D scatter plot.
 ##
 ## A marker is plotted at each point defined by the coordinates in the vectors
-## @var{x} and  @var{y}.
+## @var{x} and @var{y}.
 ##
 ## The size of the markers is determined by @var{s}, which can be a scalar
 ## or a vector of the same length as @var{x} and @var{y}.  If @var{s}
@@ -74,21 +74,21 @@ function retval = scatter (varargin)
 
   if (nargin < 2)
     print_usage ();
-  else
+  endif
+
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
-    unwind_protect
-      hax = newplot (hax);
-      
-      htmp = __scatter__ (hax, 2, "scatter", varargin{:});
-    unwind_protect_cleanup
+  unwind_protect
+    hax = newplot (hax);
+    
+    htmp = __scatter__ (hax, 2, "scatter", varargin{:});
+  unwind_protect_cleanup
     if (! isempty (oldfig))
       set (0, "currentfigure", oldfig);
     endif
-    end_unwind_protect
-  endif
+  end_unwind_protect
 
   if (nargout > 0)
     retval = htmp;

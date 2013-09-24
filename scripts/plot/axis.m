@@ -136,7 +136,7 @@ function limits = axis (varargin)
   [hax, varargin, nargin] = __plt_get_axis_arg__ ("axis", varargin{:});
 
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
   unwind_protect
@@ -333,15 +333,15 @@ function lims = __get_tight_lims__ (ca, ax)
     if (strcmp (scale, "log"))
       tmp = data;
       data = cellfun (@(x) x(x>0), tmp, "uniformoutput", false);
-      n = cellfun (@isempty, data);
+      n = cellfun ("isempty", data);
       data(n) = cellfun (@(x) x(x<0), tmp(n), "uniformoutput", false);
     endif
     data = cellfun (@(x) x(isfinite (x)), data, "uniformoutput", false);
     data = data(! cellfun ("isempty", data));
     if (! isempty (data))
-      lims_min = min (cellfun (@(x) min (x(:)), data(:)));
-      lims_max = max (cellfun (@(x) max (x(:)), data(:)));
-      lims = [lims_min, lims_max];
+      ## Change data from cell array of various sizes to a single column vector
+      data = cat (1, cellindexmat (data, ":"){:});
+      lims = [min(data), max(data)];
     else
       lims = [0, 1];
     endif
@@ -606,6 +606,19 @@ endfunction
 %!   loglog (a, -a);
 %!   axis tight;
 %!   assert (axis (), [1e-5, 10, -10, -1e-5]);
+%! unwind_protect_cleanup
+%!   close (hf);
+%! end_unwind_protect
+
+## Test 'axis tight' with differently oriented, differently numbered data vecs
+## Bug #40036.
+%!test
+%! hf = figure ("visible", "off");
+%! unwind_protect
+%!   Z = peaks (linspace (-3, 3, 49), linspace (-2, 2, 29));
+%!   surf (Z);
+%!   axis tight;
+%!   assert (axis (), [1 49 1 29 min(Z(:)) max(Z(:))]);
 %! unwind_protect_cleanup
 %!   close (hf);
 %! end_unwind_protect

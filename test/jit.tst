@@ -41,9 +41,9 @@
 %! while (1)
 %!   if (1)
 %!     break;
-%!  else
-%!    break;
-%!  endif
+%!   else
+%!     break;
+%!   endif
 %! endwhile
 
 %!testif HAVE_LLVM
@@ -52,6 +52,15 @@
 %!     break;
 %!   endif
 %! endfor
+%! assert (i, 100);
+
+## Also test parfor keyword
+%!testif HAVE_LLVM
+%! parfor i=1:1e6
+%!   if (i == 100)
+%!     break;
+%!   endif
+%! endparfor
 %! assert (i, 100);
 
 %!testif HAVE_LLVM
@@ -130,7 +139,7 @@
 %!     endif
 %!   endfor
 %! catch
-%! end
+%! end_try_catch
 %! assert (result == 500);
 
 %!function result = gen_test (n)

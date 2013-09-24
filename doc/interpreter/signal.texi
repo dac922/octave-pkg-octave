@@ -21,33 +21,10 @@
 @node Signal Processing
 @chapter Signal Processing
 
-
 This chapter describes the signal processing and fast Fourier
 transform functions available in Octave.  Fast Fourier transforms are
 computed with the @sc{fftw} or @sc{fftpack} libraries depending on how
 Octave is built.
- 
-
-
-@c detrend scripts/signal/detrend.m
-@anchor{XREFdetrend}
-@deftypefn {Function File} {} detrend (@var{x}, @var{p})
-If @var{x} is a vector, @code{detrend (@var{x}, @var{p})} removes the
-best fit of a polynomial of order @var{p} from the data @var{x}.
-
-If @var{x} is a matrix, @code{detrend (@var{x}, @var{p})} does the same
-for each column in @var{x}.
-
-The second argument is optional.  If it is not specified, a value of 1
-is assumed.  This corresponds to removing a linear trend.
-
-The order of the polynomial can also be given as a string, in which case
-@var{p} must be either @qcode{"constant"} (corresponds to
-@code{@var{p}=0}) or
-@qcode{"linear"} (corresponds to @code{@var{p}=1}).
-@seealso{@ref{XREFpolyfit,,polyfit}}
-@end deftypefn
-
 
 @c fft libinterp/corefcn/fft.cc
 @anchor{XREFfft}
@@ -72,6 +49,102 @@ smaller than the dimension along which the FFT is calculated, then
 If called with three arguments, @var{dim} is an integer specifying the
 dimension of the matrix along which the FFT is performed
 @seealso{@ref{XREFifft,,ifft}, @ref{XREFfft2,,fft2}, @ref{XREFfftn,,fftn}, @ref{XREFfftw,,fftw}}
+@end deftypefn
+
+
+@c ifft libinterp/corefcn/fft.cc
+@anchor{XREFifft}
+@deftypefn  {Built-in Function} {} ifft (@var{x})
+@deftypefnx {Built-in Function} {} ifft (@var{x}, @var{n})
+@deftypefnx {Built-in Function} {} ifft (@var{x}, @var{n}, @var{dim})
+Compute the inverse discrete Fourier transform of @var{A}
+using a Fast Fourier Transform (FFT) algorithm.
+
+The inverse FFT is calculated along the first non-singleton dimension
+of the array.  Thus if @var{x} is a matrix, @code{fft (@var{x})} computes
+the inverse FFT for each column of @var{x}.
+
+If called with two arguments, @var{n} is expected to be an integer
+specifying the number of elements of @var{x} to use, or an empty
+matrix to specify that its value should be ignored.  If @var{n} is
+larger than the dimension along which the inverse FFT is calculated, then
+@var{x} is resized and padded with zeros.  Otherwise, if @var{n} is
+smaller than the dimension along which the inverse FFT is calculated,
+then @var{x} is truncated.
+
+If called with three arguments, @var{dim} is an integer specifying the
+dimension of the matrix along which the inverse FFT is performed
+@seealso{@ref{XREFfft,,fft}, @ref{XREFifft2,,ifft2}, @ref{XREFifftn,,ifftn}, @ref{XREFfftw,,fftw}}
+@end deftypefn
+
+
+@c fft2 libinterp/corefcn/fft2.cc
+@anchor{XREFfft2}
+@deftypefn  {Built-in Function} {} fft2 (@var{A})
+@deftypefnx {Built-in Function} {} fft2 (@var{A}, @var{m}, @var{n})
+Compute the two-dimensional discrete Fourier transform of @var{A} using
+a Fast Fourier Transform (FFT) algorithm.
+
+The optional arguments @var{m} and @var{n} may be used specify the
+number of rows and columns of @var{A} to use.  If either of these is
+larger than the size of @var{A}, @var{A} is resized and padded with
+zeros.
+
+If @var{A} is a multi-dimensional matrix, each two-dimensional sub-matrix
+of @var{A} is treated separately.
+@seealso {ifft2, fft, fftn, fftw}
+@end deftypefn
+
+
+@c ifft2 libinterp/corefcn/fft2.cc
+@anchor{XREFifft2}
+@deftypefn  {Built-in Function} {} ifft2 (@var{A})
+@deftypefnx {Built-in Function} {} ifft2 (@var{A}, @var{m}, @var{n})
+Compute the inverse two-dimensional discrete Fourier transform of @var{A}
+using a Fast Fourier Transform (FFT) algorithm.
+
+The optional arguments @var{m} and @var{n} may be used specify the
+number of rows and columns of @var{A} to use.  If either of these is
+larger than the size of @var{A}, @var{A} is resized and padded with
+zeros.
+
+If @var{A} is a multi-dimensional matrix, each two-dimensional sub-matrix
+of @var{A} is treated separately
+@seealso {fft2, ifft, ifftn, fftw}
+@end deftypefn
+
+
+@c fftn libinterp/corefcn/fftn.cc
+@anchor{XREFfftn}
+@deftypefn  {Built-in Function} {} fftn (@var{A})
+@deftypefnx {Built-in Function} {} fftn (@var{A}, @var{size})
+Compute the N-dimensional discrete Fourier transform of @var{A} using
+a Fast Fourier Transform (FFT) algorithm.
+
+The optional vector argument @var{size} may be used specify the
+dimensions of the array to be used.  If an element of @var{size} is
+smaller than the corresponding dimension of @var{A}, then the dimension of
+@var{A} is truncated prior to performing the FFT@.  Otherwise, if an element
+of @var{size} is larger than the corresponding dimension then @var{A}
+is resized and padded with zeros.
+@seealso{@ref{XREFifftn,,ifftn}, @ref{XREFfft,,fft}, @ref{XREFfft2,,fft2}, @ref{XREFfftw,,fftw}}
+@end deftypefn
+
+
+@c ifftn libinterp/corefcn/fftn.cc
+@anchor{XREFifftn}
+@deftypefn  {Built-in Function} {} ifftn (@var{A})
+@deftypefnx {Built-in Function} {} ifftn (@var{A}, @var{size})
+Compute the inverse N-dimensional discrete Fourier transform of @var{A}
+using a Fast Fourier Transform (FFT) algorithm.
+
+The optional vector argument @var{size} may be used specify the
+dimensions of the array to be used.  If an element of @var{size} is
+smaller than the corresponding dimension of @var{A}, then the dimension of
+@var{A} is truncated prior to performing the inverse FFT@.  Otherwise, if an
+element of @var{size} is larger than the corresponding dimension then @var{A}
+is resized and padded with zeros.
+@seealso{@ref{XREFfftn,,fftn}, @ref{XREFifft,,ifft}, @ref{XREFifft2,,ifft2}, @ref{XREFfftw,,fftw}}
 @end deftypefn
 
 
@@ -181,102 +254,6 @@ this feature.  The number of processors available to the current process is
 used per default.
 
 @seealso{@ref{XREFfft,,fft}, @ref{XREFifft,,ifft}, @ref{XREFfft2,,fft2}, @ref{XREFifft2,,ifft2}, @ref{XREFfftn,,fftn}, @ref{XREFifftn,,ifftn}}
-@end deftypefn
-
-
-@c ifft libinterp/corefcn/fft.cc
-@anchor{XREFifft}
-@deftypefn  {Built-in Function} {} ifft (@var{x})
-@deftypefnx {Built-in Function} {} ifft (@var{x}, @var{n})
-@deftypefnx {Built-in Function} {} ifft (@var{x}, @var{n}, @var{dim})
-Compute the inverse discrete Fourier transform of @var{A}
-using a Fast Fourier Transform (FFT) algorithm.
-
-The inverse FFT is calculated along the first non-singleton dimension
-of the array.  Thus if @var{x} is a matrix, @code{fft (@var{x})} computes
-the inverse FFT for each column of @var{x}.
-
-If called with two arguments, @var{n} is expected to be an integer
-specifying the number of elements of @var{x} to use, or an empty
-matrix to specify that its value should be ignored.  If @var{n} is
-larger than the dimension along which the inverse FFT is calculated, then
-@var{x} is resized and padded with zeros.  Otherwise, if @var{n} is
-smaller than the dimension along which the inverse FFT is calculated,
-then @var{x} is truncated.
-
-If called with three arguments, @var{dim} is an integer specifying the
-dimension of the matrix along which the inverse FFT is performed
-@seealso{@ref{XREFfft,,fft}, @ref{XREFifft2,,ifft2}, @ref{XREFifftn,,ifftn}, @ref{XREFfftw,,fftw}}
-@end deftypefn
-
-
-@c fft2 libinterp/corefcn/fft2.cc
-@anchor{XREFfft2}
-@deftypefn  {Built-in Function} {} fft2 (@var{A})
-@deftypefnx {Built-in Function} {} fft2 (@var{A}, @var{m}, @var{n})
-Compute the two-dimensional discrete Fourier transform of @var{A} using
-a Fast Fourier Transform (FFT) algorithm.
-
-The optional arguments @var{m} and @var{n} may be used specify the
-number of rows and columns of @var{A} to use.  If either of these is
-larger than the size of @var{A}, @var{A} is resized and padded with
-zeros.
-
-If @var{A} is a multi-dimensional matrix, each two-dimensional sub-matrix
-of @var{A} is treated separately.
-@seealso {ifft2, fft, fftn, fftw}
-@end deftypefn
-
-
-@c ifft2 libinterp/corefcn/fft2.cc
-@anchor{XREFifft2}
-@deftypefn  {Built-in Function} {} ifft2 (@var{A})
-@deftypefnx {Built-in Function} {} ifft2 (@var{A}, @var{m}, @var{n})
-Compute the inverse two-dimensional discrete Fourier transform of @var{A}
-using a Fast Fourier Transform (FFT) algorithm.
-
-The optional arguments @var{m} and @var{n} may be used specify the
-number of rows and columns of @var{A} to use.  If either of these is
-larger than the size of @var{A}, @var{A} is resized and padded with
-zeros.
-
-If @var{A} is a multi-dimensional matrix, each two-dimensional sub-matrix
-of @var{A} is treated separately
-@seealso {fft2, ifft, ifftn, fftw}
-@end deftypefn
-
-
-@c fftn libinterp/corefcn/fftn.cc
-@anchor{XREFfftn}
-@deftypefn  {Built-in Function} {} fftn (@var{A})
-@deftypefnx {Built-in Function} {} fftn (@var{A}, @var{size})
-Compute the N-dimensional discrete Fourier transform of @var{A} using
-a Fast Fourier Transform (FFT) algorithm.
-
-The optional vector argument @var{size} may be used specify the
-dimensions of the array to be used.  If an element of @var{size} is
-smaller than the corresponding dimension of @var{A}, then the dimension of
-@var{A} is truncated prior to performing the FFT@.  Otherwise, if an element
-of @var{size} is larger than the corresponding dimension then @var{A}
-is resized and padded with zeros.
-@seealso{@ref{XREFifftn,,ifftn}, @ref{XREFfft,,fft}, @ref{XREFfft2,,fft2}, @ref{XREFfftw,,fftw}}
-@end deftypefn
-
-
-@c ifftn libinterp/corefcn/fftn.cc
-@anchor{XREFifftn}
-@deftypefn  {Built-in Function} {} ifftn (@var{A})
-@deftypefnx {Built-in Function} {} ifftn (@var{A}, @var{size})
-Compute the inverse N-dimensional discrete Fourier transform of @var{A}
-using a Fast Fourier Transform (FFT) algorithm.
-
-The optional vector argument @var{size} may be used specify the
-dimensions of the array to be used.  If an element of @var{size} is
-smaller than the corresponding dimension of @var{A}, then the dimension of
-@var{A} is truncated prior to performing the inverse FFT@.  Otherwise, if an
-element of @var{size} is larger than the corresponding dimension then @var{A}
-is resized and padded with zeros.
-@seealso{@ref{XREFfftn,,fftn}, @ref{XREFifft,,ifft}, @ref{XREFifft2,,ifft2}, @ref{XREFfftw,,fftw}}
 @end deftypefn
 
 
@@ -533,7 +510,7 @@ is unspecified it defaults to the first non-singleton dimension.
 @end deftypefn
 
 
-@c FIXME -- someone needs to organize these...
+@c FIXME: someone needs to organize these ...
 
 @c arch_fit scripts/signal/arch_fit.m
 @anchor{XREFarch_fit}
@@ -693,6 +670,26 @@ Return the filter coefficients of a Blackman window of length @var{m}.
 
 For a definition of the Blackman window, see e.g., A. V. Oppenheim &
 R. W. Schafer, @cite{Discrete-Time Signal Processing}.
+@end deftypefn
+
+
+@c detrend scripts/signal/detrend.m
+@anchor{XREFdetrend}
+@deftypefn {Function File} {} detrend (@var{x}, @var{p})
+If @var{x} is a vector, @code{detrend (@var{x}, @var{p})} removes the
+best fit of a polynomial of order @var{p} from the data @var{x}.
+
+If @var{x} is a matrix, @code{detrend (@var{x}, @var{p})} does the same
+for each column in @var{x}.
+
+The second argument is optional.  If it is not specified, a value of 1
+is assumed.  This corresponds to removing a linear trend.
+
+The order of the polynomial can also be given as a string, in which case
+@var{p} must be either @qcode{"constant"} (corresponds to
+@code{@var{p}=0}) or
+@qcode{"linear"} (corresponds to @code{@var{p}=1}).
+@seealso{@ref{XREFpolyfit,,polyfit}}
 @end deftypefn
 
 
@@ -889,22 +886,6 @@ window.
 @end deftypefn
 
 
-@c rectangle_lw scripts/signal/private/rectangle_lw.m
-@anchor{XREFrectangle_lw}
-@deftypefn {Function File} {} rectangle_lw (@var{n}, @var{b})
-Rectangular lag window.  Subfunction used for spectral density
-estimation.
-@end deftypefn
-
-
-@c rectangle_sw scripts/signal/private/rectangle_sw.m
-@anchor{XREFrectangle_sw}
-@deftypefn {Function File} {} rectangle_sw (@var{n}, @var{b})
-Rectangular spectral window.  Subfunction used for spectral density
-estimation.
-@end deftypefn
-
-
 @c sinetone scripts/signal/sinetone.m
 @anchor{XREFsinetone}
 @deftypefn {Function File} {} sinetone (@var{freq}, @var{rate}, @var{sec}, @var{ampl})
@@ -1023,22 +1004,6 @@ The values @var{y} and @var{c} can be derived by
 @end deftypefn
 
 
-@c triangle_lw scripts/signal/private/triangle_lw.m
-@anchor{XREFtriangle_lw}
-@deftypefn {Function File} {} triangle_lw (@var{n}, @var{b})
-Triangular lag window.  Subfunction used for spectral density
-estimation.
-@end deftypefn
-
-
-@c triangle_sw scripts/signal/private/triangle_sw.m
-@anchor{XREFtriangle_sw}
-@deftypefn {Function File} {} triangle_sw (@var{n}, @var{b})
-Triangular spectral window.  Subfunction used for spectral density
-estimation.
-@end deftypefn
-
-
 @c yulewalker scripts/signal/yulewalker.m
 @anchor{XREFyulewalker}
 @deftypefn {Function File} {[@var{a}, @var{v}] =} yulewalker (@var{c})
@@ -1048,4 +1013,5 @@ of autocovariances @code{[gamma_0, @dots{}, gamma_p]}.
 Returns the AR coefficients, @var{a}, and the variance of white
 noise, @var{v}.
 @end deftypefn
+
 

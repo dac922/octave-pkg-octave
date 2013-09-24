@@ -785,7 +785,7 @@ unsigned 64-bit integer.
 @end table
 
 The default for @var{type} is @code{uint32}.
-@seealso{@ref{XREFintmin,,intmin}, @ref{XREFbitmax,,bitmax}}
+@seealso{@ref{XREFintmin,,intmin}, @ref{XREFflintmax,,flintmax}, @ref{XREFbitmax,,bitmax}}
 @end deftypefn
 
 
@@ -822,7 +822,20 @@ unsigned 64-bit integer.
 @end table
 
 The default for @var{type} is @code{uint32}.
-@seealso{@ref{XREFintmax,,intmax}, @ref{XREFbitmax,,bitmax}}
+@seealso{@ref{XREFintmax,,intmax}, @ref{XREFflintmax,,flintmax}, @ref{XREFbitmax,,bitmax}}
+@end deftypefn
+
+
+@c flintmax libinterp/corefcn/bitfcns.cc
+@anchor{XREFflintmax}
+@deftypefn  {Built-in Function} {} flintmax ()
+@deftypefnx {Built-in Function} {} flintmax ("double")
+@deftypefnx {Built-in Function} {} flintmax ("single")
+Return the largest integer that can be represented consecutively in a
+floating point value.  The default class is @qcode{"double"}, but @qcode{"single"}
+is a valid option.  On IEEE-754 compatible systems, @code{flintmax} is @w{@math{2^53}}
+for @qcode{"double"} and @w{@math{2^24}} for @qcode{"single"}.
+@seealso{@ref{XREFbitmax,,bitmax}, @ref{XREFintmax,,intmax}, @ref{XREFrealmax,,realmax}, @ref{XREFrealmin,,realmin}}
 @end deftypefn
 
 
@@ -974,22 +987,17 @@ As the maximum value that can be represented by a number is important
 for bit manipulation, particularly when forming masks, Octave supplies
 the function @code{bitmax}.
 
-@anchor{XREFflintmax}
 @c bitmax libinterp/corefcn/bitfcns.cc
 @anchor{XREFbitmax}
 @deftypefn  {Built-in Function} {} bitmax ()
 @deftypefnx {Built-in Function} {} bitmax ("double")
 @deftypefnx {Built-in Function} {} bitmax ("single")
-@deftypefnx {Built-in Function} {} flintmax (@dots{})
 Return the largest integer that can be represented within a floating point
 value.  The default class is @qcode{"double"}, but @qcode{"single"} is a
 valid option.  On IEEE-754 compatible systems, @code{bitmax} is
 @w{@math{2^{53} - 1}} for @qcode{"double"} and @w{@math{2^{24} -1}} for
 @qcode{"single"}.
-
-@code{flintmax} for FLoating point INTeger MAXimum is an alias for
-@code{bitmax}.
-@seealso{@ref{XREFintmax,,intmax}, @ref{XREFrealmax,,realmax}, @ref{XREFrealmin,,realmin}}
+@seealso{@ref{XREFflintmax,,flintmax}, @ref{XREFintmax,,intmax}, @ref{XREFrealmax,,realmax}, @ref{XREFrealmin,,realmin}}
 @end deftypefn
 
 

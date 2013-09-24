@@ -131,7 +131,7 @@ function h = errorbar (varargin)
   [hax, varargin] = __plt_get_axis_arg__ ("errorbar", varargin{:});
 
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
   unwind_protect
@@ -196,4 +196,25 @@ endfunction
 %!           x, y2, err, err, err, err, '#~>-*');
 %! legend ("X-Y errbars", "X-Y errboxes");
 %! title ('errorbar() with X-Y errorbars and error boxes');
+
+## Invisible figure used for tests
+%!shared hf, hax
+%! hf = figure ("visible", "off");
+%! hax = axes;
+
+%!error errorbar ()
+%!error errorbar (1)
+%!error <data argument 1 must be numeric> errorbar (hax, {1}, 2)
+%!error <data argument 2 must be numeric> errorbar (hax, 1, {2})
+%!error <size of argument 2 does not match others> errorbar (hax, 1, 1:2)
+%!error <size of argument 3 does not match others> errorbar (hax, 1, 2, 3:4)
+%!error <too many arguments to plot> errorbar (1,2,3,4,5,6,7)
+
+%!error <2 column errorplot is only valid for xerr> errorbar (1,2, "~>")
+%!error <6 columns only valid for xyerr and boxxy> errorbar (1,2,3,4,5,6, "~")
+%!error <error plot requires 2, 3, 4, or 6 arguments> errorbar (1,2,3,4,5)
+
+## Close figure used for testing
+%!test
+%! close (hf);
 

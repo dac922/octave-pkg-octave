@@ -254,7 +254,9 @@ to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
 Optionally, the color of the mesh can be specified independently of @var{z}
-by supplying a color matrix, @var{c}.
+by supplying a color matrix, @var{c}.  If @var{z} has N elements, then
+@var{c} should be an Nx1 vector for colormap data or an Nx3 matrix for
+RGB data.
 
 Any property/value pairs are passed directly to the underlying patch object.
 
@@ -286,7 +288,9 @@ to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
 Optionally, the color of the mesh can be specified independently of @var{z}
-by supplying a color matrix, @var{c}.
+by supplying a color matrix, @var{c}.  If @var{z} has N elements, then
+@var{c} should be an Nx1 vector for colormap data or an Nx3 matrix for
+RGB data.
 
 Any property/value pairs are passed directly to the underlying patch object.
 

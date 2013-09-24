@@ -1,3 +1,2125 @@
+2013-09-23  John W. Eaton  <jwe@octave.org>
+
+	bump version number to 3.7.7+
+
+	Files: configure.ac
+
+	Added tag ss-3-7-7 for changeset cc13924a4266
+
+	Files: .hgtags
+
+	snapshot 3.7.7
+
+	* configure.ac (OCTAVE_VERSION): Bump to 3.7.7.
+
+	Files: configure.ac libinterp/corefcn/oct-stream.cc
+
+2013-09-23  Rik  <rik@octave.org>
+
+	Overhaul use of __pltopt__.m to correctly check for cellstr, not just cell.
+
+	* scripts/plot/private/__pltopt__.m: Use modern coding conventions.  Eliminate
+	unneeded input checking in subfunctions.  Remove unused variables.
+
+	* scripts/plot/contourf.m, scripts/plot/feather.m, scripts/plot/plotmatrix.m,
+	scripts/plot/private/__bar__.m, scripts/plot/private/__quiver__.m,
+	scripts/plot/private/__scatter__.m, scripts/plot/private/__stem__.m,
+	scripts/plot/stairs.m: Use iscellstr, not iscell, to properly validate inputs
+	to __pltopt__.
+
+	Files: scripts/plot/contourf.m scripts/plot/feather.m
+	scripts/plot/plotmatrix.m scripts/plot/private/__bar__.m
+	scripts/plot/private/__pltopt__.m scripts/plot/private/__quiver__.m
+	scripts/plot/private/__scatter__.m scripts/plot/private/__stem__.m
+	scripts/plot/stairs.m
+
+2013-09-22  Rik  <rik@octave.org>
+
+	doc: Add Jens Restemeier to list of contributors.
+
+	* doc/interpreter/contributors.in: Add Jens Restemeier to list of contributors.
+
+	Files: doc/interpreter/contributors.in
+
+	rundemos.m: Use regexp, instead of strfind, to report whether a file has_demos.
+
+	* scripts/testfun/rundemos.m: Use regexp so that occurrences of '%!demo',
+	possibly in comments, do not trigger running demos.
+
+	* scripts/testfun/runtests.m: Don't bother to capture regexp pattern which
+	is just discarded.
+
+	Files: scripts/testfun/rundemos.m scripts/testfun/runtests.m
+
+	runtests.m, rundemos.m: Use readdir, rather than dir, for ~700X speed-up.
+
+	* scripts/testfun/rundemos.m, scripts/testfun/runtests.m:
+	Use readdir, rather than dir, for ~700X speed-up.
+
+	Files: scripts/testfun/rundemos.m scripts/testfun/runtests.m
+
+	runtests.m: Also look for DEFUNX macro in .cc files to indicate function.
+
+	* scripts/testfun/runtests.m: Also look for DEFUNX macro in .cc files to
+	indicate function.
+
+	Files: scripts/testfun/runtests.m
+
+2013-09-21  Mike Miller  <mtmiller@ieee.org>
+
+	rundemos.m, runtests.m: Include class directories in path (bug #40053)
+
+	* rundemos.m, runtests.m: Recurse into class directories in the path when
+	operating on the entire search path.
+
+	Files: scripts/testfun/rundemos.m scripts/testfun/runtests.m
+
+	rundemos.m, runtests.m: Operate on .cc files (bug #40052)
+
+	* rundemos.m, runtests.m: Copy logic from a previous version of fntests
+	to operate on C++ source files for development use. Update docstrings.
+
+	Files: scripts/testfun/rundemos.m scripts/testfun/runtests.m
+
+2013-09-20  Mike Miller  <mtmiller@ieee.org>
+
+	Replace ambiguous call to pow with bit shift
+
+	* __magick_read__.cc (encode_uint_image<T>): Replace ambiguous call to pow
+	with bit shift for computing integer powers of two.
+
+	Files: libinterp/dldfcn/__magick_read__.cc
+
+2013-09-20  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	languages/de_DE.ts: run lupdate and add missing german translation
+
+	Files: libgui/languages/de_DE.ts
+
+2013-09-19  John W. Eaton  <jwe@octave.org>
+
+	improve efficiency of fread
+
+	* oct-stream.cc, oct-stream.h (octave_stream::finalize_read,
+	convert_and_copy): New functions.
+	(TABLE_ELT): New macro.
+	(FILL_TABLE_ROW, conv_fptr): Update to new conversion function.
+	(do_read): Delete function.
+	(octave_stream::read): Read data in bigger chunks.  Convert format
+	once all data has been read.
+
+	Files: libinterp/corefcn/oct-stream.cc libinterp/corefcn/oct-stream.h
+
+2013-09-20  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	libgui/languages/de_DE.ts: fix typos in german translation
+
+	Files: libgui/languages/de_DE.ts
+
+2013-09-19  Rik  <rik@octave.org>
+
+	contourc.m: Code special case for meshgrid input (30X performance increase).
+
+	* scripts/plot/contourc.m: Check input vectors x,y for being uniform grid
+	and skip interp2 re-mapping if possible.  Rename output 'cout' to 'c' to match
+	documentation.  Preserve idx as a range, rather than a matrix, to use less
+	memory.
+
+	Files: scripts/plot/contourc.m
+
+	doc: Correct accidental capitalization @var{Z} in mesh/surf docstrings.
+
+	* scripts/plot/mesh.m, scripts/plot/meshc.m, scripts/plot/meshz.m,
+	scripts/plot/surf.m, scripts/plot/surfc.m, scripts/plot/waterfall.m:
+	Correct accidental capitalization @var{Z} in mesh/surf docstrings.
+
+	Files: scripts/plot/mesh.m scripts/plot/meshc.m scripts/plot/meshz.m
+	scripts/plot/surf.m scripts/plot/surfc.m scripts/plot/waterfall.m
+
+	contour3.m: Turn off axis box for compatibility with Matlab.
+
+	* scripts/plot/contour3.m: Turn off axis "box" property.
+	Use cool colormap in %!demo code to see things more clearly.
+
+	Files: scripts/plot/contour3.m
+
+	waitforbuttonpress.m: Change return value 'a' to 'b' to match documentation.
+
+	* scripts/plot/waitforbuttonpress.m: Change return value 'a' to 'b' to match
+	documentation.  Add %!error tests for input validation.
+
+	Files: scripts/plot/waitforbuttonpress.m
+
+	waitbar.m: Use Octave coding conventions.
+
+	* scripts/plot/waitbar.m: Rename 'retval' to 'h' to match documentation.
+	Use 'hf', 'hp' for figure and patch graphics handles.
+
+	Files: scripts/plot/waitbar.m
+
+	doc: Use common language for xlim, ylim, zlim docstrings.
+
+	* scripts/plot/xlim.m, scripts/plot/ylim.m, scripts/plot/zlim.m:
+	Use common language for xlim, ylim, zlim docstrings.
+
+	Files: scripts/plot/xlim.m scripts/plot/ylim.m scripts/plot/zlim.m
+
+	compass.m: Overhaul function.
+
+	* scripts/plot/compass.m: Reduce arrowhead to 20% of body length.
+	Recode input validation to be simpler.
+
+	Files: scripts/plot/compass.m
+
+	Clarify relationship of close, closereq.
+	Recode closereq to put input validation first.
+
+	* scripts/plot/close.m: Change docstring to place details of implementation at
+	the end.
+
+	* scripts/plot/closereq.m: Put input validation first.
+
+	Files: scripts/plot/close.m scripts/plot/closereq.m
+
+	doc: Add seealso references between cla, clf, reset functions.
+
+	* libinterp/corefcn/graphics.cc(Freset): Add @seealso links to cla, clf.
+
+	* scripts/plot/cla.m, scripts/plot/clf.m: Add @seealso link to reset.
+
+	Files: libinterp/corefcn/graphics.cc scripts/plot/cla.m scripts/plot/clf.m
+
+	caxis.m: Add more information to docstring.
+
+	* scripts/plot/caxis.m: Add more information to docstring.
+
+	Files: scripts/plot/caxis.m
+
+	__scatter__.m: Use multiple strcmpi instead of strncmpi for accurate input validation.
+
+	* scripts/plot/private/__scatter__.m:
+	Use code 'strcmpi (...,"filled") || strcmpi (...,"fill")'
+	instead of
+	strncmpi (..., "filled", 4)
+	so that stuff like "filler_up" is not allowed.
+
+	Files: scripts/plot/private/__scatter__.m
+
+	trisurf.m: Overhaul function.
+
+	* scripts/plot/trisurf.m: Add more documentation about C matrix argument.
+	Remove invalid calling form with only 3 inputs.
+	Add code to check for 5th argument being a color matrix.
+	Turn off axis plot box for visual compatibility with Matlab.
+	Add %!error tests for input validation.
+
+	Files: scripts/plot/trisurf.m
+
+	trimesh.m: Overhaul function to support color matrix argument.
+
+	* scripts/plot/trimesh.m: Add documentation about C matrix argument.
+	Also return handle H for 2-D trimesh (equivalent to triplot).
+	Add code to check for 4th argument being a color matrix.
+	Set FaceColor to white in patch which corresponds to "hidden on".
+	Turn off axis plot box for visual compatibility with Matlab.
+	Add %!error tests for input validation.
+
+	Files: scripts/plot/trimesh.m
+
+2013-09-18  Rik  <rik@octave.org>
+
+	fileparts.m: Check for multi-line char inputs (bug #40062)
+
+	* scripts/miscellaneous/fileparts.m: Validate input is not a multi-line
+	character matrix.  Move input validation to front of function.  Add %!error
+	input validation tests.
+
+	Files: scripts/miscellaneous/fileparts.m
+
+	area.m: Overhaul function to fix color cycling.
+
+	* scripts/plot/area.m: Fix color cycling.  Fix input validation and make it
+	more precise.  Add %!error tests for input validation.
+
+	Files: scripts/plot/area.m
+
+	__next_line_color__.m: Remove use of CamelCase.
+
+	* scripts/plot/private/__next_line_color__.m: Remove use of CamelCase.
+
+	Files: scripts/plot/private/__next_line_color__.m
+
+	Overhaul errorbar family of functions.
+
+	* scripts/plot/errorbar.m: Add %!error tests for input validation.
+
+	* scripts/plot/private/__errcomm__.m: Correctly validate that numeric inputs
+	are numeric.  More precise error reporting indicating the problematic argument.
+
+	* scripts/plot/private/__errplot__.m: Fix automatic color cycling for matrices
+	with multiple columns of data.  Check "yerr" case first in if/elseif trees
+	since it is the most common.  Pull static computations out of for loop for
+	performance.
+
+	Files: scripts/plot/errorbar.m scripts/plot/private/__errcomm__.m
+	scripts/plot/private/__errplot__.m
+
+	__scatter__.m: Add comment that call to __next_line_color__ must precede hggroup().
+
+	* scripts/plot/private/__scatter__.m: Add comment that call to
+	__next_line_color__ must precede hggroup().
+
+	Files: scripts/plot/private/__scatter__.m
+
+	stairs.m: Overhaul function.
+
+	* scripts/plot/stairs.m: Clean up indentation.  Fix input validation
+	for size mismatch and linestyle arguments.  Correctly implement color
+	rotation for multiple columns.  Accept linestyle argument to change
+	line and marker properties.  Add titles to %!demos.  Add %!error tests
+	for input validation.
+
+	Files: scripts/plot/stairs.m
+
+	Overhaul stem family of plot functions.
+
+	* scripts/plot/private/__stem__.m: Use low-level plotting fcn __line__
+	for performance.  Add property/listener on 'basevalue' for baseline object.
+	Simplify and correct input option processing so that it actually does
+	the right thing.
+
+	* scripts/plot/stem.m: Add list of "stem series" properties to docstring.
+	Add titles to %!demos.  Add %!error tests for input validation.
+
+	* scripts/plot/stem3.m: Cross-reference "stem series" to stem documentation.
+	Accept property/value pair inputs.  Add %!error tests for input validation.
+
+	Files: scripts/plot/private/__stem__.m scripts/plot/stem.m
+	scripts/plot/stem3.m
+
+2013-09-17  Rik  <rik@octave.org>
+
+	__plt__.m: Indent block of code to match others.
+
+	* scripts/plot/private/__plt__.m: Indent block of code to match others.
+
+	Files: scripts/plot/private/__plt__.m
+
+	__stem__.m: Turn on grid for stem3 plotting for Matlab compatibility.
+
+	* scripts/plot/private/__stem__.m: Turn on grid if not axis state not preserved
+	by "hold on".
+
+	Files: scripts/plot/private/__stem__.m
+
+2013-09-16  Jens Restemeier  <jens.restemeier@gmail.com>
+
+	mex.cc: Call ov_to_int with mxLogical argument for platform portability (bug #40027).
+
+	* libinterp/corefcn/mex.cc(as_octave_value): Call ov_to_int macro with
+	mxLogical argument for platform portability (bug #40027).
+
+	Files: libinterp/corefcn/mex.cc
+
+2013-09-16  Rik  <rik@octave.org>
+
+	subplot.m: Don't clear axes when switching to existing subplot (most of a fix for bug #39874).
+
+	* scripts/plot/subplot.m: Use outerposition for comparing whether axes has
+	moved and whether it should be deleted.  Redo documentation string to add
+	explanations of Matlab compatible options which are available.  Remove
+	cruft related to "outerpositiontight".  Use double quotes rather than single
+	quotes where possible.
+
+	Files: scripts/plot/subplot.m
+
+	test: Add test for bug #40036 to axis.m
+
+	* scripts/plot/axis.m: Add test for bug #40036 to axis.
+
+	Files: scripts/plot/axis.m
+
+	axis.m: Fix bug when data sets differ in size and dimension (bug #40036).
+
+	* scripts/plot/axis.m: Consolidate all data sets into a single column
+	vector before finding min/max for tight limits.
+
+	Files: scripts/plot/axis.m
+
+	__makeinfo__.m: Add documentation note to code about use of 3rd argument.
+
+	* scripts/help/__makeinfo__.m: Add note that code for processing 3rd argument
+	can not be deleted until generate_package_html function in Octave-Forge is
+	updated.
+
+	Files: scripts/help/__makeinfo__.m
+
+	__makeinfo__.m: Backout changeset 687872d279be which removes 3rd argument to func.
+
+	* scripts/help/__makeinfo__.m: Backout changeset 687872d279be.
+
+	Files: scripts/help/__makeinfo__.m
+
+2013-09-16  Jordi Gutiérrez Hermoso  <jordigh@octave.org>
+
+	Merge away extra head
+
+	Files: 
+
+2013-09-16  Marco Caliari  <marco.caliari@univr.it>
+
+	fix behaviour of bicgstab for complex matrices (bug #40017)
+
+	* scripts/sparse/bicgstab.m: fix computation of complex scalar products.
+
+	Files: scripts/sparse/bicgstab.m
+
+2013-09-15  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	libgui resource-manager: removed unused octave_keywords list
+
+	* libgui/src/resource-manager.cc: removed since 025bc6b5080e
+	  unused static const char *octave_keywords
+	* libgui/src/resource-manager.h: removed octave_keywords
+
+	Files: libgui/src/resource-manager.cc libgui/src/resource-manager.h
+
+2013-09-14  Rik  <rik@octave.org>
+
+	maint: Backed out changeset f81401b6b1f7.
+
+	* test/parser.tst: bug #33304 should remain an error until it is fixed.
+
+	Files: test/parser.tst
+
+2013-09-14  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	parser.tst: known bug #33304 as xtest
+
+	Files: test/parser.tst
+
+2013-09-13  Stefan Mahr  <dac922@gmx.de>
+
+	doc: Fix indexing of continuation lines
+
+	* doc/interpreter/stmt.txi: Place indexing markers below node and section statement
+
+	Files: doc/interpreter/stmt.txi
+
+2013-09-14  Andreas Weber  <andy.weber.aw@gmail.com>
+
+	io.tst: fix for-loop upper bound after change 3856298f1ff8
+
+	Files: test/io.tst
+
+2013-09-13  John W. Eaton  <jwe@octave.org>
+
+	improve efficiency of fwrite
+
+	* oct-stream.h, oct-stream.cc (write_int, do_write): Delete.
+	(convert_ints, convert_data, octave_stream::write_bytes
+	octave_stream::skip_bytes): New functions.
+	(octave_stream::write): Improve efficiency by writing data in larger
+	chunks.
+
+	* oct-stream.cc: Delete unnecessary template instantiations.
+
+	* data-conv.h, data-conv.cc (is_equivalent_type): New template.
+	Provide specializations for core Octave data types.
+	(oct_data_conv::data_type_size): New function.
+	(oct_data_conv::data_type_to_string): Correct spelling of unsigned.
+
+	Files: libinterp/corefcn/file-io.cc libinterp/corefcn/oct-stream.cc
+	libinterp/corefcn/oct-stream.h liboctave/util/data-conv.cc
+	liboctave/util/data-conv.h
+
+2013-09-12  John W. Eaton  <jwe@octave.org>
+
+	eliminate unimplemented vax and cray floating point formats
+
+	* mach-info.h
+
+
+
+	* test/io.tst: Delete vaxd, vaxg, and cray from list of architectures
+	in fopen test.
+
+	# HG changeset patch
+	# User John W. Eaton <jwe@octave.org>
+	# Date 1379028062 14400
+	#      Thu Sep 12 19:21:02 2013 -0400
+	# Node ID ea2763020ac1aa15ad0d43d787b61ff3b8469209
+	# Parent  e89e86e1a5518c11058930fec5e907e60e31251b
+	eliminate unimplemented vax and cray floating point formats
+
+	* mach-info.h (oct_mach_info::float_format): Delete flt_fmt_vaxd,
+	flt_fmt_vaxg, and flt_fmt_cray enum values.
+
+	* ls-mat4.cc (float_format_to_mopt_digit, mopt_digit_to_float_format):
+	Delete cases for vaxd, vaxg, and cray floating point formats.
+	* lo-ieee.cc (octave_ieee_init): Likewise.
+	* mach-info.cc (get_float_format,
+	oct_mach_info::string_to_float_format,
+	oct_mach_info::float_format_as_string): Likewise.
+
+	* oct-stream.cc: Delete explicit template instantiation for do_write.
+	(octave_stream::write, do_read): Delete checks for vaxd and vaxg
+	floating point formats.
+
+	* pr-output.cc (pr_any_float): Don't check for cray or unknonwn float
+	formats.
+
+	* data-conv.cc (VAX_D_double_to_IEEE_little_double,
+	VAX_G_double_to_IEEE_little_double, Cray_to_IEEE_little_double,
+	IEEE_big_float_to_IEEE_little_float, VAX_D_float_to_IEEE_little_float,
+	VAX_G_float_to_IEEE_little_float, Cray_to_IEEE_little_float,
+	IEEE_little_double_to_IEEE_big_double,
+	VAX_D_double_to_IEEE_big_double, VAX_G_double_to_IEEE_big_double,
+	Cray_to_IEEE_big_double, IEEE_little_float_to_IEEE_big_float,
+	VAX_D_float_to_IEEE_big_float, VAX_G_float_to_IEEE_big_float,
+	Cray_to_IEEE_big_float, IEEE_little_double_to_VAX_D_double,
+	IEEE_big_double_to_VAX_D_double, VAX_G_double_to_VAX_D_double,
+	Cray_to_VAX_D_double, IEEE_little_float_to_VAX_D_float,
+	IEEE_big_float_to_VAX_D_float, VAX_G_float_to_VAX_D_float,
+	Cray_to_VAX_D_float, IEEE_little_double_to_VAX_G_double,
+	IEEE_big_double_to_VAX_G_double, VAX_D_double_to_VAX_G_double,
+	Cray_to_VAX_G_double, IEEE_little_float_to_VAX_G_float,
+	IEEE_big_float_to_VAX_G_float, VAX_D_float_to_VAX_G_float,
+	Cray_to_VAX_G_float): Delete.
+	(do_double_format_conversion): Eliminate unimplemented vaxd, vaxg, and
+	cray conversions.
+
+	* file-io.cc (Ffopen, Ffread): Fix doc strings.
+
+	Files: libinterp/corefcn/file-io.cc libinterp/corefcn/ls-mat4.cc
+	libinterp/corefcn/oct-stream.cc libinterp/corefcn/pr-output.cc
+	liboctave/system/mach-info.cc liboctave/system/mach-info.h
+	liboctave/util/data-conv.cc liboctave/util/lo-ieee.cc test/io.tst
+
+	eliminate unnecessary volatile declarations
+
+	* byte-swap.h (swap_bytes<T>): Don't declare point arg as volatile.
+	Update all instantiations.
+	* data-conv.cc: Delete explicit instantiations of byte_swap template.
+
+	Files: liboctave/util/byte-swap.h liboctave/util/data-conv.cc
+
+2013-09-11  Rik  <rik@octave.org>
+
+	Fix bug in colorbar demo #24.
+	set() is broken from deep within listener hierarchy.  Workaround it.
+
+	* scripts/plot/colorbar.m(update_colorbar_clim):  Set axis limits in listener
+	and then jiggle the axis position to force a redraw.
+
+	Files: scripts/plot/colorbar.m
+
+	__contour__.m: Turn off auto clim adjustment while patches are being added.
+	And then turn back on when complete.  Performance increase.
+
+	* scripts/plot/private/__contour__.m: Set climmode to manual while adding
+	patch objects and then restore mode at end of for loop.
+
+	Files: scripts/plot/private/__contour__.m
+
+	doc: Rephrase a few sentences in str2double docstring.
+
+	* libinterp/corefcn/str2double.cc: Rephrase a few sentences in str2double
+	docstring.
+
+	Files: libinterp/corefcn/str2double.cc
+
+2013-09-06  Ben Kurtz <hidden email>  <hidden email>
+
+	str2double.cc: make output more consistent and ML-compatible, update help text, add tests (bug #39838)
+
+	Files: libinterp/corefcn/str2double.cc
+
+2013-09-11  Andreas Weber  <andreas.weber@hs-offenburg.de>
+
+	fix 2 strcmp<->strncmp issues from 3f0ed69d21c6
+
+	* __go_draw_axes__.m: replaced strncmp with strcmp
+	* plot/uigetfile.m: removed length specifier from strcmpi
+
+	Files: scripts/plot/private/__go_draw_axes__.m scripts/plot/uigetfile.m
+
+	__scatter__.m: Fix handling of NaNs in marker size param.
+
+	Files: scripts/plot/private/__scatter__.m
+
+2013-09-10  Rik  <rik@octave.org>
+
+	doc: Add operator and keyword docstrings missing from lookfor cache.
+
+	* doc/interpreter/mk_doc_cache.m: Append operator and keyword docstrings to
+	file containing function docstrings before passing through makeinfo.
+
+	Files: doc/interpreter/mk_doc_cache.m
+
+	Replace unnecessary instances of strncmp with strcmp.
+
+	* scripts/optimization/optimget.m, scripts/plot/__gnuplot_drawnow__.m,
+	scripts/plot/fill.m, scripts/plot/private/__go_draw_axes__.m,
+	scripts/plot/private/__pie__.m, scripts/plot/private/__print_parse_opts__.m,
+	scripts/plot/private/__quiver__.m, scripts/plot/private/__tight_eps_bbox__.m,
+	scripts/plot/stairs.m, scripts/plot/uigetfile.m, scripts/strings/strsplit.m,
+	scripts/strings/validatestring.m: Replace unnecessary instances of strncmp with
+	strcmp.
+
+	Files: scripts/optimization/optimget.m scripts/plot/__gnuplot_drawnow__.m
+	scripts/plot/fill.m scripts/plot/private/__go_draw_axes__.m
+	scripts/plot/private/__pie__.m
+	scripts/plot/private/__print_parse_opts__.m
+	scripts/plot/private/__quiver__.m
+	scripts/plot/private/__tight_eps_bbox__.m scripts/plot/uigetfile.m
+	scripts/strings/strsplit.m scripts/strings/validatestring.m
+
+	Overhaul scatter family of functions
+
+	* scripts/plot/module.mk: Remove unused function __color_str_rgb__.m from build.
+
+	* scripts/plot/private/__color_str_rgb__.m: Remove unnecessary function.
+
+	* scripts/plot/scatter.m: Put input validation first.  Adjust indentation.
+
+	* scripts/plot/scatter3.m: Put input validation first.  Adjust indentation.
+	Use htmp instead of tmp for temporary graphics handle.
+
+	* scripts/plot/private/__scatter__.m: Update "markeredgecolor" in child patch
+	objects when same property is updated in hggroup.  Accept "fill" for "filled"
+	for Matlab compatibility.  Remove call to __color_str_rgb__.  Don't bother
+	saving graphics handle from __go_patch__ since it is never used.  Use
+	cellfun instead of for loop for input processing.
+
+	Files: scripts/plot/module.mk scripts/plot/private/__color_str_rgb__.m
+	scripts/plot/private/__scatter__.m scripts/plot/scatter.m
+	scripts/plot/scatter3.m
+
+	doc: Reword docstrings for cummax, cummin.
+
+	* libinterp/corefcn/max.cc: Reword docstrings for cummax, cummin.
+	Add %!tests for both functions.
+
+	Files: libinterp/corefcn/max.cc
+
+	Hack a fix for changing initial window sizes (bug #39988).
+
+	* scripts/plot/private/__add_default_menu__.m: Call drawnow()
+	only after at least one uimenu has been added to menubar.
+
+	Files: scripts/plot/private/__add_default_menu__.m
+
+	doc: Document the form of the geometric distribution being used (II) in geo* functions.
+
+	* scripts/statistics/distributions/geocdf.m,
+	scripts/statistics/distributions/geoinv.m,
+	scripts/statistics/distributions/geopdf.m,
+	scripts/statistics/distributions/geornd.m: Document the form of the geometric
+	distribution being used (II) in geo* functions.
+
+	Files: scripts/statistics/distributions/geocdf.m
+	scripts/statistics/distributions/geoinv.m
+	scripts/statistics/distributions/geopdf.m
+	scripts/statistics/distributions/geornd.m
+
+2013-09-09  Rik  <rik@octave.org>
+
+	dialog.cc: Rename local variables to avoid shadowed variable warning
+
+	* libgui/src/dialog.cc(FileDialog, accept): Rename 'filters' to 'name_filters'.
+
+	Files: libgui/src/dialog.cc
+
+	type.m: Fix function for filenames without extension (bug #39922).
+
+	* scripts/help/type.m: Redo docstring to describe that  'type' works
+	on ordinary files and variables, as well as functions.  Display
+	file even if name does not have an extension.  Add more %!tests.
+
+	Files: scripts/help/type.m
+
+	doc: Add info about "overlaps" option to strfind, strrep.
+
+	* libinterp/corefcn/strfind.cc(Fstrfind, Fstrrep).  Add note about "overlaps"
+	option.
+
+	Files: libinterp/corefcn/strfind.cc
+
+	doc: Update documentation for file and directory functions.
+
+	* libinterp/corefcn/dirfns.cc(Fpwd, Freaddir, Fmkdir, Frmdir, Freadlink, Ffnmatch): Redo docstring.
+
+	* libinterp/corefcn/dirfns.cc(Fcd): Redo docstring.  Return previous working
+	directory if nargout > 0.
+
+	* libinterp/corefcn/dirfns.cc(Flink, Fsymlink, Frename): Redo docstring.
+	Re-order return values so that highest numbered value is assigned first to
+	avoid re-sizing octave_value_list each time.
+
+	* libinterp/corefcn/syscalls.cc(Flstat, Fmkfifo, FS_ISREG, FS_ISDIR, FS_ISCHR,
+	FS_ISBLK, FS_ISFIFO, FS_ISLNK, FS_ISSOCK): Redo docstring.
+
+	* scripts/general/isdir.m: Add more xrefs to @seealso.
+
+	* scripts/miscellaneous/copyfile.m: Add more xrefs to @seealso.
+
+	* scripts/miscellaneous/dir.m: Redo docstring.
+
+	* scripts/miscellaneous/ls.m: Add more xrefs to @seealso.m.
+
+	* scripts/miscellaneous/movefile.m: Add more xrefs to @seealso.
+
+	Files: libinterp/corefcn/dirfns.cc libinterp/corefcn/syscalls.cc
+	scripts/general/isdir.m scripts/miscellaneous/copyfile.m
+	scripts/miscellaneous/dir.m scripts/miscellaneous/ls.m
+	scripts/miscellaneous/movefile.m
+
+2013-09-09  John W. Eaton  <jwe@octave.org>
+
+	speak CHAR_BIT in C++-ese
+
+	* bitfcns.cc, typecast.cc, data-conv.cc: Instead of CHAR_BIT, use
+	std::numeric_limits<unsigned char>::digits.
+
+	Files: libinterp/corefcn/bitfcns.cc libinterp/corefcn/typecast.cc
+	liboctave/util/data-conv.cc
+
+2013-09-09  Rik  <rik@octave.org>
+
+	doc: Remove accidental double space before @var command.
+
+	* scripts/image/rgb2ind.m, scripts/plot/scatter.m, scripts/plot/specular.m:
+	Remove accidental double space before @var command.
+
+	Files: scripts/image/rgb2ind.m scripts/plot/scatter.m
+	scripts/plot/specular.m
+
+2013-09-08  Rik  <rik@octave.org>
+
+	Return correct status code for copyfile, movefile.
+
+	* scripts/miscellaneous/copyfile.m, scripts/miscellaneous/movefile.m:
+	Return correct status (inversion of system function).  Put input validation
+	first.  Use single quotes to simplify expressions.  Redo docstrings.
+
+	Files: scripts/miscellaneous/copyfile.m scripts/miscellaneous/movefile.m
+
+	edit.m: Use '~' to discard unused return value from system().
+
+	* scripts/miscellaneous/edit.m: Use '~' to discard unused return value from
+	system().
+
+	Files: scripts/miscellaneous/edit.m
+
+2013-09-08  Mike Miller  <mtmiller@ieee.org>
+
+	Support arguments of class single in bit manipulation functions (bug #34502)
+
+	* bitfcns.cc (bitop, Fbitshift): Support arguments of class single.
+	* bitcmp.m, bitget.m, bitset.m: Support arguments of class single. Add tests.
+
+	Files: libinterp/corefcn/bitfcns.cc scripts/general/bitcmp.m
+	scripts/general/bitget.m scripts/general/bitset.m
+
+	bitget.m, bitset.m: Make max bit index consistent
+
+	* bitget.m, bitset.m: Compute maximum bit index consistently.
+
+	Files: scripts/general/bitget.m scripts/general/bitset.m
+
+	Add Matlab-compatible flintmax function
+
+	* bitfcns.cc (Fflintmax): New function based on bitmax.
+	(Fbitmax, Fintmax, Fintmin): Update seealso to refer to flintmax.
+	* numbers.txi: Include flintmax docstring.
+
+	Files: doc/interpreter/numbers.txi libinterp/corefcn/bitfcns.cc
+
+	Use std::numeric_limits for floating point bit widths
+
+	* bitfcns.cc (max_mantissa_value<T>): New utility function.
+	(Fbitshift): Use max_mantissa_value, std::numeric_limits, and sizeof.
+	(Fbitmax): Use max_mantissa_value. Cast output properly for class single.
+
+	Files: libinterp/corefcn/bitfcns.cc
+
+2013-09-07  Ben Abbott  <bpabbott@mac.com>
+
+	Squeeze Nd > 2 plot vectors.
+
+	* scripts/plot/__plt__.m: Squeeze input plot vectors when ndims>2.
+	Throw error if there are more than 2 non-singleton dimensions.
+	* scripts/plot/plot.m: Modify doc-string. Add demos.
+
+	Files: scripts/plot/plot.m scripts/plot/private/__plt__.m
+
+2013-09-06  John Donoghue  <john.donoghue@ieee.org>
+
+	Allow shared libs for LLVM (Bug #38654)
+
+	configure.ac: when detecting llvm, check for the LLVM-{lvmversion} library and if not found use the llvm-config --libs output.
+
+	Files: configure.ac
+
+2013-09-06  Rik  <rik@octave.org>
+
+	Replace cellfun() occurrences with faster code where possible.
+
+	* scripts/help/doc_cache_create.m: Use built-in "isclass" rather than ischar.
+	Use addpath and rmpath with multiple inputs rather than cellfun.
+
+	* scripts/image/imformats.m: Use isfield with cell string list rather
+	than cellfun.
+
+	* scripts/image/private/__imread__.m: Use ismember to replace cellfun/strcmpi
+	combo.
+
+	* scripts/miscellaneous/what.m: Re-order if/elseif tree.
+
+	* scripts/pkg/private/rebuild.m: Replace cellfun with strcat call.
+
+	* scripts/plot/axis.m: Use comma-separated lists to replace cellfun.
+
+	* scripts/plot/pareto.m: Use cellstr on char array to replace cellfun.
+
+	* scripts/plot/private/__gnuplot_print__.m: Use @times, rather than
+	anonymous function, in cellfun call.
+
+	* scripts/plot/private/__line__.m: White space cleanup.
+
+	* scripts/plot/private/__patch__.m: Use ismember to replace cellfun/strcmpi
+	combo.  Use in-place '|=' operator for performance.
+
+	* scripts/plot/struct2hdl.m: Use ismember to replace cellfun/strcmp combo.
+
+	* scripts/polynomial/splinefit.m: Use built-in "isclass" rather than ischar.
+
+	* scripts/special-matrix/gallery.m: Remove anonymous functions inside cellfuns.
+
+	* scripts/strings/strsplit.m: Correct comment character to '#' from '%'.
+
+	* scripts/strings/untabify.m: Use multiple argument form of cellfun to get
+	rid of anonymous function.
+
+	* scripts/testfun/__run_test_suite__.m: Remove anonymous function from within
+	cellfun.
+
+	* scripts/ui/inputdlg.m: Use built-in "isclass" rather than ischar.
+
+	Files: scripts/help/doc_cache_create.m scripts/image/imformats.m
+	scripts/image/private/__imread__.m scripts/miscellaneous/what.m
+	scripts/pkg/private/rebuild.m scripts/plot/axis.m
+	scripts/plot/pareto.m scripts/plot/private/__gnuplot_print__.m
+	scripts/plot/private/__line__.m scripts/plot/private/__patch__.m
+	scripts/plot/struct2hdl.m scripts/polynomial/splinefit.m scripts
+	/special-matrix/gallery.m scripts/strings/strsplit.m
+	scripts/strings/untabify.m scripts/testfun/__run_test_suite__.m
+	scripts/ui/inputdlg.m
+
+	strcat.m: Clarify in docstring that space isn't stripped from cell string inputs.
+	Add example of space-preserving cell string input to docstring.
+	Put input validation first in function.
+
+	* scripts/strings/strcat.m: Clarify in docstring that space isn't stripped from
+	cell string inputs.  Add example of space-preserving cell string input to
+	docstring.  Put input validation first in function.
+
+	Files: scripts/strings/strcat.m
+
+	doc: Fix typo in fieldnames docstring.
+
+	* scripts/general/fieldnames.m: Eliminate stray parenthesis in docstring.
+
+	Files: scripts/general/fieldnames.m
+
+2013-09-05  Rik  <rik@octave.org>
+
+	struct2hdl.m: Eliminate some arrayfun instances for perforance.
+
+	* scripts/plot/struct2hdl.m: Use ismember or struct array indexing
+	to replace arrayfun instances.
+
+	Files: scripts/plot/struct2hdl.m
+
+	Create Matlab compatible linestyleorder char matrices (bug #34906)
+
+	* libinterp/corefcn/graphics.cc(convert_linestyleorder_string): New function
+	which changes strings and char matrices to row vector char matrices.
+
+	* libinterp/corefcn/graphics.in.h: Update axes BEGIN_PROPERTIES list for
+	linestyleorder to use set_linestyleorder function which calls
+	convert_linestyleorder_string.
+
+	Files: libinterp/corefcn/graphics.cc libinterp/corefcn/graphics.in.h
+
+	build: Remove generated files so that 'make distcheck' passes.
+
+	* libgui/Makefile.am: Add default-qt-settings to DISTCLEANFILES.
+
+	* test/Makefile.am: Add .gdbinit to DISTCLEANFILES.
+
+	Files: libgui/Makefile.am test/Makefile.am
+
+2013-09-05  Ben Abbott  <bpabbott@mac.com>
+
+	Set gs sOutputFile option to "-" when spooling to the system printer.
+
+	* scripts/plot/private/__print_parse_opts__.m: When sending output to a
+	printer set the output to "-" which is ghostscript syntax for piping.
+
+	Files: scripts/plot/private/__print_parse_opts__.m
+
+2013-09-05  Rik  <rik@octave.org>
+
+	str2double.cc: miscellaneous simplifications to code.
+
+	* libinterp/corefcn/str2double.cc: return double from single_num() routine.
+	Expand FIXME comment about commas in strings.  Remove repeated %!assert test.
+
+	Files: libinterp/corefcn/str2double.cc
+
+	build: Use convenience library to build tex-parser so "old-style cast" warning can be disabled.
+
+	* libinterp/Makefile.am: Place EXTRA_DIST targets for subdirs in
+	subdir/module.mk for more logical grouping.  Add libtex_parser.la to
+	octinterp LIBADD variable.
+
+	* libinterp/corefcn/module.mk: Add new TEX_PARSER_INC, TEX_PARSER_SRC
+	definitions.  Add new convenience library libtex_parser.la where CXXFLAGS
+	do not include "-Wold-style-cast".
+
+	* libinterp/parse-tree/module.mk: Add parse-tree/oct-parse.in.yy to
+	local EXTRA_DIST variable.
+
+	Files: libinterp/Makefile.am libinterp/corefcn/module.mk libinterp/parse-
+	tree/module.mk
+
+	maint: Tweaks to remove compiler warnings.
+
+	* libgui/src/find-files-model.cc(rowCount, columnCount): Eliminate unused input
+	parameter p.
+
+	* libinterp/corefcn/octave-link.cc(F__octave_link_file_dialog__):  Use signed int
+	in for loop index for comparison to octave_idx_type.
+
+	* libinterp/corefcn/txt-eng-ft.cc(ft_render::visit): Initialize all of
+	mbstate_t structure (not just first field) with memset() to 0.
+
+	* libinterp/parse-tree/oct-parse.in.yy(F__parse_file__): Remove unused nargout
+	parameter.
+
+	Files: libgui/src/find-files-model.cc libinterp/corefcn/octave-link.cc
+	libinterp/corefcn/txt-eng-ft.cc libinterp/parse-tree/oct-parse.in.yy
+
+2013-09-05  Mike Miller  <mtmiller@ieee.org>
+
+	build: Enable subdir-objects Automake option project-wide
+
+	* configure.ac (AM_INIT_AUTOMAKE): Add subdir-objects option to enable it
+	project-wide to simplify and anticipate future Automake defaults.
+	* libgui/Makefile.am, libinterp/Makefile.am, liboctave/Makefile.am,
+	liboctave/cruft/Makefile.am, scripts/Makefile.am (AUTOMAKE_OPTIONS): Delete.
+
+	Files: configure.ac libgui/Makefile.am libinterp/Makefile.am
+	liboctave/Makefile.am liboctave/cruft/Makefile.am
+	scripts/Makefile.am
+
+	build: Support optional Automake silent rules
+
+	* configure.ac: Call AM_SILENT_RULES to provide --enable-silent-rules.
+	* libinterp/Makefile.am (.yy.cc): Add Automake silent rule prefix.
+
+	Files: configure.ac libinterp/Makefile.am
+
+2013-09-04  Rik  <rik@octave.org>
+
+	Overhaul ellipj function to support NDArrays (bug #38874).
+
+	* libinterp/corefcn/ellipj.cc: Use NDArray rather than Matrix class for output.
+	Rename internal calculation routine to "do_ellipj".  Use fortran_vec() and
+	pointers, instead of indexing, for a 5% performance improvement.  Add %!test
+	and %!error blocks.
+
+	Files: libinterp/corefcn/ellipj.cc
+
+2013-09-04  Carnë Draug  <carandraug@octave.org>
+
+	imread: fix identification of PNG files as indexed.
+
+	* __magick_read__.cc (is_indexed): expand extra check for PNG files by
+	  confirming value in color_type_orig.
+	  (get_depth): only fix indentification as binary for depth of 8. When
+	  Magick reports different than 1 for binary images, seems to always
+	  change it for 8, not anything else different than 1.
+
+	Files: libinterp/dldfcn/__magick_read__.cc
+
+	imread: fix returning multiple variables.
+
+	* imread.m: fix mistake when filling varargout from cset. Do not miss
+	  the first cell.
+	* __magick_read__.cc (read_maps): change class of alpha map which is
+	  only a column vector, not a Nx3 Matrix.
+
+	Files: libinterp/dldfcn/__magick_read__.cc scripts/image/imread.m
+
+2013-09-04  Rik  <rik@octave.org>
+
+	ellipke.m: Overhaul function.
+
+	* scripts/specfun/ellipke.m: Use do/until loop to simplify code.  Use in-place
+	operators for performance.  Use logical indexing to re-use indices and avoid
+	duplicate computations.  Add %!test for negative values.  Document that negative
+	values are accepted in ellipke.
+
+	Files: scripts/specfun/ellipke.m
+
+	doc: Use Octave citation style for references in ellipj, ellipke.
+
+	* libinterp/corefcn/ellipj.cc(Fellipj): Redo docstring.
+	Use Octave citation style for references.
+
+	* scripts/specfun/ellipke.m: Redo docstring.
+	Use Octave citation style for references.
+
+	Files: libinterp/corefcn/ellipj.cc scripts/specfun/ellipke.m
+
+	doc: Remove private functions from signal documentation chapter (bug #39939).
+
+	* doc/interpreter/signal.txi: Remove @DOCSTRING macros for triangle_sw,
+	triangle_lw, rectangle_sw, rectangle_lw.  Re-order @DOCSTRING macros
+	to place all fft/ifft functions together.  Remove excess newlines.
+
+	Files: doc/interpreter/signal.txi
+
+2013-09-04  Carnë Draug  <carandraug@octave.org>
+
+	__unimplemented__.m: fix typo on function name
+
+	Files: scripts/help/__unimplemented__.m
+
+2013-09-03  Rik  <rik@octave.org>
+
+	Fix alphabetization in contributors.in (bug #39933)
+
+	* doc/interpreter/contributors.in: Fix alphabetizations.  Add Peter Rosin as
+	contributor (previously known as Peter Ekberg).
+
+	Files: doc/interpreter/contributors.in
+
+	Eliminate hysteresis when using mouse wheel for zooming in FLTK.
+	Zooming in N steps and zooming out N steps now returns to original magnification.
+	* libinterp/dldfcn/__init_fltk__.cc(handle): Zoom by factor or 1/factor.
+
+	Files: libinterp/dldfcn/__init_fltk__.cc
+
+	NEWS: Add announcement about TeX parser for FLTK toolkit.
+
+	* NEWS: Add announcement about TeX parser for FLTK toolkit.
+
+	Files: NEWS
+
+	__unimplemented__.m: Note iminfo as replacement for deprecated exifread.
+
+	* scripts/help/__unimplemented__.m: Note iminfo as replacement for deprecated
+	exifread.
+
+	Files: scripts/help/__unimplemented__.m
+
+	expint.m: Overhaul function.
+	Better accuracy and faster performance.
+	Improved documentation and added %!tests.
+
+	* scripts/specfun/expint.m: Improved accuracy of calculations by adjusting
+	quad() tolerance options.  Speeded up performance by breaking out of series
+	summation as soon as possible.  Used persistent variables to avoid
+	re-calculating expensive intermediate values.  Added %!tests verified against
+	arbitrary precision Mathematica calculations.
+
+	Files: scripts/specfun/expint.m
+
+2013-09-03  Carnë Draug  <carandraug@octave.org>
+
+	__magick_finfo__: remove recent Magick compression types (bug #39913)
+
+	Files: libinterp/dldfcn/__magick_read__.cc
+
+	imread: always return image, even if nargout is zero.
+
+	Files: scripts/image/imread.m
+
+2013-08-30  John Donoghue  <john.donoghue@ieee.org>
+
+	Update windows GUI terminal handling
+
+	* libgui/src/octave-gui.cc
+	  (octave_start_gui): set  TERM environment variable to 'cygwin' in windows if no term is set.
+
+	* libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp
+	  (translateKey): deocde delete key before non special keys using moveright \b, use \e[H for home, \e[F for end, decode esc key.
+
+	Files: libgui/qterminal/libqterminal/win32/QWinTerminalImpl.cpp libgui/src
+	/octave-gui.cc
+
+2013-08-30  Carnë Draug  <carandraug@octave.org>
+
+	Expand imfinfo to read Exif tags and GPS information.
+
+	* __magick_read__.cc (is_valid_exif, fill_exif, fill_exif_ints,
+	  fill_exif_floats): New functions to parse the strings returned
+	  from GraphicsMagick's attribute() and get actual value in the
+	  Exif tag.
+	  (__magick_finfo): implement reading of Exif tags. New fields
+	  in the base struct being returned: Software, Make, Model,
+	  DateTime, ImageDescription, Artist, Copyright, DigitalCamera,
+	  and GPSInfo. The last two are structs in their own that contain
+	  the rest of values from Exif (a rather long list of possible
+	  values). Move obtaining DisposalMethod outside of the main loop
+	  since it is only done for GIF files.
+	* imfinfo.m: document new fields on output.
+
+	Files: libinterp/dldfcn/__magick_read__.cc scripts/image/imfinfo.m
+
+2013-08-31  Rik  <rik@octave.org>
+
+	importdata.m: Overhaul function
+	New delimiter detection.  Use NA for missing data.
+	Use dlmread even for space delimiter (10X speed-up).
+	Use Octave coding standards.
+	Add %!test and %!error tests.
+
+	* scripts/io/importdata.m: Use regexp to find delimeter.  Use NA for missing
+	data.  Use dlmread even for space delimiter (10X speed-up).
+	Use Octave coding standards.  Add %!test and %!error tests.
+
+	Files: scripts/io/importdata.m
+
+2013-08-25  Daniel J Sebald  <daniel.sebald@ieee.org>
+
+	Speed up importdata() ASCII CSV processing using dlmread() as core
+
+	* importdata.m (importdata_ascii): Read in just the header when rest of the
+	file is not needed.  Guess the delimiter.  Remove extraneous white space and
+	save to temp file if delimiter is space character.  Use dlmread() to do bulk
+	of work.  Retroactively read in data and extract text fields if NaN appear in
+	dlmread() result, and treat row headers in this category.
+	(CSV, TSV, SSV tests): Add second test for automatic detection of delimiter.
+	(Header text test): Make textdata field a replica of colheaders field.
+	(Column headers test): Change expected textdata to tab-separated.
+	(Row headers test): Make textdata a replica of rowheaders similar to behavior
+	of the column headers scenario.  Change number of header rows to 0.
+
+	Files: scripts/io/importdata.m
+
+2013-08-30  John W. Eaton  <jwe@octave.org>
+
+	* __patch__.m: Remove stray keyboard command.
+
+	Files: scripts/plot/private/__patch__.m
+
+2013-08-28  John W. Eaton  <jwe@octave.org>
+
+	don't convert "end" token to "__end__" for indexing
+
+	* lex.ll (octave_base_lexer::handle_identifier): Don't translate "end"
+	to "__end__".
+	* pt-arg-list.cc (Fend): Rename from F__end__.
+	* pt-id.h (tree_identifier::has_magic_end):  Recognize "end" instead
+	of "__end__".
+	* pt-idx.cc: Refer to "end" in comment instead of "__end__".
+	* variables.cc (symbol_exist): Return early if keyword is found.
+	* resource-manager.cc (resource_manager::octave_keywords): Delete
+	__end__ from the list.
+
+	Files: libgui/src/resource-manager.cc libinterp/corefcn/variables.cc
+	libinterp/parse-tree/lex.ll libinterp/parse-tree/pt-arg-list.cc
+	libinterp/parse-tree/pt-id.h libinterp/parse-tree/pt-idx.cc
+
+2013-08-30  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	* scripts/image/imread.m: Fix typo in documentation.
+
+	Files: scripts/image/imread.m
+
+	Don't make oct-tex-lexer.ll and oct-tex-symbols.cc dependent on Makefile (bug #39896).
+
+	* libinter/corefcn/modules.mk (oct-tex-lexer.ll, oct-tex-symbols.cc):
+	Change dependency from Makefile to Makefile.am.
+
+	Files: libinterp/corefcn/module.mk
+
+	Support multibyte characters in Freetype-based renderer (bug #31596).
+
+	* bootstrap.conf (gnulib_modules): Add mbrtowc.
+	* libinterp/corefcn/txt-eng-ft.cc (clocale, cwchar): New include.
+	(ft_render::visit(text_element_string)): Decode string using mbrtowc.
+
+	Files: bootstrap.conf libinterp/corefcn/txt-eng-ft.cc
+
+2013-08-30  Carnë Draug  <carandraug@octave.org>
+
+	New function __magick_ping__ to speed reading of images.
+
+	* __magick_read__.cc (__magick_ping__): New function that only pings
+	  one of the images in a file to obtain height, width and format
+	  information. This becomes an alternative to imfinfo for internal
+	  Octave functions. Because imfinfo requires reading of the whole
+	  file and all images, this has a large speed increase, specially
+	  for multipage images.
+	* imformats.m: use __magick_ping__() to check image format.
+	* private/__imread__.m: use __magick_ping__() to get rows and columns
+	  of an image which is used to set the reading defaults.
+
+	Files: libinterp/dldfcn/__magick_read__.cc scripts/image/imformats.m
+	scripts/image/private/__imread__.m
+
+2013-08-29  Carnë Draug  <carandraug@octave.org>
+
+	Rewrite of imfinfo.
+
+	* __magick_read__.cc (is_indexed, get_depth, read_maps): new functions to
+	  check if image is indexed, identify bitdepth, and read colormap. Extracted
+	  from __magick_read__() and read_indexed_image() so they can be shared
+	  with __magick_finfo__.
+	  (read_indexed_images): readjusted to use read_maps().
+	  (__magick_read__): readjusted to use new functions is_indexed() and
+	  get_depth().
+	  (magick_to_octave_value): remove template for unspecific classes. New
+	  ones for CompressionType, and OrientationType.
+	  (disposal_methods): new. Returns a map so it may be used in the future
+	  for writing animated GIFs.
+	  (__magick_finfo__): complete rewrite. Use of octave_scalar_map and
+	  fast_element_insert (instead of contents() and non-linear operator())
+	  has a nice improvement for multipage images. Removed fields are:
+	  LongFormat, TotalColors, TileName, Matte, ModulusDepth, QuantizeColors,
+	  and View. New fields are: FormatVersion, Comment, DisposalMethod,
+	  Chromaticities, Compression, Colormap, and Orientation. Renamed fields
+	  are: AnimationDelay to DelayTime, AnimationIterations to LoopCount,
+	  and ResolutionUnits to ResolutionUnit. Macro was removed since it is
+	  no longer required. GraphicsMagick seems to no longer throw exception
+	  when parameter is not present, and we are using read_file() so
+	  try-catch block was also removed. Values returned by ResolutionUnit
+	  changed for Matlab compatibility. Added CMYK to ColorType.
+	* imfinfo.m: document new, and remove old, info, fields returned.
+	* imread.m: document imfinfo should be used to obtain multiple colormaps
+	  in case of multipage images.
+
+	Files: libinterp/dldfcn/__magick_read__.cc scripts/image/imfinfo.m
+	scripts/image/imread.m
+
+2013-08-29  Rik  <rik@octave.org>
+
+	Don't warn about saving empty variable names for Matlab compatibility (bug #34259)
+
+	* libinterp/corefcn/load-save.cc(save_vars): Test var name for "" and skip
+	rather than emitting warning.
+
+	Files: libinterp/corefcn/load-save.cc
+
+2013-08-29  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	* libinterp/corefcn/oct-tex-symbols.in: Add \deg symbol.
+
+	Files: libinterp/corefcn/oct-tex-symbols.in
+
+2013-08-29  Rik  <rik@octave.org>
+
+	__patch__.m: Fix typo and close bug #34417.
+
+	* scripts/plot/private/__patch__.m: Change 'agrs' to 'args'.
+
+	Files: scripts/plot/private/__patch__.m
+
+2013-08-29  Michael Godfrey  <michaeldgodfrey@gmail.com>
+
+	use correct unicodes for \circ and bullet
+
+	Files: libinterp/corefcn/oct-tex-symbols.in
+
+2013-08-28  Rik  <rik@octave.org>
+
+	oct-hist.cc: Wrap code lines > 80 characters.
+
+	* libinterp/corefcn/oct-hist.cc: Break up simultaneous definition and assigment
+	of variable so that each half is less than 80 characters.
+
+	Files: libinterp/corefcn/oct-hist.cc
+
+	Use SET_INTERNAL_VARIABLE macro for mouse_wheel_zoom() variable.
+
+	* libinterp/dldfcn/__init_fltk__.cc: Replace handcoded function with
+	macro from variables.h.  Update docstring.
+
+	Files: libinterp/dldfcn/__init_fltk__.cc
+
+2013-08-28  John W. Eaton  <jwe@octave.org>
+
+	correctly handle deprecated \ continuation markers
+
+	* lex.ll (\\{S}*{NL} | \\{S}*{CCHAR}.*{NL}):
+	Call curr_lexer->handle_continuation.
+
+	Files: libinterp/parse-tree/lex.ll
+
+	new function to help with debugging by parsing .m files without executing them
+
+	* oct-parse.in.yy (F__parse_file__): New function.
+
+	Files: libinterp/parse-tree/oct-parse.in.yy
+
+2013-08-28  Rik  <rik@octave.org>
+
+	debug.m: Fix spacing in @seealso macro (bug #39871)
+
+	* scripts/miscellaneous/debug.m: Remove extra spaces within @seealso macro.
+
+	Files: scripts/miscellaneous/debug.m
+
+	build: Fix man pages not be installed with 'make install'
+
+	* doc/interpreter/Makefile.am: Use Automake build rule dist_man_MANS to both
+	build/install man pages and distribute them in source tarball.
+
+	Files: doc/interpreter/Makefile.am
+
+	__makeinfo__.m: Remove @seealso code made obsolete by cset 4e9dc46d4125.
+
+	* scripts/help/__makeinfo__.m: Remove fsee_also definitions and error checking.
+	Remove fsee_also input from function and redo docstring.
+
+	Files: scripts/help/__makeinfo__.m
+
+	maint: End m-files with 1 blank line.
+	Simplifies automated grammarchecking script.
+
+	* scripts/@ftp/ascii.m, scripts/@ftp/binary.m, scripts/@ftp/cd.m,
+	scripts/@ftp/close.m, scripts/@ftp/delete.m, scripts/@ftp/dir.m,
+	scripts/@ftp/display.m, scripts/@ftp/ftp.m, scripts/@ftp/loadobj.m,
+	scripts/@ftp/mget.m, scripts/@ftp/mkdir.m, scripts/@ftp/mput.m,
+	scripts/@ftp/rename.m, scripts/@ftp/rmdir.m, scripts/@ftp/saveobj.m,
+	scripts/audio/lin2mu.m, scripts/audio/loadaudio.m, scripts/audio/mu2lin.m,
+	scripts/audio/record.m, scripts/audio/saveaudio.m, scripts/audio/setaudio.m,
+	scripts/deprecated/__error_text__.m, scripts/deprecated/cut.m,
+	scripts/deprecated/error_text.m, scripts/deprecated/isstr.m,
+	scripts/deprecated/polyderiv.m, scripts/deprecated/studentize.m,
+	scripts/deprecated/sylvester_matrix.m, scripts/general/bicubic.m,
+	scripts/general/celldisp.m, scripts/general/colon.m,
+	scripts/general/cplxpair.m, scripts/general/del2.m, scripts/general/display.m,
+	scripts/general/isdir.m, scripts/general/isequaln.m, scripts/general/loadobj.m,
+	scripts/general/private/__isequal__.m, scripts/general/private/__splinen__.m,
+	scripts/general/profexplore.m, scripts/general/quadgk.m,
+	scripts/general/randi.m, scripts/general/repmat.m, scripts/general/saveobj.m,
+	scripts/geometry/delaunay.m, scripts/help/__unimplemented__.m,
+	scripts/help/doc_cache_create.m, scripts/help/get_first_help_sentence.m,
+	scripts/help/help.m, scripts/help/print_usage.m,
+	scripts/help/private/__additional_help_message__.m,
+	scripts/help/private/__strip_html_tags__.m, scripts/help/type.m,
+	scripts/image/imfinfo.m, scripts/image/imformats.m, scripts/image/imread.m,
+	scripts/image/imwrite.m, scripts/image/private/__imfinfo__.m,
+	scripts/image/private/__imread__.m, scripts/image/private/__imwrite__.m,
+	scripts/image/private/imageIO.m, scripts/image/private/imwrite_filename.m,
+	scripts/image/private/ind2x.m, scripts/io/beep.m, scripts/io/strread.m,
+	scripts/io/textread.m, scripts/io/textscan.m, scripts/linear-algebra/krylov.m,
+	scripts/linear-algebra/subspace.m, scripts/miscellaneous/bug_report.m,
+	scripts/miscellaneous/bunzip2.m, scripts/miscellaneous/cast.m,
+	scripts/miscellaneous/copyfile.m, scripts/miscellaneous/debug.m,
+	scripts/miscellaneous/dir.m, scripts/miscellaneous/dump_prefs.m,
+	scripts/miscellaneous/error_ids.m, scripts/miscellaneous/fileattrib.m,
+	scripts/miscellaneous/gunzip.m, scripts/miscellaneous/isdeployed.m,
+	scripts/miscellaneous/ismac.m, scripts/miscellaneous/mex.m,
+	scripts/miscellaneous/mexext.m, scripts/miscellaneous/mkoctfile.m,
+	scripts/miscellaneous/movefile.m, scripts/miscellaneous/namelengthmax.m,
+	scripts/miscellaneous/news.m, scripts/miscellaneous/pack.m,
+	scripts/miscellaneous/perl.m,
+	scripts/miscellaneous/private/display_info_file.m,
+	scripts/miscellaneous/python.m, scripts/miscellaneous/rmappdata.m,
+	scripts/miscellaneous/run.m, scripts/miscellaneous/tar.m,
+	scripts/miscellaneous/tempname.m, scripts/miscellaneous/untar.m,
+	scripts/miscellaneous/unzip.m, scripts/miscellaneous/what.m,
+	scripts/miscellaneous/zip.m, scripts/optimization/fminunc.m,
+	scripts/optimization/fsolve.m, scripts/optimization/fzero.m,
+	scripts/optimization/glpk.m, scripts/optimization/optimget.m,
+	scripts/optimization/optimset.m, scripts/optimization/qp.m,
+	scripts/optimization/sqp.m, scripts/path/pathdef.m, scripts/pkg/pkg.m,
+	scripts/pkg/private/build.m, scripts/pkg/private/describe.m,
+	scripts/pkg/private/dirempty.m, scripts/pkg/private/get_forge_download.m,
+	scripts/pkg/private/get_forge_pkg.m,
+	scripts/pkg/private/get_unsatisfied_deps.m, scripts/pkg/private/install.m,
+	scripts/pkg/private/is_architecture_dependent.m,
+	scripts/pkg/private/list_forge_packages.m, scripts/pkg/private/rebuild.m,
+	scripts/pkg/private/shell.m, scripts/pkg/private/uninstall.m,
+	scripts/plot/axes.m, scripts/plot/box.m, scripts/plot/closereq.m,
+	scripts/plot/diffuse.m, scripts/plot/ezpolar.m, scripts/plot/findfigs.m,
+	scripts/plot/gco.m, scripts/plot/guidata.m, scripts/plot/guihandles.m,
+	scripts/plot/hdl2struct.m, scripts/plot/linkprop.m, scripts/plot/peaks.m,
+	scripts/plot/print.m, scripts/plot/private/__add_datasource__.m,
+	scripts/plot/private/__axis_label__.m, scripts/plot/private/__clabel__.m,
+	scripts/plot/private/__color_str_rgb__.m, scripts/plot/private/__contour__.m,
+	scripts/plot/private/__default_plot_options__.m,
+	scripts/plot/private/__errcomm__.m, scripts/plot/private/__file_filter__.m,
+	scripts/plot/private/__fltk_file_filter__.m,
+	scripts/plot/private/__getlegenddata__.m,
+	scripts/plot/private/__gnuplot_open_stream__.m,
+	scripts/plot/private/__gnuplot_print__.m,
+	scripts/plot/private/__go_draw_axes__.m,
+	scripts/plot/private/__interp_cube__.m, scripts/plot/private/__is_function__.m,
+	scripts/plot/private/__line__.m, scripts/plot/private/__marching_cube__.m,
+	scripts/plot/private/__next_line_style__.m, scripts/plot/private/__patch__.m,
+	scripts/plot/private/__pie__.m, scripts/plot/private/__pltopt__.m,
+	scripts/plot/private/__quiver__.m, scripts/plot/private/__scatter__.m,
+	scripts/plot/private/__stem__.m, scripts/plot/private/__uigetdir_fltk__.m,
+	scripts/plot/private/__uigetfile_fltk__.m,
+	scripts/plot/private/__uiobject_split_args__.m,
+	scripts/plot/private/__uiputfile_fltk__.m, scripts/plot/refresh.m,
+	scripts/plot/saveas.m, scripts/plot/shg.m, scripts/plot/specular.m,
+	scripts/plot/sphere.m, scripts/plot/struct2hdl.m, scripts/plot/subplot.m,
+	scripts/plot/uicontextmenu.m, scripts/plot/uicontrol.m, scripts/plot/uipanel.m,
+	scripts/plot/uipushtool.m, scripts/plot/uiresume.m,
+	scripts/plot/uitoggletool.m, scripts/plot/uitoolbar.m, scripts/plot/uiwait.m,
+	scripts/plot/waitforbuttonpress.m, scripts/polynomial/pchip.m,
+	scripts/polynomial/polyeig.m, scripts/polynomial/ppval.m,
+	scripts/prefs/addpref.m, scripts/prefs/getpref.m, scripts/prefs/ispref.m,
+	scripts/prefs/private/loadprefs.m, scripts/prefs/private/prefsfile.m,
+	scripts/prefs/private/saveprefs.m, scripts/prefs/setpref.m,
+	scripts/set/private/validargs.m, scripts/set/unique.m,
+	scripts/signal/arch_fit.m, scripts/signal/arch_rnd.m,
+	scripts/signal/arch_test.m, scripts/signal/arma_rnd.m,
+	scripts/signal/durbinlevinson.m, scripts/signal/fractdiff.m,
+	scripts/signal/freqz.m, scripts/signal/freqz_plot.m, scripts/signal/hurst.m,
+	scripts/signal/periodogram.m, scripts/signal/private/rectangle_lw.m,
+	scripts/signal/private/rectangle_sw.m, scripts/signal/private/triangle_sw.m,
+	scripts/signal/spectral_adf.m, scripts/signal/spectral_xdf.m,
+	scripts/signal/stft.m, scripts/signal/synthesis.m, scripts/signal/yulewalker.m,
+	scripts/sparse/colperm.m, scripts/sparse/eigs.m, scripts/sparse/etreeplot.m,
+	scripts/sparse/gmres.m, scripts/sparse/private/__sprand_impl__.m,
+	scripts/sparse/spdiags.m, scripts/sparse/sprandn.m, scripts/specfun/bessel.m,
+	scripts/specfun/betaln.m, scripts/specfun/expint.m,
+	scripts/special-matrix/gallery.m, scripts/startup/__finish__.m,
+	scripts/statistics/base/qqplot.m, scripts/statistics/distributions/tcdf.m,
+	scripts/statistics/distributions/wienrnd.m,
+	scripts/statistics/models/logistic_regression.m,
+	scripts/statistics/models/private/logistic_regression_derivatives.m,
+	scripts/statistics/models/private/logistic_regression_likelihood.m,
+	scripts/statistics/tests/anova.m, scripts/statistics/tests/bartlett_test.m,
+	scripts/statistics/tests/chisquare_test_homogeneity.m,
+	scripts/statistics/tests/chisquare_test_independence.m,
+	scripts/statistics/tests/cor_test.m,
+	scripts/statistics/tests/f_test_regression.m,
+	scripts/statistics/tests/hotelling_test.m,
+	scripts/statistics/tests/hotelling_test_2.m,
+	scripts/statistics/tests/kolmogorov_smirnov_test_2.m,
+	scripts/statistics/tests/kruskal_wallis_test.m,
+	scripts/statistics/tests/manova.m, scripts/statistics/tests/mcnemar_test.m,
+	scripts/statistics/tests/prop_test_2.m, scripts/statistics/tests/run_test.m,
+	scripts/statistics/tests/sign_test.m, scripts/statistics/tests/t_test.m,
+	scripts/statistics/tests/t_test_2.m,
+	scripts/statistics/tests/t_test_regression.m,
+	scripts/statistics/tests/u_test.m, scripts/statistics/tests/var_test.m,
+	scripts/statistics/tests/welch_test.m,
+	scripts/statistics/tests/wilcoxon_test.m, scripts/statistics/tests/z_test.m,
+	scripts/statistics/tests/z_test_2.m, scripts/strings/strcat.m,
+	scripts/strings/strjoin.m, scripts/strings/strsplit.m,
+	scripts/testfun/__have_feature__.m, scripts/testfun/__printf_assert__.m,
+	scripts/testfun/__prog_output_assert__.m, scripts/testfun/__run_test_suite__.m,
+	scripts/time/clock.m, scripts/time/datenum.m, scripts/ui/errordlg.m,
+	scripts/ui/private/message_dialog.m: End m-files with 1 blank line.
+
+	Files: scripts/@ftp/ascii.m scripts/@ftp/binary.m scripts/@ftp/cd.m
+	scripts/@ftp/close.m scripts/@ftp/delete.m scripts/@ftp/dir.m
+	scripts/@ftp/display.m scripts/@ftp/ftp.m scripts/@ftp/loadobj.m
+	scripts/@ftp/mget.m scripts/@ftp/mkdir.m scripts/@ftp/mput.m
+	scripts/@ftp/rename.m scripts/@ftp/rmdir.m scripts/@ftp/saveobj.m
+	scripts/audio/lin2mu.m scripts/audio/loadaudio.m
+	scripts/audio/mu2lin.m scripts/audio/record.m
+	scripts/audio/saveaudio.m scripts/audio/setaudio.m
+	scripts/deprecated/__error_text__.m scripts/deprecated/cut.m
+	scripts/deprecated/error_text.m scripts/deprecated/isstr.m
+	scripts/deprecated/polyderiv.m scripts/deprecated/studentize.m
+	scripts/deprecated/sylvester_matrix.m scripts/general/bicubic.m
+	scripts/general/celldisp.m scripts/general/colon.m
+	scripts/general/cplxpair.m scripts/general/del2.m
+	scripts/general/display.m scripts/general/isdir.m
+	scripts/general/isequaln.m scripts/general/loadobj.m
+	scripts/general/private/__isequal__.m
+	scripts/general/private/__splinen__.m scripts/general/profexplore.m
+	scripts/general/quadgk.m scripts/general/randi.m
+	scripts/general/repmat.m scripts/general/saveobj.m
+	scripts/geometry/delaunay.m scripts/help/__unimplemented__.m
+	scripts/help/doc_cache_create.m
+	scripts/help/get_first_help_sentence.m scripts/help/help.m
+	scripts/help/print_usage.m
+	scripts/help/private/__additional_help_message__.m
+	scripts/help/private/__strip_html_tags__.m scripts/help/type.m
+	scripts/image/imfinfo.m scripts/image/imformats.m
+	scripts/image/imread.m scripts/image/imwrite.m
+	scripts/image/private/__imfinfo__.m
+	scripts/image/private/__imread__.m
+	scripts/image/private/__imwrite__.m scripts/image/private/imageIO.m
+	scripts/image/private/imwrite_filename.m
+	scripts/image/private/ind2x.m scripts/io/beep.m scripts/io/strread.m
+	scripts/io/textread.m scripts/io/textscan.m scripts/linear-
+	algebra/krylov.m scripts/linear-algebra/subspace.m
+	scripts/miscellaneous/bug_report.m scripts/miscellaneous/bunzip2.m
+	scripts/miscellaneous/cast.m scripts/miscellaneous/copyfile.m
+	scripts/miscellaneous/debug.m scripts/miscellaneous/dir.m
+	scripts/miscellaneous/dump_prefs.m scripts/miscellaneous/error_ids.m
+	scripts/miscellaneous/fileattrib.m scripts/miscellaneous/gunzip.m
+	scripts/miscellaneous/isdeployed.m scripts/miscellaneous/ismac.m
+	scripts/miscellaneous/mex.m scripts/miscellaneous/mexext.m
+	scripts/miscellaneous/mkoctfile.m scripts/miscellaneous/movefile.m
+	scripts/miscellaneous/namelengthmax.m scripts/miscellaneous/news.m
+	scripts/miscellaneous/pack.m scripts/miscellaneous/perl.m
+	scripts/miscellaneous/private/display_info_file.m
+	scripts/miscellaneous/python.m scripts/miscellaneous/rmappdata.m
+	scripts/miscellaneous/run.m scripts/miscellaneous/tar.m
+	scripts/miscellaneous/tempname.m scripts/miscellaneous/untar.m
+	scripts/miscellaneous/unzip.m scripts/miscellaneous/what.m
+	scripts/miscellaneous/zip.m scripts/optimization/fminunc.m
+	scripts/optimization/fsolve.m scripts/optimization/fzero.m
+	scripts/optimization/glpk.m scripts/optimization/optimget.m
+	scripts/optimization/optimset.m scripts/optimization/qp.m
+	scripts/optimization/sqp.m scripts/path/pathdef.m scripts/pkg/pkg.m
+	scripts/pkg/private/build.m scripts/pkg/private/describe.m
+	scripts/pkg/private/dirempty.m
+	scripts/pkg/private/get_forge_download.m
+	scripts/pkg/private/get_forge_pkg.m
+	scripts/pkg/private/get_unsatisfied_deps.m
+	scripts/pkg/private/install.m
+	scripts/pkg/private/is_architecture_dependent.m
+	scripts/pkg/private/list_forge_packages.m
+	scripts/pkg/private/rebuild.m scripts/pkg/private/shell.m
+	scripts/pkg/private/uninstall.m scripts/plot/axes.m
+	scripts/plot/box.m scripts/plot/closereq.m scripts/plot/diffuse.m
+	scripts/plot/ezpolar.m scripts/plot/findfigs.m scripts/plot/gco.m
+	scripts/plot/guidata.m scripts/plot/guihandles.m
+	scripts/plot/hdl2struct.m scripts/plot/linkprop.m
+	scripts/plot/peaks.m scripts/plot/print.m
+	scripts/plot/private/__add_datasource__.m
+	scripts/plot/private/__axis_label__.m
+	scripts/plot/private/__clabel__.m
+	scripts/plot/private/__color_str_rgb__.m
+	scripts/plot/private/__contour__.m
+	scripts/plot/private/__default_plot_options__.m
+	scripts/plot/private/__errcomm__.m
+	scripts/plot/private/__file_filter__.m
+	scripts/plot/private/__fltk_file_filter__.m
+	scripts/plot/private/__getlegenddata__.m
+	scripts/plot/private/__gnuplot_open_stream__.m
+	scripts/plot/private/__gnuplot_print__.m
+	scripts/plot/private/__go_draw_axes__.m
+	scripts/plot/private/__interp_cube__.m
+	scripts/plot/private/__is_function__.m
+	scripts/plot/private/__line__.m
+	scripts/plot/private/__marching_cube__.m
+	scripts/plot/private/__next_line_style__.m
+	scripts/plot/private/__patch__.m scripts/plot/private/__pie__.m
+	scripts/plot/private/__pltopt__.m scripts/plot/private/__quiver__.m
+	scripts/plot/private/__scatter__.m scripts/plot/private/__stem__.m
+	scripts/plot/private/__uigetdir_fltk__.m
+	scripts/plot/private/__uigetfile_fltk__.m
+	scripts/plot/private/__uiobject_split_args__.m
+	scripts/plot/private/__uiputfile_fltk__.m scripts/plot/refresh.m
+	scripts/plot/saveas.m scripts/plot/shg.m scripts/plot/specular.m
+	scripts/plot/sphere.m scripts/plot/struct2hdl.m
+	scripts/plot/subplot.m scripts/plot/uicontextmenu.m
+	scripts/plot/uicontrol.m scripts/plot/uipanel.m
+	scripts/plot/uipushtool.m scripts/plot/uiresume.m
+	scripts/plot/uitoggletool.m scripts/plot/uitoolbar.m
+	scripts/plot/uiwait.m scripts/plot/waitforbuttonpress.m
+	scripts/polynomial/pchip.m scripts/polynomial/polyeig.m
+	scripts/polynomial/ppval.m scripts/prefs/addpref.m
+	scripts/prefs/getpref.m scripts/prefs/ispref.m
+	scripts/prefs/private/loadprefs.m scripts/prefs/private/prefsfile.m
+	scripts/prefs/private/saveprefs.m scripts/prefs/setpref.m
+	scripts/set/private/validargs.m scripts/set/unique.m
+	scripts/signal/arch_fit.m scripts/signal/arch_rnd.m
+	scripts/signal/arch_test.m scripts/signal/arma_rnd.m
+	scripts/signal/durbinlevinson.m scripts/signal/fractdiff.m
+	scripts/signal/freqz.m scripts/signal/freqz_plot.m
+	scripts/signal/hurst.m scripts/signal/periodogram.m
+	scripts/signal/private/rectangle_lw.m
+	scripts/signal/private/rectangle_sw.m
+	scripts/signal/private/triangle_sw.m scripts/signal/spectral_adf.m
+	scripts/signal/spectral_xdf.m scripts/signal/stft.m
+	scripts/signal/synthesis.m scripts/signal/yulewalker.m
+	scripts/sparse/colperm.m scripts/sparse/eigs.m
+	scripts/sparse/etreeplot.m scripts/sparse/gmres.m
+	scripts/sparse/private/__sprand_impl__.m scripts/sparse/spdiags.m
+	scripts/sparse/sprandn.m scripts/specfun/bessel.m
+	scripts/specfun/betaln.m scripts/specfun/expint.m scripts/special-
+	matrix/gallery.m scripts/startup/__finish__.m
+	scripts/statistics/base/qqplot.m
+	scripts/statistics/distributions/tcdf.m
+	scripts/statistics/distributions/wienrnd.m
+	scripts/statistics/models/logistic_regression.m
+	scripts/statistics/models/private/logistic_regression_derivatives.m
+	scripts/statistics/models/private/logistic_regression_likelihood.m
+	scripts/statistics/tests/anova.m
+	scripts/statistics/tests/bartlett_test.m
+	scripts/statistics/tests/chisquare_test_homogeneity.m
+	scripts/statistics/tests/chisquare_test_independence.m
+	scripts/statistics/tests/cor_test.m
+	scripts/statistics/tests/f_test_regression.m
+	scripts/statistics/tests/hotelling_test.m
+	scripts/statistics/tests/hotelling_test_2.m
+	scripts/statistics/tests/kolmogorov_smirnov_test_2.m
+	scripts/statistics/tests/kruskal_wallis_test.m
+	scripts/statistics/tests/manova.m
+	scripts/statistics/tests/mcnemar_test.m
+	scripts/statistics/tests/prop_test_2.m
+	scripts/statistics/tests/run_test.m
+	scripts/statistics/tests/sign_test.m
+	scripts/statistics/tests/t_test.m
+	scripts/statistics/tests/t_test_2.m
+	scripts/statistics/tests/t_test_regression.m
+	scripts/statistics/tests/u_test.m
+	scripts/statistics/tests/var_test.m
+	scripts/statistics/tests/welch_test.m
+	scripts/statistics/tests/wilcoxon_test.m
+	scripts/statistics/tests/z_test.m
+	scripts/statistics/tests/z_test_2.m scripts/strings/strcat.m
+	scripts/strings/strjoin.m scripts/strings/strsplit.m
+	scripts/testfun/__have_feature__.m
+	scripts/testfun/__printf_assert__.m
+	scripts/testfun/__prog_output_assert__.m
+	scripts/testfun/__run_test_suite__.m scripts/time/clock.m
+	scripts/time/datenum.m scripts/ui/errordlg.m
+	scripts/ui/private/message_dialog.m
+
+	Use only 1 space between '%!' and start of test/demo code.
+
+	* libinterp/corefcn/besselj.cc, scripts/miscellaneous/private/__xzip__.m,
+	scripts/statistics/tests/kolmogorov_smirnov_test.m, scripts/ui/msgbox.m,
+	test/global.tst, test/jit.tst: Use only 1 space between '%!' and start of
+	test/demo code.
+
+	Files: libinterp/corefcn/besselj.cc
+	scripts/miscellaneous/private/__xzip__.m
+	scripts/statistics/tests/kolmogorov_smirnov_test.m
+	scripts/ui/msgbox.m test/global.tst test/jit.tst
+
+	Use '##' for comments which stand alone on a line.
+
+	* libinterp/corefcn/besselj.cc, libinterp/corefcn/conv2.cc,
+	libinterp/corefcn/pinv.cc, libinterp/corefcn/rand.cc,
+	libinterp/corefcn/regexp.cc, libinterp/corefcn/sqrtm.cc,
+	libinterp/dldfcn/qr.cc, libinterp/parse-tree/pt-eval.cc,
+	scripts/general/cplxpair.m, scripts/general/repmat.m, scripts/help/doc.m,
+	scripts/help/doc_cache_create.m, scripts/image/colorcube.m,
+	scripts/image/hsv2rgb.m, scripts/image/image.m, scripts/io/strread.m,
+	scripts/io/textscan.m, scripts/miscellaneous/bzip2.m,
+	scripts/miscellaneous/edit.m, scripts/miscellaneous/gzip.m,
+	scripts/optimization/__all_opts__.m, scripts/optimization/fminbnd.m,
+	scripts/optimization/sqp.m, scripts/pkg/private/get_forge_pkg.m,
+	scripts/plot/area.m, scripts/plot/stemleaf.m, scripts/plot/surfc.m,
+	scripts/plot/uiresume.m, scripts/plot/zlabel.m, scripts/polynomial/mkpp.m,
+	scripts/polynomial/ppval.m, scripts/set/intersect.m, scripts/signal/freqz.m,
+	scripts/sparse/pcg.m, scripts/sparse/pcr.m, scripts/sparse/svds.m,
+	scripts/sparse/treelayout.m, scripts/specfun/ellipke.m,
+	scripts/special-matrix/toeplitz.m, scripts/strings/dec2base.m,
+	scripts/strings/strsplit.m, scripts/testfun/test.m, test/build-sparse-tests.sh,
+	test/index.tst, test/system.tst:
+	Use '##' for comments which stand alone on a line.
+
+	Files: libinterp/corefcn/besselj.cc libinterp/corefcn/conv2.cc
+	libinterp/corefcn/pinv.cc libinterp/corefcn/rand.cc
+	libinterp/corefcn/regexp.cc libinterp/corefcn/sqrtm.cc
+	libinterp/dldfcn/qr.cc libinterp/parse-tree/pt-eval.cc
+	scripts/general/cplxpair.m scripts/general/repmat.m
+	scripts/help/doc.m scripts/help/doc_cache_create.m
+	scripts/image/colorcube.m scripts/image/hsv2rgb.m
+	scripts/image/image.m scripts/io/strread.m scripts/io/textscan.m
+	scripts/miscellaneous/bzip2.m scripts/miscellaneous/edit.m
+	scripts/miscellaneous/gzip.m scripts/optimization/__all_opts__.m
+	scripts/optimization/fminbnd.m scripts/optimization/sqp.m
+	scripts/pkg/private/get_forge_pkg.m scripts/plot/area.m
+	scripts/plot/stemleaf.m scripts/plot/surfc.m scripts/plot/uiresume.m
+	scripts/plot/zlabel.m scripts/polynomial/mkpp.m
+	scripts/polynomial/ppval.m scripts/set/intersect.m
+	scripts/signal/freqz.m scripts/sparse/pcg.m scripts/sparse/pcr.m
+	scripts/sparse/svds.m scripts/sparse/treelayout.m
+	scripts/specfun/ellipke.m scripts/special-matrix/toeplitz.m
+	scripts/strings/dec2base.m scripts/strings/strsplit.m
+	scripts/testfun/test.m test/build-sparse-tests.sh test/index.tst
+	test/system.tst
+
+2013-08-28  Carnë Draug  <carandraug@octave.org>
+
+	Fix reading of images with height or width of 1 pixel.
+
+	* __magick_read__.cc (calculate_region): this function uses an octave range
+	  from the options which is set in the Octave language with the colon
+	  operator. However, when there's only one element, the colon operator
+	  actually is of type scalar.
+
+	Files: libinterp/dldfcn/__magick_read__.cc
+
+	Fix reading of binary images.
+
+	* __magick_read__.cc (__magick_read__): since depth() seems to not always
+	  give 1 for binary images, check the depth of multiple channels to confirm.
+
+	Files: libinterp/dldfcn/__magick_read__.cc
+
+2013-08-27  Carnë Draug  <carandraug@octave.org>
+
+	__magick_write__: make sure binary images are saved as bilevel for some coders.
+
+	Files: libinterp/dldfcn/__magick_read__.cc
+
+2013-08-19  Carnë Draug  <carandraug@octave.org>
+
+	Implement writing of CMYK and fix writing of image alpha channel (bug #32986).
+
+	* __magick_read__.cc (bitdepth_from_class, init_encode_image): new functions
+	  created from pieces of encode_indexed_images () to be used by the other
+	  encode image functions.
+	  (encode_indexed_images): make use of new bitdepth_from_class(), and
+	  init_encode_image() functions.
+	  (encode_bool_image): rewritten to match flow of the other encode functions,
+	  use fortran_vec for performance, and use only 4th dimension for frames.
+	  (encode_uint_image): completely rewritten to identify images of CMYK type
+	  and not confuse them with RGB plus alpha channel. Now accepts the alpha
+	  channel as separate argument. Image argument must now be of same class as
+	  the template.
+	  (__magick_write__): changed to match new API for the encode functions.
+	* private/__imwrite__.m: set default and input check for alpha channel option.
+	* imwrite.m: document alpha channel option as separate argument.
+	* NEWS: announce rewrite of the image IO functions and warn about possible
+	  backwards incompatibilities.
+
+	Files: NEWS libinterp/dldfcn/__magick_read__.cc scripts/image/imwrite.m
+	scripts/image/private/__imwrite__.m
+
+2013-08-26  Torsten  <ttl@justmail.de>
+
+	fix running file from editor that is not in the search path (bug #39870)
+
+	* main-window.cc(run_file_callback): reimplemented calback for path checking
+	  instead of here (run_file_in_terminal)
+
+	Files: libgui/src/main-window.cc
+
+2013-08-25  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	Allow to compile with older freetype on RHEL5 (bug #39823).
+
+	* configure.ac: Check for FT_Reference_Face in freetype.
+	* libinterp/corefcn/txt-eng-ft.h (ft_render::ft_font::name,
+	ft_render::ft_font::weight, ft_render::ft_font::angle,
+	ft_render::ft_font::size, ft_render::ft_font::face): Make members
+	private.
+	(ft_render::ft_font::ft_font(ft_font), ft_render::ft_font::operator=):
+	Move implementation to source file.
+	(ft_render::ft_font::ft_font(string,string,string,double,FT_Face)): Add
+	default value for last argument.
+	(ft_render::ft_font::get_name, ft_render::ft_font::get_weight,
+	ft_render::ft_font::get_angle, ft_render::ft_font::get_size,
+	ft_render::ft_font::get_face): New methods.
+	* libinterp/corefcn/txt-eng-ft.cc (ft_render::ft_font::ft_font(ft_font),
+	ft_render::ft_font::operator=): Moved implementation from header file.
+	Use FT_Reference_Face conditionally.
+	(ft_render::ft_font::get_face): New method to lazy-load the font
+	structure, implementation from ft_render::set_font.
+	(ft_render::process_character, ft_render::visit(text_element_subscript),
+	ft_render::visit(text_element_superscript),
+	ft_render::visit(text_element_fontsize),
+	ft_render::visit(text_element_fontname),
+	ft_render::visit(text_element_fontstyle), ft_render::update_line_bbox,
+	ft_render::push_new_line): Use ft_render::ft_font accessors.
+	(ft_render::set_font): Move implementation to
+	ft_render::ft_font::get_face.
+	(ft_manager::do_get_font): Use font sharing conditionally, when
+	FT_Reference_Face is present.
+
+	Files: configure.ac libinterp/corefcn/txt-eng-ft.cc libinterp/corefcn/txt-
+	eng-ft.h
+
+2013-08-24  Torsten  <ttl@justmail.de>
+
+	queue and synchronize mutliple commands executed fro history (bug #39723)
+
+	* main-window.cc(constructor): Initialization of new class variables for the
+	  command queue, its mutex and a counting semaphore for handling the queue;
+	  (destructor): delete command queue;
+	  (execute_command_in_terinal): only call new function for queuing the command;
+	  (run_file_in_terminal): checking the path and building the cresulting ommand
+	  is done here and not in the callback, the command is finally queued
+	  (queue_command): new function for queuing commands and posteing the event
+	  for the execution callback if the callback is not already active;
+	  (execute_command_callback): no parameter because working on the command queue,
+	  reposting own event if the queue si not empty, releasing a semaphore if empty;
+	  (run_file_callback): removed, code is in run_file_in_terminal now
+
+	* main-window.h: execute_command_callback without parameters,
+	  new function queue_command, new variables for the command queue, its mutex
+	  and for a semaphore handling the queue
+
+	Files: libgui/src/main-window.cc libgui/src/main-window.h
+
+2013-08-24  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	Associate \circ with degree symbol, for compatibility (bug #39828).
+
+	* libinterp/corefcn/oct-tex-symbols.in: Associate "circ" symbol with
+	0x00B0 (degree character), for compatibility.
+
+	Files: libinterp/corefcn/oct-tex-symbols.in
+
+	Move TeX symbol decoding into the lexer (bug #39831).
+
+	* libinterp/Makefile.am (BUILT_SOURCES): Add corefcn/oct-tex-symbols.cc.
+	(BUILT_DISTFILES): Add corefcn/oct-tex-lexer.ll and
+	corefcn/oct-tex-symbols.cc.
+	(EXTRA_DIST): Add corefcn/oct-tex-lexer.in.ll and
+	corefcn/oct-tex-symbols.in.
+	(ULT_DIST_SRC): Filter out corefcn/oct-tex-lexer.ll from DIST_SRC and
+	add corefcn/oct-tex-lexer.in.ll instead.
+	(CLEAN_FILES): Add corefcn/oct-tex-parser.output.
+	* libinterp/corefcn/modules.mk (corefcn/oct-tex-lexer.ll,
+	corefcn/oct-tex-symbols.cc): New rules to build the TeX lexer.
+	(corefcn/txt-eng.cc): Add dependency on corefcn/oct-tex-symbols.cc.
+	* libinterp/corefcn/oct-tex-lexer.in.ll: Renamed from oct-tex.lexer.ll.
+	Remove COMMAND state. Remove ID regex. Replace rules for symbols with
+	tag @SYMBOL_RULES@.
+	* libinterp/corefcn/oct-tex-parser.yy (ID, CMD, identifier): Remove
+	tokens.
+	(SYM, sym): New token and value.
+	(symbol_element): Build from SYM.
+	* libinterp/corefcn/oct-tex-symbols.in: New file with supported TeX
+	symbols and corresponding codes (unicode and MS symbols).
+	* libinterp/corefcn/txt-eng.h (class text_element_symbol): Make it
+	inherit from text_element.
+	(text_element_symbol::code): Removed member.
+	(text_element_symbol::symbol): New member.
+	(text_element_symbol::text_element_symbol): Adapt constructor.
+	(text_element_symbol::get_symbol): New method.
+	(text_element_symbol::get_symbol_code): Make const.
+	* libinterp/corefcn/txt-eng.cc (symbol_names, symbol_codes): Remove
+	static variables, now auto-generated from oct-tex-symbols.in.
+	(oct-tex-symbols.cc): New include.
+	(text_element_symbol::get_symbol_code): Change implementation to simply
+	index into auto-generated symbol_codes array.
+	* libinterp/corefcn/txt-eng-ft.cc
+	(ft_render::visit(text_element_symbol)): Don't use
+	text_element_symbol::string_value(), use
+	text_element_symbol::get_symbol() instead.
+
+	Files: libinterp/Makefile.am libinterp/corefcn/module.mk libinterp/corefcn
+	/oct-tex-lexer.in.ll libinterp/corefcn/oct-tex-lexer.ll
+	libinterp/corefcn/oct-tex-parser.yy libinterp/corefcn/oct-tex-
+	symbols.in libinterp/corefcn/txt-eng-ft.cc libinterp/corefcn/txt-
+	eng.cc libinterp/corefcn/txt-eng.h
+
+2013-08-24  John W. Eaton  <jwe@octave.org>
+
+	avoid exiting Octave on parse error (bug #39862)
+
+	* oct-parse.in.yy (input): Use "parse_error" instead of
+	"simple_list parse_error".
+
+	Files: libinterp/parse-tree/oct-parse.in.yy
+
+2013-08-23  Rik  <rik@octave.org>
+
+	importdata.m: Add %!tests for colheaders and rowheaders.
+	* scripts/io/importdata.m: Add %!tests for colheaders and rowheaders.
+	Simplify code in %!tests.
+
+	Files: scripts/io/importdata.m
+
+2013-08-23  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	Handle 8-bits characters correctly in freetype renderer.
+
+	* libinterp/corefcn/txt-eng-ft.cc
+	(ft_render::visit(text_element_string)): Cast std::string characters to
+	"unsigned char" before being implicitly casted to FT_ULong.
+
+	Files: libinterp/corefcn/txt-eng-ft.cc
+
+2013-08-23  John W. Eaton  <jwe@octave.org>
+
+	avoid crash if keyboard command is in startup file (bug #39846)
+
+	* input.cc (octave_base_reader::do_input_echo, get_debug_input):
+	Avoid dereferencing global LEXER variable if it is NULL.
+
+	Files: libinterp/corefcn/input.cc
+
+	allow parser to accept empty statements (bug #37099)
+
+	* oct-parse.in.yy (input1): Delete non-terminal.
+	(input, simple_list): Simplify.  Allow separators at beginning of
+	statement or as only elements on line.
+
+	Files: libinterp/parse-tree/oct-parse.in.yy
+
+2013-08-23  Rik  <rik@octave.org>
+
+	txt-eng.cc: Replace tabs with spaces.
+
+	* libinterp/corefcn/txt-eng.cc: Replace tabs with spaces.  Add FIXME note about
+	linear searching.
+
+	Files: libinterp/corefcn/txt-eng.cc
+
+2013-08-23  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	Add missing TeX symbols and fix few others (bug #39828).
+
+	* libinterp/corefcn/oct-tex-lexer.ll (ID): Allow digit characters.
+	* libinterp/corefcn/txt-eng.cc (symbol_names): Add "angle", "ast",
+	"sim", "Leftarrow" and "Rightarrow".
+	(symbol_codes): Likewise. Fix unicode values for symbols "langle" and
+	"rangle".
+
+	Files: libinterp/corefcn/oct-tex-lexer.ll libinterp/corefcn/txt-eng.cc
+
+	Use interpreter property when rendering text objects (bug #39830).
+
+	* libinterp/corefcn/graphics.cc (text::properties::update_text_extent):
+	Use interpreter property to render text.
+
+	Files: libinterp/corefcn/graphics.cc
+
+2013-08-23  Carnë Draug  <carandraug@octave.org>
+
+	Make use of gripe_disabled_feature() instead of custom error message.
+
+	* urlwrite.cc: make use of the standard gripe_disabled_feature() function
+	  to error, instead of custom error messages.
+	  (__ftp_mode__, __ftp__close): fix weird 3 space indentation.
+
+	Files: libinterp/dldfcn/urlwrite.cc
+
+2013-08-22  John W. Eaton  <jwe@octave.org>
+
+	disallow ~ in global and persistent declaration lists
+
+	* oct-pasre.in.yy (decl2): Omit magic_tilde.
+	(param_list2): Use param_list_elt instead of decl2
+	(param_list_elt): New non-terminal constructed from decl2 and
+	magic_tilde.
+
+	Files: libinterp/parse-tree/oct-parse.in.yy
+
+	avoid reduce/reduce conflict in parser rules
+
+	* oct-parse.in.yy (return_list): Don't accept multiple values outside
+	of square brackets by using identifier instead of return_list1.
+	* pt-misc.h (tree_argument_list::tree_argument_list): New constructor
+	with tree_identifier* as argument.
+	* test/nest/varg_nest2.m: Fix syntax of function declaration.
+
+	Files: libinterp/parse-tree/oct-parse.in.yy libinterp/parse-tree/pt-misc.h
+	test/nest/varg_nest2.m
+
+2013-08-22  Stefan Mahr  <dac922@gmx.de>
+
+	Fix LineStyleOrder cycling when ColorOrder is a single value (bug #39854)
+
+	* __next_line_style__.m: Use number of colors instead of RGB values.
+
+	Files: scripts/plot/private/__next_line_style__.m
+
+2013-08-21  Rik  <rik@octave.org>
+
+	Use Octave coding convention of 1 space after '%!' test prefix.
+
+	* scripts/signal/fftconv.m, scripts/signal/fftshift.m,
+	scripts/testfun/assert.m, test/args.tst:
+	Use Octave coding convention of 1 space after '%!' test prefix.
+
+	Files: scripts/signal/fftconv.m scripts/signal/fftshift.m
+	scripts/testfun/assert.m test/args.tst
+
+	parser.tst: Re-indent and add tests for bug #33304.
+
+	* test/parser.tst: Use just a single space after '%!' before code.
+	Add tests for left-to-right exponentiation operation.
+
+	Files: test/parser.tst
+
+	Use semicolon after "return" statement in core m-files.
+
+	* scripts/general/accumdim.m, scripts/image/imformats.m, scripts/io/textread.m,
+	scripts/io/textscan.m, scripts/linear-algebra/expm.m,
+	scripts/miscellaneous/edit.m, scripts/optimization/lsqnonneg.m,
+	scripts/optimization/pqpnonneg.m, scripts/pkg/private/dirempty.m,
+	scripts/plot/findobj.m, scripts/plot/graphics_toolkit.m,
+	scripts/plot/private/__errplot__.m, scripts/plot/private/__interp_cube__.m,
+	scripts/plot/private/__marching_cube__.m, scripts/plot/subplot.m,
+	scripts/polynomial/residue.m, scripts/sparse/sprandsym.m,
+	scripts/special-matrix/gallery.m, scripts/strings/strjoin.m:
+	Use semicolon after "return" statement in core m-files.
+
+	Files: scripts/general/accumdim.m scripts/image/imformats.m
+	scripts/io/textread.m scripts/io/textscan.m scripts/linear-
+	algebra/expm.m scripts/miscellaneous/edit.m
+	scripts/optimization/lsqnonneg.m scripts/optimization/pqpnonneg.m
+	scripts/pkg/private/dirempty.m scripts/plot/findobj.m
+	scripts/plot/graphics_toolkit.m scripts/plot/private/__errplot__.m
+	scripts/plot/private/__interp_cube__.m
+	scripts/plot/private/__marching_cube__.m scripts/plot/subplot.m
+	scripts/polynomial/residue.m scripts/sparse/sprandsym.m scripts
+	/special-matrix/gallery.m scripts/strings/strjoin.m
+
+	Correct parfor keyword documentation and add some %!tests.
+
+	* libinterp/corefcn/help.cc: Correct deftypefn for parfor to use "parfor".
+
+	* test/for.tst: Add 2 %!tests for parfor.
+
+	* test/jit.tst: Add %!test for parfor for jit.
+
+	Files: libinterp/corefcn/help.cc test/for.tst test/jit.tst
+
+	polyfit.m: Replace NaN*ones(...) with direct construction NaN(...).
+
+	* scripts/polynomial/polyfit.m: Replace NaN*ones(...) with direct construction
+	NaN(...).
+
+	Files: scripts/polynomial/polyfit.m
+
+	test: Add tests for 'end' form of 'endfor', 'endif', etc.
+
+	* test/for.tst, test/if.tst, test/jit.tst, test/switch.tst, test/try.tst,
+	test/unwind.tst, test/while.tst: Add tests for 'end' form of 'endfor', 'endif',
+	etc.
+
+	Files: test/for.tst test/if.tst test/jit.tst test/switch.tst test/try.tst
+	test/unwind.tst test/while.tst
+
+	ellipj.cc: Use Octave coding conventions for %!demos and %!tests.
+
+	* libinterp/corefcn/ellipj.cc: Use Octave coding conventions for %!demos and
+	%!tests.
+
+	Files: libinterp/corefcn/ellipj.cc
+
+	Use '!' not operator rather than '~' in core m-files.
+
+	* scripts/general/interp1.m, scripts/image/rgb2ind.m, scripts/plot/findobj.m,
+	scripts/polynomial/polyfit.m, test/build-sparse-tests.sh,
+	test/classes/@Snork/end.m, test/classes/@Snork/mpower.m,
+	test/classes/@Snork/ne.m, test/classes/@Snork/power.m,
+	test/classes/@Snork/subsasgn.m, test/classes/@Snork/subsref.m,
+	test/classes/@Spork/loadobj.m, test/classes/classes.tst:
+	Use '!' not operator rather than '~' in core m-files.
+
+	Files: scripts/general/interp1.m scripts/image/rgb2ind.m
+	scripts/plot/findobj.m scripts/polynomial/polyfit.m test/build-
+	sparse-tests.sh test/classes/@Snork/end.m
+	test/classes/@Snork/mpower.m test/classes/@Snork/ne.m
+	test/classes/@Snork/power.m test/classes/@Snork/subsasgn.m
+	test/classes/@Snork/subsref.m test/classes/@Spork/loadobj.m
+	test/classes/classes.tst
+
+	Use explicit form of end (endif, endfor, etc.) in core m-files.
+
+	* scripts/general/interp1.m, scripts/image/rgb2ind.m,
+	scripts/plot/__gnuplot_drawnow__.m, scripts/plot/private/__ezplot__.m,
+	scripts/plot/private/__go_draw_axes__.m, scripts/special-matrix/gallery.m,
+	scripts/strings/strjoin.m, scripts/testfun/assert.m, scripts/ui/questdlg.m:
+	Use explicit form of end (endif, endfor, etc.) in core m-files.
+
+	Files: scripts/general/interp1.m scripts/image/rgb2ind.m
+	scripts/plot/__gnuplot_drawnow__.m scripts/plot/private/__ezplot__.m
+	scripts/plot/private/__go_draw_axes__.m scripts/special-
+	matrix/gallery.m scripts/strings/strjoin.m scripts/testfun/assert.m
+	scripts/ui/questdlg.m
+
+	colormap.m: Support axis handle as first argument.
+
+	* scripts/image/colormap.m: Support axis handle as first argument.
+	Reformat docstring.
+
+	Files: scripts/image/colormap.m
+
+	__errplot__.m: Fix bug with loglogerr and negative y values (bug #39837).
+
+	* scripts/plot/private/__errplot__.m: If data values are all negative, take
+	the absolute value before using log to calculate data range.
+
+	Files: scripts/plot/private/__errplot__.m
+
+2013-08-20  Rik  <rik@octave.org>
+
+	subplot.m: Use isaxes() function instead of ishandle() to check for axes.
+
+	* scripts/plot/subplot.m: Use isaxes() function instead of ishandle() to check
+	for axes.
+
+	Files: scripts/plot/subplot.m
+
+	plotmatrix.m: Replace ifelse() construction with if/endif.
+
+	* scripts/plot/plotmatrix.m: Replace ifelse() construction with if/endif.
+	Move argument return out of unwind_protect to end of function.
+
+	Files: scripts/plot/plotmatrix.m
+
+	Correct inversion accidentally introduced in cset 87ba70043bfc.
+
+	* scripts/plot/area.m, scripts/plot/axis.m, scripts/plot/caxis.m,
+	scripts/plot/comet.m, scripts/plot/comet3.m, scripts/plot/compass.m,
+	scripts/plot/contour.m, scripts/plot/contour3.m, scripts/plot/contourf.m,
+	scripts/plot/cylinder.m, scripts/plot/ellipsoid.m, scripts/plot/errorbar.m,
+	scripts/plot/feather.m, scripts/plot/fill.m, scripts/plot/loglog.m,
+	scripts/plot/loglogerr.m, scripts/plot/mesh.m, scripts/plot/meshc.m,
+	scripts/plot/meshz.m, scripts/plot/pcolor.m, scripts/plot/pie.m,
+	scripts/plot/pie3.m, scripts/plot/plot.m, scripts/plot/plot3.m,
+	scripts/plot/polar.m, scripts/plot/private/__bar__.m,
+	scripts/plot/private/__ezplot__.m, scripts/plot/private/__stem__.m,
+	scripts/plot/quiver.m, scripts/plot/quiver3.m, scripts/plot/rectangle.m,
+	scripts/plot/ribbon.m, scripts/plot/rose.m, scripts/plot/scatter.m,
+	scripts/plot/scatter3.m, scripts/plot/semilogx.m, scripts/plot/semilogxerr.m,
+	scripts/plot/semilogy.m, scripts/plot/semilogyerr.m, scripts/plot/slice.m,
+	scripts/plot/sphere.m, scripts/plot/stairs.m, scripts/plot/surf.m,
+	scripts/plot/surfc.m, scripts/plot/surfl.m, scripts/plot/surfnorm.m,
+	scripts/time/datetick.m: check for (! isempty (hax)) before saving
+	current figure.
+
+	Files: scripts/plot/area.m scripts/plot/axis.m scripts/plot/caxis.m
+	scripts/plot/comet.m scripts/plot/comet3.m scripts/plot/compass.m
+	scripts/plot/contour.m scripts/plot/contour3.m
+	scripts/plot/contourf.m scripts/plot/cylinder.m
+	scripts/plot/ellipsoid.m scripts/plot/errorbar.m
+	scripts/plot/feather.m scripts/plot/fill.m scripts/plot/loglog.m
+	scripts/plot/loglogerr.m scripts/plot/mesh.m scripts/plot/meshc.m
+	scripts/plot/meshz.m scripts/plot/pcolor.m scripts/plot/pie.m
+	scripts/plot/pie3.m scripts/plot/plot.m scripts/plot/plot3.m
+	scripts/plot/polar.m scripts/plot/private/__bar__.m
+	scripts/plot/private/__ezplot__.m scripts/plot/private/__stem__.m
+	scripts/plot/quiver.m scripts/plot/quiver3.m
+	scripts/plot/rectangle.m scripts/plot/ribbon.m scripts/plot/rose.m
+	scripts/plot/scatter.m scripts/plot/scatter3.m
+	scripts/plot/semilogx.m scripts/plot/semilogxerr.m
+	scripts/plot/semilogy.m scripts/plot/semilogyerr.m
+	scripts/plot/slice.m scripts/plot/sphere.m scripts/plot/stairs.m
+	scripts/plot/surf.m scripts/plot/surfc.m scripts/plot/surfl.m
+	scripts/plot/surfnorm.m scripts/time/datetick.m
+
+	desktop.m: Fix failing %!error test.
+
+	* scripts/miscellaneous/desktop.m: Correct expected error message to match
+	observed error message.
+
+	Files: scripts/miscellaneous/desktop.m
+
+2013-08-20  Mike Miller  <mtmiller@ieee.org>
+
+	bootstrap: Update from gnulib sources, make portable to OpenBSD (bug #35580)
+
+	* bootstrap: Update from gnulib sources, remove local modifications.
+	* bootstrap.conf: Include use_git and GNULIB_SRCDIR overrides that were
+	in bootstrap. Set SKIP_PO to bypass updating translations since we have
+	none.
+
+	Files: bootstrap bootstrap.conf
+
 2013-08-20  John W. Eaton  <jwe@octave.org>
 
 	bump version number to 3.7.6+
@@ -60,12 +2182,6 @@
 
 	Files: libinterp/corefcn/oct-stream.cc scripts/general/num2str.m
 	test/io.tst
-
-2013-08-12  John W. Eaton  <jwe@octave.org>
-
-	[mq]: fread-fwrite-optimization
-
-	Files: libinterp/corefcn/oct-stream.cc liboctave/util/data-conv.h
 
 2013-08-20  Torsten  <ttl@justmail.de>
 
@@ -478,12 +2594,6 @@
 
 	Files: liboctave/array/Sparse.cc liboctave/operators/Sparse-op-defs.h
 	scripts/general/isequal.m scripts/general/private/__isequal__.m
-
-2013-08-12  John W. Eaton  <jwe@octave.org>
-
-	[mq]: fread-fwrite-optimization
-
-	Files: libinterp/corefcn/oct-stream.cc liboctave/util/data-conv.h
 
 2013-08-19  Mike Miller  <mtmiller@ieee.org>
 

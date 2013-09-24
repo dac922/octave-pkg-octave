@@ -855,30 +855,38 @@ status information on files; and for manipulating file and path names.
 
 @c movefile scripts/miscellaneous/movefile.m
 @anchor{XREFmovefile}
-@deftypefn  {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} movefile (@var{f1}, @var{f2})
-@deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} movefile (@var{f1}, @var{f2}, 'f')
-Move the file @var{f1} to the new name @var{f2}.  The name @var{f1}
-may contain globbing patterns.  If @var{f1} expands to multiple file
-names, @var{f2} must be a directory.  If the force flag @qcode{'f'} is given
-then any existing files will be overwritten without prompting.
+@deftypefn  {Function File} {} movefile (@var{f1})
+@deftypefnx {Function File} {} movefile (@var{f1}, @var{f2})
+@deftypefnx {Function File} {} movefile (@var{f1}, @var{f2}, 'f')
+@deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} movefile (@dots{})
+Move the file @var{f1} to the destination @var{f2}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
-@seealso{@ref{XREFrename,,rename}, @ref{XREFcopyfile,,copyfile}}
+The name @var{f1} may contain globbing patterns.  If @var{f1} expands to
+multiple file names, @var{f2} must be a directory.  If no destination
+@var{f2} is specified then the destination is the present working directory.
+If @var{f2} is a file name then @var{f1} is renamed to @var{f2}.
+When the force flag @qcode{'f'} is given any existing files will be
+overwritten without prompting.
+
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.  Note that the status code is exacly opposite that of the
+@code{system} command.
+@seealso{@ref{XREFrename,,rename}, @ref{XREFcopyfile,,copyfile}, @ref{XREFunlink,,unlink}, @ref{XREFdelete,,delete}, @ref{XREFglob,,glob}}
 @end deftypefn
 
 
 @c rename libinterp/corefcn/dirfns.cc
 @anchor{XREFrename}
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} rename (@var{old}, @var{new})
+@deftypefn  {Built-in Function} {} rename @var{old} @var{new}
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} rename (@var{old}, @var{new})
 Change the name of file @var{old} to @var{new}.
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{@ref{XREFls,,ls}, @ref{XREFdir,,dir}}
+@seealso{@ref{XREFmovefile,,movefile}, @ref{XREFcopyfile,,copyfile}, @ref{XREFls,,ls}, @ref{XREFdir,,dir}}
 @end deftypefn
 
 
@@ -886,17 +894,19 @@ system-dependent error message.
 @anchor{XREFcopyfile}
 @deftypefn  {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} copyfile (@var{f1}, @var{f2})
 @deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} copyfile (@var{f1}, @var{f2}, 'f')
-Copy the file @var{f1} to the new name @var{f2}.  The name @var{f1}
-may contain globbing patterns.  If @var{f1} expands to multiple file
-names, @var{f2} must be a directory.  If the force flag @qcode{'f'} is
-given then existing destination files will be overwritten without
-prompting.
+Copy the file @var{f1} to the destination @var{f2}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
-@seealso{@ref{XREFmovefile,,movefile}}
+The name @var{f1} may contain globbing patterns.  If @var{f1} expands to
+multiple file names, @var{f2} must be a directory.
+when the force flag @qcode{'f'} is given any existing files will be
+overwritten without prompting.
+
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.  Note that the status code is exacly opposite that of the
+@code{system} command.
+@seealso{@ref{XREFmovefile,,movefile}, @ref{XREFrename,,rename}, @ref{XREFunlink,,unlink}, @ref{XREFdelete,,delete}, @ref{XREFglob,,glob}}
 @end deftypefn
 
 
@@ -913,69 +923,77 @@ system-dependent error message.
 
 @c link libinterp/corefcn/dirfns.cc
 @anchor{XREFlink}
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} link (@var{old}, @var{new})
+@deftypefn  {Built-in Function} {} link @var{old} @var{new}
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} link (@var{old}, @var{new})
 Create a new link (also known as a hard link) to an existing file.
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{@ref{XREFsymlink,,symlink}}
+@seealso{@ref{XREFsymlink,,symlink}, @ref{XREFunlink,,unlink}, @ref{XREFreadlink,,readlink}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
 
 @c symlink libinterp/corefcn/dirfns.cc
 @anchor{XREFsymlink}
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} symlink (@var{old}, @var{new})
+@deftypefn  {Built-in Function} {} symlink @var{old} @var{new}
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} symlink (@var{old}, @var{new})
 Create a symbolic link @var{new} which contains the string @var{old}.
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{@ref{XREFlink,,link}, @ref{XREFreadlink,,readlink}}
+@seealso{@ref{XREFlink,,link}, @ref{XREFunlink,,unlink}, @ref{XREFreadlink,,readlink}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
 
 @c readlink libinterp/corefcn/dirfns.cc
 @anchor{XREFreadlink}
-@deftypefn {Built-in Function} {[@var{result}, @var{err}, @var{msg}] =} readlink (@var{symlink})
+@deftypefn  {Built-in Function} {} readlink @var{symlink}
+@deftypefnx {Built-in Function} {[@var{result}, @var{err}, @var{msg}] =} readlink (@var{symlink})
 Read the value of the symbolic link @var{symlink}.
 
 If successful, @var{result} contains the contents of the symbolic link
-@var{symlink}, @var{err} is 0 and @var{msg} is an empty string.
-Otherwise, @var{err} is nonzero and @var{msg} contains a
-system-dependent error message.
-@seealso{@ref{XREFlink,,link}, @ref{XREFsymlink,,symlink}}
+@var{symlink}, @var{err} is 0, and @var{msg} is an empty string.
+Otherwise, @var{err} is nonzero and @var{msg} contains a system-dependent
+error message.
+@seealso{@ref{XREFlstat,,lstat}, @ref{XREFsymlink,,symlink}, @ref{XREFlink,,link}, @ref{XREFunlink,,unlink}, @ref{XREFdelete,,delete}}
 @end deftypefn
 
 
 @c mkdir libinterp/corefcn/dirfns.cc
 @anchor{XREFmkdir}
-@deftypefn  {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@var{dir})
-@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@var{parent}, @var{dir})
+@deftypefn  {Built-in Function} {} mkdir @var{dir}
+@deftypefnx {Built-in Function} {} mkdir (@var{parent}, @var{dir})
+@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} mkdir (@dots{})
 Create a directory named @var{dir} in the directory @var{parent}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
-@seealso{@ref{XREFrmdir,,rmdir}}
+If no @var{parent} directory is specified the present working directory is
+used.
+
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.
+@seealso{@ref{XREFrmdir,,rmdir}, @ref{XREFpwd,,pwd}, @ref{XREFcd,,cd}}
 @end deftypefn
 
 
 @c rmdir libinterp/corefcn/dirfns.cc
 @anchor{XREFrmdir}
-@deftypefn  {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@var{dir})
-@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@var{dir}, "s")
+@deftypefn  {Built-in Function} {} rmdir @var{dir}
+@deftypefnx {Built-in Function} {} rmdir (@var{dir}, "s")
+@deftypefnx {Built-in Function} {[@var{status}, @var{msg}, @var{msgid}] =} rmdir (@dots{})
 Remove the directory named @var{dir}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.
 
 If the optional second parameter is supplied with value @qcode{"s"},
 recursively remove all subdirectories as well.
-@seealso{@ref{XREFmkdir,,mkdir}, @ref{XREFconfirm_recursive_rmdir,,confirm_recursive_rmdir}}
+@seealso{@ref{XREFmkdir,,mkdir}, @ref{XREFconfirm_recursive_rmdir,,confirm_recursive_rmdir}, @ref{XREFpwd,,pwd}}
 @end deftypefn
 
 
@@ -990,17 +1008,20 @@ will ask for confirmation before recursively removing a directory tree.
 When called from inside a function with the @qcode{"local"} option, the
 variable is changed locally for the function and any subroutines it calls.  
 The original variable value is restored when exiting the function.
+@seealso{@ref{XREFrmdir,,rmdir}}
 @end deftypefn
 
 
 @c mkfifo libinterp/corefcn/syscalls.cc
 @anchor{XREFmkfifo}
-@deftypefn {Built-in Function} {[@var{err}, @var{msg}] =} mkfifo (@var{name}, @var{mode})
-Create a @var{fifo} special file named @var{name} with file mode @var{mode}
+@deftypefn  {Built-in Function} {} mkfifo (@var{name}, @var{mode})
+@deftypefnx {Built-in Function} {[@var{err}, @var{msg}] =} mkfifo (@var{name}, @var{mode})
+Create a FIFO special file named @var{name} with file mode @var{mode}
 
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
+@seealso{@ref{XREFpipe,,pipe}}
 @end deftypefn
 
 
@@ -1108,14 +1129,16 @@ For example:
   @result{} err = 0
   @result{} msg =
 @end example
+@seealso{@ref{XREFlstat,,lstat}, @ref{XREFls,,ls}, @ref{XREFdir,,dir}}
 @end deftypefn
 
 
 @c S_ISBLK libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISBLK}
 @deftypefn {Built-in Function} {} S_ISBLK (@var{mode})
-Return true if @var{mode} corresponds to a block device.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a block device.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1123,8 +1146,9 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @c S_ISCHR libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISCHR}
 @deftypefn {Built-in Function} {} S_ISCHR (@var{mode})
-Return true if @var{mode} corresponds to a character device.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a character device.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1132,8 +1156,9 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @c S_ISDIR libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISDIR}
 @deftypefn {Built-in Function} {} S_ISDIR (@var{mode})
-Return true if @var{mode} corresponds to a directory.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a directory.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1141,8 +1166,9 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @c S_ISFIFO libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISFIFO}
 @deftypefn {Built-in Function} {} S_ISFIFO (@var{mode})
-Return true if @var{mode} corresponds to a fifo.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a fifo.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1150,8 +1176,9 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @c S_ISLNK libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISLNK}
 @deftypefn {Built-in Function} {} S_ISLNK (@var{mode})
-Return true if @var{mode} corresponds to a symbolic link.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a symbolic link.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1159,8 +1186,9 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @c S_ISREG libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISREG}
 @deftypefn {Built-in Function} {} S_ISREG (@var{mode})
-Return true if @var{mode} corresponds to a regular file.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a regular file.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1168,8 +1196,9 @@ of @var{mode} is assumed to be returned from a call to @code{stat}.
 @c S_ISSOCK libinterp/corefcn/syscalls.cc
 @anchor{XREFS_ISSOCK}
 @deftypefn {Built-in Function} {} S_ISSOCK (@var{mode})
-Return true if @var{mode} corresponds to a socket.  The value
-of @var{mode} is assumed to be returned from a call to @code{stat}.
+Return true if @var{mode} corresponds to a socket.
+
+The value of @var{mode} is assumed to be returned from a call to @code{stat}.
 @seealso{@ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}}
 @end deftypefn
 
@@ -1233,20 +1262,22 @@ all the matching files.
 @anchor{XREFisdir}
 @deftypefn {Function File} {} isdir (@var{f})
 Return true if @var{f} is a directory.
-@seealso{@ref{XREFis_absolute_filename,,is_absolute_filename}, @ref{XREFis_rooted_relative_filename,,is_rooted_relative_filename}}
+@seealso{@ref{XREFexist,,exist}, @ref{XREFstat,,stat}, @ref{XREFis_absolute_filename,,is_absolute_filename}, @ref{XREFis_rooted_relative_filename,,is_rooted_relative_filename}}
 @end deftypefn
 
 
 @c readdir libinterp/corefcn/dirfns.cc
 @anchor{XREFreaddir}
-@deftypefn {Built-in Function} {[@var{files}, @var{err}, @var{msg}] =} readdir (@var{dir})
-Return names of the files in the directory @var{dir} as a cell array of
-strings.  If an error occurs, return an empty cell array in @var{files}.
+@deftypefn  {Built-in Function} {@var{files} =} readdir (@var{dir})
+@deftypefnx {Built-in Function} {[@var{files}, @var{err}, @var{msg}] =} readdir (@var{dir})
+Return the names of files in the directory @var{dir} as a cell array of
+strings.
 
+If an error occurs, return an empty cell array in @var{files}.
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
-@seealso{@ref{XREFls,,ls}, @ref{XREFdir,,dir}, @ref{XREFglob,,glob}}
+@seealso{@ref{XREFls,,ls}, @ref{XREFdir,,dir}, @ref{XREFglob,,glob}, @ref{XREFwhat,,what}}
 @end deftypefn
 
 
@@ -1270,9 +1301,8 @@ matches any single character, and
 matches any of the enclosed characters.
 @end table
 
-Tilde expansion
-is performed on each of the patterns before looking for matching file
-names.  For example:
+Tilde expansion is performed on each of the patterns before looking for
+matching file names.  For example:
 
 @example
 ls
@@ -1296,14 +1326,14 @@ glob ("file[12]")
         [2,1] = file2
       @}
 @end example
-@seealso{@ref{XREFls,,ls}, @ref{XREFdir,,dir}, @ref{XREFreaddir,,readdir}}
+@seealso{@ref{XREFls,,ls}, @ref{XREFdir,,dir}, @ref{XREFreaddir,,readdir}, @ref{XREFwhat,,what}, @ref{XREFfnmatch,,fnmatch}}
 @end deftypefn
 
 
 @c fnmatch libinterp/corefcn/dirfns.cc
 @anchor{XREFfnmatch}
 @deftypefn {Built-in Function} {} fnmatch (@var{pattern}, @var{string})
-Return 1 or zero for each element of @var{string} that matches any of
+Return true or false for each element of @var{string} that matches any of
 the elements of the string array @var{pattern}, using the rules of
 filename pattern matching.  For example:
 
@@ -1313,6 +1343,7 @@ fnmatch ("a*b", @{"ab"; "axyzb"; "xyzab"@})
      @result{} [ 1; 1; 0 ]
 @end group
 @end example
+@seealso{@ref{XREFglob,,glob}, @ref{XREFregexp,,regexp}}
 @end deftypefn
 
 
@@ -2198,6 +2229,7 @@ into @var{read_fd} and @var{write_fd} respectively.
 If successful, @var{err} is 0 and @var{msg} is an empty string.
 Otherwise, @var{err} is nonzero and @var{msg} contains a
 system-dependent error message.
+@seealso{@ref{XREFmkfifo,,mkfifo}}
 @end deftypefn
 
 
@@ -2540,11 +2572,16 @@ Set the value of the environment variable @var{var} to @var{value}.
 
 @c cd libinterp/corefcn/dirfns.cc
 @anchor{XREFcd}
-@deftypefn  {Command} {} cd dir
-@deftypefnx {Command} {} chdir dir
-Change the current working directory to @var{dir}.  If @var{dir} is
-omitted, the current directory is changed to the user's home
-directory.  For example,
+@deftypefn  {Command} {} cd @var{dir}
+@deftypefnx {Command} {} cd
+@deftypefnx {Built-in Function} {@var{old_dir} =} cd @var{dir}
+@deftypefnx {Command} {} chdir @dots{}
+Change the current working directory to @var{dir}.
+
+If @var{dir} is omitted, the current directory is changed to the user's home
+directory (@qcode{"~"}).
+
+For example,
 
 @example
 cd ~/octave
@@ -2554,7 +2591,13 @@ cd ~/octave
 changes the current working directory to @file{~/octave}.  If the
 directory does not exist, an error message is printed and the working
 directory is not changed.
-@seealso{@ref{XREFmkdir,,mkdir}, @ref{XREFrmdir,,rmdir}, @ref{XREFdir,,dir}}
+
+@code{chdir} is an alias for @code{cd} and can be used in all of the same
+calling formats.
+
+Compatibility Note: When called with no arguments, @sc{matlab} prints the
+present working directory rather than changing to the user's home directory.
+@seealso{@ref{XREFpwd,,pwd}, @ref{XREFmkdir,,mkdir}, @ref{XREFrmdir,,rmdir}, @ref{XREFdir,,dir}, @ref{XREFls,,ls}}
 @end deftypefn
 
 
@@ -2575,7 +2618,7 @@ ls -l
 The @code{dir} and @code{ls} commands are implemented by calling your
 system's directory listing command, so the available options may vary
 from system to system.
-@seealso{@ref{XREFdir,,dir}, @ref{XREFstat,,stat}, @ref{XREFreaddir,,readdir}, @ref{XREFglob,,glob}, @ref{XREFfilesep,,filesep}, @ref{XREFls_command,,ls_command}}
+@seealso{@ref{XREFdir,,dir}, @ref{XREFreaddir,,readdir}, @ref{XREFglob,,glob}, @ref{XREFwhat,,what}, @ref{XREFstat,,stat}, @ref{XREFfilesep,,filesep}, @ref{XREFls_command,,ls_command}}
 @end deftypefn
 
 
@@ -2590,42 +2633,49 @@ Query or set the shell command used by Octave's @code{ls} command.
 
 @c dir scripts/miscellaneous/dir.m
 @anchor{XREFdir}
-@deftypefn  {Function File} {} dir (@var{directory})
+@deftypefn  {Function File} {} dir
+@deftypefnx {Function File} {} dir (@var{directory})
 @deftypefnx {Function File} {[@var{list}] =} dir (@var{directory})
-Display file listing for directory @var{directory}.  If a return
-value is requested, return a structure array with the fields
+Display file listing for directory @var{directory}.
 
-@example
-@group
-name
-bytes
-date
-isdir
-statinfo
-@end group
-@end example
+If @var{directory} is not specified then list the present working directory.
 
-@noindent
-where @code{statinfo} is the structure returned from @code{stat}.
+If a return value is requested, return a structure array with the fields
 
-If @var{directory} is not a directory, return information about the
-named @var{filename}.  @var{directory} may be a list of directories
-specified either by name or with wildcard characters (like * and ?)
-which will be expanded with glob.
+@table @asis
+@item name
+File or directory name. 
+@item date
+Timestamp of file modification (string value).
+@item bytes
+File size in bytes.
+@item isdir
+True if name is a directory. 
+@item datenum
+Timestamp of file modification as serial date number (double).
+@item statinfo
+Information structure returned from @code{stat}.
+@end table
+
+If @var{directory} is a filename, rather than a directory, then return
+information about the named file.  @var{directory} may be a list of
+directories specified either by name or with wildcard characters (like *
+and ?) which will be expanded with @code{glob}.
 
 Note that for symbolic links, @code{dir} returns information about
-the file that the symbolic link points to instead of the link itself.
+the file that the symbolic link points to rather than the link itself.
 However, if the link points to a nonexistent file, @code{dir} returns
 information about the link.
-@seealso{@ref{XREFls,,ls}, @ref{XREFstat,,stat}, @ref{XREFlstat,,lstat}, @ref{XREFreaddir,,readdir}, @ref{XREFglob,,glob}, @ref{XREFfilesep,,filesep}}
+@seealso{@ref{XREFls,,ls}, @ref{XREFreaddir,,readdir}, @ref{XREFglob,,glob}, @ref{XREFwhat,,what}, @ref{XREFstat,,stat}}
 @end deftypefn
 
 
 @c pwd libinterp/corefcn/dirfns.cc
 @anchor{XREFpwd}
-@deftypefn {Built-in Function} {} pwd ()
+@deftypefn  {Built-in Function} {} pwd ()
+@deftypefnx {Built-in Function} {@var{dir} =} pwd ()
 Return the current working directory.
-@seealso{@ref{XREFdir,,dir}, @ref{XREFls,,ls}}
+@seealso{@ref{XREFcd,,cd}, @ref{XREFdir,,dir}, @ref{XREFls,,ls}, @ref{XREFmkdir,,mkdir}, @ref{XREFrmdir,,rmdir}}
 @end deftypefn
 
 

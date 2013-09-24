@@ -1,15 +1,21 @@
-octave (3.7.6-1~ppa1~precise1) precise; urgency=low
-
-  * Import patch from mercurial that fixes a typo in plot functions
-    (cset 68bcac3c043a)
-
- -- Stefan Mahr <dac922@gmx.de>  Thu, 22 Aug 2013 01:25:27 +0200
-
-octave (3.7.6-0~ppa1~precise1) precise; urgency=low
+octave (3.7.7-0~ppa1~precise1) precise; urgency=low
 
   * Backport to precise
 
- -- Stefan Mahr <dac922@gmx.de>  Thu, 22 Aug 2013 00:30:59 +0200
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 24 Sep 2013 14:10:45 +0200
+
+octave (3.7.7-0~ppa1~raring1) raring; urgency=low
+
+  * Imported Unstable version 3.7.7
+
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 24 Sep 2013 13:34:21 +0200
+
+octave (3.7.6-1~ppa1~raring1) raring; urgency=low
+
+  * Import patch from mercurial that fixes a typo in plot functions
+    (cset 68bcac3c043a)
+  
+ -- Stefan Mahr <dac922@gmx.de>  Thu, 22 Aug 2013 01:25:27 +0200
 
 octave (3.7.6-0~ppa1~raring1) raring; urgency=low
 

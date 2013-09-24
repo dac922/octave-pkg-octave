@@ -257,7 +257,7 @@ function [dp, dn, dxf, dsk] = run_test_script (fid, d);
 endfunction
 
 function n = num_elts_matching_pattern (lst, pat)
-  n = sum (cellfun (@(x) !isempty (x), regexp (lst, pat, 'once')));
+  n = sum (! cellfun ("isempty", regexp (lst, pat, 'once')));
 endfunction
 
 function report_files_with_no_tests (with, without, typ)
@@ -267,3 +267,4 @@ function report_files_with_no_tests (with, without, typ)
   n_tot = n_with + n_without;
   printf ("\n%d (of %d) %s files have no tests.\n", n_without, n_tot, typ);
 endfunction
+

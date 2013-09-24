@@ -1,4 +1,4 @@
-#line 40 "lex.ll"
+#line 40 "parse-tree/lex.ll"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -850,7 +850,7 @@ static yyconst flex_int16_t yy_chk[1299] =
 #define yymore() yymore_used_but_not_detected
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
-#line 1 "lex.ll"
+#line 1 "parse-tree/lex.ll"
 /*
 
 Copyright (C) 1993-2012 John W. Eaton
@@ -890,7 +890,7 @@ object) relevant global values before and after the nested call.
 
 
 
-#line 58 "lex.ll"
+#line 58 "parse-tree/lex.ll"
 
 #include <cctype>
 #include <cstring>
@@ -1333,7 +1333,7 @@ YY_DECL
 	register int yy_act;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
-#line 261 "lex.ll"
+#line 261 "parse-tree/lex.ll"
 
 
 
@@ -1430,7 +1430,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 268 "lex.ll"
+#line 268 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<INPUT_FILE_START>{ANY_INCLUDING_NL}");
 
@@ -1451,7 +1451,7 @@ YY_RULE_SETUP
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 286 "lex.ll"
+#line 286 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<COMMAND_START>{NL}");
 
@@ -1468,7 +1468,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 300 "lex.ll"
+#line 300 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<COMMAND_START>[\\;\\,]");
 
@@ -1485,7 +1485,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 314 "lex.ll"
+#line 314 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<COMMAND_START>[\\\"\\']");
 
@@ -1499,7 +1499,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 325 "lex.ll"
+#line 325 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<COMMAND_START>[^#% \\t\\r\\n\\;\\,\\\"\\'][^ \\t\\r\\n\\;\\,]*{S}*");
 
@@ -1513,7 +1513,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 336 "lex.ll"
+#line 336 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<MATRIX_START>{S}*");
 
@@ -1523,7 +1523,7 @@ YY_RULE_SETUP
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 342 "lex.ll"
+#line 342 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<MATRIX_START>{NL}");
 
@@ -1560,7 +1560,7 @@ YY_RULE_SETUP
 
 case 8:
 YY_RULE_SETUP
-#line 377 "lex.ll"
+#line 377 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<MATRIX_START>\\]");
 
@@ -1579,7 +1579,7 @@ YY_RULE_SETUP
 
 case 9:
 YY_RULE_SETUP
-#line 394 "lex.ll"
+#line 394 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<MATRIX_START>\\}*");
 
@@ -1595,7 +1595,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 407 "lex.ll"
+#line 407 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("\\[");
 
@@ -1646,7 +1646,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 455 "lex.ll"
+#line 455 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("\\]");
 
@@ -1671,7 +1671,7 @@ YY_RULE_SETUP
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 478 "lex.ll"
+#line 478 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("^{S}*{CCHAR}\\{{S}*{NL}");
 
@@ -1694,7 +1694,7 @@ YY_RULE_SETUP
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 497 "lex.ll"
+#line 497 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<BLOCK_COMMENT_START>^{S}*{CCHAR}\\{{S}*{NL}");
 
@@ -1715,7 +1715,7 @@ YY_RULE_SETUP
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 515 "lex.ll"
+#line 515 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<BLOCK_COMMENT_START>^{S}*{CCHAR}\\}{S}*{NL}");
 
@@ -1743,7 +1743,7 @@ YY_RULE_SETUP
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 540 "lex.ll"
+#line 540 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<BLOCK_COMMENT_START>.*{NL}");
 
@@ -1758,7 +1758,7 @@ YY_RULE_SETUP
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 552 "lex.ll"
+#line 552 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{S}*{CCHAR}.*{NL}");
 
@@ -1769,7 +1769,7 @@ YY_RULE_SETUP
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 559 "lex.ll"
+#line 559 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<LINE_COMMENT_START>{S}*{CCHAR}.*{NL}");
 
@@ -1854,7 +1854,7 @@ YY_RULE_SETUP
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 641 "lex.ll"
+#line 641 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<LINE_COMMENT_START>{ANY_INCLUDING_NL}");
 
@@ -1870,7 +1870,7 @@ YY_RULE_SETUP
 
 case 19:
 YY_RULE_SETUP
-#line 655 "lex.ll"
+#line 655 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\"\\\"");
 
@@ -1880,7 +1880,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 662 "lex.ll"
+#line 662 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\"");
 
@@ -1903,7 +1903,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 682 "lex.ll"
+#line 682 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\\[0-7]{1,3}");
 
@@ -1920,7 +1920,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 696 "lex.ll"
+#line 696 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\\x[0-9a-fA-F]+");
 
@@ -1938,7 +1938,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 711 "lex.ll"
+#line 711 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\a\"");
 
@@ -1948,7 +1948,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 718 "lex.ll"
+#line 718 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\b\"");
 
@@ -1958,7 +1958,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 725 "lex.ll"
+#line 725 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\f\"");
 
@@ -1968,7 +1968,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 732 "lex.ll"
+#line 732 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\n\"");
 
@@ -1978,7 +1978,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 739 "lex.ll"
+#line 739 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\r\"");
 
@@ -1988,7 +1988,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 746 "lex.ll"
+#line 746 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\t\"");
 
@@ -1998,7 +1998,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 753 "lex.ll"
+#line 753 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\"\\\\v\"");
 
@@ -2008,11 +2008,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 /* rule 30 can match eol */
-#line 761 "lex.ll"
+#line 761 "parse-tree/lex.ll"
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 761 "lex.ll"
+#line 761 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>(\\.\\.\\.){S}*{NL}|<DQ_STRING_START>(\\.\\.\\.){S}*{CCHAR}.*{NL}");
 
@@ -2032,11 +2032,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
-#line 779 "lex.ll"
+#line 779 "parse-tree/lex.ll"
 case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
-#line 779 "lex.ll"
+#line 779 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\\{S}+{NL}|<DQ_STRING_START>\\\\{S}*{CCHAR}.*{NL}");
 
@@ -2057,7 +2057,7 @@ YY_RULE_SETUP
 case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
-#line 796 "lex.ll"
+#line 796 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\\{NL}");
 
@@ -2066,7 +2066,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 802 "lex.ll"
+#line 802 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\\\.");
 
@@ -2076,7 +2076,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 809 "lex.ll"
+#line 809 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>\\.");
 
@@ -2086,7 +2086,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 816 "lex.ll"
+#line 816 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>[^\\.\\\\\\r\\n\\\"]+");
 
@@ -2097,7 +2097,7 @@ YY_RULE_SETUP
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 823 "lex.ll"
+#line 823 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<DQ_STRING_START>{NL}");
 
@@ -2114,7 +2114,7 @@ YY_RULE_SETUP
 
 case 39:
 YY_RULE_SETUP
-#line 838 "lex.ll"
+#line 838 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<SQ_STRING_START>\\'\\'");
 
@@ -2124,7 +2124,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 845 "lex.ll"
+#line 845 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<SQ_STRING_START>\\'");
 
@@ -2147,7 +2147,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 865 "lex.ll"
+#line 865 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<SQ_STRING_START>[^\\'\\n\\r]+");
 
@@ -2158,7 +2158,7 @@ YY_RULE_SETUP
 case 42:
 /* rule 42 can match eol */
 YY_RULE_SETUP
-#line 872 "lex.ll"
+#line 872 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("<SQ_STRING_START>{NL}");
 
@@ -2175,7 +2175,7 @@ YY_RULE_SETUP
 
 case 43:
 YY_RULE_SETUP
-#line 887 "lex.ll"
+#line 887 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{NUMBER}{Im}");
 
@@ -2213,10 +2213,10 @@ case 44:
 *yy_cp = yyg->yy_hold_char; /* undo effects of setting up yytext */
 yyg->yy_c_buf_p = yy_cp -= 2;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
-#line 922 "lex.ll"
+#line 922 "parse-tree/lex.ll"
 case 45:
 YY_RULE_SETUP
-#line 922 "lex.ll"
+#line 922 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{D}+/\\.[\\*/\\\\^\\']|{NUMBER}");
 
@@ -2252,7 +2252,7 @@ YY_RULE_SETUP
 
 case 46:
 YY_RULE_SETUP
-#line 956 "lex.ll"
+#line 956 "parse-tree/lex.ll"
 {
     curr_lexer->current_input_column += yyleng;
 
@@ -2265,7 +2265,7 @@ YY_RULE_SETUP
 case 47:
 /* rule 47 can match eol */
 YY_RULE_SETUP
-#line 966 "lex.ll"
+#line 966 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("\\.\\.\\..*{NL}");
 
@@ -2277,11 +2277,11 @@ YY_RULE_SETUP
 
 case 48:
 /* rule 48 can match eol */
-#line 977 "lex.ll"
+#line 977 "parse-tree/lex.ll"
 case 49:
 /* rule 49 can match eol */
 YY_RULE_SETUP
-#line 977 "lex.ll"
+#line 977 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("\\\\{S}*{NL}|\\\\{S}*{CCHAR}.*{NL}");
 
@@ -2295,6 +2295,8 @@ YY_RULE_SETUP
       warning_with_id ("Octave:deprecated-syntax",
                        "%s; near line %d of file '%s'", msg,
                        curr_lexer->input_line_number, nm.c_str ());
+
+    curr_lexer->handle_continuation ();
   }
 	YY_BREAK
 
@@ -2308,7 +2310,7 @@ case YY_STATE_EOF(BLOCK_COMMENT_START):
 case YY_STATE_EOF(LINE_COMMENT_START):
 case YY_STATE_EOF(DQ_STRING_START):
 case YY_STATE_EOF(SQ_STRING_START):
-#line 996 "lex.ll"
+#line 998 "parse-tree/lex.ll"
 {
    return curr_lexer->handle_end_of_input ();
   }
@@ -2318,7 +2320,7 @@ case YY_STATE_EOF(SQ_STRING_START):
 
 case 50:
 YY_RULE_SETUP
-#line 1004 "lex.ll"
+#line 1006 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{IDENT}");
 
@@ -2354,10 +2356,10 @@ YY_RULE_SETUP
 // Superclass method identifiers.
 
 case 51:
-#line 1040 "lex.ll"
+#line 1042 "parse-tree/lex.ll"
 case 52:
 YY_RULE_SETUP
-#line 1040 "lex.ll"
+#line 1042 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{IDENT}@{IDENT}|{IDENT}@{IDENT}.{IDENT}");
 
@@ -2383,10 +2385,10 @@ YY_RULE_SETUP
 // Metaclass query
 
 case 53:
-#line 1066 "lex.ll"
+#line 1068 "parse-tree/lex.ll"
 case 54:
 YY_RULE_SETUP
-#line 1066 "lex.ll"
+#line 1068 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("\\?{IDENT}|\\?{IDENT}\\.{IDENT}");
 
@@ -2411,7 +2413,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 1088 "lex.ll"
+#line 1090 "parse-tree/lex.ll"
 {
     if (curr_lexer->previous_token_may_be_command ()
         &&  curr_lexer->space_follows_previous_token ())
@@ -2441,7 +2443,7 @@ YY_RULE_SETUP
 case 56:
 /* rule 56 can match eol */
 YY_RULE_SETUP
-#line 1115 "lex.ll"
+#line 1117 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{NL}");
 
@@ -2470,7 +2472,7 @@ YY_RULE_SETUP
 
 case 57:
 YY_RULE_SETUP
-#line 1142 "lex.ll"
+#line 1144 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("'");
 
@@ -2541,7 +2543,7 @@ YY_RULE_SETUP
 
 case 58:
 YY_RULE_SETUP
-#line 1211 "lex.ll"
+#line 1213 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("\\\"");
 
@@ -2593,97 +2595,97 @@ YY_RULE_SETUP
 
 case 59:
 YY_RULE_SETUP
-#line 1261 "lex.ll"
+#line 1263 "parse-tree/lex.ll"
 { CMD_OR_OP (":", ':', true); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 1262 "lex.ll"
+#line 1264 "parse-tree/lex.ll"
 { CMD_OR_OP (".+", EPLUS, false); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 1263 "lex.ll"
+#line 1265 "parse-tree/lex.ll"
 { CMD_OR_OP (".-", EMINUS, false); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 1264 "lex.ll"
+#line 1266 "parse-tree/lex.ll"
 { CMD_OR_OP (".*", EMUL, true); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 1265 "lex.ll"
+#line 1267 "parse-tree/lex.ll"
 { CMD_OR_OP ("./", EDIV, true); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 1266 "lex.ll"
+#line 1268 "parse-tree/lex.ll"
 { CMD_OR_OP (".\\", ELEFTDIV, true); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 1267 "lex.ll"
+#line 1269 "parse-tree/lex.ll"
 { CMD_OR_OP (".^", EPOW, true); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 1268 "lex.ll"
+#line 1270 "parse-tree/lex.ll"
 { CMD_OR_OP (".**", EPOW, false); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 1269 "lex.ll"
+#line 1271 "parse-tree/lex.ll"
 { CMD_OR_OP ("<=", EXPR_LE, true); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 1270 "lex.ll"
+#line 1272 "parse-tree/lex.ll"
 { CMD_OR_OP ("==", EXPR_EQ, true); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 1271 "lex.ll"
+#line 1273 "parse-tree/lex.ll"
 { CMD_OR_OP ("~=", EXPR_NE, true); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 1272 "lex.ll"
+#line 1274 "parse-tree/lex.ll"
 { CMD_OR_OP ("!=", EXPR_NE, false); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 1273 "lex.ll"
+#line 1275 "parse-tree/lex.ll"
 { CMD_OR_OP (">=", EXPR_GE, true); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 1274 "lex.ll"
+#line 1276 "parse-tree/lex.ll"
 { CMD_OR_OP ("&", EXPR_AND, true); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 1275 "lex.ll"
+#line 1277 "parse-tree/lex.ll"
 { CMD_OR_OP ("|", EXPR_OR, true); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 1276 "lex.ll"
+#line 1278 "parse-tree/lex.ll"
 { CMD_OR_OP ("<", EXPR_LT, true); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 1277 "lex.ll"
+#line 1279 "parse-tree/lex.ll"
 { CMD_OR_OP (">", EXPR_GT, true); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 1278 "lex.ll"
+#line 1280 "parse-tree/lex.ll"
 { CMD_OR_OP ("*", '*', true); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 1279 "lex.ll"
+#line 1281 "parse-tree/lex.ll"
 { CMD_OR_OP ("/", '/', true); }
 	YY_BREAK
 
@@ -2691,42 +2693,42 @@ YY_RULE_SETUP
 
 case 78:
 YY_RULE_SETUP
-#line 1285 "lex.ll"
+#line 1287 "parse-tree/lex.ll"
 { return curr_lexer->handle_op ("\\", LEFTDIV); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 1287 "lex.ll"
+#line 1289 "parse-tree/lex.ll"
 { CMD_OR_OP ("^", POW, true); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 1288 "lex.ll"
+#line 1290 "parse-tree/lex.ll"
 { CMD_OR_OP ("**", POW, false); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 1289 "lex.ll"
+#line 1291 "parse-tree/lex.ll"
 { CMD_OR_OP ("&&", EXPR_AND_AND, true); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 1290 "lex.ll"
+#line 1292 "parse-tree/lex.ll"
 { CMD_OR_OP ("||", EXPR_OR_OR, true); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 1291 "lex.ll"
+#line 1293 "parse-tree/lex.ll"
 { CMD_OR_OP ("<<", LSHIFT, false); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 1292 "lex.ll"
+#line 1294 "parse-tree/lex.ll"
 { CMD_OR_OP (">>", RSHIFT, false); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 1294 "lex.ll"
+#line 1296 "parse-tree/lex.ll"
 {
     bool at_beginning_of_statement
       = (! (curr_lexer->whitespace_is_significant ()
@@ -2737,27 +2739,27 @@ YY_RULE_SETUP
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 1302 "lex.ll"
+#line 1304 "parse-tree/lex.ll"
 { CMD_OR_UNARY_OP ("+", '+', true); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 1303 "lex.ll"
+#line 1305 "parse-tree/lex.ll"
 { CMD_OR_UNARY_OP ("-", '-', true); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 1305 "lex.ll"
+#line 1307 "parse-tree/lex.ll"
 { CMD_OR_UNARY_OP ("~", EXPR_NOT, true); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 1306 "lex.ll"
+#line 1308 "parse-tree/lex.ll"
 { CMD_OR_UNARY_OP ("!", EXPR_NOT, false); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 1308 "lex.ll"
+#line 1310 "parse-tree/lex.ll"
 {
     bool at_beginning_of_statement
       = (! (curr_lexer->whitespace_is_significant ()
@@ -2768,24 +2770,24 @@ YY_RULE_SETUP
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 1316 "lex.ll"
+#line 1318 "parse-tree/lex.ll"
 {
     return curr_lexer->handle_op (".'", TRANSPOSE, false);
   }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 1320 "lex.ll"
+#line 1322 "parse-tree/lex.ll"
 { CMD_OR_UNARY_OP ("++", PLUS_PLUS, false); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 1321 "lex.ll"
+#line 1323 "parse-tree/lex.ll"
 { CMD_OR_UNARY_OP ("--", MINUS_MINUS, false); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 1323 "lex.ll"
+#line 1325 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("(");
 
@@ -2831,7 +2833,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 1366 "lex.ll"
+#line 1368 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug (")");
 
@@ -2854,7 +2856,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 1386 "lex.ll"
+#line 1388 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug (".");
 
@@ -2878,7 +2880,7 @@ YY_RULE_SETUP
 
 case 97:
 YY_RULE_SETUP
-#line 1408 "lex.ll"
+#line 1410 "parse-tree/lex.ll"
 {
     curr_lexer->maybe_mark_previous_token_as_variable ();
 
@@ -2887,92 +2889,92 @@ YY_RULE_SETUP
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 1414 "lex.ll"
+#line 1416 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("+=", ADD_EQ); }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 1415 "lex.ll"
+#line 1417 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("-=", SUB_EQ); }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 1416 "lex.ll"
+#line 1418 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("*=", MUL_EQ); }
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 1417 "lex.ll"
+#line 1419 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("/=", DIV_EQ); }
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 1418 "lex.ll"
+#line 1420 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("\\=", LEFTDIV_EQ); }
 	YY_BREAK
 case 103:
 YY_RULE_SETUP
-#line 1419 "lex.ll"
+#line 1421 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (".+=", ADD_EQ); }
 	YY_BREAK
 case 104:
 YY_RULE_SETUP
-#line 1420 "lex.ll"
+#line 1422 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (".-=", SUB_EQ); }
 	YY_BREAK
 case 105:
 YY_RULE_SETUP
-#line 1421 "lex.ll"
+#line 1423 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (".*=", EMUL_EQ); }
 	YY_BREAK
 case 106:
 YY_RULE_SETUP
-#line 1422 "lex.ll"
+#line 1424 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("./=", EDIV_EQ); }
 	YY_BREAK
 case 107:
 YY_RULE_SETUP
-#line 1423 "lex.ll"
+#line 1425 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (".\\=", ELEFTDIV_EQ); }
 	YY_BREAK
 case 108:
 YY_RULE_SETUP
-#line 1424 "lex.ll"
+#line 1426 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("^=", POW_EQ); }
 	YY_BREAK
 case 109:
 YY_RULE_SETUP
-#line 1425 "lex.ll"
+#line 1427 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("^=", POW_EQ); }
 	YY_BREAK
 case 110:
 YY_RULE_SETUP
-#line 1426 "lex.ll"
+#line 1428 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (".^=", EPOW_EQ); }
 	YY_BREAK
 case 111:
 YY_RULE_SETUP
-#line 1427 "lex.ll"
+#line 1429 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (".^=", EPOW_EQ); }
 	YY_BREAK
 case 112:
 YY_RULE_SETUP
-#line 1428 "lex.ll"
+#line 1430 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("&=", AND_EQ); }
 	YY_BREAK
 case 113:
 YY_RULE_SETUP
-#line 1429 "lex.ll"
+#line 1431 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("|=", OR_EQ); }
 	YY_BREAK
 case 114:
 YY_RULE_SETUP
-#line 1430 "lex.ll"
+#line 1432 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP ("<<=", LSHIFT_EQ); }
 	YY_BREAK
 case 115:
 YY_RULE_SETUP
-#line 1431 "lex.ll"
+#line 1433 "parse-tree/lex.ll"
 { CMD_OR_COMPUTED_ASSIGN_OP (">>=", RSHIFT_EQ); }
 	YY_BREAK
 
@@ -2980,7 +2982,7 @@ YY_RULE_SETUP
 
 case 116:
 YY_RULE_SETUP
-#line 1437 "lex.ll"
+#line 1439 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("{");
 
@@ -3026,7 +3028,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
-#line 1480 "lex.ll"
+#line 1482 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug ("}");
 
@@ -3045,7 +3047,7 @@ YY_RULE_SETUP
 
 case 118:
 YY_RULE_SETUP
-#line 1497 "lex.ll"
+#line 1499 "parse-tree/lex.ll"
 {
     curr_lexer->lexer_debug (".");
 
@@ -3071,10 +3073,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 119:
 YY_RULE_SETUP
-#line 1520 "lex.ll"
+#line 1522 "parse-tree/lex.ll"
 ECHO;
 	YY_BREAK
-#line 3078 "parse-tree/lex.cc"
+#line 3080 "parse-tree/lex.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -4242,7 +4244,7 @@ void octave_free (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 1520 "lex.ll"
+#line 1522 "parse-tree/lex.ll"
 
 
 
@@ -5448,11 +5450,7 @@ octave_base_lexer::handle_identifier (void)
       return kw_token;
     }
 
-  // Find the token in the symbol table.  Beware the magic
-  // transformation of the end keyword...
-
-  if (tok == "end")
-    tok = "__end__";
+  // Find the token in the symbol table.
 
   symbol_table::scope_id sid = symtab_context.curr_scope ();
 
@@ -5479,7 +5477,9 @@ octave_base_lexer::handle_identifier (void)
 
   current_input_column += flex_yyleng ();
 
-  if (tok != "__end__")
+  // The magic end index can't be indexed.
+
+  if (tok != "end")
     looking_for_object_index = true;
 
   at_beginning_of_statement = false;

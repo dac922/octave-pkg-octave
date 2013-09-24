@@ -155,6 +155,10 @@ the elements, starting with 1.
 If @var{x} and @var{y} are scalars, a single point is plotted.
 
 @item
+@code{squeeze()} is applied to arguments with more than two dimensions,
+but no more than two singleton dimensions.
+
+@item
 If both arguments are vectors, the elements of @var{y} are plotted versus
 the elements of @var{x}.
 
@@ -749,11 +753,13 @@ of the plot.
 If the first argument @var{hax} is an axes handle, then plot into this axis,
 rather than the current axes returned by @code{gca}.
 
-The optional return value @var{h} is a vector of "stem series" graphics
-handles with one handle per column of the variable @var{y}.  The
-handle regroups the elements of the stem graph together as the
-children of the "stem series" handle, allowing them to be altered
-together.  For example,
+The optional return value @var{h} is a handle to a "stem series" hggroup.
+The single hggroup handle has all of the graphical elements comprising the
+plot as its children; This allows the properties of multiple graphics
+objects to be changed by modifying just a single property of the
+"stem series" hggroup.
+
+For example,
 
 @example
 @group
@@ -768,6 +774,40 @@ set (h(1), "basevalue", -1)
 @noindent
 changes the color of the second "stem series" and moves the base line
 of the first.
+
+Stem Series Properties
+
+@table @asis
+@item linestyle
+The linestyle of the stem.  (Default: @qcode{"-"})
+
+@item linewidth
+The width of the stem.  (Default: 0.5)
+
+@item color
+The color of the stem, and if not separately specified, the marker.
+(Default: "b" [blue])
+
+@item marker
+The marker symbol to use at the top of each stem.  (Default: @qcode{"o"})
+
+@item markeredgecolor
+The edge color of the marker.  (Default: @qcode{"color"} property)
+
+@item markerfacecolor
+The color to use for "filling" the marker.  (Default: @qcode{"none"}
+[unfilled])
+
+@item markersize
+The size of the marker.  (Default: 6)
+
+@item baseline
+The handle of the line object which implements the baseline.  Use @code{set}
+with the returned handle to change graphic properties of the baseline.
+
+@item basevalue
+The y-value where the baseline is drawn.  (Default: 0)
+@end table
 @seealso{@ref{XREFstem3,,stem3}, @ref{XREFbar,,bar}, @ref{XREFhist,,hist}, @ref{XREFplot,,plot}, @ref{XREFstairs,,stairs}}
 @end deftypefn
 
@@ -796,8 +836,9 @@ of the plot.
 If the first argument @var{hax} is an axes handle, then plot into this axis,
 rather than the current axes returned by @code{gca}.
 
-The optional return value @var{h} is a vector with the handles of the line
-and marker objects used to draw the stems as a "stem series" object.
+The optional return value @var{h} is a handle to the "stem series" hggroup
+containing the line and marker objects used for the plot.
+@xref{XREFstem,,stem}, for a description of the "stem series" object.
 
 Example:
 
@@ -829,7 +870,7 @@ Implementation Note: Color definitions with RGB-triples are not valid.
 Draw a 2-D scatter plot.
 
 A marker is plotted at each point defined by the coordinates in the vectors
-@var{x} and  @var{y}.
+@var{x} and @var{y}.
 
 The size of the markers is determined by @var{s}, which can be a scalar
 or a vector of the same length as @var{x} and @var{y}.  If @var{s}
@@ -1184,9 +1225,9 @@ Example:
 @example
 @group
 contour3 (peaks (19));
+colormap cool;
 hold on;
-surface (peaks (19), "facecolor", "none", "EdgeColor", "black");
-colormap hot;
+surf (peaks (19), "facecolor", "none", "edgecolor", "black");
 @end group
 @end example
 
@@ -1645,7 +1686,7 @@ compass (eig (a));
 @end group
 @end example
 
-@seealso{@ref{XREFpolar,,polar}, @ref{XREFquiver,,quiver}, @ref{XREFfeather,,feather}, @ref{XREFplot,,plot}}
+@seealso{@ref{XREFpolar,,polar}, @ref{XREFfeather,,feather}, @ref{XREFquiver,,quiver}, @ref{XREFrose,,rose}, @ref{XREFplot,,plot}}
 @end deftypefn
 
 
@@ -1932,21 +1973,23 @@ function.
 
 @c caxis scripts/plot/caxis.m
 @anchor{XREFcaxis}
-@deftypefn  {Function File} {} caxis (@var{limits})
+@deftypefn  {Function File} {} caxis ([cmin cmax])
 @deftypefnx {Function File} {} caxis ("auto")
 @deftypefnx {Function File} {} caxis ("manual")
 @deftypefnx {Function File} {} caxis (@var{hax}, @dots{})
 @deftypefnx {Function File} {@var{limits} =} caxis ()
 Query or set color axis limits for plots.
 
-The argument @var{limits} should be a 2-element vector specifying the
+The limits argument should be a 2-element vector specifying the
 lower and upper limits to assign to the first and last value in the
-colormap.  Values outside this range are clamped to the first and last
+colormap.  Data values outside this range are clamped to the first and last
 colormap entries.
 
-If @var{limits} is @qcode{"auto"}, then automatic colormap scaling is
-applied, whereas if @var{limits} is @qcode{"manual"} the colormap scaling
-is set to manual.
+If the @qcode{"auto"} option is given then automatic colormap limits are
+applied.  The automatic algorithm sets @var{cmin} to the minimum data value
+and @var{cmax} to the maximum data value.  If @qcode{"manual"} is specified
+then the @qcode{"climmode"} property is set to @qcode{"manual"} and the
+numeric values in the @qcode{"clim"} property are used for limits.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
@@ -1972,18 +2015,17 @@ get or set individual axis limits.  Each has the same form.
 @deftypefnx {Function File} {} xlim ("auto")
 @deftypefnx {Function File} {} xlim ("manual")
 @deftypefnx {Function File} {} xlim (@var{hax}, @dots{})
-Query or set the limits of the x-axis of the current plot.
+Query or set the limits of the x-axis for the current plot.
 
 Called without arguments @code{xlim} returns the x-axis limits of the
 current plot.  With the input query @qcode{"mode"}, return the current
-x-limit calculation mode which is either @qcode{"auto"} or
-@qcode{"manual"}.
+x-limit calculation mode which is either @qcode{"auto"} or @qcode{"manual"}.
 
 If passed a 2-element vector [@var{x_lo} @var{x_hi}], the limits of the
-x-axis are set to these values.
+x-axis are set to these values and the mode is set to @qcode{"manual"}.
 
-The current plotting mode can be set by passing either @qcode{"auto"} or
-@qcode{"manual"} as the argument.
+The current plotting mode can be changed by using either @qcode{"auto"}
+or @qcode{"manual"} as the argument.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
@@ -2349,7 +2391,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -2388,7 +2430,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -2427,7 +2469,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -2490,7 +2532,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the surface is computed by linearly scaling the @var{Z} values
+The color of the surface is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -2532,7 +2574,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the surface is computed by linearly scaling the @var{Z} values
+The color of the surface is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -2986,7 +3028,7 @@ Calculate specular reflection strength of a surface defined by the normal
 vector elements @var{sx}, @var{sy}, @var{sz} using Phong's approximation.
 
 The light source location and viewer location vectors can be specified using
-parameter @var{lv} and  @var{vv} respectively.  The location vectors can
+parameter @var{lv} and @var{vv} respectively.  The location vectors can
 given as 2-element vectors [azimuth, elevation] in degrees or as 3-element
 vectors [x, y, z].
 
@@ -3328,7 +3370,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -4151,21 +4193,23 @@ numbered in column-major order (top to bottom, left to right).
 @anchor{XREFsubplot}
 @deftypefn  {Function File} {} subplot (@var{rows}, @var{cols}, @var{index})
 @deftypefnx {Function File} {} subplot (@var{rcn})
+@deftypefnx {Function File} {} subplot (@var{hax})
 @deftypefnx {Function File} {} subplot (@dots{}, "align")
-@deftypefnx {Function File} {@var{hax} =} subplot (@dots{})
+@deftypefnx {Function File} {} subplot (@dots{}, "replace")
+@deftypefnx {Function File} {} subplot (@dots{}, "position", @var{pos})
+@deftypefnx {Function File} {} subplot (@dots{}, @var{prop}, @var{val}, @dots{})
 @deftypefnx {Function File} {@var{hax} =} subplot (@dots{})
 Set up a plot grid with @var{rows} by @var{cols} subwindows and set the
-current axes for plotting to the location given by @var{index}.
+current axes for plotting (@code{gca}) to the location given by @var{index}.
 
 If only one numeric argument is supplied, then it must be a three digit
-value specifying the location in digits 1 (rows) and 2 (columns) and the
-plot index in digit 3.
+value specifying the the number of rows in in digit 1, the number of
+columns in digit 2, and the plot index in digit 3.
 
-The plot index runs row-wise.  First all the columns in a row are numbered
+The plot index runs row-wise; First, all columns in a row are numbered
 and then the next row is filled.
 
-For example, a plot with 2 by 3 grid will have plot indices running as
-follows:
+For example, a plot with 2x3 grid will have plot indices running as follows:
 @tex
 \vskip 10pt
 \hfil\vbox{\offinterlineskip\hrule
@@ -4190,18 +4234,33 @@ height13pt&4&5&6\cr height12pt&&&\cr\noalign{\hrule}}}
 @end ifnottex
 
 @var{index} may also be a vector.  In this case, the new axis will enclose
-the grid locations specified.  The first demo illustrates an example:
+the grid locations specified.  The first demo illustrates this:
 
 @example
 demo ("subplot", 1)
 @end example
 
+The index of the subplot to make active may also be specified by its axes
+handle, @var{hax}, returned from a previous @code{subplot} command.
+
 If the option @qcode{"align"} is given then the plot boxes of the subwindows
 will align, but this may leave no room for axis tick marks or labels.
 
+If the option @qcode{"replace"} is given then the subplot axis will be
+reset, rather than just switching the current axis for plotting to the
+requested subplot.
+
+The @qcode{"position"} property can be used to exactly position the subplot
+axes within the current figure.  The option @var{pos} is a 4-element vector
+[x, y, width, height] that determines the location and size of the axes.
+The values in @var{pos} are normalized in the range [0,1].
+
+Any property/value pairs are passed directly to the underlying axes object.
+
 If the output @var{hax} is requested, subplot returns the axis handle for
-the subplot.  This is useful for modifying the properties of a subplot.
-@seealso{@ref{XREFaxes,,axes}, @ref{XREFplot,,plot}}
+the subplot.  This is useful for modifying the properties of a subplot
+using @code{set}.
+@seealso{@ref{XREFaxes,,axes}, @ref{XREFplot,,plot}, @ref{XREFgca,,gca}, @ref{XREFset,,set}}
 @end deftypefn
 
 
@@ -4442,7 +4501,7 @@ this figure rather than the current figure returned by @code{gcf}.
 
 The optional return value @var{h} is the graphics handle of the figure
 window that was cleared.
-@seealso{@ref{XREFcla,,cla}, @ref{XREFclose,,close}, @ref{XREFdelete,,delete}}
+@seealso{@ref{XREFcla,,cla}, @ref{XREFclose,,close}, @ref{XREFdelete,,delete}, @ref{XREFreset,,reset}}
 @end deftypefn
 
 
@@ -4464,7 +4523,7 @@ Position, Units.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
-@seealso{@ref{XREFclf,,clf}}
+@seealso{@ref{XREFclf,,clf}, @ref{XREFdelete,,delete}, @ref{XREFreset,,reset}}
 @end deftypefn
 
 
@@ -4498,10 +4557,6 @@ features from a plot without clearing the entire figure.
 @deftypefnx {Command} {} close all hidden
 Close figure window(s).
 
-@code{close} operates by calling the function specified by the
-@qcode{"closerequestfcn"} property for each figure.  By default, the function
-@code{closereq} is used.
-
 When called with no arguments, close the current figure.  This is equivalent
 to @code{close (gcf)}.  If the input @var{h} is a graphic handle, or vector
 of graphics handles, then close each figure in @var{h}.
@@ -4512,10 +4567,12 @@ If the argument @qcode{"all"} is given then all figures with visible handles
 If the argument @qcode{"all hidden"} is given then all figures, including
 hidden ones, are closed.
 
-Implementation Note: @code{close} calls a function to dispose of the figure.
-It is possible that the function will delay or abort removing the figure.
-To remove a figure without executing any callback functions use
-@code{delete}.
+Implementation Note: @code{close} operates by calling the function specified
+by the @qcode{"closerequestfcn"} property for each figure.  By default, the
+function @code{closereq} is used.  It is possible that the function invoked
+will delay or abort removing the figure.  To remove a figure without
+executing any callback functions use @code{delete}.  When writing a callback
+function to close a window do not use @code{close} to avoid recursion.
 
 @seealso{@ref{XREFclosereq,,closereq}, @ref{XREFdelete,,delete}}
 @end deftypefn
@@ -4525,6 +4582,9 @@ To remove a figure without executing any callback functions use
 @anchor{XREFclosereq}
 @deftypefn {Function File} {} closereq ()
 Close the current figure and delete all graphics objects associated with it.
+
+By default, the @qcode{"closerequestfcn"} property of a new plot figure
+points to this function.
 @seealso{@ref{XREFclose,,close}, @ref{XREFdelete,,delete}}
 @end deftypefn
 
@@ -5157,7 +5217,7 @@ the ASCII value is returned in @var{button}.
 @c waitforbuttonpress scripts/plot/waitforbuttonpress.m
 @anchor{XREFwaitforbuttonpress}
 @deftypefn  {Function File} {} waitforbuttonpress ()
-@deftypefnx {Function File} {@var{b} =} waitforbuttonpress ()
+@deftypefnx {Function File} {@var{a} =} waitforbuttonpress ()
 Wait for mouse click or key press over the current figure window.
 
 The return value of @var{b} is 0 if a mouse button was pressed or 1 if a
@@ -7438,6 +7498,7 @@ Remove any defaults set for the handle @var{h}.  The default figure
 properties of @qcode{"position"}, @qcode{"units"},
 @qcode{"windowstyle"} and @qcode{"paperunits"} and the default axes
 properties of @qcode{"position"} and @qcode{"units"} are not reset.
+@seealso{@ref{XREFcla,,cla}, @ref{XREFclf,,clf}}
 @end deftypefn
 
 
@@ -8645,9 +8706,19 @@ This function is currently implemented only for the FLTK graphics toolkit.
 
 @c mouse_wheel_zoom libinterp/dldfcn/__init_fltk__.cc
 @anchor{XREFmouse_wheel_zoom}
-@deftypefn  {Built-in Function} {@var{speed} =} mouse_wheel_zoom ()
-@deftypefnx {Built-in Function} {} mouse_wheel_zoom (@var{speed})
+@deftypefn  {Loadable Function} {@var{val} =} mouse_wheel_zoom ()
+@deftypefnx {Loadable Function} {@var{old_val} =} mouse_wheel_zoom (@var{new_val})
+@deftypefnx {Loadable Function} {} mouse_wheel_zoom (@var{new_val}, "local")
 Query or set the mouse wheel zoom factor.
+
+The zoom factor is a number in the range (0,1) which is the percentage of the
+current axis limits that will be used when zooming.  For example, if the
+current x-axis limits are [0, 50] and @code{mouse_wheel_zoom} is 0.4 (40%),
+then a zoom operation will change the limits by 20.
+
+When called from inside a function with the @qcode{"local"} option, the
+variable is changed locally for the function and any subroutines it calls.  
+The original variable value is restored when exiting the function.
 
 This function is currently implemented only for the FLTK graphics toolkit.
 @seealso{@ref{XREFgui_mode,,gui_mode}}

@@ -80,7 +80,7 @@ DEFUN_DECL (Fuint16);
 DEFUN_DECL (Fuint32);
 DEFUN_DECL (Fuint64);
 DEFUN_DECL (Fuint8);
-DEFUN_DECL (F__end__);
+DEFUN_DECL (Fend);
 DEFUN_DECL (Fdo_braindead_shortcircuit_evaluation);
 DEFUN_DECL (Fmax_recursion_depth);
 DEFUN_DECL (Fsilent_functions);
@@ -108,6 +108,7 @@ DEFUN_DECL (Fbitor);
 DEFUN_DECL (Fbitxor);
 DEFUN_DECL (Fbitshift);
 DEFUN_DECL (Fbitmax);
+DEFUN_DECL (Fflintmax);
 DEFUN_DECL (Fintmax);
 DEFUN_DECL (Fintmin);
 DEFUN_DECL (Fsizemax);
@@ -690,6 +691,7 @@ DEFUN_DECL (Feval);
 DEFUN_DECL (Fassignin);
 DEFUN_DECL (Fevalin);
 DEFUN_DECL (F__parser_debug_flag__);
+DEFUN_DECL (F__parse_file__);
 
 #undef DEFUN_DECL
 

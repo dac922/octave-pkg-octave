@@ -929,6 +929,9 @@
 /* Define to 1 if you have the `ftruncate' function. */
 #undef HAVE_FTRUNCATE
 
+/* Define to 1 if you have the `FT_Reference_Face' function. */
+#undef HAVE_FT_REFERENCE_FACE
+
 /* Define to 1 if you have the `getcwd' function. */
 #undef HAVE_GETCWD
 

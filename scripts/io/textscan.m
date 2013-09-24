@@ -80,8 +80,8 @@
 
 function [C, position] = textscan (fid, format = "%f", varargin)
 
-  BUFLENGTH = 4096;               ## Read buffer
-  emptfmt = 0;                    ## Signals deliberately empty format string
+  BUFLENGTH = 4096;               # Read buffer
+  emptfmt = 0;                    # Signals deliberately empty format string
 
   ## Check input
   if (nargin < 1)
@@ -113,8 +113,7 @@ function [C, position] = textscan (fid, format = "%f", varargin)
   endif
   if (nlines < 1)
     printf ("textscan: N = 0, no data read\n");
-    return
-  endif
+    return;  endif
 
   if (! any (strcmpi (args, "emptyvalue")))
     ## Matlab returns NaNs for missing values
@@ -440,7 +439,7 @@ endfunction
 %! assert (int8 (c{:}{:}), int8 ([ 76,  49,  10,  76,  50 ]));
 
 %!test
-%! # No delimiters at all besides EOL.  Skip fields, even empty fields
+%! ## No delimiters at all besides EOL.  Skip fields, even empty fields
 %! str = "Text1Text2Text\nTextText4Text\nText57Text";
 %! c = textscan (str, "Text%*dText%dText");
 %! assert (c{1}, int32 ([2; 4; 0]));
@@ -661,3 +660,4 @@ endfunction
 %! fclose (fid);
 %! unlink (f);
 %! assert (msg1, lasterr);
+

@@ -19,13 +19,13 @@ dnl Copyright (C) 1993-2012 John W. Eaton
 ### <http://www.gnu.org/licenses/>.
 
 AC_PREREQ([2.62])
-AC_INIT([GNU Octave], [3.7.6], [http://octave.org/bugs.html], [octave])
+AC_INIT([GNU Octave], [3.7.7], [http://octave.org/bugs.html], [octave])
 
 dnl PACKAGE_VERSION is set by the AC_INIT VERSION arg
 OCTAVE_VERSION="$PACKAGE_VERSION"
 OCTAVE_API_VERSION_NUMBER="48"
 OCTAVE_API_VERSION="api-v$OCTAVE_API_VERSION_NUMBER+"
-OCTAVE_RELEASE_DATE="2013-08-20"
+OCTAVE_RELEASE_DATE="2013-09-23"
 OCTAVE_COPYRIGHT="Copyright (C) 2013 John W. Eaton and others."
 AC_SUBST(OCTAVE_VERSION)
 AC_SUBST(OCTAVE_API_VERSION_NUMBER)
@@ -41,7 +41,11 @@ AC_CONFIG_HEADERS([config.h:config.in.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.11 tar-ustar])
+AM_INIT_AUTOMAKE([1.11 tar-ustar subdir-objects])
+
+## Add the option to enable silent rules, available since Automake 1.11
+## and included by default starting with Automake 1.13.
+AM_SILENT_RULES
 
 OCTAVE_CANONICAL_HOST
 
@@ -742,6 +746,7 @@ if test $build_jit = yes; then
 
     save_CPPFLAGS="$CPPFLAGS"
     save_CXXFLAGS="$CXXFLAGS"
+    save_LDFLAGS="$LDFLAGS"
 
     ## Use -isystem if available because we don't want to see warnings in LLVM
     LLVM_INCLUDE_FLAG=-I
@@ -753,7 +758,11 @@ if test $build_jit = yes; then
     LLVM_CPPFLAGS="$LLVM_INCLUDE_FLAG `$LLVM_CONFIG --includedir`"
     LLVM_CXXFLAGS=
     LLVM_LDFLAGS="-L`$LLVM_CONFIG --libdir`"
-    LLVM_LIBS=`$LLVM_CONFIG --libs`
+
+
+    LDFLAGS="$LDFLAGS $LLVM_LDFLAGS"
+    LLVM_SO=LLVM-`$LLVM_CONFIG --version`
+    AC_CHECK_LIB([$LLVM_SO], [LLVMBuildAdd], [LLVM_LIBS="-l$LLVM_SO"], [LLVM_LIBS=`$LLVM_CONFIG --libs`])
 
     dnl
     dnl Define some extra flags that LLVM requires in order to include headers.
@@ -792,6 +801,7 @@ if test $build_jit = yes; then
     AC_LANG_POP(C++)
     CPPFLAGS="$save_CPPFLAGS"
     CXXFLAGS="$save_CXXFLAGS"
+    LDFLAGS="$save_LDFLAGS"
   fi
 
   if test -z "$warn_llvm"; then
@@ -1069,6 +1079,10 @@ if test -n "$OPENGL_LIBS"; then
       AC_MSG_RESULT(yes)
       AC_DEFINE(HAVE_FREETYPE, 1, [Define to 1 if you have Freetype library.])
       XTRA_CXXFLAGS="$XTRA_CXXFLAGS $FT2_CFLAGS"
+      save_LIBS="$LIBS"
+      LIBS="$FT2_LIBS $LIBS"
+      AC_CHECK_FUNCS([FT_Reference_Face])
+      LIBS="$save_LIBS"
     else
       AC_MSG_RESULT(no)
       warn_freetype="FreeType library not found.  Native graphics will be disabled."

@@ -1461,7 +1461,7 @@ When the input is an Octave object @var{obj}, the names are the public
 properties of the object.
 
 When the input is a Java object @var{javaobj} or Java classname
-@var{jclassname}) the name are the public data elements of the object or
+@var{jclassname} the name are the public data elements of the object or
 class.
 @seealso{struct, methods}
 @end deftypefn
@@ -2040,7 +2040,7 @@ Return true if @var{x} is a column vector.
 -*- texinfo -*-
 @deftypefn {Function File} {} isdir (@var{f})
 Return true if @var{f} is a directory.
-@seealso{is_absolute_filename, is_rooted_relative_filename}
+@seealso{exist, stat, is_absolute_filename, is_rooted_relative_filename}
 @end deftypefn
 isequal
 @c isequal scripts/general/isequal.m
@@ -3557,15 +3557,17 @@ executing function.
 -*- texinfo -*-
 @deftypefn  {Command} {} type @var{name} @dots{}
 @deftypefnx {Command} {} type -q @var{name} @dots{}
-@deftypefnx {Function File} {dfns =} type ("@var{name}", @dots{})
-Display the definition of each @var{name} that refers to a function.
+@deftypefnx {Function File} {text =} type ("@var{name}", @dots{})
+Display the contents of @var{name} which may be a file, function (m-file),
+variable, operator, or keyword.
 
-Normally also displays whether each @var{name} is user-defined or built-in;
-the @option{-q} option suppresses this behavior.
+@code{type} normally prepends a header line describing the category
+of @var{name} such as function or variable;  The @option{-q} option
+suppresses this behavior.
 
-If an output argument is requested nothing is displayed.  Instead, a cell
-array of strings is returned, where each element corresponds to the
-definition of each requested function.
+If no output variable is used the contents are displayed on screen.
+Otherwise, a cell array of strings is returned, where each element
+corresponds to the contents of each requested function.
 @end deftypefn
 which
 @c which scripts/help/which.m
@@ -3700,10 +3702,12 @@ If unspecified, the length of the current colormap, or 64, is used.
 @deftypefn  {Function File} {@var{cmap} =} colormap ()
 @deftypefnx {Function File} {@var{cmap} =} colormap (@var{map})
 @deftypefnx {Function File} {@var{cmap} =} colormap ("default")
-@deftypefnx {Function File} {@var{cmap} =} colormap ("list")
-@deftypefnx {Function File} {@var{cmap} =} colormap ("register", "@var{name}")
-@deftypefnx {Function File} {@var{cmap} =} colormap ("unregister", "@var{name}")
+@deftypefnx {Function File} {@var{cmap} =} colormap ("@var{map_name}")
+@deftypefnx {Function File} {@var{cmap} =} colormap (@var{hax}, @dots{})
 @deftypefnx {Command} {} colormap @var{map_name}
+@deftypefnx {Function File} {@var{cmaps} =} colormap ("list")
+@deftypefnx {Function File} {} colormap ("register", "@var{name}")
+@deftypefnx {Function File} {} colormap ("unregister", "@var{name}")
 Query or set the current colormap.
 
 With no input arguments, @code{colormap} returns the current color map.
@@ -3716,13 +3720,18 @@ must be between 0 and 1 inclusive.  The new colormap is returned.
 @code{colormap ("default")} restores the default colormap (the
 @code{jet} map with 64 entries).  The default colormap is returned.
 
-@code{colormap ("list")} returns a cell array with all of the available
-colormaps.  The options @qcode{"register"} and @qcode{"unregister"} will
-add or remove the colormap @var{name} from this list.
+The map may also be specified by a string, @qcode{"@var{map_name}"}, where
+@var{map_name} is the name of a function that returns a colormap.
+
+If the first argument @var{hax} is an axes handle, then the colormap for
+the parent figure of @var{hax} is queried or set.
 
 For convenience, it is also possible to use this function with the
-command form, where @var{map_name} must be the name of a function
-that returns a colormap.
+command form, @code{colormap @var{map_name}}.
+
+@code{colormap ("list")} returns a cell array with all of the available
+colormaps.  The options @qcode{"register"} and @qcode{"unregister"}
+add or remove the colormap @var{name} from this list.
 
 @seealso{jet}
 @end deftypefn
@@ -3936,11 +3945,14 @@ The output structure @var{info} contains the following fields:
 @item Filename
 The full name of the image file.
 
+@item FileModDate
+Date of last modification to the file.
+
 @item FileSize
 Number of bytes of the image on disk
 
-@item FileModDate
-Date of last modification to the file.
+@item Format
+Image format (e.g., @qcode{"jpeg"}).
 
 @item Height
 Image height in pixels.
@@ -3951,11 +3963,9 @@ Image Width in pixels.
 @item BitDepth
 Number of bits per channel per pixel.
 
-@item Format
-Image format (e.g., @qcode{"jpeg"}).
-
-@item LongFormat
-Long form image format description.
+@item ColorType
+Image type.  Value is @qcode{"grayscale"}, @qcode{"indexed"},
+@qcode{"truecolor"}, @qcode{"CMYK"}, or @qcode{"undefined"}.
 
 @item XResolution
 X resolution of the image.
@@ -3963,19 +3973,16 @@ X resolution of the image.
 @item YResolution
 Y resolution of the image.
 
-@item TotalColors
-Number of unique colors in the image.
+@item ResolutionUnit
+Units of image resolution.  Value is @qcode{"Inch"},
+@qcode{"Centimeter"}, or @qcode{"undefined"}.
 
-@item TileName
-Tile name.
-
-@item AnimationDelay
+@item DelayTime
 Time in 1/100ths of a second (0 to 65535) which must expire before displaying
 the next image in an animated sequence.
 
-@item AnimationIterations
-Number of iterations to loop an animation (e.g., Netscape loop extension)
-for.
+@item LoopCount
+Number of iterations to loop an animation.
 
 @item ByteOrder
 Endian option for formats that support it.  Value is @qcode{"little-endian"},
@@ -3985,29 +3992,66 @@ Endian option for formats that support it.  Value is @qcode{"little-endian"},
 Gamma level of the image.  The same color image displayed on two different
 workstations may look different due to differences in the display monitor.
 
-@item Matte
-@code{true} if the image has transparency.
-
-@item ModulusDepth
-Image modulus depth (minimum number of bits required to support
-red/green/blue components without loss of accuracy).
-
 @item Quality
-JPEG/MIFF/PNG compression level.
+JPEG/MIFF/PNG compression level.  Value is an integer in the range [0 100].
 
-@item QuantizeColors
-Preferred number of colors in the image.
+@item DisposalMethod
+Only valid for GIF images, control how successive frames are rendered (how
+the preceding frame is disposed of) when creating a GIF animation.  Values
+can be @qcode{"doNotSpecify"}, @qcode{"leaveInPlace"}, @qcode{"restoreBG"},
+or @qcode{"restorePrevious"}.  For non-GIF files, value is an empty string.
 
-@item ResolutionUnits
-Units of image resolution.  Value is @qcode{"pixels per inch"},
-@qcode{"pixels per centimeter"}, or @qcode{"undefined"}.
+@item Chromaticities
+Value is a 1x8 Matrix with the x,y chromaticity values for white, red,
+green, and blue points, in that order.
 
-@item ColorType
-Image type.  Value is @qcode{"grayscale"}, @qcode{"indexed"},
-@qcode{"truecolor"}, or @qcode{"undefined"}.
+@item Comment
+Image comment.
 
-@item View
-FlashPix viewing parameters.
+@item Compression
+Compression type.  Value can be @qcode{"none"}, @qcode{"bzip"},
+@qcode{"fax3"}, @qcode{"fax4"}, @qcode{"jpeg"}, @qcode{"lzw"},
+@qcode{"rle"}, @qcode{"deflate"}, @qcode{"lzma"}, @qcode{"jpeg2000"},
+@qcode{"jbig2"}, @qcode{"jbig2"}, or @qcode{"undefined"}.
+
+@item Colormap
+Colormap for each image.
+
+@item Orientation
+The orientation of the image with respect to the rows and columns.  Value
+is an integer between 1 and 8 as defined in the TIFF 6 specifications, and
+for @sc{Matlab} compatibility.
+
+@item Software
+Name and version of the software or firmware of the camera or image input
+device used to generate the image.
+
+@item Make
+The manufacturer of the recording equipment.  This is the manufacture of the
+DSC, scanner, video digitizer or other equipment that generated the image.
+
+@item Model
+The model name or model number of the recording equipment as mentioned
+on the field @qcode{"Make"}.
+
+@item DateTime
+The date and time of image creation as defined by the Exif standard, i.e,
+it is the date and time the file was changed.
+
+@item ImageDescription
+The title of the image as defined by the Exif standard.
+
+@item Artist
+Name of the camera owner, photographer or image creator.
+
+@item Copyright
+Copyright notice of the person or organization claiming rights to the image.
+
+@item DigitalCamera
+A struct with information retrieved from the Exif tag.
+
+@item GPSInfo
+A struct with geotagging information retrieved from the Exif tag.
 @end table
 
 @seealso{imread, imwrite, imshow, imformats}
@@ -4085,12 +4129,17 @@ format of the image.  A color image is returned as an
 @nospell{MxNx3} matrix.  Gray-level and black-and-white images are
 of size @nospell{MxN}.  Multipage images will have an additional 4th
 dimension.
+
 The bit depth of the image determines the
-class of the output: @qcode{"uint8"} or @qcode{"uint16"} for gray
-and color, and @qcode{"logical"} for black and white.
+class of the output: @qcode{"uint8"}, @qcode{"uint16"} or @qcode{"single"}
+for gray and color, and @qcode{"logical"} for black and white.
 Note that indexed images always return the indexes for a colormap,
 independent if @var{map} is a requested output.  To obtain the actual
-RGB image, use @code{ind2rgb}.
+RGB image, use @code{ind2rgb}.  When more than one indexed image is being
+read, @var{map} is obtained from the first.  In some rare cases this
+may be incorrect and @code{imfinfo} can be used to obtain the colormap of
+each image.
+
 See the Octave manual for more information in representing images.
 
 Some file formats, such as TIFF and GIF, are able to store multiple
@@ -4182,6 +4231,13 @@ of images with @var{param}, @var{val} pairs.  The following options
 are supported:
 
 @table @samp
+@item Alpha
+Alpha (transparency) channel for the image.  This must be a matrix with
+same class, and number of rows and columns of @var{img}.  In case of a
+multipage image, the size of the 4th dimension must also match and the third
+dimension must be a singleton.  By default, image will be completely
+opaque.
+
 @item Quality
 Set the quality of the compression.  The value should be an
 integer between 0 and 100, with larger values indicating higher visual
@@ -4370,16 +4426,14 @@ Convert an image in red-green-blue (RGB) color space to an indexed image.
 
 The input image @var{rgb} must be an N-dimensional RGB image
 (@nospell{MxNxO}@dots{}x3 array) where M,N,O@dots{} are the image
-dimensions, and the
-final dimension contains the values in the red, green and blue
-channels.  Alternatively, the red, green and blue color channels can
-be input as separate arrays @var{R}, @var{G} and  @var{B}.
+dimensions, and the final dimension contains the values in the red, green
+and blue channels.  Alternatively, the red, green and blue color channels
+can be input as separate arrays @var{R}, @var{G}, and @var{B}.
 
-The input @var{map} defines the colormap to be used.  Alternatively,
-@var{n} or @var{tol} may be used to define the maximum number of
-colors to use in an automatically generated colormap.  @var{n} is
-related to @var{tol} by:  @var{n} = (floor (1/@var{tol}) + 1)^3;
-@var{tol} must be >0 and @leq{}1.
+The input @var{map} defines the colormap to be used.  Alternatively, @var{n}
+or @var{tol} may be used to define the maximum number of colors to use in an
+automatically generated colormap.  @var{n} is related to @var{tol} by:
+@var{n} = (floor (1/@var{tol}) + 1)^3; where 0 < @var{tol} @leq{} 1.
 
 @var{dither_option} is a string which enables or disables dithering:
 @qcode{"dither"} (default) or @qcode{"nodither"}.
@@ -4663,22 +4717,21 @@ Read the contents of @var{filename} and return it as a string.
 @deftypefnx {Function File} {@var{A} =} importdata (@var{fname}, @var{delimiter}, @var{header_rows})
 @deftypefnx {Function File} {[@var{A}, @var{delimiter}] =} importdata (@dots{})
 @deftypefnx {Function File} {[@var{A}, @var{delimiter}, @var{header_rows}] =} importdata (@dots{})
-Importing data from file.
-
-Importing the contents of file @var{fname} into workspace.
+Import data from the file @var{fname}.
 
 Input parameters:
 
 @itemize
 @item @var{fname}
-The file name for the file to import.
+The name of the file containing data.
 
 @item @var{delimiter}
 The character separating columns of data.  Use @code{\t} for tab.
-(Only valid for ascii files)
+(Only valid for ASCII files)
 
 @item @var{header_rows}
-Number of header rows before the data begins.  (Only valid for ascii files)
+The number of header rows before the data begins.  (Only valid for ASCII
+files)
 @end itemize
 
 Different file types are supported:
@@ -4686,7 +4739,7 @@ Different file types are supported:
 @itemize
 @item ASCII table
 
-Importing ASCII table using the specified number of header rows and
+Import ASCII table using the specified number of header rows and
 the specified delimiter.
 
 @item Image file
@@ -5925,17 +5978,19 @@ running.
 -*- texinfo -*-
 @deftypefn  {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} copyfile (@var{f1}, @var{f2})
 @deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} copyfile (@var{f1}, @var{f2}, 'f')
-Copy the file @var{f1} to the new name @var{f2}.  The name @var{f1}
-may contain globbing patterns.  If @var{f1} expands to multiple file
-names, @var{f2} must be a directory.  If the force flag @qcode{'f'} is
-given then existing destination files will be overwritten without
-prompting.
+Copy the file @var{f1} to the destination @var{f2}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
-@seealso{movefile}
+The name @var{f1} may contain globbing patterns.  If @var{f1} expands to
+multiple file names, @var{f2} must be a directory.
+when the force flag @qcode{'f'} is given any existing files will be
+overwritten without prompting.
+
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.  Note that the status code is exacly opposite that of the
+@code{system} command.
+@seealso{movefile, rename, unlink, delete, glob}
 @end deftypefn
 debug
 @c debug scripts/miscellaneous/debug.m
@@ -6007,8 +6062,8 @@ where the breakpoint was encountered becomes available and any Octave
 command that is valid in that workspace context may be executed.
 
 @seealso{dbstop, dbclear, dbstatus, dbwhere, dbtype, dbcont, dbquit,
-         dbstack, dbup, dbdown, keyboard, debug_on_error, debug_on_warning,
-         debug_on_interrupt, isdebugmode}
+dbstack, dbup, dbdown, keyboard, debug_on_error, debug_on_warning,
+debug_on_interrupt, isdebugmode}
 @end deftypefn
 delete
 @c delete scripts/miscellaneous/delete.m
@@ -6031,34 +6086,40 @@ Return true if the desktop (GUI) is currently in use.
 dir
 @c dir scripts/miscellaneous/dir.m
 -*- texinfo -*-
-@deftypefn  {Function File} {} dir (@var{directory})
+@deftypefn  {Function File} {} dir
+@deftypefnx {Function File} {} dir (@var{directory})
 @deftypefnx {Function File} {[@var{list}] =} dir (@var{directory})
-Display file listing for directory @var{directory}.  If a return
-value is requested, return a structure array with the fields
+Display file listing for directory @var{directory}.
 
-@example
-@group
-name
-bytes
-date
-isdir
-statinfo
-@end group
-@end example
+If @var{directory} is not specified then list the present working directory.
 
-@noindent
-where @code{statinfo} is the structure returned from @code{stat}.
+If a return value is requested, return a structure array with the fields
 
-If @var{directory} is not a directory, return information about the
-named @var{filename}.  @var{directory} may be a list of directories
-specified either by name or with wildcard characters (like * and ?)
-which will be expanded with glob.
+@table @asis
+@item name
+File or directory name. 
+@item date
+Timestamp of file modification (string value).
+@item bytes
+File size in bytes.
+@item isdir
+True if name is a directory. 
+@item datenum
+Timestamp of file modification as serial date number (double).
+@item statinfo
+Information structure returned from @code{stat}.
+@end table
+
+If @var{directory} is a filename, rather than a directory, then return
+information about the named file.  @var{directory} may be a list of
+directories specified either by name or with wildcard characters (like *
+and ?) which will be expanded with @code{glob}.
 
 Note that for symbolic links, @code{dir} returns information about
-the file that the symbolic link points to instead of the link itself.
+the file that the symbolic link points to rather than the link itself.
 However, if the link points to a nonexistent file, @code{dir} returns
 information about the link.
-@seealso{ls, stat, lstat, readdir, glob, filesep}
+@seealso{ls, readdir, glob, what, stat}
 @end deftypefn
 dos
 @c dos scripts/miscellaneous/dos.m
@@ -6494,7 +6555,7 @@ ls -l
 The @code{dir} and @code{ls} commands are implemented by calling your
 system's directory listing command, so the available options may vary
 from system to system.
-@seealso{dir, stat, readdir, glob, filesep, ls_command}
+@seealso{dir, readdir, glob, what, stat, filesep, ls_command}
 @end deftypefn
 ls_command
 @c ls_command scripts/miscellaneous/ls_command.m
@@ -6659,18 +6720,25 @@ The file to compile or link.  Recognized file types are
 movefile
 @c movefile scripts/miscellaneous/movefile.m
 -*- texinfo -*-
-@deftypefn  {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} movefile (@var{f1}, @var{f2})
-@deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} movefile (@var{f1}, @var{f2}, 'f')
-Move the file @var{f1} to the new name @var{f2}.  The name @var{f1}
-may contain globbing patterns.  If @var{f1} expands to multiple file
-names, @var{f2} must be a directory.  If the force flag @qcode{'f'} is given
-then any existing files will be overwritten without prompting.
+@deftypefn  {Function File} {} movefile (@var{f1})
+@deftypefnx {Function File} {} movefile (@var{f1}, @var{f2})
+@deftypefnx {Function File} {} movefile (@var{f1}, @var{f2}, 'f')
+@deftypefnx {Function File} {[@var{status}, @var{msg}, @var{msgid}] =} movefile (@dots{})
+Move the file @var{f1} to the destination @var{f2}.
 
-If successful, @var{status} is 1, with @var{msg} and @var{msgid} empty
-character strings.  Otherwise, @var{status} is 0, @var{msg} contains a
-system-dependent error message, and @var{msgid} contains a unique
-message identifier.
-@seealso{rename, copyfile}
+The name @var{f1} may contain globbing patterns.  If @var{f1} expands to
+multiple file names, @var{f2} must be a directory.  If no destination
+@var{f2} is specified then the destination is the present working directory.
+If @var{f2} is a file name then @var{f1} is renamed to @var{f2}.
+When the force flag @qcode{'f'} is given any existing files will be
+overwritten without prompting.
+
+If successful, @var{status} is 1, and @var{msg}, @var{msgid} are empty
+character strings ("").  Otherwise, @var{status} is 0, @var{msg} contains a
+system-dependent error message, and @var{msgid} contains a unique message
+identifier.  Note that the status code is exacly opposite that of the
+@code{system} command.
+@seealso{rename, copyfile, unlink, delete, glob}
 @end deftypefn
 namelengthmax
 @c namelengthmax scripts/miscellaneous/namelengthmax.m
@@ -9621,21 +9689,23 @@ this axis rather than the current axes returned by @code{gca}.
 caxis
 @c caxis scripts/plot/caxis.m
 -*- texinfo -*-
-@deftypefn  {Function File} {} caxis (@var{limits})
+@deftypefn  {Function File} {} caxis ([cmin cmax])
 @deftypefnx {Function File} {} caxis ("auto")
 @deftypefnx {Function File} {} caxis ("manual")
 @deftypefnx {Function File} {} caxis (@var{hax}, @dots{})
 @deftypefnx {Function File} {@var{limits} =} caxis ()
 Query or set color axis limits for plots.
 
-The argument @var{limits} should be a 2-element vector specifying the
+The limits argument should be a 2-element vector specifying the
 lower and upper limits to assign to the first and last value in the
-colormap.  Values outside this range are clamped to the first and last
+colormap.  Data values outside this range are clamped to the first and last
 colormap entries.
 
-If @var{limits} is @qcode{"auto"}, then automatic colormap scaling is
-applied, whereas if @var{limits} is @qcode{"manual"} the colormap scaling
-is set to manual.
+If the @qcode{"auto"} option is given then automatic colormap limits are
+applied.  The automatic algorithm sets @var{cmin} to the minimum data value
+and @var{cmax} to the maximum data value.  If @qcode{"manual"} is specified
+then the @qcode{"climmode"} property is set to @qcode{"manual"} and the
+numeric values in the @qcode{"clim"} property are used for limits.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
@@ -9662,7 +9732,7 @@ Position, Units.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
-@seealso{clf}
+@seealso{clf, delete, reset}
 @end deftypefn
 clabel
 @c clabel scripts/plot/clabel.m
@@ -9733,7 +9803,7 @@ this figure rather than the current figure returned by @code{gcf}.
 
 The optional return value @var{h} is the graphics handle of the figure
 window that was cleared.
-@seealso{cla, close, delete}
+@seealso{cla, close, delete, reset}
 @end deftypefn
 close
 @c close scripts/plot/close.m
@@ -9743,10 +9813,6 @@ window that was cleared.
 @deftypefnx {Command} {} close all
 @deftypefnx {Command} {} close all hidden
 Close figure window(s).
-
-@code{close} operates by calling the function specified by the
-@qcode{"closerequestfcn"} property for each figure.  By default, the function
-@code{closereq} is used.
 
 When called with no arguments, close the current figure.  This is equivalent
 to @code{close (gcf)}.  If the input @var{h} is a graphic handle, or vector
@@ -9758,10 +9824,12 @@ If the argument @qcode{"all"} is given then all figures with visible handles
 If the argument @qcode{"all hidden"} is given then all figures, including
 hidden ones, are closed.
 
-Implementation Note: @code{close} calls a function to dispose of the figure.
-It is possible that the function will delay or abort removing the figure.
-To remove a figure without executing any callback functions use
-@code{delete}.
+Implementation Note: @code{close} operates by calling the function specified
+by the @qcode{"closerequestfcn"} property for each figure.  By default, the
+function @code{closereq} is used.  It is possible that the function invoked
+will delay or abort removing the figure.  To remove a figure without
+executing any callback functions use @code{delete}.  When writing a callback
+function to close a window do not use @code{close} to avoid recursion.
 
 @seealso{closereq, delete}
 @end deftypefn
@@ -9770,6 +9838,9 @@ To remove a figure without executing any callback functions use
 -*- texinfo -*-
 @deftypefn {Function File} {} closereq ()
 Close the current figure and delete all graphics objects associated with it.
+
+By default, the @qcode{"closerequestfcn"} property of a new plot figure
+points to this function.
 @seealso{close, delete}
 @end deftypefn
 colorbar
@@ -9919,7 +9990,7 @@ compass (eig (a));
 @end group
 @end example
 
-@seealso{polar, quiver, feather, plot}
+@seealso{polar, feather, quiver, rose, plot}
 @end deftypefn
 contour
 @c contour scripts/plot/contour.m
@@ -10001,9 +10072,9 @@ Example:
 @example
 @group
 contour3 (peaks (19));
+colormap cool;
 hold on;
-surface (peaks (19), "facecolor", "none", "EdgeColor", "black");
-colormap hot;
+surf (peaks (19), "facecolor", "none", "edgecolor", "black");
 @end group
 @end example
 
@@ -11863,7 +11934,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -11901,7 +11972,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -11956,7 +12027,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -12400,6 +12471,10 @@ the elements, starting with 1.
 
 @item
 If @var{x} and @var{y} are scalars, a single point is plotted.
+
+@item
+@code{squeeze()} is applied to arguments with more than two dimensions,
+but no more than two singleton dimensions.
 
 @item
 If both arguments are vectors, the elements of @var{y} are plotted versus
@@ -13304,7 +13379,7 @@ saveas (1, "figure1.png");
 Draw a 2-D scatter plot.
 
 A marker is plotted at each point defined by the coordinates in the vectors
-@var{x} and  @var{y}.
+@var{x} and @var{y}.
 
 The size of the markers is determined by @var{s}, which can be a scalar
 or a vector of the same length as @var{x} and @var{y}.  If @var{s}
@@ -13674,7 +13749,7 @@ Calculate specular reflection strength of a surface defined by the normal
 vector elements @var{sx}, @var{sy}, @var{sz} using Phong's approximation.
 
 The light source location and viewer location vectors can be specified using
-parameter @var{lv} and  @var{vv} respectively.  The location vectors can
+parameter @var{lv} and @var{vv} respectively.  The location vectors can
 given as 2-element vectors [azimuth, elevation] in degrees or as 3-element
 vectors [x, y, z].
 
@@ -13802,11 +13877,13 @@ of the plot.
 If the first argument @var{hax} is an axes handle, then plot into this axis,
 rather than the current axes returned by @code{gca}.
 
-The optional return value @var{h} is a vector of "stem series" graphics
-handles with one handle per column of the variable @var{y}.  The
-handle regroups the elements of the stem graph together as the
-children of the "stem series" handle, allowing them to be altered
-together.  For example,
+The optional return value @var{h} is a handle to a "stem series" hggroup.
+The single hggroup handle has all of the graphical elements comprising the
+plot as its children; This allows the properties of multiple graphics
+objects to be changed by modifying just a single property of the
+"stem series" hggroup.
+
+For example,
 
 @example
 @group
@@ -13821,6 +13898,40 @@ set (h(1), "basevalue", -1)
 @noindent
 changes the color of the second "stem series" and moves the base line
 of the first.
+
+Stem Series Properties
+
+@table @asis
+@item linestyle
+The linestyle of the stem.  (Default: @qcode{"-"})
+
+@item linewidth
+The width of the stem.  (Default: 0.5)
+
+@item color
+The color of the stem, and if not separately specified, the marker.
+(Default: "b" [blue])
+
+@item marker
+The marker symbol to use at the top of each stem.  (Default: @qcode{"o"})
+
+@item markeredgecolor
+The edge color of the marker.  (Default: @qcode{"color"} property)
+
+@item markerfacecolor
+The color to use for "filling" the marker.  (Default: @qcode{"none"}
+[unfilled])
+
+@item markersize
+The size of the marker.  (Default: 6)
+
+@item baseline
+The handle of the line object which implements the baseline.  Use @code{set}
+with the returned handle to change graphic properties of the baseline.
+
+@item basevalue
+The y-value where the baseline is drawn.  (Default: 0)
+@end table
 @seealso{stem3, bar, hist, plot, stairs}
 @end deftypefn
 stem3
@@ -13848,8 +13959,9 @@ of the plot.
 If the first argument @var{hax} is an axes handle, then plot into this axis,
 rather than the current axes returned by @code{gca}.
 
-The optional return value @var{h} is a vector with the handles of the line
-and marker objects used to draw the stems as a "stem series" object.
+The optional return value @var{h} is a handle to the "stem series" hggroup
+containing the line and marker objects used for the plot.
+@xref{XREFstem,,stem}, for a description of the "stem series" object.
 
 Example:
 
@@ -13948,21 +14060,23 @@ hggroups.  The default is false.
 -*- texinfo -*-
 @deftypefn  {Function File} {} subplot (@var{rows}, @var{cols}, @var{index})
 @deftypefnx {Function File} {} subplot (@var{rcn})
+@deftypefnx {Function File} {} subplot (@var{hax})
 @deftypefnx {Function File} {} subplot (@dots{}, "align")
-@deftypefnx {Function File} {@var{hax} =} subplot (@dots{})
+@deftypefnx {Function File} {} subplot (@dots{}, "replace")
+@deftypefnx {Function File} {} subplot (@dots{}, "position", @var{pos})
+@deftypefnx {Function File} {} subplot (@dots{}, @var{prop}, @var{val}, @dots{})
 @deftypefnx {Function File} {@var{hax} =} subplot (@dots{})
 Set up a plot grid with @var{rows} by @var{cols} subwindows and set the
-current axes for plotting to the location given by @var{index}.
+current axes for plotting (@code{gca}) to the location given by @var{index}.
 
 If only one numeric argument is supplied, then it must be a three digit
-value specifying the location in digits 1 (rows) and 2 (columns) and the
-plot index in digit 3.
+value specifying the the number of rows in in digit 1, the number of
+columns in digit 2, and the plot index in digit 3.
 
-The plot index runs row-wise.  First all the columns in a row are numbered
+The plot index runs row-wise; First, all columns in a row are numbered
 and then the next row is filled.
 
-For example, a plot with 2 by 3 grid will have plot indices running as
-follows:
+For example, a plot with 2x3 grid will have plot indices running as follows:
 @tex
 \vskip 10pt
 \hfil\vbox{\offinterlineskip\hrule
@@ -13987,18 +14101,33 @@ height13pt&4&5&6\cr height12pt&&&\cr\noalign{\hrule}}}
 @end ifnottex
 
 @var{index} may also be a vector.  In this case, the new axis will enclose
-the grid locations specified.  The first demo illustrates an example:
+the grid locations specified.  The first demo illustrates this:
 
 @example
 demo ("subplot", 1)
 @end example
 
+The index of the subplot to make active may also be specified by its axes
+handle, @var{hax}, returned from a previous @code{subplot} command.
+
 If the option @qcode{"align"} is given then the plot boxes of the subwindows
 will align, but this may leave no room for axis tick marks or labels.
 
+If the option @qcode{"replace"} is given then the subplot axis will be
+reset, rather than just switching the current axis for plotting to the
+requested subplot.
+
+The @qcode{"position"} property can be used to exactly position the subplot
+axes within the current figure.  The option @var{pos} is a 4-element vector
+[x, y, width, height] that determines the location and size of the axes.
+The values in @var{pos} are normalized in the range [0,1].
+
+Any property/value pairs are passed directly to the underlying axes object.
+
 If the output @var{hax} is requested, subplot returns the axis handle for
-the subplot.  This is useful for modifying the properties of a subplot.
-@seealso{axes, plot}
+the subplot.  This is useful for modifying the properties of a subplot
+using @code{set}.
+@seealso{axes, plot, gca, set}
 @end deftypefn
 surf
 @c surf scripts/plot/surf.m
@@ -14020,7 +14149,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the surface is computed by linearly scaling the @var{Z} values
+The color of the surface is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -14091,7 +14220,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the surface is computed by linearly scaling the @var{Z} values
+The color of the surface is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -14303,7 +14432,9 @@ to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
 Optionally, the color of the mesh can be specified independently of @var{z}
-by supplying a color matrix, @var{c}.
+by supplying a color matrix, @var{c}.  If @var{z} has N elements, then
+@var{c} should be an Nx1 vector for colormap data or an Nx3 matrix for
+RGB data.
 
 Any property/value pairs are passed directly to the underlying patch object.
 
@@ -14354,7 +14485,9 @@ to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
 Optionally, the color of the mesh can be specified independently of @var{z}
-by supplying a color matrix, @var{c}.
+by supplying a color matrix, @var{c}.  If @var{z} has N elements, then
+@var{c} should be an Nx1 vector for colormap data or an Nx3 matrix for
+RGB data.
 
 Any property/value pairs are passed directly to the underlying patch object.
 
@@ -14637,7 +14770,7 @@ of the specific waitbar to modify.
 @c waitforbuttonpress scripts/plot/waitforbuttonpress.m
 -*- texinfo -*-
 @deftypefn  {Function File} {} waitforbuttonpress ()
-@deftypefnx {Function File} {@var{b} =} waitforbuttonpress ()
+@deftypefnx {Function File} {@var{a} =} waitforbuttonpress ()
 Wait for mouse click or key press over the current figure window.
 
 The return value of @var{b} is 0 if a mouse button was pressed or 1 if a
@@ -14667,7 +14800,7 @@ given, then it is plotted over the meshgrid
 Thus, columns of @var{z} correspond to different @var{x} values and rows
 of @var{z} correspond to different @var{y} values.
 
-The color of the mesh is computed by linearly scaling the @var{Z} values
+The color of the mesh is computed by linearly scaling the @var{z} values
 to fit the range of the current colormap.  Use @code{caxis} and/or
 change the colormap to control the appearance.
 
@@ -14735,18 +14868,17 @@ object.
 @deftypefnx {Function File} {} xlim ("auto")
 @deftypefnx {Function File} {} xlim ("manual")
 @deftypefnx {Function File} {} xlim (@var{hax}, @dots{})
-Query or set the limits of the x-axis of the current plot.
+Query or set the limits of the x-axis for the current plot.
 
 Called without arguments @code{xlim} returns the x-axis limits of the
 current plot.  With the input query @qcode{"mode"}, return the current
-x-limit calculation mode which is either @qcode{"auto"} or
-@qcode{"manual"}.
+x-limit calculation mode which is either @qcode{"auto"} or @qcode{"manual"}.
 
 If passed a 2-element vector [@var{x_lo} @var{x_hi}], the limits of the
-x-axis are set to these values.
+x-axis are set to these values and the mode is set to @qcode{"manual"}.
 
-The current plotting mode can be set by passing either @qcode{"auto"} or
-@qcode{"manual"} as the argument.
+The current plotting mode can be changed by using either @qcode{"auto"}
+or @qcode{"manual"} as the argument.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
@@ -14782,18 +14914,17 @@ object.
 @deftypefnx {Function File} {} ylim ("auto")
 @deftypefnx {Function File} {} ylim ("manual")
 @deftypefnx {Function File} {} ylim (@var{hax}, @dots{})
-Query or set the limits of the y-axis of the current plot.
+Query or set the limits of the y-axis for the current plot.
 
 Called without arguments @code{ylim} returns the y-axis limits of the
 current plot.  With the input query @qcode{"mode"}, return the current
-y-limit calculation mode which is either @qcode{"auto"} or
-@qcode{"manual"}.
+y-limit calculation mode which is either @qcode{"auto"} or @qcode{"manual"}.
 
 If passed a 2-element vector [@var{y_lo} @var{y_hi}], the limits of the
-y-axis are set to these values.
+y-axis are set to these values and the mode is set to @qcode{"manual"}.
 
-The current plotting mode can be set by passing either @qcode{"auto"} or
-@qcode{"manual"} as the argument.
+The current plotting mode can be changed by using either @qcode{"auto"}
+or @qcode{"manual"} as the argument.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
@@ -14828,18 +14959,17 @@ Author: jwe
 @deftypefnx {Function File} {} zlim ("auto")
 @deftypefnx {Function File} {} zlim ("manual")
 @deftypefnx {Function File} {} zlim (@var{hax}, @dots{})
-Query or set the limits of the z-axis of the current plot.
+Query or set the limits of the z-axis for the current plot.
 
 Called without arguments @code{zlim} returns the z-axis limits of the
 current plot.  With the input query @qcode{"mode"}, return the current
-z-limit calculation mode which is either @qcode{"auto"} or
-@qcode{"manual"}.
+z-limit calculation mode which is either @qcode{"auto"} or @qcode{"manual"}.
 
 If passed a 2-element vector [@var{z_lo} @var{z_hi}], the limits of the
-z-axis are set to these values.
+x-axis are set to these values and the mode is set to @qcode{"manual"}.
 
-The current plotting mode can be set by passing either @qcode{"auto"} or
-@qcode{"manual"} as the argument.
+The current plotting mode can be changed by using either @qcode{"auto"}
+or @qcode{"manual"} as the argument.
 
 If the first argument @var{hax} is an axes handle, then operate on
 this axis rather than the current axes returned by @code{gca}.
@@ -14887,12 +15017,6 @@ Undocumented internal function.
 @c __clabel__ scripts/plot/private/__clabel__.m
 -*- texinfo -*-
 @deftypefn {Function File} {@var{h} =} __clabel__ (@var{c}, @var{v}, @var{hparent}, @var{label_spacing}, @var{z}, @var{varargin})
-Undocumented internal function.
-@end deftypefn
-__color_str_rgb__
-@c __color_str_rgb__ scripts/plot/private/__color_str_rgb__.m
--*- texinfo -*-
-@deftypefn {Function File} {@var{rgb} =} __color_str_rgb__ (@var{str})
 Undocumented internal function.
 @end deftypefn
 __contour__
@@ -18066,43 +18190,76 @@ calculated in a way to reduce the occurrence of underflow.
 ellipke
 @c ellipke scripts/specfun/ellipke.m
 -*- texinfo -*-
-@deftypefn  {Function File} {} ellipke (@var{m})
-@deftypefnx {Function File} {} ellipke (@var{m}, @var{tol})
+@deftypefn  {Function File} {@var{k} =} ellipke (@var{m})
+@deftypefnx {Function File} {@var{k} =} ellipke (@var{m}, @var{tol})
 @deftypefnx {Function File} {[@var{k}, @var{e}] =} ellipke (@dots{})
-Compute complete elliptic integral of the first K(@var{m}) and second
+Compute complete elliptic integrals of the first K(@var{m}) and second
 E(@var{m}) kind.
 
-@var{m} is either real array or scalar with 0 @leq{} m @leq{} 1.
+@var{m} must be a scalar or real array with -Inf @leq{} @var{m} @leq{} 1.
 
-@var{tol} is currently ignored (@sc{matlab} uses this to allow faster,
-less accurate approximation).
+The optional input @var{tol} is currently ignored (@sc{matlab} uses this
+to allow a faster, less accurate approximation).
 
-Ref: Abramowitz, Milton and Stegun, Irene A. Handbook of Mathematical
-Functions, Dover, 1965, Chapter 17.
+Called with only one output, elliptic integrals of the first kind are
+returned.
+
+Reference: Milton Abramowitz and Irene A. Stegun,
+@cite{Handbook of Mathematical Functions}, Chapter 17, Dover, 1965.
 @seealso{ellipj}
 @end deftypefn
 expint
 @c expint scripts/specfun/expint.m
 -*- texinfo -*-
 @deftypefn {Function File} {} expint (@var{x})
-Compute the exponential integral,
+Compute the exponential integral:
 @tex
 $$
- E_1 (x) = \int_x^\infty {e^{-t} \over t} dt.
+{\rm E_1} (x) = \int_x^\infty {e^{-t} \over t} dt
 $$
 @end tex
 @ifnottex
 
 @example
 @group
-              infinity
-             /
-expint (x) = | exp (-t)/t dt
-             /
-            x
+           infinity
+          /
+E_1 (x) = | exp (-t)/t dt
+          /
+         x
 @end group
 @end example
+@end ifnottex
 
+Note: For compatibility, this functions uses the @sc{matlab} definition
+of the exponential integral.  Most other sources refer to this particular
+value as @math{E_1 (x)}, and the exponential integral is
+@tex
+$$
+{\rm Ei} (x) = - \int_{-x}^\infty {e^{-t} \over t} dt.
+$$
+@end tex
+@ifnottex
+
+@example
+@group
+            infinity
+           /
+Ei (x) = - | exp (-t)/t dt
+           /
+         -x
+@end group
+@end example
+@end ifnottex
+
+The two definititions are related, for positive real values of @var{x}, by
+@tex
+$
+E_1 (-x) = -{\rm Ei} (x) - i\pi.
+$
+@end tex
+@ifnottex
+@w{@code{E_1 (-x) = -Ei (x) - i*pi}}.
 @end ifnottex
 @end deftypefn
 factor
@@ -20506,6 +20663,9 @@ If no size arguments are given then the result matrix is the common size of
 @deftypefn {Function File} {} geocdf (@var{x}, @var{p})
 For each element of @var{x}, compute the cumulative distribution function
 (CDF) at @var{x} of the geometric distribution with parameter @var{p}.
+
+The geometric distribution models the number of failures (@var{x}-1) of a
+Bernoulli trial with probability @var{p} before the first success (@var{x}).
 @end deftypefn
 geoinv
 @c geoinv scripts/statistics/distributions/geoinv.m
@@ -20513,6 +20673,9 @@ For each element of @var{x}, compute the cumulative distribution function
 @deftypefn {Function File} {} geoinv (@var{x}, @var{p})
 For each element of @var{x}, compute the quantile (the inverse of
 the CDF) at @var{x} of the geometric distribution with parameter @var{p}.
+
+The geometric distribution models the number of failures (@var{x}-1) of a
+Bernoulli trial with probability @var{p} before the first success (@var{x}).
 @end deftypefn
 geopdf
 @c geopdf scripts/statistics/distributions/geopdf.m
@@ -20520,6 +20683,9 @@ the CDF) at @var{x} of the geometric distribution with parameter @var{p}.
 @deftypefn {Function File} {} geopdf (@var{x}, @var{p})
 For each element of @var{x}, compute the probability density function
 (PDF) at @var{x} of the geometric distribution with parameter @var{p}.
+
+The geometric distribution models the number of failures (@var{x}-1) of a
+Bernoulli trial with probability @var{p} before the first success (@var{x}).
 @end deftypefn
 geornd
 @c geornd scripts/statistics/distributions/geornd.m
@@ -20539,6 +20705,9 @@ be specified with a vector of dimensions @var{sz}.
 
 If no size arguments are given then the result matrix is the size of
 @var{p}.
+
+The geometric distribution models the number of failures (@var{x}-1) of a
+Bernoulli trial with probability @var{p} before the first success (@var{x}).
 @end deftypefn
 hygecdf
 @c hygecdf scripts/statistics/distributions/hygecdf.m
@@ -22366,19 +22535,20 @@ For cell array of strings use @code{str2double}.
 -*- texinfo -*-
 @deftypefn {Function File} {} strcat (@var{s1}, @var{s2}, @dots{})
 Return a string containing all the arguments concatenated
-horizontally.  If the arguments are cells strings,  @code{strcat}
+horizontally.  If the arguments are cell strings, @code{strcat}
 returns a cell string with the individual cells concatenated.
 For numerical input, each element is converted to the
-corresponding ASCII character.  Trailing white space for each of
-the inputs (@var{s1}, @var{s2}, @dots{}) is eliminated before they
-are concatenated.
+corresponding ASCII character.  Trailing white space for any
+character string input is eliminated before the strings are
+concatenated.  Note that cell string values do @strong{not} have
+whitespace trimmed.
 
 For example:
 
 @example
 @group
 strcat ("|", " leading space is preserved", "|")
-    @result{} | leading space is perserved|
+    @result{} | leading space is preserved|
 @end group
 @end example
 
@@ -22408,12 +22578,12 @@ strcat (s, s, s)
 
 @example
 @group
-s = @{ "ab"; "cde" @};
+s = @{ "ab"; "cd " @};
 strcat (s, s, s)
     @result{}
         @{
           [1,1] = ababab
-          [2,1] = cdecdecde
+          [2,1] = cd cd cd 
         @}
 @end group
 @end example
@@ -22988,6 +23158,9 @@ warning is given during code execution or if the code fails.
 @deftypefn  {Function File} {} rundemos ()
 @deftypefnx {Function File} {} rundemos (@var{directory})
 Execute built-in demos for all function files in the specified directory.
+Also executes demos in any C++ source files found in the directory, for
+use with dynamically linked functions.
+
 If no directory is specified, operate on all directories in Octave's
 search path for functions.
 @seealso{runtests, path}
@@ -22998,6 +23171,8 @@ search path for functions.
 @deftypefn  {Function File} {} runtests ()
 @deftypefnx {Function File} {} runtests (@var{directory})
 Execute built-in tests for all function files in the specified directory.
+Also executes tests in any C++ source files found in the directory, for
+use with dynamically linked functions.
 
 If no directory is specified, operate on all directories in Octave's
 search path for functions.

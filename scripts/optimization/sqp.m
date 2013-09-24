@@ -186,8 +186,7 @@
 
 function [x, obj, info, iter, nf, lambda] = sqp (x0, objf, cef, cif, lb, ub, maxiter, tolerance)
 
-  globals = struct (); # data and handles, needed and changed by
-                       # subfunctions
+  globals = struct (); # data and handles, needed and changed by subfunctions
 
   if (nargin < 2 || nargin > 8 || nargin == 5)
     print_usage ();
@@ -768,3 +767,4 @@ endfunction
 %!error sqp (1, cell (3,1), cell (2,1), cell (2,1),[],[],1.5)
 %!error sqp (1, cell (3,1), cell (2,1), cell (2,1),[],[],[], ones (2,2))
 %!error sqp (1, cell (3,1), cell (2,1), cell (2,1),[],[],[],-1)
+

@@ -987,6 +987,8 @@ ANY_INCLUDING_NL (.|{NL})
       warning_with_id ("Octave:deprecated-syntax",
                        "%s; near line %d of file '%s'", msg,
                        curr_lexer->input_line_number, nm.c_str ());
+
+    curr_lexer->handle_continuation ();
   }
 
 %{
@@ -2721,11 +2723,7 @@ octave_base_lexer::handle_identifier (void)
       return kw_token;
     }
 
-  // Find the token in the symbol table.  Beware the magic
-  // transformation of the end keyword...
-
-  if (tok == "end")
-    tok = "__end__";
+  // Find the token in the symbol table.
 
   symbol_table::scope_id sid = symtab_context.curr_scope ();
 
@@ -2752,7 +2750,9 @@ octave_base_lexer::handle_identifier (void)
 
   current_input_column += flex_yyleng ();
 
-  if (tok != "__end__")
+  // The magic end index can't be indexed.
+
+  if (tok != "end")
     looking_for_object_index = true;
 
   at_beginning_of_statement = false;

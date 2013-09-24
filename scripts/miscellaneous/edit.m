@@ -161,7 +161,7 @@ function ret = edit (varargin)
                                 "MODE", "async",
                                 "EDITINPLACE", false);
   ## Make sure the stateval variables survive "clear functions".
-  #mlock;
+  mlock;
 
   if (nargin == 1)
     ## User has supplied one arg, this can be a single file name
@@ -208,7 +208,7 @@ function ret = edit (varargin)
         else
           error ('edit: expected "edit MODE sync|async"');
         endif
-        return
+        return;
       case "EDITINPLACE"
         if (ischar (stateval))
           if (strcmpi (stateval, "true"))
@@ -220,14 +220,14 @@ function ret = edit (varargin)
           endif
         endif
         FUNCTION.EDITINPLACE = stateval;
-        return
+        return;
       case "GET"
         if (isfield (FUNCTION, toupper (stateval)))
           ret = FUNCTION.(toupper (stateval));
         else
           ret = FUNCTION;
         endif
-        return
+        return;
       otherwise
         ## If none of the states match, assume both inputs are
         ## actually both file names to be opened
@@ -375,7 +375,7 @@ function ret = edit (varargin)
         host = getenv ("COMPUTERNAME");
       endif
       if (isempty (host))
-        [status, host] = system ("uname -n");
+        [~, host] = system ("uname -n");
         ## trim newline from end of hostname
         if (! isempty (host))
           host = host(1:end-1);

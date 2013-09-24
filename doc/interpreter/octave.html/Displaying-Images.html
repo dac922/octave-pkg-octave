@@ -1,141 +1,167 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Displaying Images - GNU Octave</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Octave">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Image-Processing.html#Image-Processing" title="Image Processing">
-<link rel="prev" href="Loading-and-Saving-Images.html#Loading-and-Saving-Images" title="Loading and Saving Images">
-<link rel="next" href="Representing-Images.html#Representing-Images" title="Representing Images">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<a name="Displaying-Images"></a>
-<p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Representing-Images.html#Representing-Images">Representing Images</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Loading-and-Saving-Images.html#Loading-and-Saving-Images">Loading and Saving Images</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Image-Processing.html#Image-Processing">Image Processing</a>
-<hr>
-</div>
+<title>GNU Octave: Displaying Images</title>
 
+<meta name="description" content="GNU Octave: Displaying Images">
+<meta name="keywords" content="GNU Octave: Displaying Images">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Image-Processing.html#Image-Processing" rel="up" title="Image Processing">
+<link href="Representing-Images.html#Representing-Images" rel="next" title="Representing Images">
+<link href="Loading-and-Saving-Images.html#Loading-and-Saving-Images" rel="previous" title="Loading and Saving Images">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Displaying-Images"></a>
+<div class="header">
+<p>
+Next: <a href="Representing-Images.html#Representing-Images" accesskey="n" rel="next">Representing Images</a>, Previous: <a href="Loading-and-Saving-Images.html#Loading-and-Saving-Images" accesskey="p" rel="previous">Loading and Saving Images</a>, Up: <a href="Image-Processing.html#Image-Processing" accesskey="u" rel="up">Image Processing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Displaying-Images-1"></a>
 <h3 class="section">32.2 Displaying Images</h3>
 
-<p>A natural part of image processing is visualization of an image. 
+<p>A natural part of image processing is visualization of an image.
 The most basic function for this is the <code>imshow</code> function that
 shows the image given in the first input argument.
-
-<!-- imshow scripts/image/imshow.m -->
-   <p><a name="XREFimshow"></a>
-
-<div class="defun">
-&mdash; Function File:  <b>imshow</b> (<var>im</var>)<var><a name="index-imshow-3308"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>im, limits</var>)<var><a name="index-imshow-3309"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>im, map</var>)<var><a name="index-imshow-3310"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>rgb, <small class="dots">...</small></var>)<var><a name="index-imshow-3311"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var>filename</var>)<var><a name="index-imshow-3312"></a></var><br>
-&mdash; Function File:  <b>imshow</b> (<var><small class="dots">...</small>, string_param1, value1, <small class="dots">...</small></var>)<var><a name="index-imshow-3313"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>imshow</b> (<var><small class="dots">...</small></var>)<var><a name="index-imshow-3314"></a></var><br>
-<blockquote><p>Display the image <var>im</var>, where <var>im</var> can be a 2-dimensional
+</p>
+<a name="XREFimshow"></a><dl>
+<dt><a name="index-imshow"></a>Function File: <em></em> <strong>imshow</strong> <em>(<var>im</var>)</em></dt>
+<dt><a name="index-imshow-1"></a>Function File: <em></em> <strong>imshow</strong> <em>(<var>im</var>, <var>limits</var>)</em></dt>
+<dt><a name="index-imshow-2"></a>Function File: <em></em> <strong>imshow</strong> <em>(<var>im</var>, <var>map</var>)</em></dt>
+<dt><a name="index-imshow-3"></a>Function File: <em></em> <strong>imshow</strong> <em>(<var>rgb</var>, &hellip;)</em></dt>
+<dt><a name="index-imshow-4"></a>Function File: <em></em> <strong>imshow</strong> <em>(<var>filename</var>)</em></dt>
+<dt><a name="index-imshow-5"></a>Function File: <em></em> <strong>imshow</strong> <em>(&hellip;, <var>string_param1</var>, <var>value1</var>, &hellip;)</em></dt>
+<dt><a name="index-imshow-6"></a>Function File: <em><var>h</var> =</em> <strong>imshow</strong> <em>(&hellip;)</em></dt>
+<dd><p>Display the image <var>im</var>, where <var>im</var> can be a 2-dimensional
 (grayscale image) or a 3-dimensional (RGB image) matrix.
-
-        <p>If <var>limits</var> is a 2-element vector <code>[</code><var>low</var><code>, </code><var>high</var><code>]</code>,
+</p>
+<p>If <var>limits</var> is a 2-element vector <code>[<var>low</var>, <var>high</var>]</code>,
 the image is shown using a display range between <var>low</var> and
 <var>high</var>.  If an empty matrix is passed for <var>limits</var>, the
 display range is computed as the range between the minimal and the
 maximal value in the image.
-
-        <p>If <var>map</var> is a valid color map, the image will be shown as an indexed
+</p>
+<p>If <var>map</var> is a valid color map, the image will be shown as an indexed
 image using the supplied color map.
-
-        <p>If a file name is given instead of an image, the file will be read and
+</p>
+<p>If a file name is given instead of an image, the file will be read and
 shown.
-
-        <p>If given, the parameter <var>string_param1</var> has value
+</p>
+<p>If given, the parameter <var>string_param1</var> has value
 <var>value1</var>.  <var>string_param1</var> can be any of the following:
-
-          <dl>
-<dt><code>"displayrange"</code><dd><var>value1</var> is the display range as described above. 
+</p>
+<dl compact="compact">
+<dt><code>&quot;displayrange&quot;</code></dt>
+<dd><p><var>value1</var> is the display range as described above.
+</p></dd>
 </dl>
 
-        <p>The optional return value <var>h</var> is a graphics handle to the image.
+<p>The optional return value <var>h</var> is a graphics handle to the image.
+</p>
+<p><strong>See also:</strong> <a href="#XREFimage">image</a>, <a href="#XREFimagesc">imagesc</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>, <a href="Representing-Images.html#XREFgray2ind">gray2ind</a>, <a href="Representing-Images.html#XREFrgb2ind">rgb2ind</a>.
+</p></dd></dl>
 
-     <p class="noindent"><strong>See also:</strong> <a href="XREFimage.html#XREFimage">image</a>, <a href="XREFimagesc.html#XREFimagesc">imagesc</a>, <a href="XREFcolormap.html#XREFcolormap">colormap</a>, <a href="XREFgray2ind.html#XREFgray2ind">gray2ind</a>, <a href="XREFrgb2ind.html#XREFrgb2ind">rgb2ind</a>.
 
-        </blockquote></div>
-
-<!-- image scripts/image/image.m -->
-   <p><a name="XREFimage"></a>
-
-<div class="defun">
-&mdash; Function File:  <b>image</b> (<var>img</var>)<var><a name="index-image-3315"></a></var><br>
-&mdash; Function File:  <b>image</b> (<var>x, y, img</var>)<var><a name="index-image-3316"></a></var><br>
-&mdash; Function File:  <b>image</b> (<var><small class="dots">...</small>, "property", value, <small class="dots">...</small></var>)<var><a name="index-image-3317"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>image</b> (<var><small class="dots">...</small></var>)<var><a name="index-image-3318"></a></var><br>
-<blockquote><p>Display a matrix as an indexed color image.
-
-        <p>The elements of <var>img</var> are indices into the current colormap. 
+<a name="XREFimage"></a><dl>
+<dt><a name="index-image"></a>Function File: <em></em> <strong>image</strong> <em>(<var>img</var>)</em></dt>
+<dt><a name="index-image-1"></a>Function File: <em></em> <strong>image</strong> <em>(<var>x</var>, <var>y</var>, <var>img</var>)</em></dt>
+<dt><a name="index-image-2"></a>Function File: <em></em> <strong>image</strong> <em>(&hellip;, &quot;<var>property</var>&quot;, <var>value</var>, &hellip;)</em></dt>
+<dt><a name="index-image-3"></a>Function File: <em><var>h</var> =</em> <strong>image</strong> <em>(&hellip;)</em></dt>
+<dd><p>Display a matrix as an indexed color image.
+</p>
+<p>The elements of <var>img</var> are indices into the current colormap.
 <var>x</var> and <var>y</var> are optional 2-element vectors, <code>[min,&nbsp;max]</code><!-- /@w -->,
 which specify the range for the axis labels.  If a range is specified as
 <code>[max,&nbsp;min]</code><!-- /@w --> then the image will be reversed along that axis.  For
 convenience, <var>x</var> and <var>y</var> may be specified as N-element vectors
 matching the length of the data in <var>img</var>.  However, only the first and
-last elements will be used to determine the axis limits. 
+last elements will be used to determine the axis limits.
 <strong>Warning:</strong> <var>x</var> and <var>y</var> are ignored when using gnuplot 4.0
 or earlier.
-
-        <p>The optional return value <var>h</var> is a graphics handle to the image.
-
-        <p>Implementation Note: The origin (0, 0) for images is located in the
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the image.
+</p>
+<p>Implementation Note: The origin (0, 0) for images is located in the
 upper left.  For ordinary plots, the origin is located in the lower
 left.  Octave handles this inversion by plotting the data normally,
 and then reversing the direction of the y-axis by setting the
-<code>ydir</code> property to <code>"reverse"</code>.  This has implications whenever
+<code>ydir</code> property to <code>&quot;reverse&quot;</code>.  This has implications whenever
 an image and an ordinary plot need to be overlaid.  The recommended
 solution is to display the image and then plot the reversed ydata
 using, for example, <code>flipud (ydata)</code>.
+</p>
 
-     <p class="noindent"><strong>See also:</strong> <a href="XREFimshow.html#XREFimshow">imshow</a>, <a href="XREFimagesc.html#XREFimagesc">imagesc</a>, <a href="XREFcolormap.html#XREFcolormap">colormap</a>.
+<p><strong>See also:</strong> <a href="#XREFimshow">imshow</a>, <a href="#XREFimagesc">imagesc</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>.
+</p></dd></dl>
 
-        </blockquote></div>
 
-<!-- imagesc scripts/image/imagesc.m -->
-   <p><a name="XREFimagesc"></a>
-
-<div class="defun">
-&mdash; Function File:  <b>imagesc</b> (<var>img</var>)<var><a name="index-imagesc-3319"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var>x, y, img</var>)<var><a name="index-imagesc-3320"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var><small class="dots">...</small>, climits</var>)<var><a name="index-imagesc-3321"></a></var><br>
-&mdash; Function File:  <b>imagesc</b> (<var>hax, <small class="dots">...</small></var>)<var><a name="index-imagesc-3322"></a></var><br>
-&mdash; Function File: <var>h</var> = <b>imagesc</b> (<var><small class="dots">...</small></var>)<var><a name="index-imagesc-3323"></a></var><br>
-<blockquote><p>Display a scaled version of the matrix <var>img</var> as a color image.  The
+<a name="XREFimagesc"></a><dl>
+<dt><a name="index-imagesc"></a>Function File: <em></em> <strong>imagesc</strong> <em>(<var>img</var>)</em></dt>
+<dt><a name="index-imagesc-1"></a>Function File: <em></em> <strong>imagesc</strong> <em>(<var>x</var>, <var>y</var>, <var>img</var>)</em></dt>
+<dt><a name="index-imagesc-2"></a>Function File: <em></em> <strong>imagesc</strong> <em>(&hellip;, <var>climits</var>)</em></dt>
+<dt><a name="index-imagesc-3"></a>Function File: <em></em> <strong>imagesc</strong> <em>(<var>hax</var>, &hellip;)</em></dt>
+<dt><a name="index-imagesc-4"></a>Function File: <em><var>h</var> =</em> <strong>imagesc</strong> <em>(&hellip;)</em></dt>
+<dd><p>Display a scaled version of the matrix <var>img</var> as a color image.  The
 colormap is scaled so that the entries of the matrix occupy the entire
-colormap.  If <var>climits</var><code> = [</code><var>lo</var><code>, </code><var>hi</var><code>]</code> is given, then that
-range is set to the <code>"clim"</code> of the current axes.
-
-        <p>The axis values corresponding to the matrix elements are specified in
+colormap.  If <code><var>climits</var> = [<var>lo</var>, <var>hi</var>]</code> is given, then that
+range is set to the <code>&quot;clim&quot;</code> of the current axes.
+</p>
+<p>The axis values corresponding to the matrix elements are specified in
 <var>x</var> and <var>y</var>, either as pairs giving the minimum and maximum
 values for the respective axes, or as values for each row and column
 of the matrix <var>img</var>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the image.
+</p>
+<p><strong>See also:</strong> <a href="#XREFimage">image</a>, <a href="#XREFimshow">imshow</a>, <a href="Axis-Configuration.html#XREFcaxis">caxis</a>.
+</p></dd></dl>
 
-        <p>The optional return value <var>h</var> is a graphics handle to the image.
 
-     <p class="noindent"><strong>See also:</strong> <a href="XREFimage.html#XREFimage">image</a>, <a href="XREFimshow.html#XREFimshow">imshow</a>, <a href="XREFcaxis.html#XREFcaxis">caxis</a>.
+<hr>
+<div class="header">
+<p>
+Next: <a href="Representing-Images.html#Representing-Images" accesskey="n" rel="next">Representing Images</a>, Previous: <a href="Loading-and-Saving-Images.html#Loading-and-Saving-Images" accesskey="p" rel="previous">Loading and Saving Images</a>, Up: <a href="Image-Processing.html#Image-Processing" accesskey="u" rel="up">Image Processing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-        </blockquote></div>
 
-   </body></html>
 
+</body>
+</html>

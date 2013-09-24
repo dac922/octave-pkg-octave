@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 2.5.  */
+/* A Bison parser, made by GNU Bison 2.7.12-4996.  */
 
 /* Bison implementation for Yacc-like parsers in C
    
-      Copyright (C) 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
+      Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "2.5"
+#define YYBISON_VERSION "2.7.12-4996"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -58,8 +58,6 @@
 /* Pull parsers.  */
 #define YYPULL 1
 
-/* Using locations.  */
-#define YYLSP_NEEDED 0
 
 /* Substitute the variable and function names.  */
 #define yyparse         octave_tex_parse
@@ -70,11 +68,9 @@
 #define yydebug         octave_tex_debug
 #define yynerrs         octave_tex_nerrs
 
-
 /* Copy the first part of user declarations.  */
-
-/* Line 268 of yacc.c  */
-#line 23 "oct-tex-parser.yy"
+/* Line 371 of yacc.c  */
+#line 23 "corefcn/oct-tex-parser.yy"
 
 #define YYDEBUG 1
 
@@ -90,14 +86,16 @@ static void yyerror (text_parser_tex& parser, const char *s);
 
 #define scanner parser.get_scanner ()
 
+/* Line 371 of yacc.c  */
+#line 91 "corefcn/oct-tex-parser.cc"
 
-/* Line 268 of yacc.c  */
-#line 96 "corefcn/oct-tex-parser.cc"
-
-/* Enabling traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
+# ifndef YY_NULL
+#  if defined __cplusplus && 201103L <= __cplusplus
+#   define YY_NULL nullptr
+#  else
+#   define YY_NULL 0
+#  endif
+# endif
 
 /* Enabling verbose error messages.  */
 #ifdef YYERROR_VERBOSE
@@ -107,20 +105,24 @@ static void yyerror (text_parser_tex& parser, const char *s);
 # define YYERROR_VERBOSE 0
 #endif
 
-/* Enabling the token table.  */
-#ifndef YYTOKEN_TABLE
-# define YYTOKEN_TABLE 0
+/* In a future release of Bison, this section will be replaced
+   by #include "y.tab.h".  */
+#ifndef YY_OCTAVE_TEX_COREFCN_OCT_TEX_PARSER_H_INCLUDED
+# define YY_OCTAVE_TEX_COREFCN_OCT_TEX_PARSER_H_INCLUDED
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
 #endif
-
+#if YYDEBUG
+extern int octave_tex_debug;
+#endif
 /* "%code requires" blocks.  */
-
-/* Line 288 of yacc.c  */
-#line 44 "oct-tex-parser.yy"
+/* Line 387 of yacc.c  */
+#line 44 "corefcn/oct-tex-parser.yy"
 #include <string>
 
-
-/* Line 288 of yacc.c  */
-#line 124 "corefcn/oct-tex-parser.cc"
+/* Line 387 of yacc.c  */
+#line 126 "corefcn/oct-tex-parser.cc"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -132,20 +134,19 @@ static void yyerror (text_parser_tex& parser, const char *s);
      IT = 259,
      SL = 260,
      RM = 261,
-     CMD = 262,
-     FONTNAME = 263,
-     FONTSIZE = 264,
-     COLOR = 265,
-     COLOR_RGB = 266,
-     START = 267,
-     END = 268,
-     SUPER = 269,
-     SUB = 270,
-     CH = 271,
-     ID = 272,
-     NUM = 273,
-     SCRIPT = 274,
-     STR = 275
+     FONTNAME = 262,
+     FONTSIZE = 263,
+     COLOR = 264,
+     COLOR_RGB = 265,
+     START = 266,
+     END = 267,
+     SUPER = 268,
+     SUB = 269,
+     CH = 270,
+     NUM = 271,
+     SYM = 272,
+     SCRIPT = 273,
+     STR = 274
    };
 #endif
 /* Tokens.  */
@@ -153,34 +154,32 @@ static void yyerror (text_parser_tex& parser, const char *s);
 #define IT 259
 #define SL 260
 #define RM 261
-#define CMD 262
-#define FONTNAME 263
-#define FONTSIZE 264
-#define COLOR 265
-#define COLOR_RGB 266
-#define START 267
-#define END 268
-#define SUPER 269
-#define SUB 270
-#define CH 271
-#define ID 272
-#define NUM 273
-#define SCRIPT 274
-#define STR 275
-
+#define FONTNAME 262
+#define FONTSIZE 263
+#define COLOR 264
+#define COLOR_RGB 265
+#define START 266
+#define END 267
+#define SUPER 268
+#define SUB 269
+#define CH 270
+#define NUM 271
+#define SYM 272
+#define SCRIPT 273
+#define STR 274
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
 {
-
-/* Line 293 of yacc.c  */
-#line 46 "oct-tex-parser.yy"
+/* Line 387 of yacc.c  */
+#line 46 "corefcn/oct-tex-parser.yy"
 
   /* Leaf symbols produced by the scanner */
   char                       ch;
   double                     num;
+  int                        sym;
 
   /* Used for string buffering */
   std::string*               str;
@@ -190,9 +189,8 @@ typedef union YYSTYPE
   text_element_list*         e_list;
 
 
-
-/* Line 293 of yacc.c  */
-#line 196 "corefcn/oct-tex-parser.cc"
+/* Line 387 of yacc.c  */
+#line 194 "corefcn/oct-tex-parser.cc"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -200,11 +198,26 @@ typedef union YYSTYPE
 #endif
 
 
+#ifdef YYPARSE_PARAM
+#if defined __STDC__ || defined __cplusplus
+int octave_tex_parse (void *YYPARSE_PARAM);
+#else
+int octave_tex_parse ();
+#endif
+#else /* ! YYPARSE_PARAM */
+#if defined __STDC__ || defined __cplusplus
+int octave_tex_parse (text_parser_tex& parser);
+#else
+int octave_tex_parse ();
+#endif
+#endif /* ! YYPARSE_PARAM */
+
+#endif /* !YY_OCTAVE_TEX_COREFCN_OCT_TEX_PARSER_H_INCLUDED  */
+
 /* Copy the second part of user declarations.  */
 
-
-/* Line 343 of yacc.c  */
-#line 208 "corefcn/oct-tex-parser.cc"
+/* Line 390 of yacc.c  */
+#line 221 "corefcn/oct-tex-parser.cc"
 
 #ifdef short
 # undef short
@@ -257,24 +270,33 @@ typedef short int yytype_int16;
 # if defined YYENABLE_NLS && YYENABLE_NLS
 #  if ENABLE_NLS
 #   include <libintl.h> /* INFRINGES ON USER NAME SPACE */
-#   define YY_(msgid) dgettext ("bison-runtime", msgid)
+#   define YY_(Msgid) dgettext ("bison-runtime", Msgid)
 #  endif
 # endif
 # ifndef YY_
-#  define YY_(msgid) msgid
+#  define YY_(Msgid) Msgid
+# endif
+#endif
+
+#ifndef __attribute__
+/* This feature is available in gcc versions 2.5 and later.  */
+# if (! defined __GNUC__ || __GNUC__ < 2 \
+      || (__GNUC__ == 2 && __GNUC_MINOR__ < 5))
+#  define __attribute__(Spec) /* empty */
 # endif
 #endif
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define YYUSE(e) ((void) (e))
+# define YYUSE(E) ((void) (E))
 #else
-# define YYUSE(e) /* empty */
+# define YYUSE(E) /* empty */
 #endif
+
 
 /* Identity function, used to suppress warnings about constant conditions.  */
 #ifndef lint
-# define YYID(n) (n)
+# define YYID(N) (N)
 #else
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
@@ -310,6 +332,7 @@ YYID (yyi)
 #    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 #     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+      /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
 #     ifndef EXIT_SUCCESS
 #      define EXIT_SUCCESS 0
 #     endif
@@ -401,42 +424,42 @@ union yyalloc
 #endif
 
 #if defined YYCOPY_NEEDED && YYCOPY_NEEDED
-/* Copy COUNT objects from FROM to TO.  The source and destination do
+/* Copy COUNT objects from SRC to DST.  The source and destination do
    not overlap.  */
 # ifndef YYCOPY
 #  if defined __GNUC__ && 1 < __GNUC__
-#   define YYCOPY(To, From, Count) \
-      __builtin_memcpy (To, From, (Count) * sizeof (*(From)))
+#   define YYCOPY(Dst, Src, Count) \
+      __builtin_memcpy (Dst, Src, (Count) * sizeof (*(Src)))
 #  else
-#   define YYCOPY(To, From, Count)		\
-      do					\
-	{					\
-	  YYSIZE_T yyi;				\
-	  for (yyi = 0; yyi < (Count); yyi++)	\
-	    (To)[yyi] = (From)[yyi];		\
-	}					\
+#   define YYCOPY(Dst, Src, Count)              \
+      do                                        \
+        {                                       \
+          YYSIZE_T yyi;                         \
+          for (yyi = 0; yyi < (Count); yyi++)   \
+            (Dst)[yyi] = (Src)[yyi];            \
+        }                                       \
       while (YYID (0))
 #  endif
 # endif
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  45
+#define YYFINAL  43
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   82
+#define YYLAST   81
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  21
+#define YYNTOKENS  20
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  15
+#define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  38
+#define YYNRULES  36
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  58
+#define YYNSTATES  55
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   275
+#define YYMAXUTOK   274
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -471,7 +494,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,    19,    20
+      15,    16,    17,    18,    19
 };
 
 #if YYDEBUG
@@ -479,51 +502,49 @@ static const yytype_uint8 yytranslate[] =
    YYRHS.  */
 static const yytype_uint8 yyprhs[] =
 {
-       0,     0,     3,     5,     8,    10,    13,    16,    18,    20,
-      22,    24,    29,    34,    39,    46,    48,    50,    52,    54,
-      56,    58,    60,    62,    64,    66,    69,    72,    75,    78,
-      81,    84,    87,    90,    92,    95,    99,   102,   103
+       0,     0,     3,     5,     8,    10,    12,    14,    16,    18,
+      23,    28,    33,    40,    42,    44,    46,    48,    50,    52,
+      54,    56,    58,    60,    63,    66,    69,    72,    75,    78,
+      81,    84,    86,    89,    93,    96,    97
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      35,     0,    -1,    16,    -1,    22,    16,    -1,    17,    -1,
-      23,    17,    -1,     7,    23,    -1,     3,    -1,     4,    -1,
-       5,    -1,     6,    -1,     9,    12,    18,    13,    -1,     8,
-      12,    22,    13,    -1,    10,    12,    22,    13,    -1,    11,
-      12,    18,    18,    18,    13,    -1,    22,    -1,    34,    -1,
-      24,    -1,    25,    -1,    26,    -1,    27,    -1,    28,    -1,
-      30,    -1,    31,    -1,    32,    -1,    14,    16,    -1,    14,
-      34,    -1,    14,    24,    -1,    15,    16,    -1,    15,    34,
-      -1,    15,    24,    -1,    31,    30,    -1,    30,    31,    -1,
-      29,    -1,    33,    29,    -1,    12,    33,    13,    -1,    12,
-      13,    -1,    -1,    33,    -1
+      33,     0,    -1,    15,    -1,    21,    15,    -1,    17,    -1,
+       3,    -1,     4,    -1,     5,    -1,     6,    -1,     8,    11,
+      16,    12,    -1,     7,    11,    21,    12,    -1,     9,    11,
+      21,    12,    -1,    10,    11,    16,    16,    16,    12,    -1,
+      21,    -1,    32,    -1,    22,    -1,    23,    -1,    24,    -1,
+      25,    -1,    26,    -1,    28,    -1,    29,    -1,    30,    -1,
+      13,    15,    -1,    13,    32,    -1,    13,    22,    -1,    14,
+      15,    -1,    14,    32,    -1,    14,    22,    -1,    29,    28,
+      -1,    28,    29,    -1,    27,    -1,    31,    27,    -1,    11,
+      31,    12,    -1,    11,    12,    -1,    -1,    31,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    86,    86,    88,    92,    94,    98,   105,   107,   109,
-     111,   115,   119,   126,   131,   137,   142,   145,   146,   147,
-     148,   149,   150,   151,   152,   155,   157,   159,   163,   165,
-     167,   171,   173,   177,   179,   183,   185,   190,   191
+       0,    88,    88,    90,    94,    98,   100,   102,   104,   108,
+     112,   119,   124,   130,   135,   138,   139,   140,   141,   142,
+     143,   144,   145,   148,   150,   152,   156,   158,   160,   164,
+     166,   170,   172,   176,   178,   183,   184
 };
 #endif
 
-#if YYDEBUG || YYERROR_VERBOSE || YYTOKEN_TABLE
+#if YYDEBUG || YYERROR_VERBOSE || 0
 /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "BF", "IT", "SL", "RM", "CMD",
-  "FONTNAME", "FONTSIZE", "COLOR", "COLOR_RGB", "START", "END", "SUPER",
-  "SUB", "CH", "ID", "NUM", "SCRIPT", "STR", "$accept", "simple_string",
-  "identifier", "symbol_element", "font_modifier_element",
-  "fontsize_element", "fontname_element", "color_element",
-  "string_element", "superscript_element", "subscript_element",
-  "combined_script_element", "string_element_list",
-  "scoped_string_element_list", "string", 0
+  "$end", "error", "$undefined", "BF", "IT", "SL", "RM", "FONTNAME",
+  "FONTSIZE", "COLOR", "COLOR_RGB", "START", "END", "SUPER", "SUB", "CH",
+  "NUM", "SYM", "SCRIPT", "STR", "$accept", "simple_string",
+  "symbol_element", "font_modifier_element", "fontsize_element",
+  "fontname_element", "color_element", "string_element",
+  "superscript_element", "subscript_element", "combined_script_element",
+  "string_element_list", "scoped_string_element_list", "string", YY_NULL
 };
 #endif
 
@@ -533,27 +554,26 @@ static const char *const yytname[] =
 static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275
+     265,   266,   267,   268,   269,   270,   271,   272,   273,   274
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    21,    22,    22,    23,    23,    24,    25,    25,    25,
-      25,    26,    27,    28,    28,    29,    29,    29,    29,    29,
-      29,    29,    29,    29,    29,    30,    30,    30,    31,    31,
-      31,    32,    32,    33,    33,    34,    34,    35,    35
+       0,    20,    21,    21,    22,    23,    23,    23,    23,    24,
+      25,    26,    26,    27,    27,    27,    27,    27,    27,    27,
+      27,    27,    27,    28,    28,    28,    29,    29,    29,    30,
+      30,    31,    31,    32,    32,    33,    33
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     1,     2,     1,     2,     2,     1,     1,     1,
-       1,     4,     4,     4,     6,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     2,     2,     2,     2,     2,
-       2,     2,     2,     1,     2,     3,     2,     0,     1
+       0,     2,     1,     2,     1,     1,     1,     1,     1,     4,
+       4,     4,     6,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     2,     2,     2,     2,     2,     2,     2,
+       2,     1,     2,     3,     2,     0,     1
 };
 
 /* YYDEFACT[STATE-NAME] -- Default reduction number in state STATE-NUM.
@@ -561,19 +581,19 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-      37,     7,     8,     9,    10,     0,     0,     0,     0,     0,
-       0,     0,     0,     2,    15,    17,    18,    19,    20,    21,
-      33,    22,    23,    24,    38,    16,     0,     4,     6,     0,
-       0,     0,     0,    36,     0,    25,    27,    26,    28,    30,
-      29,     3,    32,    31,    34,     1,     5,     0,     0,     0,
-       0,    35,    12,    11,    13,     0,     0,    14
+      35,     5,     6,     7,     8,     0,     0,     0,     0,     0,
+       0,     0,     2,     4,    13,    15,    16,    17,    18,    19,
+      31,    20,    21,    22,    36,    14,     0,     0,     0,     0,
+       0,    34,     0,    23,    25,    24,    26,    28,    27,     3,
+      30,    29,    32,     1,     0,     0,     0,     0,    33,    10,
+       9,    11,     0,     0,    12
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,    14,    28,    15,    16,    17,    18,    19,    20,    21,
-      22,    23,    24,    25,    26
+      -1,    14,    15,    16,    17,    18,    19,    20,    21,    22,
+      23,    24,    25,    26
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -581,19 +601,19 @@ static const yytype_int8 yydefgoto[] =
 #define YYPACT_NINF -4
 static const yytype_int8 yypact[] =
 {
-      25,    -4,    -4,    -4,    -4,    28,    38,    42,    45,    51,
-      -3,    35,    37,    -4,    49,    -4,    -4,    -4,    -4,    -4,
-      -4,    52,    54,    -4,    25,    -4,    64,    -4,    53,    55,
-      56,    55,    57,    -4,    11,    -4,    -4,    -4,    -4,    -4,
-      -4,    -4,    -4,    -4,    -4,    -4,    -4,    30,    59,    39,
-      58,    -4,    -4,    -4,    -4,    60,    66,    -4
+      27,    -4,    -4,    -4,    -4,     2,    17,    32,    37,    -3,
+      34,    35,    -4,    -4,    40,    -4,    -4,    -4,    -4,    -4,
+      -4,    45,    52,    -4,    27,    -4,    66,    54,    55,    54,
+      56,    -4,    12,    -4,    -4,    -4,    -4,    -4,    -4,    -4,
+      -4,    -4,    -4,    -4,    41,    58,    42,    57,    -4,    -4,
+      -4,    -4,    59,    62,    -4
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -4,    27,    -4,    48,    -4,    -4,    -4,    -4,    14,    44,
-      61,    -4,    63,    50,    -4
+      -4,    31,    51,    -4,    -4,    -4,    -4,    15,    46,    60,
+      -4,    67,    53,    -4
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -602,34 +622,34 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-       1,     2,     3,     4,     5,     6,     7,     8,     9,    10,
-      33,    11,    12,    13,     1,     2,     3,     4,     5,     6,
-       7,     8,     9,    10,    51,    11,    12,    13,     1,     2,
-       3,     4,     5,     6,     7,     8,     9,    10,    44,    11,
-      12,    13,     5,    52,     5,    27,    41,    10,    44,    10,
-      29,    35,    54,    38,    30,    41,    47,    31,    49,    36,
-      39,    37,    40,    32,    45,    41,    43,    12,    11,     0,
-      46,    13,    53,    34,    48,    50,    55,     0,    56,    57,
-       0,     0,    42
+       1,     2,     3,     4,     5,     6,     7,     8,     9,    31,
+      10,    11,    12,    27,    13,     1,     2,     3,     4,     5,
+       6,     7,     8,     9,    48,    10,    11,    12,    28,    13,
+       1,     2,     3,     4,     5,     6,     7,     8,     9,    42,
+      10,    11,    12,    29,    13,     9,     9,    42,    30,    33,
+      36,    13,    13,    49,    51,    39,    39,    39,    44,    11,
+      46,    34,    37,    35,    38,    10,    43,     0,    41,    12,
+      50,    45,    47,    52,    54,    53,    32,     0,     0,     0,
+       0,    40
 };
 
-#define yypact_value_is_default(yystate) \
-  ((yystate) == (-4))
+#define yypact_value_is_default(Yystate) \
+  (!!((Yystate) == (-4)))
 
-#define yytable_value_is_error(yytable_value) \
+#define yytable_value_is_error(Yytable_value) \
   YYID (0)
 
 static const yytype_int8 yycheck[] =
 {
        3,     4,     5,     6,     7,     8,     9,    10,    11,    12,
-      13,    14,    15,    16,     3,     4,     5,     6,     7,     8,
-       9,    10,    11,    12,    13,    14,    15,    16,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12,    24,    14,
-      15,    16,     7,    13,     7,    17,    16,    12,    34,    12,
-      12,    16,    13,    16,    12,    16,    29,    12,    31,    11,
-      12,    11,    12,    12,     0,    16,    22,    15,    14,    -1,
-      17,    16,    13,    10,    18,    18,    18,    -1,    18,    13,
-      -1,    -1,    21
+      13,    14,    15,    11,    17,     3,     4,     5,     6,     7,
+       8,     9,    10,    11,    12,    13,    14,    15,    11,    17,
+       3,     4,     5,     6,     7,     8,     9,    10,    11,    24,
+      13,    14,    15,    11,    17,    11,    11,    32,    11,    15,
+      15,    17,    17,    12,    12,    15,    15,    15,    27,    14,
+      29,    10,    11,    10,    11,    13,     0,    -1,    22,    15,
+      12,    16,    16,    16,    12,    16,     9,    -1,    -1,    -1,
+      -1,    21
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -637,11 +657,11 @@ static const yytype_int8 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,     3,     4,     5,     6,     7,     8,     9,    10,    11,
-      12,    14,    15,    16,    22,    24,    25,    26,    27,    28,
-      29,    30,    31,    32,    33,    34,    35,    17,    23,    12,
-      12,    12,    12,    13,    33,    16,    24,    34,    16,    24,
-      34,    16,    31,    30,    29,     0,    17,    22,    18,    22,
-      18,    13,    13,    13,    13,    18,    18,    13
+      13,    14,    15,    17,    21,    22,    23,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    33,    11,    11,    11,
+      11,    12,    31,    15,    22,    32,    15,    22,    32,    15,
+      29,    28,    27,     0,    21,    16,    21,    16,    12,    12,
+      12,    12,    16,    16,    12
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -671,62 +691,35 @@ static const yytype_uint8 yystos[] =
 
 #define YYRECOVERING()  (!!yyerrstatus)
 
-#define YYBACKUP(Token, Value)					\
-do								\
-  if (yychar == YYEMPTY && yylen == 1)				\
-    {								\
-      yychar = (Token);						\
-      yylval = (Value);						\
-      YYPOPSTACK (1);						\
-      goto yybackup;						\
-    }								\
-  else								\
-    {								\
+#define YYBACKUP(Token, Value)                                  \
+do                                                              \
+  if (yychar == YYEMPTY)                                        \
+    {                                                           \
+      yychar = (Token);                                         \
+      yylval = (Value);                                         \
+      YYPOPSTACK (yylen);                                       \
+      yystate = *yyssp;                                         \
+      goto yybackup;                                            \
+    }                                                           \
+  else                                                          \
+    {                                                           \
       yyerror (parser, YY_("syntax error: cannot back up")); \
       YYERROR;							\
     }								\
 while (YYID (0))
 
-
+/* Error token number */
 #define YYTERROR	1
 #define YYERRCODE	256
 
 
-/* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
-   If N is 0, then set CURRENT to the empty location which ends
-   the previous symbol: RHS[0] (always defined).  */
-
-#define YYRHSLOC(Rhs, K) ((Rhs)[K])
-#ifndef YYLLOC_DEFAULT
-# define YYLLOC_DEFAULT(Current, Rhs, N)				\
-    do									\
-      if (YYID (N))                                                    \
-	{								\
-	  (Current).first_line   = YYRHSLOC (Rhs, 1).first_line;	\
-	  (Current).first_column = YYRHSLOC (Rhs, 1).first_column;	\
-	  (Current).last_line    = YYRHSLOC (Rhs, N).last_line;		\
-	  (Current).last_column  = YYRHSLOC (Rhs, N).last_column;	\
-	}								\
-      else								\
-	{								\
-	  (Current).first_line   = (Current).last_line   =		\
-	    YYRHSLOC (Rhs, 0).last_line;				\
-	  (Current).first_column = (Current).last_column =		\
-	    YYRHSLOC (Rhs, 0).last_column;				\
-	}								\
-    while (YYID (0))
-#endif
-
-
 /* This macro is provided for backward compatibility. */
-
 #ifndef YY_LOCATION_PRINT
 # define YY_LOCATION_PRINT(File, Loc) ((void) 0)
 #endif
 
 
 /* YYLEX -- calling `yylex' with the right arguments.  */
-
 #ifdef YYLEX_PARAM
 # define YYLEX yylex (&yylval, YYLEX_PARAM)
 #else
@@ -777,6 +770,8 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep, parser)
     text_parser_tex& parser;
 #endif
 {
+  FILE *yyo = yyoutput;
+  YYUSE (yyo);
   if (!yyvaluep)
     return;
   YYUSE (parser);
@@ -786,11 +781,7 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep, parser)
 # else
   YYUSE (yyoutput);
 # endif
-  switch (yytype)
-    {
-      default:
-	break;
-    }
+  YYUSE (yytype);
 }
 
 
@@ -1031,12 +1022,11 @@ static int
 yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
                 yytype_int16 *yyssp, int yytoken)
 {
-  YYSIZE_T yysize0 = yytnamerr (0, yytname[yytoken]);
+  YYSIZE_T yysize0 = yytnamerr (YY_NULL, yytname[yytoken]);
   YYSIZE_T yysize = yysize0;
-  YYSIZE_T yysize1;
   enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
   /* Internationalized format string. */
-  const char *yyformat = 0;
+  const char *yyformat = YY_NULL;
   /* Arguments of yyformat. */
   char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
   /* Number of reported tokens (one for the "unexpected", one per
@@ -1096,11 +1086,13 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
                     break;
                   }
                 yyarg[yycount++] = yytname[yyx];
-                yysize1 = yysize + yytnamerr (0, yytname[yyx]);
-                if (! (yysize <= yysize1
-                       && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
-                  return 2;
-                yysize = yysize1;
+                {
+                  YYSIZE_T yysize1 = yysize + yytnamerr (YY_NULL, yytname[yyx]);
+                  if (! (yysize <= yysize1
+                         && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+                    return 2;
+                  yysize = yysize1;
+                }
               }
         }
     }
@@ -1120,10 +1112,12 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 # undef YYCASE_
     }
 
-  yysize1 = yysize + yystrlen (yyformat);
-  if (! (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
-    return 2;
-  yysize = yysize1;
+  {
+    YYSIZE_T yysize1 = yysize + yystrlen (yyformat);
+    if (! (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+      return 2;
+    yysize = yysize1;
+  }
 
   if (*yymsg_alloc < yysize)
     {
@@ -1183,171 +1177,118 @@ yydestruct (yymsg, yytype, yyvaluep, parser)
 
   switch (yytype)
     {
-      case 16: /* "CH" */
-
-/* Line 1391 of yacc.c  */
-#line 73 "oct-tex-parser.yy"
-	{ };
-
-/* Line 1391 of yacc.c  */
-#line 1194 "corefcn/oct-tex-parser.cc"
-	break;
-      case 17: /* "ID" */
-
-/* Line 1391 of yacc.c  */
-#line 73 "oct-tex-parser.yy"
-	{ };
-
-/* Line 1391 of yacc.c  */
-#line 1203 "corefcn/oct-tex-parser.cc"
-	break;
-      case 18: /* "NUM" */
-
-/* Line 1391 of yacc.c  */
-#line 73 "oct-tex-parser.yy"
-	{ };
-
-/* Line 1391 of yacc.c  */
-#line 1212 "corefcn/oct-tex-parser.cc"
-	break;
-      case 22: /* "simple_string" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->str); };
-
-/* Line 1391 of yacc.c  */
+      case 15: /* CH */
+/* Line 1393 of yacc.c  */
+#line 75 "corefcn/oct-tex-parser.yy"
+        { };
+/* Line 1393 of yacc.c  */
+#line 1186 "corefcn/oct-tex-parser.cc"
+        break;
+      case 16: /* NUM */
+/* Line 1393 of yacc.c  */
+#line 75 "corefcn/oct-tex-parser.yy"
+        { };
+/* Line 1393 of yacc.c  */
+#line 1193 "corefcn/oct-tex-parser.cc"
+        break;
+      case 17: /* SYM */
+/* Line 1393 of yacc.c  */
+#line 75 "corefcn/oct-tex-parser.yy"
+        { };
+/* Line 1393 of yacc.c  */
+#line 1200 "corefcn/oct-tex-parser.cc"
+        break;
+      case 21: /* simple_string */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).str); };
+/* Line 1393 of yacc.c  */
+#line 1207 "corefcn/oct-tex-parser.cc"
+        break;
+      case 22: /* symbol_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1214 "corefcn/oct-tex-parser.cc"
+        break;
+      case 23: /* font_modifier_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
 #line 1221 "corefcn/oct-tex-parser.cc"
-	break;
-      case 23: /* "identifier" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->str); };
-
-/* Line 1391 of yacc.c  */
-#line 1230 "corefcn/oct-tex-parser.cc"
-	break;
-      case 24: /* "symbol_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1239 "corefcn/oct-tex-parser.cc"
-	break;
-      case 25: /* "font_modifier_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1248 "corefcn/oct-tex-parser.cc"
-	break;
-      case 26: /* "fontsize_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1257 "corefcn/oct-tex-parser.cc"
-	break;
-      case 27: /* "fontname_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1266 "corefcn/oct-tex-parser.cc"
-	break;
-      case 28: /* "color_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1275 "corefcn/oct-tex-parser.cc"
-	break;
-      case 29: /* "string_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
+        break;
+      case 24: /* fontsize_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1228 "corefcn/oct-tex-parser.cc"
+        break;
+      case 25: /* fontname_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1235 "corefcn/oct-tex-parser.cc"
+        break;
+      case 26: /* color_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1242 "corefcn/oct-tex-parser.cc"
+        break;
+      case 27: /* string_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1249 "corefcn/oct-tex-parser.cc"
+        break;
+      case 28: /* superscript_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1256 "corefcn/oct-tex-parser.cc"
+        break;
+      case 29: /* subscript_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1263 "corefcn/oct-tex-parser.cc"
+        break;
+      case 30: /* combined_script_element */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_base); };
+/* Line 1393 of yacc.c  */
+#line 1270 "corefcn/oct-tex-parser.cc"
+        break;
+      case 31: /* string_element_list */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_list); };
+/* Line 1393 of yacc.c  */
+#line 1277 "corefcn/oct-tex-parser.cc"
+        break;
+      case 32: /* scoped_string_element_list */
+/* Line 1393 of yacc.c  */
+#line 76 "corefcn/oct-tex-parser.yy"
+        { delete ((*yyvaluep).e_list); };
+/* Line 1393 of yacc.c  */
 #line 1284 "corefcn/oct-tex-parser.cc"
-	break;
-      case 30: /* "superscript_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1293 "corefcn/oct-tex-parser.cc"
-	break;
-      case 31: /* "subscript_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1302 "corefcn/oct-tex-parser.cc"
-	break;
-      case 32: /* "combined_script_element" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_base); };
-
-/* Line 1391 of yacc.c  */
-#line 1311 "corefcn/oct-tex-parser.cc"
-	break;
-      case 33: /* "string_element_list" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_list); };
-
-/* Line 1391 of yacc.c  */
-#line 1320 "corefcn/oct-tex-parser.cc"
-	break;
-      case 34: /* "scoped_string_element_list" */
-
-/* Line 1391 of yacc.c  */
-#line 74 "oct-tex-parser.yy"
-	{ delete (yyvaluep->e_list); };
-
-/* Line 1391 of yacc.c  */
-#line 1329 "corefcn/oct-tex-parser.cc"
-	break;
+        break;
 
       default:
-	break;
+        break;
     }
 }
 
 
-/* Prevent warnings from -Wmissing-prototypes.  */
-#ifdef YYPARSE_PARAM
-#if defined __STDC__ || defined __cplusplus
-int yyparse (void *YYPARSE_PARAM);
-#else
-int yyparse ();
-#endif
-#else /* ! YYPARSE_PARAM */
-#if defined __STDC__ || defined __cplusplus
-int yyparse (text_parser_tex& parser);
-#else
-int yyparse ();
-#endif
-#endif /* ! YYPARSE_PARAM */
 
 
 /*----------.
@@ -1379,8 +1320,31 @@ yyparse (parser)
 /* The lookahead symbol.  */
 int yychar;
 
+
+#if defined __GNUC__ && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
+/* Suppress an incorrect diagnostic about yylval being uninitialized.  */
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")\
+    _Pragma ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END \
+    _Pragma ("GCC diagnostic pop")
+#else
+/* Default value used for initialization, for pacifying older GCCs
+   or non-GCC compilers.  */
+static YYSTYPE yyval_default;
+# define YY_INITIAL_VALUE(Value) = Value
+#endif
+#ifndef YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END
+#endif
+#ifndef YY_INITIAL_VALUE
+# define YY_INITIAL_VALUE(Value) /* Nothing. */
+#endif
+
 /* The semantic value of the lookahead symbol.  */
-YYSTYPE yylval;
+YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 
     /* Number of syntax errors so far.  */
     int yynerrs;
@@ -1393,7 +1357,7 @@ YYSTYPE yylval;
        `yyss': related to states.
        `yyvs': related to semantic values.
 
-       Refer to the stacks thru separate pointers, to allow yyoverflow
+       Refer to the stacks through separate pointers, to allow yyoverflow
        to reallocate them elsewhere.  */
 
     /* The state stack.  */
@@ -1411,7 +1375,7 @@ YYSTYPE yylval;
   int yyn;
   int yyresult;
   /* Lookahead token as an internal (translated) token number.  */
-  int yytoken;
+  int yytoken = 0;
   /* The variables used to return semantic value and location from the
      action routines.  */
   YYSTYPE yyval;
@@ -1429,9 +1393,8 @@ YYSTYPE yylval;
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
 
-  yytoken = 0;
-  yyss = yyssa;
-  yyvs = yyvsa;
+  yyssp = yyss = yyssa;
+  yyvsp = yyvs = yyvsa;
   yystacksize = YYINITDEPTH;
 
   YYDPRINTF ((stderr, "Starting parse\n"));
@@ -1440,14 +1403,6 @@ YYSTYPE yylval;
   yyerrstatus = 0;
   yynerrs = 0;
   yychar = YYEMPTY; /* Cause a token to be read.  */
-
-  /* Initialize stack pointers.
-     Waste one element of value and location stack
-     so that they stay on the same level as the state stack.
-     The wasted elements are never initialized.  */
-  yyssp = yyss;
-  yyvsp = yyvs;
-
   goto yysetstate;
 
 /*------------------------------------------------------------.
@@ -1588,7 +1543,9 @@ yybackup:
   yychar = YYEMPTY;
 
   yystate = yyn;
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   *++yyvsp = yylval;
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
 
   goto yynewstate;
 
@@ -1625,226 +1582,181 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-
-/* Line 1806 of yacc.c  */
-#line 87 "oct-tex-parser.yy"
+/* Line 1787 of yacc.c  */
+#line 89 "corefcn/oct-tex-parser.yy"
     { (yyval.str) = new std::string (1, (yyvsp[(1) - (1)].ch)); }
     break;
 
   case 3:
-
-/* Line 1806 of yacc.c  */
-#line 89 "oct-tex-parser.yy"
+/* Line 1787 of yacc.c  */
+#line 91 "corefcn/oct-tex-parser.yy"
     { (yyvsp[(1) - (2)].str)->append (1, (yyvsp[(2) - (2)].ch)); (yyval.str) = (yyvsp[(1) - (2)].str); }
     break;
 
   case 4:
-
-/* Line 1806 of yacc.c  */
-#line 93 "oct-tex-parser.yy"
-    { (yyval.str) = new std::string (1, (yyvsp[(1) - (1)].ch)); }
+/* Line 1787 of yacc.c  */
+#line 95 "corefcn/oct-tex-parser.yy"
+    { (yyval.e_base) = new text_element_symbol ((yyvsp[(1) - (1)].sym)); }
     break;
 
   case 5:
-
-/* Line 1806 of yacc.c  */
-#line 95 "oct-tex-parser.yy"
-    { (yyvsp[(1) - (2)].str)->append (1, (yyvsp[(2) - (2)].ch)); (yyval.str) = (yyvsp[(1) - (2)].str); }
-    break;
-
-  case 6:
-
-/* Line 1806 of yacc.c  */
-#line 99 "oct-tex-parser.yy"
-    {
-				    (yyval.e_base) = new text_element_symbol (*(yyvsp[(2) - (2)].str));
-				    delete (yyvsp[(2) - (2)].str);
-				  }
-    break;
-
-  case 7:
-
-/* Line 1806 of yacc.c  */
-#line 106 "oct-tex-parser.yy"
+/* Line 1787 of yacc.c  */
+#line 99 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_fontstyle (text_element_fontstyle::bold); }
     break;
 
-  case 8:
-
-/* Line 1806 of yacc.c  */
-#line 108 "oct-tex-parser.yy"
+  case 6:
+/* Line 1787 of yacc.c  */
+#line 101 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_fontstyle (text_element_fontstyle::italic); }
     break;
 
-  case 9:
-
-/* Line 1806 of yacc.c  */
-#line 110 "oct-tex-parser.yy"
+  case 7:
+/* Line 1787 of yacc.c  */
+#line 103 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_fontstyle (text_element_fontstyle::oblique); }
     break;
 
-  case 10:
-
-/* Line 1806 of yacc.c  */
-#line 112 "oct-tex-parser.yy"
+  case 8:
+/* Line 1787 of yacc.c  */
+#line 105 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_fontstyle (text_element_fontstyle::normal); }
     break;
 
-  case 11:
-
-/* Line 1806 of yacc.c  */
-#line 116 "oct-tex-parser.yy"
+  case 9:
+/* Line 1787 of yacc.c  */
+#line 109 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_fontsize ((yyvsp[(3) - (4)].num)); }
     break;
 
-  case 12:
-
-/* Line 1806 of yacc.c  */
-#line 120 "oct-tex-parser.yy"
+  case 10:
+/* Line 1787 of yacc.c  */
+#line 113 "corefcn/oct-tex-parser.yy"
     {
 				    (yyval.e_base) = new text_element_fontname (*(yyvsp[(3) - (4)].str));
 				    delete (yyvsp[(3) - (4)].str);
 				  }
     break;
 
-  case 13:
-
-/* Line 1806 of yacc.c  */
-#line 127 "oct-tex-parser.yy"
+  case 11:
+/* Line 1787 of yacc.c  */
+#line 120 "corefcn/oct-tex-parser.yy"
     {
 				    (yyval.e_base) = new text_element_color (*(yyvsp[(3) - (4)].str));
 				    delete (yyvsp[(3) - (4)].str);
 				  }
     break;
 
-  case 14:
-
-/* Line 1806 of yacc.c  */
-#line 132 "oct-tex-parser.yy"
+  case 12:
+/* Line 1787 of yacc.c  */
+#line 125 "corefcn/oct-tex-parser.yy"
     {
 				    (yyval.e_base) = new text_element_color ((yyvsp[(3) - (6)].num), (yyvsp[(4) - (6)].num), (yyvsp[(5) - (6)].num));
 				  }
     break;
 
-  case 15:
-
-/* Line 1806 of yacc.c  */
-#line 138 "oct-tex-parser.yy"
+  case 13:
+/* Line 1787 of yacc.c  */
+#line 131 "corefcn/oct-tex-parser.yy"
     {
 				    (yyval.e_base) = new text_element_string (*(yyvsp[(1) - (1)].str));
 				    delete (yyvsp[(1) - (1)].str);
 				  }
     break;
 
-  case 16:
-
-/* Line 1806 of yacc.c  */
-#line 144 "oct-tex-parser.yy"
+  case 14:
+/* Line 1787 of yacc.c  */
+#line 137 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = (yyvsp[(1) - (1)].e_list); }
     break;
 
-  case 25:
-
-/* Line 1806 of yacc.c  */
-#line 156 "oct-tex-parser.yy"
+  case 23:
+/* Line 1787 of yacc.c  */
+#line 149 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_superscript ((yyvsp[(2) - (2)].ch)); }
     break;
 
-  case 26:
-
-/* Line 1806 of yacc.c  */
-#line 158 "oct-tex-parser.yy"
+  case 24:
+/* Line 1787 of yacc.c  */
+#line 151 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_superscript ((yyvsp[(2) - (2)].e_list)); }
     break;
 
-  case 27:
-
-/* Line 1806 of yacc.c  */
-#line 160 "oct-tex-parser.yy"
+  case 25:
+/* Line 1787 of yacc.c  */
+#line 153 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_superscript ((yyvsp[(2) - (2)].e_base)); }
     break;
 
-  case 28:
-
-/* Line 1806 of yacc.c  */
-#line 164 "oct-tex-parser.yy"
+  case 26:
+/* Line 1787 of yacc.c  */
+#line 157 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_subscript ((yyvsp[(2) - (2)].ch)); }
     break;
 
-  case 29:
-
-/* Line 1806 of yacc.c  */
-#line 166 "oct-tex-parser.yy"
+  case 27:
+/* Line 1787 of yacc.c  */
+#line 159 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_subscript ((yyvsp[(2) - (2)].e_list)); }
     break;
 
-  case 30:
-
-/* Line 1806 of yacc.c  */
-#line 168 "oct-tex-parser.yy"
+  case 28:
+/* Line 1787 of yacc.c  */
+#line 161 "corefcn/oct-tex-parser.yy"
     { (yyval.e_base) = new text_element_subscript ((yyvsp[(2) - (2)].e_base)); }
     break;
 
+  case 29:
+/* Line 1787 of yacc.c  */
+#line 165 "corefcn/oct-tex-parser.yy"
+    { (yyval.e_base) = new text_element_combined ((yyvsp[(1) - (2)].e_base), (yyvsp[(2) - (2)].e_base)); }
+    break;
+
+  case 30:
+/* Line 1787 of yacc.c  */
+#line 167 "corefcn/oct-tex-parser.yy"
+    { (yyval.e_base) = new text_element_combined ((yyvsp[(1) - (2)].e_base), (yyvsp[(2) - (2)].e_base)); }
+    break;
+
   case 31:
-
-/* Line 1806 of yacc.c  */
-#line 172 "oct-tex-parser.yy"
-    { (yyval.e_base) = new text_element_combined ((yyvsp[(1) - (2)].e_base), (yyvsp[(2) - (2)].e_base)); }
-    break;
-
-  case 32:
-
-/* Line 1806 of yacc.c  */
-#line 174 "oct-tex-parser.yy"
-    { (yyval.e_base) = new text_element_combined ((yyvsp[(1) - (2)].e_base), (yyvsp[(2) - (2)].e_base)); }
-    break;
-
-  case 33:
-
-/* Line 1806 of yacc.c  */
-#line 178 "oct-tex-parser.yy"
+/* Line 1787 of yacc.c  */
+#line 171 "corefcn/oct-tex-parser.yy"
     { (yyval.e_list) = new text_element_list ((yyvsp[(1) - (1)].e_base)); }
     break;
 
-  case 34:
-
-/* Line 1806 of yacc.c  */
-#line 180 "oct-tex-parser.yy"
+  case 32:
+/* Line 1787 of yacc.c  */
+#line 173 "corefcn/oct-tex-parser.yy"
     { (yyvsp[(1) - (2)].e_list)->push_back ((yyvsp[(2) - (2)].e_base)); (yyval.e_list) = (yyvsp[(1) - (2)].e_list); }
     break;
 
-  case 35:
-
-/* Line 1806 of yacc.c  */
-#line 184 "oct-tex-parser.yy"
+  case 33:
+/* Line 1787 of yacc.c  */
+#line 177 "corefcn/oct-tex-parser.yy"
     { (yyval.e_list) = (yyvsp[(2) - (3)].e_list); }
     break;
 
-  case 36:
-
-/* Line 1806 of yacc.c  */
-#line 186 "oct-tex-parser.yy"
+  case 34:
+/* Line 1787 of yacc.c  */
+#line 179 "corefcn/oct-tex-parser.yy"
     { (yyval.e_list) = new text_element_list (); }
     break;
 
-  case 37:
-
-/* Line 1806 of yacc.c  */
-#line 190 "oct-tex-parser.yy"
+  case 35:
+/* Line 1787 of yacc.c  */
+#line 183 "corefcn/oct-tex-parser.yy"
     { parser.set_parse_result (new text_element_string ("")); }
     break;
 
-  case 38:
-
-/* Line 1806 of yacc.c  */
-#line 192 "oct-tex-parser.yy"
+  case 36:
+/* Line 1787 of yacc.c  */
+#line 185 "corefcn/oct-tex-parser.yy"
     { parser.set_parse_result ((yyvsp[(1) - (1)].e_list)); }
     break;
 
 
-
-/* Line 1806 of yacc.c  */
-#line 1848 "corefcn/oct-tex-parser.cc"
+/* Line 1787 of yacc.c  */
+#line 1760 "corefcn/oct-tex-parser.cc"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2007,7 +1919,9 @@ yyerrlab1:
       YY_STACK_PRINT (yyss, yyssp);
     }
 
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   *++yyvsp = yylval;
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
   /* Shift the error token.  */
@@ -2031,7 +1945,7 @@ yyabortlab:
   yyresult = 1;
   goto yyreturn;
 
-#if !defined(yyoverflow) || YYERROR_VERBOSE
+#if !defined yyoverflow || YYERROR_VERBOSE
 /*-------------------------------------------------.
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
@@ -2073,9 +1987,8 @@ yyreturn:
 }
 
 
-
-/* Line 2067 of yacc.c  */
-#line 195 "oct-tex-parser.yy"
+/* Line 2050 of yacc.c  */
+#line 188 "corefcn/oct-tex-parser.yy"
 
 
 text_element*
@@ -2099,4 +2012,3 @@ yyerror (text_parser_tex&, const char *s)
 {
   fprintf (stderr, "TeX parse error: %s\n", s);
 }
-

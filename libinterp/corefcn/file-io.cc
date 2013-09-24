@@ -670,15 +670,6 @@ IEEE big endian format.\n\
 \n\
 @item ieee-le\n\
 IEEE little endian format.\n\
-\n\
-@item vaxd\n\
-VAX D floating format.\n\
-\n\
-@item vaxg\n\
-VAX G floating format.\n\
-\n\
-@item cray\n\
-Cray floating format.\n\
 @end table\n\
 \n\
 @noindent\n\
@@ -1563,20 +1554,7 @@ IEEE big endian.\n\
 \n\
 @item \"ieee-le\"\n\
 IEEE little endian.\n\
-\n\
-@item @qcode{\"vaxd\"}\n\
-VAX D floating format.\n\
-\n\
-@item @qcode{\"vaxg\"}\n\
-VAX G floating format.\n\
-\n\
-@item @qcode{\"cray\"}\n\
-Cray floating format.\n\
 @end table\n\
-\n\
-@noindent\n\
-Conversions are currently only supported for @qcode{\"ieee-be\"} and\n\
-@qcode{\"ieee-le\"} formats.\n\
 \n\
 The data read from the file is returned in @var{val}, and the number of\n\
 values read is returned in @code{count}\n\

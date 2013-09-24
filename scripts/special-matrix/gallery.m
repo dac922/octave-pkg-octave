@@ -1949,7 +1949,7 @@ function Q = orthog (n, k = 1)
       Q(1,2:n) = ones (1, n-1);
       for i = 2:n
         Q(i,i) = -(i-1);
-      end
+      endfor
       Q = diag (sqrt ([n 1:n-1] .* [1:n])) \ Q;
 
     case (5)
@@ -2217,8 +2217,8 @@ function A = randsvd (n, kappa = sqrt (1/eps), mode = 3, kl = n-1, ku = kl)
   if (p == 1)
     A = randn (m, n);
     A = A / norm (A);
-    return
-  end
+    return;
+  endif
 
   ##  Set up vector sigma of singular values.
   switch (abs (mode))
@@ -2244,7 +2244,7 @@ function A = randsvd (n, kappa = sqrt (1/eps), mode = 3, kl = n-1, ku = kl)
   ##  Convert to diagonal matrix of singular values.
   if (mode < 0)
     sigma = sigma (p:-1:1);
-  end
+  endif
   sigma = diag (sigma);
 
   if (posdef)
@@ -2252,13 +2252,13 @@ function A = randsvd (n, kappa = sqrt (1/eps), mode = 3, kl = n-1, ku = kl)
     Q = qmult (p);
     A = Q' * sigma * Q;
     A = (A + A') / 2;  # Ensure matrix is symmetric.
-    return
+    return;
   endif
 
   if (m != n)
     ## Expand to m-by-n diagonal matrix
     sigma(m, n) = 0;
-  end
+  endif
 
   if (kl == 0 && ku == 0)
     ## Diagonal matrix requested - nothing more to do.
@@ -2464,7 +2464,7 @@ function P = toeppen (n, a = 1, b = -10, c = 0, d = 10, e = 1)
     error ("gallery: 1 to 6 arguments are required for toeppen matrix.");
   elseif (! isnumeric (n) || ! isscalar (n) || fix (n) != n)
     error ("gallery: N must be a numeric integer for toeppen matrix.");
-  elseif (any (cellfun (@(x) ! isnumeric (x) || ! isscalar (x), {a b c d e})))
+  elseif (any (! cellfun ("isnumeric", {a b c d e})) || any (cellfun ("numel", {a b c d e}) != 1))
     error ("gallery: A, B, C, D and E must be numeric scalars for toeppen matrix.");
   endif
 
@@ -2852,3 +2852,4 @@ function A = bandred (A, kl, ku)
     A = A';
   endif
 endfunction
+

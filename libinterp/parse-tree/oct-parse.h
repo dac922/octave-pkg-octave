@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 2.5.  */
+/* A Bison parser, made by GNU Bison 2.7.12-4996.  */
 
 /* Bison interface for Yacc-like parsers in C
    
-      Copyright (C) 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
+      Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -30,6 +30,15 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
+#ifndef YY_OCTAVE_PARSE_TREE_OCT_PARSE_H_INCLUDED
+# define YY_OCTAVE_PARSE_TREE_OCT_PARSE_H_INCLUDED
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+#if YYDEBUG
+extern int octave_debug;
+#endif
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -205,13 +214,11 @@
 
 
 
-
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
 {
-
-/* Line 2068 of yacc.c  */
-#line 157 "oct-parse.yy"
+/* Line 2053 of yacc.c  */
+#line 157 "parse-tree/oct-parse.yy"
 
   // The type of the basic tokens returned by the lexer.
   token *tok_val;
@@ -249,9 +256,8 @@ typedef union YYSTYPE
   void *dummy_type;
 
 
-
-/* Line 2068 of yacc.c  */
-#line 255 "parse-tree/oct-parse.h"
+/* Line 2053 of yacc.c  */
+#line 261 "parse-tree/oct-parse.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -259,25 +265,25 @@ typedef union YYSTYPE
 #endif
 
 
-
-
-#ifndef YYPUSH_DECLS
-#  define YYPUSH_DECLS
-struct octave_pstate;
-typedef struct octave_pstate octave_pstate;
+#ifndef YYPUSH_MORE_DEFINED
+# define YYPUSH_MORE_DEFINED
 enum { YYPUSH_MORE = 4 };
+#endif
+
+typedef struct octave_pstate octave_pstate;
+
 #if defined __STDC__ || defined __cplusplus
 int octave_parse (octave_base_parser& parser);
 #else
 int octave_parse ();
 #endif
 #if defined __STDC__ || defined __cplusplus
-int octave_push_parse (octave_pstate *yyps, int yypushed_char, YYSTYPE const *yypushed_val, octave_base_parser& parser);
+int octave_push_parse (octave_pstate *ps, int pushed_char, YYSTYPE const *pushed_val, octave_base_parser& parser);
 #else
 int octave_push_parse ();
 #endif
 #if defined __STDC__ || defined __cplusplus
-int octave_pull_parse (octave_pstate *yyps, octave_base_parser& parser);
+int octave_pull_parse (octave_pstate *ps, octave_base_parser& parser);
 #else
 int octave_pull_parse ();
 #endif
@@ -287,9 +293,9 @@ octave_pstate * octave_pstate_new (void);
 octave_pstate * octave_pstate_new ();
 #endif
 #if defined __STDC__ || defined __cplusplus
-void octave_pstate_delete (octave_pstate *yyps);
+void octave_pstate_delete (octave_pstate *ps);
 #else
 void octave_pstate_delete ();
 #endif
-#endif
 
+#endif /* !YY_OCTAVE_PARSE_TREE_OCT_PARSE_H_INCLUDED  */

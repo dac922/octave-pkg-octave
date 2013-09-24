@@ -93,7 +93,7 @@ function [h, pout] = struct2hdl (s, p=[], hilev = false)
     p = p(1:2, 1:(tst(end)-1));
   endif
 
-  ## Place the "*mode" properties as the end to avoid having the updaters
+  ## Place the "*mode" properties at the end to avoid having the updaters
   ## change the mode to "manual" when the value is "auto".
   names = fieldnames (s.properties);
   n = strncmp (cellfun (@fliplr, names, "uniformoutput", false), "edom", 4);
@@ -191,7 +191,7 @@ function [h, sout] = createaxes (s, p, par)
       plty = s.properties.__plotyy_axes__;
       addproperty ("__plotyy_axes__", h, "any");
       tmp = [p [s.handle; h]];
-      tst = arrayfun (@(x) any (plty == x), tmp(1:2:end));
+      tst = ismember (tmp(1:2:end), plty);
       if (sum (tst) == numel (plty))
         for ii = 1:numel (plty)
           plty(ii) = tmp(find (tmp == plty(ii)) + 1);
@@ -453,7 +453,8 @@ function [h, sout, pout] = createhg_hilev (s, p, par)
     bargroup = s.properties.bargroup;
     oldh = s.handle;
 
-    temp = arrayfun (@(x) any(x == bargroup), [p(1:2:end) oldh]);
+    temp = ismember ([p(1:2:end) oldh], bargroup);
+
     tst = sum (temp) == length (bargroup);
 
     if (isscalar (bargroup) || !tst)
@@ -547,7 +548,11 @@ function setprops (s, h, p, hilev)
   more off;
   if (strcmpi (s.properties.tag, ""))
     specs = s.children(s.special);
-    hdls = arrayfun (@(x) x.handle, specs);
+    if (isempty (specs))
+      hdls = [];
+    else
+      hdls = [specs.handle];
+    endif
     nh = length (hdls);
     msg = "";
     if (! nh)
@@ -625,7 +630,7 @@ function addmissingprops (h, props)
   hid = {"autopos_tag", "looseinset"};
   oldfields = fieldnames (props);
   curfields = fieldnames (get (h));
-  missing = cellfun (@(x) !any (strcmp (x, curfields)), oldfields);
+  missing = ! ismember (oldfields, curfields);
   idx = find (missing);
   for ii = 1:length (idx)
     prop = oldfields{idx(ii)};
@@ -637,3 +642,4 @@ endfunction
 
 
 ## FIXME: Need validation tests
+

@@ -73,7 +73,7 @@ function varargout = __bar__ (vertical, func, varargin)
       group = false;
       idx++;
     else
-      if ((ischar (varargin{idx}) || iscell (varargin{idx}))
+      if ((ischar (varargin{idx}) || iscellstr (varargin{idx}))
           && ! have_line_spec)
         [linespec, valid] = __pltopt__ (func, varargin{idx}, false);
         if (valid)
@@ -150,7 +150,7 @@ function varargout = __bar__ (vertical, func, varargin)
 
   if (nargout < 2)
   oldfig = [];
-  if (isempty (hax))
+  if (! isempty (hax))
     oldfig = get (0, "currentfigure");
   endif
     unwind_protect

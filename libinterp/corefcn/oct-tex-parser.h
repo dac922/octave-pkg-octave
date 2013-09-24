@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 2.5.  */
+/* A Bison parser, made by GNU Bison 2.7.12-4996.  */
 
 /* Bison interface for Yacc-like parsers in C
    
-      Copyright (C) 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
+      Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -30,15 +30,22 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
+#ifndef YY_OCTAVE_TEX_COREFCN_OCT_TEX_PARSER_H_INCLUDED
+# define YY_OCTAVE_TEX_COREFCN_OCT_TEX_PARSER_H_INCLUDED
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+#if YYDEBUG
+extern int octave_tex_debug;
+#endif
 /* "%code requires" blocks.  */
-
-/* Line 2068 of yacc.c  */
-#line 44 "oct-tex-parser.yy"
+/* Line 2053 of yacc.c  */
+#line 44 "corefcn/oct-tex-parser.yy"
 #include <string>
 
-
-/* Line 2068 of yacc.c  */
-#line 42 "corefcn/oct-tex-parser.h"
+/* Line 2053 of yacc.c  */
+#line 49 "corefcn/oct-tex-parser.h"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -50,20 +57,19 @@
      IT = 259,
      SL = 260,
      RM = 261,
-     CMD = 262,
-     FONTNAME = 263,
-     FONTSIZE = 264,
-     COLOR = 265,
-     COLOR_RGB = 266,
-     START = 267,
-     END = 268,
-     SUPER = 269,
-     SUB = 270,
-     CH = 271,
-     ID = 272,
-     NUM = 273,
-     SCRIPT = 274,
-     STR = 275
+     FONTNAME = 262,
+     FONTSIZE = 263,
+     COLOR = 264,
+     COLOR_RGB = 265,
+     START = 266,
+     END = 267,
+     SUPER = 268,
+     SUB = 269,
+     CH = 270,
+     NUM = 271,
+     SYM = 272,
+     SCRIPT = 273,
+     STR = 274
    };
 #endif
 /* Tokens.  */
@@ -71,34 +77,32 @@
 #define IT 259
 #define SL 260
 #define RM 261
-#define CMD 262
-#define FONTNAME 263
-#define FONTSIZE 264
-#define COLOR 265
-#define COLOR_RGB 266
-#define START 267
-#define END 268
-#define SUPER 269
-#define SUB 270
-#define CH 271
-#define ID 272
-#define NUM 273
-#define SCRIPT 274
-#define STR 275
-
+#define FONTNAME 262
+#define FONTSIZE 263
+#define COLOR 264
+#define COLOR_RGB 265
+#define START 266
+#define END 267
+#define SUPER 268
+#define SUB 269
+#define CH 270
+#define NUM 271
+#define SYM 272
+#define SCRIPT 273
+#define STR 274
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
 {
-
-/* Line 2068 of yacc.c  */
-#line 46 "oct-tex-parser.yy"
+/* Line 2053 of yacc.c  */
+#line 46 "corefcn/oct-tex-parser.yy"
 
   /* Leaf symbols produced by the scanner */
   char                       ch;
   double                     num;
+  int                        sym;
 
   /* Used for string buffering */
   std::string*               str;
@@ -108,9 +112,8 @@ typedef union YYSTYPE
   text_element_list*         e_list;
 
 
-
-/* Line 2068 of yacc.c  */
-#line 114 "corefcn/oct-tex-parser.h"
+/* Line 2053 of yacc.c  */
+#line 117 "corefcn/oct-tex-parser.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -118,5 +121,18 @@ typedef union YYSTYPE
 #endif
 
 
+#ifdef YYPARSE_PARAM
+#if defined __STDC__ || defined __cplusplus
+int octave_tex_parse (void *YYPARSE_PARAM);
+#else
+int octave_tex_parse ();
+#endif
+#else /* ! YYPARSE_PARAM */
+#if defined __STDC__ || defined __cplusplus
+int octave_tex_parse (text_parser_tex& parser);
+#else
+int octave_tex_parse ();
+#endif
+#endif /* ! YYPARSE_PARAM */
 
-
+#endif /* !YY_OCTAVE_TEX_COREFCN_OCT_TEX_PARSER_H_INCLUDED  */

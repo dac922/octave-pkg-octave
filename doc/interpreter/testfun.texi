@@ -630,6 +630,9 @@ See @code{demo} for a complete explanation.
 @deftypefn  {Function File} {} rundemos ()
 @deftypefnx {Function File} {} rundemos (@var{directory})
 Execute built-in demos for all function files in the specified directory.
+Also executes demos in any C++ source files found in the directory, for
+use with dynamically linked functions.
+
 If no directory is specified, operate on all directories in Octave's
 search path for functions.
 @seealso{@ref{XREFruntests,,runtests}, @ref{XREFpath,,path}}
@@ -641,6 +644,8 @@ search path for functions.
 @deftypefn  {Function File} {} runtests ()
 @deftypefnx {Function File} {} runtests (@var{directory})
 Execute built-in tests for all function files in the specified directory.
+Also executes tests in any C++ source files found in the directory, for
+use with dynamically linked functions.
 
 If no directory is specified, operate on all directories in Octave's
 search path for functions.

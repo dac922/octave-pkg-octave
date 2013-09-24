@@ -1,1950 +1,1925 @@
-This is /home/jwe/src/octave/doc/interpreter/octave.info, produced by makeinfo version 4.13 from /home/jwe/src/octave/doc/interpreter/octave.texi.
-
-START-INFO-DIR-ENTRY
-* Octave: (octave).           Interactive language for numerical computations.
-
-END-INFO-DIR-ENTRY
-
-   Copyright (C) 1996, 1997, 1999, 2000, 2001, 2002, 2005, 2006, 2007,
-2011 John W. Eaton.
-
-   Permission is granted to make and distribute verbatim copies of this
-manual provided the copyright notice and this permission notice are
-preserved on all copies.
-
-   Permission is granted to copy and distribute modified versions of
-this manual under the conditions for verbatim copying, provided that
-the entire resulting derived work is distributed under the terms of a
-permission notice identical to this one.
-
-   Permission is granted to copy and distribute translations of this
-manual into another language, under the above conditions for modified
-versions.
+This is octave.info, produced by makeinfo version 5.1 from octave.texi.
 
 
 Indirect:
-octave.info-1: 927
-octave.info-2: 300352
-octave.info-3: 654926
-octave.info-4: 966815
-octave.info-5: 1269317
-octave.info-6: 1572162
-octave.info-7: 1867679
-octave.info-8: 2037893
+octave.info-1: 73
+octave.info-2: 301680
+octave.info-3: 656682
+octave.info-4: 903996
+octave.info-5: 1203600
+octave.info-6: 1500278
+octave.info-7: 1801750
+octave.info-8: 2434147
 
 Tag Table:
 (Indirect)
-Node: Top927
-Node: Preface16383
-Node: Acknowledgements18704
-Node: Citing Octave in Publications27664
-Ref: XREFcitation28244
-Node: How You Can Contribute to Octave28942
-Node: Distribution30491
-Node: Introduction31203
-Node: Running Octave32225
-Node: Simple Examples33027
-Node: Conventions41285
-Node: Fonts41657
-Node: Evaluation Notation42194
-Node: Printing Notation43187
-Node: Error Messages43712
-Node: Format of Descriptions44109
-Node: A Sample Function Description44666
-Node: A Sample Command Description46869
-Node: Getting Started47653
-Node: Invoking Octave from the Command Line48183
-Node: Command Line Options49072
-Ref: XREFargv55256
-Ref: XREFprogram_name55783
-Ref: XREFprogram_invocation_name55994
-Node: Startup Files56872
-Ref: XREFdump_prefs59183
-Node: Quitting Octave59478
-Ref: XREFquit59653
-Ref: XREFatexit59926
-Node: Getting Help60925
-Ref: XREFhelp61551
-Ref: XREFdoc62464
-Ref: XREFlookfor63003
-Ref: XREFnews64366
-Ref: XREFinfo64650
-Ref: XREFwarranty64742
-Ref: XREFinfo_file64995
-Ref: XREFinfo_program65899
-Ref: XREFmakeinfo_program66941
-Ref: XREFtexi_macros_file67720
-Ref: XREFdoc_cache_file68734
-Ref: XREFbuilt_in_docstrings_file69906
-Ref: XREFsuppress_verbose_help_message70784
-Ref: XREFdoc_cache_create71630
-Ref: XREFget_help_text72175
-Ref: XREFget_help_text_from_file72439
-Ref: XREFget_first_help_sentence72717
-Node: Command Line Editing73580
-Node: Cursor Motion75445
-Ref: XREFclc76879
-Node: Killing and Yanking77025
-Node: Commands For Text78728
-Node: Commands For Completion80119
-Ref: XREFcompletion_append_char80618
-Ref: XREFcompletion_matches81203
-Node: Commands For History81554
-Ref: XREFhistory83283
-Ref: XREFedit_history84495
-Ref: XREFrun_history85867
-Ref: XREFhistory_save86962
-Ref: XREFhistory_control87711
-Ref: XREFhistory_file89064
-Ref: XREFhistory_size89581
-Ref: XREFhistory_timestamp_format_string90078
-Ref: XREFEDITOR91009
-Node: Customizing readline91727
-Ref: XREFreadline_read_init_file92322
-Ref: XREFreadline_re_read_init_file92696
-Node: Customizing the Prompt92987
-Ref: XREFPS194223
-Ref: XREFPS295439
-Ref: XREFPS496241
-Node: Diary and Echo Commands96968
-Ref: XREFdiary97318
-Ref: XREFecho98093
-Ref: XREFecho_executing_commands98696
-Node: Errors99644
-Node: Executable Octave Programs102233
-Ref: Executable Octave Programs-Footnote-1105698
-Node: Comments105832
-Node: Single Line Comments106408
-Node: Block Comments107061
-Node: Comments and the Help System107834
-Node: Data Types109130
-Ref: XREFtypeinfo109915
-Node: Built-in Data Types110243
-Ref: XREFclass110918
-Ref: XREFisa111313
-Ref: XREFcast111851
-Ref: XREFtypecast112179
-Ref: XREFswapbytes113694
-Ref: XREFbitpack113989
-Ref: XREFbitunpack114826
-Node: Numeric Objects115482
-Node: Missing Data116361
-Ref: XREFNA116800
-Ref: XREFisna117740
-Node: String Objects118082
-Node: Data Structure Objects118565
-Node: Cell Array Objects119024
-Node: User-defined Data Types119318
-Node: Object Sizes119777
-Ref: XREFndims120236
-Ref: XREFcolumns120536
-Ref: XREFrows120829
-Ref: XREFnumel121122
-Ref: XREFlength121804
-Ref: XREFsize122202
-Ref: XREFisempty123117
-Ref: XREFisnull123326
-Ref: XREFsizeof123921
-Ref: XREFsize_equal124036
-Ref: XREFsqueeze124352
-Node: Numeric Data Types124630
-Ref: XREFdouble126115
-Ref: XREFcomplex126235
-Node: Matrices127005
-Ref: XREFsizemax129810
-Ref: XREFoutput_max_field_width130614
-Ref: XREFoutput_precision131284
-Ref: XREFsplit_long_rows132211
-Ref: XREFfixed_point_format133870
-Node: Empty Matrices135105
-Ref: XREFprint_empty_dimensions136104
-Node: Ranges137176
-Node: Single Precision Data Types140141
-Ref: XREFsingle140560
-Node: Integer Data Types141163
-Ref: XREFisinteger142204
-Ref: XREFint8142605
-Ref: XREFuint8142677
-Ref: XREFint16142759
-Ref: XREFuint16142833
-Ref: XREFint32142917
-Ref: XREFuint32142991
-Ref: XREFint64143075
-Ref: XREFuint64143149
-Ref: XREFintmax143233
-Ref: XREFintmin143864
-Node: Integer Arithmetic144529
-Ref: XREFidivide145701
-Node: Bit Manipulations147122
-Ref: XREFbitset147486
-Ref: XREFbitget148027
-Ref: XREFflintmax149459
-Ref: XREFbitmax149459
-Ref: XREFbitand150238
-Ref: XREFbitor150585
-Ref: XREFbitxor150930
-Ref: XREFbitcmp151526
-Ref: XREFbitshift152136
-Node: Logical Values153248
-Ref: XREFlogical154699
-Ref: XREFtrue154864
-Ref: XREFfalse155339
-Node: Promotion and Demotion of Data Types155815
-Node: Predicates for Numeric Objects157904
-Ref: XREFisnumeric158770
-Ref: XREFisfloat159257
-Ref: XREFisreal159589
-Ref: XREFiscomplex159876
-Ref: XREFismatrix160164
-Ref: XREFisvector160645
-Ref: XREFisrow161037
-Ref: XREFiscolumn161254
-Ref: XREFisscalar161466
-Ref: XREFissquare161617
-Ref: XREFissymmetric161827
-Ref: XREFishermitian162228
-Ref: XREFisdefinite162619
-Ref: XREFislogical163029
-Ref: XREFisprime163311
-Node: Strings163936
-Node: Escape Sequences in String Constants165002
-Ref: XREFis_dq_string167337
-Ref: XREFis_sq_string167524
-Node: Character Arrays167711
-Ref: XREFischar168711
-Ref: XREFstring_fill_char169692
-Node: Creating Strings170685
-Ref: XREFblanks171154
-Node: Concatenating Strings171626
-Ref: XREFchar174868
-Ref: XREFstrvcat176051
-Ref: XREFstrcat177280
-Ref: XREFcstrcat178512
-Node: Converting Numerical Data to Strings178971
-Ref: XREFmat2str179719
-Ref: XREFnum2str181012
-Ref: XREFint2str182542
-Node: Comparing Strings183311
-Ref: XREFstrcmp184053
-Ref: XREFstrncmp184825
-Ref: XREFstrcmpi185761
-Ref: XREFstrncmpi186631
-Ref: XREFvalidatestring187514
-Node: Manipulating Strings189007
-Ref: XREFdeblank189762
-Ref: XREFstrtrim190218
-Ref: XREFstrtrunc190673
-Ref: XREFfindstr190967
-Ref: XREFstrchr191778
-Ref: XREFindex192257
-Ref: XREFrindex192779
-Ref: XREFstrfind193241
-Ref: XREFstrjoin194185
-Ref: XREFstrmatch194934
-Ref: XREFstrtok196009
-Ref: XREFstrsplit196934
-Ref: XREFostrsplit200100
-Ref: XREFstrread201048
-Ref: XREFstrrep206151
-Ref: XREFsubstr206731
-Ref: XREFregexp207539
-Ref: XREFregexpi213256
-Ref: XREFregexprep213695
-Ref: XREFregexptranslate214902
-Ref: XREFuntabify215795
-Node: String Conversions216814
-Ref: XREFbin2dec217211
-Ref: XREFdec2bin217920
-Ref: XREFdec2hex218501
-Ref: XREFhex2dec219059
-Ref: XREFdec2base219656
-Ref: XREFbase2dec220466
-Ref: XREFnum2hex221235
-Ref: XREFhex2num221976
-Ref: XREFstr2double222880
-Ref: XREFstrjust223923
-Ref: XREFstr2num224566
-Ref: XREFtoascii225397
-Ref: XREFtolower225608
-Ref: XREFtoupper225992
-Ref: XREFdo_string_escapes226376
-Ref: XREFundo_string_escapes226494
-Node: Character Class Functions227262
-Ref: XREFisalnum227822
-Ref: XREFisalpha228207
-Ref: XREFisletter228643
-Ref: XREFislower229036
-Ref: XREFisupper229331
-Ref: XREFisdigit229626
-Ref: XREFisxdigit229992
-Ref: XREFispunct230186
-Ref: XREFisspace230484
-Ref: XREFiscntrl230853
-Ref: XREFisgraph231147
-Ref: XREFisprint231389
-Ref: XREFisascii231633
-Ref: XREFisstrprop231828
-Node: Data Containers233515
-Node: Structures234099
-Node: Basic Usage and Examples234553
-Ref: XREFstruct_levels_to_print236887
-Ref: XREFprint_struct_array_contents237406
-Node: Structure Arrays239652
-Node: Creating Structures242344
-Ref: XREFstruct245137
-Ref: XREFisstruct246997
-Node: Manipulating Structures247192
-Ref: XREFnfields247469
-Ref: XREFfieldnames247559
-Ref: XREFisfield248261
-Ref: XREFsetfield248483
-Ref: XREFgetfield250729
-Ref: XREFrmfield251254
-Ref: XREForderfields251622
-Ref: XREFsubstruct253588
-Node: Processing Data in Structures254179
-Ref: XREFstruct2cell254785
-Node: Cell Arrays255661
-Node: Basic Usage of Cell Arrays256270
-Ref: XREFcelldisp257756
-Ref: XREFiscell258488
-Node: Creating Cell Arrays258704
-Ref: XREFcell260322
-Ref: XREFnum2cell260938
-Ref: XREFmat2cell261694
-Ref: XREFcellslices262742
-Node: Indexing Cell Arrays263443
-Ref: XREFcellindexmat266673
-Node: Cell Arrays of Strings266991
-Ref: XREFcellstr268049
-Ref: XREFiscellstr269167
-Node: Processing Data in Cell Arrays269337
-Ref: XREFcell2mat270098
-Ref: XREFcell2struct270474
-Node: Comma Separated Lists271050
-Ref: Comma Separated Lists-Footnote-1272590
-Node: Comma Separated Lists Generated from Cell Arrays272677
-Node: Comma Separated Lists Generated from Structure Arrays274843
-Node: Variables275542
-Ref: XREFans277393
-Ref: XREFisvarname277625
-Ref: XREFgenvarname277816
-Ref: XREFnamelengthmax280050
-Node: Global Variables280572
-Ref: XREFisglobal282296
-Node: Persistent Variables282544
-Ref: XREFpersistent282714
-Node: Status of Variables286064
-Ref: XREFwho286605
-Ref: XREFwhos287862
-Ref: XREFwhos_line_format289622
-Ref: XREFexist291955
-Ref: XREFclear293733
-Ref: XREFpack295891
-Ref: XREFtype296257
-Ref: XREFwhich296750
-Ref: XREFwhat296975
-Node: Expressions297308
-Node: Index Expressions298167
-Node: Advanced Indexing300352
-Ref: XREFsub2ind304855
-Ref: XREFind2sub305347
-Ref: XREFisindex305800
-Ref: XREFallow_noninteger_range_as_index306242
-Node: Calling Functions307001
-Node: Call by Value309514
-Node: Recursion311524
-Ref: XREFmax_recursion_depth312463
-Ref: Recursion-Footnote-1313107
-Ref: Recursion-Footnote-2313496
-Node: Arithmetic Ops313657
-Ref: XREFctranspose317443
-Ref: XREFldivide317625
-Ref: XREFminus317899
-Ref: XREFmldivide318047
-Ref: XREFmpower318291
-Ref: XREFmrdivide318560
-Ref: XREFmtimes318823
-Ref: XREFplus319404
-Ref: XREFpower319767
-Ref: XREFrdivide320284
-Ref: XREFtimes320559
-Ref: XREFtranspose321013
-Ref: XREFuminus321174
-Ref: XREFuplus321318
-Node: Comparison Ops321490
-Ref: XREFeq323033
-Ref: XREFge323324
-Ref: XREFgt323517
-Ref: XREFisequal323709
-Ref: XREFisequaln323849
-Ref: XREFle324093
-Ref: XREFlt324286
-Ref: XREFne324478
-Node: Boolean Expressions324732
-Node: Element-by-element Boolean Operators324981
-Ref: XREFand327423
-Ref: XREFnot327837
-Ref: XREFor328018
-Node: Short-circuit Boolean Operators328435
-Ref: XREFdo_braindead_shortcircuit_evaluation331614
-Ref: XREFmerge332725
-Node: Assignment Ops333613
-Node: Increment Ops338859
-Node: Operator Precedence340480
-Node: Evaluation342810
-Ref: XREFeval343248
-Node: Calling a Function by its Name344334
-Ref: XREFfeval346025
-Ref: XREFrun347059
-Node: Evaluation in a Different Context347459
-Ref: XREFevalin349857
-Ref: XREFassignin350155
-Node: Statements350352
-Node: The if Statement351857
-Node: The switch Statement355381
-Node: Notes for the C Programmer358198
-Node: The while Statement359300
-Node: The do-until Statement361498
-Node: The for Statement362902
-Node: Looping Over Structure Elements366063
-Node: The break Statement367332
-Node: The continue Statement368854
-Node: The unwind_protect Statement370151
-Node: The try Statement371555
-Node: Continuation Lines372583
-Node: Functions and Scripts374198
-Node: Introduction to Function and Script Files374980
-Node: Defining Functions375897
-Ref: XREFnargin381128
-Ref: XREFinputname381825
-Ref: XREFsilent_functions382004
-Node: Multiple Return Values382687
-Ref: XREFnthargout384320
-Ref: XREFnargout386574
-Ref: XREFnargchk388253
-Ref: XREFnarginchk388893
-Ref: XREFnargoutchk389534
-Ref: XREFvarargin390786
-Ref: XREFvarargout390786
-Node: Variable-length Argument Lists390786
-Ref: XREFparseparams392915
-Node: Ignoring Arguments394137
-Ref: XREFisargout395130
-Node: Variable-length Return Lists395987
-Ref: XREFdeal397144
-Node: Returning from a Function397648
-Node: Default Arguments399237
-Node: Function Files400530
-Ref: XREFedit403136
-Ref: XREFmfilename407965
-Ref: XREFignore_function_time_stamp408416
-Ref: Function Files-Footnote-1409500
-Node: Manipulating the Load Path409566
-Ref: XREFaddpath410382
-Ref: XREFgenpath411142
-Ref: XREFrmpath411414
-Ref: XREFsavepath411904
-Ref: XREFpath412401
-Ref: XREFpathdef413096
-Ref: XREFpathsep413603
-Ref: XREFrehash413812
-Ref: XREFfile_in_loadpath413901
-Ref: XREFrestoredefaultpath414636
-Ref: XREFcommand_line_path414968
-Ref: XREFfind_dir_in_path415283
-Node: Subfunctions415797
-Node: Private Functions416593
-Node: Nested Functions417666
-Node: Overloading and Autoloading421557
-Ref: XREFbuiltin422250
-Ref: XREFautoload423649
-Node: Function Locking424867
-Ref: XREFmlock426804
-Ref: XREFmunlock427026
-Ref: XREFmislocked427312
-Node: Function Precedence427634
-Node: Script Files429104
-Ref: XREFsource432912
-Node: Function Handles Anonymous Functions Inline Functions433121
-Node: Function Handles433696
-Ref: XREFis_function_handle434620
-Ref: XREFfunctions434808
-Ref: XREFfunc2str434943
-Ref: XREFstr2func435098
-Node: Anonymous Functions435374
-Node: Inline Functions436459
-Ref: XREFinline436903
-Ref: XREFargnames437958
-Ref: XREFformula438223
-Ref: XREFsymvar438503
-Node: Commands438843
-Node: Organization of Functions440067
-Node: Errors and Warnings442514
-Node: Handling Errors443119
-Node: Raising Errors443876
-Ref: XREFerror444496
-Ref: XREFprint_usage448668
-Ref: XREFusage448965
-Ref: XREFbeep449817
-Ref: XREFbeep_on_error450023
-Node: Catching Errors450560
-Ref: XREFlasterror451734
-Ref: XREFlasterr453223
-Ref: XREFerror_ids454724
-Ref: XREFrethrow456254
-Ref: XREFerrno456697
-Ref: XREFerrno_list457049
-Node: Recovering From Errors457158
-Ref: XREFonCleanup458280
-Node: Handling Warnings458792
-Node: Issuing Warnings459371
-Ref: XREFwarning460816
-Ref: XREFlastwarn463393
-Ref: XREFwarning_ids463990
-Node: Enabling and Disabling Warnings474876
-Node: Debugging475769
-Node: Entering Debug Mode476483
-Ref: XREFdebug_on_interrupt476976
-Ref: XREFdebug_on_warning477792
-Ref: XREFdebug_on_error478440
-Node: Leaving Debug Mode479209
-Ref: XREFdbcont479429
-Ref: XREFdbquit479691
-Node: Breakpoints479989
-Ref: XREFdbstop480204
-Ref: XREFdbstatus482000
-Ref: XREFdbclear482977
-Ref: XREFkeyboard484519
-Node: Debug Mode485455
-Ref: XREFdbwhere485820
-Ref: XREFdbtype486066
-Ref: XREFdblist486861
-Ref: XREFisdebugmode487241
-Ref: XREFdbstep487540
-Node: Call Stack488458
-Ref: XREFdbstack488584
-Ref: XREFdbup489500
-Ref: XREFdbdown489738
-Node: Profiling489980
-Ref: XREFprofile490892
-Ref: XREFprofshow493325
-Ref: XREFprofexplore493994
-Node: Profiler Example494514
-Ref: Profiler Example-Footnote-1500761
-Node: Input and Output501113
-Node: Basic Input and Output501635
-Node: Terminal Output501866
-Ref: XREFdisp502604
-Ref: XREFlist_in_columns503016
-Ref: XREFterminal_size504114
-Ref: XREFformat504344
-Node: Paging Screen Output510188
-Ref: XREFmore511332
-Ref: XREFPAGER511762
-Ref: XREFPAGER_FLAGS512590
-Ref: XREFpage_screen_output513250
-Ref: XREFpage_output_immediately514156
-Ref: XREFfflush514986
-Node: Terminal Input515435
-Ref: XREFinput515846
-Ref: XREFmenu517025
-Ref: XREFyes_or_no517560
-Ref: XREFkbhit518297
-Node: Simple File I/O518800
-Ref: XREFsave519593
-Ref: XREFsave_default_options523880
-Ref: XREFsave_precision524553
-Ref: XREFsave_header_format_string525067
-Ref: XREFload526106
-Ref: XREFfileread530036
-Ref: XREFnative_float_format530246
-Ref: XREFfdisp530827
-Ref: XREFdlmwrite531254
-Ref: XREFdlmread532967
-Ref: XREFcsvwrite534396
-Ref: XREFcsvread534765
-Ref: XREFtextread535198
-Ref: XREFtextscan536826
-Ref: XREFimportdata539583
-Node: Saving Data on Unexpected Exits540746
-Ref: XREFcrash_dumps_octave_core541267
-Ref: XREFsighup_dumps_octave_core542105
-Ref: XREFsigterm_dumps_octave_core542705
-Ref: XREFoctave_core_file_options543311
-Ref: XREFoctave_core_file_limit544236
-Ref: XREFoctave_core_file_name545418
-Node: C-Style I/O Functions546236
-Ref: XREFstdin547049
-Ref: XREFstdout547333
-Ref: XREFstderr547597
-Node: Opening and Closing Files548400
-Ref: XREFfopen549135
-Ref: XREFfclose552851
-Ref: XREFis_valid_file_id553200
-Node: Simple Output553333
-Ref: XREFfputs553878
-Ref: XREFputs554342
-Node: Line-Oriented Input554571
-Ref: XREFfgetl555153
-Ref: XREFfgets555771
-Ref: XREFfskipl556414
-Node: Formatted Output557173
-Ref: XREFprintf557687
-Ref: XREFfprintf558129
-Ref: XREFsprintf558568
-Node: Output Conversion for Matrices561082
-Node: Output Conversion Syntax562172
-Node: Table of Output Conversions565140
-Node: Integer Conversions567318
-Node: Floating-Point Conversions569374
-Node: Other Output Conversions572210
-Node: Formatted Input573319
-Ref: XREFfscanf573732
-Ref: XREFscanf575578
-Ref: XREFsscanf575973
-Node: Input Conversion Syntax577816
-Node: Table of Input Conversions580306
-Node: Numeric Input Conversions582145
-Node: String Input Conversions583185
-Node: Binary I/O584212
-Ref: XREFfread584674
-Ref: XREFfwrite589100
-Node: Temporary Files589827
-Ref: XREFmkstemp590262
-Ref: XREFtmpfile591272
-Ref: XREFtmpnam591811
-Node: EOF and Errors592513
-Ref: XREFfeof593394
-Ref: XREFferror593765
-Ref: XREFfclear594281
-Ref: XREFfreport594412
-Node: File Positioning594880
-Ref: XREFftell595138
-Ref: XREFfseek595381
-Ref: XREFSEEK_SET596158
-Ref: XREFfrewind596607
-Node: Plotting597246
-Node: Introduction to Plotting597486
-Node: High-Level Plotting598518
-Node: Two-Dimensional Plots599229
-Ref: fig:plot599780
-Ref: XREFplot599967
-Ref: XREFplotyy605416
-Ref: XREFsemilogx606909
-Ref: XREFsemilogy607640
-Ref: XREFloglog608369
-Ref: fig:hist609325
-Ref: XREFbar609494
-Ref: XREFbarh611820
-Ref: XREFhist613270
-Ref: XREFstemleaf614974
-Ref: XREFprintd617556
-Ref: XREFstairs617993
-Ref: XREFstem619273
-Ref: XREFstem3621300
-Ref: XREFscatter622708
-Ref: XREFplotmatrix624534
-Ref: XREFpareto626041
-Ref: XREFrose627912
-Ref: XREFcontour629249
-Ref: XREFcontourf630655
-Ref: XREFcontourc632241
-Ref: XREFcontour3633853
-Ref: fig:errorbar635835
-Ref: XREFerrorbar636012
-Ref: XREFsemilogxerr638676
-Ref: XREFsemilogyerr639516
-Ref: XREFloglogerr640356
-Ref: fig:polar641413
-Ref: XREFpolar641584
-Ref: XREFpie642395
-Ref: XREFpie3643725
-Ref: XREFquiver645077
-Ref: XREFquiver3646704
-Ref: XREFcompass648456
-Ref: XREFfeather649513
-Ref: XREFpcolor650453
-Ref: XREFarea652181
-Ref: XREFcomet653570
-Ref: XREFcomet3654239
-Node: Axis Configuration654926
-Ref: XREFaxis655271
-Ref: XREFcaxis658251
-Ref: XREFylim659249
-Ref: XREFzlim659249
-Ref: XREFxlim659249
-Node: Two-dimensional Function Plotting660230
-Ref: XREFfplot660993
-Ref: XREFezplot662805
-Ref: XREFezcontour664630
-Ref: XREFezcontourf665873
-Ref: XREFezpolar667129
-Node: Two-dimensional Geometric Shapes668135
-Ref: XREFrectangle668352
-Node: Three-Dimensional Plots670035
-Ref: fig:mesh670727
-Ref: fig:plot3671323
-Ref: XREFmesh671592
-Ref: XREFmeshc673296
-Ref: XREFmeshz675065
-Ref: XREFhidden676772
-Ref: XREFsurf677737
-Ref: XREFsurfc679639
-Ref: XREFsurfl681577
-Ref: XREFsurfnorm683743
-Ref: XREFisosurface684918
-Ref: XREFisonormals689078
-Ref: XREFisocolors692420
-Ref: XREFshrinkfaces695861
-Ref: XREFdiffuse697348
-Ref: XREFspecular697730
-Ref: XREFmeshgrid698380
-Ref: XREFndgrid699148
-Ref: XREFplot3699713
-Ref: XREFview701911
-Ref: XREFslice702872
-Ref: XREFribbon704903
-Ref: XREFshading705652
-Ref: XREFscatter3706398
-Ref: XREFwaterfall708217
-Node: Aspect Ratio710170
-Ref: XREFdaspect710534
-Ref: XREFpbaspect711390
-Node: Three-dimensional Function Plotting712279
-Ref: XREFezplot3712529
-Ref: XREFezmesh713630
-Ref: XREFezmeshc715455
-Ref: XREFezsurf717154
-Ref: XREFezsurfc718984
-Node: Three-dimensional Geometric Shapes720671
-Ref: XREFcylinder720898
-Ref: XREFsphere721917
-Ref: XREFellipsoid722760
-Node: Plot Annotations723628
-Ref: XREFtitle724261
-Ref: XREFlegend724945
-Ref: XREFtext728047
-Ref: XREFylabel728713
-Ref: XREFzlabel728713
-Ref: XREFxlabel728713
-Ref: XREFclabel729439
-Ref: XREFbox731283
-Ref: XREFgrid731718
-Ref: XREFcolorbar732509
-Node: Multiple Plots on One Page734780
-Ref: XREFsubplot735660
-Node: Multiple Plot Windows737095
-Ref: XREFfigure737610
-Node: Manipulation of Plot Windows738475
-Ref: XREFdrawnow738873
-Ref: XREFrefresh739509
-Ref: XREFnewplot740336
-Ref: XREFhold742881
-Ref: XREFishold744050
-Ref: XREFclf744802
-Ref: XREFcla745699
-Ref: XREFshg746360
-Ref: XREFdelete746536
-Ref: XREFclose746864
-Ref: XREFclosereq747901
-Node: Use of the `interpreter' Property748088
-Ref: tab:extended750355
-Node: Printing and Saving Plots753192
-Ref: XREFprint753718
-Ref: XREFsaveas761460
-Ref: XREForient762212
-Node: Interacting with Plots762934
-Ref: XREFginput763404
-Ref: XREFwaitforbuttonpress764070
-Ref: XREFgtext764395
-Ref: XREFuimenu765188
-Node: Test Plotting Functions767275
-Ref: XREFsombrero767636
-Ref: XREFpeaks768442
-Node: Graphics Data Structures769612
-Node: Introduction to Graphics Structures769955
-Ref: XREFgraphics structures770163
-Ref: XREFisprop774648
-Node: Graphics Objects774816
-Ref: XREFaxes776079
-Ref: XREFline776824
-Ref: XREFpatch777749
-Ref: XREFfill780308
-Ref: XREFsurface782106
-Ref: XREFishandle783451
-Ref: XREFishghandle783806
-Ref: XREFisaxes784053
-Ref: XREFisfigure784383
-Ref: XREFgcf784932
-Ref: XREFgca785619
-Ref: XREFgco786186
-Ref: XREFget788601
-Ref: XREFset788956
-Ref: XREFancestor790481
-Ref: XREFallchild791168
-Ref: XREFfindfigs791696
-Ref: XREFhdl2struct792424
-Ref: XREFstruct2hdl792785
-Ref: XREFcopyobj793638
-Node: Graphics Object Properties794114
-Node: Root Figure Properties794670
-Node: Figure Properties795508
-Node: Axes Properties798761
-Node: Line Properties804960
-Node: Text Properties806235
-Node: Image Properties807801
-Node: Patch Properties808897
-Node: Surface Properties810578
-Node: Searching Properties812118
-Ref: XREFfindobj812327
-Ref: XREFfindall814478
-Node: Managing Default Properties815413
-Ref: XREFreset817801
-Node: Advanced Plotting818437
-Node: Colors818717
-Node: Line Styles819024
-Node: Marker Styles819646
-Ref: XREFcolstyle820558
-Node: Callbacks820786
-Ref: XREFgcbo822706
-Ref: XREFgcbf823399
-Node: Application-defined Data823957
-Ref: XREFsetappdata824333
-Ref: XREFgetappdata824738
-Ref: XREFrmappdata825214
-Ref: XREFisappdata825335
-Node: Object Groups825597
-Ref: XREFhggroup826064
-Ref: XREFaddproperty827475
-Ref: XREFaddlistener830396
-Ref: XREFdellistener831542
-Ref: XREFlinkprop833158
-Node: Data Sources in Object Groups835686
-Ref: XREFdatasources835864
-Ref: XREFrefreshdata836089
-Ref: XREFlinkdata837061
-Node: Area Series837061
-Node: Bar Series837934
-Node: Contour Groups839764
-Node: Error Bar Series842403
-Node: Line Series843362
-Node: Quiver Group844113
-Node: Scatter Group845701
-Node: Stair Group846772
-Node: Stem Series847595
-Node: Surface Group849048
-Node: Graphics Toolkits849946
-Ref: XREFgraphics_toolkit850090
-Ref: XREFavailable_graphics_toolkits850987
-Ref: XREFloaded_graphics_toolkits851233
-Ref: XREFregister_graphics_toolkit851444
-Node: Customizing Toolkit Behavior851690
-Ref: XREFgnuplot_binary852008
-Ref: XREFgui_mode852525
-Ref: XREFmouse_wheel_zoom853063
-Node: Matrix Manipulation853344
-Node: Finding Elements and Checking Conditions854014
-Ref: XREFany854467
-Ref: XREFall855087
-Ref: XREFxor856120
-Ref: XREFdiff856747
-Ref: XREFisinf857772
-Ref: XREFisnan858108
-Ref: XREFisfinite858490
-Ref: XREFcommon_size858858
-Ref: XREFfind859500
-Ref: XREFlookup861256
-Node: Rearranging Matrices863037
-Ref: XREFfliplr863248
-Ref: XREFflipud863743
-Ref: XREFflipdim864235
-Ref: XREFrot90864644
-Ref: XREFrotdim865543
-Ref: XREFcat866696
-Ref: XREFhorzcat867534
-Ref: XREFvertcat867933
-Ref: XREFpermute868328
-Ref: XREFipermute868618
-Ref: XREFreshape868850
-Ref: XREFresize869965
-Ref: XREFcircshift871273
-Ref: XREFshift872064
-Ref: XREFshiftdim872356
-Ref: XREFsort873266
-Ref: XREFsortrows875186
-Ref: XREFissorted875605
-Ref: XREFnth_element876231
-Ref: XREFtriu877186
-Ref: XREFtril877186
-Ref: XREFvec878579
-Ref: XREFvech879049
-Ref: XREFprepad879426
-Ref: XREFpostpad880026
-Ref: XREFdiag880618
-Ref: XREFblkdiag881546
-Node: Special Utility Matrices881927
-Ref: XREFeye882121
-Ref: XREFones883323
-Ref: XREFzeros884163
-Ref: XREFrepmat884856
-Ref: XREFrepelems885364
-Ref: XREFlinspace886276
-Ref: XREFlogspace887083
-Ref: XREFrand887651
-Ref: XREFrandi891047
-Ref: XREFrandn892345
-Ref: XREFrande893570
-Ref: XREFrandp894771
-Ref: XREFrandg896749
-Ref: XREFrandperm900420
-Ref: Special Utility Matrices-Footnote-1900946
-Node: Famous Matrices901043
-Ref: XREFgallery901243
-Ref: XREFhadamard912207
-Ref: XREFhankel912958
-Ref: XREFhilb913598
-Ref: XREFinvhilb914190
-Ref: XREFmagic915227
-Ref: XREFpascal915518
-Ref: XREFrosser916184
-Ref: XREFtoeplitz916391
-Ref: XREFvander917139
-Ref: XREFwilkinson917726
-Node: Arithmetic918072
-Node: Exponents and Logarithms918804
-Ref: XREFexp918963
-Ref: XREFexpm1919143
-Ref: XREFlog919281
-Ref: XREFreallog919590
-Ref: XREFlog1p919862
-Ref: XREFlog10920049
-Ref: XREFlog2920254
-Ref: XREFpow2920661
-Ref: XREFnextpow2920910
-Ref: XREFrealpow921142
-Ref: XREFsqrt921432
-Ref: XREFrealsqrt921714
-Ref: XREFcbrt921982
-Ref: XREFnthroot922184
-Node: Complex Arithmetic922654
-Ref: XREFabs922938
-Ref: XREFarg923103
-Ref: XREFconj923322
-Ref: XREFcplxpair923488
-Ref: XREFimag924448
-Ref: XREFreal924596
-Node: Trigonometry924722
-Ref: XREFsin926095
-Ref: XREFcos926271
-Ref: XREFtan926449
-Ref: XREFsec926628
-Ref: XREFcsc926806
-Ref: XREFcot926986
-Ref: XREFasin927167
-Ref: XREFacos927325
-Ref: XREFatan927485
-Ref: XREFasec927646
-Ref: XREFacsc927806
-Ref: XREFacot927968
-Ref: XREFsinh928131
-Ref: XREFcosh928310
-Ref: XREFtanh928491
-Ref: XREFsech928669
-Ref: XREFcsch928800
-Ref: XREFcoth928933
-Ref: XREFasinh929067
-Ref: XREFacosh929204
-Ref: XREFatanh929343
-Ref: XREFasech929483
-Ref: XREFacsch929621
-Ref: XREFacoth929761
-Ref: XREFatan2929902
-Ref: XREFsind930501
-Ref: XREFcosd930709
-Ref: XREFtand930924
-Ref: XREFsecd931196
-Ref: XREFcscd931345
-Ref: XREFcotd931496
-Ref: XREFasind931648
-Ref: XREFacosd931804
-Ref: XREFatand931962
-Ref: XREFatan2d932121
-Ref: XREFasecd932303
-Ref: XREFacscd932461
-Ref: XREFacotd932621
-Node: Sums and Products932782
-Ref: XREFsum932940
-Ref: XREFprod934010
-Ref: XREFcumsum934268
-Ref: XREFcumprod934777
-Ref: XREFsumsq935052
-Node: Utility Functions935479
-Ref: XREFceil935642
-Ref: XREFfix936005
-Ref: XREFfloor936371
-Ref: XREFround936739
-Ref: XREFroundb937135
-Ref: XREFmax937406
-Ref: XREFmin938623
-Ref: XREFcummax939830
-Ref: XREFcummin940535
-Ref: XREFhypot941237
-Ref: XREFgradient941754
-Ref: XREFdot943663
-Ref: XREFcross944212
-Ref: XREFdivergence944743
-Ref: XREFcurl945476
-Ref: XREFdel2946572
-Ref: XREFfactorial947793
-Ref: XREFfactor948178
-Ref: XREFgcd948567
-Ref: XREFlcm949436
-Ref: XREFchop949709
-Ref: XREFrem950047
-Ref: XREFmod950403
-Ref: XREFprimes950930
-Ref: XREFlist_primes951409
-Ref: XREFsign951699
-Ref: XREFsignbit952194
-Node: Special Functions952773
-Ref: XREFairy952942
-Ref: XREFbesselj954063
-Ref: XREFbeta956222
-Ref: XREFbetainc956441
-Ref: XREFbetaincinv957031
-Ref: XREFbetaln957289
-Ref: XREFbincoeff957593
-Ref: XREFcommutation_matrix958125
-Ref: XREFduplication_matrix958514
-Ref: XREFdawson958846
-Ref: XREFellipj959160
-Ref: XREFellipke960337
-Ref: XREFerf960852
-Ref: XREFerfc961280
-Ref: XREFerfcx961548
-Ref: XREFerfi961839
-Ref: XREFerfinv962114
-Ref: XREFerfcinv962401
-Ref: XREFexpint962702
-Ref: XREFgamma962921
-Ref: XREFgammainc963210
-Ref: XREFlegendre964341
-Ref: XREFgammaln966612
-Ref: XREFlgamma966612
-Node: Rational Approximations966815
-Ref: XREFrat967005
-Ref: XREFrats967501
-Node: Coordinate Transformations967929
-Ref: XREFcart2pol968130
-Ref: XREFpol2cart968992
-Ref: XREFcart2sph969840
-Ref: XREFsph2cart970628
-Node: Mathematical Constants971412
-Ref: XREFe971573
-Ref: XREFpi972487
-Ref: XREFI973389
-Ref: XREFInf974414
-Ref: XREFNaN975524
-Ref: XREFeps976838
-Ref: XREFrealmax978059
-Ref: XREFrealmin979226
-Node: Linear Algebra980379
-Node: Techniques Used for Linear Algebra980935
-Node: Basic Matrix Functions982878
-Ref: XREFbalance983081
-Ref: XREFcond984564
-Ref: XREFdet985576
-Ref: XREFeig986136
-Ref: XREFgivens986717
-Ref: XREFplanerot987036
-Ref: XREFinv987243
-Ref: XREFmatrix_type988035
-Ref: XREFnorm991389
-Ref: XREFnull992768
-Ref: XREForth993144
-Ref: XREFmgorth993518
-Ref: XREFpinv993847
-Ref: XREFrank994182
-Ref: XREFrcond995219
-Ref: XREFtrace995687
-Ref: XREFrref995901
-Node: Matrix Factorizations996272
-Ref: XREFchol996460
-Ref: XREFcholinv998439
-Ref: XREFchol2inv998679
-Ref: XREFcholupdate999082
-Ref: XREFcholinsert999806
-Ref: XREFcholdelete1000573
-Ref: XREFcholshift1000983
-Ref: XREFhess1001505
-Ref: XREFlu1002255
-Ref: XREFluupdate1004975
-Ref: XREFqr1006265
-Ref: XREFqrupdate1008826
-Ref: XREFqrinsert1009576
-Ref: XREFqrdelete1010735
-Ref: XREFqrshift1011816
-Ref: XREFqz1012288
-Ref: XREFqzhess1014427
-Ref: XREFschur1015334
-Ref: XREFrsf2csf1017226
-Ref: XREFsubspace1017584
-Ref: XREFsvd1017742
-Ref: XREFsvd_driver1019049
-Ref: XREFhoush1019616
-Ref: XREFkrylov1020217
-Node: Functions of a Matrix1021459
-Ref: XREFexpm1021644
-Ref: XREFlogm1022591
-Ref: XREFsqrtm1023143
-Ref: XREFkron1023538
-Ref: XREFblkmm1024098
-Ref: XREFsyl1024513
-Node: Specialized Solvers1024793
-Ref: XREFbicg1024944
-Ref: XREFbicgstab1026725
-Ref: XREFcgs1028397
-Ref: XREFgmres1030067
-Node: Vectorization and Faster Code Execution1031890
-Node: Basic Vectorization1033416
-Ref: XREFvectorize1035450
-Node: Broadcasting1037286
-Ref: XREFbsxfun1040216
-Node: Function Application1043954
-Ref: XREFarrayfun1044514
-Ref: XREFspfun1048056
-Ref: XREFcellfun1048413
-Ref: XREFstructfun1052768
-Node: Accumulation1054809
-Ref: XREFaccumarray1055137
-Ref: XREFaccumdim1059300
-Node: JIT Compiler1060972
-Ref: XREFjit_enable1062579
-Ref: XREFjit_startcnt1063132
-Ref: XREFdebug_jit1063929
-Node: Miscellaneous Techniques1064525
-Node: Examples1069252
-Node: Nonlinear Equations1070103
-Node: Solvers1070336
-Ref: XREFfsolve1070762
-Ref: XREFfzero1077002
-Node: Minimizers1079001
-Ref: XREFfminbnd1079937
-Ref: XREFfminunc1081277
-Ref: XREFfminsearch1083715
-Node: Diagonal and Permutation Matrices1084810
-Node: Basic Usage1085357
-Node: Creating Diagonal Matrices1086585
-Node: Creating Permutation Matrices1087697
-Node: Explicit and Implicit Conversions1089459
-Node: Matrix Algebra1090729
-Node: Expressions Involving Diagonal Matrices1091348
-Node: Expressions Involving Permutation Matrices1094591
-Node: Function Support1096715
-Node: Diagonal Matrix Functions1097350
-Node: Permutation Matrix Functions1098037
-Node: Example Code1098805
-Node: Zeros Treatment1100182
-Node: Sparse Matrices1103291
-Node: Basics1103717
-Node: Storage of Sparse Matrices1105008
-Ref: Storage of Sparse Matrices-Footnote-11109250
-Ref: Storage of Sparse Matrices-Footnote-21109394
-Node: Creating Sparse Matrices1109459
-Ref: XREFspdiags1111391
-Ref: XREFspeye1112461
-Ref: XREFspones1112955
-Ref: XREFsprand1113105
-Ref: XREFsprandn1113589
-Ref: XREFsprandsym1114089
-Ref: XREFfull1116682
-Ref: XREFspalloc1116859
-Ref: XREFsparse1117955
-Ref: XREFspconvert1119575
-Node: Information1120275
-Ref: XREFissparse1121335
-Ref: XREFnnz1121462
-Ref: XREFnonzeros1121620
-Ref: XREFnzmax1121722
-Ref: XREFspstats1122213
-Ref: fig:spmatrix1124295
-Ref: XREFspy1126256
-Ref: XREFetree1126685
-Ref: XREFetreeplot1127258
-Ref: XREFgplot1127586
-Ref: XREFtreeplot1128240
-Ref: XREFtreelayout1128669
-Node: Operators and Functions1129133
-Node: Sparse Functions1129439
-Node: Return Types of Operators and Functions1131244
-Ref: XREFsparse_auto_mutate1133719
-Node: Mathematical Considerations1134635
-Ref: fig:simplematrix1137787
-Ref: fig:simplechol1139564
-Ref: fig:simplecholperm1140354
-Ref: XREFamd1141522
-Ref: XREFccolamd1142833
-Ref: XREFcolamd1146734
-Ref: XREFcolperm1150355
-Ref: XREFcsymamd1150672
-Ref: XREFdmperm1153453
-Ref: XREFsymamd1154246
-Ref: XREFsymrcm1157696
-Node: Sparse Linear Algebra1158735
-Ref: XREFnormest1162955
-Ref: XREFonenormest1163476
-Ref: XREFcondest1164860
-Ref: XREFspparms1166597
-Ref: XREFsprank1168985
-Ref: XREFsymbfact1169433
-Ref: XREFspaugment1170856
-Ref: XREFeigs1172380
-Ref: XREFsvds1178285
-Ref: Sparse Linear Algebra-Footnote-11180649
-Node: Iterative Techniques1180790
-Ref: XREFpcg1181313
-Ref: XREFpcr1187475
-Ref: XREFluinc1192163
-Node: Real Life Example1194618
-Node: Numerical Integration1200077
-Node: Functions of One Variable1200530
-Ref: XREFquad1203882
-Ref: XREFquad_options1205839
-Ref: XREFquadv1207026
-Ref: XREFquadl1208969
-Ref: XREFquadgk1210571
-Ref: XREFquadcc1214930
-Ref: XREFtrapz1219603
-Ref: XREFcumtrapz1220888
-Node: Orthogonal Collocation1221909
-Ref: XREFcolloc1222120
-Node: Functions of Multiple Variables1223132
-Ref: XREFdblquad1224662
-Ref: XREFtriplequad1226046
-Node: Differential Equations1228492
-Node: Ordinary Differential Equations1228923
-Ref: XREFlsode1229262
-Ref: XREFlsode_options1232070
-Node: Differential-Algebraic Equations1235446
-Ref: XREFdaspk1235874
-Ref: XREFdaspk_options1238463
-Ref: XREFdassl1245053
-Ref: XREFdassl_options1247720
-Ref: XREFdasrt1250273
-Ref: XREFdasrt_options1254715
-Node: Optimization1256782
-Node: Linear Programming1257254
-Ref: XREFglpk1257637
-Node: Quadratic Programming1269317
-Ref: XREFqp1269681
-Ref: XREFpqpnonneg1271573
-Node: Nonlinear Programming1272831
-Ref: XREFsqp1273120
-Node: Linear Least Squares1277350
-Ref: XREFols1277910
-Ref: XREFgls1278868
-Ref: XREFlsqnonneg1279507
-Ref: XREFoptimset1281031
-Ref: XREFoptimget1283628
-Node: Statistics1283928
-Node: Descriptive Statistics1285098
-Ref: XREFmean1285527
-Ref: XREFmedian1286361
-Ref: XREFmode1286930
-Ref: XREFrange1287913
-Ref: XREFiqr1288519
-Ref: XREFmeansq1289040
-Ref: XREFstd1289472
-Ref: XREFvar1290738
-Ref: XREFskewness1291653
-Ref: XREFkurtosis1292126
-Ref: XREFmoment1292963
-Ref: XREFquantile1294075
-Ref: XREFprctile1297182
-Ref: XREFstatistics1298147
-Node: Basic Statistical Functions1298763
-Ref: XREFcenter1299178
-Ref: XREFzscore1299460
-Ref: XREFhistc1300279
-Ref: XREFnchoosek1301347
-Ref: XREFperms1302686
-Ref: XREFranks1303047
-Ref: XREFrun_count1303324
-Ref: XREFrunlength1303622
-Ref: XREFprobit1303885
-Ref: XREFlogit1304027
-Ref: XREFcloglog1304215
-Ref: XREFmahalanobis1304356
-Ref: XREFtable1304608
-Node: Statistical Plots1304875
-Ref: XREFqqplot1305372
-Ref: XREFppplot1306438
-Node: Correlation and Regression Analysis1307302
-Ref: XREFcov1307515
-Ref: XREFcorr1308402
-Ref: XREFspearman1308924
-Ref: XREFkendall1309449
-Ref: XREFlogistic_regression1310227
-Node: Distributions1311909
-Ref: XREFbetapdf1314720
-Ref: XREFbetacdf1314894
-Ref: XREFbetainv1315072
-Ref: XREFbinopdf1315245
-Ref: XREFbinocdf1315502
-Ref: XREFbinoinv1315763
-Ref: XREFcauchy_pdf1316019
-Ref: XREFcauchy_cdf1316338
-Ref: XREFcauchy_inv1316657
-Ref: XREFchi2pdf1316971
-Ref: XREFchi2cdf1317155
-Ref: XREFchi2inv1317343
-Ref: XREFdiscrete_pdf1317521
-Ref: XREFdiscrete_cdf1317745
-Ref: XREFdiscrete_inv1317973
-Ref: XREFempirical_pdf1318189
-Ref: XREFempirical_cdf1318396
-Ref: XREFempirical_inv1318607
-Ref: XREFexppdf1318813
-Ref: XREFexpcdf1318988
-Ref: XREFexpinv1319226
-Ref: XREFfpdf1319400
-Ref: XREFfcdf1319576
-Ref: XREFfinv1319756
-Ref: XREFgampdf1319931
-Ref: XREFgamcdf1320120
-Ref: XREFgaminv1320314
-Ref: XREFgeopdf1320503
-Ref: XREFgeocdf1320671
-Ref: XREFgeoinv1320843
-Ref: XREFhygepdf1321010
-Ref: XREFhygecdf1321465
-Ref: XREFhygeinv1321938
-Ref: XREFkolmogorov_smirnov_cdf1322415
-Ref: XREFlaplace_pdf1322824
-Ref: XREFlaplace_cdf1322975
-Ref: XREFlaplace_inv1323130
-Ref: XREFlogistic_pdf1323280
-Ref: XREFlogistic_cdf1323402
-Ref: XREFlogistic_inv1323559
-Ref: XREFlognpdf1323711
-Ref: XREFlogncdf1324121
-Ref: XREFlogninv1324535
-Ref: XREFnbinpdf1324942
-Ref: XREFnbincdf1325402
-Ref: XREFnbininv1325866
-Ref: XREFnormpdf1326325
-Ref: XREFnormcdf1326605
-Ref: XREFnorminv1326889
-Ref: XREFpoisspdf1327168
-Ref: XREFpoisscdf1327346
-Ref: XREFpoissinv1327533
-Ref: XREFstdnormal_pdf1327710
-Ref: XREFstdnormal_cdf1327911
-Ref: XREFstdnormal_inv1328116
-Ref: XREFtpdf1328316
-Ref: XREFtcdf1328498
-Ref: XREFtinv1328708
-Ref: XREFunidpdf1328993
-Ref: XREFunidcdf1329379
-Ref: XREFunidinv1329605
-Ref: XREFunifpdf1329828
-Ref: XREFunifcdf1330075
-Ref: XREFunifinv1330331
-Ref: XREFwblpdf1330577
-Ref: XREFwblcdf1330996
-Ref: XREFwblinv1331376
-Node: Tests1331681
-Ref: XREFanova1333337
-Ref: XREFbartlett_test1334347
-Ref: XREFchisquare_test_homogeneity1334836
-Ref: XREFchisquare_test_independence1335455
-Ref: XREFcor_test1335914
-Ref: XREFf_test_regression1337291
-Ref: XREFhotelling_test1337805
-Ref: XREFhotelling_test_21338373
-Ref: XREFkolmogorov_smirnov_test1339057
-Ref: XREFkolmogorov_smirnov_test_21340415
-Ref: XREFkruskal_wallis_test1341578
-Ref: XREFmanova1342707
-Ref: XREFmcnemar_test1343354
-Ref: XREFprop_test_21343906
-Ref: XREFrun_test1344766
-Ref: XREFsign_test1345101
-Ref: XREFt_test1346046
-Ref: XREFt_test_21346892
-Ref: XREFt_test_regression1347770
-Ref: XREFu_test1348620
-Ref: XREFvar_test1349506
-Ref: XREFwelch_test1350388
-Ref: XREFwilcoxon_test1351281
-Ref: XREFz_test1352229
-Ref: XREFz_test_21353072
-Node: Random Number Generation1353948
-Ref: XREFbetarnd1355513
-Ref: XREFbinornd1356235
-Ref: XREFcauchy_rnd1357035
-Ref: XREFchi2rnd1357837
-Ref: XREFdiscrete_rnd1358542
-Ref: XREFempirical_rnd1359317
-Ref: XREFexprnd1360095
-Ref: XREFfrnd1360813
-Ref: XREFgamrnd1361528
-Ref: XREFgeornd1362258
-Ref: XREFhygernd1362949
-Ref: XREFlaplace_rnd1363798
-Ref: XREFlogistic_rnd1364357
-Ref: XREFlognrnd1364920
-Ref: XREFnbinrnd1365677
-Ref: XREFnormrnd1366412
-Ref: XREFpoissrnd1367190
-Ref: XREFstdnormal_rnd1367917
-Ref: XREFtrnd1368530
-Ref: XREFunidrnd1369224
-Ref: XREFunifrnd1370023
-Ref: XREFwblrnd1370734
-Ref: XREFwienrnd1371503
-Node: Sets1371958
-Ref: XREFunique1372255
-Node: Set Operations1373414
-Ref: XREFismember1373913
-Ref: XREFunion1375183
-Ref: XREFintersect1376031
-Ref: XREFsetdiff1376552
-Ref: XREFsetxor1377239
-Ref: XREFpowerset1377885
-Node: Polynomial Manipulations1378496
-Node: Evaluating Polynomials1379063
-Ref: XREFpolyval1379973
-Ref: XREFpolyvalm1380850
-Node: Finding Roots1381264
-Ref: XREFroots1381636
-Ref: XREFpolyeig1382178
-Ref: XREFcompan1382753
-Ref: XREFmpoles1383685
-Node: Products of Polynomials1384685
-Ref: XREFconv1384895
-Ref: XREFconvn1385592
-Ref: XREFdeconv1386334
-Ref: XREFconv21386729
-Ref: XREFpolygcd1387686
-Ref: XREFresidue1388517
-Node: Derivatives / Integrals / Transforms1391010
-Ref: XREFpolyder1391640
-Ref: XREFpolyint1392236
-Ref: XREFpolyaffine1392583
-Node: Polynomial Interpolation1392949
-Ref: XREFpolyfit1393709
-Ref: XREFsplinefit1395645
-Ref: XREFmkpp1403718
-Ref: XREFunmkpp1404891
-Ref: XREFppval1405662
-Ref: XREFppder1406146
-Ref: XREFppint1406452
-Ref: XREFppjumps1406736
-Node: Miscellaneous Functions1406995
-Ref: XREFpoly1407171
-Ref: XREFpolyout1408182
-Ref: XREFpolyreduce1408541
-Node: Interpolation1408736
-Node: One-dimensional Interpolation1408954
-Ref: XREFinterp11409364
-Ref: XREFinterp1q1413461
-Ref: XREFinterpft1414450
-Ref: XREFspline1415951
-Node: Multi-dimensional Interpolation1417359
-Ref: XREFinterp21417745
-Ref: XREFinterp31419585
-Ref: XREFinterpn1421407
-Ref: XREFbicubic1424329
-Node: Geometry1424702
-Ref: Geometry-Footnote-11425201
-Node: Delaunay Triangulation1425387
-Ref: XREFdelaunay1426107
-Ref: XREFdelaunay31428595
-Ref: XREFdelaunayn1430067
-Node: Plotting the Triangulation1432161
-Ref: XREFtriplot1432564
-Ref: XREFtrimesh1433312
-Ref: XREFtrisurf1434770
-Ref: XREFtetramesh1436077
-Node: Identifying Points in Triangulation1438002
-Ref: XREFtsearch1440278
-Ref: XREFtsearchn1440611
-Ref: XREFdsearch1441833
-Ref: XREFdsearchn1442181
-Node: Voronoi Diagrams1443116
-Ref: XREFvoronoi1443761
-Ref: XREFvoronoin1445185
-Ref: XREFpolyarea1446822
-Ref: XREFrectint1447759
-Ref: XREFinpolygon1448234
-Node: Convex Hull1448872
-Ref: XREFconvhull1449258
-Ref: XREFconvhulln1450249
-Node: Interpolation on Scattered Data1451777
-Ref: XREFgriddata1452451
-Ref: XREFgriddata31453176
-Ref: XREFgriddatan1454027
-Node: Signal Processing1455125
-Ref: XREFdetrend1455478
-Ref: XREFfft1456067
-Ref: XREFfftw1457743
-Ref: XREFifft1461206
-Ref: XREFfft21462299
-Ref: XREFifft21462835
-Ref: XREFfftn1463381
-Ref: XREFifftn1464062
-Ref: XREFfftconv1464763
-Ref: XREFfftfilt1465370
-Ref: XREFfilter1465979
-Ref: XREFfilter21467650
-Ref: XREFfreqz1468225
-Ref: XREFfreqz_plot1469553
-Ref: XREFsinc1469652
-Ref: XREFunwrap1469716
-Ref: XREFarch_fit1470089
-Ref: XREFarch_rnd1470981
-Ref: XREFarch_test1471360
-Ref: XREFarma_rnd1472327
-Ref: XREFautoreg_matrix1472907
-Ref: XREFbartlett1473262
-Ref: XREFblackman1473514
-Ref: XREFdiffpara1473748
-Ref: XREFdurbinlevinson1474476
-Ref: XREFfftshift1474879
-Ref: XREFifftshift1475586
-Ref: XREFfractdiff1475798
-Ref: XREFhamming1475950
-Ref: XREFhanning1476181
-Ref: XREFhurst1476410
-Ref: XREFpchip1476602
-Ref: XREFperiodogram1477800
-Ref: XREFrectangle_lw1479064
-Ref: XREFrectangle_sw1479190
-Ref: XREFsinetone1479321
-Ref: XREFsinewave1479615
-Ref: XREFspectral_adf1479818
-Ref: XREFspectral_xdf1480338
-Ref: XREFspencer1480844
-Ref: XREFstft1480944
-Ref: XREFsynthesis1481948
-Ref: XREFtriangle_lw1482213
-Ref: XREFtriangle_sw1482337
-Ref: XREFyulewalker1482466
-Node: Image Processing1482704
-Node: Loading and Saving Images1483530
-Ref: XREFimread1484099
-Ref: XREFimwrite1486443
-Ref: XREFIMAGE_PATH1488459
-Ref: XREFimfinfo1489307
-Ref: XREFimformats1493083
-Node: Displaying Images1494972
-Ref: XREFimshow1495332
-Ref: XREFimage1496635
-Ref: XREFimagesc1498108
-Node: Representing Images1498962
-Ref: XREFiscolormap1500256
-Ref: XREFgray2ind1500639
-Ref: XREFind2gray1501282
-Ref: XREFrgb2ind1502189
-Ref: XREFind2rgb1503864
-Ref: XREFcolormap1504753
-Ref: XREFrgbplot1505980
-Ref: XREFautumn1506859
-Ref: XREFbone1507176
-Ref: XREFcolorcube1507497
-Ref: XREFcool1508042
-Ref: XREFcopper1508340
-Ref: XREFflag1508657
-Ref: XREFgray1509000
-Ref: XREFhot1509318
-Ref: XREFhsv1509659
-Ref: XREFjet1510254
-Ref: XREFlines1510603
-Ref: XREFocean1511027
-Ref: XREFpink1511348
-Ref: XREFprism1511731
-Ref: XREFrainbow1512092
-Ref: XREFspring1512438
-Ref: XREFsummer1512744
-Ref: XREFwhite1513047
-Ref: XREFwinter1513346
-Ref: XREFcontrast1513647
-Ref: XREFgmap401514379
-Ref: XREFbrighten1514977
-Ref: XREFspinmap1515705
-Ref: XREFwhitebg1516373
-Ref: XREFcmunique1517303
-Ref: XREFcmpermute1518792
-Node: Plotting on top of Images1519409
-Node: Color Conversion1520480
-Ref: XREFrgb2hsv1520714
-Ref: XREFhsv2rgb1521350
-Ref: XREFrgb2ntsc1521993
-Ref: XREFntsc2rgb1522819
-Node: Audio Processing1523411
-Ref: XREFlin2mu1524696
-Ref: XREFmu2lin1525146
-Ref: XREFloadaudio1525539
-Ref: XREFsaveaudio1526191
-Ref: XREFplayaudio1527125
-Ref: XREFrecord1527484
-Ref: XREFsetaudio1527970
-Ref: XREFwavread1528182
-Ref: XREFwavwrite1529173
-Node: Object Oriented Programming1529687
-Node: Creating a Class1530548
-Ref: XREFisobject1534194
-Ref: XREFmethods1534479
-Ref: XREFismethod1534927
-Node: Manipulating Classes1535201
-Ref: XREFdisplay1535810
-Ref: XREFsaveobj1539759
-Ref: XREFloadobj1540688
-Node: Indexing Objects1541223
-Node: Defining Indexing And Indexed Assignment1541496
-Ref: XREFsubsref1542169
-Ref: XREFsubsasgn1544559
-Ref: XREFoptimize_subsasgn_calls1545491
-Ref: XREFsubsindex1547174
-Ref: XREFcolon1548162
-Node: Indexed Assignment Optimization1548507
-Node: Overloading Objects1551345
-Node: Function Overloading1551626
-Node: Operator Overloading1553232
-Ref: tab:overload_ops1553584
-Node: Precedence of Objects1557095
-Ref: XREFsuperiorto1557641
-Ref: XREFinferiorto1557959
-Node: Inheritance and Aggregation1559936
-Node: GUI Development1567002
-Node: I/O Dialogs1568024
-Ref: XREFuigetdir1568306
-Ref: XREFuigetfile1568729
-Ref: XREFuiputfile1570669
-Node: Progress Bar1572162
-Ref: XREFwaitbar1572313
-Node: GUI Utility Functions1573176
-Ref: XREFguidata1573559
-Ref: XREFguihandles1574143
-Ref: XREFuiwait1574346
-Ref: XREFuiresume1575234
-Ref: XREFwaitfor1575566
-Node: User-Defined Preferences1577495
-Ref: XREFgetpref1577662
-Ref: XREFsetpref1578609
-Ref: XREFaddpref1579257
-Ref: XREFrmpref1579845
-Ref: XREFispref1580402
-Ref: XREFprefdir1580908
-Ref: XREFpreferences1581327
-Node: System Utilities1581413
-Node: Timing Utilities1582225
-Ref: XREFtime1583195
-Ref: XREFnow1583906
-Ref: XREFctime1584307
-Ref: XREFgmtime1584765
-Ref: XREFlocaltime1585773
-Ref: XREFmktime1586749
-Ref: XREFasctime1587383
-Ref: XREFstrftime1587774
-Ref: XREFstrptime1590982
-Ref: XREFclock1591974
-Ref: XREFdate1592587
-Ref: XREFetime1592890
-Ref: XREFcputime1593409
-Ref: XREFis_leap_year1594157
-Ref: XREFtoc1594538
-Ref: XREFtic1594538
-Ref: XREFpause1595772
-Ref: XREFsleep1596214
-Ref: XREFusleep1596335
-Ref: XREFdatenum1596641
-Ref: XREFdatestr1598796
-Ref: XREFdatevec1603195
-Ref: XREFaddtodate1604437
-Ref: XREFcalendar1604748
-Ref: XREFweekday1605359
-Ref: XREFeomday1606320
-Ref: XREFdatetick1606593
-Node: Filesystem Utilities1607246
-Ref: XREFmovefile1607656
-Ref: XREFrename1608322
-Ref: XREFcopyfile1608614
-Ref: XREFunlink1609262
-Ref: XREFlink1609487
-Ref: XREFsymlink1609798
-Ref: XREFreadlink1610127
-Ref: XREFmkdir1610513
-Ref: XREFrmdir1610946
-Ref: XREFconfirm_recursive_rmdir1611538
-Ref: XREFmkfifo1612108
-Ref: XREFumask1612369
-Ref: XREFlstat1612690
-Ref: XREFstat1612690
-Ref: XREFS_ISBLK1615267
-Ref: XREFS_ISCHR1615499
-Ref: XREFS_ISDIR1615735
-Ref: XREFS_ISFIFO1615964
-Ref: XREFS_ISLNK1616189
-Ref: XREFS_ISREG1616422
-Ref: XREFS_ISSOCK1616654
-Ref: XREFfileattrib1616881
-Ref: XREFisdir1618122
-Ref: XREFreaddir1618335
-Ref: XREFglob1618759
-Ref: XREFfnmatch1620000
-Ref: XREFfile_in_path1620315
-Ref: XREFfilesep1621184
-Ref: XREFfilemarker1621658
-Ref: XREFfileparts1622670
-Ref: XREFfullfile1622867
-Ref: XREFtilde_expand1623051
-Ref: XREFcanonicalize_file_name1623743
-Ref: XREFmake_absolute_filename1624157
-Ref: XREFis_absolute_filename1624576
-Ref: XREFis_rooted_relative_filename1624856
-Ref: XREFP_tmpdir1625135
-Ref: XREFtempdir1625308
-Ref: XREFtempname1625413
-Ref: XREFrecycle1625612
-Node: File Archiving Utilities1626039
-Ref: XREFbunzip21626235
-Ref: XREFgzip1626589
-Ref: XREFgunzip1627135
-Ref: XREFtar1627552
-Ref: XREFuntar1628096
-Ref: XREFzip1628452
-Ref: XREFunzip1628907
-Ref: XREFunpack1629263
-Ref: XREFbzip21629885
-Node: Networking Utilities1630417
-Ref: XREFgethostname1630696
-Node: FTP Objects1630800
-Ref: XREF@ftp/ftp1631145
-Ref: XREF@ftp/close1632155
-Ref: XREF@ftp/mget1632306
-Ref: XREF@ftp/mput1632900
-Ref: XREF@ftp/cd1633219
-Ref: XREF@ftp/dir1633690
-Ref: XREF@ftp/ascii1633860
-Ref: XREF@ftp/binary1634177
-Ref: XREF@ftp/delete1634451
-Ref: XREF@ftp/rename1634606
-Ref: XREF@ftp/mkdir1634812
-Ref: XREF@ftp/rmdir1634972
-Node: URL Manipulation1635132
-Ref: XREFurlread1635318
-Ref: XREFurlwrite1636568
-Node: Base64 and Binary Data Transmission1637967
-Ref: XREFbase64_encode1638332
-Ref: XREFbase64_decode1638507
-Node: Controlling Subprocesses1638848
-Ref: XREFsystem1639509
-Ref: XREFunix1641239
-Ref: XREFdos1641868
-Ref: XREFperl1642498
-Ref: XREFpython1643014
-Ref: XREFpopen1643550
-Ref: XREFpclose1644434
-Ref: XREFpopen21644583
-Ref: XREFEXEC_PATH1645864
-Ref: XREFfork1646888
-Ref: XREFexec1647573
-Ref: XREFpipe1648076
-Ref: XREFdup21648397
-Ref: XREFwaitpid1648649
-Ref: XREFWCONTINUE1650368
-Ref: XREFWCOREDUMP1650723
-Ref: XREFWEXITSTATUS1651396
-Ref: XREFWIFCONTINUED1651899
-Ref: XREFWIFSIGNALED1652361
-Ref: XREFWIFSTOPPED1652814
-Ref: XREFWIFEXITED1653399
-Ref: XREFWNOHANG1653839
-Ref: XREFWSTOPSIG1654185
-Ref: XREFWTERMSIG1654719
-Ref: XREFWUNTRACED1655266
-Ref: XREFfcntl1655635
-Ref: XREFkill1656972
-Ref: XREFSIG1657555
-Node: Process ID Information1657671
-Ref: XREFgetpgrp1657878
-Ref: XREFgetpid1657977
-Ref: XREFgetppid1658068
-Ref: XREFgeteuid1658159
-Ref: XREFgetuid1658259
-Ref: XREFgetegid1658352
-Ref: XREFgetgid1658453
-Node: Environment Variables1658547
-Ref: XREFgetenv1658741
-Ref: XREFputenv1658933
-Node: Current Working Directory1659083
-Ref: XREFcd1659290
-Ref: XREFls1659778
-Ref: XREFls_command1660380
-Ref: XREFdir1660572
-Ref: XREFpwd1661584
-Node: Password Database Functions1661714
-Ref: XREFgetpwent1662374
-Ref: XREFgetpwuid1662595
-Ref: XREFgetpwnam1662827
-Ref: XREFsetpwent1663065
-Ref: XREFendpwent1663183
-Node: Group Database Functions1663254
-Ref: XREFgetgrent1663810
-Ref: XREFgetgrgid1663996
-Ref: XREFgetgrnam1664205
-Ref: XREFsetgrent1664419
-Ref: XREFendgrent1664529
-Node: System Information1664597
-Ref: XREFcomputer1664778
-Ref: XREFuname1665635
-Ref: XREFnproc1666172
-Ref: XREFispc1666637
-Ref: XREFisunix1666817
-Ref: XREFismac1666997
-Ref: XREFisieee1667177
-Ref: XREFisdeployed1667362
-Ref: XREFOCTAVE_HOME1667636
-Ref: XREFmatlabroot1667833
-Ref: XREFOCTAVE_VERSION1668077
-Ref: XREFversion1668175
-Ref: XREFver1668411
-Ref: XREFcompare_versions1669330
-Ref: XREFlicense1670522
-Ref: XREFoctave_config_info1671853
-Ref: XREFgetrusage1672145
-Node: Hashing Functions1673535
-Ref: XREFmd5sum1674496
-Node: Java Interface1674727
-Node: Java Interface Functions1675224
-Ref: XREFjavaObject1675578
-Ref: XREFisjava1676473
-Ref: XREFjavaArray1676679
-Ref: XREFjavaMethod1677417
-Ref: XREFjavaclasspath1678503
-Ref: XREFjavaaddpath1679577
-Ref: XREFjavarmpath1680032
-Ref: XREFusejava1680624
-Ref: XREFjavamem1681373
-Ref: XREFjava_matrix_autoconversion1683104
-Ref: XREFjava_unsigned_autoconversion1683819
-Ref: XREFdebug_java1684674
-Node: Dialog Box Functions1685395
-Ref: XREFmsgbox1685681
-Ref: XREFerrordlg1686468
-Ref: XREFhelpdlg1687114
-Ref: XREFinputdlg1687754
-Ref: XREFlistdlg1689378
-Ref: XREFquestdlg1691210
-Ref: XREFwarndlg1692520
-Node: FAQ - Frequently asked Questions1693072
-Node: How to distinguish between Octave and Matlab?1693508
-Ref: XREFFAQ1693773
-Node: How to make Java classes available?1694402
-Node: How to create an instance of a Java class?1698517
-Node: How can I handle memory limitations?1698959
-Node: Which TeX symbols are implemented in dialog functions?1701834
-Node: Packages1702882
-Node: Installing and Removing Packages1703695
-Ref: XREFpkg1706162
-Node: Using Packages1713491
-Node: Administrating Packages1714105
-Node: Creating Packages1715586
-Ref: XREFPKG_ADD1717290
-Ref: XREFPKG_DEL1717959
-Node: The DESCRIPTION File1720896
-Node: The INDEX File1724932
-Node: PKG_ADD and PKG_DEL Directives1727205
-Node: External Code Interface1728332
-Node: Oct-Files1732479
-Node: Getting Started with Oct-Files1733100
-Ref: XREFmkoctfile1733797
-Node: Matrices and Arrays in Oct-Files1740541
-Node: Character Strings in Oct-Files1747857
-Node: Cell Arrays in Oct-Files1750335
-Node: Structures in Oct-Files1751757
-Node: Sparse Matrices in Oct-Files1754528
-Node: Array and Sparse Class Differences1755974
-Node: Creating Sparse Matrices in Oct-Files1758918
-Node: Using Sparse Matrices in Oct-Files1765708
-Node: Accessing Global Variables in Oct-Files1766668
-Node: Calling Octave Functions from Oct-Files1768203
-Node: Calling External Code from Oct-Files1771463
-Node: Allocating Local Memory in Oct-Files1775706
-Node: Input Parameter Checking in Oct-Files1776533
-Node: Exception and Error Handling in Oct-Files1779392
-Node: Documentation and Test of Oct-Files1782881
-Node: Mex-Files1785067
-Node: Getting Started with Mex-Files1786161
-Ref: XREFmex1786689
-Ref: XREFmexext1786908
-Node: Working with Matrices and Arrays in Mex-Files1790475
-Node: Character Strings in Mex-Files1794264
-Node: Cell Arrays with Mex-Files1795997
-Node: Structures with Mex-Files1797546
-Node: Sparse Matrices with Mex-Files1801213
-Node: Calling Other Functions in Mex-Files1806365
-Node: Standalone Programs1807706
-Node: Test and Demo Functions1810229
-Node: Test Functions1810625
-Ref: XREFtest1810770
-Ref: XREFassert1821566
-Ref: XREFfail1823284
-Node: Demonstration Functions1824525
-Ref: XREFdemo1824688
-Ref: XREFexample1827091
-Ref: XREFrundemos1827696
-Ref: XREFruntests1828025
-Ref: XREFspeed1828359
-Node: Tips and Standards1833228
-Node: Style Tips1833849
-Node: Comment Tips1835601
-Node: Function Headers1836766
-Node: Documentation Tips1841162
-Node: Contributing Guidelines1851913
-Node: How to Contribute1852368
-Node: Building the Development Sources1852976
-Node: Basics of Generating a Changeset1853448
-Ref: Basics of Generating a Changeset-Footnote-11858090
-Node: General Guidelines1858257
-Node: Octave Sources (m-files)1861612
-Node: C++ Sources1863169
-Node: Other Sources1866027
-Node: Obsolete Functions1867679
-Node: Trouble1874389
-Node: Actual Bugs1875048
-Node: Reporting Bugs1875870
-Node: Bug Criteria1876841
-Node: Bug Tracker1878056
-Node: Bug Reporting1878422
-Node: Sending Patches1883900
-Node: Service1886725
-Node: Installation1887515
-Node: Build Dependencies1888153
-Node: Obtaining the Dependencies Automatically1888617
-Node: Build Tools1890353
-Node: External Packages1892495
-Node: Running Configure and Make1897101
-Node: Compiling Octave with 64-bit Indexing1908093
-Node: Installation Problems1915274
-Node: Emacs Octave Support1922445
-Node: Installing EOS1923681
-Node: Using Octave Mode1924416
-Node: Running Octave from Within Emacs1935293
-Node: Using the Emacs Info Reader for Octave1939555
-Node: Grammar and Parser1940701
-Node: Keywords1940986
-Ref: XREFiskeyword1942194
-Node: Parser1942446
-Ref: XREFadd_input_event_hook1943066
-Ref: XREFremove_input_event_hook1943658
-Ref: XREFmissing_function_hook1944247
-Node: Copying1944782
-Node: Concept Index1982356
-Node: Function Index2037893
-Node: Operator Index2196777
+Node: Top852
+Node: Preface16309
+Node: Acknowledgements18630
+Node: Citing Octave in Publications27747
+Ref: XREFcitation28327
+Node: How You Can Contribute to Octave29023
+Node: Distribution30572
+Node: Introduction31284
+Node: Running Octave32306
+Node: Simple Examples33108
+Node: Conventions41367
+Node: Fonts41739
+Node: Evaluation Notation42276
+Node: Printing Notation43269
+Node: Error Messages43794
+Node: Format of Descriptions44191
+Node: A Sample Function Description44747
+Node: A Sample Command Description46947
+Node: Getting Started47729
+Node: Invoking Octave from the Command Line48259
+Node: Command Line Options49148
+Ref: XREFargv55307
+Ref: XREFprogram_name55833
+Ref: XREFprogram_invocation_name56042
+Node: Startup Files56918
+Ref: XREFdump_prefs59229
+Node: Quitting Octave59522
+Ref: XREFquit59697
+Ref: XREFatexit59968
+Node: Getting Help60965
+Ref: XREFhelp61591
+Ref: XREFdoc62500
+Ref: XREFlookfor63037
+Ref: XREFnews64396
+Ref: XREFinfo64678
+Ref: XREFwarranty64769
+Ref: XREFinfo_file65021
+Ref: XREFinfo_program65918
+Ref: XREFmakeinfo_program66958
+Ref: XREFtexi_macros_file67735
+Ref: XREFdoc_cache_file68747
+Ref: XREFbuilt_in_docstrings_file69917
+Ref: XREFsuppress_verbose_help_message70794
+Ref: XREFdoc_cache_create71639
+Ref: XREFget_help_text72183
+Ref: XREFget_help_text_from_file72447
+Ref: XREFget_first_help_sentence72725
+Node: Command Line Editing73589
+Node: Cursor Motion75455
+Ref: XREFclc76889
+Node: Killing and Yanking77033
+Node: Commands For Text78737
+Node: Commands For Completion80128
+Ref: XREFcompletion_append_char80627
+Ref: XREFcompletion_matches81211
+Node: Commands For History81561
+Ref: XREFhistory83290
+Ref: XREFedit_history84501
+Ref: XREFrun_history85869
+Ref: XREFhistory_save86960
+Ref: XREFhistory_control87707
+Ref: XREFhistory_file89054
+Ref: XREFhistory_size89565
+Ref: XREFhistory_timestamp_format_string90061
+Ref: XREFEDITOR90990
+Node: Customizing readline91706
+Ref: XREFreadline_read_init_file92301
+Ref: XREFreadline_re_read_init_file92650
+Node: Customizing the Prompt92916
+Ref: XREFPS194152
+Ref: XREFPS295368
+Ref: XREFPS496168
+Node: Diary and Echo Commands96893
+Ref: XREFdiary97243
+Ref: XREFecho98016
+Ref: XREFecho_executing_commands98622
+Node: Errors99572
+Node: Executable Octave Programs102161
+Ref: Executable Octave Programs-Footnote-1105626
+Node: Comments105760
+Node: Single Line Comments106336
+Node: Block Comments106989
+Node: Comments and the Help System107762
+Node: Data Types109058
+Ref: XREFtypeinfo109844
+Node: Built-in Data Types110171
+Ref: XREFclass110846
+Ref: XREFisa111238
+Ref: XREFcast111777
+Ref: XREFtypecast112103
+Ref: XREFswapbytes113616
+Ref: XREFbitpack113909
+Ref: XREFbitunpack114745
+Node: Numeric Objects115400
+Node: Missing Data116277
+Ref: XREFNA116716
+Ref: XREFisna117649
+Node: String Objects117989
+Node: Data Structure Objects118472
+Node: Cell Array Objects118931
+Node: User-defined Data Types119225
+Node: Object Sizes119684
+Ref: XREFndims120143
+Ref: XREFcolumns120441
+Ref: XREFrows120727
+Ref: XREFnumel121018
+Ref: XREFlength121697
+Ref: XREFsize122093
+Ref: XREFisempty123005
+Ref: XREFisnull123212
+Ref: XREFsizeof123807
+Ref: XREFsize_equal123920
+Ref: XREFsqueeze124234
+Node: Numeric Data Types124510
+Ref: XREFdouble125993
+Ref: XREFcomplex126111
+Node: Matrices126878
+Ref: XREFsizemax129683
+Ref: XREFoutput_max_field_width130485
+Ref: XREFoutput_precision131153
+Ref: XREFsplit_long_rows132078
+Ref: XREFfixed_point_format133735
+Node: Empty Matrices134968
+Ref: XREFprint_empty_dimensions135967
+Node: Ranges137037
+Node: Single Precision Data Types140002
+Ref: XREFsingle140421
+Node: Integer Data Types141022
+Ref: XREFisinteger142063
+Ref: XREFint8142462
+Ref: XREFuint8142533
+Ref: XREFint16142614
+Ref: XREFuint16142687
+Ref: XREFint32142770
+Ref: XREFuint32142843
+Ref: XREFint64142926
+Ref: XREFuint64142999
+Ref: XREFintmax143082
+Ref: XREFintmin143754
+Ref: XREFflintmax144427
+Node: Integer Arithmetic144975
+Ref: XREFidivide146147
+Node: Bit Manipulations147570
+Ref: XREFbitset147934
+Ref: XREFbitget148474
+Ref: XREFbitmax149905
+Ref: XREFbitand150592
+Ref: XREFbitor150937
+Ref: XREFbitxor151280
+Ref: XREFbitcmp151874
+Ref: XREFbitshift152482
+Node: Logical Values153591
+Ref: XREFlogical155042
+Ref: XREFtrue155205
+Ref: XREFfalse155676
+Node: Promotion and Demotion of Data Types156148
+Node: Predicates for Numeric Objects158102
+Ref: XREFisnumeric158968
+Ref: XREFisfloat159453
+Ref: XREFisreal159783
+Ref: XREFiscomplex160068
+Ref: XREFismatrix160354
+Ref: XREFisvector160833
+Ref: XREFisrow161223
+Ref: XREFiscolumn161438
+Ref: XREFisscalar161648
+Ref: XREFissquare161797
+Ref: XREFissymmetric162005
+Ref: XREFishermitian162403
+Ref: XREFisdefinite162791
+Ref: XREFislogical163198
+Ref: XREFisprime163477
+Node: Strings164100
+Node: Escape Sequences in String Constants165165
+Ref: XREFis_dq_string167500
+Ref: XREFis_sq_string167685
+Node: Character Arrays167870
+Ref: XREFischar168868
+Ref: XREFstring_fill_char169847
+Node: Creating Strings170839
+Ref: XREFblanks171308
+Node: Concatenating Strings171778
+Ref: XREFchar175020
+Ref: XREFstrvcat176198
+Ref: XREFstrcat177422
+Ref: XREFcstrcat178719
+Node: Converting Numerical Data to Strings179176
+Ref: XREFmat2str179924
+Ref: XREFnum2str181217
+Ref: XREFint2str182743
+Node: Comparing Strings183510
+Ref: XREFstrcmp184252
+Ref: XREFstrncmp185022
+Ref: XREFstrcmpi185950
+Ref: XREFstrncmpi186818
+Ref: XREFvalidatestring187699
+Node: Manipulating Strings189191
+Ref: XREFdeblank189946
+Ref: XREFstrtrim190400
+Ref: XREFstrtrunc190853
+Ref: XREFfindstr191146
+Ref: XREFstrchr191954
+Ref: XREFindex192432
+Ref: XREFrindex192951
+Ref: XREFstrfind193411
+Ref: XREFstrjoin194710
+Ref: XREFstrmatch195458
+Ref: XREFstrtok196530
+Ref: XREFstrsplit197450
+Ref: XREFostrsplit200615
+Ref: XREFstrread201562
+Ref: XREFstrrep206685
+Ref: XREFsubstr207545
+Ref: XREFregexp208351
+Ref: XREFregexpi213990
+Ref: XREFregexprep214429
+Ref: XREFregexptranslate215632
+Ref: XREFuntabify216524
+Node: String Conversions217539
+Ref: XREFbin2dec217936
+Ref: XREFdec2bin218643
+Ref: XREFdec2hex219222
+Ref: XREFhex2dec219778
+Ref: XREFdec2base220373
+Ref: XREFbase2dec221180
+Ref: XREFnum2hex221942
+Ref: XREFhex2num222682
+Ref: XREFstr2double223585
+Ref: XREFstrjust225173
+Ref: XREFstr2num225813
+Ref: XREFtoascii226643
+Ref: XREFtolower226851
+Ref: XREFtoupper227232
+Ref: XREFdo_string_escapes227613
+Ref: XREFundo_string_escapes227730
+Node: Character Class Functions228497
+Ref: XREFisalnum229057
+Ref: XREFisalpha229440
+Ref: XREFisletter229874
+Ref: XREFislower230265
+Ref: XREFisupper230558
+Ref: XREFisdigit230851
+Ref: XREFisxdigit231210
+Ref: XREFispunct231402
+Ref: XREFisspace231698
+Ref: XREFiscntrl232065
+Ref: XREFisgraph232357
+Ref: XREFisprint232597
+Ref: XREFisascii232839
+Ref: XREFisstrprop233033
+Node: Data Containers234732
+Node: Structures235316
+Node: Basic Usage and Examples235770
+Ref: XREFstruct_levels_to_print238104
+Ref: XREFprint_struct_array_contents238622
+Node: Structure Arrays240867
+Node: Creating Structures243559
+Ref: XREFstruct246352
+Ref: XREFisstruct248206
+Node: Manipulating Structures248399
+Ref: XREFnfields248676
+Ref: XREFfieldnames248765
+Ref: XREFisfield249465
+Ref: XREFsetfield249686
+Ref: XREFgetfield251922
+Ref: XREFrmfield252441
+Ref: XREForderfields252808
+Ref: XREFsubstruct254768
+Node: Processing Data in Structures255357
+Ref: XREFstruct2cell255963
+Node: Cell Arrays256837
+Node: Basic Usage of Cell Arrays257446
+Ref: XREFcelldisp258932
+Ref: XREFiscell259662
+Node: Creating Cell Arrays259876
+Ref: XREFcell261495
+Ref: XREFnum2cell262107
+Ref: XREFmat2cell262862
+Ref: XREFcellslices263909
+Node: Indexing Cell Arrays264609
+Ref: XREFcellindexmat267839
+Node: Cell Arrays of Strings268156
+Ref: XREFcellstr269214
+Ref: XREFiscellstr270331
+Node: Processing Data in Cell Arrays270499
+Ref: XREFcell2mat271260
+Ref: XREFcell2struct271635
+Node: Comma Separated Lists272210
+Ref: Comma Separated Lists-Footnote-1273750
+Node: Comma Separated Lists Generated from Cell Arrays273837
+Node: Comma Separated Lists Generated from Structure Arrays276003
+Node: Variables276702
+Ref: XREFans278553
+Ref: XREFisvarname278785
+Ref: XREFgenvarname278974
+Ref: XREFnamelengthmax281207
+Node: Global Variables281730
+Ref: XREFisglobal283454
+Node: Persistent Variables283700
+Ref: XREFpersistent283870
+Node: Status of Variables287220
+Ref: XREFwho287761
+Ref: XREFwhos289017
+Ref: XREFwhos_line_format290784
+Ref: XREFexist293124
+Ref: XREFclear294904
+Ref: XREFpack297070
+Ref: XREFtype297435
+Ref: XREFwhich298015
+Ref: XREFwhat298238
+Node: Expressions298563
+Node: Index Expressions299422
+Node: Advanced Indexing301680
+Ref: XREFsub2ind306185
+Ref: XREFind2sub306676
+Ref: XREFisindex307128
+Ref: XREFallow_noninteger_range_as_index307568
+Node: Calling Functions308326
+Node: Call by Value310838
+Node: Recursion312849
+Ref: XREFmax_recursion_depth313788
+Ref: Recursion-Footnote-1314431
+Ref: Recursion-Footnote-2314819
+Node: Arithmetic Ops314980
+Ref: XREFctranspose318766
+Ref: XREFldivide318946
+Ref: XREFminus319218
+Ref: XREFmldivide319364
+Ref: XREFmpower319606
+Ref: XREFmrdivide319874
+Ref: XREFmtimes320135
+Ref: XREFplus320713
+Ref: XREFpower321073
+Ref: XREFrdivide321587
+Ref: XREFtimes321860
+Ref: XREFtranspose322311
+Ref: XREFuminus322471
+Ref: XREFuplus322613
+Node: Comparison Ops322783
+Ref: XREFeq324326
+Ref: XREFge324615
+Ref: XREFgt324806
+Ref: XREFisequal324996
+Ref: XREFisequaln325134
+Ref: XREFle325376
+Ref: XREFlt325567
+Ref: XREFne325757
+Node: Boolean Expressions326009
+Node: Element-by-element Boolean Operators326258
+Ref: XREFand328700
+Ref: XREFnot329111
+Ref: XREFor329290
+Node: Short-circuit Boolean Operators329704
+Ref: XREFdo_braindead_shortcircuit_evaluation332883
+Ref: XREFmerge333993
+Node: Assignment Ops334878
+Node: Increment Ops340124
+Node: Operator Precedence341744
+Node: Evaluation344072
+Ref: XREFeval344510
+Node: Calling a Function by its Name345593
+Ref: XREFfeval347284
+Ref: XREFrun348317
+Node: Evaluation in a Different Context348713
+Ref: XREFevalin351111
+Ref: XREFassignin351406
+Node: Statements351601
+Node: The if Statement353106
+Node: The switch Statement356630
+Node: Notes for the C Programmer359447
+Node: The while Statement360548
+Node: The do-until Statement362747
+Node: The for Statement364151
+Node: Looping Over Structure Elements367313
+Node: The break Statement368583
+Node: The continue Statement370105
+Node: The unwind_protect Statement371402
+Node: The try Statement372806
+Node: Continuation Lines373834
+Node: Functions and Scripts375449
+Node: Introduction to Function and Script Files376231
+Node: Defining Functions377148
+Ref: XREFnargin382380
+Ref: XREFinputname383074
+Ref: XREFsilent_functions383252
+Node: Multiple Return Values383934
+Ref: XREFnthargout385567
+Ref: XREFnargout387818
+Ref: XREFnargchk389494
+Ref: XREFnarginchk390133
+Ref: XREFnargoutchk390772
+Ref: XREFvarargin392022
+Ref: XREFvarargout392022
+Node: Variable-length Argument Lists392022
+Ref: XREFparseparams394151
+Node: Ignoring Arguments395373
+Ref: XREFisargout396366
+Node: Variable-length Return Lists397221
+Ref: XREFdeal398378
+Node: Returning from a Function398883
+Node: Default Arguments400471
+Node: Function Files401764
+Ref: XREFedit404370
+Ref: XREFmfilename409210
+Ref: XREFignore_function_time_stamp409658
+Ref: Function Files-Footnote-1410742
+Node: Manipulating the Load Path410808
+Ref: XREFaddpath411624
+Ref: XREFgenpath412381
+Ref: XREFrmpath412651
+Ref: XREFsavepath413139
+Ref: XREFpath413633
+Ref: XREFpathdef414326
+Ref: XREFpathsep414832
+Ref: XREFrehash415040
+Ref: XREFfile_in_loadpath415128
+Ref: XREFrestoredefaultpath415861
+Ref: XREFcommand_line_path416191
+Ref: XREFfind_dir_in_path416504
+Node: Subfunctions417016
+Node: Private Functions417812
+Node: Nested Functions418884
+Node: Overloading and Autoloading422776
+Ref: XREFbuiltin423469
+Ref: XREFautoload424868
+Node: Function Locking426083
+Ref: XREFmlock428020
+Ref: XREFmunlock428240
+Ref: XREFmislocked428523
+Node: Function Precedence428842
+Node: Script Files430312
+Ref: XREFsource434120
+Node: Function Handles Anonymous Functions Inline Functions434328
+Node: Function Handles434903
+Ref: XREFis_function_handle435827
+Ref: XREFfunctions436013
+Ref: XREFfunc2str436147
+Ref: XREFstr2func436301
+Node: Anonymous Functions436575
+Node: Inline Functions437660
+Ref: XREFinline438104
+Ref: XREFargnames439154
+Ref: XREFformula439417
+Ref: XREFsymvar439695
+Node: Commands440034
+Node: Organization of Functions441258
+Node: Errors and Warnings443705
+Node: Handling Errors444310
+Node: Raising Errors445067
+Ref: XREFerror445687
+Ref: XREFprint_usage449857
+Ref: XREFusage450151
+Ref: XREFbeep451002
+Ref: XREFbeep_on_error451206
+Node: Catching Errors451742
+Ref: XREFlasterror452916
+Ref: XREFlasterr454409
+Ref: XREFerror_ids455906
+Ref: XREFrethrow457435
+Ref: XREFerrno457876
+Ref: XREFerrno_list458228
+Node: Recovering From Errors458336
+Ref: XREFonCleanup459458
+Node: Handling Warnings459970
+Node: Issuing Warnings460549
+Ref: XREFwarning461993
+Ref: XREFlastwarn464562
+Ref: XREFwarning_ids465156
+Node: Enabling and Disabling Warnings476041
+Node: Debugging476934
+Node: Entering Debug Mode477648
+Ref: XREFdebug_on_interrupt478141
+Ref: XREFdebug_on_warning478955
+Ref: XREFdebug_on_error479601
+Node: Leaving Debug Mode480368
+Ref: XREFdbcont480588
+Ref: XREFdbquit480848
+Node: Breakpoints481144
+Ref: XREFdbstop481359
+Ref: XREFdbstatus483158
+Ref: XREFdbclear484136
+Ref: XREFkeyboard485676
+Node: Debug Mode486609
+Ref: XREFdbwhere486974
+Ref: XREFdbtype487218
+Ref: XREFdblist488004
+Ref: XREFisdebugmode488381
+Ref: XREFdbstep488678
+Node: Call Stack489585
+Ref: XREFdbstack489711
+Ref: XREFdbup490630
+Ref: XREFdbdown490865
+Node: Profiling491104
+Ref: XREFprofile492016
+Ref: XREFprofshow494449
+Ref: XREFprofexplore495115
+Node: Profiler Example495632
+Ref: Profiler Example-Footnote-1501880
+Node: Input and Output502232
+Node: Basic Input and Output502754
+Node: Terminal Output502985
+Ref: XREFdisp503723
+Ref: XREFlist_in_columns504133
+Ref: XREFterminal_size505229
+Ref: XREFformat505457
+Node: Paging Screen Output511305
+Ref: XREFmore512449
+Ref: XREFPAGER512875
+Ref: XREFPAGER_FLAGS513701
+Ref: XREFpage_screen_output514359
+Ref: XREFpage_output_immediately515263
+Ref: XREFfflush516091
+Node: Terminal Input516538
+Ref: XREFinput516949
+Ref: XREFmenu518127
+Ref: XREFyes_or_no518660
+Ref: XREFkbhit519396
+Node: Simple File I/O519896
+Ref: XREFsave520689
+Ref: XREFsave_default_options524994
+Ref: XREFsave_precision525665
+Ref: XREFsave_header_format_string526178
+Ref: XREFload527210
+Ref: XREFfileread531149
+Ref: XREFnative_float_format531358
+Ref: XREFfdisp531938
+Ref: XREFdlmwrite532363
+Ref: XREFdlmread534080
+Ref: XREFcsvwrite535503
+Ref: XREFcsvread535869
+Ref: XREFtextread536301
+Ref: XREFtextscan537930
+Ref: XREFimportdata540690
+Node: Saving Data on Unexpected Exits541800
+Ref: XREFcrash_dumps_octave_core542321
+Ref: XREFsighup_dumps_octave_core543152
+Ref: XREFsigterm_dumps_octave_core543751
+Ref: XREFoctave_core_file_options544356
+Ref: XREFoctave_core_file_limit545279
+Ref: XREFoctave_core_file_name546459
+Node: C-Style I/O Functions547275
+Ref: XREFstdin548088
+Ref: XREFstdout548370
+Ref: XREFstderr548632
+Node: Opening and Closing Files549433
+Ref: XREFfopen550168
+Ref: XREFfclose553759
+Ref: XREFis_valid_file_id554105
+Node: Simple Output554236
+Ref: XREFfputs554781
+Ref: XREFputs555243
+Node: Line-Oriented Input555470
+Ref: XREFfgetl556052
+Ref: XREFfgets556669
+Ref: XREFfskipl557311
+Node: Formatted Output558069
+Ref: XREFprintf558583
+Ref: XREFfprintf559023
+Ref: XREFsprintf559460
+Node: Output Conversion for Matrices561971
+Node: Output Conversion Syntax563061
+Node: Table of Output Conversions566023
+Node: Integer Conversions568201
+Node: Floating-Point Conversions570253
+Node: Other Output Conversions573088
+Node: Formatted Input574197
+Ref: XREFfscanf574610
+Ref: XREFscanf576460
+Ref: XREFsscanf576854
+Node: Input Conversion Syntax578692
+Node: Table of Input Conversions581179
+Node: Numeric Input Conversions583018
+Node: String Input Conversions584058
+Node: Binary I/O585085
+Ref: XREFfread585547
+Ref: XREFfwrite589786
+Node: Temporary Files590512
+Ref: XREFmkstemp590947
+Ref: XREFtmpfile591956
+Ref: XREFtmpnam592494
+Node: EOF and Errors593192
+Ref: XREFfeof594071
+Ref: XREFferror594440
+Ref: XREFfclear594955
+Ref: XREFfreport595084
+Node: File Positioning595550
+Ref: XREFftell595808
+Ref: XREFfseek596049
+Ref: XREFSEEK_SET596823
+Ref: XREFfrewind597271
+Node: Plotting597908
+Node: Introduction to Plotting598148
+Node: High-Level Plotting599182
+Node: Two-Dimensional Plots599893
+Ref: fig:plot600452
+Ref: XREFplot600639
+Ref: XREFplotyy606219
+Ref: XREFsemilogx607707
+Ref: XREFsemilogy608432
+Ref: XREFloglog609155
+Ref: fig:hist610116
+Ref: XREFbar610285
+Ref: XREFbarh612604
+Ref: XREFhist614047
+Ref: XREFstemleaf615744
+Ref: XREFprintd618324
+Ref: XREFstairs618760
+Ref: XREFstem620034
+Ref: XREFstem3623022
+Ref: XREFscatter624487
+Ref: XREFplotmatrix626304
+Ref: XREFpareto627806
+Ref: XREFrose629673
+Ref: XREFcontour631005
+Ref: XREFcontourf632404
+Ref: XREFcontourc633983
+Ref: XREFcontour3635589
+Ref: fig:errorbar637568
+Ref: XREFerrorbar637745
+Ref: XREFsemilogxerr640412
+Ref: XREFsemilogyerr641249
+Ref: XREFloglogerr642086
+Ref: fig:polar643151
+Ref: XREFpolar643322
+Ref: XREFpie644127
+Ref: XREFpie3645452
+Ref: XREFquiver646799
+Ref: XREFquiver3648409
+Ref: XREFcompass650150
+Ref: XREFfeather651225
+Ref: XREFpcolor652161
+Ref: XREFarea653880
+Ref: XREFcomet655263
+Ref: XREFcomet3655927
+Node: Axis Configuration656682
+Ref: XREFaxis657027
+Ref: XREFcaxis660013
+Ref: XREFylim661204
+Ref: XREFzlim661204
+Ref: XREFxlim661204
+Node: Two-dimensional Function Plotting662215
+Ref: XREFfplot662978
+Ref: XREFezplot664785
+Ref: XREFezcontour666604
+Ref: XREFezcontourf667843
+Ref: XREFezpolar669095
+Node: Two-dimensional Geometric Shapes670097
+Ref: XREFrectangle670314
+Node: Three-Dimensional Plots671992
+Ref: fig:mesh672695
+Ref: fig:plot3673302
+Ref: XREFmesh673571
+Ref: XREFmeshc675270
+Ref: XREFmeshz677034
+Ref: XREFhidden678736
+Ref: XREFsurf679697
+Ref: XREFsurfc681593
+Ref: XREFsurfl683525
+Ref: XREFsurfnorm685689
+Ref: XREFisosurface686861
+Ref: XREFisonormals691020
+Ref: XREFisocolors694361
+Ref: XREFshrinkfaces697801
+Ref: XREFdiffuse699287
+Ref: XREFspecular699667
+Ref: XREFmeshgrid700313
+Ref: XREFndgrid701079
+Ref: XREFplot3701643
+Ref: XREFview703829
+Ref: XREFslice704784
+Ref: XREFribbon706813
+Ref: XREFshading707558
+Ref: XREFscatter3708304
+Ref: XREFwaterfall710115
+Node: Aspect Ratio712058
+Ref: XREFdaspect712422
+Ref: XREFpbaspect713274
+Node: Three-dimensional Function Plotting714160
+Ref: XREFezplot3714410
+Ref: XREFezmesh715507
+Ref: XREFezmeshc717326
+Ref: XREFezsurf719019
+Ref: XREFezsurfc720843
+Node: Three-dimensional Geometric Shapes722524
+Ref: XREFcylinder722751
+Ref: XREFsphere723765
+Ref: XREFellipsoid724604
+Node: Plot Annotations725468
+Ref: XREFtitle726101
+Ref: XREFlegend726781
+Ref: XREFtext729900
+Ref: XREFylabel730562
+Ref: XREFzlabel730562
+Ref: XREFxlabel730562
+Ref: XREFclabel731284
+Ref: XREFbox733121
+Ref: XREFgrid733551
+Ref: XREFcolorbar734334
+Node: Multiple Plots on One Page736605
+Ref: XREFsubplot737485
+Node: Multiple Plot Windows739813
+Ref: XREFfigure740328
+Node: Manipulation of Plot Windows741188
+Ref: XREFdrawnow741586
+Ref: XREFrefresh742219
+Ref: XREFnewplot743044
+Ref: XREFhold745724
+Ref: XREFishold746891
+Ref: XREFclf747639
+Ref: XREFcla748555
+Ref: XREFshg749266
+Ref: XREFdelete749440
+Ref: XREFclose749765
+Ref: XREFclosereq750844
+Node: Use of the 'interpreter' Property751129
+Ref: tab:extended753243
+Node: Printing and Saving Plots755618
+Ref: XREFprint756144
+Ref: XREFsaveas763936
+Ref: XREForient764691
+Node: Interacting with Plots765410
+Ref: XREFginput765880
+Ref: XREFwaitforbuttonpress766545
+Ref: XREFgtext766868
+Ref: XREFuimenu767656
+Node: Test Plotting Functions769747
+Ref: XREFsombrero770108
+Ref: XREFpeaks770911
+Node: Graphics Data Structures772077
+Node: Introduction to Graphics Structures772420
+Ref: XREFgraphics structures772628
+Ref: XREFisprop777116
+Node: Graphics Objects777283
+Ref: XREFaxes778546
+Ref: XREFline779287
+Ref: XREFpatch780204
+Ref: XREFfill782755
+Ref: XREFsurface784550
+Ref: XREFishandle785888
+Ref: XREFishghandle786241
+Ref: XREFisaxes786486
+Ref: XREFisfigure786814
+Ref: XREFgcf787361
+Ref: XREFgca788046
+Ref: XREFgco788612
+Ref: XREFget791026
+Ref: XREFset791380
+Ref: XREFancestor792901
+Ref: XREFallchild793587
+Ref: XREFfindfigs794109
+Ref: XREFhdl2struct794835
+Ref: XREFstruct2hdl795195
+Ref: XREFcopyobj796047
+Node: Graphics Object Properties796522
+Node: Root Figure Properties797075
+Node: Figure Properties797913
+Node: Axes Properties801168
+Node: Line Properties807364
+Node: Text Properties808639
+Node: Image Properties810205
+Node: Patch Properties811301
+Node: Surface Properties812982
+Node: Searching Properties814522
+Ref: XREFfindobj814731
+Ref: XREFfindall816881
+Node: Managing Default Properties817815
+Ref: XREFreset820203
+Node: Advanced Plotting820894
+Node: Colors821174
+Node: Line Styles821481
+Node: Marker Styles822108
+Ref: XREFcolstyle823020
+Node: Callbacks823248
+Ref: XREFgcbo825163
+Ref: XREFgcbf825854
+Node: Application-defined Data826411
+Ref: XREFsetappdata826787
+Ref: XREFgetappdata827190
+Ref: XREFrmappdata827666
+Ref: XREFisappdata827786
+Node: Object Groups828047
+Ref: XREFhggroup828514
+Ref: XREFaddproperty829921
+Ref: XREFaddlistener832849
+Ref: XREFdellistener833987
+Ref: XREFlinkprop835601
+Node: Data Sources in Object Groups838128
+Ref: XREFdatasources838306
+Ref: XREFrefreshdata838531
+Ref: XREFlinkdata839502
+Node: Area Series839502
+Node: Bar Series840375
+Node: Contour Groups842205
+Node: Error Bar Series844838
+Node: Line Series845797
+Node: Quiver Group846547
+Node: Scatter Group848135
+Node: Stair Group849206
+Node: Stem Series850029
+Node: Surface Group851482
+Node: Graphics Toolkits852380
+Ref: XREFgraphics_toolkit852524
+Ref: XREFavailable_graphics_toolkits853418
+Ref: XREFloaded_graphics_toolkits853662
+Ref: XREFregister_graphics_toolkit853871
+Node: Customizing Toolkit Behavior854115
+Ref: XREFgnuplot_binary854433
+Ref: XREFgui_mode854949
+Ref: XREFmouse_wheel_zoom855488
+Node: Matrix Manipulation856364
+Node: Finding Elements and Checking Conditions857034
+Ref: XREFany857487
+Ref: XREFall858103
+Ref: XREFxor859133
+Ref: XREFdiff859769
+Ref: XREFisinf860790
+Ref: XREFisnan861124
+Ref: XREFisfinite861504
+Ref: XREFcommon_size861869
+Ref: XREFfind862511
+Ref: XREFlookup864266
+Node: Rearranging Matrices866052
+Ref: XREFfliplr866263
+Ref: XREFflipud866756
+Ref: XREFflipdim867246
+Ref: XREFrot90867652
+Ref: XREFrotdim868548
+Ref: XREFcat869697
+Ref: XREFhorzcat870533
+Ref: XREFvertcat870930
+Ref: XREFpermute871323
+Ref: XREFipermute871611
+Ref: XREFreshape871841
+Ref: XREFresize872950
+Ref: XREFcircshift874254
+Ref: XREFshift875043
+Ref: XREFshiftdim875333
+Ref: XREFsort876242
+Ref: XREFsortrows878161
+Ref: XREFissorted878578
+Ref: XREFnth_element879199
+Ref: XREFtriu880151
+Ref: XREFtril880151
+Ref: XREFvec881537
+Ref: XREFvech882007
+Ref: XREFprepad882382
+Ref: XREFpostpad882977
+Ref: XREFdiag883565
+Ref: XREFblkdiag884493
+Node: Special Utility Matrices884871
+Ref: XREFeye885065
+Ref: XREFones886263
+Ref: XREFzeros887097
+Ref: XREFrepmat887784
+Ref: XREFrepelems888288
+Ref: XREFlinspace889198
+Ref: XREFlogspace889996
+Ref: XREFrand890560
+Ref: XREFrandi893952
+Ref: XREFrandn895246
+Ref: XREFrande896461
+Ref: XREFrandp897652
+Ref: XREFrandg899625
+Ref: XREFrandperm903303
+Ref: Special Utility Matrices-Footnote-1903826
+Node: Famous Matrices903996
+Ref: XREFgallery904196
+Ref: XREFhadamard915104
+Ref: XREFhankel915853
+Ref: XREFhilb916490
+Ref: XREFinvhilb917080
+Ref: XREFmagic918116
+Ref: XREFpascal918407
+Ref: XREFrosser919070
+Ref: XREFtoeplitz919275
+Ref: XREFvander920020
+Ref: XREFwilkinson920604
+Node: Arithmetic920948
+Node: Exponents and Logarithms921680
+Ref: XREFexp921839
+Ref: XREFexpm1922017
+Ref: XREFlog922153
+Ref: XREFreallog922461
+Ref: XREFlog1p922731
+Ref: XREFlog10922916
+Ref: XREFlog2923119
+Ref: XREFpow2923524
+Ref: XREFnextpow2923770
+Ref: XREFrealpow924000
+Ref: XREFsqrt924288
+Ref: XREFrealsqrt924568
+Ref: XREFcbrt924834
+Ref: XREFnthroot925034
+Node: Complex Arithmetic925503
+Ref: XREFabs925787
+Ref: XREFarg925951
+Ref: XREFconj926168
+Ref: XREFcplxpair926332
+Ref: XREFimag927289
+Ref: XREFreal927435
+Node: Trigonometry927559
+Ref: XREFsin928932
+Ref: XREFcos929106
+Ref: XREFtan929282
+Ref: XREFsec929459
+Ref: XREFcsc929635
+Ref: XREFcot929813
+Ref: XREFasin929992
+Ref: XREFacos930148
+Ref: XREFatan930306
+Ref: XREFasec930465
+Ref: XREFacsc930623
+Ref: XREFacot930783
+Ref: XREFsinh930944
+Ref: XREFcosh931121
+Ref: XREFtanh931300
+Ref: XREFsech931476
+Ref: XREFcsch931605
+Ref: XREFcoth931736
+Ref: XREFasinh931868
+Ref: XREFacosh932003
+Ref: XREFatanh932140
+Ref: XREFasech932278
+Ref: XREFacsch932414
+Ref: XREFacoth932552
+Ref: XREFatan2932691
+Ref: XREFsind933289
+Ref: XREFcosd933495
+Ref: XREFtand933708
+Ref: XREFsecd933978
+Ref: XREFcscd934125
+Ref: XREFcotd934274
+Ref: XREFasind934424
+Ref: XREFacosd934578
+Ref: XREFatand934734
+Ref: XREFatan2d934891
+Ref: XREFasecd935071
+Ref: XREFacscd935227
+Ref: XREFacotd935385
+Node: Sums and Products935544
+Ref: XREFsum935702
+Ref: XREFprod936767
+Ref: XREFcumsum937022
+Ref: XREFcumprod937525
+Ref: XREFsumsq937797
+Node: Utility Functions938221
+Ref: XREFceil938384
+Ref: XREFfix938745
+Ref: XREFfloor939109
+Ref: XREFround939475
+Ref: XREFroundb939869
+Ref: XREFmax940138
+Ref: XREFmin941350
+Ref: XREFcummax942552
+Ref: XREFcummin943192
+Ref: XREFhypot943830
+Ref: XREFgradient944345
+Ref: XREFdot946254
+Ref: XREFcross946800
+Ref: XREFdivergence947328
+Ref: XREFcurl948060
+Ref: XREFdel2949155
+Ref: XREFfactorial950376
+Ref: XREFfactor950754
+Ref: XREFgcd951143
+Ref: XREFlcm952012
+Ref: XREFchop952282
+Ref: XREFrem952619
+Ref: XREFmod952972
+Ref: XREFprimes953497
+Ref: XREFlist_primes953975
+Ref: XREFsign954262
+Ref: XREFsignbit954755
+Node: Special Functions955332
+Ref: XREFairy955501
+Ref: XREFbesselj956621
+Ref: XREFbeta958777
+Ref: XREFbetainc958994
+Ref: XREFbetaincinv959583
+Ref: XREFbetaln959839
+Ref: XREFbincoeff960141
+Ref: XREFcommutation_matrix960671
+Ref: XREFduplication_matrix961054
+Ref: XREFdawson961381
+Ref: XREFellipj961693
+Ref: XREFellipke962908
+Ref: XREFerf963551
+Ref: XREFerfc963977
+Ref: XREFerfcx964243
+Ref: XREFerfi964532
+Ref: XREFerfinv964805
+Ref: XREFerfcinv965090
+Ref: XREFexpint965389
+Ref: XREFgamma966044
+Ref: XREFgammainc966331
+Ref: XREFlegendre967458
+Ref: XREFgammaln969728
+Ref: XREFlgamma969728
+Node: Rational Approximations969928
+Ref: XREFrat970118
+Ref: XREFrats970614
+Node: Coordinate Transformations971040
+Ref: XREFcart2pol971241
+Ref: XREFpol2cart972103
+Ref: XREFcart2sph972950
+Ref: XREFsph2cart973737
+Node: Mathematical Constants974520
+Ref: XREFe974681
+Ref: XREFpi975589
+Ref: XREFI976485
+Ref: XREFInf977504
+Ref: XREFNaN978608
+Ref: XREFeps979914
+Ref: XREFrealmax981129
+Ref: XREFrealmin982290
+Node: Linear Algebra983437
+Node: Techniques Used for Linear Algebra983993
+Node: Basic Matrix Functions985936
+Ref: XREFbalance986139
+Ref: XREFcond987625
+Ref: XREFdet988634
+Ref: XREFeig989192
+Ref: XREFgivens989772
+Ref: XREFplanerot990091
+Ref: XREFinv990297
+Ref: XREFmatrix_type991088
+Ref: XREFnorm994452
+Ref: XREFnull995838
+Ref: XREForth996211
+Ref: XREFmgorth996582
+Ref: XREFpinv996910
+Ref: XREFrank997243
+Ref: XREFrcond998277
+Ref: XREFtrace998744
+Ref: XREFrref998956
+Node: Matrix Factorizations999324
+Ref: XREFchol999512
+Ref: XREFcholinv1001485
+Ref: XREFchol2inv1001723
+Ref: XREFcholupdate1002120
+Ref: XREFcholinsert1002843
+Ref: XREFcholdelete1003609
+Ref: XREFcholshift1004018
+Ref: XREFhess1004540
+Ref: XREFlu1005289
+Ref: XREFluupdate1008008
+Ref: XREFqr1009298
+Ref: XREFqrupdate1011857
+Ref: XREFqrinsert1012606
+Ref: XREFqrdelete1013758
+Ref: XREFqrshift1014833
+Ref: XREFqz1015305
+Ref: XREFqzhess1017450
+Ref: XREFschur1018356
+Ref: XREFrsf2csf1020240
+Ref: XREFsubspace1020597
+Ref: XREFsvd1020755
+Ref: XREFsvd_driver1022061
+Ref: XREFhoush1022622
+Ref: XREFkrylov1023227
+Node: Functions of a Matrix1024464
+Ref: XREFexpm1024649
+Ref: XREFlogm1025594
+Ref: XREFsqrtm1026145
+Ref: XREFkron1026540
+Ref: XREFblkmm1027098
+Ref: XREFsyl1027512
+Node: Specialized Solvers1027792
+Ref: XREFbicg1027943
+Ref: XREFbicgstab1029718
+Ref: XREFcgs1031389
+Ref: XREFgmres1033058
+Node: Vectorization and Faster Code Execution1034885
+Node: Basic Vectorization1036411
+Ref: XREFvectorize1038445
+Node: Broadcasting1040278
+Ref: XREFbsxfun1043207
+Node: Function Application1046943
+Ref: XREFarrayfun1047503
+Ref: XREFspfun1051041
+Ref: XREFcellfun1051397
+Ref: XREFstructfun1055749
+Node: Accumulation1057787
+Ref: XREFaccumarray1058115
+Ref: XREFaccumdim1062275
+Node: JIT Compiler1063945
+Ref: XREFjit_enable1065552
+Ref: XREFjit_startcnt1066103
+Ref: XREFdebug_jit1066898
+Node: Miscellaneous Techniques1067492
+Node: Examples1072221
+Node: Nonlinear Equations1073071
+Node: Solvers1073304
+Ref: XREFfsolve1073730
+Ref: XREFfzero1079968
+Node: Minimizers1081953
+Ref: XREFfminbnd1082890
+Ref: XREFfminunc1084229
+Ref: XREFfminsearch1086657
+Node: Diagonal and Permutation Matrices1087752
+Node: Basic Usage1088299
+Node: Creating Diagonal Matrices1089527
+Node: Creating Permutation Matrices1090639
+Node: Explicit and Implicit Conversions1092401
+Node: Matrix Algebra1093671
+Node: Expressions Involving Diagonal Matrices1094290
+Node: Expressions Involving Permutation Matrices1097533
+Node: Function Support1099657
+Node: Diagonal Matrix Functions1100292
+Node: Permutation Matrix Functions1100979
+Node: Example Code1101747
+Node: Zeros Treatment1103124
+Node: Sparse Matrices1106233
+Node: Basics1106659
+Node: Storage of Sparse Matrices1107951
+Ref: Storage of Sparse Matrices-Footnote-11112192
+Ref: Storage of Sparse Matrices-Footnote-21112336
+Node: Creating Sparse Matrices1112401
+Ref: XREFspdiags1114332
+Ref: XREFspeye1115401
+Ref: XREFspones1115895
+Ref: XREFsprand1116045
+Ref: XREFsprandn1116526
+Ref: XREFsprandsym1117023
+Ref: XREFfull1119613
+Ref: XREFspalloc1119789
+Ref: XREFsparse1120884
+Ref: XREFspconvert1122503
+Node: Information1123202
+Ref: XREFissparse1124262
+Ref: XREFnnz1124387
+Ref: XREFnonzeros1124544
+Ref: XREFnzmax1124645
+Ref: XREFspstats1125135
+Ref: fig:spmatrix1127228
+Ref: XREFspy1129330
+Ref: XREFetree1129755
+Ref: XREFetreeplot1130329
+Ref: XREFgplot1130654
+Ref: XREFtreeplot1131305
+Ref: XREFtreelayout1131731
+Node: Operators and Functions1132192
+Node: Sparse Functions1132498
+Node: Return Types of Operators and Functions1134295
+Ref: XREFsparse_auto_mutate1136770
+Node: Mathematical Considerations1137685
+Ref: fig:simplematrix1140848
+Ref: fig:simplechol1142777
+Ref: fig:simplecholperm1143666
+Ref: XREFamd1144981
+Ref: XREFccolamd1146293
+Ref: XREFcolamd1150198
+Ref: XREFcolperm1153814
+Ref: XREFcsymamd1154131
+Ref: XREFdmperm1156910
+Ref: XREFsymamd1157706
+Ref: XREFsymrcm1161151
+Node: Sparse Linear Algebra1162187
+Ref: XREFnormest1166370
+Ref: XREFonenormest1166891
+Ref: XREFcondest1168277
+Ref: XREFspparms1170018
+Ref: XREFsprank1172409
+Ref: XREFsymbfact1172857
+Ref: XREFspaugment1174292
+Ref: XREFeigs1175816
+Ref: XREFsvds1181740
+Ref: Sparse Linear Algebra-Footnote-11184108
+Node: Iterative Techniques1184249
+Ref: XREFpcg1184772
+Ref: XREFpcr1190931
+Ref: XREFluinc1195616
+Node: Real Life Example1198068
+Node: Numerical Integration1203600
+Node: Functions of One Variable1204053
+Ref: XREFquad1207425
+Ref: XREFquad_options1209383
+Ref: XREFquadv1210572
+Ref: XREFquadl1212518
+Ref: XREFquadgk1214123
+Ref: XREFquadcc1218473
+Ref: XREFtrapz1223144
+Ref: XREFcumtrapz1224428
+Node: Orthogonal Collocation1225448
+Ref: XREFcolloc1225659
+Node: Functions of Multiple Variables1226671
+Ref: XREFdblquad1228201
+Ref: XREFtriplequad1229582
+Node: Differential Equations1232025
+Node: Ordinary Differential Equations1232456
+Ref: XREFlsode1232795
+Ref: XREFlsode_options1235602
+Node: Differential-Algebraic Equations1238987
+Ref: XREFdaspk1239415
+Ref: XREFdaspk_options1242003
+Ref: XREFdassl1248585
+Ref: XREFdassl_options1251246
+Ref: XREFdasrt1253804
+Ref: XREFdasrt_options1258240
+Node: Optimization1260311
+Node: Linear Programming1260783
+Ref: XREFglpk1261166
+Node: Quadratic Programming1272928
+Ref: XREFqp1273292
+Ref: XREFpqpnonneg1275193
+Node: Nonlinear Programming1276440
+Ref: XREFsqp1276729
+Node: Linear Least Squares1280961
+Ref: XREFols1281521
+Ref: XREFgls1282482
+Ref: XREFlsqnonneg1283122
+Ref: XREFoptimset1284644
+Ref: XREFoptimget1287256
+Node: Statistics1287554
+Node: Descriptive Statistics1288724
+Ref: XREFmean1289153
+Ref: XREFmedian1289986
+Ref: XREFmode1290552
+Ref: XREFrange1291532
+Ref: XREFiqr1292135
+Ref: XREFmeansq1292653
+Ref: XREFstd1293082
+Ref: XREFvar1294346
+Ref: XREFskewness1295259
+Ref: XREFkurtosis1295729
+Ref: XREFmoment1296563
+Ref: XREFquantile1297671
+Ref: XREFprctile1300773
+Ref: XREFstatistics1301737
+Node: Basic Statistical Functions1302350
+Ref: XREFcenter1302765
+Ref: XREFzscore1303044
+Ref: XREFhistc1303862
+Ref: XREFnchoosek1304929
+Ref: XREFperms1306268
+Ref: XREFranks1306629
+Ref: XREFrun_count1306904
+Ref: XREFrunlength1307200
+Ref: XREFprobit1307463
+Ref: XREFlogit1307604
+Ref: XREFcloglog1307790
+Ref: XREFmahalanobis1307929
+Ref: XREFtable1308180
+Node: Statistical Plots1308447
+Ref: XREFqqplot1308944
+Ref: XREFppplot1310009
+Node: Correlation and Regression Analysis1310873
+Ref: XREFcov1311086
+Ref: XREFcorr1311970
+Ref: XREFspearman1312489
+Ref: XREFkendall1313011
+Ref: XREFlogistic_regression1313786
+Node: Distributions1315468
+Ref: XREFbetapdf1317860
+Ref: XREFbetacdf1318033
+Ref: XREFbetainv1318210
+Ref: XREFbinopdf1318382
+Ref: XREFbinocdf1318638
+Ref: XREFbinoinv1318898
+Ref: XREFcauchy_pdf1319153
+Ref: XREFcauchy_cdf1319470
+Ref: XREFcauchy_inv1319787
+Ref: XREFchi2pdf1320099
+Ref: XREFchi2cdf1320282
+Ref: XREFchi2inv1320469
+Ref: XREFdiscrete_pdf1320646
+Ref: XREFdiscrete_cdf1320869
+Ref: XREFdiscrete_inv1321096
+Ref: XREFempirical_pdf1321311
+Ref: XREFempirical_cdf1321517
+Ref: XREFempirical_inv1321727
+Ref: XREFexppdf1321932
+Ref: XREFexpcdf1322106
+Ref: XREFexpinv1322338
+Ref: XREFfpdf1322511
+Ref: XREFfcdf1322686
+Ref: XREFfinv1322865
+Ref: XREFgampdf1323039
+Ref: XREFgamcdf1323227
+Ref: XREFgaminv1323420
+Ref: XREFgeopdf1323608
+Ref: XREFgeocdf1323919
+Ref: XREFgeoinv1324234
+Ref: XREFhygepdf1324544
+Ref: XREFhygecdf1324998
+Ref: XREFhygeinv1325470
+Ref: XREFkolmogorov_smirnov_cdf1325946
+Ref: XREFlaplace_pdf1326354
+Ref: XREFlaplace_cdf1326504
+Ref: XREFlaplace_inv1326658
+Ref: XREFlogistic_pdf1326807
+Ref: XREFlogistic_cdf1326928
+Ref: XREFlogistic_inv1327084
+Ref: XREFlognpdf1327235
+Ref: XREFlogncdf1327643
+Ref: XREFlogninv1328055
+Ref: XREFnbinpdf1328460
+Ref: XREFnbincdf1328919
+Ref: XREFnbininv1329382
+Ref: XREFnormpdf1329840
+Ref: XREFnormcdf1330118
+Ref: XREFnorminv1330400
+Ref: XREFpoisspdf1330677
+Ref: XREFpoisscdf1330854
+Ref: XREFpoissinv1331035
+Ref: XREFstdnormal_pdf1331211
+Ref: XREFstdnormal_cdf1331411
+Ref: XREFstdnormal_inv1331615
+Ref: XREFtpdf1331814
+Ref: XREFtcdf1331995
+Ref: XREFtinv1332204
+Ref: XREFunidpdf1332488
+Ref: XREFunidcdf1332875
+Ref: XREFunidinv1333100
+Ref: XREFunifpdf1333322
+Ref: XREFunifcdf1333567
+Ref: XREFunifinv1333816
+Ref: XREFwblpdf1334060
+Ref: XREFwblcdf1334476
+Ref: XREFwblinv1334853
+Node: Tests1335155
+Ref: XREFanova1336815
+Ref: XREFbartlett_test1337818
+Ref: XREFchisquare_test_homogeneity1338307
+Ref: XREFchisquare_test_independence1338926
+Ref: XREFcor_test1339385
+Ref: XREFf_test_regression1340767
+Ref: XREFhotelling_test1341281
+Ref: XREFhotelling_test_21341849
+Ref: XREFkolmogorov_smirnov_test1342533
+Ref: XREFkolmogorov_smirnov_test_21343890
+Ref: XREFkruskal_wallis_test1345053
+Ref: XREFmanova1346184
+Ref: XREFmcnemar_test1346829
+Ref: XREFprop_test_21347381
+Ref: XREFrun_test1348241
+Ref: XREFsign_test1348576
+Ref: XREFt_test1349521
+Ref: XREFt_test_21350367
+Ref: XREFt_test_regression1351245
+Ref: XREFu_test1352095
+Ref: XREFvar_test1352981
+Ref: XREFwelch_test1353863
+Ref: XREFwilcoxon_test1354756
+Ref: XREFz_test1355705
+Ref: XREFz_test_21356548
+Node: Random Number Generation1357424
+Ref: XREFbetarnd1358947
+Ref: XREFbinornd1359665
+Ref: XREFcauchy_rnd1360461
+Ref: XREFchi2rnd1361259
+Ref: XREFdiscrete_rnd1361960
+Ref: XREFempirical_rnd1362731
+Ref: XREFexprnd1363505
+Ref: XREFfrnd1364219
+Ref: XREFgamrnd1364930
+Ref: XREFgeornd1365656
+Ref: XREFhygernd1366487
+Ref: XREFlaplace_rnd1367332
+Ref: XREFlogistic_rnd1367888
+Ref: XREFlognrnd1368448
+Ref: XREFnbinrnd1369201
+Ref: XREFnormrnd1369932
+Ref: XREFpoissrnd1370706
+Ref: XREFstdnormal_rnd1371429
+Ref: XREFtrnd1372039
+Ref: XREFunidrnd1372729
+Ref: XREFunifrnd1373524
+Ref: XREFwblrnd1374231
+Ref: XREFwienrnd1374996
+Node: Sets1375450
+Ref: XREFunique1375747
+Node: Set Operations1376901
+Ref: XREFismember1377398
+Ref: XREFunion1378667
+Ref: XREFintersect1379513
+Ref: XREFsetdiff1380029
+Ref: XREFsetxor1380713
+Ref: XREFpowerset1381356
+Node: Polynomial Manipulations1381964
+Node: Evaluating Polynomials1382530
+Ref: XREFpolyval1383440
+Ref: XREFpolyvalm1384317
+Node: Finding Roots1384729
+Ref: XREFroots1385101
+Ref: XREFpolyeig1385642
+Ref: XREFcompan1386217
+Ref: XREFmpoles1387147
+Node: Products of Polynomials1388146
+Ref: XREFconv1388356
+Ref: XREFconvn1389052
+Ref: XREFdeconv1389796
+Ref: XREFconv21390189
+Ref: XREFpolygcd1391145
+Ref: XREFresidue1391971
+Node: Derivatives / Integrals / Transforms1394463
+Ref: XREFpolyder1395093
+Ref: XREFpolyint1395687
+Ref: XREFpolyaffine1396031
+Node: Polynomial Interpolation1396395
+Ref: XREFpolyfit1397155
+Ref: XREFsplinefit1399096
+Ref: XREFmkpp1407171
+Ref: XREFunmkpp1408344
+Ref: XREFppval1409121
+Ref: XREFppder1409604
+Ref: XREFppint1409909
+Ref: XREFppjumps1410192
+Node: Miscellaneous Functions1410450
+Ref: XREFpoly1410626
+Ref: XREFpolyout1411634
+Ref: XREFpolyreduce1411990
+Node: Interpolation1412183
+Node: One-dimensional Interpolation1412401
+Ref: XREFinterp11412811
+Ref: XREFinterp1q1416913
+Ref: XREFinterpft1417901
+Ref: XREFspline1419401
+Node: Multi-dimensional Interpolation1420803
+Ref: XREFinterp21421189
+Ref: XREFinterp31423037
+Ref: XREFinterpn1424864
+Ref: XREFbicubic1427792
+Node: Geometry1428165
+Ref: Geometry-Footnote-11428664
+Node: Delaunay Triangulation1428851
+Ref: XREFdelaunay1429571
+Ref: XREFdelaunay31432055
+Ref: XREFdelaunayn1433526
+Node: Plotting the Triangulation1435619
+Ref: XREFtriplot1436023
+Ref: XREFtrimesh1436768
+Ref: XREFtrisurf1438333
+Ref: XREFtetramesh1439748
+Node: Identifying Points in Triangulation1441664
+Ref: XREFtsearch1443940
+Ref: XREFtsearchn1444272
+Ref: XREFdsearch1445492
+Ref: XREFdsearchn1445839
+Node: Voronoi Diagrams1446774
+Ref: XREFvoronoi1447419
+Ref: XREFvoronoin1448838
+Ref: XREFpolyarea1450474
+Ref: XREFrectint1451409
+Ref: XREFinpolygon1451884
+Node: Convex Hull1452522
+Ref: XREFconvhull1452908
+Ref: XREFconvhulln1453897
+Node: Interpolation on Scattered Data1455424
+Ref: XREFgriddata1456098
+Ref: XREFgriddata31456824
+Ref: XREFgriddatan1457675
+Node: Signal Processing1458773
+Ref: XREFfft1459126
+Ref: XREFifft1460157
+Ref: XREFfft21461246
+Ref: XREFifft21461779
+Ref: XREFfftn1462322
+Ref: XREFifftn1463000
+Ref: XREFfftw1464339
+Ref: XREFfftconv1467804
+Ref: XREFfftfilt1468408
+Ref: XREFfilter1469016
+Ref: XREFfilter21470685
+Ref: XREFfreqz1471262
+Ref: XREFfreqz_plot1472588
+Ref: XREFsinc1472686
+Ref: XREFunwrap1472748
+Ref: XREFarch_fit1473122
+Ref: XREFarch_rnd1474014
+Ref: XREFarch_test1474392
+Ref: XREFarma_rnd1475359
+Ref: XREFautoreg_matrix1475938
+Ref: XREFbartlett1476292
+Ref: XREFblackman1476543
+Ref: XREFdetrend1476776
+Ref: XREFdiffpara1477363
+Ref: XREFdurbinlevinson1478093
+Ref: XREFfftshift1478495
+Ref: XREFifftshift1479200
+Ref: XREFfractdiff1479410
+Ref: XREFhamming1479561
+Ref: XREFhanning1479791
+Ref: XREFhurst1480019
+Ref: XREFpchip1480210
+Ref: XREFperiodogram1481401
+Ref: XREFsinetone1482665
+Ref: XREFsinewave1482958
+Ref: XREFspectral_adf1483160
+Ref: XREFspectral_xdf1483676
+Ref: XREFspencer1484178
+Ref: XREFstft1484277
+Ref: XREFsynthesis1485282
+Ref: XREFyulewalker1485546
+Node: Image Processing1485784
+Node: Loading and Saving Images1486610
+Ref: XREFimread1487179
+Ref: XREFimwrite1489724
+Ref: XREFIMAGE_PATH1492089
+Ref: XREFimfinfo1492935
+Ref: XREFimformats1498310
+Node: Displaying Images1500278
+Ref: XREFimshow1500638
+Ref: XREFimage1501935
+Ref: XREFimagesc1503405
+Node: Representing Images1504254
+Ref: XREFiscolormap1505548
+Ref: XREFgray2ind1505929
+Ref: XREFind2gray1506572
+Ref: XREFrgb2ind1507478
+Ref: XREFind2rgb1509148
+Ref: XREFcolormap1510031
+Ref: XREFrgbplot1511531
+Ref: XREFautumn1512408
+Ref: XREFbone1512724
+Ref: XREFcolorcube1513044
+Ref: XREFcool1513588
+Ref: XREFcopper1513885
+Ref: XREFflag1514201
+Ref: XREFgray1514543
+Ref: XREFhot1514860
+Ref: XREFhsv1515200
+Ref: XREFjet1515793
+Ref: XREFlines1516141
+Ref: XREFocean1516564
+Ref: XREFpink1516884
+Ref: XREFprism1517266
+Ref: XREFrainbow1517626
+Ref: XREFspring1517971
+Ref: XREFsummer1518276
+Ref: XREFwhite1518578
+Ref: XREFwinter1518876
+Ref: XREFcontrast1519176
+Ref: XREFgmap401519907
+Ref: XREFbrighten1520504
+Ref: XREFspinmap1521231
+Ref: XREFwhitebg1521894
+Ref: XREFcmunique1522819
+Ref: XREFcmpermute1524307
+Node: Plotting on top of Images1524923
+Node: Color Conversion1525994
+Ref: XREFrgb2hsv1526228
+Ref: XREFhsv2rgb1526862
+Ref: XREFrgb2ntsc1527503
+Ref: XREFntsc2rgb1528323
+Node: Audio Processing1528914
+Ref: XREFlin2mu1530199
+Ref: XREFmu2lin1530647
+Ref: XREFloadaudio1531038
+Ref: XREFsaveaudio1531688
+Ref: XREFplayaudio1532619
+Ref: XREFrecord1532975
+Ref: XREFsetaudio1533459
+Ref: XREFwavread1533668
+Ref: XREFwavwrite1534659
+Node: Object Oriented Programming1535169
+Node: Creating a Class1536030
+Ref: XREFisobject1539676
+Ref: XREFmethods1539959
+Ref: XREFismethod1540405
+Node: Manipulating Classes1540677
+Ref: XREFdisplay1541286
+Ref: XREFsaveobj1545233
+Ref: XREFloadobj1546161
+Node: Indexing Objects1546695
+Node: Defining Indexing And Indexed Assignment1546968
+Ref: XREFsubsref1547641
+Ref: XREFsubsasgn1550029
+Ref: XREFoptimize_subsasgn_calls1550959
+Ref: XREFsubsindex1552641
+Ref: XREFcolon1553628
+Node: Indexed Assignment Optimization1553972
+Node: Overloading Objects1556811
+Node: Function Overloading1557092
+Node: Operator Overloading1558698
+Ref: tab:overload_ops1559050
+Node: Precedence of Objects1562078
+Ref: XREFsuperiorto1562624
+Ref: XREFinferiorto1562941
+Node: Inheritance and Aggregation1564917
+Node: GUI Development1571985
+Node: I/O Dialogs1573007
+Ref: XREFuigetdir1573289
+Ref: XREFuigetfile1573711
+Ref: XREFuiputfile1575654
+Node: Progress Bar1577140
+Ref: XREFwaitbar1577291
+Node: GUI Utility Functions1578151
+Ref: XREFguidata1578534
+Ref: XREFguihandles1579116
+Ref: XREFuiwait1579319
+Ref: XREFuiresume1580203
+Ref: XREFwaitfor1580533
+Node: User-Defined Preferences1582459
+Ref: XREFgetpref1582626
+Ref: XREFsetpref1583571
+Ref: XREFaddpref1584217
+Ref: XREFrmpref1584803
+Ref: XREFispref1585357
+Ref: XREFprefdir1585861
+Ref: XREFpreferences1586278
+Node: System Utilities1586363
+Node: Timing Utilities1587175
+Ref: XREFtime1588145
+Ref: XREFnow1588850
+Ref: XREFctime1589250
+Ref: XREFgmtime1589706
+Ref: XREFlocaltime1590713
+Ref: XREFmktime1591688
+Ref: XREFasctime1592321
+Ref: XREFstrftime1592710
+Ref: XREFstrptime1595952
+Ref: XREFclock1596944
+Ref: XREFdate1597555
+Ref: XREFetime1597856
+Ref: XREFcputime1598373
+Ref: XREFis_leap_year1599120
+Ref: XREFtoc1599493
+Ref: XREFtic1599493
+Ref: XREFpause1600723
+Ref: XREFsleep1601164
+Ref: XREFusleep1601284
+Ref: XREFdatenum1601589
+Ref: XREFdatestr1603743
+Ref: XREFdatevec1608267
+Ref: XREFaddtodate1609507
+Ref: XREFcalendar1609817
+Ref: XREFweekday1610426
+Ref: XREFeomday1611386
+Ref: XREFdatetick1611658
+Node: Filesystem Utilities1612304
+Ref: XREFmovefile1612714
+Ref: XREFrename1613750
+Ref: XREFcopyfile1614144
+Ref: XREFunlink1614989
+Ref: XREFlink1615214
+Ref: XREFsymlink1615645
+Ref: XREFreadlink1616067
+Ref: XREFmkdir1616574
+Ref: XREFrmdir1617155
+Ref: XREFconfirm_recursive_rmdir1617786
+Ref: XREFmkfifo1618395
+Ref: XREFumask1618737
+Ref: XREFlstat1619052
+Ref: XREFstat1619052
+Ref: XREFS_ISBLK1621726
+Ref: XREFS_ISCHR1621956
+Ref: XREFS_ISDIR1622190
+Ref: XREFS_ISFIFO1622417
+Ref: XREFS_ISLNK1622640
+Ref: XREFS_ISREG1622871
+Ref: XREFS_ISSOCK1623101
+Ref: XREFfileattrib1623326
+Ref: XREFisdir1624580
+Ref: XREFreaddir1624842
+Ref: XREFglob1625337
+Ref: XREFfnmatch1626629
+Ref: XREFfile_in_path1627011
+Ref: XREFfilesep1627877
+Ref: XREFfilemarker1628348
+Ref: XREFfileparts1629358
+Ref: XREFfullfile1629554
+Ref: XREFtilde_expand1629737
+Ref: XREFcanonicalize_file_name1630424
+Ref: XREFmake_absolute_filename1630832
+Ref: XREFis_absolute_filename1631249
+Ref: XREFis_rooted_relative_filename1631527
+Ref: XREFP_tmpdir1631804
+Ref: XREFtempdir1631976
+Ref: XREFtempname1632081
+Ref: XREFrecycle1632276
+Node: File Archiving Utilities1632702
+Ref: XREFbunzip21632898
+Ref: XREFgzip1633249
+Ref: XREFgunzip1633794
+Ref: XREFtar1634209
+Ref: XREFuntar1634752
+Ref: XREFzip1635105
+Ref: XREFunzip1635559
+Ref: XREFunpack1635912
+Ref: XREFbzip21636533
+Node: Networking Utilities1637064
+Ref: XREFgethostname1637343
+Node: FTP Objects1637446
+Ref: XREF@ftp/ftp1637791
+Ref: XREF@ftp/close1638816
+Ref: XREF@ftp/mget1638966
+Ref: XREF@ftp/mput1639557
+Ref: XREF@ftp/cd1639870
+Ref: XREF@ftp/dir1640339
+Ref: XREF@ftp/ascii1640509
+Ref: XREF@ftp/binary1640825
+Ref: XREF@ftp/delete1641098
+Ref: XREF@ftp/rename1641252
+Ref: XREF@ftp/mkdir1641457
+Ref: XREF@ftp/rmdir1641616
+Node: URL Manipulation1641775
+Ref: XREFurlread1641961
+Ref: XREFurlwrite1643211
+Node: Base64 and Binary Data Transmission1644608
+Ref: XREFbase64_encode1644973
+Ref: XREFbase64_decode1645147
+Node: Controlling Subprocesses1645487
+Ref: XREFsystem1646148
+Ref: XREFunix1647869
+Ref: XREFdos1648496
+Ref: XREFperl1649124
+Ref: XREFpython1649639
+Ref: XREFpopen1650174
+Ref: XREFpclose1651060
+Ref: XREFpopen21651208
+Ref: XREFEXEC_PATH1652489
+Ref: XREFfork1653511
+Ref: XREFexec1654199
+Ref: XREFpipe1654702
+Ref: XREFdup21655065
+Ref: XREFwaitpid1655317
+Ref: XREFWCONTINUE1657042
+Ref: XREFWCOREDUMP1657395
+Ref: XREFWEXITSTATUS1658066
+Ref: XREFWIFCONTINUED1658567
+Ref: XREFWIFSIGNALED1659027
+Ref: XREFWIFSTOPPED1659478
+Ref: XREFWIFEXITED1660061
+Ref: XREFWNOHANG1660499
+Ref: XREFWSTOPSIG1660843
+Ref: XREFWTERMSIG1661375
+Ref: XREFWUNTRACED1661920
+Ref: XREFfcntl1662287
+Ref: XREFkill1663637
+Ref: XREFSIG1664220
+Node: Process ID Information1664335
+Ref: XREFgetpgrp1664542
+Ref: XREFgetpid1664641
+Ref: XREFgetppid1664732
+Ref: XREFgeteuid1664823
+Ref: XREFgetuid1664923
+Ref: XREFgetegid1665016
+Ref: XREFgetgid1665117
+Node: Environment Variables1665211
+Ref: XREFgetenv1665405
+Ref: XREFputenv1665596
+Node: Current Working Directory1665744
+Ref: XREFcd1665951
+Ref: XREFls1666796
+Ref: XREFls_command1667418
+Ref: XREFdir1667609
+Ref: XREFpwd1668931
+Node: Password Database Functions1669166
+Ref: XREFgetpwent1669826
+Ref: XREFgetpwuid1670047
+Ref: XREFgetpwnam1670279
+Ref: XREFsetpwent1670517
+Ref: XREFendpwent1670634
+Node: Group Database Functions1670704
+Ref: XREFgetgrent1671260
+Ref: XREFgetgrgid1671446
+Ref: XREFgetgrnam1671655
+Ref: XREFsetgrent1671869
+Ref: XREFendgrent1671978
+Node: System Information1672045
+Ref: XREFcomputer1672226
+Ref: XREFuname1673083
+Ref: XREFnproc1673620
+Ref: XREFispc1674086
+Ref: XREFisunix1674264
+Ref: XREFismac1674442
+Ref: XREFisieee1674620
+Ref: XREFisdeployed1674804
+Ref: XREFOCTAVE_HOME1675077
+Ref: XREFmatlabroot1675272
+Ref: XREFOCTAVE_VERSION1675514
+Ref: XREFversion1675611
+Ref: XREFver1675845
+Ref: XREFcompare_versions1676767
+Ref: XREFlicense1677958
+Ref: XREFoctave_config_info1679288
+Ref: XREFgetrusage1679577
+Node: Hashing Functions1680982
+Ref: XREFmd5sum1681943
+Node: Java Interface1682172
+Node: Java Interface Functions1682669
+Ref: XREFjavaObject1683023
+Ref: XREFisjava1683917
+Ref: XREFjavaArray1684121
+Ref: XREFjavaMethod1684859
+Ref: XREFjavaclasspath1685943
+Ref: XREFjavaaddpath1687018
+Ref: XREFjavarmpath1687470
+Ref: XREFusejava1688059
+Ref: XREFjavamem1688811
+Ref: XREFjava_matrix_autoconversion1690537
+Ref: XREFjava_unsigned_autoconversion1691250
+Ref: XREFdebug_java1692102
+Node: Dialog Box Functions1692821
+Ref: XREFmsgbox1693107
+Ref: XREFerrordlg1693889
+Ref: XREFhelpdlg1694529
+Ref: XREFinputdlg1695163
+Ref: XREFlistdlg1696790
+Ref: XREFquestdlg1698624
+Ref: XREFwarndlg1699933
+Node: FAQ - Frequently asked Questions1700479
+Node: How to distinguish between Octave and Matlab?1700915
+Ref: XREFFAQ1701180
+Node: How to make Java classes available?1701809
+Node: How to create an instance of a Java class?1705914
+Node: How can I handle memory limitations?1706356
+Node: Which TeX symbols are implemented in dialog functions?1709226
+Node: Packages1710273
+Node: Installing and Removing Packages1711086
+Ref: XREFpkg1713553
+Node: Using Packages1720898
+Node: Administrating Packages1721512
+Node: Creating Packages1722992
+Ref: XREFPKG_ADD1724696
+Ref: XREFPKG_DEL1725365
+Node: The DESCRIPTION File1728297
+Node: The INDEX File1732333
+Node: PKG_ADD and PKG_DEL Directives1734606
+Node: External Code Interface1735733
+Node: Oct-Files1739876
+Node: Getting Started with Oct-Files1740497
+Ref: XREFmkoctfile1741195
+Node: Matrices and Arrays in Oct-Files1747960
+Node: Character Strings in Oct-Files1755274
+Node: Cell Arrays in Oct-Files1757752
+Node: Structures in Oct-Files1759174
+Node: Sparse Matrices in Oct-Files1761944
+Node: Array and Sparse Class Differences1763390
+Node: Creating Sparse Matrices in Oct-Files1766334
+Node: Using Sparse Matrices in Oct-Files1773123
+Node: Accessing Global Variables in Oct-Files1774083
+Node: Calling Octave Functions from Oct-Files1775619
+Node: Calling External Code from Oct-Files1778879
+Node: Allocating Local Memory in Oct-Files1783123
+Node: Input Parameter Checking in Oct-Files1783950
+Node: Exception and Error Handling in Oct-Files1786809
+Node: Documentation and Test of Oct-Files1790298
+Node: Mex-Files1792484
+Node: Getting Started with Mex-Files1793578
+Ref: XREFmex1794106
+Ref: XREFmexext1794323
+Node: Working with Matrices and Arrays in Mex-Files1797888
+Node: Character Strings in Mex-Files1801750
+Node: Cell Arrays with Mex-Files1803483
+Node: Structures with Mex-Files1805032
+Node: Sparse Matrices with Mex-Files1808699
+Node: Calling Other Functions in Mex-Files1813851
+Node: Standalone Programs1815192
+Node: Test and Demo Functions1817716
+Node: Test Functions1818112
+Ref: XREFtest1818257
+Ref: XREFassert1829051
+Ref: XREFfail1830759
+Node: Demonstration Functions1831997
+Ref: XREFdemo1832160
+Ref: XREFexample1834559
+Ref: XREFrundemos1835160
+Ref: XREFruntests1835608
+Ref: XREFspeed1836056
+Node: Tips and Standards1840929
+Node: Style Tips1841550
+Node: Comment Tips1843302
+Node: Function Headers1844467
+Node: Documentation Tips1848863
+Node: Contributing Guidelines1859619
+Node: How to Contribute1860074
+Node: Building the Development Sources1860682
+Node: Basics of Generating a Changeset1861154
+Ref: Basics of Generating a Changeset-Footnote-11865796
+Node: General Guidelines1865963
+Node: Octave Sources (m-files)1869317
+Node: C++ Sources1870874
+Node: Other Sources1873732
+Node: Obsolete Functions1875384
+Node: Trouble1882171
+Node: Actual Bugs1882827
+Node: Reporting Bugs1883649
+Node: Bug Criteria1884620
+Node: Bug Tracker1885830
+Node: Bug Reporting1886196
+Node: Sending Patches1891675
+Node: Service1894500
+Node: Installation1895290
+Node: Build Dependencies1895925
+Node: Obtaining the Dependencies Automatically1896389
+Node: Build Tools1898125
+Node: External Packages1900267
+Node: Running Configure and Make1904870
+Node: Compiling Octave with 64-bit Indexing1915866
+Node: Installation Problems1923048
+Node: Emacs Octave Support1930213
+Node: Installing EOS1931448
+Node: Using Octave Mode1932183
+Node: Running Octave from Within Emacs1943051
+Node: Using the Emacs Info Reader for Octave1947304
+Node: Grammar and Parser1948447
+Node: Keywords1948732
+Ref: XREFiskeyword1949897
+Node: Parser1950146
+Ref: XREFadd_input_event_hook1950766
+Ref: XREFremove_input_event_hook1951357
+Ref: XREFmissing_function_hook1951943
+Node: Copying1952477
+Node: Concept Index1990032
+Node: Function Index2045847
+Node: Operator Index2434147
 
 End Tag Table

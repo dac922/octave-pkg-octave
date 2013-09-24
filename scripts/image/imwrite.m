@@ -40,6 +40,13 @@
 ## are supported:
 ##
 ## @table @samp
+## @item Alpha
+## Alpha (transparency) channel for the image.  This must be a matrix with
+## same class, and number of rows and columns of @var{img}.  In case of a
+## multipage image, the size of the 4th dimension must also match and the third
+## dimension must be a singleton.  By default, image will be completely
+## opaque.
+##
 ## @item Quality
 ## Set the quality of the compression.  The value should be an
 ## integer between 0 and 100, with larger values indicating higher visual
@@ -85,6 +92,7 @@ function imwrite (varargin)
 
 endfunction
 
+
 %% Test input validation
 %!error imwrite ()                            # Wrong # of args
 %!error imwrite (1)                           # Wrong # of args
@@ -106,3 +114,4 @@ endfunction
 %!   unlink (filename);
 %! end_unwind_protect
 %! assert (imw, imr)
+
